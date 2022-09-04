@@ -15,6 +15,8 @@ export type Theme = {
   onError: string
   onWarning: string
   onDisabled: string
+
+  textBlack: string
 }
 
 const theme: Theme = {
@@ -33,7 +35,8 @@ const theme: Theme = {
   onWarning: '#FFFFFF',
   onPrimary: '#FCFCFC',
   onSecondary: '#000000',
-  onDisabled: '#FFFFFF'
+  onDisabled: '#FFFFFF',
+  textBlack: '#151616'
 }
 
 export default theme

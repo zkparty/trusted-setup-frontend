@@ -1,11 +1,12 @@
 const FONT_SIZE = {
-  XS: '10px',
+  XXS: '10px',
+  XS: '12px',
   S: '14px',
   M: '16px',
   L: '20px',
   XL: '24px',
   XXL: '32px',
-  HERO: '180px'
+  HERO: '140px'
 } as const
 
 const SPACE = {

@@ -1,7 +1,11 @@
 const ROUTES = {
-  LANDING: '/',
+  ROOT: '/',
+  LANDING: '/landing',
   SIGNIN: '/signin',
-  ONBOARDING: '/onboarding'
+  ONBOARDING: '/onboarding',
+  RECORD: '/record',
+  GATE: '/gate',
+  MOBILE: '/mobile'
 }
 
 export default ROUTES
