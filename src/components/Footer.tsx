@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import Logo from '../assets/logo.svg'
-import { textSerif } from '../style/utils'
+import Logo from './Logo'
 import { FONT_SIZE } from '../constants'
 import ROUTES from '../routes'
 
@@ -9,13 +8,7 @@ const Footer = () => {
   return (
     <Container>
       <LeftSection>
-        <LogoGroup>
-          <img src={Logo} alt="Logo" />
-          <LogoTextGroup>
-            <LogoTextMain>KZG</LogoTextMain>
-            <LogoTextMain>Ceremony</LogoTextMain>
-          </LogoTextGroup>
-        </LogoGroup>
+        <Logo hideVersion />
         <Copyright>Build by Ethereum Foundation, R&D team. 2022</Copyright>
       </LeftSection>
       <RightSection>
@@ -45,24 +38,6 @@ const LeftSection = styled.div``
 
 const RightSection = styled.div`
   display: flex;
-`
-
-const LogoGroup = styled.div`
-  display: flex;
-  align-items: center;
-`
-
-const LogoTextGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 8px;
-`
-
-const LogoTextMain = styled.span`
-  font-size: ${FONT_SIZE.M};
-  font-weight: 600;
-  ${textSerif};
-  line-height: 14px;
 `
 
 const Copyright = styled.p`

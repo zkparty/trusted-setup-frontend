@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 import { FONT_SIZE } from '../constants'
 
-const PrimaryButton = styled.button`
+const PrimaryButton = styled.button<{ inverse?: boolean }>`
   cursor: pointer;
-  background-color: ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.onPrimary};
+  background-color: ${({ theme, inverse }) =>
+    inverse ? theme.onPrimary : theme.primary};
+  color: ${({ theme, inverse }) => (inverse ? theme.primary : theme.onPrimary)};
   border-radius: 24px;
   border: none;
   min-width: 120px;
@@ -21,4 +22,13 @@ const PrimaryButton = styled.button`
   }
 `
 
-export { PrimaryButton }
+const SigninButton = styled(PrimaryButton)`
+  padding: 24px 32px;
+  border-radius: 38px;
+  font-size: ${FONT_SIZE.L};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+export { PrimaryButton, SigninButton }
