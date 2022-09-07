@@ -9,6 +9,7 @@ import FaqItem from '../components/FaqItem'
 import { FONT_SIZE, SPACE } from '../constants'
 import { textSerif } from '../style/utils'
 import ROUTES from '../routes'
+import bgImg from '../assets/landing-section2-bg.png'
 
 const LandingPage = () => {
   const navigate = useNavigate()
@@ -46,7 +47,7 @@ const LandingPage = () => {
         <DescriptionMid>
           paragraph 2, some other mentioning or lore
         </DescriptionMid>
-        <img src="https://placehold.jp/b6bfc9/ffffff/320x280.png" alt="" />
+        <LandingBgImg src={bgImg} alt="section background" />
       </SecondSection>
       <ThirdSection>
         <SectionTitleInverse>
@@ -133,6 +134,11 @@ const GetStartedButton = styled(PrimaryButton)`
 const SecondSection = styled.section`
   margin-top: 120px;
   padding: 40px 24px;
+`
+
+const LandingBgImg = styled.img`
+  width: 100%;
+  margin-top: -260px;
 `
 
 const DescriptionMid = styled(Description)`
