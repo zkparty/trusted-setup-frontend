@@ -3,6 +3,7 @@ import styled from 'styled-components'
 // Single section page
 export const SingleContainer = styled.div`
   background-color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.onPrimary};
   min-height: 100vh;
   padding-top: 120px;
 `
