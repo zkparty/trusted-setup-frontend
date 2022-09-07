@@ -42,6 +42,7 @@ const LinkText = styled(Link)`
   :hover {
     border-bottom: solid 2px ${({ theme }) => theme.primary};
   }
+  transition: all 0.2s ease;
 `
 
 export { PageTitle, SectionTitle, Description, LinkText }

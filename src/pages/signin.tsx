@@ -1,11 +1,24 @@
 import styled from 'styled-components'
-import { SigninButton } from '../components/Button'
+import { PrimaryButtonLarge } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
+import {
+  SingleContainer as Container,
+  SingleWrap as Wrap,
+  SingleButtonSection as ButtonSection
+} from '../components/Layout'
 import Logo from '../components/Logo'
 import EthImg from '../assets/eth.svg'
 import GithubImg from '../assets/github.svg'
+import { useNavigate } from 'react-router-dom'
+import ROUTES from '../routes'
 
 const SigninPage = () => {
+  // TODO: implement
+  const navigate = useNavigate()
+  const onSignin = () => {
+    navigate(ROUTES.ONBOARDING)
+  }
+
   return (
     <Container>
       <Wrap>
@@ -17,28 +30,17 @@ const SigninPage = () => {
         </Desc>
 
         <ButtonSection>
-          <SigninButton inverse>
+          <PrimaryButtonLarge inverse onClick={onSignin}>
             Sign in with Ethereum <ButtonIcon src={EthImg} alt="ETH icon" />
-          </SigninButton>
-          <SigninButton inverse>
+          </PrimaryButtonLarge>
+          <PrimaryButtonLarge inverse onClick={onSignin}>
             Sign in with Github <ButtonIcon src={GithubImg} alt="Github icon" />
-          </SigninButton>
+          </PrimaryButtonLarge>
         </ButtonSection>
       </Wrap>
     </Container>
   )
 }
-
-const Container = styled.div`
-  background-color: ${({ theme }) => theme.primary};
-  min-height: 100vh;
-  padding-top: 120px;
-`
-
-const Wrap = styled.div`
-  width: 80%;
-  margin: auto;
-`
 
 const Title = styled(PageTitle)`
   color: ${({ theme }) => theme.onPrimary};
@@ -47,14 +49,6 @@ const Title = styled(PageTitle)`
 
 const Desc = styled(Description)`
   color: ${({ theme }) => theme.onPrimary};
-`
-
-const ButtonSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 200px;
-  justify-content: space-around;
-  width: 340px;
 `
 
 const ButtonIcon = styled.img`

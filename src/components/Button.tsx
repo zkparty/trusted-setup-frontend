@@ -1,18 +1,15 @@
 import styled from 'styled-components'
 import { FONT_SIZE } from '../constants'
 
-const PrimaryButton = styled.button<{ inverse?: boolean }>`
+const Button = styled.button`
   cursor: pointer;
-  background-color: ${({ theme, inverse }) =>
-    inverse ? theme.onPrimary : theme.primary};
-  color: ${({ theme, inverse }) => (inverse ? theme.primary : theme.onPrimary)};
-  border-radius: 24px;
-  border: none;
-  min-width: 120px;
-  padding: 8px 24px;
-  font-weight: 600;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   font-size: ${FONT_SIZE.M};
-  line-height: 20px;
+  font-weight: 600;
 
   transition: all linear 0.1s;
 
@@ -22,13 +19,42 @@ const PrimaryButton = styled.button<{ inverse?: boolean }>`
   }
 `
 
-const SigninButton = styled(PrimaryButton)`
-  padding: 24px 32px;
-  border-radius: 38px;
-  font-size: ${FONT_SIZE.L};
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+const PrimaryButton = styled(Button)<{ inverse?: boolean }>`
+  background-color: ${({ theme, inverse }) =>
+    inverse ? theme.onPrimary : theme.primary};
+  color: ${({ theme, inverse }) => (inverse ? theme.primary : theme.onPrimary)};
+  border: none;
+  min-width: 120px;
+  padding: 8px 24px;
+  line-height: 20px;
 `
 
-export { PrimaryButton, SigninButton }
+const PrimaryButtonLarge = styled(PrimaryButton)`
+  padding: 24px 32px;
+  border-radius: 38px;
+  min-width: 240px;
+  font-size: ${FONT_SIZE.L};
+`
+
+const BorderedButton = styled(Button)<{ inverse?: boolean }>`
+  background: transparent;
+  border: solid 1px
+    ${({ theme, inverse }) => (inverse ? theme.onPrimary : theme.primary)};
+  color: ${({ theme, inverse }) => (inverse ? theme.onPrimary : theme.primary)};
+
+  min-width: 120px;
+`
+
+const BorderedButtonLarge = styled(BorderedButton)`
+  padding: 24px 32px;
+  border-radius: 38px;
+  min-width: 240px;
+  font-size: ${FONT_SIZE.L};
+`
+
+export {
+  PrimaryButton,
+  PrimaryButtonLarge,
+  BorderedButton,
+  BorderedButtonLarge
+}

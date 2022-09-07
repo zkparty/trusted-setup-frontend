@@ -8,10 +8,12 @@ import { Description, PageTitle, SectionTitle } from '../components/Text'
 import FaqItem from '../components/FaqItem'
 import { FONT_SIZE, SPACE } from '../constants'
 import { textSerif } from '../style/utils'
+import useQueueNumber from '../hooks/useQueueNumber'
 import ROUTES from '../routes'
 import bgImg from '../assets/landing-section2-bg.png'
 
 const LandingPage = () => {
+  const queueNumQuery = useQueueNumber()
   const navigate = useNavigate()
   const onClickGetStart = useCallback(() => {
     navigate(ROUTES.SIGNIN)
@@ -29,7 +31,11 @@ const LandingPage = () => {
         </Description>
         <QueueInfo>
           <QueueInfoTitle>Summoners in queue</QueueInfoTitle>
-          <QueueNumber>2</QueueNumber>
+          <QueueNumber>
+            {!queueNumQuery.isLoading && queueNumQuery.data
+              ? queueNumQuery.data
+              : 'Loading...'}
+          </QueueNumber>
           <QueueFootnote>Approx. wait time: 5 mins </QueueFootnote>
         </QueueInfo>
         <GetStartedButton onClick={onClickGetStart}>
