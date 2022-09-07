@@ -21,7 +21,7 @@ const EntropyInputPage = () => {
     // do submit the entropy and add to the queue
     console.log('entropy', entropy)
     // TODO: navigate to waiting in queue page
-    navigate(ROUTES.ROOT)
+    navigate(ROUTES.QUEUE)
   }
 
   return (

@@ -21,7 +21,7 @@ export type Theme = {
 
 const theme: Theme = {
   background: '#F0F0F0',
-  surface: '#081B24',
+  surface: '#FCFCFC',
   error: '#ff0f0f',
   warning: '#f4512c',
   primary: '#0C5B29',

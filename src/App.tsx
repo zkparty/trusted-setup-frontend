@@ -5,6 +5,7 @@ import {
   SigninPage,
   OnboardingPage,
   EntropyInputPage,
+  QueuePage,
   RecordPage,
   GatePage,
   MobilePage
@@ -25,6 +26,7 @@ function App() {
             <Route path={ROUTES.SIGNIN} element={<SigninPage />} />
             <Route path={ROUTES.ONBOARDING} element={<OnboardingPage />} />
             <Route path={ROUTES.ENTROPY_INPUT} element={<EntropyInputPage />} />
+            <Route path={ROUTES.QUEUE} element={<QueuePage />} />
             <Route path={ROUTES.RECORD} element={<RecordPage />} />
             <Route path={ROUTES.GATE} element={<GatePage />} />
           </Route>
