@@ -31,7 +31,7 @@ const QueuePage = () => {
 }
 
 const Container = styled.section`
-  padding: 0 24px;
+  padding: 0 24px 24px;
 `
 
 export default QueuePage

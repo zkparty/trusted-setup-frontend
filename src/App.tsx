@@ -6,6 +6,8 @@ import {
   OnboardingPage,
   EntropyInputPage,
   QueuePage,
+  ContributingPage,
+  CompletePage,
   RecordPage,
   GatePage,
   MobilePage
@@ -27,6 +29,8 @@ function App() {
             <Route path={ROUTES.ONBOARDING} element={<OnboardingPage />} />
             <Route path={ROUTES.ENTROPY_INPUT} element={<EntropyInputPage />} />
             <Route path={ROUTES.QUEUE} element={<QueuePage />} />
+            <Route path={ROUTES.CONTRIBUTING} element={<ContributingPage />} />
+            <Route path={ROUTES.COMPLETE} element={<CompletePage />} />
             <Route path={ROUTES.RECORD} element={<RecordPage />} />
             <Route path={ROUTES.GATE} element={<GatePage />} />
           </Route>
