@@ -50,7 +50,7 @@ const LandingPage = () => {
         </SectionTitleInverse>
         <ThirdSectionBody>
           <ThirdSectionLeft>
-            <img src="https://placehold.jp/b6bfc9/ffffff/300x400.png" alt="" />
+            <img alt="" />
           </ThirdSectionLeft>
           <ThirdSectionRight>
             <SectionSubTitle>How does this ceremony work?</SectionSubTitle>
