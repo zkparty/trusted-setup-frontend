@@ -10,7 +10,11 @@ type Props = {
 
 const RecordTable = ({ data, isLoading }: Props) => {
   const showTranscriptModal = (record: Record) => {
-    console.log(record)
+    console.log('clicked transcrpit', record)
+  }
+
+  const handleClickSignature = (record: Record) => {
+    console.log('Clicked signature', record)
   }
 
   if (isLoading) {
@@ -33,6 +37,7 @@ const RecordTable = ({ data, isLoading }: Props) => {
           <Col flex={3}>{record.id}</Col>
           <Col center>
             <BlockiesIdenticon
+              onClick={() => handleClickSignature(record)}
               opts={{
                 seed: record.publicKey,
                 size: 8,

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import styled from 'styled-components'
 import blockies from 'blockies-identicon'
 import { stringToColor } from '../utils'
 
@@ -8,10 +9,12 @@ type Props = {
     size?: number
     scale?: number
   }
+  onClick: () => void
 }
 
 const BlockiesIdenticon = ({
-  opts: { seed = 'foo', size = 15, scale = 3 }
+  opts: { seed = 'foo', size = 15, scale = 3 },
+  onClick
 }: Props) => {
   const canvasRef = useRef<HTMLCanvasElement>(null!)
 
@@ -34,7 +37,18 @@ const BlockiesIdenticon = ({
     // eslint-disable-next-line
   }, [])
 
-  return <canvas ref={canvasRef} style={{ borderRadius: '6px' }} />
+  return <Canvas ref={canvasRef} onClick={onClick} />
 }
+
+const Canvas = styled.canvas`
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all linear 0.1s;
+
+  :hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0px 6px 6px 2px #00000033;
+  }
+`
 
 export default BlockiesIdenticon
