@@ -15,8 +15,13 @@ import ROUTES from '../routes'
 const SigninPage = () => {
   // TODO: implement
   const navigate = useNavigate()
-  const onSignin = () => {
-    navigate(ROUTES.ONBOARDING)
+  const onSigninSIE = () => {
+    // check if lobby is full
+    navigate(ROUTES.ENTROPY_INPUT)
+  }
+
+  const onSigninGithub = () => {
+    navigate(ROUTES.LOBBY_FULL)
   }
 
   return (
@@ -30,10 +35,10 @@ const SigninPage = () => {
         </Desc>
 
         <ButtonSection>
-          <PrimaryButtonLarge inverse onClick={onSignin}>
+          <PrimaryButtonLarge inverse onClick={onSigninSIE}>
             Sign in with Ethereum <ButtonIcon src={EthImg} alt="ETH icon" />
           </PrimaryButtonLarge>
-          <PrimaryButtonLarge inverse onClick={onSignin}>
+          <PrimaryButtonLarge inverse onClick={onSigninGithub}>
             Sign in with Github <ButtonIcon src={GithubImg} alt="Github icon" />
           </PrimaryButtonLarge>
         </ButtonSection>

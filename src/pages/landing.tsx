@@ -6,14 +6,12 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { Description, PageTitle, SectionTitle } from '../components/Text'
 import FaqItem from '../components/FaqItem'
-import { FONT_SIZE, SPACE } from '../constants'
+import { FONT_SIZE } from '../constants'
 import { textSerif } from '../style/utils'
-import useQueueNumber from '../hooks/useQueueNumber'
 import ROUTES from '../routes'
 import bgImg from '../assets/landing-section2-bg.png'
 
 const LandingPage = () => {
-  const queueNumQuery = useQueueNumber()
   const navigate = useNavigate()
   const onClickGetStart = useCallback(() => {
     navigate(ROUTES.SIGNIN)
@@ -29,15 +27,6 @@ const LandingPage = () => {
           community to demonstrate the honesty of humanity & form the collective
           power. Nights & days of enchantment, the magic math awaits you.
         </Description>
-        <QueueInfo>
-          <QueueInfoTitle>Summoners in queue</QueueInfoTitle>
-          <QueueNumber>
-            {!queueNumQuery.isLoading && queueNumQuery.data
-              ? queueNumQuery.data
-              : 'Loading...'}
-          </QueueNumber>
-          <QueueFootnote>Approx. wait time: 5 mins </QueueFootnote>
-        </QueueInfo>
         <GetStartedButton onClick={onClickGetStart}>
           Get Started
         </GetStartedButton>
@@ -104,32 +93,6 @@ const LandingPage = () => {
 
 const TopSection = styled.section`
   padding: 0 24px;
-`
-
-const QueueInfo = styled.div`
-  margin: 20px 0;
-  padding: 12px 24px;
-  border: solid 1px ${({ theme }) => theme.primary};
-  border-radius: 4px;
-  width: 320px;
-`
-
-const QueueInfoTitle = styled.h2`
-  color: ${({ theme }) => theme.primary};
-  font-size: ${FONT_SIZE.S};
-  font-weight: 600;
-  display: inline-block;
-  margin: 0;
-`
-
-const QueueNumber = styled.p`
-  font-size: ${FONT_SIZE.XXL};
-  font-weight: 700;
-  margin: ${SPACE.M} 0;
-`
-
-const QueueFootnote = styled.p`
-  margin: 0;
 `
 
 const GetStartedButton = styled(PrimaryButton)`

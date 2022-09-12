@@ -20,8 +20,7 @@ const EntropyInputPage = () => {
   const handleSubmit = () => {
     // do submit the entropy and add to the queue
     console.log('entropy', entropy)
-    // TODO: navigate to waiting in queue page
-    navigate(ROUTES.QUEUE)
+    navigate(ROUTES.LOBBY)
   }
 
   return (
@@ -30,22 +29,17 @@ const EntropyInputPage = () => {
         <Logo inverse />
         <Title>Entropy & sorcery.</Title>
         <Desc>
-          The mind is controlled by you. You are the one put the sorcery in
-          work, input what’s in your mind now to compose the spell.
+          You are the one put the sorcery in work, input what’s in your mind to
+          compose the spell so you can join others in the hallway.
         </Desc>
         <Input onChange={(e) => setEntropy(e.target.value)} />
         <Footnote>
           Ideas for you: Name of the love ones, most memorable things you did to
           anything.
         </Footnote>
-        <Caution>
-          It’s very important that your computer needs to be awake and stay
-          online for the entire queue period. Else you will lose the chance to
-          be part of this magic.
-        </Caution>
         <ButtonSection>
           <PrimaryButtonLarge inverse onClick={handleSubmit}>
-            Enter in the queue
+            Enter hallway
           </PrimaryButtonLarge>
         </ButtonSection>
       </Wrap>
@@ -76,11 +70,6 @@ const Input = styled.input`
   background-color: ${({ theme }) => theme.primary};
   color: ${({ theme }) => theme.onPrimary};
   width: 100%;
-`
-
-const Caution = styled(Description)`
-  font-weight: 600;
-  color: ${({ theme }) => theme.onPrimary};
 `
 
 const ButtonSection = styled.div`

@@ -3,9 +3,9 @@ import {
   HomePage,
   LandingPage,
   SigninPage,
-  OnboardingPage,
   EntropyInputPage,
-  QueuePage,
+  LobbyFullPage,
+  LobbyPage,
   ContributingPage,
   CompletePage,
   RecordPage,
@@ -26,9 +26,9 @@ function App() {
           <Route path={ROUTES.ROOT} element={<HomePage />}>
             <Route path={ROUTES.ROOT} element={<LandingPage />} />
             <Route path={ROUTES.SIGNIN} element={<SigninPage />} />
-            <Route path={ROUTES.ONBOARDING} element={<OnboardingPage />} />
             <Route path={ROUTES.ENTROPY_INPUT} element={<EntropyInputPage />} />
-            <Route path={ROUTES.QUEUE} element={<QueuePage />} />
+            <Route path={ROUTES.LOBBY_FULL} element={<LobbyFullPage />} />
+            <Route path={ROUTES.LOBBY} element={<LobbyPage />} />
             <Route path={ROUTES.CONTRIBUTING} element={<ContributingPage />} />
             <Route path={ROUTES.COMPLETE} element={<CompletePage />} />
             <Route path={ROUTES.RECORD} element={<RecordPage />} />
