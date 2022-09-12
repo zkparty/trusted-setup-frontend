@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { FONT_SIZE } from '../constants'
 import type { Record } from '../hooks/useRecord'
+import BlockiesIdenticon from './Blockies'
 
 type Props = {
   data: Record[]
@@ -21,7 +22,7 @@ const RecordTable = ({ data, isLoading }: Props) => {
       <TableHead>
         <Col>Seq. #</Col>
         <Col flex={3}>Identifier spec</Col>
-        <Col>Signature</Col>
+        <Col center>Signature</Col>
         <Col width="80px" center>
           Transcript
         </Col>
@@ -30,7 +31,15 @@ const RecordTable = ({ data, isLoading }: Props) => {
         <Raw key={record.id}>
           <Col>{record.sequenceNumber}</Col>
           <Col flex={3}>{record.id}</Col>
-          <Col>{record.publicKey.slice(0, 4)}</Col>
+          <Col center>
+            <BlockiesIdenticon
+              opts={{
+                seed: record.publicKey,
+                size: 8,
+                scale: 5
+              }}
+            />
+          </Col>
           <Col width="80px" center>
             <ViewButton onClick={() => showTranscriptModal(record)}>
               View
