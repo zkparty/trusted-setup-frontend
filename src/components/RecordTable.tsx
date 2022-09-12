@@ -1,7 +1,11 @@
+import { useState } from 'react'
 import styled from 'styled-components'
+
 import { FONT_SIZE } from '../constants'
 import type { Record } from '../hooks/useRecord'
 import BlockiesIdenticon from './Blockies'
+import SignatureModal from './SignatureModal'
+import TranscriptModal from './TranscriptModal'
 
 type Props = {
   data: Record[]
@@ -9,13 +13,10 @@ type Props = {
 }
 
 const RecordTable = ({ data, isLoading }: Props) => {
-  const showTranscriptModal = (record: Record) => {
-    console.log('clicked transcrpit', record)
-  }
-
-  const handleClickSignature = (record: Record) => {
-    console.log('Clicked signature', record)
-  }
+  const [selectedTranscriptItem, setSelectedTranscriptItem] =
+    useState<null | Record>(null)
+  const [selectedSignatureItem, setSelectedSignatureItem] =
+    useState<null | Record>(null)
 
   if (isLoading) {
     return <div>Loading records...</div>
@@ -37,7 +38,7 @@ const RecordTable = ({ data, isLoading }: Props) => {
           <Col flex={3}>{record.id}</Col>
           <Col center>
             <BlockiesIdenticon
-              onClick={() => handleClickSignature(record)}
+              onClick={() => setSelectedSignatureItem(record)}
               opts={{
                 seed: record.publicKey,
                 size: 8,
@@ -46,12 +47,20 @@ const RecordTable = ({ data, isLoading }: Props) => {
             />
           </Col>
           <Col width="80px" center>
-            <ViewButton onClick={() => showTranscriptModal(record)}>
+            <ViewButton onClick={() => setSelectedTranscriptItem(record)}>
               View
             </ViewButton>
           </Col>
         </Raw>
       ))}
+      <TranscriptModal
+        record={selectedTranscriptItem}
+        onDeselect={() => setSelectedTranscriptItem(null)}
+      />
+      <SignatureModal
+        record={selectedSignatureItem}
+        onDeselect={() => setSelectedSignatureItem(null)}
+      />
     </Container>
   )
 }
