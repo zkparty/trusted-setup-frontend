@@ -1,9 +1,9 @@
 import HomePage from './home'
 import LandingPage from './landing'
 import SigninPage from './signin'
-import OnboardingPage from './onboarding'
 import EntropyInputPage from './entropyInput'
-import QueuePage from './queue'
+import LobbyFullPage from './lobbyFull'
+import LobbyPage from './lobby'
 import ContributingPage from './contributing'
 import CompletePage from './complete'
 import RecordPage from './record'
@@ -14,9 +14,9 @@ export {
   HomePage,
   LandingPage,
   SigninPage,
-  OnboardingPage,
   EntropyInputPage,
-  QueuePage,
+  LobbyFullPage,
+  LobbyPage,
   ContributingPage,
   CompletePage,
   RecordPage,
