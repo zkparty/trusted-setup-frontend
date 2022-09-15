@@ -11,17 +11,28 @@ import EthImg from '../assets/eth.svg'
 import GithubImg from '../assets/github.svg'
 import { useNavigate } from 'react-router-dom'
 import ROUTES from '../routes'
+import useAuthenticate from '../hooks/useAuthenticate'
 
 const SigninPage = () => {
-  // TODO: implement
+  const { signinGithub, signinSIE } = useAuthenticate()
+
   const navigate = useNavigate()
   const onSigninSIE = () => {
-    // check if lobby is full
     navigate(ROUTES.ENTROPY_INPUT)
   }
 
-  const onSigninGithub = () => {
-    navigate(ROUTES.LOBBY_FULL)
+  const onSigninGithub = async () => {
+    try {
+      const result = await signinGithub()
+      console.log(result)
+      // set auth state and provider
+      navigate(ROUTES.ENTROPY_INPUT)
+    } catch (e) {
+      console.log(e)
+      // if lobby is full
+      // navigate(ROUTES.LOBBY_FULL)
+      // else, do nothing
+    }
   }
 
   return (

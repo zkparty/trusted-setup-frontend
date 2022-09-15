@@ -23,3 +23,27 @@ export function stringToColor(str: string) {
   }
   return color
 }
+
+export function toParams(query: string) {
+  const q = query.replace(/^\??\//, '')
+
+  return q.split('&').reduce<{ [key: string]: string }>((values, param) => {
+    const [key, value] = param.split('=')
+
+    values[key] = value
+
+    return values
+  }, {})
+}
+
+export function toQuery(params: { [key: string]: string }, delimiter = '&') {
+  const keys = Object.keys(params)
+  return keys.reduce((str, key, index) => {
+    if (typeof params[key] === 'undefined' || params[key] === null) return ''
+    let query = `${str}${key}=${params[key]}`
+    if (index < keys.length - 1) {
+      query += delimiter
+    }
+    return query
+  }, '')
+}

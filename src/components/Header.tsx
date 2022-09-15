@@ -4,9 +4,12 @@ import { PrimaryButton } from './Button'
 import { LinkText } from './Text'
 import Logo from './Logo'
 import ROUTES from '../routes'
+import { useGithubUserInfo } from '../hooks/useUserInfo'
 
 const Header = () => {
   const navigate = useNavigate()
+  const q = useGithubUserInfo()
+
   return (
     <Container>
       <Logo />
