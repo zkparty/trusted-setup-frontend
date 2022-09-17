@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom'
 import ROUTES from '../routes'
 import useAuthenticate from '../hooks/useAuthenticate'
 import { useAuthStore } from '../store/auth'
+import { SERVER_ERROR } from '../constants'
 
 const SigninPage = () => {
   const { signinGithub, signinSIE } = useAuthenticate()
@@ -23,8 +24,8 @@ const SigninPage = () => {
     const result = await signinSIE()
     if (result) {
       navigate(ROUTES.ENTROPY_INPUT)
-    } else {
-      // if lobby is full, do navigate to lobby_full
+    } else if (error === SERVER_ERROR.LOBBY_IS_FULL) {
+      navigate(ROUTES.LOBBY_FULL)
     }
   }
 
@@ -32,8 +33,8 @@ const SigninPage = () => {
     const result = await signinGithub()
     if (result) {
       navigate(ROUTES.ENTROPY_INPUT)
-    } else {
-      // if lobby is full, do navigate to lobby_full
+    } else if (error === SERVER_ERROR.LOBBY_IS_FULL) {
+      navigate(ROUTES.LOBBY_FULL)
     }
   }
 
