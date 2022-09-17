@@ -11,17 +11,31 @@ import EthImg from '../assets/eth.svg'
 import GithubImg from '../assets/github.svg'
 import { useNavigate } from 'react-router-dom'
 import ROUTES from '../routes'
+import useAuthenticate from '../hooks/useAuthenticate'
+import { useAuthStore } from '../store/auth'
+import { SERVER_ERROR } from '../constants'
 
 const SigninPage = () => {
-  // TODO: implement
+  const { signinGithub, signinSIE } = useAuthenticate()
+  const { error } = useAuthStore()
+
   const navigate = useNavigate()
-  const onSigninSIE = () => {
-    // check if lobby is full
-    navigate(ROUTES.ENTROPY_INPUT)
+  const onSigninSIE = async () => {
+    const result = await signinSIE()
+    if (result) {
+      navigate(ROUTES.ENTROPY_INPUT)
+    } else if (error === SERVER_ERROR.LOBBY_IS_FULL) {
+      navigate(ROUTES.LOBBY_FULL)
+    }
   }
 
-  const onSigninGithub = () => {
-    navigate(ROUTES.LOBBY_FULL)
+  const onSigninGithub = async () => {
+    const result = await signinGithub()
+    if (result) {
+      navigate(ROUTES.ENTROPY_INPUT)
+    } else if (error === SERVER_ERROR.LOBBY_IS_FULL) {
+      navigate(ROUTES.LOBBY_FULL)
+    }
   }
 
   return (
@@ -33,6 +47,7 @@ const SigninPage = () => {
           You are few of citizens we are trust to form this power, please choose
           your preference to step forward
         </Desc>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
 
         <ButtonSection>
           <PrimaryButtonLarge inverse onClick={onSigninSIE}>
@@ -58,6 +73,10 @@ const Desc = styled(Description)`
 
 const ButtonIcon = styled.img`
   margin-left: 16px;
+`
+
+const ErrorMessage = styled.p`
+  color: ${({ theme }) => theme.error};
 `
 
 export default SigninPage
