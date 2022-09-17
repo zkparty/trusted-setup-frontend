@@ -1,3 +1,5 @@
+import { OAuthProvider } from './store/auth'
+
 const API_ROOT = 'http://127.0.0.1:5000'
 
 class APIClient {
@@ -6,11 +8,11 @@ class APIClient {
     return await res.json()
   }
 
-  async getAuthorized(code: string, state: string) {
+  async getAuthorized(provider: OAuthProvider, code: string, state: string) {
     const res = await fetch(
-      `${API_ROOT}/auth/callback/github?code=${code}&state=${state}`
+      `${API_ROOT}/auth/callback/${provider}?code=${code}&state=${state}`
     )
-    return await res.json()
+    return { result: res.ok, data: await res.json() }
   }
 
   async getStatus() {}

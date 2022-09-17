@@ -1,12 +1,13 @@
 import create from 'zustand'
 
-type OAuthProvider = 'github' | 'ethereum'
+export type OAuthProvider = 'github' | 'siwe'
 
 type Store = {
   provider: OAuthProvider | null
   oauthToken: string | null
   idToken: string | null
   sessionId: string | null
+  error: string | null
   signin: (
     oauthToken: string,
     provider: OAuthProvider,
@@ -14,6 +15,7 @@ type Store = {
     sessionId: string
   ) => void
   signout: () => void
+  setError: (msg: string) => void
 }
 
 export const useAuthStore = create<Store>((set) => ({
@@ -21,18 +23,22 @@ export const useAuthStore = create<Store>((set) => ({
   provider: null,
   idToken: null,
   sessionId: null,
+  error: null,
   signin: (oauthToken, provider, idToken, sessionId) =>
     set({
       oauthToken,
       provider,
       idToken,
-      sessionId
+      sessionId,
+      error: null
     }),
   signout: () =>
     set({
       oauthToken: null,
       provider: null,
       idToken: null,
-      sessionId: null
-    })
+      sessionId: null,
+      error: null
+    }),
+  setError: (msg: string) => set({ error: msg })
 }))
