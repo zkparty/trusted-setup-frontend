@@ -1,3 +1,5 @@
+import { ErrorRes } from './types'
+
 // check if user agent is mobile device
 export function isMobile(): boolean {
   const userAgent =
@@ -46,4 +48,16 @@ export function toQuery(params: { [key: string]: string }, delimiter = '&') {
     }
     return query
   }, '')
+}
+
+export function isSuccessRes<T extends Object>(res: T | ErrorRes): res is T {
+  return !res.hasOwnProperty('error')
+}
+
+export async function sleep(ms: number) {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve()
+    }, ms)
+  })
 }
