@@ -26,4 +26,8 @@ const RADIUS = {
 
 const API_ROOT = 'http://localhost:8888'
 
-export { FONT_SIZE, SPACE, RADIUS, API_ROOT }
+const SERVER_ERROR = {
+  LOBBY_IS_FULL: 'lobby is full'
+}
+
+export { FONT_SIZE, SPACE, RADIUS, API_ROOT, SERVER_ERROR }
