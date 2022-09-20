@@ -2,26 +2,7 @@ import { useCallback } from 'react'
 import api from '../api'
 import OAuthPopup from '../OAuthPopup'
 import { useAuthStore } from '../store/auth'
-
-type SuccessRes = {
-  result: true
-  data: {
-    id_token: string
-    session_id: string
-  }
-}
-
-type FailRes = {
-  result: false
-  data: {
-    error: string
-  }
-}
-
-export type AuthRes = SuccessRes | FailRes
-function isAuthSuccess(res: AuthRes): res is SuccessRes {
-  return res.result
-}
+import { isSuccessRes } from '../utils'
 
 export default function useAuthenticate() {
   const authStore = useAuthStore()
@@ -46,21 +27,12 @@ export default function useAuthenticate() {
       )
 
       const result = await popup.wait()
-      const res = (await api.getAuthorized(
-        'github',
-        result.code,
-        result.state
-      )) as AuthRes
-      if (isAuthSuccess(res)) {
-        authStore.signin(
-          result.code,
-          'github',
-          res.data.id_token,
-          res.data.session_id
-        )
+      const res = await api.getAuthorized('github', result.code, result.state)
+      if (isSuccessRes(res)) {
+        authStore.signin(result.code, 'github', res.id_token, res.session_id)
         return true
       } else {
-        authStore.setError(res.data.error)
+        authStore.setError(res.error)
         return false
       }
     } catch (e) {
@@ -90,22 +62,12 @@ export default function useAuthenticate() {
         }
       )
       const result = await popup.wait()
-      const res = (await api.getAuthorized(
-        'siwe',
-        result.code,
-        result.state
-      )) as AuthRes
-      console.log(res)
-      if (isAuthSuccess(res)) {
-        authStore.signin(
-          result.code,
-          'siwe',
-          res.data.id_token,
-          res.data.session_id
-        )
+      const res = await api.getAuthorized('siwe', result.code, result.state)
+      if (isSuccessRes(res)) {
+        authStore.signin(result.code, 'siwe', res.id_token, res.session_id)
         return true
       } else {
-        authStore.setError(res.data.error)
+        authStore.setError(res.error)
         return false
       }
     } catch (e) {
