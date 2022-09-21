@@ -27,7 +27,7 @@ const theme: Theme = {
   primary: '#0C5B29',
   secondary: '#c9e977',
   border: '#2A3D46',
-  disabled: 'gray',
+  disabled: '#CCC',
   control: '#e8dcff',
   onBackground: '#0C5B29',
   onSurface: '#FFFFFF',
