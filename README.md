@@ -14,5 +14,5 @@ To deploy this app execute the following steps:
     Windows (Powershell): ` $env:REACT_APP_API_URL='https://kzg-ceremony-poc.fly.dev' `
 
 2. Install dependencies: `yarn install`
-3. Start application: `npm start`
+3. Start application: `yarn start`
 
