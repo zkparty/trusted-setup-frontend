@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import Header from '../components/Header'
 import { useEffect, useState } from 'react'
-import { useStorage } from '../hooks/useStorage'
+import { useEntropy } from '../hooks/useEntropy'
 import { Description, PageTitle } from '../components/Text'
 
 const ContributingPage = () => {
 
-  const getEntropy = useStorage((state: any) => state.entropy);
+  const getEntropy = useEntropy((state: any) => state.entropy);
   const [step, setStep] = useState('started');
   // started, downloaded, contributed, uploaded, verified, error
 
