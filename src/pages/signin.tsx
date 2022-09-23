@@ -14,6 +14,8 @@ import ROUTES from '../routes'
 import useAuthenticate from '../hooks/useAuthenticate'
 import { useAuthStore } from '../store/auth'
 import { SERVER_ERROR } from '../constants'
+import signinImg from '../assets/img-stepfoward-animated.svg'
+
 
 const SigninPage = () => {
   const { signinGithub, signinSIE } = useAuthenticate()
@@ -57,6 +59,7 @@ const SigninPage = () => {
             Sign in with Github <ButtonIcon src={GithubImg} alt="Github icon" />
           </PrimaryButtonLarge>
         </ButtonSection>
+        {/* <SigninBgImg  src={signinImg} alt="section background" /> */}
       </Wrap>
     </Container>
   )
@@ -77,6 +80,10 @@ const ButtonIcon = styled.img`
 
 const ErrorMessage = styled.p`
   color: ${({ theme }) => theme.error};
+`
+const SigninBgImg = styled.img`
+  width: 100%;
+  margin-top: -40px;
 `
 
 export default SigninPage

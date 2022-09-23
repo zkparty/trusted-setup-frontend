@@ -36,8 +36,7 @@ const EntropyInputPage = () => {
         </Desc>
         <Input onChange={(e) => setEntropy(e.target.value)} />
         <Footnote>
-          Ideas for you: Name of the love ones, most memorable things you did to
-          anything.
+        You can also move your cursor around on this screen.
         </Footnote>
         <ButtonSection>
           <PrimaryButtonLarge inverse onClick={handleSubmit}>
