@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0C5B29" />
     <meta name="description" content="KZG Trusted Setup Ceremony" />
+    <meta http-equiv="origin-trial" content="AjVfwdWSdxno9LR/Mwggz6Rrx0m9MlVHZB07xLFSPIMcLXr0xGnTDxZw3w77clkyTlK432VilcN6ANw3n4ydwAgAAAB8eyJvcmlnaW4iOiJodHRwczovL2t6Zy1jZXJlbW9ueS5wYXJ0eTo0NDMiLCJmZWF0dXJlIjoiVW5yZXN0cmljdGVkU2hhcmVkQXJyYXlCdWZmZXIiLCJleHBpcnkiOjE2NzUyOTU5OTksImlzU3ViZG9tYWluIjp0cnVlfQ==">
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,6 +18,8 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <!-- This script should be deleted after Firefox implements Module Workers: https://bugzilla.mozilla.org/show_bug.cgi?id=1247687-->
+    <script src="/module-workers-polyfill.min.js"></script>
     <div id="root"></div>
   </body>
 </html>
