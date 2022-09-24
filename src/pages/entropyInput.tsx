@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, MouseEventHandler, useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { useEntropy } from '../hooks/useEntropy'
@@ -9,24 +9,48 @@ import {
   SingleWrap as Wrap
 } from '../components/Layout'
 import Logo from '../components/Logo'
+import ProgressBar from '../components/ProgressBar'
 import { textSerif } from '../style/utils'
 import ROUTES from '../routes'
 import { FONT_SIZE } from '../constants'
 
-const EntropyInputPage = () => {
-  // TODO: add validation
+const MIN_ENTROPY_LENGTH = 20000
 
+const EntropyInputPage = () => {
   const navigate = useNavigate()
   const [entropy, setEntropy] = useState('')
+  const [mouseEntropy, setMouseEntropy] = useState('')
+  const [percentage, setPercentage] = useState(0)
+
   const updateEntropy = useEntropy((state: any) => state.updateEntropy)
   const handleSubmit = () => {
-    // do submit the entropy and add to the queue
+    if (percentage !== 100) return
     updateEntropy(entropy)
     navigate(ROUTES.LOBBY)
   }
 
+  const handleCaptureMouseEntropy: MouseEventHandler<HTMLDivElement> = (e) => {
+    const d = new Date()
+    setMouseEntropy(
+      `${mouseEntropy}${e.movementX}${e.movementY}${e.screenX}${
+        e.screenY
+      }${d.getTime()}`
+    )
+  }
+
+  useEffect(() => {
+    setPercentage(
+      Math.min(
+        Math.floor(
+          ((entropy + mouseEntropy).length / MIN_ENTROPY_LENGTH) * 100
+        ),
+        100
+      )
+    )
+  }, [entropy, mouseEntropy])
+
   return (
-    <Container>
+    <Container onMouseMove={handleCaptureMouseEntropy}>
       <Wrap>
         <Logo inverse />
         <Title>Entropy & sorcery.</Title>
@@ -39,8 +63,16 @@ const EntropyInputPage = () => {
           Ideas for you: Name of the love ones, most memorable things you did to
           anything.
         </Footnote>
+        <ProgressSection>
+          <ProgressBar percentage={percentage} />
+        </ProgressSection>
+
         <ButtonSection>
-          <PrimaryButtonLarge inverse onClick={handleSubmit}>
+          <PrimaryButtonLarge
+            inverse
+            onClick={handleSubmit}
+            disabled={percentage !== 100}
+          >
             Enter hallway
           </PrimaryButtonLarge>
         </ButtonSection>
@@ -72,6 +104,10 @@ const Input = styled.input`
   background-color: ${({ theme }) => theme.primary};
   color: ${({ theme }) => theme.onPrimary};
   width: 100%;
+`
+
+const ProgressSection = styled.div`
+  margin: 20px 0;
 `
 
 const ButtonSection = styled.div`
