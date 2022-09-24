@@ -1,7 +1,7 @@
 import { OAuthProvider } from './store/auth'
 import type { ErrorRes, GetAuthorizedRes, TryContributeRes } from './types'
 
-const API_ROOT = 'http://127.0.0.1:5000'
+const API_ROOT = process.env.REACT_APP_API_URL
 
 class APIClient {
   async getRequestLink() {
