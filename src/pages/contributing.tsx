@@ -59,7 +59,7 @@ const ContributingPage = () => {
     <Container>
       <Header />
       <PageTitle>Magic math & you.</PageTitle>
-      <Description>Contribution active...</Description>
+      <Description>The integration of your power grows the magic math. It’s overwhelming, but do not fear. Remain with the chosen few who have made it this far. It isn’t much longer now.</Description>
       <Description>Do not close browser</Description>
       {step === 'started' ? <Description>Downloading...</Description> : ''}
       {step === 'downloaded' ? <Description>Contributing...</Description> : ''}

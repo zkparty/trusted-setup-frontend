@@ -33,8 +33,7 @@ const LobbyPage = () => {
       <Header />
       <PageTitle>KZG, up The rising</PageTitle>
       <Description>
-        You are now in the hallway, the only requirement is to stay online so
-        the sqeuencer can process your spell.
+      The spell is in progress, in the sequencer’s capable hands. Patience, the magic will be lost, unless you remain in the hallway with the others.
       </Description>
     </Container>
   )

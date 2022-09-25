@@ -23,9 +23,7 @@ const LandingPage = () => {
         <Header />
         <PageTitle>KZG Ceremony</PageTitle>
         <Description>
-          The danksharding has risen & awaken. Calling citizens of the online
-          community to demonstrate the honesty of humanity & form the collective
-          power. Nights & days of enchantment, the magic math awaits you.
+         Are you worthy? Only the most valiant, with the highest integrity, shall form the collective power. The time has come to awaken the danksharding. Enchantment and magic math awaits.
         </Description>
         <GetStartedButton onClick={onClickGetStart}>
           Get Started

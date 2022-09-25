@@ -14,7 +14,7 @@ import ROUTES from '../routes'
 import useAuthenticate from '../hooks/useAuthenticate'
 import { useAuthStore } from '../store/auth'
 import { SERVER_ERROR } from '../constants'
-import signinImg from '../assets/img-stepfoward-animated.svg'
+
 
 
 const SigninPage = () => {
@@ -46,8 +46,7 @@ const SigninPage = () => {
         <Logo inverse />
         <Title>step forward.</Title>
         <Desc>
-          You are few of citizens we are trust to form this power, please choose
-          your preference to step forward
+        You are indeed worthy, but are you willing? Demonstrate your commitment to the KZG by moving forward.
         </Desc>
         {error && <ErrorMessage>{error}</ErrorMessage>}
 
@@ -59,7 +58,9 @@ const SigninPage = () => {
             Sign in with Github <ButtonIcon src={GithubImg} alt="Github icon" />
           </PrimaryButtonLarge>
         </ButtonSection>
-        {/* <SigninBgImg  src={signinImg} alt="section background" /> */}
+        <Desc>
+        Signing wiht your address does not send any funds or allow any contracts. This only allows us to deliver a totem to your address once the Ceremony has concluded.
+        </Desc>
       </Wrap>
     </Container>
   )
@@ -81,9 +82,6 @@ const ButtonIcon = styled.img`
 const ErrorMessage = styled.p`
   color: ${({ theme }) => theme.error};
 `
-const SigninBgImg = styled.img`
-  width: 100%;
-  margin-top: -40px;
-`
+
 
 export default SigninPage
