@@ -53,6 +53,7 @@ const ContributingPage = () => {
         setStep('error');
       }
     })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
