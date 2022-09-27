@@ -5,6 +5,8 @@ export type Store = {
   contribution: string | null,
   newContribution: string | null,
   updateEntropy: (index: number, data: string) => void,
+  updateContribution: (data: string) => void,
+  updateNewContribution: (date: string) => void,
 }
 
 export const useContributionStore = create<Store>( (set, get) => ({

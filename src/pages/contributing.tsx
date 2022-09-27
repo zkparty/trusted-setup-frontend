@@ -1,53 +1,25 @@
+import api from '../api'
 import styled from 'styled-components'
 import Header from '../components/Header'
 import { useEffect, useState } from 'react'
+import { useAuthStore } from '../store/auth'
 import { useContributionStore, Store } from '../store/contribute'
 import { Description, PageTitle } from '../components/Text'
 
 const ContributingPage = () => {
-
-  const getEntropy = useContributionStore((state: Store) => state.entropy);
-  const [step, setStep] = useState('started');
-  // started, downloaded, contributed, uploaded, verified, error
-
-  const download = async () => {
-    const transcript = await fetch('./initialContribution.json').then(_res => _res.json());
-    const transcriptString = JSON.stringify(transcript);
-    setStep('downloaded');
-    return transcriptString;
-  }
-
-  const contribute = (transcript: string) => {
-    const worker = new Worker('./wasm/wasm-worker.js', {
-      type: 'module'
-    });
-    const data = JSON.stringify({
-      transcript: transcript,
-      entropy: getEntropy[0],
-    });
-    // start worker
-    worker.postMessage(data);
-    return worker;
-  }
-
-  const upload = (worker: Worker) => {
-    worker.onmessage = async (event) => {
-      setStep('contributed');
-      console.log(event.data);
-      await fetch('/contribution/complete',{
-        method: 'POST',
-        body: JSON.stringify({ transcript: event.data }),
-      }).then(_res => _res.json());
-      setStep('uploaded');
-    };
-  }
+  const { sessionId } = useAuthStore()
+  const entropy = useContributionStore((state: Store) => state.entropy)
+  const contribution = useContributionStore((state: Store) => state.contribution)
+  const [step, setStep] = useState('downloading');
+  // downloading, contributing, completed, error
 
   useEffect(() => {
     (async () => {
       try {
-        const transcript = await download();
-        const worker = contribute(transcript);
-        upload(worker);
+        setStep('contributing')
+        api.contribute(sessionId!, contribution!, entropy, () => {
+          setStep('completed')
+        })
       } catch (error) {
         console.log(error);
         setStep('error');
@@ -62,10 +34,9 @@ const ContributingPage = () => {
       <PageTitle>Magic math & you.</PageTitle>
       <Description>Contribution active...</Description>
       <Description>Do not close browser</Description>
-      {step === 'started' ? <Description>Downloading...</Description> : ''}
-      {step === 'downloaded' ? <Description>Contributing...</Description> : ''}
-      {step === 'contributed' ? <Description>Uploading...</Description> : ''}
-      {step === 'uploaded' ? <Description>Contribution completed</Description> : ''}
+      {step === 'downloading' ? <Description>Downloading...</Description> : ''}
+      {step === 'contributing' ? <Description>Contributing...</Description> : ''}
+      {step === 'completed' ? <Description>Contribution completed</Description> : ''}
       {step === 'error' ? <Description>There was an error. Reload and try again</Description> : ''}
     </Container>
   )
