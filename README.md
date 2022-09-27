@@ -14,8 +14,11 @@ To deploy this app execute the following steps:
     Windows (Powershell): ` $env:REACT_APP_API_URL='https://kzg-ceremony-poc.fly.dev' `
 
 2. Install dependencies: `yarn install`
+
 3. Copy the `/wasm` directory from the [wrapper library](https://github.com/zkparty/wrapper-small-pot) in the `public/` directory. Most of the times the `wasm-worker.js` will not change
-3. Start application: `npm start`
+
+4. Start application: `npm start`
+
 
 *Note:* In case you get a **crossOriginIsolated error** when running the contribution function in the web worker, it might be caused by this [known-and-soon-to-be-solved issue](https://web.dev/why-coop-coep/). You would need to change the token in the http-equiv="origin-trial" meta tag in `index,html` to:
 

@@ -17,6 +17,13 @@ const Button = styled.button`
     transform: translateY(-4px);
     box-shadow: 0px 16px 6px 2px #00000033;
   }
+
+  :disabled {
+    transform: scale(0.9);
+    box-shadow: none;
+    background-color: ${({ theme }) => theme.disabled};
+    opacity: 60%;
+  }
 `
 
 const PrimaryButton = styled(Button)<{ inverse?: boolean }>`
