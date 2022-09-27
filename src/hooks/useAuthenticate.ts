@@ -53,7 +53,7 @@ export default function useAuthenticate() {
 
       const popup = OAuthPopup.open(
         'oauth2-authorize-popup',
-        requestLinks.auth_url,
+        requestLinks.eth_auth_url,
         {
           height: popupHeight,
           width: popupWidth,
@@ -62,9 +62,9 @@ export default function useAuthenticate() {
         }
       )
       const result = await popup.wait()
-      const res = await api.getAuthorized('siwe', result.code, result.state)
+      const res = await api.getAuthorized('eth', result.code, result.state)
       if (isSuccessRes(res)) {
-        authStore.signin(result.code, 'siwe', res.id_token, res.session_id)
+        authStore.signin(result.code, 'eth', res.id_token, res.session_id)
         return true
       } else {
         authStore.setError(res.error)

@@ -1,6 +1,6 @@
 import create from 'zustand'
 
-export type OAuthProvider = 'github' | 'siwe'
+export type OAuthProvider = 'github' | 'eth'
 
 type Store = {
   provider: OAuthProvider | null
