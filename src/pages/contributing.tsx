@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import Header from '../components/Header'
 import { useEffect, useState } from 'react'
-import { useContributionStore } from '../store/contribute'
+import { useContributionStore, Store } from '../store/contribute'
 import { Description, PageTitle } from '../components/Text'
 
 const ContributingPage = () => {
 
-  const getEntropy = useContributionStore((state: any) => state.entropy);
+  const getEntropy = useContributionStore((state: Store) => state.entropy);
   const [step, setStep] = useState('started');
   // started, downloaded, contributed, uploaded, verified, error
 
@@ -23,7 +23,7 @@ const ContributingPage = () => {
     });
     const data = JSON.stringify({
       transcript: transcript,
-      entropy: getEntropy,
+      entropy: getEntropy[0],
     });
     // start worker
     worker.postMessage(data);

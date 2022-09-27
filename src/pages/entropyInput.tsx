@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
-import { useContributionStore } from '../store/contribute'
 import { PrimaryButtonLarge } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
+import { useContributionStore, Store } from '../store/contribute'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap
@@ -18,7 +18,7 @@ const EntropyInputPage = () => {
 
   const navigate = useNavigate()
   const [entropy, setEntropy] = useState('')
-  const updateEntropy = useContributionStore((state: any) => state.updateEntropy)
+  const updateEntropy = useContributionStore((state: Store) => state.updateEntropy)
   const handleSubmit = () => {
     // do submit the entropy and add to the queue
     updateEntropy(0, entropy)
