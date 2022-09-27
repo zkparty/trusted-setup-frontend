@@ -17,6 +17,8 @@ const LobbyPage = () => {
       // periodically post /slot/join
       const res = await tryContribute.mutateAsync()
       if (isSuccessRes(res)) {
+        console.log(res);
+        // TODO: save contribution file
         navigate(ROUTES.CONTRIBUTING)
       } else {
         //  try again after LOBBY_CHECKIN_FREUQUENCY
