@@ -23,7 +23,9 @@ const LandingPage = () => {
         <Header />
         <PageTitle>KZG Ceremony</PageTitle>
         <Description>
-         Are you worthy? Only the most valiant, with the highest integrity, shall form the collective power. The time has come to awaken the danksharding. Enchantment and magic math awaits.
+          Are you worthy? Only the most valiant, with the highest integrity,
+          shall form the collective power. The time has come to awaken the
+          danksharding. Enchantment and magic math awaits.
         </Description>
         <GetStartedButton onClick={onClickGetStart}>
           Get Started
@@ -32,16 +34,29 @@ const LandingPage = () => {
       <SecondSection>
         <SectionTitle>The proto-danksharding & the trusted setup.</SectionTitle>
         <DescriptionMid>
-         This Trusted Setup is a multi-party ceremony designed to generate a secure SRS (structured reference string) to be used in the proto-danksharding protocol. OK, let's slow down and talk about those terms in more detail.
+          This Trusted Setup is a multi-party ceremony designed to generate a
+          secure SRS (structured reference string) to be used in the
+          proto-danksharding protocol. OK, let's slow down and talk about those
+          terms in more detail.
         </DescriptionMid>
         <DescriptionMid>
-        Proto-danksharding (aka EIP-4844) is a planned change to the Ethereum protocol. It will allow transaction data from rollups to be succinctly represented in layer 1, thus lowering transaction fees.
+          Proto-danksharding (aka EIP-4844) is a planned change to the Ethereum
+          protocol. It will allow transaction data from rollups to be succinctly
+          represented in layer 1, thus lowering transaction fees.
         </DescriptionMid>
         <DescriptionMid>
-        The Trusted Setup is a preparatory step required for certain cryptographic schemes such as the KZG polynomial commitment scheme to be used in proto-danksharding. In our case, the trust assumption is that one contributor needs to successfully conceal their secret for the result to be secure. 
+          The Trusted Setup is a preparatory step required for certain
+          cryptographic schemes such as the KZG polynomial commitment scheme to
+          be used in proto-danksharding. In our case, the trust assumption is
+          that one contributor needs to successfully conceal their secret for
+          the result to be secure.
         </DescriptionMid>
         <DescriptionMid>
-        It's a multi-party ceremony: Contributors each create a secret and run a computation to mix it with previous contributions and generate a result that can be made public and passed to the next contributor. We need to guard against attempts to control the ceremony, so you'll need an Ethereum or GitHub account with an established history.
+          It's a multi-party ceremony: Contributors each create a secret and run
+          a computation to mix it with previous contributions and generate a
+          result that can be made public and passed to the next contributor. We
+          need to guard against attempts to control the ceremony, so you'll need
+          an Ethereum or GitHub account with an established history.
         </DescriptionMid>
         <LandingBgImg src={bgImg} alt="section background" />
       </SecondSection>
@@ -92,49 +107,8 @@ const DescriptionMid = styled(Description)`
   max-width: 760px;
 `
 
-const ThirdSection = styled.div`
-  background-color: ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.onPrimary};
-  padding: 40px 24px;
-`
-
-const SectionTitleInverse = styled(SectionTitle)`
-  color: ${({ theme }) => theme.onPrimary};
-  font-size: 96px;
-  margin: 0 0 24px;
-  text-align: center;
-  white-space: nowrap;
-  border-bottom: solid 2px;
-  overflow: hidden;
-`
-
-const ThirdSectionBody = styled.div`
-  display: flex;
-  padding: 0 40px;
-  justify-content: space-around;
-  align-items: center;
-`
-
-const ThirdSectionLeft = styled.div``
-
-const ThirdSectionRight = styled.div`
-  margin-left: 32px;
-`
-
-const SectionSubTitle = styled.h3`
-  text-transform: uppercase;
-  font-size: 64px;
-  line-height: 60px;
-  ${textSerif}
-  margin-bottom: 24px;
-`
-
-const SectionDescription = styled.p`
-  font-size: ${FONT_SIZE.L};
-`
-
 const FAQSection = styled.div`
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.background};
   width: 80%;
   margin: auto;
   padding-bottom: 120px;
@@ -142,7 +116,7 @@ const FAQSection = styled.div`
 
 const FaqTitle = styled.h2`
   font-size: 64px;
-  color: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.onBackground};
   ${textSerif}
   text-align: center;
 `
