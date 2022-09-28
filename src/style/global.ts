@@ -1,14 +1,16 @@
 import { createGlobalStyle } from 'styled-components'
 import { FONT_SIZE } from '../constants'
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle<{ inverse?: boolean }>`
 body {
   font-family: 'Inter', sans-serif;
   font-size: ${FONT_SIZE.M};
-  color: ${({ theme }) => theme.onBackground};
+  color: ${({ theme, inverse }) =>
+    inverse ? theme.background : theme.onBackground};
   margin: 0;
   min-width: 100vw;
-  background-color: ${({ theme }) => theme.background}
+  background-color: ${({ theme, inverse }) =>
+    inverse ? theme.onBackground : theme.background}
 }
 input {
   appearance: textfield;
