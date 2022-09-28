@@ -15,6 +15,8 @@ import useAuthenticate from '../hooks/useAuthenticate'
 import { useAuthStore } from '../store/auth'
 import { SERVER_ERROR } from '../constants'
 
+
+
 const SigninPage = () => {
   const { signinGithub, signinSIE } = useAuthenticate()
   const { error } = useAuthStore()
@@ -44,8 +46,7 @@ const SigninPage = () => {
         <Logo inverse />
         <Title>step forward.</Title>
         <Desc>
-          You are few of citizens we are trust to form this power, please choose
-          your preference to step forward
+        You are indeed worthy, but are you willing? Demonstrate your commitment to the KZG by moving forward.
         </Desc>
         {error && <ErrorMessage>{error}</ErrorMessage>}
 
@@ -57,6 +58,9 @@ const SigninPage = () => {
             Sign in with Github <ButtonIcon src={GithubImg} alt="Github icon" />
           </PrimaryButtonLarge>
         </ButtonSection>
+        <Desc>
+        Signing wiht your address does not send any funds or allow any contracts. This only allows us to deliver a totem to your address once the Ceremony has concluded.
+        </Desc>
       </Wrap>
     </Container>
   )
@@ -78,5 +82,6 @@ const ButtonIcon = styled.img`
 const ErrorMessage = styled.p`
   color: ${({ theme }) => theme.error};
 `
+
 
 export default SigninPage

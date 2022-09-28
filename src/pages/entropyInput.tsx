@@ -55,13 +55,11 @@ const EntropyInputPage = () => {
         <Logo inverse />
         <Title>Entropy & sorcery.</Title>
         <Desc>
-          You are the one put the sorcery in work, input what’s in your mind to
-          compose the spell so you can join others in the hallway.
+        To conjure the magic, sacrifice is necessary. You are required to offer a secret. Consider something important, like a hint of a memory or the name of someone dear. Bring this offering to the altar and then join the others in the hallway.
         </Desc>
         <Input onChange={(e) => setEntropy(e.target.value)} />
         <Footnote>
-          Ideas for you: Name of the love ones, most memorable things you did to
-          anything.
+        You can also move your cursor around on this screen.
         </Footnote>
         <ProgressSection>
           <ProgressBar percentage={percentage} />
