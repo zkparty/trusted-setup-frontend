@@ -42,7 +42,7 @@ class APIClient {
       type: 'module'
     });
     const data = JSON.stringify({
-      contribution: contribution,
+      contributionString: contribution,
       entropy: entropy,
     });
     // start worker
