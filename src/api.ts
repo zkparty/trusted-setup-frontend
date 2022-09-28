@@ -1,11 +1,10 @@
 import { OAuthProvider } from './store/auth'
 import type { ErrorRes, GetAuthorizedRes, TryContributeRes } from './types'
-
-const API_ROOT = process.env.REACT_APP_API_URL
+import { API_ROOT, SIGNIN_REDIRECT_URL } from './constants'
 
 class APIClient {
   async getRequestLink() {
-    const res = await fetch(`${API_ROOT}/auth/request_link`)
+    const res = await fetch(`${API_ROOT}/auth/request_link?redirect_to=${SIGNIN_REDIRECT_URL}`)
     return await res.json()
   }
 
