@@ -6,10 +6,12 @@ import { Description, PageTitle } from '../components/Text'
 import { LOBBY_CHECKIN_FREQUENCY } from '../constants'
 import useTryContribute from '../hooks/useTryContribute'
 import ROUTES from '../routes'
+import { useContributionStore, Store } from '../store/contribute'
 import { isSuccessRes, sleep } from '../utils'
 
 const LobbyPage = () => {
   const tryContribute = useTryContribute()
+  const updateContribution = useContributionStore((state: Store) => state.updateContribution)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -17,6 +19,7 @@ const LobbyPage = () => {
       // periodically post /slot/join
       const res = await tryContribute.mutateAsync()
       if (isSuccessRes(res)) {
+        updateContribution(JSON.stringify(res))
         navigate(ROUTES.CONTRIBUTING)
       } else {
         //  try again after LOBBY_CHECKIN_FREUQUENCY
@@ -26,6 +29,7 @@ const LobbyPage = () => {
     }
 
     poll()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

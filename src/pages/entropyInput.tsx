@@ -1,9 +1,9 @@
 import { useState, MouseEventHandler, useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
-import { useEntropy } from '../hooks/useEntropy'
 import { PrimaryButtonLarge } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
+import { useContributionStore, Store } from '../store/contribute'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap
@@ -22,10 +22,10 @@ const EntropyInputPage = () => {
   const [mouseEntropy, setMouseEntropy] = useState('')
   const [percentage, setPercentage] = useState(0)
 
-  const updateEntropy = useEntropy((state: any) => state.updateEntropy)
+  const updateEntropy = useContributionStore((state: Store) => state.updateEntropy)
   const handleSubmit = () => {
     if (percentage !== 100) return
-    updateEntropy(entropy)
+    updateEntropy(0, entropy)    
     navigate(ROUTES.LOBBY)
   }
 
