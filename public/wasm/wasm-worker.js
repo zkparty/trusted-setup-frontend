@@ -21,18 +21,17 @@ onmessage = async (event) => {
     secrets = secrets.map(secret => '0x' + secret);
 
     console.log("start");
-    let startTime = performance.now();
-    let newContribution = contribute_wasm(
+    const startTime = performance.now();
+    const result = contribute_wasm(
         JSON.stringify(contribution),
         secrets[0],
         secrets[1],
         secrets[2],
         secrets[3],
     );
-    let endTime = performance.now();
+    const endTime = performance.now();
     console.log(`Contribution took ${endTime - startTime} milliseconds`)
-
-    postMessage(newContribution);
+    postMessage(result);
 }
 
 async function sha256(message) {

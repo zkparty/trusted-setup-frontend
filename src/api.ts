@@ -48,22 +48,16 @@ class APIClient {
     // start worker
     worker.postMessage(data);
     worker.onmessage = async (event) => {
-      // TODO: upload new contribution
-      await fetch(`${API_ROOT}/contribute`,{
+      const { contribution } = event.data;
+      // TODO: fix connection refuse here
+      const res = await fetch(`${API_ROOT}/contribute`,{
         method: 'POST',
         body: JSON.stringify({
-          contribution: event.data,
+          contribution: contribution,
           session_id: sessionid,
-          /*
-          Extension(contributor_state): Extension<SharedContributorState>,
-          Extension(options): Extension<Options>,
-          Extension(shared_transcript): Extension<SharedTranscript>,
-          Extension(storage): Extension<PersistentStorage>,
-          Extension(num_contributions): Extension<SharedCeremonyStatus>,
-          Extension(keys): Extension<SharedKeys>,
-          */
         }),
       }).then(_res => _res.json());
+      console.log(res)
       callback();
     };
   }
