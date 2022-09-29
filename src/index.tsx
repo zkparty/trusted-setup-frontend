@@ -12,11 +12,9 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 const client = new QueryClient()
 
 root.render(
-  <React.StrictMode>
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={client}>
         <App />
       </QueryClientProvider>
     </ThemeProvider>
-  </React.StrictMode>
 )

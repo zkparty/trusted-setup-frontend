@@ -37,7 +37,7 @@ class APIClient {
     return await res.json()
   }
 
-  contribute(sessionid: string, contribution: string, entropy: string[], callback: () => void): void {
+  contribute(sessionId: string, contribution: string, entropy: string[], callback: () => void): void {
     const worker = new Worker('./wasm/wasm-worker.js', {
       type: 'module'
     });
@@ -52,9 +52,13 @@ class APIClient {
       // TODO: fix connection refuse here
       const res = await fetch(`${API_ROOT}/contribute`,{
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${sessionId}`
+        },
         body: JSON.stringify({
-          contribution: contribution,
-          session_id: sessionid,
+          ...JSON.parse(contribution),
+          session_id: sessionId,
         }),
       }).then(_res => _res.json());
       console.log(res)
