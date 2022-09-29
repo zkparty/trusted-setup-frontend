@@ -6,12 +6,14 @@ import { Description, PageTitle } from '../components/Text'
 import { LOBBY_CHECKIN_FREQUENCY } from '../constants'
 import useTryContribute from '../hooks/useTryContribute'
 import ROUTES from '../routes'
-import { useContributionStore, Store } from '../store/contribute'
+import { useContributionStore } from '../store/contribute'
 import { isSuccessRes, sleep } from '../utils'
 
 const LobbyPage = () => {
   const tryContribute = useTryContribute()
-  const updateContribution = useContributionStore((state: Store) => state.updateContribution)
+  const updateContribution = useContributionStore(
+    (state) => state.updateContribution
+  )
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -29,7 +31,7 @@ const LobbyPage = () => {
     }
 
     poll()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -37,7 +39,9 @@ const LobbyPage = () => {
       <Header />
       <PageTitle>KZG, up The rising</PageTitle>
       <Description>
-      The spell is in progress, in the sequencer’s capable hands. Patience, the magic will be lost, unless you remain in the hallway with the others.
+        The spell is in progress, in the sequencer’s capable hands. Patience,
+        the magic will be lost, unless you remain in the hallway with the
+        others.
       </Description>
     </Container>
   )

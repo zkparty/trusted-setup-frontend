@@ -4,20 +4,25 @@ import { PrimaryButton } from './Button'
 import { LinkText } from './Text'
 import Logo from './Logo'
 import ROUTES from '../routes'
+import { useAuthStore } from '../store/auth'
 // import { useGithubUserInfo } from '../hooks/useUserInfo'
 
 const Header = () => {
   const navigate = useNavigate()
-  // const q = useGithubUserInfo()
+  const { sessionId } = useAuthStore()
 
   return (
     <Container>
       <Logo />
       <ButtonGroup>
         <LinkText to={ROUTES.RECORD}>Record</LinkText>
-        <PrimaryButton onClick={() => navigate(ROUTES.SIGNIN)}>
-          Sign in
-        </PrimaryButton>
+        {sessionId ? (
+          <span>{sessionId.slice(0, 10)}</span>
+        ) : (
+          <PrimaryButton onClick={() => navigate(ROUTES.SIGNIN)}>
+            Sign in
+          </PrimaryButton>
+        )}
       </ButtonGroup>
     </Container>
   )

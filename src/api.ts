@@ -1,11 +1,19 @@
 import { OAuthProvider } from './store/auth'
-import type { ErrorRes, GetAuthorizedRes, TryContributeRes } from './types'
+import type {
+  ErrorRes,
+  GetAuthorizedRes,
+  TryContributeRes,
+  ContributeRes
+} from './types'
 
 const API_ROOT = process.env.REACT_APP_API_URL
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3001'
 
 class APIClient {
   async getRequestLink() {
-    const res = await fetch(`${API_ROOT}/auth/request_link`)
+    const res = await fetch(
+      `${API_ROOT}/auth/request_link?redirect_to=${FRONTEND_URL}/auth/callback`
+    )
     return await res.json()
   }
 
@@ -38,35 +46,40 @@ class APIClient {
     return await res.json()
   }
 
-  contribute(sessionid: string, contribution: string, entropy: string[], callback: () => void): void {
-    const worker = new Worker('./wasm/wasm-worker.js', {
-      type: 'module'
-    });
-    const data = JSON.stringify({
-      contribution: contribution,
-      entropy: entropy,
-    });
-    // start worker
-    worker.postMessage(data);
-    worker.onmessage = async (event) => {
-      // TODO: upload new contribution
-      await fetch(`${API_ROOT}/contribute`,{
-        method: 'POST',
-        body: JSON.stringify({
-          contribution: event.data,
-          session_id: sessionid,
-          /*
-          Extension(contributor_state): Extension<SharedContributorState>,
-          Extension(options): Extension<Options>,
-          Extension(shared_transcript): Extension<SharedTranscript>,
-          Extension(storage): Extension<PersistentStorage>,
-          Extension(num_contributions): Extension<SharedCeremonyStatus>,
-          Extension(keys): Extension<SharedKeys>,
-          */
-        }),
-      }).then(_res => _res.json());
-      callback();
-    };
+  async contribute(
+    sessionid: string,
+    contribution: string,
+    entropy: string[]
+  ): Promise<ErrorRes | ContributeRes> {
+    return new Promise<ErrorRes | ContributeRes>((resolve) => {
+      const worker = new Worker('./wasm/wasm-worker.js', {
+        type: 'module'
+      })
+      const data = JSON.stringify({
+        contributionString: contribution,
+        entropy: entropy
+      })
+
+      worker.onmessage = async (event) => {
+        // TODO: upload new contribution
+        const res = await fetch(`${API_ROOT}/contribute`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${sessionid}`
+          },
+          body: JSON.stringify({
+            contributions: [
+              JSON.parse((event.data as string).slice(1, event.data.length - 1))
+            ],
+            session_id: sessionid
+          })
+        })
+        resolve((await res.json()) as ContributeRes)
+      }
+
+      worker.postMessage(data)
+    })
   }
 }
 
