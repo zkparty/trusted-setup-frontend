@@ -1,6 +1,7 @@
+import { toParams } from './utils'
 import { OAuthProvider } from './store/auth'
-import type { ErrorRes, GetAuthorizedRes, TryContributeRes } from './types'
 import { API_ROOT, SIGNIN_REDIRECT_URL } from './constants'
+import type { ErrorRes, GetAuthorizedRes, TryContributeRes } from './types'
 
 class APIClient {
   async getRequestLink() {
@@ -16,7 +17,14 @@ class APIClient {
     const res = await fetch(
       `${API_ROOT}/auth/callback/${provider}?code=${code}&state=${state}`
     )
-    return await res.json()
+    let result: ErrorRes | GetAuthorizedRes = {'error': ''};
+    try {
+      result = await res.json()
+    } catch (error) {
+      result = toParams(res.url.split('?')[1]) as ErrorRes | GetAuthorizedRes
+    }
+    console.log(result)
+    return result
   }
 
   async getStatus() {}
