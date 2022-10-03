@@ -23,7 +23,6 @@ class APIClient {
     } catch (error) {
       result = toParams(res.url.split('?')[1]) as ErrorRes | GetAuthorizedRes
     }
-    console.log(result)
     return result
   }
 
@@ -39,13 +38,12 @@ class APIClient {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${session_id}`
-      },
-      body: JSON.stringify({ session_id })
+      }
     })
     return await res.json()
   }
 
-  contribute(sessionId: string, contribution: string, entropy: string[], callback: () => void): void {
+  contribute(session_id: string, contribution: string, entropy: string[], callback: () => void): void {
     const worker = new Worker('./wasm/wasm-worker.js', {
       type: 'module'
     });
@@ -55,19 +53,16 @@ class APIClient {
     });
     // start worker
     worker.postMessage(data);
+    // after worker has finished computation
     worker.onmessage = async (event) => {
       const { contribution } = event.data;
-      // TODO: fix connection refuse here
       const res = await fetch(`${API_ROOT}/contribute`,{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${sessionId}`
+          Authorization: `Bearer ${session_id}`
         },
-        body: JSON.stringify({
-          ...JSON.parse(contribution),
-          session_id: sessionId,
-        }),
+        body: contribution,
       }).then(_res => _res.json());
       console.log(res)
       callback();
