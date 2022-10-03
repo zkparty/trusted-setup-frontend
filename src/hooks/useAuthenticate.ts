@@ -41,7 +41,6 @@ export default function useAuthenticate() {
     }
   }, [])
 
-  // TODO: implement
   const signinSIE = useCallback(async () => {
     try {
       const requestLinks = await api.getRequestLink()
