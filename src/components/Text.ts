@@ -10,7 +10,7 @@ const PageTitle = styled.h1`
   line-height: 153px;
   ${textSerif}
   font-weight: 700;
-  margin-top: 200px;
+  margin-top: 20px;
   margin-bottom: 24px;
 `
 
