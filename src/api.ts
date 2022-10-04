@@ -43,7 +43,12 @@ class APIClient {
     return await res.json()
   }
 
-  contribute(session_id: string, contribution: string, entropy: string[], callback: () => void): void {
+  contribute(
+    session_id: string,
+    contribution: string,
+    entropy: string[],
+    callback: () => void
+  ): void {
     const worker = new Worker('./wasm/wasm-worker.js', {
       type: 'module'
     });
