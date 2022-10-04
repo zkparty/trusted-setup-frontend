@@ -23,8 +23,7 @@ const ContributingPage = () => {
   // downloading, contributing, completed, error
 
   useEffect(() => {
-    ;(async () => {
-      console.log(contribution)
+    (async () => {
       try {
         if (!sessionId || !contribution) {
           throw new Error('invalid sessionId or contribution')
