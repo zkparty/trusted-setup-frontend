@@ -37,7 +37,7 @@ class APIClient {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${session_id}`
+        'Authorization': `Bearer ${session_id}`
       }
     })
     return await res.json()
@@ -63,7 +63,7 @@ class APIClient {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${session_id}`
+            'Authorization': `Bearer ${session_id}`
           },
           body: contribution,
         })
