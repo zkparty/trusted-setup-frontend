@@ -54,6 +54,12 @@ export function isSuccessRes<T extends Object>(res: T | ErrorRes): res is T {
   return !res.hasOwnProperty('error')
 }
 
+export function parseErrorMessage(res: ErrorRes): string {
+  let text = res.error || res.message || ''
+  let message = text.replaceAll('+', ' ')
+  return message
+}
+
 export async function sleep(ms: number) {
   return new Promise<void>((resolve) => {
     setTimeout(() => {

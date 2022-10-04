@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import api from '../api'
 import OAuthPopup from '../OAuthPopup'
 import { useAuthStore } from '../store/auth'
-import { isSuccessRes } from '../utils'
+import { isSuccessRes, parseErrorMessage } from '../utils'
 
 export default function useAuthenticate() {
   const authStore = useAuthStore()
@@ -32,7 +32,7 @@ export default function useAuthenticate() {
         authStore.signin(result.code, 'github', res.id_token, res.session_id)
         return true
       } else {
-        authStore.setError(res.error)
+        authStore.setError( parseErrorMessage(res) )
         return false
       }
     } catch (e) {
@@ -66,7 +66,7 @@ export default function useAuthenticate() {
         authStore.signin(result.code, 'eth', res.id_token, res.session_id)
         return true
       } else {
-        authStore.setError(res.error)
+        authStore.setError( parseErrorMessage(res) )
         return false
       }
     } catch (e) {

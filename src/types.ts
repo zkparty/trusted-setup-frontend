@@ -10,4 +10,5 @@ export type GetAuthorizedRes = {
 
 export type ErrorRes = {
   error: string
+  message?: string
 }
