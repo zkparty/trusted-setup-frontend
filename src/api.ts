@@ -1,7 +1,7 @@
 import { toParams } from './utils'
 import { OAuthProvider } from './store/auth'
 import { API_ROOT, SIGNIN_REDIRECT_URL } from './constants'
-import type { ErrorRes, GetAuthorizedRes, TryContributeRes } from './types'
+import type { ErrorRes, GetAuthorizedRes, ContributeRes, TryContributeRes } from './types'
 
 class APIClient {
   async getRequestLink() {
@@ -43,35 +43,35 @@ class APIClient {
     return await res.json()
   }
 
-  contribute(
+  async contribute(
     session_id: string,
     contribution: string,
-    entropy: string[],
-    callback: () => void
-  ): void {
-    const worker = new Worker('./wasm/wasm-worker.js', {
-      type: 'module'
-    });
-    const data = JSON.stringify({
-      contributionString: contribution,
-      entropy: entropy,
-    });
-    // start worker
-    worker.postMessage(data);
-    // after worker has finished computation
-    worker.onmessage = async (event) => {
-      const { contribution } = event.data;
-      const res = await fetch(`${API_ROOT}/contribute`,{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${session_id}`
-        },
-        body: contribution,
-      }).then(_res => _res.json());
-      console.log(res)
-      callback();
-    };
+    entropy: string[]
+  ): Promise<ErrorRes | ContributeRes> {
+    return new Promise<ErrorRes | ContributeRes>((resolve) => {
+      const worker = new Worker('./wasm/wasm-worker.js', {
+        type: 'module'
+      })
+      const data = JSON.stringify({
+        contributionString: contribution,
+        entropy: entropy
+      })
+
+      worker.onmessage = async (event) => {
+        const { contribution } = event.data;
+        const res = await fetch(`${API_ROOT}/contribute`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${session_id}`
+          },
+          body: contribution,
+        })
+        resolve((await res.json()) as ContributeRes)
+      }
+
+      worker.postMessage(data)
+    })
   }
 }
 
