@@ -4,6 +4,7 @@ import {
   LandingPage,
   SigninPage,
   EntropyInputPage,
+  DoubleSignPage,
   LobbyFullPage,
   LobbyPage,
   ContributingPage,
@@ -33,6 +34,14 @@ function App() {
               element={
                 <RequireAuth>
                   <EntropyInputPage />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path={ROUTES.DOUBLE_SIGN}
+              element={
+                <RequireAuth>
+                  <DoubleSignPage />
                 </RequireAuth>
               }
             />

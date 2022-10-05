@@ -14,6 +14,7 @@ import InnerColor from '../assets/inner-color.svg'
 import SnakeWhite from '../assets/snake-white.svg'
 import SnakeColor from '../assets/snake-color.svg'
 import OuterWhite from '../assets/outer-white.svg'
+import { useAuthStore } from '../store/auth'
 
 const MIN_ENTROPY_LENGTH = 20000
 
@@ -22,6 +23,7 @@ const EntropyInputPage = () => {
   const [entropy, setEntropy] = useState('')
   const [mouseEntropy, setMouseEntropy] = useState('')
   const [percentage, setPercentage] = useState(0)
+  const { provider } = useAuthStore()
 
   const updateEntropy = useContributionStore(
     (state: Store) => state.updateEntropy
@@ -29,7 +31,11 @@ const EntropyInputPage = () => {
   const handleSubmit = () => {
     if (percentage !== 100) return
     updateEntropy(0, entropy)
-    navigate(ROUTES.LOBBY)
+    if (provider === 'Ethereum') {
+      navigate(ROUTES.DOUBLE_SIGN)
+    } else {
+      navigate(ROUTES.LOBBY)
+    }
   }
 
   const handleCaptureMouseEntropy: MouseEventHandler<HTMLDivElement> = (e) => {

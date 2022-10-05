@@ -3,6 +3,7 @@ const ROUTES = {
   LANDING: '/landing',
   SIGNIN: '/signin',
   ENTROPY_INPUT: '/entropy_input',
+  DOUBLE_SIGN: '/double_sign',
   LOBBY_FULL: '/lobby_full',
   LOBBY: '/lobby',
   CONTRIBUTING: '/contributing',
