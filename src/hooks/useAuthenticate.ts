@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import api from '../api'
 import OAuthPopup from '../OAuthPopup'
-import { useAuthStore } from '../store/auth'
+import { useAuthStore, OAuthRes } from '../store/auth'
 import { isSuccessRes, parseErrorMessage } from '../utils'
 
 export default function useAuthenticate() {
@@ -26,13 +26,12 @@ export default function useAuthenticate() {
         }
       )
 
-      const result = await popup.wait()
-      const res = await api.getAuthorized('github', result.code, result.state)
+      const res = await popup.wait()
       if (isSuccessRes(res)) {
-        authStore.signin(result.code, 'github', res.id_token, res.session_id)
+        authStore.signin(res as OAuthRes)
         return true
       } else {
-        authStore.setError( parseErrorMessage(res) )
+        authStore.setError(parseErrorMessage(res))
         return false
       }
     } catch (e) {
@@ -60,13 +59,13 @@ export default function useAuthenticate() {
           left: left
         }
       )
-      const result = await popup.wait()
-      const res = await api.getAuthorized('eth', result.code, result.state)
+      const res = await popup.wait()
+
       if (isSuccessRes(res)) {
-        authStore.signin(result.code, 'eth', res.id_token, res.session_id)
+        authStore.signin(res as OAuthRes)
         return true
       } else {
-        authStore.setError( parseErrorMessage(res) )
+        authStore.setError(parseErrorMessage(res))
         return false
       }
     } catch (e) {

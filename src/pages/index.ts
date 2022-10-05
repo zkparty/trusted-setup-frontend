@@ -9,6 +9,7 @@ import CompletePage from './complete'
 import RecordPage from './record'
 import GatePage from './gate'
 import MobilePage from './mobile'
+import RedirectPopup from './redirectPopup'
 
 export {
   HomePage,
@@ -21,5 +22,6 @@ export {
   CompletePage,
   RecordPage,
   GatePage,
-  MobilePage
+  MobilePage,
+  RedirectPopup
 }

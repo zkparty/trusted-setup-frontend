@@ -4,6 +4,7 @@ export type Theme = {
   surface2: string
   text: string
   primary: string
+  disabled: string
   error: string
 }
 
@@ -13,6 +14,7 @@ const theme: Theme = {
   surface2: '#FCFCFC',
   text: '#000000',
   primary: '#DAECFF',
+  disabled: '#cccccc',
   error: '#E36049'
 }
 

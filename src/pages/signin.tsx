@@ -15,7 +15,7 @@ import { SERVER_ERROR } from '../constants'
 import BgImg from '../assets/img-graphic-base.svg'
 import InnerWhite from '../assets/inner-white.svg'
 import SnakeWhite from '../assets/snake-white.svg'
-import UnlockWhite from '../assets/unlock-white.svg'
+import OuterWhite from '../assets/outer-white.svg'
 
 const SigninPage = () => {
   const { signinGithub, signinSIE } = useAuthenticate()
@@ -43,13 +43,13 @@ const SigninPage = () => {
   return (
     <Container>
       <Bg src={BgImg} />
-      <Img src={InnerWhite} style={{ width: '570px', height: '570px' }} />
-      <Img src={UnlockWhite} style={{ width: '618px', height: '618px' }} />
-      <Img src={SnakeWhite} style={{ width: '685px', height: '685px' }} />
+      <Img src={InnerWhite} />
+      <Img src={SnakeWhite} />
+      <Img src={OuterWhite} />
       <Wrap>
-        <Title>
+        <PageTitle>
           OPEN <br /> THE WAY
-        </Title>
+        </PageTitle>
         <TextSection>
           <Desc>
             To secure the integrity of the Ceremony, contributions must come
@@ -95,14 +95,12 @@ const Img = styled.img`
   margin: auto;
 `
 
-const Title = styled(PageTitle)``
-
 const TextSection = styled.div`
   width: 360px;
 `
 
 const Desc = styled(Description)`
-  margin: 0 0 24px;
+  margin: 0 0 20px;
   font-size: 18px;
 `
 

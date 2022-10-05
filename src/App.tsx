@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import {
   HomePage,
   LandingPage,
@@ -10,7 +10,8 @@ import {
   CompletePage,
   RecordPage,
   GatePage,
-  MobilePage
+  MobilePage,
+  RedirectPopup
 } from './pages'
 import RequireAuth from './components/helper/RequireAuth'
 import ROUTES from './routes'
@@ -69,6 +70,7 @@ function App() {
             />
             <Route path={ROUTES.RECORD} element={<RecordPage />} />
             <Route path={ROUTES.GATE} element={<GatePage />} />
+            <Route path={ROUTES.REDIRECT} element={<RedirectPopup />} />
           </Route>
         </Routes>
       </BrowserRouter>

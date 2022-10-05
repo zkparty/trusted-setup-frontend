@@ -1,18 +1,19 @@
 import { useState, MouseEventHandler, useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
-import { PrimaryButtonLarge } from '../components/Button'
+import { PrimaryButton } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import { useContributionStore, Store } from '../store/contribute'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap
 } from '../components/Layout'
-import Logo from '../components/Logo'
-import ProgressBar from '../components/ProgressBar'
-import { textSerif } from '../style/utils'
 import ROUTES from '../routes'
-import { FONT_SIZE } from '../constants'
+import BgImg from '../assets/img-graphic-base.svg'
+import InnerColor from '../assets/inner-color.svg'
+import SnakeWhite from '../assets/snake-white.svg'
+import SnakeColor from '../assets/snake-color.svg'
+import OuterWhite from '../assets/outer-white.svg'
 
 const MIN_ENTROPY_LENGTH = 20000
 
@@ -53,67 +54,87 @@ const EntropyInputPage = () => {
 
   return (
     <Container onMouseMove={handleCaptureMouseEntropy}>
+      <Bg src={BgImg} />
+      <Img src={InnerColor} />
+      <Img src={SnakeWhite} />
+      <Img src={SnakeColor} />
+      <Img src={OuterWhite} />
       <Wrap>
-        <Logo />
-        <Title>Entropy & sorcery.</Title>
-        <Desc>
-          To conjure the magic, sacrifice is necessary. You are required to
-          offer a secret. Consider something important, like a hint of a memory
-          or the name of someone dear. Bring this offering to the altar and then
-          join the others in the hallway.
-        </Desc>
-        <Input onChange={(e) => setEntropy(e.target.value)} />
-        <Footnote>
-          You can also move your cursor around on this screen.
-        </Footnote>
-        <ProgressSection>
-          <ProgressBar percentage={percentage} />
-        </ProgressSection>
+        <PageTitle>
+          Entropy <br /> Entry
+        </PageTitle>
+        <TextSection>
+          <Desc>
+            The Ceremony requires randomness & will be used to craft the final
+            summoning spell.
+          </Desc>
+          <Desc>
+            <Bold>Memory:</Bold> a piece of you in text form, with random
+            characters added. A hope for the future, or the name of someone
+            dear. <Bold>Motion:</Bold> Trace some elements of the guide with
+            your cursor - the interface will capture your unique path.{' '}
+            <Bold>Machine:</Bold> Your browser will generate its own randomness
+            in the background.
+          </Desc>
+        </TextSection>
+        <Input type="password" onChange={(e) => setEntropy(e.target.value)} />
 
         <ButtonSection>
-          <PrimaryButtonLarge
-            onClick={handleSubmit}
-            disabled={percentage !== 100}
-          >
-            Enter hallway
-          </PrimaryButtonLarge>
+          <PrimaryButton disabled={percentage !== 100} onClick={handleSubmit}>
+            Submit
+          </PrimaryButton>
         </ButtonSection>
       </Wrap>
     </Container>
   )
 }
 
-const Title = styled(PageTitle)`
-  color: ${({ theme }) => theme.text};
-  margin-top: 0;
+const Bg = styled.img`
+  z-index: -2;
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+`
+
+const Img = styled.img`
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
 `
 
 const Desc = styled(Description)`
-  color: ${({ theme }) => theme.text};
+  margin: 0 0 20px;
+  font-size: 18px;
 `
 
-const Footnote = styled(Description)`
-  color: ${({ theme }) => theme.text};
-  font-size: ${FONT_SIZE.S};
+const TextSection = styled.div`
+  width: 360px;
+`
+
+const Bold = styled.span`
+  font-weight: 700;
 `
 
 const Input = styled.input`
-  ${textSerif};
-  font-size: 32px;
-  padding: 8px 16px;
+  font-size: 16px;
+  padding: 4px 8px;
   border: solid 1px ${({ theme }) => theme.text};
   border-radius: 4px;
-  background-color: ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.text};
-  width: 100%;
-`
-
-const ProgressSection = styled.div`
-  margin: 20px 0;
+  background-color: ${({ theme }) => theme.surface};
+  width: 300px;
 `
 
 const ButtonSection = styled.div`
-  padding-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12px;
 `
 
 export default EntropyInputPage

@@ -20,7 +20,8 @@ const Button = styled.button`
 `
 
 const PrimaryButtonInner = styled(Button)`
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme, disabled }) =>
+    disabled ? theme.disabled : theme.primary};
   color: ${({ theme }) => theme.text};
   border: none;
   min-width: 120px;
