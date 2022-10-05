@@ -12,8 +12,8 @@ export function useGithubUserInfo() {
       // TODO: fix
       const res = await fetch('https://api.github.com/user', {
         headers: {
-          Accept: 'application/vnd.github+json',
-          Authorization: `Bearer ${token}`
+          'Accept': 'application/vnd.github+json',
+          'Authorization': `Bearer ${token}`
         }
       })
       return await res.json()
