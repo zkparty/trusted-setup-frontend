@@ -58,7 +58,7 @@ class APIClient {
       })
 
       worker.onmessage = async (event) => {
-        const { contribution } = event.data;
+        const { contribution, proofs } = event.data
         const res = await fetch(`${API_ROOT}/contribute`, {
           method: 'POST',
           headers: {
@@ -67,7 +67,11 @@ class APIClient {
           },
           body: contribution,
         })
-        resolve((await res.json()) as ContributeRes)
+        resolve({
+          ...await res.json(),
+          contribution: contribution,
+          proofs: proofs
+        } as ContributeRes)
       }
 
       worker.postMessage(data)
