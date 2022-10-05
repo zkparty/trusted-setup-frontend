@@ -1,21 +1,33 @@
-import { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
-import Header from '../components/Header'
-import { useAuthStore } from '../store/auth'
-import { useContributionStore } from '../store/contribute'
+import { useContributionStore, Store } from '../store/contribute'
 import { Description, PageTitle } from '../components/Text'
-import api from '../api'
+import { isSuccessRes, parseErrorMessage } from '../utils'
+import { useNavigate } from 'react-router-dom'
+import { useAuthStore } from '../store/auth'
+import { useEffect, useState } from 'react'
+import Header from '../components/Header'
+import styled from 'styled-components'
 import ROUTES from '../routes'
-import { isSuccessRes } from '../utils'
-import { ErrorRes } from '../types'
+import api from '../api'
 
 const ContributingPage = () => {
   const { sessionId } = useAuthStore()
-  const { entropy, contribution } = useContributionStore((state) => ({
-    entropy: state.entropy,
-    contribution: state.contribution
-  }))
+  const {
+    entropy,
+    contribution,
+    updateProofs,
+    updateReceipt,
+    updateSignature,
+    updateNewContribution,
+  } = useContributionStore(
+    (state: Store) => ({
+      entropy: state.entropy,
+      contribution: state.contribution,
+      updateProofs: state.updateProofs,
+      updateReceipt: state.updateReceipt,
+      updateSignature: state.updateSignature,
+      updateNewContribution: state.updateNewContribution,
+    })
+  )
 
   const [step, setStep] = useState('downloading')
   const [error, setError] = useState<null | string>(null)
@@ -23,8 +35,7 @@ const ContributingPage = () => {
   // downloading, contributing, completed, error
 
   useEffect(() => {
-    ;(async () => {
-      console.log(contribution)
+    (async () => {
       try {
         if (!sessionId || !contribution) {
           throw new Error('invalid sessionId or contribution')
@@ -34,9 +45,14 @@ const ContributingPage = () => {
         const res = await api.contribute(sessionId!, contribution!, entropy)
         if (isSuccessRes(res)) {
           setStep('completed')
+          updateProofs(res.proofs)
+          updateReceipt(res.receipt)
+          updateSignature(res.signature)
+          updateNewContribution(res.contribution)
+          // TODO: check is done automatically or user start checking?
           navigate(ROUTES.COMPLETE)
         } else {
-          setError((res as ErrorRes).error)
+          setError( parseErrorMessage(res) )
           setStep('error')
         }
       } catch (error) {

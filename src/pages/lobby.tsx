@@ -6,13 +6,13 @@ import { Description, PageTitle } from '../components/Text'
 import { LOBBY_CHECKIN_FREQUENCY } from '../constants'
 import useTryContribute from '../hooks/useTryContribute'
 import ROUTES from '../routes'
-import { useContributionStore } from '../store/contribute'
+import { useContributionStore, Store } from '../store/contribute'
 import { isSuccessRes, sleep } from '../utils'
 
 const LobbyPage = () => {
   const tryContribute = useTryContribute()
   const updateContribution = useContributionStore(
-    (state) => state.updateContribution
+    (state: Store) => state.updateContribution
   )
   const navigate = useNavigate()
 

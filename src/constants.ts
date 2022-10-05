@@ -23,7 +23,8 @@ const RADIUS = {
   L: '12px'
 } as const
 
-const API_ROOT = 'http://localhost:8888'
+const API_ROOT = process.env.REACT_APP_API_ROOT || 'http://127.0.0.1:3000'
+const SIGNIN_REDIRECT_URL = process.env.REACT_APP_SIGNIN_REDIRECT_URL || 'http://localhost:3001/signin'
 
 const SERVER_ERROR = {
   LOBBY_IS_FULL: 'lobby is full'
@@ -37,5 +38,6 @@ export {
   RADIUS,
   API_ROOT,
   SERVER_ERROR,
+  SIGNIN_REDIRECT_URL,
   LOBBY_CHECKIN_FREQUENCY
 }
