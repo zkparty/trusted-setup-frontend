@@ -52,10 +52,10 @@ class APIClient {
       const worker = new Worker('./wasm/wasm-worker.js', {
         type: 'module'
       })
-      const data = JSON.stringify({
+      const data = {
         contributionString: contribution,
         entropy: entropy
-      })
+      }
 
       worker.onmessage = async (event) => {
         const { contribution, proofs } = event.data
@@ -72,6 +72,7 @@ class APIClient {
           contribution: contribution,
           proofs: proofs
         } as ContributeRes)
+        worker.terminate()
       }
 
       worker.postMessage(data)

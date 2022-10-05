@@ -1,12 +1,13 @@
 import init, {init_threads, contribute_wasm} from "./pkg/wrapper_small_pot.js";
 
 onmessage = async (event) => {
-    const {contributionString, entropy} = JSON.parse(event.data);
+    const {contributionString, entropy} = event.data;
     let contribution = JSON.parse(contributionString);
     // Temporary solution until sequencer sends potPubkey in contributions
     contribution['contributions'].forEach((contrib) => {
-        contrib['potPubkey'] = '0x1111';
+        contrib['potPubkey'] = '0x0001';
     })
+    contribution = JSON.stringify(contribution)
     console.log("available threads:", navigator.hardwareConcurrency);
 
     await init();
@@ -23,7 +24,7 @@ onmessage = async (event) => {
     console.log("start");
     const startTime = performance.now();
     const result = contribute_wasm(
-        JSON.stringify(contribution),
+        contribution,
         secrets[0],
         secrets[1],
         secrets[2],
