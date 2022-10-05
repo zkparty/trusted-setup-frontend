@@ -1,12 +1,10 @@
 import styled from 'styled-components'
-import { PrimaryButtonLarge } from '../components/Button'
+import { PrimaryButton } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
-  SingleWrap as Wrap,
-  SingleButtonSection as ButtonSection
+  SingleWrap as Wrap
 } from '../components/Layout'
-import Logo from '../components/Logo'
 import EthImg from '../assets/eth.svg'
 import GithubImg from '../assets/github.svg'
 import { useNavigate } from 'react-router-dom'
@@ -14,6 +12,10 @@ import ROUTES from '../routes'
 import useAuthenticate from '../hooks/useAuthenticate'
 import { useAuthStore } from '../store/auth'
 import { SERVER_ERROR } from '../constants'
+import BgImg from '../assets/img-graphic-base.svg'
+import InnerWhite from '../assets/inner-white.svg'
+import SnakeWhite from '../assets/snake-white.svg'
+import UnlockWhite from '../assets/unlock-white.svg'
 
 const SigninPage = () => {
   const { signinGithub, signinSIE } = useAuthenticate()
@@ -40,49 +42,81 @@ const SigninPage = () => {
 
   return (
     <Container>
+      <Bg src={BgImg} />
+      <Img src={InnerWhite} style={{ width: '570px', height: '570px' }} />
+      <Img src={UnlockWhite} style={{ width: '618px', height: '618px' }} />
+      <Img src={SnakeWhite} style={{ width: '685px', height: '685px' }} />
       <Wrap>
-        <Logo inverse />
-        <Title>step forward.</Title>
-        <Desc>
-          You are indeed worthy, but are you willing? Demonstrate your
-          commitment to the KZG by moving forward.
-        </Desc>
-        <Desc>
-          Signing with your address does not send any funds or allow any
-          contracts. This only allows us to deliver a totem to your address once
-          the Ceremony has concluded.
-        </Desc>
-
-        {error && <ErrorMessage>{error}</ErrorMessage>}
+        <Title>
+          OPEN <br /> THE WAY
+        </Title>
+        <TextSection>
+          <Desc>
+            To secure the integrity of the Ceremony, contributions must come
+            from an identity above the minimum qualifications.
+          </Desc>
+          <Desc>
+            Unlocking with Ethereum requires an address with at least two
+            transactions sent from it, and does not send any funds or allow any
+            contracts. This method also allows us to deliver an onchain memento
+            after the Ceremony.
+          </Desc>
+        </TextSection>
 
         <ButtonSection>
-          <PrimaryButtonLarge inverse onClick={onSigninSIE}>
-            Sign in with Ethereum <ButtonIcon src={EthImg} alt="ETH icon" />
-          </PrimaryButtonLarge>
-          <PrimaryButtonLarge inverse onClick={onSigninGithub}>
-            Sign in with Github <ButtonIcon src={GithubImg} alt="Github icon" />
-          </PrimaryButtonLarge>
+          <PrimaryButton onClick={onSigninSIE} style={{ width: '360px' }}>
+            Unlock with Ethereum <ButtonIcon src={EthImg} alt="ETH icon" />
+          </PrimaryButton>
+          <PrimaryButton onClick={onSigninGithub} style={{ width: '280px' }}>
+            Unlock with Github <ButtonIcon src={GithubImg} alt="Github icon" />
+          </PrimaryButton>
         </ButtonSection>
       </Wrap>
     </Container>
   )
 }
 
-const Title = styled(PageTitle)`
-  color: ${({ theme }) => theme.onPrimary};
-  margin-top: 0;
+const Bg = styled.img`
+  z-index: -2;
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+`
+
+const Img = styled.img`
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+`
+
+const Title = styled(PageTitle)``
+
+const TextSection = styled.div`
+  width: 360px;
 `
 
 const Desc = styled(Description)`
-  color: ${({ theme }) => theme.onPrimary};
+  margin: 0 0 24px;
+  font-size: 18px;
 `
 
 const ButtonIcon = styled.img`
   margin-left: 16px;
 `
 
-const ErrorMessage = styled.p`
-  color: ${({ theme }) => theme.error};
+export const ButtonSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 120px;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 12px;
 `
 
 export default SigninPage

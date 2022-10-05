@@ -22,10 +22,12 @@ const EntropyInputPage = () => {
   const [mouseEntropy, setMouseEntropy] = useState('')
   const [percentage, setPercentage] = useState(0)
 
-  const updateEntropy = useContributionStore((state: Store) => state.updateEntropy)
+  const updateEntropy = useContributionStore(
+    (state: Store) => state.updateEntropy
+  )
   const handleSubmit = () => {
     if (percentage !== 100) return
-    updateEntropy(0, entropy)    
+    updateEntropy(0, entropy)
     navigate(ROUTES.LOBBY)
   }
 
@@ -52,14 +54,17 @@ const EntropyInputPage = () => {
   return (
     <Container onMouseMove={handleCaptureMouseEntropy}>
       <Wrap>
-        <Logo inverse />
+        <Logo />
         <Title>Entropy & sorcery.</Title>
         <Desc>
-        To conjure the magic, sacrifice is necessary. You are required to offer a secret. Consider something important, like a hint of a memory or the name of someone dear. Bring this offering to the altar and then join the others in the hallway.
+          To conjure the magic, sacrifice is necessary. You are required to
+          offer a secret. Consider something important, like a hint of a memory
+          or the name of someone dear. Bring this offering to the altar and then
+          join the others in the hallway.
         </Desc>
         <Input onChange={(e) => setEntropy(e.target.value)} />
         <Footnote>
-        You can also move your cursor around on this screen.
+          You can also move your cursor around on this screen.
         </Footnote>
         <ProgressSection>
           <ProgressBar percentage={percentage} />
@@ -67,7 +72,6 @@ const EntropyInputPage = () => {
 
         <ButtonSection>
           <PrimaryButtonLarge
-            inverse
             onClick={handleSubmit}
             disabled={percentage !== 100}
           >
@@ -80,16 +84,16 @@ const EntropyInputPage = () => {
 }
 
 const Title = styled(PageTitle)`
-  color: ${({ theme }) => theme.onPrimary};
+  color: ${({ theme }) => theme.text};
   margin-top: 0;
 `
 
 const Desc = styled(Description)`
-  color: ${({ theme }) => theme.onPrimary};
+  color: ${({ theme }) => theme.text};
 `
 
 const Footnote = styled(Description)`
-  color: ${({ theme }) => theme.onPrimary};
+  color: ${({ theme }) => theme.text};
   font-size: ${FONT_SIZE.S};
 `
 
@@ -97,10 +101,10 @@ const Input = styled.input`
   ${textSerif};
   font-size: 32px;
   padding: 8px 16px;
-  border: solid 1px ${({ theme }) => theme.onPrimary};
+  border: solid 1px ${({ theme }) => theme.text};
   border-radius: 4px;
   background-color: ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.onPrimary};
+  color: ${({ theme }) => theme.text};
   width: 100%;
 `
 

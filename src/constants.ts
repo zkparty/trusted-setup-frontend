@@ -5,8 +5,7 @@ const FONT_SIZE = {
   M: '16px',
   L: '20px',
   XL: '24px',
-  XXL: '32px',
-  HERO: '140px'
+  XXL: '32px'
 } as const
 
 const SPACE = {

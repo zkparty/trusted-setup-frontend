@@ -6,10 +6,8 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { Description, PageTitle, SectionTitle } from '../components/Text'
 import FaqItem from '../components/FaqItem'
-import { FONT_SIZE } from '../constants'
 import { textSerif } from '../style/utils'
 import ROUTES from '../routes'
-import bgImg from '../assets/img-what-KZGceremony.png'
 
 const LandingPage = () => {
   const navigate = useNavigate()
@@ -19,8 +17,8 @@ const LandingPage = () => {
 
   return (
     <>
+      <Header />
       <TopSection>
-        <Header />
         <PageTitle>KZG Ceremony</PageTitle>
         <Description>
           Are you worthy? Only the most valiant, with the highest integrity,
@@ -58,7 +56,6 @@ const LandingPage = () => {
           need to guard against attempts to control the ceremony, so you'll need
           an Ethereum or GitHub account with an established history.
         </DescriptionMid>
-        <LandingBgImg src={bgImg} alt="section background" />
       </SecondSection>
       <FAQSection>
         <FaqTitle>FAQ</FaqTitle>
@@ -116,7 +113,7 @@ const FAQSection = styled.div`
 
 const FaqTitle = styled.h2`
   font-size: 64px;
-  color: ${({ theme }) => theme.onBackground};
+  color: ${({ theme }) => theme.text};
   ${textSerif}
   text-align: center;
 `

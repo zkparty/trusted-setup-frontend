@@ -2,23 +2,34 @@ import styled from 'styled-components'
 
 // Single section page
 export const SingleContainer = styled.div`
-  background-color: ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.onPrimary};
-  min-height: 100vh;
-  padding-top: 120px;
+  color: ${({ theme }) => theme.text};
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 `
 
 export const SingleWrap = styled.div`
-  width: 80%;
+  position: absolute;
+  left: -20000px;
+  right: -20000px;
+  top: -20000px;
+  bottom: -20000px;
+
+  width: 542px;
+  height: 542px;
+  background-color: ${({ theme }) => theme.surface};
+  border-radius: 50%;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 export const SingleButtonSection = styled.div`
   display: flex;
   flex-direction: column;
   height: 200px;
+  align-items: center;
   justify-content: space-around;
-  width: 340px;
+  margin-top: 40px;
 `
-
-//

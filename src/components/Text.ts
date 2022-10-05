@@ -4,20 +4,19 @@ import { FONT_SIZE } from '../constants'
 import { textSerif } from '../style/utils'
 
 const PageTitle = styled.h1`
+  text-align: center;
   text-transform: uppercase;
-  color: ${({ theme }) => theme.primary};
-  font-size: ${FONT_SIZE.HERO};
-  line-height: 153px;
+  line-height: 38px;
+  font-size: ${FONT_SIZE.XXL};
   ${textSerif}
   font-weight: 700;
-  margin-top: 20px;
+  margin-top: 40px;
   margin-bottom: 24px;
 `
 
 const SectionTitle = styled.h2`
   text-transform: uppercase;
-  color: ${({ theme }) => theme.primary};
-  font-size: ${FONT_SIZE.HERO};
+  font-size: ${FONT_SIZE.XXL};
   line-height: 153px;
   ${textSerif}
   font-weight: 700;
@@ -31,7 +30,7 @@ const Description = styled.p`
 `
 
 const LinkText = styled(Link)`
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.text};
   border: none;
   background-color: transparent;
   cursor: pointer;

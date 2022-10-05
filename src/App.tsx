@@ -13,20 +13,14 @@ import {
   MobilePage
 } from './pages'
 import RequireAuth from './components/helper/RequireAuth'
-import ROUTES, { useIsInverse } from './routes'
+import ROUTES from './routes'
 import GlobalStyle from './style/global'
-
-function GlobalStyleWrapper() {
-  const location = useLocation()
-  const isInverse = useIsInverse(location.pathname)
-  return <GlobalStyle inverse={isInverse} />
-}
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <GlobalStyleWrapper />
+        <GlobalStyle />
         <Routes>
           <Route path={ROUTES.MOBILE} element={<MobilePage />} />
 

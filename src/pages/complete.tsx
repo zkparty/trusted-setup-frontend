@@ -5,14 +5,18 @@ import { Description, PageTitle } from '../components/Text'
 
 const CompletePage = () => {
   return (
-    <Container>
+    <>
       <Header />
-      <PageTitle>The Collective power.</PageTitle>
-      <Description>
-      The contribution is now complete. You are one of very early summoner, keep your eyez out for further annoucement and come back to verify at end of ceremony.
-      </Description>
-      <PrimaryButtonLarge>View my record</PrimaryButtonLarge>
-    </Container>
+      <Container>
+        <PageTitle>The Collective power.</PageTitle>
+        <Description>
+          The contribution is now complete. You are one of very early summoner,
+          keep your eyez out for further annoucement and come back to verify at
+          end of ceremony.
+        </Description>
+        <PrimaryButtonLarge>View my record</PrimaryButtonLarge>
+      </Container>
+    </>
   )
 }
 

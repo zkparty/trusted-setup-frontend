@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { SingleContainer } from '../components/Layout'
 import { PrimaryButtonLarge } from '../components/Button'
 import Logo from '../components/Logo'
-import GateImg from '../assets/gate.png'
 import { textSerif } from '../style/utils'
 import { FONT_SIZE } from '../constants'
 
@@ -16,19 +15,16 @@ const GatePage = () => {
   return (
     <Container>
       <div>
-        <Logo inverse />
+        <Logo />
       </div>
       <Body>
-        <Img src={GateImg} alt="this is your gate" />
         <FormSection>
           <AskPasscode>
             Summoner,
             <br /> your passcode, please.
           </AskPasscode>
           <Input onChange={(e) => setPasscode(e.target.value)} />
-          <PrimaryButtonLarge inverse onClick={handleSubmit}>
-            Enter
-          </PrimaryButtonLarge>
+          <PrimaryButtonLarge onClick={handleSubmit}>Enter</PrimaryButtonLarge>
         </FormSection>
       </Body>
     </Container>
@@ -68,10 +64,10 @@ const Input = styled.input`
   ${textSerif};
   font-size: 32px;
   padding: 8px 16px;
-  border: solid 1px ${({ theme }) => theme.onPrimary};
+  border: solid 1px ${({ theme }) => theme.text};
   border-radius: 4px;
   background-color: ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.onPrimary};
+  color: ${({ theme }) => theme.text};
   margin-bottom: 24px;
 `
 

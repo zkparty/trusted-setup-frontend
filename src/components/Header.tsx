@@ -15,7 +15,6 @@ const Header = () => {
     <Container>
       <Logo />
       <ButtonGroup>
-        <LinkText to={ROUTES.RECORD}>Record</LinkText>
         {sessionId ? (
           <span>{sessionId.slice(0, 10)}</span>
         ) : (
@@ -29,6 +28,7 @@ const Header = () => {
 }
 
 const Container = styled.header`
+  background-color: ${({ theme }) => theme.surface2};
   height: 80px;
   display: flex;
   align-items: center;

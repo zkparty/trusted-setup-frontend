@@ -22,7 +22,7 @@ const MobilePage = () => {
 
   return (
     <Container>
-      <Logo inverse />
+      <Logo />
 
       <Section>
         <Title>KZG Ceremony</Title>
@@ -44,7 +44,7 @@ const Section = styled.div`
 `
 
 const Title = styled(PageTitle)`
-  color: ${({ theme }) => theme.onPrimary};
+  color: ${({ theme }) => theme.text};
   margin-top: 0;
   font-size: 54px;
   line-height: 54px;

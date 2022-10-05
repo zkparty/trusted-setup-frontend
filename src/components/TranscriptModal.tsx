@@ -38,7 +38,7 @@ const Title = styled.h2`
 `
 
 const Content = styled.p`
-  color: ${({ theme }) => theme.textBlack};
+  color: ${({ theme }) => theme.text};
 `
 
 export default TranscriptModal

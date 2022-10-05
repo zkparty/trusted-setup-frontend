@@ -47,7 +47,7 @@ class APIClient {
   }
 
   async contribute(
-    sessionid: string,
+    sessionId: string,
     contribution: string,
     entropy: string[]
   ): Promise<ErrorRes | ContributeRes> {
@@ -62,17 +62,16 @@ class APIClient {
 
       worker.onmessage = async (event) => {
         // TODO: upload new contribution
+        const { contribution } = event.data
         const res = await fetch(`${API_ROOT}/contribute`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${sessionid}`
+            Authorization: `Bearer ${sessionId}`
           },
           body: JSON.stringify({
-            contributions: [
-              JSON.parse((event.data as string).slice(1, event.data.length - 1))
-            ],
-            session_id: sessionid
+            ...JSON.parse(contribution),
+            session_id: sessionId
           })
         })
         resolve((await res.json()) as ContributeRes)

@@ -80,7 +80,7 @@ const Raw = styled.div`
   display: flex;
   align-items: center;
   height: 60px;
-  border-bottom: solid 1px ${({ theme }) => theme.onPrimary};
+  border-bottom: solid 1px ${({ theme }) => theme.text};
 `
 
 type ColProps = {
@@ -99,14 +99,14 @@ const Col = styled.div<ColProps>`
 
 const ViewButton = styled.button`
   cursor: pointer;
-  color: ${({ theme }) => theme.onPrimary};
+  color: ${({ theme }) => theme.text};
   border: none;
   background-color: transparent;
   font-weight: 600;
 
   transition: all 0.1s ease;
   :hover {
-    border-bottom: solid 1px ${({ theme }) => theme.onPrimary};
+    border-bottom: solid 1px ${({ theme }) => theme.text};
   }
 `
 

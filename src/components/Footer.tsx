@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <Container>
       <LeftSection>
-        <Logo hideVersion />
+        <Logo />
         <Copyright>Build by Ethereum Foundation, R&D team. 2022</Copyright>
       </LeftSection>
       <RightSection>
@@ -27,7 +27,7 @@ const Footer = () => {
 }
 
 const Container = styled.footer`
-  background-color: #e4e4e4;
+  background-color: ${({ theme }) => theme.surface2};
   height: 360px;
   padding: 120px 10%;
   display: flex;
@@ -41,7 +41,7 @@ const RightSection = styled.div`
 `
 
 const Copyright = styled.p`
-  color: ${({ theme }) => theme.textBlack};
+  color: ${({ theme }) => theme.text};
 `
 
 const LinkGroup = styled.div`
