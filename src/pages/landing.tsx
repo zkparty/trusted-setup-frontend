@@ -5,10 +5,10 @@ import { PrimaryButton } from '../components/Button'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { Description, PageTitle } from '../components/Text'
-import FaqItem from '../components/FaqItem'
 import { textSerif } from '../style/utils'
 import ROUTES from '../routes'
 import { TextSection } from '../components/Layout'
+import LandingBg from '../assets/landing-boarder.png'
 
 const LandingPage = () => {
   const navigate = useNavigate()
@@ -35,10 +35,9 @@ const LandingPage = () => {
           <Description>
             Magic math awaits - are you ready to add your color to the story?
           </Description>
-          <GetStartedButton onClick={onClickGetStart}>
-            Get Started
-          </GetStartedButton>
         </TextSection>
+        <PrimaryButton onClick={onClickGetStart}>Begin</PrimaryButton>
+        <Footnote>↓ or learn more below ↓</Footnote>
       </TopSection>
       <SecondSection>
         <PageTitle>
@@ -79,47 +78,42 @@ const LandingPage = () => {
   )
 }
 
-const TopSection = styled.section`
+const Section = styled.section`
   padding: 0 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `
 
+const TopSection = styled(Section)`
+  background: url(${LandingBg}) no-repeat bottom / contain;
+  height: 840px;
+  margin-top: 24px;
+  padding-top: 100px;
+`
+
 const BgColor = styled.div`
   background-color: ${({ theme }) => theme.surface};
-  height: 100px;
-  width: 100px;
+  height: 500px;
+  width: 500px;
   border-radius: 50%;
-  box-shadow: 0 0 10px 10px ${({ theme }) => theme.surface};
+  box-shadow: 0 0 200px 120px ${({ theme }) => theme.surface};
+  position: absolute;
+  z-index: -1;
+  top: 240px;
 `
 
-const GetStartedButton = styled(PrimaryButton)`
-  padding: 18px 80px;
-  border-radius: 40px;
+const Footnote = styled.p`
+  font-style: italic;
+  ${textSerif}
 `
 
-const SecondSection = styled(TopSection)`
-  margin-top: 120px;
-  padding: 40px 24px;
+const SecondSection = styled(Section)`
+  padding: 0 24px 40px;
 `
 
 const SecondTextSection = styled(TextSection)`
   width: 698px;
-`
-
-const FAQSection = styled.div`
-  background-color: ${({ theme }) => theme.background};
-  width: 80%;
-  margin: auto;
-  padding-bottom: 120px;
-`
-
-const FaqTitle = styled.h2`
-  font-size: 64px;
-  color: ${({ theme }) => theme.text};
-  ${textSerif}
-  text-align: center;
 `
 
 export default LandingPage

@@ -56,9 +56,9 @@ function App() {
             <Route
               path={ROUTES.LOBBY}
               element={
-                // <RequireAuth>
-                <LobbyPage />
-                // </RequireAuth>
+                <RequireAuth>
+                  <LobbyPage />
+                </RequireAuth>
               }
             />
             <Route

@@ -1,4 +1,4 @@
-import { useState, MouseEventHandler, useEffect } from 'react'
+import { useState, MouseEventHandler, useEffect, useMemo } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { PrimaryButton } from '../components/Button'
@@ -10,20 +10,27 @@ import {
 } from '../components/Layout'
 import ROUTES from '../routes'
 import BgImg from '../assets/img-graphic-base.svg'
-import InnerColor from '../assets/inner-color.svg'
-import SnakeWhite from '../assets/snake-white.svg'
-import SnakeColor from '../assets/snake-color.svg'
-import OuterWhite from '../assets/outer-white.svg'
+import SnakeProgress from '../components/SnakeProgress'
 import { useAuthStore } from '../store/auth'
 
-const MIN_ENTROPY_LENGTH = 20000
+const MIN_ENTROPY_LENGTH = 2000
+
+type Player = {
+  play: () => void
+  pause: () => void
+  seek: (percent: number) => void
+}
 
 const EntropyInputPage = () => {
   const navigate = useNavigate()
-  const [entropy, setEntropy] = useState('')
+  const [keyEntropy, setKeyEntropy] = useState('')
   const [mouseEntropy, setMouseEntropy] = useState('')
   const [percentage, setPercentage] = useState(0)
+  const [player, setPlayer] = useState<Player | null>(null)
   const { provider } = useAuthStore()
+  const entropy = useMemo(() => {
+    return `${keyEntropy}${mouseEntropy}`
+  }, [keyEntropy, mouseEntropy])
 
   const updateEntropy = useContributionStore(
     (state: Store) => state.updateEntropy
@@ -48,23 +55,19 @@ const EntropyInputPage = () => {
   }
 
   useEffect(() => {
-    setPercentage(
-      Math.min(
-        Math.floor(
-          ((entropy + mouseEntropy).length / MIN_ENTROPY_LENGTH) * 100
-        ),
-        100
-      )
+    const percentage = Math.min(
+      Math.floor((entropy.length / MIN_ENTROPY_LENGTH) * 1000) / 10,
+      100
     )
-  }, [entropy, mouseEntropy])
+
+    setPercentage(percentage)
+    if (player) player.seek(percentage)
+  }, [entropy])
 
   return (
     <Container onMouseMove={handleCaptureMouseEntropy}>
       <Bg src={BgImg} />
-      <Img src={InnerColor} />
-      <Img src={SnakeWhite} />
-      <Img src={SnakeColor} />
-      <Img src={OuterWhite} />
+      <SnakeProgress onSetPlayer={setPlayer} />
       <Wrap>
         <PageTitle>
           Entropy <br /> Entry
@@ -83,7 +86,10 @@ const EntropyInputPage = () => {
             in the background.
           </Desc>
         </TextSection>
-        <Input type="password" onChange={(e) => setEntropy(e.target.value)} />
+        <Input
+          type="password"
+          onChange={(e) => setKeyEntropy(e.target.value)}
+        />
 
         <ButtonSection>
           <PrimaryButton disabled={percentage !== 100} onClick={handleSubmit}>
@@ -97,15 +103,6 @@ const EntropyInputPage = () => {
 
 const Bg = styled.img`
   z-index: -2;
-  position: absolute;
-  top: -9999px;
-  bottom: -9999px;
-  left: -9999px;
-  right: -9999px;
-  margin: auto;
-`
-
-const Img = styled.img`
   position: absolute;
   top: -9999px;
   bottom: -9999px;
