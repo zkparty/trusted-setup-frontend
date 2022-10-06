@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled, { css, keyframes } from 'styled-components'
-import Header from '../components/Header'
 import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
@@ -22,6 +21,9 @@ import SnakeColor from '../assets/snake-color.svg'
 import OuterColor from '../assets/outer-color.svg'
 import PizzaInner from '../assets/crust.svg'
 import PizzaOuter from '../assets/fig.svg'
+import Explanation from '../components/Explanation'
+import Footer from '../components/Footer'
+import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 
 const LobbyPage = () => {
   const [visible, setVisible] = useState(false)
@@ -63,7 +65,7 @@ const LobbyPage = () => {
 
   return (
     <>
-      <Header />
+      <HeaderJustGoingBack />
       <Container>
         <Bg src={BgImg} />
 
@@ -89,14 +91,11 @@ const LobbyPage = () => {
           </InnerWrap>
         </Wrap>
       </Container>
-      <Body></Body>
+      <Explanation />
+      <Footer />
     </>
   )
 }
-
-// const Container = styled.section`
-//   padding: 0 24px 24px;
-// `
 
 const r = keyframes`
   0%   { transform: rotate(0deg); }
@@ -117,7 +116,5 @@ const PizzaImg = styled(Img)<{ visible: boolean; rounding: boolean }>`
 const InnerWrap = styled.div`
   margin-top: 100px;
 `
-
-const Body = styled.div``
 
 export default LobbyPage
