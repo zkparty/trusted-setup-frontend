@@ -33,3 +33,26 @@ export const SingleButtonSection = styled.div`
   justify-content: space-around;
   margin-top: 40px;
 `
+
+export const TextSection = styled.div`
+  width: 360px;
+`
+
+export const Bg = styled.img`
+  z-index: -2;
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+`
+
+export const Img = styled.img`
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+`

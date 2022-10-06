@@ -4,7 +4,10 @@ import { PrimaryButton } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
-  SingleWrap as Wrap
+  SingleWrap as Wrap,
+  Bg,
+  Img,
+  TextSection
 } from '../components/Layout'
 import ROUTES from '../routes'
 import BgImg from '../assets/img-graphic-base.svg'
@@ -31,11 +34,11 @@ const DoubleSignPage = () => {
             Seal your <br /> memory
           </PageTitle>
           <TextSection>
-            <Desc>
+            <Description>
               Rember the neverending flight to birth new tools which we use to
               build towards brighter worlds. We are part of this story, every
               day a new page.
-            </Desc>
+            </Description>
           </TextSection>
           <ButtonSection>
             <PrimaryButton onClick={handleClickSign}>Seal it</PrimaryButton>
@@ -48,34 +51,6 @@ const DoubleSignPage = () => {
 
 const InnerWrap = styled.div`
   margin-top: 100px;
-`
-
-const Bg = styled.img`
-  z-index: -2;
-  position: absolute;
-  top: -9999px;
-  bottom: -9999px;
-  left: -9999px;
-  right: -9999px;
-  margin: auto;
-`
-
-const Img = styled.img`
-  position: absolute;
-  top: -9999px;
-  bottom: -9999px;
-  left: -9999px;
-  right: -9999px;
-  margin: auto;
-`
-
-const Desc = styled(Description)`
-  margin: 0 0 20px;
-  font-size: 18px;
-`
-
-const TextSection = styled.div`
-  width: 360px;
 `
 
 const ButtonSection = styled.div`

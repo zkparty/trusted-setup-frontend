@@ -4,10 +4,11 @@ import styled from 'styled-components'
 import { PrimaryButton } from '../components/Button'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import { Description, PageTitle, SectionTitle } from '../components/Text'
+import { Description, PageTitle } from '../components/Text'
 import FaqItem from '../components/FaqItem'
 import { textSerif } from '../style/utils'
 import ROUTES from '../routes'
+import { TextSection } from '../components/Layout'
 
 const LandingPage = () => {
   const navigate = useNavigate()
@@ -19,63 +20,60 @@ const LandingPage = () => {
     <>
       <Header />
       <TopSection>
-        <PageTitle>KZG Ceremony</PageTitle>
-        <Description>
-          Are you worthy? Only the most valiant, with the highest integrity,
-          shall form the collective power. The time has come to awaken the
-          danksharding. Enchantment and magic math awaits.
-        </Description>
-        <GetStartedButton onClick={onClickGetStart}>
-          Get Started
-        </GetStartedButton>
+        <BgColor />
+        <PageTitle>
+          SUMMONING <br /> GUIDE
+        </PageTitle>
+        <TextSection>
+          <Description>
+            Whispers from the shadows tell of a powerful spirit Dankshard, which
+            will open the next chapter of Ethereum scalability. To summon its
+            powers, we need as many community contributions as possible. This
+            illuminated guide will lead you through the steps necessary to
+            complete your contribution.
+          </Description>
+          <Description>
+            Magic math awaits - are you ready to add your color to the story?
+          </Description>
+          <GetStartedButton onClick={onClickGetStart}>
+            Get Started
+          </GetStartedButton>
+        </TextSection>
       </TopSection>
       <SecondSection>
-        <SectionTitle>The proto-danksharding & the trusted setup.</SectionTitle>
-        <DescriptionMid>
-          This Trusted Setup is a multi-party ceremony designed to generate a
-          secure SRS (structured reference string) to be used in the
-          proto-danksharding protocol. OK, let's slow down and talk about those
-          terms in more detail.
-        </DescriptionMid>
-        <DescriptionMid>
-          Proto-danksharding (aka EIP-4844) is a planned change to the Ethereum
-          protocol. It will allow transaction data from rollups to be succinctly
-          represented in layer 1, thus lowering transaction fees.
-        </DescriptionMid>
-        <DescriptionMid>
-          The Trusted Setup is a preparatory step required for certain
-          cryptographic schemes such as the KZG polynomial commitment scheme to
-          be used in proto-danksharding. In our case, the trust assumption is
-          that one contributor needs to successfully conceal their secret for
-          the result to be secure.
-        </DescriptionMid>
-        <DescriptionMid>
-          It's a multi-party ceremony: Contributors each create a secret and run
-          a computation to mix it with previous contributions and generate a
-          result that can be made public and passed to the next contributor. We
-          need to guard against attempts to control the ceremony, so you'll need
-          an Ethereum or GitHub account with an established history.
-        </DescriptionMid>
+        <PageTitle>
+          PROTO-DANKSHARDING <br /> AND THE CEREMONY
+        </PageTitle>
+        <SecondTextSection>
+          <Description>
+            This Trusted Setup is a multi-party ceremony designed to generate a
+            secure SRS (structured reference string) to be used in the
+            proto-danksharding protocol. OK, let's slow down and talk about
+            those terms in more detail.
+          </Description>
+          <Description>
+            Proto-danksharding (aka EIP-4844) is a planned change to the
+            Ethereum protocol which allows transaction data from rollups (Layer
+            2s) to be succinctly represented on the Layer 1 (mainnet). The
+            benefits are lower transaction fees on the L2, greater scalability
+            and more accessibility to more people!
+          </Description>
+          <Description>
+            The Trusted Setup is a preparatory step required for certain
+            cryptographic schemes such as the KZG polynomial commitment scheme
+            to be used in proto-danksharding. In our case, the trust assumption
+            is that one contributor needs to successfully conceal their secret
+            for the result to be secure.
+          </Description>
+          <Description>
+            It's a multi-party ceremony: Contributors each create a secret and
+            run a computation to mix it with previous contributions and generate
+            a result that can be made public and passed to the next contributor.
+            We need to guard against attempts to control the ceremony, so you'll
+            need an Ethereum or GitHub account with an established history.
+          </Description>
+        </SecondTextSection>
       </SecondSection>
-      <FAQSection>
-        <FaqTitle>FAQ</FaqTitle>
-        <FaqItem
-          title="How to contribute"
-          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna, leo donec egestas orci tortor, tellus. Diam eget libero id magna pellentesque fames pretium. Rutrum eget proin sagittis gravida ipsum fringilla molestie elit mauris."
-        />
-        <FaqItem
-          title="My computer is not very powerful, can I contribute?"
-          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna, leo donec egestas orci tortor, tellus. Diam eget libero id magna pellentesque fames pretium. Rutrum eget proin sagittis gravida ipsum fringilla molestie elit mauris."
-        />
-        <FaqItem
-          title="What to expect"
-          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna, leo donec egestas orci tortor, tellus. Diam eget libero id magna pellentesque fames pretium. Rutrum eget proin sagittis gravida ipsum fringilla molestie elit mauris."
-        />
-        <FaqItem
-          title="Verify your contribution"
-          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna, leo donec egestas orci tortor, tellus. Diam eget libero id magna pellentesque fames pretium. Rutrum eget proin sagittis gravida ipsum fringilla molestie elit mauris."
-        />
-      </FAQSection>
       <Footer />
     </>
   )
@@ -83,6 +81,17 @@ const LandingPage = () => {
 
 const TopSection = styled.section`
   padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const BgColor = styled.div`
+  background-color: ${({ theme }) => theme.surface};
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 10px ${({ theme }) => theme.surface};
 `
 
 const GetStartedButton = styled(PrimaryButton)`
@@ -90,18 +99,13 @@ const GetStartedButton = styled(PrimaryButton)`
   border-radius: 40px;
 `
 
-const SecondSection = styled.section`
+const SecondSection = styled(TopSection)`
   margin-top: 120px;
   padding: 40px 24px;
 `
 
-const LandingBgImg = styled.img`
-  width: 100%;
-  margin-top: -40px;
-`
-
-const DescriptionMid = styled(Description)`
-  max-width: 760px;
+const SecondTextSection = styled(TextSection)`
+  width: 698px;
 `
 
 const FAQSection = styled.div`
