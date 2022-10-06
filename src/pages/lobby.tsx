@@ -44,21 +44,20 @@ const LobbyPage = () => {
   }, [])
 
   useEffect(() => {
-    // async function poll(): Promise<void> {
-    //   // periodically post /slot/join
-    //   const res = await tryContribute.mutateAsync()
-    //   if (isSuccessRes(res)) {
-    //     updateContribution(JSON.stringify(res))
-    //     navigate(ROUTES.CONTRIBUTING)
-    //   } else {
-    //     //  try again after LOBBY_CHECKIN_FREUQUENCY
-    //     await sleep(LOBBY_CHECKIN_FREQUENCY)
-    //     return await poll()
-    //   }
-    // }
-    // poll()
-    //
-    //
+    async function poll(): Promise<void> {
+      // periodically post /slot/join
+      const res = await tryContribute.mutateAsync()
+      if (isSuccessRes(res)) {
+        updateContribution(JSON.stringify(res))
+        navigate(ROUTES.CONTRIBUTING)
+      } else {
+        //  try again after LOBBY_CHECKIN_FREUQUENCY
+        await sleep(LOBBY_CHECKIN_FREQUENCY)
+        return await poll()
+      }
+    }
+    poll()
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
