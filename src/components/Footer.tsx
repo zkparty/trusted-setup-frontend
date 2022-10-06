@@ -1,8 +1,6 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 import Logo from './Logo'
 import { FONT_SIZE } from '../constants'
-import ROUTES from '../routes'
 
 const Footer = () => {
   return (
@@ -12,10 +10,6 @@ const Footer = () => {
         <Copyright>Build by Ethereum Foundation, R&D team. 2022</Copyright>
       </LeftSection>
       <RightSection>
-        <LinkGroup>
-          <SiteLinkItem to={ROUTES.RECORD}>Record</SiteLinkItem>
-          <SiteLinkItem to={ROUTES.SIGNIN}>Sign in</SiteLinkItem>
-        </LinkGroup>
         <LinkGroup>
           <LinkItem href="#">Github repo</LinkItem>
           <LinkItem href="#">Documentation</LinkItem>
@@ -51,13 +45,6 @@ const LinkGroup = styled.div`
 `
 
 const LinkItem = styled.a`
-  font-size: ${FONT_SIZE.L};
-  font-weight: 600;
-  cursor: pointer;
-  margin-bottom: 24px;
-`
-
-const SiteLinkItem = styled(Link)`
   font-size: ${FONT_SIZE.L};
   font-weight: 600;
   cursor: pointer;
