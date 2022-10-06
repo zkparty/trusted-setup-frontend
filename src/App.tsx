@@ -77,10 +77,10 @@ function App() {
                 </RequireAuth>
               }
             />
-            <Route path={ROUTES.RECORD} element={<RecordPage />} />
-            <Route path={ROUTES.GATE} element={<GatePage />} />
-            <Route path={ROUTES.REDIRECT} element={<RedirectPopup />} />
           </Route>
+          <Route path={ROUTES.RECORD} element={<RecordPage />} />
+          <Route path={ROUTES.GATE} element={<GatePage />} />
+          <Route path={ROUTES.REDIRECT} element={<RedirectPopup />} />
         </Routes>
       </BrowserRouter>
     </>

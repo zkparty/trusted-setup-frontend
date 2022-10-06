@@ -177,20 +177,19 @@ const ContributingPage = () => {
                   </Description>
                 </>
               ) : step === 'completed' ? (
-                <>
-                  <Description>
-                    You have just succesfully complete the contribution. Don’t
-                    forget to return for the summoning ending & spread the
-                    words.
-                  </Description>
-                  <PrimaryButton>View my contribution</PrimaryButton>
-                </>
+                <Description>
+                  You have just succesfully complete the contribution. Don’t
+                  forget to return for the summoning ending & spread the words.
+                </Description>
               ) : (
                 <Description>
                   There was an error {error}. Reload and try again
                 </Description>
               )}
             </TextSection>
+            {step === 'completed' && (
+              <PrimaryButton>View my contribution</PrimaryButton>
+            )}
           </InnerWrap>
         </Wrap>
       </ContainerR>
@@ -223,6 +222,10 @@ const BgPulse = styled(Bg)`
 
 const InnerWrap = styled.div`
   margin-top: 100px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const r = keyframes`

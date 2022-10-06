@@ -16,6 +16,10 @@ const HeaderJustGoingBack = () => {
 }
 
 const Container = styled.header`
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  width: 100vw;
   background-color: ${({ theme }) => theme.surface2};
   height: 80px;
   display: flex;
