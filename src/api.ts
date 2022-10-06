@@ -60,6 +60,7 @@ class APIClient {
         type: 'module'
       })
       const data = {
+        action: 'contribute',
         contributionString: contribution,
         entropy: entropy
       }
@@ -85,6 +86,34 @@ class APIClient {
       worker.postMessage(data)
     })
   }
+
+  async checkContribution(
+    contribution: string,
+    newContribution: string
+  ){
+    return new Promise<any>((resolve) => {
+      const worker = new Worker('./wasm/wasm-worker.js', {
+        type: 'module'
+      })
+      const data = {
+        action: 'subgroupCheck',
+        contribution: contribution,
+        newContribution: newContribution,
+      }
+
+      worker.onmessage = async (event) => {
+        const { checkContribution, checkNewContribution } = event.data
+        resolve({
+          checkContribution,
+          checkNewContribution,
+        })
+        worker.terminate()
+      }
+
+      worker.postMessage(data)
+    })
+  }
+
 }
 
 export default new APIClient()
