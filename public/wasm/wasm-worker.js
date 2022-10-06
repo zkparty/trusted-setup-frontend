@@ -1,17 +1,35 @@
-import init, {init_threads, contribute_wasm} from "./pkg/wrapper_small_pot.js";
+import init, {
+    init_threads,
+    contribute_wasm,
+    subgroup_check_wasm,
+} from "./pkg/wrapper_small_pot.js";
 
 onmessage = async (event) => {
-    const {contributionString, entropy} = event.data;
+    await init();
+    await init_threads(navigator.hardwareConcurrency);
+    console.log("available threads:", navigator.hardwareConcurrency);
+    const { action } = event.data;
+    switch (action) {
+        case 'contribute':
+            contribute(event.data);
+            break;
+        case 'subgroupCheck':
+            subgroupChecks(event.data);
+            break;
+        default:
+            break;
+    }
+}
+
+
+async function contribute(data){
+    const {contributionString, entropy} = data;
     let contribution = JSON.parse(contributionString);
     // Temporary solution until sequencer sends potPubkey in contributions
     contribution['contributions'].forEach((contrib) => {
         contrib['potPubkey'] = '0x0001';
     })
-    contribution = JSON.stringify(contribution)
-    console.log("available threads:", navigator.hardwareConcurrency);
-
-    await init();
-    await init_threads(navigator.hardwareConcurrency);
+    contribution = JSON.stringify(contribution);
 
     let secrets = await Promise.all([
         sha256(entropy[0]),
@@ -21,7 +39,7 @@ onmessage = async (event) => {
     ]);
     secrets = secrets.map(secret => '0x' + secret);
 
-    console.log("start");
+    console.log("start contributing");
     const startTime = performance.now();
     const result = contribute_wasm(
         contribution,
@@ -47,6 +65,28 @@ onmessage = async (event) => {
     }
 
     postMessage(newResult);
+}
+
+function subgroupChecks(data){
+    let { contribution, newContribution } = data;
+    contribution = JSON.parse(contribution);
+    // Temporary solution until sequencer sends potPubkey in contributions
+    contribution['contributions'].forEach((contrib) => {
+        contrib['potPubkey'] = '0x0001';
+    })
+    contribution = JSON.stringify(contribution);
+
+    console.log("start subgroup checks");
+    const startTime = performance.now();
+    const checkContribution = subgroup_check_wasm(contribution);
+    const checkNewContribution = subgroup_check_wasm(newContribution);
+    const endTime = performance.now();
+    console.log(`Subgroups checks took ${endTime - startTime} milliseconds`);
+    const result = {
+        checkContribution,
+        checkNewContribution,
+    }
+    postMessage(result);
 }
 
 async function sha256(message) {
