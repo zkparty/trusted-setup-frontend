@@ -49,9 +49,7 @@ const ContributingPage = () => {
           updateReceipt(res.receipt)
           updateSignature(res.signature)
           updateNewContribution(res.contribution)
-          // TODO: check is done automatically or user start checking?
-          const checks = await api.checkContribution(contribution!, res.contribution!)
-          console.log(checks)
+
           navigate(ROUTES.COMPLETE)
         } else {
           setError( parseErrorMessage(res) )

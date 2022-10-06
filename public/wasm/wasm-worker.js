@@ -50,7 +50,6 @@ async function contribute(data){
     );
     const endTime = performance.now();
     console.log(`Contribution took ${endTime - startTime} milliseconds`)
-
     const postContribution = JSON.parse(result.contribution)
     const contributions = postContribution.contributions;
     const proofs = JSON.parse(result.proofs);
