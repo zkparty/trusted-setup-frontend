@@ -1,4 +1,5 @@
 import { ErrorRes } from './types'
+import bls from '@noble/bls12-381'
 
 // check if user agent is mobile device
 export function isMobile(): boolean {
@@ -66,4 +67,18 @@ export async function sleep(ms: number) {
       resolve()
     }, ms)
   })
+}
+
+/* 
+  Secret should be a hex string representing a G2 point. It will be
+  used as the private key signing the message. 
+  ID is expected to be in the specified form
+  i.e. eth|0xb1ab1af00.... for ethereum signin,
+  or git|123456|@handle for github signin.
+*/
+export async function blsSignId(secret: string, id: string): Promise<string> {
+  // TODO validation of inputs
+  //const publicKey = bls.getPublicKey(secret);
+  const sig = await bls.sign(id, secret);
+  return Buffer.from(sig).toString('hex');
 }
