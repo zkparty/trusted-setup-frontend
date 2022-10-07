@@ -76,9 +76,9 @@ export async function sleep(ms: number) {
   i.e. eth|0xb1ab1af00.... for ethereum signin,
   or git|123456|@handle for github signin.
 */
-export async function blsSignId(secret: string, id: string): string {
+export async function blsSignId(secret: string, id: string): Promise<string> {
   // TODO validation of inputs
-  const publicKey = bls.getPublicKey(secret);
+  //const publicKey = bls.getPublicKey(secret);
   const sig = await bls.sign(id, secret);
   return Buffer.from(sig).toString('hex');
 }
