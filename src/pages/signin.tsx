@@ -16,6 +16,7 @@ import BgImg from '../assets/img-graphic-base.svg'
 import InnerWhite from '../assets/inner-white.svg'
 import SnakeWhite from '../assets/snake-white.svg'
 import OuterWhite from '../assets/outer-white.svg'
+import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 
 const SigninPage = () => {
   const { signinGithub, signinSIE } = useAuthenticate()
@@ -41,38 +42,42 @@ const SigninPage = () => {
   }
 
   return (
-    <Container>
-      <Bg src={BgImg} />
-      <Img src={InnerWhite} />
-      <Img src={SnakeWhite} />
-      <Img src={OuterWhite} />
-      <Wrap>
-        <PageTitle>
-          OPEN <br /> THE WAY
-        </PageTitle>
-        <TextSection>
-          <Desc>
-            To secure the integrity of the Ceremony, contributions must come
-            from an identity above the minimum qualifications.
-          </Desc>
-          <Desc>
-            Unlocking with Ethereum requires an address with at least two
-            transactions sent from it, and does not send any funds or allow any
-            contracts. This method also allows us to deliver an onchain memento
-            after the Ceremony.
-          </Desc>
-        </TextSection>
+    <>
+      <HeaderJustGoingBack />
+      <Container>
+        <Bg src={BgImg} />
+        <Img src={InnerWhite} />
+        <Img src={OuterWhite} />
+        <Img src={SnakeWhite} />
+        <Wrap>
+          <PageTitle>
+            OPEN <br /> THE WAY
+          </PageTitle>
+          <TextSection>
+            <Desc>
+              To secure the integrity of the Ceremony, contributions must come
+              from an identity above the minimum qualifications.
+            </Desc>
+            <Desc>
+              Unlocking with Ethereum requires an address with at least two
+              transactions sent from it, and does not send any funds or allow
+              any contracts. This method also allows us to deliver an onchain
+              memento after the Ceremony.
+            </Desc>
+          </TextSection>
 
-        <ButtonSection>
-          <PrimaryButton onClick={onSigninSIE} style={{ width: '360px' }}>
-            Unlock with Ethereum <ButtonIcon src={EthImg} alt="ETH icon" />
-          </PrimaryButton>
-          <PrimaryButton onClick={onSigninGithub} style={{ width: '280px' }}>
-            Unlock with Github <ButtonIcon src={GithubImg} alt="Github icon" />
-          </PrimaryButton>
-        </ButtonSection>
-      </Wrap>
-    </Container>
+          <ButtonSection>
+            <PrimaryButton onClick={onSigninSIE} style={{ width: '360px' }}>
+              Unlock with Ethereum <ButtonIcon src={EthImg} alt="ETH icon" />
+            </PrimaryButton>
+            <PrimaryButton onClick={onSigninGithub} style={{ width: '280px' }}>
+              Unlock with Github{' '}
+              <ButtonIcon src={GithubImg} alt="Github icon" />
+            </PrimaryButton>
+          </ButtonSection>
+        </Wrap>
+      </Container>
+    </>
   )
 }
 

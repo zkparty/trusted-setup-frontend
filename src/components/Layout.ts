@@ -39,7 +39,7 @@ export const TextSection = styled.div`
 `
 
 export const Bg = styled.img`
-  z-index: -2;
+  z-index: 0;
   position: absolute;
   top: -9999px;
   bottom: -9999px;

@@ -44,7 +44,10 @@ class APIClient {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${session_id}`
-      }
+      },
+      body: JSON.stringify({
+        session_id
+      })
     })
     return await res.json()
   }
@@ -52,7 +55,8 @@ class APIClient {
   async contribute(
     session_id: string,
     contribution: string,
-    entropy: string[]
+    entropy: string[],
+    onCalculationFinish: () => void
   ): Promise<ErrorRes | ContributeRes> {
     return new Promise<ErrorRes | ContributeRes>((resolve) => {
       const worker = new Worker('./wasm/wasm-worker.js', {
@@ -65,6 +69,9 @@ class APIClient {
       }
 
       worker.onmessage = async (event) => {
+        console.log('calculation finished', event)
+        onCalculationFinish()
+
         const { contribution, proofs } = event.data
         const res = await fetch(`${API_ROOT}/contribute`, {
           method: 'POST',

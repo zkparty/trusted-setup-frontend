@@ -1,3 +1,4 @@
+import ROUTES from './routes'
 import { ErrorRes } from './types'
 import { sign } from '@noble/bls12-381'
 
@@ -12,6 +13,17 @@ export function isMobile(): boolean {
   const isWindows = Boolean(userAgent.match(/IEMobile/i))
 
   return Boolean(isAndroid || isIos || isOpera || isWindows)
+}
+
+export function isBgRoute(route: string): boolean {
+  return [
+    ROUTES.CONTRIBUTING,
+    ROUTES.SIGNIN,
+    ROUTES.DOUBLE_SIGN,
+    ROUTES.ENTROPY_INPUT,
+    ROUTES.LOBBY,
+    ROUTES.LOBBY_FULL
+  ].includes(route)
 }
 
 export function stringToColor(str: string) {

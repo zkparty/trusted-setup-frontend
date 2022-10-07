@@ -11,7 +11,7 @@ const Footer = () => {
       </LeftSection>
       <RightSection>
         <LinkGroup>
-          <LinkItem href="#">Github repo</LinkItem>
+          <LinkItem href="#">Github</LinkItem>
           <LinkItem href="#">Documentation</LinkItem>
           <LinkItem href="#">Audit report</LinkItem>
         </LinkGroup>
