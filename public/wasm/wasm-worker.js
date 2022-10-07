@@ -52,10 +52,6 @@ async function contribute(data){
     console.log(`Contribution took ${endTime - startTime} milliseconds`)
     const postContribution = JSON.parse(result.contribution)
     const contributions = postContribution.contributions;
-    const proofs = JSON.parse(result.proofs);
-    contributions.forEach((contribution, i) => {
-        contribution.potPubkey = proofs[i][0]; //commitment_to_secret
-    });
     const newResult = {
         'contribution': JSON.stringify({
             'contributions': contributions

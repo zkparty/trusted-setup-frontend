@@ -261,6 +261,26 @@ export function verify_update_wasm(input, output, proofs, secret_0, secret_1, se
 }
 
 /**
+* @param {string} secret_0
+* @param {string} secret_1
+* @param {string} secret_2
+* @param {string} secret_3
+* @returns {any}
+*/
+export function get_pot_pubkeys_wasm(secret_0, secret_1, secret_2, secret_3) {
+    const ptr0 = passStringToWasm0(secret_0, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ptr1 = passStringToWasm0(secret_1, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len1 = WASM_VECTOR_LEN;
+    const ptr2 = passStringToWasm0(secret_2, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len2 = WASM_VECTOR_LEN;
+    const ptr3 = passStringToWasm0(secret_3, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len3 = WASM_VECTOR_LEN;
+    const ret = wasm.get_pot_pubkeys_wasm(ptr0, len0, ptr1, len1, ptr2, len2, ptr3, len3);
+    return takeObject(ret);
+}
+
+/**
 * @param {number} num_threads
 * @returns {Promise<any>}
 */
@@ -400,9 +420,16 @@ function getImports() {
         const ret = startWorkers(takeObject(arg0), takeObject(arg1), wbg_rayon_PoolBuilder.__wrap(arg2));
         return addHeapObject(ret);
     };
+    imports.wbg.__wbg_new_1d9a920c6bfc44a8 = function() {
+        const ret = new Array();
+        return addHeapObject(ret);
+    };
     imports.wbg.__wbg_new_0b9bfdd97583284e = function() {
         const ret = new Object();
         return addHeapObject(ret);
+    };
+    imports.wbg.__wbg_set_a68214f35c417fa9 = function(arg0, arg1, arg2) {
+        getObject(arg0)[arg1 >>> 0] = takeObject(arg2);
     };
     imports.wbg.__wbindgen_debug_string = function(arg0, arg1) {
         const ret = debugString(getObject(arg1));

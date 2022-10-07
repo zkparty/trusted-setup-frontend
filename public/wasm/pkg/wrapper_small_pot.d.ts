@@ -31,6 +31,14 @@ export function subgroup_check_wasm(input: string): string;
 */
 export function verify_update_wasm(input: string, output: string, proofs: string, secret_0: string, secret_1: string, secret_2: string, secret_3: string): string;
 /**
+* @param {string} secret_0
+* @param {string} secret_1
+* @param {string} secret_2
+* @param {string} secret_3
+* @returns {any}
+*/
+export function get_pot_pubkeys_wasm(secret_0: string, secret_1: string, secret_2: string, secret_3: string): any;
+/**
 * @param {number} num_threads
 * @returns {Promise<any>}
 */
@@ -67,6 +75,7 @@ export interface InitOutput {
   readonly contribute_wasm: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number) => number;
   readonly subgroup_check_wasm: (a: number, b: number, c: number) => void;
   readonly verify_update_wasm: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number, l: number, m: number, n: number, o: number) => void;
+  readonly get_pot_pubkeys_wasm: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number) => number;
   readonly __wbg_wbg_rayon_poolbuilder_free: (a: number) => void;
   readonly wbg_rayon_poolbuilder_mainJS: (a: number) => number;
   readonly wbg_rayon_poolbuilder_numThreads: (a: number) => number;
