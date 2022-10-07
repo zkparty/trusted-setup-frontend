@@ -10,15 +10,22 @@ import {
   TextSection
 } from '../components/Layout'
 import ROUTES from '../routes'
+import { blsSignId } from '../utils'
+import { useAuthStore } from '../store/auth'
 import BgImg from '../assets/img-graphic-base.svg'
 import InnerColor from '../assets/inner-color.svg'
 import SnakeColor from '../assets/snake-color.svg'
 import OuterWhite from '../assets/outer-white.svg'
 
 const DoubleSignPage = () => {
+  const { provider, nickname } = useAuthStore()
   const navigate = useNavigate()
   const handleClickSign = () => {
     // do double sign
+    console.log(nickname)
+    const signed = blsSignId('messageToSign', provider!, nickname!);
+    console.log(signed)
+    // TODO: save signed message
     navigate(ROUTES.LOBBY)
   }
 
