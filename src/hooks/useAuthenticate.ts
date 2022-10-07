@@ -39,6 +39,7 @@ export default function useAuthenticate() {
       authStore.setError((e! as Error).message)
       return false
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const signinSIE = useCallback(async () => {
@@ -73,6 +74,7 @@ export default function useAuthenticate() {
       authStore.setError((e! as Error).message)
       return false
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return {
