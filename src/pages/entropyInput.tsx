@@ -39,7 +39,7 @@ const EntropyInputPage = () => {
   const handleSubmit = () => {
     if (percentage !== 100) return
     updateEntropy(0, entropy)
-    if (provider === 'eth') {
+    if (provider === 'Ethereum') {
       navigate(ROUTES.DOUBLE_SIGN)
     } else {
       navigate(ROUTES.LOBBY)
