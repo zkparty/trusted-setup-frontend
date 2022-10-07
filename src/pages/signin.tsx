@@ -47,8 +47,8 @@ const SigninPage = () => {
       <Container>
         <Bg src={BgImg} />
         <Img src={InnerWhite} />
-        <Img src={SnakeWhite} />
         <Img src={OuterWhite} />
+        <Img src={SnakeWhite} />
         <Wrap>
           <PageTitle>
             OPEN <br /> THE WAY

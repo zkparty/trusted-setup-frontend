@@ -107,8 +107,8 @@ const ContributingPage = () => {
         <PizzaImg visible rounding={false} src={PizzaInner} />
         <PizzaImg visible rounding={false} src={PizzaOuter} />
         <Img src={InnerColor} />
-        <Img src={SnakeColor} />
         <Img src={OuterColor} />
+        <Img src={SnakeColor} />
 
         <Wrap>
           <InnerWrap>

@@ -72,8 +72,8 @@ const LobbyPage = () => {
         <PizzaImg visible={visible} rounding={rounding} src={PizzaInner} />
         <PizzaImg visible={visible} rounding={rounding} src={PizzaOuter} />
         <Img src={InnerColor} />
-        <Img src={SnakeColor} />
         <Img src={OuterColor} />
+        <Img src={SnakeColor} />
         <Wrap>
           <InnerWrap>
             <PageTitle>

@@ -29,8 +29,8 @@ const DoubleSignPage = () => {
       <Container>
         <Bg src={BgImg} />
         <Img src={InnerColor} />
-        <Img src={SnakeColor} />
         <Img src={OuterWhite} />
+        <Img src={SnakeColor} />
         <Wrap>
           <InnerWrap>
             <PageTitle>
