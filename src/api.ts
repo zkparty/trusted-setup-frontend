@@ -1,9 +1,8 @@
 import { toParams } from './utils'
-import { OAuthProvider } from './store/auth'
+import { OAuthProvider, OAuthRes } from './store/auth'
 import { API_ROOT, SIGNIN_REDIRECT_URL } from './constants'
 import type {
   ErrorRes,
-  GetAuthorizedRes,
   ContributeRes,
   TryContributeRes
 } from './types'
@@ -20,15 +19,15 @@ class APIClient {
     provider: OAuthProvider,
     code: string,
     state: string
-  ): Promise<ErrorRes | GetAuthorizedRes> {
+  ): Promise<ErrorRes | OAuthRes> {
     const res = await fetch(
       `${API_ROOT}/auth/callback/${provider}?code=${code}&state=${state}`
     )
-    let result: ErrorRes | GetAuthorizedRes = { error: '' }
+    let result: ErrorRes | OAuthRes = { error: '' }
     try {
       result = await res.json()
     } catch (error) {
-      result = toParams(res.url.split('?')[1]) as ErrorRes | GetAuthorizedRes
+      result = toParams(res.url.split('?')[1]) as ErrorRes | OAuthRes
     }
     return result
   }
@@ -64,6 +63,7 @@ class APIClient {
         type: 'module'
       })
       const data = {
+        action: 'contribute',
         contributionString: contribution,
         entropy: entropy
       }
@@ -92,6 +92,34 @@ class APIClient {
       worker.postMessage(data)
     })
   }
+
+  async checkContribution(
+    contribution: string,
+    newContribution: string
+  ){
+    return new Promise<any>((resolve) => {
+      const worker = new Worker('./wasm/wasm-worker.js', {
+        type: 'module'
+      })
+      const data = {
+        action: 'subgroupCheck',
+        contribution: contribution,
+        newContribution: newContribution,
+      }
+
+      worker.onmessage = async (event) => {
+        const { checkContribution, checkNewContribution } = event.data
+        resolve({
+          checkContribution,
+          checkNewContribution,
+        })
+        worker.terminate()
+      }
+
+      worker.postMessage(data)
+    })
+  }
+
 }
 
 export default new APIClient()

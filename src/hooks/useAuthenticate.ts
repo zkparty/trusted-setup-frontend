@@ -26,7 +26,8 @@ export default function useAuthenticate() {
         }
       )
 
-      const res = await popup.wait()
+      const result = await popup.wait()
+      const res = await api.getAuthorized('github', result.code, result.state)
       if (isSuccessRes(res)) {
         authStore.signin(res as OAuthRes)
         return true
@@ -59,8 +60,8 @@ export default function useAuthenticate() {
           left: left
         }
       )
-      const res = await popup.wait()
-
+      const result = await popup.wait()
+      const res = await api.getAuthorized('eth', result.code, result.state)
       if (isSuccessRes(res)) {
         authStore.signin(res as OAuthRes)
         return true

@@ -81,10 +81,6 @@ const ContributingPage = () => {
           updateReceipt(res.receipt)
           updateSignature(res.signature)
           updateNewContribution(res.contribution)
-
-          // TODO: check is done automatically or user start checking?
-          await sleep(3000)
-          navigate(ROUTES.COMPLETE)
         } else {
           setError(parseErrorMessage(res))
           setStep('error')

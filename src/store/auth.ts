@@ -1,6 +1,6 @@
 import create from 'zustand'
 
-export type OAuthProvider = 'Github' | 'Ethereum'
+export type OAuthProvider = 'github' | 'eth'
 
 export type OAuthRes = {
   exp: string
