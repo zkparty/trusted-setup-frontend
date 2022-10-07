@@ -1,6 +1,5 @@
 const ROUTES = {
   ROOT: '/',
-  LANDING: '/landing',
   SIGNIN: '/signin',
   ENTROPY_INPUT: '/entropy_input',
   DOUBLE_SIGN: '/double_sign',

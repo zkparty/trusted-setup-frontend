@@ -13,16 +13,14 @@ const Button = styled.button`
   font-weight: 600;
 
   :disabled {
-    transform: scale(0.9);
-    box-shadow: none;
-    opacity: 60%;
+    cursor: default;
   }
 `
 
-const PrimaryButtonInner = styled(Button)`
-  background-color: ${({ theme, disabled }) =>
-    disabled ? theme.disabled : theme.primary};
-  color: ${({ theme }) => theme.text};
+const PrimaryButtonInner = styled(Button)<{ variant: string }>`
+  background-color: ${({ theme, variant }) =>
+    variant === 'white' ? theme.surface2 : theme.primary};
+  color: ${({ theme, disabled }) => (disabled ? theme.disabled : theme.text)};
   border: none;
   min-width: 120px;
   padding: 8px 24px;
@@ -39,8 +37,9 @@ const PrimaryButtonInner = styled(Button)`
   ${textSerif}
 `
 
-const PrimaryButtonOuter = styled.div`
-  background-color: black;
+const PrimaryButtonOuter = styled.div<{ disabled?: boolean }>`
+  background-color: ${({ theme, disabled }) =>
+    disabled ? theme.disabled : 'black'};
   clip-path: polygon(
     24px 0,
     0 50%,
@@ -53,11 +52,23 @@ const PrimaryButtonOuter = styled.div`
   width: fit-content;
 `
 
+const PrimaryButtonWrapper = styled.div`
+  width: fit-content;
+  display: flex;
+  transition: all 0.2s ease;
+
+  :hover:not([disabled]) {
+    filter: drop-shadow(0px 10px 12px #00000026);
+  }
+`
+
 const PrimaryButton = (props: any) => {
   return (
-    <PrimaryButtonOuter>
-      <PrimaryButtonInner {...props} />
-    </PrimaryButtonOuter>
+    <PrimaryButtonWrapper {...props}>
+      <PrimaryButtonOuter {...props}>
+        <PrimaryButtonInner {...props} />
+      </PrimaryButtonOuter>
+    </PrimaryButtonWrapper>
   )
 }
 

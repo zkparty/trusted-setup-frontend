@@ -12,6 +12,7 @@ import ROUTES from '../routes'
 import BgImg from '../assets/img-graphic-base.svg'
 import SnakeProgress from '../components/SnakeProgress'
 import { useAuthStore } from '../store/auth'
+import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 
 const MIN_ENTROPY_LENGTH = 2000
 
@@ -65,39 +66,42 @@ const EntropyInputPage = () => {
   }, [entropy])
 
   return (
-    <Container onMouseMove={handleCaptureMouseEntropy}>
-      <Bg src={BgImg} />
-      <SnakeProgress onSetPlayer={setPlayer} />
-      <Wrap>
-        <PageTitle>
-          Entropy <br /> Entry
-        </PageTitle>
-        <TextSection>
-          <Desc>
-            The Ceremony requires randomness & will be used to craft the final
-            summoning spell.
-          </Desc>
-          <Desc>
-            <Bold>Memory:</Bold> a piece of you in text form, with random
-            characters added. A hope for the future, or the name of someone
-            dear. <Bold>Motion:</Bold> Trace some elements of the guide with
-            your cursor - the interface will capture your unique path.{' '}
-            <Bold>Machine:</Bold> Your browser will generate its own randomness
-            in the background.
-          </Desc>
-        </TextSection>
-        <Input
-          type="password"
-          onChange={(e) => setKeyEntropy(e.target.value)}
-        />
+    <>
+      <HeaderJustGoingBack />
+      <Container onMouseMove={handleCaptureMouseEntropy}>
+        <Bg src={BgImg} />
+        <SnakeProgress onSetPlayer={setPlayer} />
+        <Wrap>
+          <PageTitle>
+            Entropy <br /> Entry
+          </PageTitle>
+          <TextSection>
+            <Desc>
+              The Ceremony requires randomness & will be used to craft the final
+              summoning spell.
+            </Desc>
+            <Desc>
+              <Bold>Memory:</Bold> a piece of you in text form, with random
+              characters added. A hope for the future, or the name of someone
+              dear. <Bold>Motion:</Bold> Trace some elements of the guide with
+              your cursor - the interface will capture your unique path.{' '}
+              <Bold>Machine:</Bold> Your browser will generate its own
+              randomness in the background.
+            </Desc>
+          </TextSection>
+          <Input
+            type="password"
+            onChange={(e) => setKeyEntropy(e.target.value)}
+          />
 
-        <ButtonSection>
-          <PrimaryButton disabled={percentage !== 100} onClick={handleSubmit}>
-            Submit
-          </PrimaryButton>
-        </ButtonSection>
-      </Wrap>
-    </Container>
+          <ButtonSection>
+            <PrimaryButton disabled={percentage !== 100} onClick={handleSubmit}>
+              Submit
+            </PrimaryButton>
+          </ButtonSection>
+        </Wrap>
+      </Container>
+    </>
   )
 }
 

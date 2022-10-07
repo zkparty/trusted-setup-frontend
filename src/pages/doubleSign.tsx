@@ -14,6 +14,7 @@ import BgImg from '../assets/img-graphic-base.svg'
 import InnerColor from '../assets/inner-color.svg'
 import SnakeColor from '../assets/snake-color.svg'
 import OuterWhite from '../assets/outer-white.svg'
+import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 
 const DoubleSignPage = () => {
   const navigate = useNavigate()
@@ -23,29 +24,32 @@ const DoubleSignPage = () => {
   }
 
   return (
-    <Container>
-      <Bg src={BgImg} />
-      <Img src={InnerColor} />
-      <Img src={SnakeColor} />
-      <Img src={OuterWhite} />
-      <Wrap>
-        <InnerWrap>
-          <PageTitle>
-            Seal your <br /> memory
-          </PageTitle>
-          <TextSection>
-            <Description>
-              Rember the neverending flight to birth new tools which we use to
-              build towards brighter worlds. We are part of this story, every
-              day a new page.
-            </Description>
-          </TextSection>
-          <ButtonSection>
-            <PrimaryButton onClick={handleClickSign}>Seal it</PrimaryButton>
-          </ButtonSection>
-        </InnerWrap>
-      </Wrap>
-    </Container>
+    <>
+      <HeaderJustGoingBack />
+      <Container>
+        <Bg src={BgImg} />
+        <Img src={InnerColor} />
+        <Img src={OuterWhite} />
+        <Img src={SnakeColor} />
+        <Wrap>
+          <InnerWrap>
+            <PageTitle>
+              Seal your <br /> memory
+            </PageTitle>
+            <TextSection>
+              <Description>
+                Rember the neverending flight to birth new tools which we use to
+                build towards brighter worlds. We are part of this story, every
+                day a new page.
+              </Description>
+            </TextSection>
+            <ButtonSection>
+              <PrimaryButton onClick={handleClickSign}>Seal it</PrimaryButton>
+            </ButtonSection>
+          </InnerWrap>
+        </Wrap>
+      </Container>
+    </>
   )
 }
 

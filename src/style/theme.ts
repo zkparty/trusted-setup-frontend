@@ -14,7 +14,7 @@ const theme: Theme = {
   surface2: '#FCFCFC',
   text: '#000000',
   primary: '#DAECFF',
-  disabled: '#cccccc',
+  disabled: '#9EA3A7',
   error: '#E36049'
 }
 

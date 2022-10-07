@@ -3,13 +3,18 @@ import LogoImg from '../assets/logo.svg'
 import { textSerif } from '../style/utils'
 import { FONT_SIZE } from '../constants'
 
-const Logo = () => {
+type Props = {
+  withVersion?: boolean
+}
+
+const Logo = ({ withVersion }: Props) => {
   return (
     <LogoSection>
       <img src={LogoImg} alt="Logo" />
       <LogoTextGroup>
         <LogoTextMain>KZG</LogoTextMain>
         <LogoTextMain>Ceremony</LogoTextMain>
+        {withVersion && <LogoTextSub>Alpha</LogoTextSub>}
       </LogoTextGroup>
     </LogoSection>
   )
@@ -31,6 +36,12 @@ const LogoTextMain = styled.span`
   font-weight: 600;
   ${textSerif};
   line-height: 14px;
+`
+
+const LogoTextSub = styled.span`
+  font-size: ${FONT_SIZE.XS};
+  color: #494e53;
+  ${textSerif};
 `
 
 export default Logo
