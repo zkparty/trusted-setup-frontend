@@ -15,8 +15,8 @@ export const SingleWrap = styled.div`
   top: -20000px;
   bottom: -20000px;
 
-  width: 542px;
-  height: 542px;
+  width: 550px;
+  height: 550px;
   background-color: ${({ theme }) => theme.surface};
   border-radius: 50%;
   margin: auto;
