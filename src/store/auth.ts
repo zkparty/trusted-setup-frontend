@@ -2,42 +2,46 @@ import create from 'zustand'
 
 export type OAuthProvider = 'github' | 'eth'
 
+export type OAuthRes = {
+  exp: string
+  nickname: string
+  provider: OAuthProvider
+  session_id: string
+  sub: string
+}
+
 type Store = {
   provider: OAuthProvider | null
-  oauthToken: string | null
-  idToken: string | null
   sessionId: string | null
+  nickname: string | null
+  exp: string | null
+  sub: string | null
   error: string | null
-  signin: (
-    oauthToken: string,
-    provider: OAuthProvider,
-    idToken: string,
-    sessionId: string
-  ) => void
+  signin: (res: OAuthRes) => void
   signout: () => void
   setError: (msg: string) => void
 }
 
 export const useAuthStore = create<Store>((set) => ({
-  oauthToken: null,
   provider: null,
-  idToken: null,
   sessionId: null,
+  nickname: null,
+  exp: null,
+  sub: null,
   error: null,
-  signin: (oauthToken, provider, idToken, sessionId) =>
+  signin: (res: OAuthRes) =>
     set({
-      oauthToken,
-      provider,
-      idToken,
-      sessionId,
+      ...res,
+      sessionId: res.session_id,
       error: null
     }),
   signout: () =>
     set({
-      oauthToken: null,
       provider: null,
-      idToken: null,
       sessionId: null,
+      nickname: null,
+      exp: null,
+      sub: null,
       error: null
     }),
   setError: (msg: string) => set({ error: msg })

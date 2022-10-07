@@ -17,14 +17,14 @@ const Background = styled.div`
   border-radius: ${RADIUS.M};
   height: 24px;
   width: 320px;
-  background-color: ${({ theme }) => theme.onPrimary};
+  background-color: ${({ theme }) => theme.text};
 `
 
 const Progress = styled.div<{ percentage: number }>`
   border-radius: ${RADIUS.M};
   height: 24px;
   width: ${({ percentage }) => `${320 * (percentage / 100)}px`};
-  background-color: ${({ theme }) => theme.secondary};
+  background-color: ${({ theme }) => theme.surface};
   transition: width ease 0.1s;
 `
 

@@ -1,32 +1,28 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import {
   HomePage,
   LandingPage,
   SigninPage,
   EntropyInputPage,
+  DoubleSignPage,
   LobbyFullPage,
   LobbyPage,
   ContributingPage,
   CompletePage,
   RecordPage,
   GatePage,
-  MobilePage
+  MobilePage,
+  RedirectPopup
 } from './pages'
 import RequireAuth from './components/helper/RequireAuth'
-import ROUTES, { useIsInverse } from './routes'
+import ROUTES from './routes'
 import GlobalStyle from './style/global'
-
-function GlobalStyleWrapper() {
-  const location = useLocation()
-  const isInverse = useIsInverse(location.pathname)
-  return <GlobalStyle inverse={isInverse} />
-}
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <GlobalStyleWrapper />
+        <GlobalStyle />
         <Routes>
           <Route path={ROUTES.MOBILE} element={<MobilePage />} />
 
@@ -38,6 +34,14 @@ function App() {
               element={
                 <RequireAuth>
                   <EntropyInputPage />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path={ROUTES.DOUBLE_SIGN}
+              element={
+                <RequireAuth>
+                  <DoubleSignPage />
                 </RequireAuth>
               }
             />
@@ -73,9 +77,10 @@ function App() {
                 </RequireAuth>
               }
             />
-            <Route path={ROUTES.RECORD} element={<RecordPage />} />
-            <Route path={ROUTES.GATE} element={<GatePage />} />
           </Route>
+          <Route path={ROUTES.RECORD} element={<RecordPage />} />
+          <Route path={ROUTES.GATE} element={<GatePage />} />
+          <Route path={ROUTES.REDIRECT} element={<RedirectPopup />} />
         </Routes>
       </BrowserRouter>
     </>

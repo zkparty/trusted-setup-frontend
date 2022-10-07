@@ -1,32 +1,49 @@
-import { useState, MouseEventHandler, useEffect } from 'react'
+import { useState, MouseEventHandler, useEffect, useMemo } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
-import { PrimaryButtonLarge } from '../components/Button'
+import { PrimaryButton } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import { useContributionStore, Store } from '../store/contribute'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap
 } from '../components/Layout'
-import Logo from '../components/Logo'
-import ProgressBar from '../components/ProgressBar'
-import { textSerif } from '../style/utils'
 import ROUTES from '../routes'
-import { FONT_SIZE } from '../constants'
+import BgImg from '../assets/img-graphic-base.svg'
+import SnakeProgress from '../components/SnakeProgress'
+import { useAuthStore } from '../store/auth'
+import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 
-const MIN_ENTROPY_LENGTH = 20000
+const MIN_ENTROPY_LENGTH = 2000
+
+type Player = {
+  play: () => void
+  pause: () => void
+  seek: (percent: number) => void
+}
 
 const EntropyInputPage = () => {
   const navigate = useNavigate()
-  const [entropy, setEntropy] = useState('')
+  const [keyEntropy, setKeyEntropy] = useState('')
   const [mouseEntropy, setMouseEntropy] = useState('')
   const [percentage, setPercentage] = useState(0)
+  const [player, setPlayer] = useState<Player | null>(null)
+  const { provider } = useAuthStore()
+  const entropy = useMemo(() => {
+    return `${keyEntropy}${mouseEntropy}`
+  }, [keyEntropy, mouseEntropy])
 
-  const updateEntropy = useContributionStore((state: Store) => state.updateEntropy)
+  const updateEntropy = useContributionStore(
+    (state: Store) => state.updateEntropy
+  )
   const handleSubmit = () => {
     if (percentage !== 100) return
-    updateEntropy(0, entropy)    
-    navigate(ROUTES.LOBBY)
+    updateEntropy(0, entropy)
+    if (provider === 'eth') {
+      navigate(ROUTES.DOUBLE_SIGN)
+    } else {
+      navigate(ROUTES.LOBBY)
+    }
   }
 
   const handleCaptureMouseEntropy: MouseEventHandler<HTMLDivElement> = (e) => {
@@ -39,77 +56,92 @@ const EntropyInputPage = () => {
   }
 
   useEffect(() => {
-    setPercentage(
-      Math.min(
-        Math.floor(
-          ((entropy + mouseEntropy).length / MIN_ENTROPY_LENGTH) * 100
-        ),
-        100
-      )
+    const percentage = Math.min(
+      Math.floor((entropy.length / MIN_ENTROPY_LENGTH) * 1000) / 10,
+      100
     )
-  }, [entropy, mouseEntropy])
+
+    setPercentage(percentage)
+    if (player) player.seek(percentage)
+  }, [entropy])
 
   return (
-    <Container onMouseMove={handleCaptureMouseEntropy}>
-      <Wrap>
-        <Logo inverse />
-        <Title>Entropy & sorcery.</Title>
-        <Desc>
-        To conjure the magic, sacrifice is necessary. You are required to offer a secret. Consider something important, like a hint of a memory or the name of someone dear. Bring this offering to the altar and then join the others in the hallway.
-        </Desc>
-        <Input onChange={(e) => setEntropy(e.target.value)} />
-        <Footnote>
-        You can also move your cursor around on this screen.
-        </Footnote>
-        <ProgressSection>
-          <ProgressBar percentage={percentage} />
-        </ProgressSection>
+    <>
+      <HeaderJustGoingBack />
+      <Container onMouseMove={handleCaptureMouseEntropy}>
+        <Bg src={BgImg} />
+        <SnakeProgress onSetPlayer={setPlayer} />
+        <Wrap>
+          <PageTitle>
+            Entropy <br /> Entry
+          </PageTitle>
+          <TextSection>
+            <Desc>
+              The Ceremony requires randomness & will be used to craft the final
+              summoning spell.
+            </Desc>
+            <Desc>
+              <Bold>Memory:</Bold> a piece of you in text form, with random
+              characters added. A hope for the future, or the name of someone
+              dear. <Bold>Motion:</Bold> Trace some elements of the guide with
+              your cursor - the interface will capture your unique path.{' '}
+              <Bold>Machine:</Bold> Your browser will generate its own
+              randomness in the background.
+            </Desc>
+          </TextSection>
+          <Input
+            type="password"
+            onChange={(e) => setKeyEntropy(e.target.value)}
+          />
 
-        <ButtonSection>
-          <PrimaryButtonLarge
-            inverse
-            onClick={handleSubmit}
-            disabled={percentage !== 100}
-          >
-            Enter hallway
-          </PrimaryButtonLarge>
-        </ButtonSection>
-      </Wrap>
-    </Container>
+          <ButtonSection>
+            <PrimaryButton disabled={percentage !== 100} onClick={handleSubmit}>
+              Submit
+            </PrimaryButton>
+          </ButtonSection>
+        </Wrap>
+      </Container>
+    </>
   )
 }
 
-const Title = styled(PageTitle)`
-  color: ${({ theme }) => theme.onPrimary};
-  margin-top: 0;
+const Bg = styled.img`
+  z-index: -2;
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
 `
 
 const Desc = styled(Description)`
-  color: ${({ theme }) => theme.onPrimary};
+  margin: 0 0 20px;
+  font-size: 18px;
 `
 
-const Footnote = styled(Description)`
-  color: ${({ theme }) => theme.onPrimary};
-  font-size: ${FONT_SIZE.S};
+const TextSection = styled.div`
+  width: 360px;
+`
+
+const Bold = styled.span`
+  font-weight: 700;
 `
 
 const Input = styled.input`
-  ${textSerif};
-  font-size: 32px;
-  padding: 8px 16px;
-  border: solid 1px ${({ theme }) => theme.onPrimary};
+  font-size: 16px;
+  padding: 4px 8px;
+  border: solid 1px ${({ theme }) => theme.text};
   border-radius: 4px;
-  background-color: ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.onPrimary};
-  width: 100%;
-`
-
-const ProgressSection = styled.div`
-  margin: 20px 0;
+  background-color: ${({ theme }) => theme.surface};
+  width: 300px;
 `
 
 const ButtonSection = styled.div`
-  padding-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12px;
 `
 
 export default EntropyInputPage

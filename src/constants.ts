@@ -5,8 +5,7 @@ const FONT_SIZE = {
   M: '16px',
   L: '20px',
   XL: '24px',
-  XXL: '32px',
-  HERO: '140px'
+  XXL: '32px'
 } as const
 
 const SPACE = {
@@ -25,7 +24,8 @@ const RADIUS = {
 } as const
 
 const API_ROOT = process.env.REACT_APP_API_ROOT || 'http://127.0.0.1:3000'
-const SIGNIN_REDIRECT_URL = process.env.REACT_APP_SIGNIN_REDIRECT_URL || 'http://localhost:3001/signin'
+const SIGNIN_REDIRECT_URL =
+  process.env.REACT_APP_SIGNIN_REDIRECT_URL || 'http://localhost:3001/redirect'
 
 const SERVER_ERROR = {
   LOBBY_IS_FULL: 'lobby is full'

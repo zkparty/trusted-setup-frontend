@@ -15,7 +15,7 @@ const LobbyFullPage = () => {
   return (
     <Container>
       <Wrap>
-        <Logo inverse />
+        <Logo />
         <Title>Entropy & sorcery.</Title>
         <Desc>
           The hallway is packed with too many spell, please come back a little
@@ -23,7 +23,6 @@ const LobbyFullPage = () => {
         </Desc>
         <ButtonSection>
           <PrimaryButtonLarge
-            inverse
             onClick={() => {
               navigate(ROUTES.ROOT)
             }}
@@ -37,12 +36,12 @@ const LobbyFullPage = () => {
 }
 
 const Title = styled(PageTitle)`
-  color: ${({ theme }) => theme.onPrimary};
+  color: ${({ theme }) => theme.text};
   margin-top: 0;
 `
 
 const Desc = styled(Description)`
-  color: ${({ theme }) => theme.onPrimary};
+  color: ${({ theme }) => theme.text};
 `
 
 const ButtonSection = styled.div`
