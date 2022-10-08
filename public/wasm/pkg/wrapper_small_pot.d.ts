@@ -16,9 +16,9 @@ export function init_threads(n: number): Promise<any>;
 export function contribute_wasm(input: string, secret_0: string, secret_1: string, secret_2: string, secret_3: string): any;
 /**
 * @param {string} input
-* @returns {string}
+* @returns {boolean}
 */
-export function subgroup_check_wasm(input: string): string;
+export function subgroup_check_wasm(input: string): boolean;
 /**
 * @param {string} input
 * @param {string} output
@@ -73,7 +73,7 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 export interface InitOutput {
   readonly init_threads: (a: number) => number;
   readonly contribute_wasm: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number) => number;
-  readonly subgroup_check_wasm: (a: number, b: number, c: number) => void;
+  readonly subgroup_check_wasm: (a: number, b: number) => number;
   readonly verify_update_wasm: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number, l: number, m: number, n: number, o: number) => void;
   readonly get_pot_pubkeys_wasm: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number) => number;
   readonly __wbg_wbg_rayon_poolbuilder_free: (a: number) => void;

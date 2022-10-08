@@ -2,7 +2,7 @@
 /* eslint-disable */
 export function init_threads(a: number): number;
 export function contribute_wasm(a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number): number;
-export function subgroup_check_wasm(a: number, b: number, c: number): void;
+export function subgroup_check_wasm(a: number, b: number): number;
 export function verify_update_wasm(a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number, l: number, m: number, n: number, o: number): void;
 export function get_pot_pubkeys_wasm(a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number): number;
 export function __wbg_wbg_rayon_poolbuilder_free(a: number): void;
