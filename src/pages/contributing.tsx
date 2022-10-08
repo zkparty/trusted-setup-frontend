@@ -39,6 +39,7 @@ const ContributingPage = () => {
   const { sessionId } = useAuthStore()
   const {
     entropy,
+    signature,
     contribution,
     updateProofs,
     updateReceipt,
@@ -46,6 +47,7 @@ const ContributingPage = () => {
     updateNewContribution
   } = useContributionStore((state: Store) => ({
     entropy: state.entropy,
+    signature: state.signature,
     contribution: state.contribution,
     updateProofs: state.updateProofs,
     updateReceipt: state.updateReceipt,
@@ -71,6 +73,7 @@ const ContributingPage = () => {
           sessionId!,
           contribution!,
           entropy,
+          signature,
           () => {
             setStep('contributing')
           }

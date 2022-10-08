@@ -9,28 +9,82 @@ import {
   Img,
   TextSection
 } from '../components/Layout'
+import wasm from '../wasm'
 import ROUTES from '../routes'
-import { blsSignId } from '../utils'
 import { useAuthStore } from '../store/auth'
 import BgImg from '../assets/img-graphic-base.svg'
 import InnerColor from '../assets/inner-color.svg'
 import SnakeColor from '../assets/snake-color.svg'
 import OuterWhite from '../assets/outer-white.svg'
-import { useContributionStore } from '../store/contribute'
+import { providers } from 'ethers'
+import { useContributionStore, Store } from '../store/contribute'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 
+declare global {
+  interface Window {
+       ethereum: any
+  }
+}
+
 const DoubleSignPage = () => {
+  /*
+  // TODO: BLS signing should happen in Rust. Waiting implementation
+  import { blsSignId } from '../utils'
   const { provider, nickname } = useAuthStore()
-  const { entropy } = useContributionStore()
+  const signed = await blsSignId(entropy[0], provider!, nickname!);
+  */
+
+  const { entropy, updateSignature } = useContributionStore((state: Store) => ({
+    entropy: state.entropy,
+    updateSignature: state.updateSignature,
+  }))
   const navigate = useNavigate()
   const handleClickSign = async () => {
     // do double sign
-    //console.log(provider)
-    //console.log(nickname)
-    //const signed = blsSignId(entropy[0], provider!, nickname!);
-    //console.log(await signed)
-    // TODO: save signed message
+    await signPotPubkeysWithECDSA();
     navigate(ROUTES.LOBBY)
+  }
+
+  const signPotPubkeysWithECDSA = async () => {
+    const potPubkeys = await wasm.getPotPubkeys(entropy)
+    // built the message to be signed
+    const numG1Powers = [4096, 8192, 16384, 32768]
+    const potPubkeysObj = []
+    for (let i = 0; i < 4; i++) {
+      const element = {
+        "numG1Powers": numG1Powers[i],
+        "numG2Powers": 65,
+        "potPubkey": potPubkeys[i]
+      };
+      potPubkeysObj.push(element)
+    }
+    const types = {
+      "PoTPubkeys": [
+        { "name": "potPubkeys", "type": "contributionPubkey[]"}
+      ],
+      "contributionPubkey": [
+        {"name": "numG1Powers", "type": "uint256"},
+        {"name": "numG2Powers", "type": "uint256"},
+        {"name": "potPubkey", "type": "bytes"}
+      ],
+    }
+    const domain = {
+      "name": "Ethereum KZG Ceremony",
+      "version": "1.0",
+      "chainId": 1
+    }
+    const message = {
+      "potPubkeys": potPubkeysObj
+    }
+    const provider = new providers.Web3Provider(window.ethereum);
+    await provider.send('eth_requestAccounts', []);
+    const signer = provider.getSigner();
+    // sign with ether js
+    // TODO: method name might change in the futue (no underscore)
+    // https://docs.ethers.io/v5/api/signer/
+    const signature = await signer._signTypedData(domain, types, message)
+    // save signature for later
+    updateSignature(signature);
   }
 
   return (

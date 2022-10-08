@@ -57,6 +57,7 @@ class APIClient {
     session_id: string,
     preContribution: string,
     entropy: string[],
+    signature: string | null,
     onCalculationFinish: () => void
   ): Promise<ErrorRes | ContributeRes> {
 
@@ -65,13 +66,20 @@ class APIClient {
       entropy,
     )
     onCalculationFinish()
+    let contributionObj = null
+    if (signature) {
+      contributionObj = JSON.parse(contribution!)
+      contributionObj.ecdsaSignature = signature
+      contributionObj = JSON.stringify(contributionObj)
+    }
+
     const res = await fetch(`${API_ROOT}/contribute`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${session_id}`
       },
-      body: contribution
+      body: contributionObj || contribution
     })
     return {
       ...(await res.json()),

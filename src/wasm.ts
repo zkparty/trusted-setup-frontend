@@ -49,7 +49,22 @@ class Wasm {
           worker.postMessage(data)
         })
     }
-    async getPotPubkeys(){}
+    async getPotPubkeys(entropy: string[]){
+      return new Promise<string[]>((resolve) => {
+        const worker = new Worker('./wasm/wasm-worker.js', {
+          type: 'module'
+        })
+        const data = {
+          action: 'getPotPubkeys',
+          entropy: entropy
+        }
+        worker.onmessage = async (event) => {
+          resolve(event.data)
+          worker.terminate()
+        }
+        worker.postMessage(data)
+      })
+    }
 }
 
 export default new Wasm()
