@@ -17,7 +17,10 @@ const Button = styled.button`
   }
 `
 
-const PrimaryButtonInner = styled(Button)<{ variant: string }>`
+const PrimaryButtonInner = styled(Button)<{
+  variant: string
+  disabled?: boolean
+}>`
   background-color: ${({ theme, variant }) =>
     variant === 'white' ? theme.surface2 : theme.primary};
   color: ${({ theme, disabled }) => (disabled ? theme.disabled : theme.text)};
@@ -52,7 +55,7 @@ const PrimaryButtonOuter = styled.div<{ disabled?: boolean }>`
   width: fit-content;
 `
 
-const PrimaryButtonWrapper = styled.div`
+const PrimaryButtonWrapper = styled.div<{ disabled?: boolean }>`
   width: fit-content;
   display: flex;
   transition: all 0.2s ease;
@@ -62,11 +65,11 @@ const PrimaryButtonWrapper = styled.div`
   }
 `
 
-const PrimaryButton = (props: any) => {
+const PrimaryButton = ({ disabled, variant, ...props }: any) => {
   return (
-    <PrimaryButtonWrapper {...props}>
-      <PrimaryButtonOuter {...props}>
-        <PrimaryButtonInner {...props} />
+    <PrimaryButtonWrapper disabled={disabled}>
+      <PrimaryButtonOuter disabled={disabled}>
+        <PrimaryButtonInner disabled={disabled} variant={variant} {...props} />
       </PrimaryButtonOuter>
     </PrimaryButtonWrapper>
   )
