@@ -81,6 +81,7 @@ const ContributingPage = () => {
           updateReceipt(res.receipt)
           updateSignature(res.signature)
           updateNewContribution(res.contribution)
+          navigate(ROUTES.COMPLETE)
         } else {
           setError(parseErrorMessage(res))
           setStep('error')
