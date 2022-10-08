@@ -67,11 +67,11 @@ class APIClient {
     )
     onCalculationFinish()
     let contributionObj = null
-    if (signature) {
+    /*if (signature) {
       contributionObj = JSON.parse(contribution!)
       contributionObj.ecdsaSignature = signature
       contributionObj = JSON.stringify(contributionObj)
-    }
+    }*/
 
     const res = await fetch(`${API_ROOT}/contribute`, {
       method: 'POST',

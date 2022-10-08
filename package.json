@@ -13,6 +13,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "blockies-identicon": "^0.1.0",
+    "buffer": "^6.0.3",
     "clsx": "^1.2.1",
     "ethers": "^5.7.1",
     "husky": "^8.0.1",

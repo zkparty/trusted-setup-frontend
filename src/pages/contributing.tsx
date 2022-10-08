@@ -39,19 +39,17 @@ const ContributingPage = () => {
   const { sessionId } = useAuthStore()
   const {
     entropy,
-    signature,
+    ECDSASignature,
     contribution,
     updateProofs,
     updateReceipt,
-    updateSignature,
     updateNewContribution
   } = useContributionStore((state: Store) => ({
     entropy: state.entropy,
-    signature: state.signature,
+    ECDSASignature: state.ECDSASignature,
     contribution: state.contribution,
     updateProofs: state.updateProofs,
     updateReceipt: state.updateReceipt,
-    updateSignature: state.updateSignature,
     updateNewContribution: state.updateNewContribution
   }))
 
@@ -73,7 +71,7 @@ const ContributingPage = () => {
           sessionId!,
           contribution!,
           entropy,
-          signature,
+          ECDSASignature,
           () => {
             setStep('contributing')
           }
@@ -82,7 +80,6 @@ const ContributingPage = () => {
           setStep('completed')
           updateProofs(res.proofs)
           updateReceipt(res.receipt)
-          updateSignature(res.signature)
           updateNewContribution(res.contribution)
           navigate(ROUTES.COMPLETE)
         } else {

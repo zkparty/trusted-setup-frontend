@@ -11,6 +11,7 @@ import {
 } from '../components/Layout'
 import wasm from '../wasm'
 import ROUTES from '../routes'
+import { blsSignId } from '../utils'
 import { useAuthStore } from '../store/auth'
 import BgImg from '../assets/img-graphic-base.svg'
 import InnerColor from '../assets/inner-color.svg'
@@ -27,20 +28,19 @@ declare global {
 }
 
 const DoubleSignPage = () => {
-  /*
-  // TODO: BLS signing should happen in Rust. Waiting implementation
-  import { blsSignId } from '../utils'
   const { provider, nickname } = useAuthStore()
-  const signed = await blsSignId(entropy[0], provider!, nickname!);
-  */
-
-  const { entropy, updateSignature } = useContributionStore((state: Store) => ({
+  const { entropy, updateECDSASignature, updateBLSSignatures } = useContributionStore((state: Store) => ({
     entropy: state.entropy,
-    updateSignature: state.updateSignature,
+    updateECDSASignature: state.updateECDSASignature,
+    updateBLSSignatures: state.updateBLSSignatures,
   }))
   const navigate = useNavigate()
   const handleClickSign = async () => {
     // do double sign
+    for (let i = 0; i < entropy.length; i++) {
+      const signed = await blsSignId(entropy[i], provider!, nickname!);
+      updateBLSSignatures(i, signed);
+    }
     await signPotPubkeysWithECDSA();
     navigate(ROUTES.LOBBY)
   }
@@ -84,7 +84,7 @@ const DoubleSignPage = () => {
     // https://docs.ethers.io/v5/api/signer/
     const signature = await signer._signTypedData(domain, types, message)
     // save signature for later
-    updateSignature(signature);
+    updateECDSASignature(signature);
   }
 
   return (

@@ -1,6 +1,7 @@
 import ROUTES from './routes'
 import { ErrorRes } from './types'
 import { sign } from '@noble/bls12-381'
+import {Buffer} from 'buffer';
 
 // check if user agent is mobile device
 export function isMobile(): boolean {
@@ -105,7 +106,7 @@ export async function blsSignId(secret: string, provider: string, id: string): P
 
   let identity = '';
   switch (provider) {
-    case 'eth':
+    case 'Ethereum':
       if (id.substring(0,2) !== '0x') id = '0x' + id;
       identity = 'eth|' + id;
       break;
@@ -118,7 +119,7 @@ export async function blsSignId(secret: string, provider: string, id: string): P
       break;
   }
 
-  //const publicKey = bls.getPublicKey(secret);
-  const sig = await sign(identity, secret);
+  const identityAsArray = Uint8Array.from(identity.split("").map(x => x.charCodeAt(0)));
+  const sig = await sign(identityAsArray, secret);
   return Buffer.from(sig).toString('hex');
 }
