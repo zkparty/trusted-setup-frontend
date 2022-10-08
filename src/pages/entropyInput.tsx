@@ -60,7 +60,6 @@ const EntropyInputPage = () => {
       const newSubString = mouseEntropy.substring(size*i, size*(i+1))
       const hash = await sha256(newSubString + keyEntropy)
       const wallet = Wallet.createRandom({extraEntropy: '0x'+hash})
-      console.log(wallet.privateKey)
       updateEntropy(i, wallet.privateKey)
     }
   }

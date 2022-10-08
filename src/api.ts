@@ -1,3 +1,4 @@
+import wasm from './wasm'
 import { toParams } from './utils'
 import { OAuthProvider, OAuthRes } from './store/auth'
 import { API_ROOT, SIGNIN_REDIRECT_URL } from './constants'
@@ -54,43 +55,29 @@ class APIClient {
 
   async contribute(
     session_id: string,
-    contribution: string,
+    preContribution: string,
     entropy: string[],
     onCalculationFinish: () => void
   ): Promise<ErrorRes | ContributeRes> {
-    return new Promise<ErrorRes | ContributeRes>((resolve) => {
-      const worker = new Worker('./wasm/wasm-worker.js', {
-        type: 'module'
-      })
-      const data = {
-        action: 'contribute',
-        contributionString: contribution,
-        entropy: entropy
-      }
 
-      worker.onmessage = async (event) => {
-        console.log('calculation finished', event)
-        onCalculationFinish()
-
-        const { contribution, proofs } = event.data
-        const res = await fetch(`${API_ROOT}/contribute`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${session_id}`
-          },
-          body: contribution
-        })
-        resolve({
-          ...(await res.json()),
-          contribution: contribution,
-          proofs: proofs
-        } as ContributeRes)
-        worker.terminate()
-      }
-
-      worker.postMessage(data)
+    const { contribution, proofs } = await wasm.contribute(
+      preContribution,
+      entropy,
+    )
+    onCalculationFinish()
+    const res = await fetch(`${API_ROOT}/contribute`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${session_id}`
+      },
+      body: contribution
     })
+    return {
+      ...(await res.json()),
+      contribution,
+      proofs
+    } as ContributeRes
   }
 
   async checkContribution(

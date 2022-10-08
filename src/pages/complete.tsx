@@ -4,7 +4,7 @@ import { PrimaryButtonLarge } from '../components/Button'
 import Header from '../components/Header'
 import { Description, PageTitle } from '../components/Text'
 import { useContributionStore, Store } from '../store/contribute'
-import api from '../api'
+import wasm from '../wasm'
 
 const CompletePage = () => {
   const { contribution, newContribution } = useContributionStore((state: Store) => ({
@@ -15,7 +15,7 @@ const CompletePage = () => {
   useEffect(() => {
     (async () => {
       // TODO: check is done automatically or user start checking?
-      const checks = await api.checkContribution(contribution!, newContribution!)
+      const checks = await wasm.checkContributions(contribution!, newContribution!)
       console.log(checks)
     })()
   })

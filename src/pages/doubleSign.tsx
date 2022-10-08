@@ -25,8 +25,8 @@ const DoubleSignPage = () => {
   const navigate = useNavigate()
   const handleClickSign = async () => {
     // do double sign
-    console.log(provider)
-    console.log(nickname)
+    //console.log(provider)
+    //console.log(nickname)
     //const signed = blsSignId(entropy[0], provider!, nickname!);
     //console.log(await signed)
     // TODO: save signed message
