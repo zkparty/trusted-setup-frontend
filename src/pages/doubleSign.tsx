@@ -16,16 +16,19 @@ import BgImg from '../assets/img-graphic-base.svg'
 import InnerColor from '../assets/inner-color.svg'
 import SnakeColor from '../assets/snake-color.svg'
 import OuterWhite from '../assets/outer-white.svg'
+import { useContributionStore } from '../store/contribute'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 
 const DoubleSignPage = () => {
   const { provider, nickname } = useAuthStore()
+  const { entropy } = useContributionStore()
   const navigate = useNavigate()
-  const handleClickSign = () => {
+  const handleClickSign = async () => {
     // do double sign
+    console.log(provider)
     console.log(nickname)
-    const signed = blsSignId('messageToSign', provider!, nickname!);
-    console.log(signed)
+    //const signed = blsSignId(entropy[0], provider!, nickname!);
+    //console.log(await signed)
     // TODO: save signed message
     navigate(ROUTES.LOBBY)
   }

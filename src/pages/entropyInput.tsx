@@ -9,6 +9,8 @@ import {
   SingleWrap as Wrap
 } from '../components/Layout'
 import ROUTES from '../routes'
+import { Wallet } from 'ethers'
+import { sha256 } from '../utils'
 import BgImg from '../assets/img-graphic-base.svg'
 import SnakeProgress from '../components/SnakeProgress'
 import { useAuthStore } from '../store/auth'
@@ -29,16 +31,13 @@ const EntropyInputPage = () => {
   const [percentage, setPercentage] = useState(0)
   const [player, setPlayer] = useState<Player | null>(null)
   const { provider } = useAuthStore()
-  const entropy = useMemo(() => {
-    return `${keyEntropy}${mouseEntropy}`
-  }, [keyEntropy, mouseEntropy])
 
   const updateEntropy = useContributionStore(
     (state: Store) => state.updateEntropy
   )
   const handleSubmit = () => {
     if (percentage !== 100) return
-    updateEntropy(0, entropy)
+    saveGeneratedEntropy()
     if (provider === 'Ethereum') {
       navigate(ROUTES.DOUBLE_SIGN)
     } else {
@@ -55,15 +54,26 @@ const EntropyInputPage = () => {
     )
   }
 
+  const saveGeneratedEntropy = async () => {
+    const size = mouseEntropy.length / 4
+    for (let i = 0; i < 4; i++) {
+      const newSubString = mouseEntropy.substring(size*i, size*(i+1))
+      const hash = await sha256(newSubString + keyEntropy)
+      const wallet = Wallet.createRandom({extraEntropy: '0x'+hash})
+      console.log(wallet.privateKey)
+      updateEntropy(i, wallet.privateKey)
+    }
+  }
+
   useEffect(() => {
     const percentage = Math.min(
-      Math.floor((entropy.length / MIN_ENTROPY_LENGTH) * 1000) / 10,
+      Math.floor((mouseEntropy.length / MIN_ENTROPY_LENGTH) * 1000) / 10,
       100
     )
 
     setPercentage(percentage)
     if (player) player.seek(percentage)
-  }, [entropy])
+  }, [mouseEntropy])
 
   return (
     <>
