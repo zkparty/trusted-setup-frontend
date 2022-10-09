@@ -26,8 +26,9 @@ export default function useAuthenticate() {
         }
       )
 
-      const result = await popup.wait()
-      const res = await api.getAuthorized('github', result.code, result.state)
+      const res = await popup.wait()
+      console.log(res)
+
       if (isSuccessRes(res)) {
         authStore.signin(res as OAuthRes)
         return true
@@ -39,6 +40,7 @@ export default function useAuthenticate() {
       authStore.setError((e! as Error).message)
       return false
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const signinSIE = useCallback(async () => {
@@ -60,8 +62,9 @@ export default function useAuthenticate() {
           left: left
         }
       )
-      const result = await popup.wait()
-      const res = await api.getAuthorized('eth', result.code, result.state)
+      const res = await popup.wait()
+      console.log(res)
+
       if (isSuccessRes(res)) {
         authStore.signin(res as OAuthRes)
         return true
@@ -73,6 +76,7 @@ export default function useAuthenticate() {
       authStore.setError((e! as Error).message)
       return false
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return {

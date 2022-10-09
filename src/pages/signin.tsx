@@ -54,6 +54,7 @@ const SigninPage = () => {
             OPEN <br /> THE WAY
           </PageTitle>
           <TextSection>
+          {error && <ErrorMessage>{error}</ErrorMessage>}
             <Desc>
               To secure the integrity of the Ceremony, contributions must come
               from an identity above the minimum qualifications.
@@ -120,6 +121,11 @@ export const ButtonSection = styled.div`
   align-items: center;
   justify-content: space-around;
   margin-top: 12px;
+`
+
+const ErrorMessage = styled.p`
+  color: ${({ theme }) => theme.error};
+  text-align: center;
 `
 
 export default SigninPage

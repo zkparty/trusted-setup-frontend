@@ -39,17 +39,17 @@ const ContributingPage = () => {
   const { sessionId } = useAuthStore()
   const {
     entropy,
+    ECDSASignature,
     contribution,
     updateProofs,
     updateReceipt,
-    updateSignature,
     updateNewContribution
   } = useContributionStore((state: Store) => ({
     entropy: state.entropy,
+    ECDSASignature: state.ECDSASignature,
     contribution: state.contribution,
     updateProofs: state.updateProofs,
     updateReceipt: state.updateReceipt,
-    updateSignature: state.updateSignature,
     updateNewContribution: state.updateNewContribution
   }))
 
@@ -71,6 +71,7 @@ const ContributingPage = () => {
           sessionId!,
           contribution!,
           entropy,
+          ECDSASignature,
           () => {
             setStep('contributing')
           }
@@ -79,8 +80,8 @@ const ContributingPage = () => {
           setStep('completed')
           updateProofs(res.proofs)
           updateReceipt(res.receipt)
-          updateSignature(res.signature)
           updateNewContribution(res.contribution)
+          navigate(ROUTES.COMPLETE)
         } else {
           setError(parseErrorMessage(res))
           setStep('error')
@@ -157,7 +158,7 @@ const ContributingPage = () => {
               ) : step === 'calculating' ? (
                 <>
                   <Description>
-                    The Sequencer is using your random inputs to calculate
+                    The browser is using your random inputs to calculate
                     something.
                   </Description>
                   <Description>

@@ -5,13 +5,13 @@ export type OAuthProvider = 'github' | 'eth'
 export type OAuthRes = {
   exp: string
   nickname: string
-  provider: OAuthProvider
+  provider: string
   session_id: string
   sub: string
 }
 
 type Store = {
-  provider: OAuthProvider | null
+  provider: string | null
   sessionId: string | null
   nickname: string | null
   exp: string | null
