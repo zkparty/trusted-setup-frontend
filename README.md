@@ -29,6 +29,8 @@ To start this app execute the following steps:
 
 1. Production (https://kzg-ceremony.party/): ` AjVfwdWSdxno9LR/Mwggz6Rrx0m9MlVHZB07xLFSPIMcLXr0xGnTDxZw3w77clkyTlK432VilcN6ANw3n4ydwAgAAAB8eyJvcmlnaW4iOiJodHRwczovL2t6Zy1jZXJlbW9ueS5wYXJ0eTo0NDMiLCJmZWF0dXJlIjoiVW5yZXN0cmljdGVkU2hhcmVkQXJyYXlCdWZmZXIiLCJleHBpcnkiOjE2NzUyOTU5OTksImlzU3ViZG9tYWluIjp0cnVlfQ== `
 
+2. Production (https://ceremony.ethereum.org/): ` AvsLzQGkkiX4UwxTyYMhzquGZArOggtZJbQDbVpKgq6Zat45IcAG0do6ok9UV8jpbS1FSIb7IBpdDE8RKe4uVAkAAABseyJvcmlnaW4iOiJodHRwczovL2NlcmVtb255LmV0aGVyZXVtLm9yZzo0NDMiLCJmZWF0dXJlIjoiVW5yZXN0cmljdGVkU2hhcmVkQXJyYXlCdWZmZXIiLCJleHBpcnkiOjE2NzUyOTU5OTl9 `
+
 2. Development (http://localhost:3001/): `AtOhr2NvRTD4rPvKdQBaVfFcVEQiDeBR97NMxxYIFp2F+FdWsKpROhrE1lUKhib4bVcJyxBNAOy1+90xRk3cyAYAAABgeyJvcmlnaW4iOiJodHRwOi8vbG9jYWxob3N0OjMwMDEiLCJmZWF0dXJlIjoiVW5yZXN0cmljdGVkU2hhcmVkQXJyYXlCdWZmZXIiLCJleHBpcnkiOjE2NzUyOTU5OTl9 `
 
 In case you need to ask for another token, you can go here [https://developer.chrome.com/origintrials/#/view_trial/303992974847508481]()
