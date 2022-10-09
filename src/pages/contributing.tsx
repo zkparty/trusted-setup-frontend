@@ -158,7 +158,7 @@ const ContributingPage = () => {
               ) : step === 'calculating' ? (
                 <>
                   <Description>
-                    The Sequencer is using your random inputs to calculate
+                    The browser is using your random inputs to calculate
                     something.
                   </Description>
                   <Description>
