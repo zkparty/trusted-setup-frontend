@@ -49,7 +49,7 @@ const LobbyPage = () => {
     async function poll(): Promise<void> {
       // periodically post /slot/join
       const res = await tryContribute.mutateAsync()
-      if (isSuccessRes(res)) {
+      if (isSuccessRes(res) && res.hasOwnProperty('contributions')) {
         updateContribution(JSON.stringify(res))
         navigate(ROUTES.CONTRIBUTING)
       } else {
