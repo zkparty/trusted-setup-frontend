@@ -25,9 +25,7 @@ export default function useAuthenticate() {
           left: left
         }
       )
-
       const res = await popup.wait()
-      console.log(res)
 
       if (isSuccessRes(res)) {
         authStore.signin(res as OAuthRes)
@@ -63,7 +61,6 @@ export default function useAuthenticate() {
         }
       )
       const res = await popup.wait()
-      console.log(res)
 
       if (isSuccessRes(res)) {
         authStore.signin(res as OAuthRes)
