@@ -31,7 +31,7 @@ const SERVER_ERROR = {
   LOBBY_IS_FULL: 'lobby is full'
 }
 
-const LOBBY_CHECKIN_FREQUENCY = 30000
+const LOBBY_CHECKIN_FREQUENCY = 25000
 
 export {
   FONT_SIZE,

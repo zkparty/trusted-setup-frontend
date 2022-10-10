@@ -1,5 +1,4 @@
 import type {
-    ErrorRes,
     ContributeResWasm,
     SubgroupCheckResWasm,
 } from './types'
