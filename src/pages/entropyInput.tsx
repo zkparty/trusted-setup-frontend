@@ -1,4 +1,4 @@
-import { useState, MouseEventHandler, useEffect, useMemo } from 'react'
+import { useState, MouseEventHandler, useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { PrimaryButton } from '../components/Button'
@@ -9,12 +9,14 @@ import {
   SingleWrap as Wrap
 } from '../components/Layout'
 import ROUTES from '../routes'
-import { Wallet } from 'ethers'
-import { sha256 } from '../utils'
 import BgImg from '../assets/img-graphic-base.svg'
 import SnakeProgress from '../components/SnakeProgress'
 import { useAuthStore } from '../store/auth'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
+import { CURVE } from '@noble/bls12-381'
+import { hkdf } from '@noble/hashes/hkdf'
+import { sha256 } from '@noble/hashes/sha256'
+import { randomBytes } from '@noble/hashes/utils'
 
 const MIN_ENTROPY_LENGTH = 2000
 
@@ -58,9 +60,16 @@ const EntropyInputPage = () => {
     const size = mouseEntropy.length / 4
     for (let i = 0; i < 4; i++) {
       const newSubString = mouseEntropy.substring(size*i, size*(i+1))
-      const hash = await sha256(newSubString + keyEntropy)
-      const wallet = Wallet.createRandom({extraEntropy: '0x'+hash})
-      updateEntropy(i, wallet.privateKey)
+      const secrets = newSubString + keyEntropy
+
+      const secretAsArray = Uint8Array.from(secrets.split("").map(x => x.charCodeAt(0)))
+      const salt = randomBytes(32)
+      const hk1 = hkdf(sha256, secretAsArray, salt, '', 48);
+
+      const hex64 = hk1.reduce((str, byte) => str + byte.toString(16).padStart(2,'0'),'')
+      const big64 = BigInt('0x' + hex64)
+      const hex32 = (big64 % CURVE.r).toString(16).padStart(64, '0');
+      updateEntropy(i, '0x' + hex32)
     }
   }
 
@@ -138,6 +147,7 @@ const Bold = styled.span`
 `
 
 const Input = styled.input`
+  text-align: center;
   font-size: 16px;
   padding: 4px 8px;
   border: solid 1px ${({ theme }) => theme.text};
