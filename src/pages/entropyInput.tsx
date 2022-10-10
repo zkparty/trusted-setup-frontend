@@ -108,7 +108,6 @@ const EntropyInputPage = () => {
             </Desc>
           </TextSection>
           <Input
-            type="password"
             onChange={(e) => setKeyEntropy(e.target.value)}
           />
 
@@ -148,6 +147,8 @@ const Bold = styled.span`
 
 const Input = styled.input`
   text-align: center;
+  text-security:disc;
+  -webkit-text-security:disc;
   font-size: 16px;
   padding: 4px 8px;
   border: solid 1px ${({ theme }) => theme.text};
