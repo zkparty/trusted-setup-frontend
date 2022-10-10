@@ -123,11 +123,9 @@ const ContributingPage = () => {
               </PageTitle>
             ) : step === 'contributing' ? (
               <PageTitle>
-                Big
+                You have been
                 <br />
-                Calculation
-                <br />
-                Now
+                called upon
               </PageTitle>
             ) : step === 'completed' ? (
               <PageTitle>
@@ -167,10 +165,9 @@ const ContributingPage = () => {
                 </>
               ) : step === 'contributing' ? (
                 <>
-                  <Description>Your spell is now part of ceremony.</Description>
+                  <Description>You are now entrusted with the Powers of Tau. Your Secret, Sigil, and Sample are being fused with those that came before. </Description>
                   <Description>
-                    Returning the contribution to the sequencer & pass along to
-                    the next summoners.
+                    Rituals cannot be hastened - time given here creates timeless artifacts.
                   </Description>
                 </>
               ) : step === 'completed' ? (
