@@ -35,6 +35,7 @@ export const SingleButtonSection = styled.div`
 `
 
 export const TextSection = styled.div`
+  text-align: center;
   width: 360px;
 `
 

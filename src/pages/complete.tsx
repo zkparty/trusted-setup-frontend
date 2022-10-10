@@ -24,20 +24,27 @@ const CompletePage = () => {
     <>
       <Header />
       <Container>
-        <PageTitle>The Collective power.</PageTitle>
+        <PageTitle>Dankshard draws near</PageTitle>
         <Description>
-          The contribution is now complete. You are one of very early summoner,
-          keep your eyez out for further annoucement and come back to verify at
-          end of ceremony.
+        Success! Echoes of you are permanently fused with the others in this Summoning Ceremony.
         </Description>
-        <PrimaryButtonLarge>View my record</PrimaryButtonLarge>
+        <Description>
+        <Bold>Remember:</Bold> this is only a testnet Ceremony - make sure to return for the full Dankshard summoning.
+        </Description>
+        <PrimaryButtonLarge>View your contribution</PrimaryButtonLarge>
       </Container>
     </>
   )
 }
 
 const Container = styled.section`
+  display: flex;
+  align-items: center;
   padding: 0 24px 24px;
+  flex-direction: column;
+`
+const Bold = styled.span`
+  font-weight: 700;
 `
 
 export default CompletePage

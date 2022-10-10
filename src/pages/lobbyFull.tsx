@@ -16,10 +16,14 @@ const LobbyFullPage = () => {
     <Container>
       <Wrap>
         <Logo />
-        <Title>Entropy & sorcery.</Title>
+        <Title>Sum of the parts.</Title>
         <Desc>
-          The hallway is packed with too many spell, please come back a little
-          later...
+        Please leave this guide open in the background -
+        your contribution will be collected soon.
+        </Desc>
+        <Desc>
+        Many others are alongside you in this Ceremony -
+        your patience will be rewarded.
         </Desc>
         <ButtonSection>
           <PrimaryButtonLarge

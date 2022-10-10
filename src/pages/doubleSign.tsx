@@ -98,17 +98,15 @@ const DoubleSignPage = () => {
         <Wrap>
           <InnerWrap>
             <PageTitle>
-              Seal your <br /> memory
+              Bind your <br /> Contribution
             </PageTitle>
             <TextSection>
               <Description>
-                Rember the neverending flight to birth new tools which we use to
-                build towards brighter worlds. We are part of this story, every
-                day a new page.
+              This signature binds each Summoner’s entropy contribution to their Ethereum address.
               </Description>
             </TextSection>
             <ButtonSection>
-              <PrimaryButton onClick={handleClickSign}>Seal it</PrimaryButton>
+              <PrimaryButton onClick={handleClickSign}>Sign</PrimaryButton>
             </ButtonSection>
           </InnerWrap>
         </Wrap>

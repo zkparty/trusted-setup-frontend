@@ -56,14 +56,13 @@ const SigninPage = () => {
           <TextSection>
           {error && <ErrorMessage>{error}</ErrorMessage>}
             <Desc>
-              To secure the integrity of the Ceremony, contributions must come
-              from an identity above the minimum qualifications.
+            The Ceremony requires souls of pure intent.
+            Summoners show their integrity by unlocking with an address that
+            has at least three sent transactions.
             </Desc>
             <Desc>
-              Unlocking with Ethereum requires an address with at least two
-              transactions sent from it, and does not send any funds or allow
-              any contracts. This method also allows us to deliver an onchain
-              memento after the Ceremony.
+            It does not send any funds or permit any contracts.
+            This method also allows us to deliver a POAP after the Ceremony.
             </Desc>
           </TextSection>
 

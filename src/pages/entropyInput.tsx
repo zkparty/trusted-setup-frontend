@@ -81,6 +81,7 @@ const EntropyInputPage = () => {
 
     setPercentage(percentage)
     if (player) player.seek(percentage)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mouseEntropy])
 
   return (
@@ -95,19 +96,24 @@ const EntropyInputPage = () => {
           </PageTitle>
           <TextSection>
             <Desc>
-              The Ceremony requires randomness & will be used to craft the final
-              summoning spell.
+            The Ceremony requires three random inputs from each Summoner.
             </Desc>
-            <Desc>
-              <Bold>Memory:</Bold> a piece of you in text form, with random
+            <SubDesc>
+              <Bold>Secret:</Bold> A piece of you in text form, with random
               characters added. A hope for the future, or the name of someone
-              dear. <Bold>Motion:</Bold> Trace some elements of the guide with
-              your cursor - the interface will capture your unique path.{' '}
-              <Bold>Machine:</Bold> Your browser will generate its own
+              dear.
+            </SubDesc>
+            <SubDesc>
+              <Bold>Sigil:</Bold> Trace some elements of the guide with
+              your cursor - the interface will capture your unique path.
+            </SubDesc>
+            <SubDesc>
+              <Bold>Sample:</Bold> Your browser will generate its own
               randomness in the background.
-            </Desc>
+            </SubDesc>
           </TextSection>
           <Input
+            placeholder="Secret"
             onChange={(e) => setKeyEntropy(e.target.value)}
           />
 
@@ -137,6 +143,11 @@ const Desc = styled(Description)`
   font-size: 18px;
 `
 
+const SubDesc = styled(Description)`
+  margin: 0 0 15px;
+  font-size: 18px;
+`
+
 const TextSection = styled.div`
   width: 360px;
 `
@@ -148,9 +159,10 @@ const Bold = styled.span`
 const Input = styled.input`
   text-align: center;
   text-security: disc;
-  -webkit-text-security: disc;
   -moz-text-security: disc;
+  -webkit-text-security: disc;
   font-size: 16px;
+  margin-top: 5px;
   padding: 4px 8px;
   border: solid 1px ${({ theme }) => theme.text};
   border-radius: 4px;

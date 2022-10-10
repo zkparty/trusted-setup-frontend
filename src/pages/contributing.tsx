@@ -5,7 +5,7 @@ import { useContributionStore, Store } from '../store/contribute'
 import { useAuthStore } from '../store/auth'
 import { Description, PageTitle } from '../components/Text'
 import { PrimaryButton } from '../components/Button'
-import { isSuccessRes, parseErrorMessage, sleep } from '../utils'
+import { isSuccessRes, parseErrorMessage } from '../utils'
 import ROUTES from '../routes'
 import api from '../api'
 import Explanation from '../components/Explanation'
@@ -111,9 +111,9 @@ const ContributingPage = () => {
           <InnerWrap>
             {step === 'downloading' ? (
               <PageTitle>
-                Spell
+                You have been
                 <br />
-                Preparation
+                called upon
               </PageTitle>
             ) : step === 'calculating' ? (
               <PageTitle>
@@ -167,10 +167,12 @@ const ContributingPage = () => {
                 </>
               ) : step === 'contributing' ? (
                 <>
-                  <Description>Your spell is now part of ceremony.</Description>
                   <Description>
-                    Returning the contribution to the sequencer & pass along to
-                    the next summoners.
+                    You are now entrusted with the Powers of Tau.
+                    Your Secret, Sigil, and Sample are being fused with those that came before.
+                  </Description>
+                  <Description>
+                  Rituals cannot be hastened - time given here creates timeless artifacts.
                   </Description>
                 </>
               ) : step === 'completed' ? (
