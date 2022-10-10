@@ -147,8 +147,9 @@ const Bold = styled.span`
 
 const Input = styled.input`
   text-align: center;
-  text-security:disc;
-  -webkit-text-security:disc;
+  text-security: disc;
+  -webkit-text-security: disc;
+  -moz-text-security: disc;
   font-size: 16px;
   padding: 4px 8px;
   border: solid 1px ${({ theme }) => theme.text};
