@@ -86,20 +86,20 @@ const EntropyInputPage = () => {
           </PageTitle>
           <TextSection>
             <Desc>
-              The Ceremony requires randomness & will be used to craft the final
-              summoning spell.
+              The Ceremony requires three random inputs from each Summoner.
             </Desc>
             <Desc>
-              <Bold>Memory:</Bold> a piece of you in text form, with random
+              <Bold>Secret:</Bold> A piece of you in text form, with random
               characters added. A hope for the future, or the name of someone
-              dear. <Bold>Motion:</Bold> Trace some elements of the guide with
+              dear. <Bold>Sigil:</Bold> Trace some elements of the guide with
               your cursor - the interface will capture your unique path.{' '}
-              <Bold>Machine:</Bold> Your browser will generate its own
+              <Bold>Sample:</Bold> Your browser will generate its own
               randomness in the background.
             </Desc>
           </TextSection>
           <Input
-            type="password"
+            type="password" 
+            placeholder="Secret"
             onChange={(e) => setKeyEntropy(e.target.value)}
           />
 
