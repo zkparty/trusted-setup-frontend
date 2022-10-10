@@ -27,11 +27,7 @@ const LandingPage = () => {
         </PageTitle>
         <TextSection>
           <Description>
-            Whispers from the shadows tell of a powerful spirit Dankshard, which
-            will open the next chapter of Ethereum scalability. To summon its
-            powers, we need as many community contributions as possible. This
-            illuminated guide will lead you through the steps necessary to
-            complete your contribution.
+            Whispers from the shadows tell of a powerful spirit Dankshard, who will open the next chapter of Ethereum scalability. To summon its powers, a Ceremony needs your contribution. This illuminated guide will lead you through the movements necessary to complete the ritual.   Magic math awaits - are you ready to add your color to the story?
           </Description>
           <Description>
             Magic math awaits - are you ready to add your color to the story?
