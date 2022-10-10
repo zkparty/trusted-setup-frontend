@@ -111,9 +111,9 @@ const ContributingPage = () => {
           <InnerWrap>
             {step === 'downloading' ? (
               <PageTitle>
-                You have been
+                Spell
                 <br />
-                called upon
+                Activation
               </PageTitle>
             ) : step === 'calculating' ? (
               <PageTitle>
@@ -123,9 +123,9 @@ const ContributingPage = () => {
               </PageTitle>
             ) : step === 'contributing' ? (
               <PageTitle>
-                Big
+                You have been
                 <br />
-                Calculation
+                called upon
                 <br />
                 Now
               </PageTitle>
