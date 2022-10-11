@@ -57,20 +57,15 @@ const EntropyInputPage = () => {
   }
 
   const saveGeneratedEntropy = async () => {
-    const size = mouseEntropy.length / 4
-    for (let i = 0; i < 4; i++) {
-      const newSubString = mouseEntropy.substring(size*i, size*(i+1))
-      const secrets = newSubString + keyEntropy
+    const entropy = mouseEntropy + keyEntropy;
+    const entropyAsArray = Uint8Array.from(entropy.split("").map(x => x.charCodeAt(0)))
+    const salt = randomBytes(32)
+    const hk1 = hkdf(sha256, entropyAsArray, salt, '', 48);
 
-      const secretAsArray = Uint8Array.from(secrets.split("").map(x => x.charCodeAt(0)))
-      const salt = randomBytes(32)
-      const hk1 = hkdf(sha256, secretAsArray, salt, '', 48);
-
-      const hex64 = hk1.reduce((str, byte) => str + byte.toString(16).padStart(2,'0'),'')
-      const big64 = BigInt('0x' + hex64)
-      const hex32 = (big64 % CURVE.r).toString(16).padStart(64, '0');
-      updateEntropy(i, '0x' + hex32)
-    }
+    const hex64 = hk1.reduce((str, byte) => str + byte.toString(16).padStart(2,'0'),'')
+    const big64 = BigInt('0x' + hex64)
+    const hex32 = (big64 % CURVE.r).toString(16).padStart(64, '0')
+    updateEntropy('0x' + hex32)
   }
 
   useEffect(() => {
@@ -81,6 +76,7 @@ const EntropyInputPage = () => {
 
     setPercentage(percentage)
     if (player) player.seek(percentage)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mouseEntropy])
 
   return (
@@ -95,16 +91,21 @@ const EntropyInputPage = () => {
           </PageTitle>
           <TextSection>
             <Desc>
-              The Ceremony requires three random inputs from each Summoner.
+            The Ceremony requires three random inputs from each Summoner.
             </Desc>
-            <Desc>
+            <SubDesc>
               <Bold>Secret:</Bold> A piece of you in text form, with random
               characters added. A hope for the future, or the name of someone
-              dear. <Bold>Sigil:</Bold> Trace some elements of the guide with
-              your cursor - the interface will capture your unique path.{' '}
+              dear.
+            </SubDesc>
+            <SubDesc>
+              <Bold>Sigil:</Bold> Trace some elements of the guide with
+              your cursor - the interface will capture your unique path.
+            </SubDesc>
+            <SubDesc>
               <Bold>Sample:</Bold> Your browser will generate its own
               randomness in the background.
-            </Desc>
+            </SubDesc>
           </TextSection>
           <Input
             placeholder="Secret"
@@ -137,6 +138,11 @@ const Desc = styled(Description)`
   font-size: 18px;
 `
 
+const SubDesc = styled(Description)`
+  margin: 0 0 15px;
+  font-size: 18px;
+`
+
 const TextSection = styled.div`
   width: 360px;
 `
@@ -148,9 +154,10 @@ const Bold = styled.span`
 const Input = styled.input`
   text-align: center;
   text-security: disc;
-  -webkit-text-security: disc;
   -moz-text-security: disc;
+  -webkit-text-security: disc;
   font-size: 16px;
+  margin-top: 5px;
   padding: 4px 8px;
   border: solid 1px ${({ theme }) => theme.text};
   border-radius: 4px;

@@ -1,14 +1,14 @@
 import create from 'zustand';
 
 export type Store = {
-  entropy: string[],
+  entropy: string | null,
   proofs: string | null,
   receipt: string | null,
   BLSSignatures: string[]
   ECDSASignature: string | null,
   contribution: string | null,
   newContribution: string | null,
-  updateEntropy: (index: number, data: string) => void,
+  updateEntropy: (data: string | null) => void,
   updateProofs: (data: string | null) => void,
   updateReceipt: (data: string | null) => void,
   updateBLSSignatures: (index: number, data: string) => void,
@@ -18,18 +18,14 @@ export type Store = {
 }
 
 export const useContributionStore = create<Store>( (set, get) => ({
-  entropy: ['','','',''],
+  entropy: null,
   proofs: null,
   receipt: null,
   BLSSignatures: ['','','',''],
   ECDSASignature: null,
   contribution: null,
   newContribution: null,
-  updateEntropy: (index: number, data: string) => {
-    let newEntropy = get().entropy;
-    newEntropy[index] = data;
-    set({ entropy: newEntropy})
-  },
+  updateEntropy: (data: string | null) => set({ entropy: data }),
   updateProofs: (data: string | null) => set({ proofs: data }),
   updateReceipt: (data: string | null) => set({ receipt: data }),
   updateBLSSignatures: (index: number, data: string) => {

@@ -1,14 +1,13 @@
 import type {
-    ContributeResWasm,
     SubgroupCheckResWasm,
 } from './types'
 
 class Wasm {
     async contribute(
         contribution: string,
-        entropy: string[],
-      ): Promise<ContributeResWasm> {
-        return new Promise<ContributeResWasm>((resolve) => {
+        entropy: string,
+      ): Promise<any> {
+        return new Promise<any>((resolve) => {
           const worker = new Worker('./wasm/wasm-worker.js', {
             type: 'module'
           })
@@ -18,7 +17,7 @@ class Wasm {
             entropy: entropy
           }
           worker.onmessage = async (event) => {
-            resolve(event.data as ContributeResWasm)
+            resolve(event.data as any)
             worker.terminate()
           }
           worker.postMessage(data)

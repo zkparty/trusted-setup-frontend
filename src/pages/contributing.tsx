@@ -5,7 +5,7 @@ import { useContributionStore, Store } from '../store/contribute'
 import { useAuthStore } from '../store/auth'
 import { Description, PageTitle } from '../components/Text'
 import { PrimaryButton } from '../components/Button'
-import { isSuccessRes, parseErrorMessage, sleep } from '../utils'
+import { isSuccessRes, parseErrorMessage } from '../utils'
 import ROUTES from '../routes'
 import api from '../api'
 import Explanation from '../components/Explanation'
@@ -41,14 +41,12 @@ const ContributingPage = () => {
     entropy,
     ECDSASignature,
     contribution,
-    updateProofs,
     updateReceipt,
     updateNewContribution
   } = useContributionStore((state: Store) => ({
     entropy: state.entropy,
     ECDSASignature: state.ECDSASignature,
     contribution: state.contribution,
-    updateProofs: state.updateProofs,
     updateReceipt: state.updateReceipt,
     updateNewContribution: state.updateNewContribution
   }))
@@ -70,7 +68,7 @@ const ContributingPage = () => {
         const res = await api.contribute(
           sessionId!,
           contribution!,
-          entropy,
+          entropy!,
           ECDSASignature,
           () => {
             setStep('contributing')
@@ -78,7 +76,6 @@ const ContributingPage = () => {
         )
         if (isSuccessRes(res)) {
           setStep('completed')
-          updateProofs(res.proofs)
           updateReceipt(res.receipt)
           updateNewContribution(res.contribution)
           navigate(ROUTES.COMPLETE)
@@ -113,7 +110,7 @@ const ContributingPage = () => {
               <PageTitle>
                 Spell
                 <br />
-                Preparation
+                Activation
               </PageTitle>
             ) : step === 'calculating' ? (
               <PageTitle>
@@ -126,6 +123,8 @@ const ContributingPage = () => {
                 You have been
                 <br />
                 called upon
+                <br />
+                Now
               </PageTitle>
             ) : step === 'completed' ? (
               <PageTitle>
@@ -165,9 +164,12 @@ const ContributingPage = () => {
                 </>
               ) : step === 'contributing' ? (
                 <>
-                  <Description>You are now entrusted with the Powers of Tau. Your Secret, Sigil, and Sample are being fused with those that came before. </Description>
                   <Description>
-                    Rituals cannot be hastened - time given here creates timeless artifacts.
+                    You are now entrusted with the Powers of Tau.
+                    Your Secret, Sigil, and Sample are being fused with those that came before.
+                  </Description>
+                  <Description>
+                  Rituals cannot be hastened - time given here creates timeless artifacts.
                   </Description>
                 </>
               ) : step === 'completed' ? (

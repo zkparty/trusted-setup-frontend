@@ -21,7 +21,7 @@ const Header = () => {
         <img src={Star} alt="sequencer status" />
         <SequencerStatus>
           <span>Sequencer</span>
-          <Status>{sequencerStatus}</Status>
+          <Status style={{ color:  sequencerStatus === 'Online' ? '#61cc61' : 'red'}}>{sequencerStatus}</Status>
         </SequencerStatus>
       </LeftSection>
       <ButtonGroup>

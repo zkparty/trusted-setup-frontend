@@ -56,10 +56,13 @@ const SigninPage = () => {
           <TextSection>
           {error && <ErrorMessage>{error}</ErrorMessage>}
             <Desc>
-              The Ceremony requires souls of pure intent. Summoners show their integrity by unlocking with an address that has at least three sent transactions.
+            The Ceremony requires souls of pure intent.
+            Summoners show their integrity by unlocking with an address that
+            has at least three sent transactions.
             </Desc>
             <Desc>
-              It does not send any funds or permit any contracts. This method also allows us to deliver a POAP after the Ceremony.
+            It does not send any funds or permit any contracts.
+            This method also allows us to deliver a POAP after the Ceremony.
             </Desc>
           </TextSection>
 

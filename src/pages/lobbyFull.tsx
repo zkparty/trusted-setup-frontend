@@ -16,11 +16,14 @@ const LobbyFullPage = () => {
     <Container>
       <Wrap>
         <Logo />
-        <Title>Sum of <br> the parts.</Title>
+        <Title>Sum of the parts.</Title>
         <Desc>
-          Please leave this guide open in the background - your contribution will be collected soon. 
-          <br> <br>
-          Many others are alongside you in this Ceremony - your patience will be rewarded.
+        Please leave this guide open in the background -
+        your contribution will be collected soon.
+        </Desc>
+        <Desc>
+        Many others are alongside you in this Ceremony -
+        your patience will be rewarded.
         </Desc>
         <ButtonSection>
           <PrimaryButtonLarge
