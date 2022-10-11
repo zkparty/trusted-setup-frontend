@@ -5,7 +5,7 @@ import init, {
 
 onmessage = async (event) => {
     await init();
-    await init_threads(10);
+    await init_threads(navigator.hardwareConcurrency);
     console.log("available threads:", navigator.hardwareConcurrency);
     const { action } = event.data;
     switch (action) {
