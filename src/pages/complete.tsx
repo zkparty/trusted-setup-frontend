@@ -7,7 +7,8 @@ import { useContributionStore, Store } from '../store/contribute'
 import wasm from '../wasm'
 import {
   SingleContainer as Container,
-  SingleWrap as Wrap
+  SingleWrap as Wrap,
+  Over
 } from '../components/Layout'
 import PizzaInner from '../assets/crust.svg'
 import PizzaOuter from '../assets/fig.svg'
@@ -18,15 +19,20 @@ import SnakeColor from '../assets/snake-color.svg'
 import OuterColor from '../assets/outer-color.svg'
 
 const CompletePage = () => {
-  const { contribution, newContribution } = useContributionStore((state: Store) => ({
-    contribution: state.contribution,
-    newContribution: state.newContribution,
-  }))
+  const { contribution, newContribution } = useContributionStore(
+    (state: Store) => ({
+      contribution: state.contribution,
+      newContribution: state.newContribution
+    })
+  )
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       // TODO: check is done automatically or user start checking?
-      const checks = await wasm.checkContributions(contribution!, newContribution!)
+      const checks = await wasm.checkContributions(
+        contribution!,
+        newContribution!
+      )
       console.log(checks)
     })()
   })
@@ -34,34 +40,38 @@ const CompletePage = () => {
   return (
     <>
       <Header />
-      <Container>
-      <Bg src={BgImgColor} />
-        <PizzaImg src={PizzaInner} />
-        <PizzaImg src={PizzaOuter} />
-        <Img src={InnerColor} />
-        <Img src={OuterColor} />
-        <Img src={SnakeColor} />
-        <Wrap>
-        <InnerWrap>
-          <PageTitle>Dankshard <br/> draws near</PageTitle>
+      <Over>
+        <Container>
+          <Bg src={BgImgColor} />
+          <PizzaImg src={PizzaInner} />
+          <PizzaImg src={PizzaOuter} />
+          <Img src={InnerColor} />
+          <Img src={OuterColor} />
+          <Img src={SnakeColor} />
+          <Wrap>
+            <InnerWrap>
+              <PageTitle>
+                Dankshard <br /> draws near
+              </PageTitle>
 
-          <TextSection>
-            <Desc>
-            Success! Echoes of you are permanently fused
-            with the others in this Summoning Ceremony.
-            </Desc>
-            <Desc>
-            <Bold>Remember:</Bold> this is only
-            a testnet Ceremony - make sure to return for the full Dankshard summoning.
-            </Desc>
-          </TextSection>
+              <TextSection>
+                <Desc>
+                  Success! Echoes of you are permanently fused with the others
+                  in this Summoning Ceremony.
+                </Desc>
+                <Desc>
+                  <Bold>Remember:</Bold> this is only a testnet Ceremony - make
+                  sure to return for the full Dankshard summoning.
+                </Desc>
+              </TextSection>
 
-          <ButtonSection>
-          <PrimaryButtonLarge>View your contribution</PrimaryButtonLarge>
-          </ButtonSection>
-          </InnerWrap>
-        </Wrap>
+              <ButtonSection>
+                <PrimaryButtonLarge>View your contribution</PrimaryButtonLarge>
+              </ButtonSection>
+            </InnerWrap>
+          </Wrap>
         </Container>
+      </Over>
     </>
   )
 }
