@@ -35,10 +35,9 @@ const CompletePage = () => {
     <>
       <Header />
       <Container>
-      <Bg src={BgImg} />
-      <BgBase src={BgImgColor} />
-        <PizzaImg visible={false} rounding={false} src={PizzaInner} />
-        <PizzaImg visible={false} rounding={false} src={PizzaOuter} />
+      <Bg src={BgImgColor} />
+        <PizzaImg src={PizzaInner} />
+        <PizzaImg src={PizzaOuter} />
         <Img src={InnerColor} />
         <Img src={OuterColor} />
         <Img src={SnakeColor} />
@@ -108,11 +107,9 @@ export const ButtonSection = styled.div`
   margin-top: 12px;
 `
 
-const PizzaImg = styled(Img)<{ visible: boolean; rounding: boolean }>`
+const PizzaImg = styled(Img)`
   transition: all 3s ease;
 `
-
-const BgBase = styled(Bg)``
 
 const Bold = styled.span`
   font-weight: 700;

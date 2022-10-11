@@ -47,6 +47,10 @@ const Container = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
+  width: 100vw;
+  z-index: 3;
+  position: absolute;
+  top: 0;
 `
 
 const LeftSection = styled.div`
