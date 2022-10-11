@@ -56,12 +56,12 @@ class APIClient {
   async contribute(
     session_id: string,
     preContribution: string,
-    entropy: string[],
+    entropy: string,
     signature: string | null,
     onCalculationFinish: () => void
   ): Promise<ErrorRes | ContributeRes> {
 
-    const { contribution, proofs } = await wasm.contribute(
+    const { contribution } = await wasm.contribute(
       preContribution,
       entropy,
     )
@@ -84,7 +84,6 @@ class APIClient {
     return {
       ...(await res.json()),
       contribution,
-      proofs
     } as ContributeRes
   }
 

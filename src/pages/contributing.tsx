@@ -41,14 +41,12 @@ const ContributingPage = () => {
     entropy,
     ECDSASignature,
     contribution,
-    updateProofs,
     updateReceipt,
     updateNewContribution
   } = useContributionStore((state: Store) => ({
     entropy: state.entropy,
     ECDSASignature: state.ECDSASignature,
     contribution: state.contribution,
-    updateProofs: state.updateProofs,
     updateReceipt: state.updateReceipt,
     updateNewContribution: state.updateNewContribution
   }))
@@ -70,7 +68,7 @@ const ContributingPage = () => {
         const res = await api.contribute(
           sessionId!,
           contribution!,
-          entropy,
+          entropy!,
           ECDSASignature,
           () => {
             setStep('contributing')
@@ -78,7 +76,6 @@ const ContributingPage = () => {
         )
         if (isSuccessRes(res)) {
           setStep('completed')
-          updateProofs(res.proofs)
           updateReceipt(res.receipt)
           updateNewContribution(res.contribution)
           navigate(ROUTES.COMPLETE)

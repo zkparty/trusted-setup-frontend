@@ -57,20 +57,15 @@ const EntropyInputPage = () => {
   }
 
   const saveGeneratedEntropy = async () => {
-    const size = mouseEntropy.length / 4
-    for (let i = 0; i < 4; i++) {
-      const newSubString = mouseEntropy.substring(size*i, size*(i+1))
-      const secrets = newSubString + keyEntropy
+    const entropy = mouseEntropy + keyEntropy;
+    const entropyAsArray = Uint8Array.from(entropy.split("").map(x => x.charCodeAt(0)))
+    const salt = randomBytes(32)
+    const hk1 = hkdf(sha256, entropyAsArray, salt, '', 48);
 
-      const secretAsArray = Uint8Array.from(secrets.split("").map(x => x.charCodeAt(0)))
-      const salt = randomBytes(32)
-      const hk1 = hkdf(sha256, secretAsArray, salt, '', 48);
-
-      const hex64 = hk1.reduce((str, byte) => str + byte.toString(16).padStart(2,'0'),'')
-      const big64 = BigInt('0x' + hex64)
-      const hex32 = (big64 % CURVE.r).toString(16).padStart(64, '0');
-      updateEntropy(i, '0x' + hex32)
-    }
+    const hex64 = hk1.reduce((str, byte) => str + byte.toString(16).padStart(2,'0'),'')
+    const big64 = BigInt('0x' + hex64)
+    const hex32 = (big64 % CURVE.r).toString(16).padStart(64, '0')
+    updateEntropy('0x' + hex32)
   }
 
   useEffect(() => {

@@ -3,7 +3,6 @@ export type TryContributeRes = {
 }
 
 export type ContributeRes = {
-  proofs: string | null
   receipt: string | null
   signature: string | null
   contribution: string | null

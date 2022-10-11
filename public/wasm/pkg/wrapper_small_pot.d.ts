@@ -7,37 +7,10 @@
 export function init_threads(n: number): Promise<any>;
 /**
 * @param {string} input
-* @param {string} secret_0
-* @param {string} secret_1
-* @param {string} secret_2
-* @param {string} secret_3
+* @param {string} entropy_string
 * @returns {any}
 */
-export function contribute_wasm(input: string, secret_0: string, secret_1: string, secret_2: string, secret_3: string): any;
-/**
-* @param {string} input
-* @returns {boolean}
-*/
-export function subgroup_check_wasm(input: string): boolean;
-/**
-* @param {string} input
-* @param {string} output
-* @param {string} proofs
-* @param {string} secret_0
-* @param {string} secret_1
-* @param {string} secret_2
-* @param {string} secret_3
-* @returns {string}
-*/
-export function verify_update_wasm(input: string, output: string, proofs: string, secret_0: string, secret_1: string, secret_2: string, secret_3: string): string;
-/**
-* @param {string} secret_0
-* @param {string} secret_1
-* @param {string} secret_2
-* @param {string} secret_3
-* @returns {any}
-*/
-export function get_pot_pubkeys_wasm(secret_0: string, secret_1: string, secret_2: string, secret_3: string): any;
+export function contribute_wasm(input: string, entropy_string: string): any;
 /**
 * @param {number} num_threads
 * @returns {Promise<any>}
@@ -72,10 +45,7 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly init_threads: (a: number) => number;
-  readonly contribute_wasm: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number) => number;
-  readonly subgroup_check_wasm: (a: number, b: number) => number;
-  readonly verify_update_wasm: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number, l: number, m: number, n: number, o: number) => void;
-  readonly get_pot_pubkeys_wasm: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number) => number;
+  readonly contribute_wasm: (a: number, b: number, c: number, d: number) => number;
   readonly __wbg_wbg_rayon_poolbuilder_free: (a: number) => void;
   readonly wbg_rayon_poolbuilder_mainJS: (a: number) => number;
   readonly wbg_rayon_poolbuilder_numThreads: (a: number) => number;
@@ -86,8 +56,8 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
-  readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_free: (a: number, b: number) => void;
+  readonly __wbindgen_exn_store: (a: number) => void;
   readonly __wbindgen_thread_destroy: () => void;
   readonly __wbindgen_start: () => void;
 }
