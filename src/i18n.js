@@ -7,17 +7,27 @@ export const languages = {
     es: {
       nativeName: 'Spanish',
       translation: {
-        'init': `
-        <0>
-            Espanol: Whispers from the shadows tell of a powerful spirit Dankshard,
-            who will open the next chapter of Ethereum scalability.
-            To summon its powers, a Ceremony needs your contribution.
-            This illuminated guide will lead you through the movements necessary
-            to complete the ritual.
-        </0>
-        <1>
-            Espanol: Magic math awaits - are you ready to add your color to the story?
-        </1>`
+        landing: {
+          'title': 'GUÍA DE <br/> INVOCACIÓN',
+          'description': `
+          <0>
+              Espanol: Whispers from the shadows tell of a powerful spirit Dankshard,
+              who will open the next chapter of Ethereum scalability.
+              To summon its powers, a Ceremony needs your contribution.
+              This illuminated guide will lead you through the movements necessary
+              to complete the ritual.
+          </0>
+          <1>
+              Espanol: Magic math awaits - are you ready to add your color to the story?
+          </1>`,
+          'button': 'Comenzar',
+          'learn-more': '↓ ó descubre más ↓',
+        },
+        header: {
+          'sequencer': 'Sequenciador',
+          'button': 'Desbloquear',
+          'ceremony': 'CEREMONIA DE PRUEBA',
+        }
       }
     },
 };

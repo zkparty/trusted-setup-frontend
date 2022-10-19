@@ -1,17 +1,16 @@
+import ROUTES from '../routes'
 import { useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { PrimaryButton } from '../components/Button'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import { Description, PageTitle } from '../components/Text'
 import { textSerif } from '../style/utils'
-import ROUTES from '../routes'
+import { useNavigate } from 'react-router-dom'
 import { TextSection } from '../components/Layout'
-import LandingBg from '../assets/landing-boarder.png'
 import Explanation from '../components/Explanation'
-import { Trans } from 'react-i18next'
-import { useTranslation } from 'react-i18next'
+import { PrimaryButton } from '../components/Button'
+import { Trans, useTranslation } from 'react-i18next'
+import LandingBg from '../assets/landing-boarder.png'
+import { Description, PageTitle } from '../components/Text'
 
 const LandingPage = () => {
   useTranslation()
@@ -26,10 +25,12 @@ const LandingPage = () => {
       <TopSection>
         <BgColor />
         <PageTitle>
+        <Trans i18nKey="landing.title">
           SUMMONING <br /> GUIDE
+        </Trans>
         </PageTitle>
         <TextSection>
-          <Trans i18nKey="init">
+          <Trans i18nKey="landing.description">
           <Description>
           Whispers from the shadows tell of a powerful spirit Dankshard,
           who will open the next chapter of Ethereum scalability.
@@ -42,8 +43,12 @@ const LandingPage = () => {
           </Description>
           </Trans>
         </TextSection>
-        <PrimaryButton onClick={onClickGetStart}>Begin</PrimaryButton>
-        <Footnote>↓ or learn more below ↓</Footnote>
+        <PrimaryButton onClick={onClickGetStart}>
+          <Trans i18nKey="landing.button">Begin</Trans>
+        </PrimaryButton>
+        <Footnote>
+        <Trans i18nKey="landing.learn-more">↓ or learn more below ↓</Trans>
+        </Footnote>
       </TopSection>
       <Explanation />
       <Footer />

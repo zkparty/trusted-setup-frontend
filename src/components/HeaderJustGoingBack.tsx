@@ -5,8 +5,10 @@ import { textSerif } from '../style/utils'
 import { useNavigate } from 'react-router-dom'
 import LeftArrow from '../assets/left-arrow.svg'
 import LanguageSelector from './LanguageSelector'
+import { Trans, useTranslation } from 'react-i18next'
 
 const HeaderJustGoingBack = () => {
+  useTranslation()
   const navigate = useNavigate()
 
   return (
@@ -17,7 +19,7 @@ const HeaderJustGoingBack = () => {
       </LeftSection>
       <LanguageSelector></LanguageSelector>
       <CenterSection>
-        TESTNET CEREMONY
+      <Trans i18nKey="header.ceremony">TESTNET CEREMONY</Trans>
       </CenterSection>
     </Container>
   )
