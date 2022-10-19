@@ -7,6 +7,7 @@ import ROUTES from '../routes'
 import { useAuthStore } from '../store/auth'
 import useSequencerStatus from '../hooks/useSequencerStatus'
 import { FONT_SIZE } from '../constants'
+import LanguageSelector from './LanguageSelector'
 
 const Header = () => {
   const navigate = useNavigate()
@@ -24,6 +25,7 @@ const Header = () => {
           <Status style={{ color:  sequencerStatus === 'Online' ? '#61cc61' : 'red'}}>{sequencerStatus}</Status>
         </SequencerStatus>
       </LeftSection>
+      <LanguageSelector></LanguageSelector>
       <ButtonGroup>
         {nickname ? (
           <span>{nickname.slice(0, 10)}</span>

@@ -10,8 +10,11 @@ import ROUTES from '../routes'
 import { TextSection } from '../components/Layout'
 import LandingBg from '../assets/landing-boarder.png'
 import Explanation from '../components/Explanation'
+import { Trans } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 const LandingPage = () => {
+  useTranslation()
   const navigate = useNavigate()
   const onClickGetStart = useCallback(() => {
     navigate(ROUTES.SIGNIN)
@@ -26,6 +29,7 @@ const LandingPage = () => {
           SUMMONING <br /> GUIDE
         </PageTitle>
         <TextSection>
+          <Trans i18nKey="init">
           <Description>
           Whispers from the shadows tell of a powerful spirit Dankshard,
           who will open the next chapter of Ethereum scalability.
@@ -36,6 +40,7 @@ const LandingPage = () => {
           <Description>
             Magic math awaits - are you ready to add your color to the story?
           </Description>
+          </Trans>
         </TextSection>
         <PrimaryButton onClick={onClickGetStart}>Begin</PrimaryButton>
         <Footnote>↓ or learn more below ↓</Footnote>
