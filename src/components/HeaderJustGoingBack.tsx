@@ -1,9 +1,10 @@
-import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
 import ROUTES from '../routes'
-import LeftArrow from '../assets/left-arrow.svg'
+import styled from 'styled-components'
 import { FONT_SIZE } from '../constants'
 import { textSerif } from '../style/utils'
+import { useNavigate } from 'react-router-dom'
+import LeftArrow from '../assets/left-arrow.svg'
+import LanguageSelector from './LanguageSelector'
 
 const HeaderJustGoingBack = () => {
   const navigate = useNavigate()
@@ -14,6 +15,7 @@ const HeaderJustGoingBack = () => {
         <img src={LeftArrow} alt="go back" />
 
       </LeftSection>
+      <LanguageSelector></LanguageSelector>
       <CenterSection>
         TESTNET CEREMONY
       </CenterSection>
