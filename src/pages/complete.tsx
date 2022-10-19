@@ -16,8 +16,10 @@ import BgImgColor from '../assets/img-base-color.svg'
 import InnerColor from '../assets/inner-color.svg'
 import SnakeColor from '../assets/snake-color.svg'
 import OuterColor from '../assets/outer-color.svg'
+import { Trans, useTranslation } from 'react-i18next'
 
 const CompletePage = () => {
+  useTranslation()
   const { contribution, newContribution } = useContributionStore((state: Store) => ({
     contribution: state.contribution,
     newContribution: state.newContribution,
@@ -43,9 +45,12 @@ const CompletePage = () => {
         <Img src={SnakeColor} />
         <Wrap>
         <InnerWrap>
-          <PageTitle>Dankshard <br/> draws near</PageTitle>
+          <PageTitle>
+            <Trans i18nKey="complete.title">Dankshard <br/> draws near</Trans>
+          </PageTitle>
 
           <TextSection>
+          <Trans i18nKey="complete.description">
             <Desc>
             Success! Echoes of you are permanently fused
             with the others in this Summoning Ceremony.
@@ -54,10 +59,16 @@ const CompletePage = () => {
             <Bold>Remember:</Bold> this is only
             a testnet Ceremony - make sure to return for the full Dankshard summoning.
             </Desc>
+          </Trans>
           </TextSection>
 
           <ButtonSection>
-          <PrimaryButtonLarge>View your contribution</PrimaryButtonLarge>
+          <PrimaryButtonLarge>
+            <Trans i18nKey="complete.button">
+              View your contribution
+            </Trans>
+          </PrimaryButtonLarge>
+
           </ButtonSection>
           </InnerWrap>
         </Wrap>

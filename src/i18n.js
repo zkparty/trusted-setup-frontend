@@ -7,6 +7,23 @@ export const languages = {
     es: {
       nativeName: 'Spanish',
       translation: {
+        header: {
+          'sequencer': 'Sequenciador',
+          'button': 'Desbloquear',
+          'ceremony': 'CEREMONIA DE PRUEBA',
+        },
+        complete: {
+          'title': 'Dankshard <br/> draws near',
+          'description': `
+          <0>
+            Espanol: Success! Echoes of you are permanently fused with the others in this Summoning Ceremony.
+          </0>
+          <1>
+            <0>Espanol: Remember:</0>
+              this is only a testnet Ceremony - make sure to return for the full Dankshard summoning.
+          </1>`,
+          'button': 'View your contribution',
+        },
         landing: {
           'title': 'GUÍA DE <br/> INVOCACIÓN',
           'description': `
@@ -23,11 +40,6 @@ export const languages = {
           'button': 'Comenzar',
           'learn-more': '↓ ó descubre más ↓',
         },
-        header: {
-          'sequencer': 'Sequenciador',
-          'button': 'Desbloquear',
-          'ceremony': 'CEREMONIA DE PRUEBA',
-        }
       }
     },
 };
