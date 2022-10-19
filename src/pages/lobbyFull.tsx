@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
+import { Trans, useTranslation } from 'react-i18next'
 import { PrimaryButtonLarge } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
@@ -10,28 +11,37 @@ import Logo from '../components/Logo'
 import ROUTES from '../routes'
 
 const LobbyFullPage = () => {
+  useTranslation()
   const navigate = useNavigate()
 
   return (
     <Container>
       <Wrap>
         <Logo />
-        <Title>Sum of the parts.</Title>
-        <Desc>
-        Please leave this guide open in the background -
-        your contribution will be collected soon.
-        </Desc>
-        <Desc>
-        Many others are alongside you in this Ceremony -
-        your patience will be rewarded.
-        </Desc>
+        <Title>
+          <Trans i18nKey="lobbyFull.title">
+            Sum of the parts.
+          </Trans>
+        </Title>
+        <Trans i18nKey="lobbyFull.description2">
+          <Desc>
+          Please leave this guide open in the background -
+          your contribution will be collected soon.
+          </Desc>
+          <Desc>
+          Many others are alongside you in this Ceremony -
+          your patience will be rewarded.
+          </Desc>
+        </Trans>
         <ButtonSection>
           <PrimaryButtonLarge
             onClick={() => {
               navigate(ROUTES.ROOT)
             }}
           >
-            Return to home
+            <Trans i18nKey="lobbyFull.button">
+              Return to home
+            </Trans>
           </PrimaryButtonLarge>
         </ButtonSection>
       </Wrap>

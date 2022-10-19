@@ -17,6 +17,8 @@ import { CURVE } from '@noble/bls12-381'
 import { hkdf } from '@noble/hashes/hkdf'
 import { sha256 } from '@noble/hashes/sha256'
 import { randomBytes } from '@noble/hashes/utils'
+import { Trans, useTranslation } from 'react-i18next'
+
 
 const MIN_ENTROPY_LENGTH = 2000
 
@@ -27,6 +29,7 @@ type Player = {
 }
 
 const EntropyInputPage = () => {
+  useTranslation()
   const navigate = useNavigate()
   const [keyEntropy, setKeyEntropy] = useState('')
   const [mouseEntropy, setMouseEntropy] = useState('')
@@ -87,25 +90,29 @@ const EntropyInputPage = () => {
         <SnakeProgress onSetPlayer={setPlayer} />
         <Wrap>
           <PageTitle>
-            Entropy <br /> Entry
+            <Trans i18nKey="entropyInput.title">
+              Entropy <br /> Entry
+            </Trans>
           </PageTitle>
           <TextSection>
-            <Desc>
-            The Ceremony requires three random inputs from each Summoner.
-            </Desc>
-            <SubDesc>
-              <Bold>Secret:</Bold> A piece of you in text form, with random
-              characters added. A hope for the future, or the name of someone
-              dear.
-            </SubDesc>
-            <SubDesc>
-              <Bold>Sigil:</Bold> Trace some elements of the guide with
-              your cursor - the interface will capture your unique path.
-            </SubDesc>
-            <SubDesc>
-              <Bold>Sample:</Bold> Your browser will generate its own
-              randomness in the background.
-            </SubDesc>
+            <Trans i18nKey="entropyInput.description">
+              <Desc>
+              The Ceremony requires three random inputs from each Summoner.
+              </Desc>
+              <SubDesc>
+                <Bold>Secret:</Bold> A piece of you in text form, with random
+                characters added. A hope for the future, or the name of someone
+                dear.
+              </SubDesc>
+              <SubDesc>
+                <Bold>Sigil:</Bold> Trace some elements of the guide with
+                your cursor - the interface will capture your unique path.
+              </SubDesc>
+              <SubDesc>
+                <Bold>Sample:</Bold> Your browser will generate its own
+                randomness in the background.
+              </SubDesc>
+            </Trans>
           </TextSection>
           <Input
             placeholder="Secret"
@@ -114,7 +121,9 @@ const EntropyInputPage = () => {
 
           <ButtonSection>
             <PrimaryButton disabled={percentage !== 100} onClick={handleSubmit}>
-              Submit
+              <Trans i18nKey="entropyInput.button">
+                Submit
+              </Trans>
             </PrimaryButton>
           </ButtonSection>
         </Wrap>

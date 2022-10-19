@@ -16,9 +16,11 @@ import BgImg from '../assets/img-graphic-base.svg'
 import InnerWhite from '../assets/inner-white.svg'
 import SnakeWhite from '../assets/snake-white.svg'
 import OuterWhite from '../assets/outer-white.svg'
+import { Trans, useTranslation } from 'react-i18next'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 
 const SigninPage = () => {
+  useTranslation()
   const { signinGithub, signinSIE } = useAuthenticate()
   const { error } = useAuthStore()
 
@@ -51,28 +53,37 @@ const SigninPage = () => {
         <Img src={SnakeWhite} />
         <Wrap>
           <PageTitle>
-            OPEN <br /> THE WAY
+            <Trans i18nKey="sigin.title">
+              OPEN <br /> THE WAY
+            </Trans>
           </PageTitle>
           <TextSection>
           {error && <ErrorMessage>{error}</ErrorMessage>}
-            <Desc>
-            The Ceremony requires souls of pure intent.
-            Summoners show their integrity by unlocking with an address that
-            has at least three sent transactions.
-            </Desc>
-            <Desc>
-            It does not send any funds or permit any contracts.
-            This method also allows us to deliver a POAP after the Ceremony.
-            </Desc>
+            <Trans i18nKey="sigin.description">
+              <Desc>
+              The Ceremony requires souls of pure intent.
+              Summoners show their integrity by unlocking with an address that
+              has at least three sent transactions.
+              </Desc>
+              <Desc>
+              It does not send any funds or permit any contracts.
+              This method also allows us to deliver a POAP after the Ceremony.
+              </Desc>
+            </Trans>
           </TextSection>
 
           <ButtonSection>
             <PrimaryButton onClick={onSigninSIE} style={{ width: '360px' }}>
-              Unlock with Ethereum <ButtonIcon src={EthImg} alt="ETH icon" />
+              <Trans i18nKey="sigin.unlockWithEthereum">
+                Unlock with Ethereum{' '}
+                <ButtonIcon src={EthImg} alt="ETH icon" />
+              </Trans>
             </PrimaryButton>
             <PrimaryButton onClick={onSigninGithub} style={{ width: '280px' }}>
-              Unlock with Github{' '}
-              <ButtonIcon src={GithubImg} alt="Github icon" />
+              <Trans i18nKey="sigin.unlockWithGithub">
+                Unlock with Github{' '}
+                <ButtonIcon src={GithubImg} alt="Github icon" />
+              </Trans>
             </PrimaryButton>
           </ButtonSection>
         </Wrap>

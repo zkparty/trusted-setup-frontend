@@ -18,6 +18,7 @@ import InnerColor from '../assets/inner-color.svg'
 import SnakeColor from '../assets/snake-color.svg'
 import OuterWhite from '../assets/outer-white.svg'
 import { providers } from 'ethers'
+import { Trans, useTranslation } from 'react-i18next'
 import { useContributionStore, Store } from '../store/contribute'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 
@@ -28,6 +29,7 @@ declare global {
 }
 
 const DoubleSignPage = () => {
+  useTranslation()
   const { updateECDSASignature } = useContributionStore((state: Store) => ({
     entropy: state.entropy,
     updateECDSASignature: state.updateECDSASignature,
@@ -105,15 +107,21 @@ const DoubleSignPage = () => {
         <Wrap>
           <InnerWrap>
             <PageTitle>
-              Bind your <br /> Contribution
+              <Trans i18nKey="doubleSign.title">
+                Bind your <br /> Contribution
+              </Trans>
             </PageTitle>
             <TextSection>
-              <Description>
-              This signature binds each Summoner’s entropy contribution to their Ethereum address.
-              </Description>
+              <Trans i18nKey="doubleSign.description">
+                <Description>
+                This signature binds each Summoner’s entropy contribution to their Ethereum address.
+                </Description>
+              </Trans>
             </TextSection>
             <ButtonSection>
-              <PrimaryButton onClick={handleClickSign}>Sign</PrimaryButton>
+              <Trans i18nKey="doubleSign.button">
+                <PrimaryButton onClick={handleClickSign}>Sign</PrimaryButton>
+              </Trans>
             </ButtonSection>
           </InnerWrap>
         </Wrap>

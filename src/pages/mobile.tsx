@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { SingleContainer } from '../components/Layout'
 import Logo from '../components/Logo'
+import { Trans, useTranslation } from 'react-i18next'
 import EthLogoImg from '../assets/eth-logo-purple.svg'
 import { PageTitle, Description } from '../components/Text'
 import ROUTES from '../routes'
@@ -10,6 +11,7 @@ import { isMobile } from '../utils'
 import { FONT_SIZE } from '../constants'
 
 const MobilePage = () => {
+  useTranslation()
   const navigate = useNavigate()
 
   // check useragent and if user agent isn't mobile,
@@ -29,8 +31,10 @@ const MobilePage = () => {
       <Section>
         <EthLogo src={EthLogoImg} />
         <Desc>
+          <Trans i18nKey="mobile.description">
           Ceremony contributions are only possible in the desktop setting. See
           you there!
+          </Trans>
         </Desc>
       </Section>
     </Container>
