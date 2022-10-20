@@ -39,7 +39,7 @@ const EntropyInputPage = () => {
   )
   const handleSubmit = () => {
     if (percentage !== 100) return
-    saveGeneratedEntropy()
+    processGeneratedEntropy()
     if (provider === 'Ethereum') {
       navigate(ROUTES.DOUBLE_SIGN)
     } else {
@@ -56,7 +56,7 @@ const EntropyInputPage = () => {
     )
   }
 
-  const saveGeneratedEntropy = async () => {
+  const processGeneratedEntropy = async () => {
     const entropy = mouseEntropy + keyEntropy + randomBytes(32);
     const entropyAsArray = Uint8Array.from(entropy.split("").map(x => x.charCodeAt(0)))
     /*
