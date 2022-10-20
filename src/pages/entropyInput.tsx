@@ -1,4 +1,4 @@
-import { useState, MouseEventHandler, useEffect } from 'react'
+import { useState, MouseEventHandler, useEffect, ChangeEventHandler } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { PrimaryButton } from '../components/Button'
@@ -65,6 +65,10 @@ const EntropyInputPage = () => {
     }
   }
 
+  const handleCaptureKeyEntropy: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setKeyEntropy(`${keyEntropy}${e.target.value}${performance.now()}`)
+  }
+
   const processGeneratedEntropy = async () => {
     const entropy = mouseEntropy + keyEntropy + randomBytes(32);
     const entropyAsArray = Uint8Array.from(entropy.split("").map(x => x.charCodeAt(0)))
@@ -121,7 +125,7 @@ const EntropyInputPage = () => {
           </TextSection>
           <Input
             placeholder="Secret"
-            onChange={(e) => setKeyEntropy(e.target.value)}
+            onChange={handleCaptureKeyEntropy}
           />
 
           <ButtonSection>
