@@ -57,15 +57,22 @@ const EntropyInputPage = () => {
   }
 
   const saveGeneratedEntropy = async () => {
-    const entropy = mouseEntropy + keyEntropy;
+    const entropy = mouseEntropy + keyEntropy + randomBytes(32);
     const entropyAsArray = Uint8Array.from(entropy.split("").map(x => x.charCodeAt(0)))
+    /*
+    In order to reduce modulo-bias in the entropy (w.r.t. the curve order):
+    it is expanded out (and mixed) to at least 48 bytes before being reduced mod curve order.
+    This exact technique is the RECOMMENDED means of obtaining a ~uniformly random F_r element according to
+    the IRTF BLS signature specs: https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bls-signature-05#section-2.3
+    */
     const salt = randomBytes(32)
-    const hk1 = hkdf(sha256, entropyAsArray, salt, '', 48);
+    const expandedEntropy = hkdf(sha256, entropyAsArray, salt, '', 48);
 
-    const hex64 = hk1.reduce((str, byte) => str + byte.toString(16).padStart(2,'0'),'')
-    const big64 = BigInt('0x' + hex64)
-    const hex32 = (big64 % CURVE.r).toString(16).padStart(64, '0')
-    updateEntropy('0x' + hex32)
+    const hex96 = expandedEntropy.reduce((str, byte) => str + byte.toString(16).padStart(2,'0'),'')
+    const expandedEntropyInt = BigInt('0x' + hex96)
+    const secretInt = expandedEntropyInt % CURVE.r
+    const secretStr = '0x' + secretInt.toString(16).padStart(64, '0')
+    updateEntropy(secretStr)
   }
 
   useEffect(() => {
