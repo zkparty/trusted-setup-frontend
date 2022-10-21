@@ -8,7 +8,8 @@ import {
   Over,
   TextSection,
   Bg,
-  Img
+  Img,
+  OverRelative
 } from '../components/Layout'
 import { LOBBY_CHECKIN_FREQUENCY } from '../constants'
 import useTryContribute from '../hooks/useTryContribute'
@@ -67,35 +68,37 @@ const LobbyPage = () => {
   return (
     <>
       <HeaderJustGoingBack />
-      <Over>
-        <Container>
-          <Bg src={BgImg} />
+      <OverRelative>
+        <Over>
+          <Container>
+            <Bg src={BgImg} />
 
-          <PizzaImg visible={visible} rounding={rounding} src={PizzaInner} />
-          <PizzaImg visible={visible} rounding={rounding} src={PizzaOuter} />
-          <Img src={InnerColor} />
-          <Img src={OuterColor} />
-          <Img src={SnakeColor} />
-          <Wrap>
-            <InnerWrap>
-              <PageTitle>
-                Waiting to be
-                <br /> submitted
-              </PageTitle>
-              <TextSection>
-                <Description>
-                  Your contribution is ready to be accepted by the Sequencer.
-                  Please leave this guide open in the background and we will add
-                  your contribution to the others soon.
-                </Description>
-                <Description>
-                  Please leave this guide open and awake.
-                </Description>
-              </TextSection>
-            </InnerWrap>
-          </Wrap>
-        </Container>
-      </Over>
+            <PizzaImg visible={visible} rounding={rounding} src={PizzaInner} />
+            <PizzaImg visible={visible} rounding={rounding} src={PizzaOuter} />
+            <Img src={InnerColor} />
+            <Img src={OuterColor} />
+            <Img src={SnakeColor} />
+            <Wrap>
+              <InnerWrap>
+                <PageTitle>
+                  Waiting to be
+                  <br /> submitted
+                </PageTitle>
+                <TextSection>
+                  <Description>
+                    Your contribution is ready to be accepted by the Sequencer.
+                    Please leave this guide open in the background and we will
+                    add your contribution to the others soon.
+                  </Description>
+                  <Description>
+                    Please leave this guide open and awake.
+                  </Description>
+                </TextSection>
+              </InnerWrap>
+            </Wrap>
+          </Container>
+        </Over>
+      </OverRelative>
       <Explanation />
       <Footer />
     </>
