@@ -5,7 +5,18 @@ export const SingleContainer = styled.div`
   color: ${({ theme }) => theme.text};
   height: 100vh;
   width: 100vw;
+
+  transform: scale(0.85);
+`
+
+export const Over = styled.div`
+  height: 100vh;
+  width: 100vw;
+
+  min-height: 820px;
+  min-width: 960px;
   overflow: hidden;
+  position: absolute;
 `
 
 export const SingleWrap = styled.div`
@@ -35,7 +46,6 @@ export const SingleButtonSection = styled.div`
 `
 
 export const TextSection = styled.div`
-  text-align: center;
   width: 360px;
 `
 

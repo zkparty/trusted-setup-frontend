@@ -5,6 +5,7 @@ import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap,
+  Over,
   TextSection,
   Bg,
   Img
@@ -69,8 +70,9 @@ const LobbyPage = () => {
   return (
     <>
       <HeaderJustGoingBack />
-      <Container>
-        <Bg src={BgImg} />
+      <Over>
+        <Container>
+          <Bg src={BgImg} />
 
         <PizzaImg visible={visible} rounding={rounding} src={PizzaInner} />
         <PizzaImg visible={visible} rounding={rounding} src={PizzaOuter} />
@@ -97,6 +99,7 @@ const LobbyPage = () => {
           </InnerWrap>
         </Wrap>
       </Container>
+      </Over>
       <Explanation />
       <Footer />
     </>

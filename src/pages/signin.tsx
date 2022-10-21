@@ -3,49 +3,38 @@ import { PrimaryButton } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
-  SingleWrap as Wrap
+  SingleWrap as Wrap,
+  Over
 } from '../components/Layout'
 import EthImg from '../assets/eth.svg'
 import GithubImg from '../assets/github.svg'
-import { useNavigate } from 'react-router-dom'
-import ROUTES from '../routes'
-import useAuthenticate from '../hooks/useAuthenticate'
 import { useAuthStore } from '../store/auth'
-import { SERVER_ERROR } from '../constants'
 import BgImg from '../assets/img-graphic-base.svg'
 import InnerWhite from '../assets/inner-white.svg'
 import SnakeWhite from '../assets/snake-white.svg'
 import OuterWhite from '../assets/outer-white.svg'
 import { Trans, useTranslation } from 'react-i18next'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
+import api from '../api'
 
 const SigninPage = () => {
-  useTranslation()
-  const { signinGithub, signinSIE } = useAuthenticate()
-  const { error } = useAuthStore()
+useTranslation()
+const { error } = useAuthStore()
 
-  const navigate = useNavigate()
   const onSigninSIE = async () => {
-    const result = await signinSIE()
-    if (result) {
-      navigate(ROUTES.ENTROPY_INPUT)
-    } else if (error === SERVER_ERROR.LOBBY_IS_FULL) {
-      navigate(ROUTES.LOBBY_FULL)
-    }
+    const requestLinks = await api.getRequestLink()
+    window.location.replace(requestLinks.eth_auth_url)
   }
 
   const onSigninGithub = async () => {
-    const result = await signinGithub()
-    if (result) {
-      navigate(ROUTES.ENTROPY_INPUT)
-    } else if (error === SERVER_ERROR.LOBBY_IS_FULL) {
-      navigate(ROUTES.LOBBY_FULL)
-    }
+    const requestLinks = await api.getRequestLink()
+    window.location.replace(requestLinks.github_auth_url)
   }
 
   return (
     <>
       <HeaderJustGoingBack />
+      <Over>
       <Container>
         <Bg src={BgImg} />
         <Img src={InnerWhite} />
@@ -88,6 +77,7 @@ const SigninPage = () => {
           </ButtonSection>
         </Wrap>
       </Container>
+      </Over>
     </>
   )
 }

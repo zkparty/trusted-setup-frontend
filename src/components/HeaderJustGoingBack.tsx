@@ -15,7 +15,6 @@ const HeaderJustGoingBack = () => {
     <Container>
       <LeftSection onClick={() => navigate(ROUTES.ROOT)}>
         <img src={LeftArrow} alt="go back" />
-
       </LeftSection>
       <LanguageSelector></LanguageSelector>
       <CenterSection>
@@ -47,7 +46,7 @@ const LeftSection = styled.div`
 
 const CenterSection = styled.div`
   display: flex;
-  color: #3E70BC;
+  color: #3e70bc;
   align-items: start;
   font-size: ${FONT_SIZE.XXL};
   ${textSerif}

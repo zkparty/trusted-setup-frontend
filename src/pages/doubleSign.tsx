@@ -4,12 +4,12 @@ import { PrimaryButton } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
+  Over,
   SingleWrap as Wrap,
   Bg,
   Img,
   TextSection
 } from '../components/Layout'
-import wasm from '../wasm'
 import ROUTES from '../routes'
 import { blsSignId } from '../utils'
 import { useAuthStore } from '../store/auth'
@@ -99,6 +99,7 @@ const DoubleSignPage = () => {
   return (
     <>
       <HeaderJustGoingBack />
+      <Over>
       <Container>
         <Bg src={BgImg} />
         <Img src={InnerColor} />
@@ -126,6 +127,7 @@ const DoubleSignPage = () => {
           </InnerWrap>
         </Wrap>
       </Container>
+      </Over>
     </>
   )
 }

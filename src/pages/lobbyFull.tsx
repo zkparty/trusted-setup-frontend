@@ -5,6 +5,7 @@ import { PrimaryButtonLarge } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
+  Over,
   SingleWrap as Wrap
 } from '../components/Layout'
 import Logo from '../components/Logo'
@@ -15,6 +16,7 @@ const LobbyFullPage = () => {
   const navigate = useNavigate()
 
   return (
+    <Over>
     <Container>
       <Wrap>
         <Logo />
@@ -23,7 +25,7 @@ const LobbyFullPage = () => {
             Sum of the parts.
           </Trans>
         </Title>
-        <Trans i18nKey="lobbyFull.description2">
+        <Trans i18nKey="lobbyFull.description">
           <Desc>
           Please leave this guide open in the background -
           your contribution will be collected soon.
@@ -46,6 +48,7 @@ const LobbyFullPage = () => {
         </ButtonSection>
       </Wrap>
     </Container>
+    </Over>
   )
 }
 

@@ -7,11 +7,11 @@ import { useContributionStore, Store } from '../store/contribute'
 import wasm from '../wasm'
 import {
   SingleContainer as Container,
-  SingleWrap as Wrap
+  SingleWrap as Wrap,
+  Over
 } from '../components/Layout'
 import PizzaInner from '../assets/crust.svg'
 import PizzaOuter from '../assets/fig.svg'
-import BgImg from '../assets/img-graphic-base.svg'
 import BgImgColor from '../assets/img-base-color.svg'
 import InnerColor from '../assets/inner-color.svg'
 import SnakeColor from '../assets/snake-color.svg'
@@ -20,15 +20,20 @@ import { Trans, useTranslation } from 'react-i18next'
 
 const CompletePage = () => {
   useTranslation()
-  const { contribution, newContribution } = useContributionStore((state: Store) => ({
-    contribution: state.contribution,
-    newContribution: state.newContribution,
-  }))
+  const { contribution, newContribution } = useContributionStore(
+    (state: Store) => ({
+      contribution: state.contribution,
+      newContribution: state.newContribution
+    })
+  )
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       // TODO: check is done automatically or user start checking?
-      const checks = await wasm.checkContributions(contribution!, newContribution!)
+      const checks = await wasm.checkContributions(
+        contribution!,
+        newContribution!
+      )
       console.log(checks)
     })()
   })
@@ -36,6 +41,7 @@ const CompletePage = () => {
   return (
     <>
       <Header />
+      <Over>
       <Container>
       <Bg src={BgImgColor} />
         <PizzaImg src={PizzaInner} />
@@ -73,6 +79,7 @@ const CompletePage = () => {
           </InnerWrap>
         </Wrap>
         </Container>
+      </Over>
     </>
   )
 }
