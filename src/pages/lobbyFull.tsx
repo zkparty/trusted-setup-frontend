@@ -4,6 +4,7 @@ import { PrimaryButtonLarge } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
+  Over,
   SingleWrap as Wrap
 } from '../components/Layout'
 import Logo from '../components/Logo'
@@ -13,29 +14,31 @@ const LobbyFullPage = () => {
   const navigate = useNavigate()
 
   return (
-    <Container>
-      <Wrap>
-        <Logo />
-        <Title>Sum of the parts.</Title>
-        <Desc>
-        Please leave this guide open in the background -
-        your contribution will be collected soon.
-        </Desc>
-        <Desc>
-        Many others are alongside you in this Ceremony -
-        your patience will be rewarded.
-        </Desc>
-        <ButtonSection>
-          <PrimaryButtonLarge
-            onClick={() => {
-              navigate(ROUTES.ROOT)
-            }}
-          >
-            Return to home
-          </PrimaryButtonLarge>
-        </ButtonSection>
-      </Wrap>
-    </Container>
+    <Over>
+      <Container>
+        <Wrap>
+          <Logo />
+          <Title>Sum of the parts.</Title>
+          <Desc>
+            Please leave this guide open in the background - your contribution
+            will be collected soon.
+          </Desc>
+          <Desc>
+            Many others are alongside you in this Ceremony - your patience will
+            be rewarded.
+          </Desc>
+          <ButtonSection>
+            <PrimaryButtonLarge
+              onClick={() => {
+                navigate(ROUTES.ROOT)
+              }}
+            >
+              Return to home
+            </PrimaryButtonLarge>
+          </ButtonSection>
+        </Wrap>
+      </Container>
+    </Over>
   )
 }
 

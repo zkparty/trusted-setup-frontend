@@ -6,7 +6,8 @@ import { Description, PageTitle } from '../components/Text'
 import { useContributionStore, Store } from '../store/contribute'
 import {
   SingleContainer as Container,
-  SingleWrap as Wrap
+  SingleWrap as Wrap,
+  Over
 } from '../components/Layout'
 import ROUTES from '../routes'
 import BgImg from '../assets/img-graphic-base.svg'
@@ -98,43 +99,44 @@ const EntropyInputPage = () => {
   return (
     <>
       <HeaderJustGoingBack />
-      <Container onMouseMove={handleCaptureMouseEntropy}>
-        <Bg src={BgImg} />
-        <SnakeProgress onSetPlayer={setPlayer} />
-        <Wrap>
-          <PageTitle>
-            Entropy <br /> Entry
-          </PageTitle>
-          <TextSection>
-            <Desc>
-            The Ceremony requires three random inputs from each Summoner.
-            </Desc>
-            <SubDesc>
-              <Bold>Secret:</Bold> A piece of you in text form, with random
-              characters added. A hope for the future, or the name of someone
-              dear.
-            </SubDesc>
-            <SubDesc>
-              <Bold>Sigil:</Bold> Trace some elements of the guide with
-              your cursor - the interface will capture your unique path.
-            </SubDesc>
-            <SubDesc>
-              <Bold>Sample:</Bold> Your browser will generate its own
-              randomness in the background.
-            </SubDesc>
-          </TextSection>
-          <Input
-            placeholder="Secret"
-            onChange={handleCaptureKeyEntropy}
-          />
-
-          <ButtonSection>
-            <PrimaryButton disabled={percentage !== 100} onClick={handleSubmit}>
-              Submit
-            </PrimaryButton>
-          </ButtonSection>
-        </Wrap>
-      </Container>
+      <Over>
+        <Container onMouseMove={handleCaptureMouseEntropy}>
+          <Bg src={BgImg} />
+          <SnakeProgress onSetPlayer={setPlayer} />
+          <Wrap>
+            <PageTitle>
+              Entropy <br /> Entry
+            </PageTitle>
+            <TextSection>
+              <Desc>
+              The Ceremony requires three random inputs from each Summoner.
+              </Desc>
+              <SubDesc>
+                <Bold>Secret:</Bold> A piece of you in text form, with random
+                characters added. A hope for the future, or the name of someone
+                dear.
+              </SubDesc>
+              <SubDesc>
+                <Bold>Sigil:</Bold> Trace some elements of the guide with
+                your cursor - the interface will capture your unique path.
+              </SubDesc>
+              <SubDesc>
+                <Bold>Sample:</Bold> Your browser will generate its own
+                randomness in the background.
+              </SubDesc>
+            </TextSection>
+            <Input
+              placeholder="Secret"
+              onChange={handleCaptureKeyEntropy}
+            />
+            <ButtonSection>
+              <PrimaryButton disabled={percentage !== 100} onClick={handleSubmit}>
+                Submit
+              </PrimaryButton>
+            </ButtonSection>
+          </Wrap>
+        </Container>
+      </Over>
     </>
   )
 }

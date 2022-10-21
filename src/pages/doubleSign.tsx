@@ -4,6 +4,7 @@ import { PrimaryButton } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
+  Over,
   SingleWrap as Wrap,
   Bg,
   Img,
@@ -97,27 +98,29 @@ const DoubleSignPage = () => {
   return (
     <>
       <HeaderJustGoingBack />
-      <Container>
-        <Bg src={BgImg} />
-        <Img src={InnerColor} />
-        <Img src={OuterWhite} />
-        <Img src={SnakeColor} />
-        <Wrap>
-          <InnerWrap>
-            <PageTitle>
-              Bind your <br /> Contribution
-            </PageTitle>
-            <TextSection>
-              <Description>
-              This signature binds each Summoner’s entropy contribution to their Ethereum address.
-              </Description>
-            </TextSection>
-            <ButtonSection>
-              <PrimaryButton onClick={handleClickSign}>Sign</PrimaryButton>
-            </ButtonSection>
-          </InnerWrap>
-        </Wrap>
-      </Container>
+      <Over>
+        <Container>
+          <Bg src={BgImg} />
+          <Img src={InnerColor} />
+          <Img src={OuterWhite} />
+          <Img src={SnakeColor} />
+          <Wrap>
+            <InnerWrap>
+              <PageTitle>
+                Bind your <br /> Contribution
+              </PageTitle>
+              <TextSection>
+                <Description>
+                This signature binds each Summoner’s entropy contribution to their Ethereum address.
+                </Description>
+              </TextSection>
+              <ButtonSection>
+                <PrimaryButton onClick={handleClickSign}>Sign</PrimaryButton>
+              </ButtonSection>
+            </InnerWrap>
+          </Wrap>
+        </Container>
+      </Over>
     </>
   )
 }

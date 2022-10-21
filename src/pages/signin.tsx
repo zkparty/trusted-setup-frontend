@@ -3,7 +3,8 @@ import { PrimaryButton } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
-  SingleWrap as Wrap
+  SingleWrap as Wrap,
+  Over
 } from '../components/Layout'
 import EthImg from '../assets/eth.svg'
 import GithubImg from '../assets/github.svg'
@@ -44,39 +45,44 @@ const SigninPage = () => {
   return (
     <>
       <HeaderJustGoingBack />
-      <Container>
-        <Bg src={BgImg} />
-        <Img src={InnerWhite} />
-        <Img src={OuterWhite} />
-        <Img src={SnakeWhite} />
-        <Wrap>
-          <PageTitle>
-            OPEN <br /> THE WAY
-          </PageTitle>
-          <TextSection>
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-            <Desc>
-            The Ceremony requires souls of pure intent.
-            Summoners show their integrity by unlocking with an address that
-            has at least three sent transactions.
-            </Desc>
-            <Desc>
-            It does not send any funds or permit any contracts.
-            This method also allows us to deliver a POAP after the Ceremony.
-            </Desc>
-          </TextSection>
+      <Over>
+        <Container>
+          <Bg src={BgImg} />
+          <Img src={InnerWhite} />
+          <Img src={OuterWhite} />
+          <Img src={SnakeWhite} />
+          <Wrap>
+            <PageTitle>
+              OPEN <br /> THE WAY
+            </PageTitle>
+            <TextSection>
+              {error && <ErrorMessage>{error}</ErrorMessage>}
+              <Desc>
+                The Ceremony requires souls of pure intent. Summoners show their
+                integrity by unlocking with an address that has at least three
+                sent transactions.
+              </Desc>
+              <Desc>
+                It does not send any funds or permit any contracts. This method
+                also allows us to deliver a POAP after the Ceremony.
+              </Desc>
+            </TextSection>
 
-          <ButtonSection>
-            <PrimaryButton onClick={onSigninSIE} style={{ width: '360px' }}>
-              Unlock with Ethereum <ButtonIcon src={EthImg} alt="ETH icon" />
-            </PrimaryButton>
-            <PrimaryButton onClick={onSigninGithub} style={{ width: '280px' }}>
-              Unlock with Github{' '}
-              <ButtonIcon src={GithubImg} alt="Github icon" />
-            </PrimaryButton>
-          </ButtonSection>
-        </Wrap>
-      </Container>
+            <ButtonSection>
+              <PrimaryButton onClick={onSigninSIE} style={{ width: '360px' }}>
+                Unlock with Ethereum <ButtonIcon src={EthImg} alt="ETH icon" />
+              </PrimaryButton>
+              <PrimaryButton
+                onClick={onSigninGithub}
+                style={{ width: '280px' }}
+              >
+                Unlock with Github{' '}
+                <ButtonIcon src={GithubImg} alt="Github icon" />
+              </PrimaryButton>
+            </ButtonSection>
+          </Wrap>
+        </Container>
+      </Over>
     </>
   )
 }
