@@ -1,4 +1,4 @@
-import { useState, MouseEventHandler, useEffect } from 'react'
+import { useState, MouseEventHandler, useEffect, ChangeEventHandler } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { PrimaryButton } from '../components/Button'
@@ -19,7 +19,7 @@ import { hkdf } from '@noble/hashes/hkdf'
 import { sha256 } from '@noble/hashes/sha256'
 import { randomBytes } from '@noble/hashes/utils'
 
-const MIN_ENTROPY_LENGTH = 2000
+const MIN_MOUSE_ENTROPY_SAMPLES = 64 // Chosen to target 128 bits of entropy, assuming 2 bits added per sample.
 
 type Player = {
   play: () => void
@@ -31,6 +31,9 @@ const EntropyInputPage = () => {
   const navigate = useNavigate()
   const [keyEntropy, setKeyEntropy] = useState('')
   const [mouseEntropy, setMouseEntropy] = useState('')
+  const [lastMouseEntropyUpdate, setLastMouseEntropyUpdate] = useState(0)
+  const [mouseEntropyRandomOffset, setMouseEntropyRandomOffset] = useState(0)
+  const [mouseEntropySamples, setMouseEntropySamples] = useState(0)
   const [percentage, setPercentage] = useState(0)
   const [player, setPlayer] = useState<Player | null>(null)
   const { provider } = useAuthStore()
@@ -40,7 +43,7 @@ const EntropyInputPage = () => {
   )
   const handleSubmit = () => {
     if (percentage !== 100) return
-    saveGeneratedEntropy()
+    processGeneratedEntropy()
     if (provider === 'Ethereum') {
       navigate(ROUTES.DOUBLE_SIGN)
     } else {
@@ -48,33 +51,47 @@ const EntropyInputPage = () => {
     }
   }
 
+
   const handleCaptureMouseEntropy: MouseEventHandler<HTMLDivElement> = (e) => {
-    const d = new Date()
-    setMouseEntropy(
-      `${mouseEntropy}${e.movementX}${e.movementY}${e.screenX}${
-        e.screenY
-      }${d.getTime()}`
-    )
+    /*
+    Mouse entropy is based off of recording the position and precise timing of mouse movements.
+    Entropy is only collected every ~128 ms to help reduce correlated mouse locations. The precise period is sampled
+    from ~ U[0, 255] to increase sample periodicity variance.
+    performance.now() is used for timestamps due to its sub-millisecond resolution in some browsers.
+    */
+    if (performance.now() - lastMouseEntropyUpdate > mouseEntropyRandomOffset) {
+      setLastMouseEntropyUpdate(performance.now())
+      setMouseEntropyRandomOffset(randomBytes(1)[0])
+      setMouseEntropySamples(mouseEntropySamples + 1)
+      setMouseEntropy(`${mouseEntropy}${e.movementX}${e.movementY}${e.screenX}${e.screenY}${performance.now()}`)
+    }
   }
 
-  const saveGeneratedEntropy = async () => {
-    const entropy = mouseEntropy + keyEntropy;
-    const entropyAsArray = Uint8Array.from(entropy.split("").map(x => x.charCodeAt(0)))
-    const salt = randomBytes(32)
-    const hk1 = hkdf(sha256, entropyAsArray, salt, '', 48);
+  const handleCaptureKeyEntropy: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setKeyEntropy(`${keyEntropy}${e.target.value}${performance.now()}`)
+  }
 
-    const hex64 = hk1.reduce((str, byte) => str + byte.toString(16).padStart(2,'0'),'')
-    const big64 = BigInt('0x' + hex64)
-    const hex32 = (big64 % CURVE.r).toString(16).padStart(64, '0')
-    updateEntropy('0x' + hex32)
+  const processGeneratedEntropy = async () => {
+    const entropy = mouseEntropy + keyEntropy + randomBytes(32);
+    const entropyAsArray = Uint8Array.from(entropy.split("").map(x => x.charCodeAt(0)))
+    /*
+    In order to reduce modulo-bias in the entropy (w.r.t. the curve order):
+    it is expanded out (and mixed) to at least 48 bytes before being reduced mod curve order.
+    This exact technique is the RECOMMENDED means of obtaining a ~uniformly random F_r element according to
+    the IRTF BLS signature specs: https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bls-signature-05#section-2.3
+    */
+    const salt = randomBytes(32)
+    const expandedEntropy = hkdf(sha256, entropyAsArray, salt, '', 48);
+
+    const hex96 = expandedEntropy.reduce((str, byte) => str + byte.toString(16).padStart(2,'0'),'')
+    const expandedEntropyInt = BigInt('0x' + hex96)
+    const secretInt = expandedEntropyInt % CURVE.r
+    const secretHex = '0x' + secretInt.toString(16).padStart(64, '0')
+    updateEntropy(secretHex)
   }
 
   useEffect(() => {
-    const percentage = Math.min(
-      Math.floor((mouseEntropy.length / MIN_ENTROPY_LENGTH) * 1000) / 10,
-      100
-    )
-
+    const percentage = Math.min(Math.floor((mouseEntropySamples / MIN_MOUSE_ENTROPY_SAMPLES) * 100), 100)
     setPercentage(percentage)
     if (player) player.seek(percentage)
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -111,9 +128,8 @@ const EntropyInputPage = () => {
             </TextSection>
             <Input
               placeholder="Secret"
-              onChange={(e) => setKeyEntropy(e.target.value)}
+              onChange={handleCaptureKeyEntropy}
             />
-
             <ButtonSection>
               <PrimaryButton disabled={percentage !== 100} onClick={handleSubmit}>
                 Submit
