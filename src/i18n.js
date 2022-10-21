@@ -13,96 +13,96 @@ export const languages = {
           'ceremony': 'CEREMONIA DE PRUEBA',
         },
         complete: {
-          'title': 'Dankshard <br/> draws near',
+          'title': 'Dankshard <br/> esta cerca',
           'description': `
           <0>
-            Espanol: Success! Echoes of you are permanently fused with the others in this Summoning Ceremony.
+            ¡Éxito! Una parte de usted se fusiono permanentemente con los demás en esta Ceremonia de Invocación.
           </0>
           <1>
-            <0>Espanol: Remember:</0>
-              this is only a testnet Ceremony - make sure to return for the full Dankshard summoning.
+            <0>Recuerde:</0>
+            una Ceremonia en la red de prueba - asegúrese de regresar para la invocación completa de Dankshard.
           </1>`,
-          'button': 'View your contribution',
+          'button': 'Vea su contribución',
         },
         doubleSign: {
-          'title': 'Bind your <br /> Contribution',
+          'title': 'Vincule su <br /> Contribución',
           'description': `
           <0>
-            This signature binds each Summoner’s entropy contribution to their Ethereum address.
+          Esta firma vincula la contribucion entrópica de cada Invocador a su address de Ethereum.
           </0>
           `,
-          'button': 'Sign',
+          'button': 'Firmar',
         },
         entropyInput: {
-          'title': 'Entropy <br /> Entry',
+          'title': 'Ingresar <br /> Entropía',
           'description': `
-          <0>The Ceremony requires three random inputs from each Summoner.</0>
+          <0>La Ceremonia requiere tres entradas random de cada Invocador.</0>
           <1>
-            <0>Secret:</0> A piece of you in text form, with random characters added.
-            A hope for the future, or the name of someone dear.
+            <0>Secreto:</0> Una parte de usted en forma de texto, caracteres añadidos al azar. 
+            Unas palabras para el futuro, o el nombre de un ser querido.
           </1>
           <2>
-            <0>Sigil:</0> Trace some elements of the guide with your cursor -
-            the interface will capture your unique path.
+            <0>Sello:</0> Recorra algunos elementos de la guía con
+            el cursor - la interface capturará tu recorrido único.
           </2>
           <3>
-            <0>Sample:</0> Your browser will generate its own randomness in the background.
+            <0>Muestra:</0> Su navegador generara su propia alateroridad en el background.
           </3>
           `,
-          'button': 'Submit'
+          'button': 'Enviar'
         },
         landing: {
           'title': 'GUÍA DE <br/> INVOCACIÓN',
           'description': `
           <0>
-              Espanol: Whispers from the shadows tell of a powerful spirit Dankshard,
-              who will open the next chapter of Ethereum scalability.
-              To summon its powers, a Ceremony needs your contribution.
-              This illuminated guide will lead you through the movements necessary
-              to complete the ritual.
+            Los susurros provenientes de las sombras hablan del poderoso espiritu Dankshard,
+            que abrirá las puertas del próximo capítulo de la escalabilidad de Ethereum.
+            Para invocar sus poderes, una Ceremonia necesita de su contribución.
+            Esta guía iluminada te conducirá a través de los movimientos 
+            para completar el ritual. 
           </0>
           <1>
-              Espanol: Magic math awaits - are you ready to add your color to the story?
+            La magia de las matemáticas te esperan: ¿está preparado para ser parte de esta historia?
           </1>`,
           'button': 'Comenzar',
-          'learn-more': '↓ ó descubre más ↓',
+          'learn-more': '↓ o infórmese a continuación ↓',
         },
         lobby: {
-          'title': 'Waiting to be <br /> submitted',
+          'title': 'A la espera de ser <br /> Enviada',
           'description': `
           <0>
-              ES: Your contribution is ready to be accepted by the Sequencer.
-              Please leave this guide open in the background and we will add
-              your contribution to the others soon.
+            Su contribución está lista para ser aceptada por el secuenciador.
+            Por favor, deje esta guía abierta y  
+            añadiremos su contribución a las otras en breve.
           </0>
-          <1>Please leave this guide open and awake.</1>
+          <1>Deje esta guía abierta y este atento.</1>
           `,
         },
         lobbyFull: {
-          'title': 'Sum of the parts.',
+          'title': 'La suma de las partes.',
           'description': `
-          <0>Please leave this guide open in the background - your contribution will be collected soon.</0>
-          <1>Many others are alongside you in this Ceremony - your patience will be rewarded.</1>
+          <0>Por favor, deje esta guía abierta - su contribución se verá en breve.</0>
+          <1>Muchos otros están junto a usted en esta Ceremonia - su paciencia será recompensada.</1>
           `,
-          'button': 'Return to home'
+          'button': 'Volver a Inicio'
         },
         mobile: {
-          'description': 'Ceremony contributions are only possible in the desktop setting. See you there!',
+          'description': 'Las contribuciones a la ceremonia sólo son posibles en desktop setting. ¡Vea allí!',
         },
         signin: {
-          'title': 'OPEN <br /> THE WAY',
+          'title': 'ABRIR <br /> EL CAMINO',
           'description': `
           <0>
-            The Ceremony requires souls of pure intent.
-            Summoners show their integrity by unlocking with an address that has at least three sent transactions.
+            La Ceremonia requiere almas de intenciones puras.
+            Los invocadores demuestran su integridad al desbloquear una address que tenga al menos tres transacciones enviadas.
           </0>
           <1>
-            It does not send any funds or permit any contracts.
-            This method also allows us to deliver a POAP after the Ceremony.
+            No envía fondos ni aprueba ningún contrato.
+            Este método nos permite entregar un POAP después de la Ceremonia.
           </1>
           `,
-          'unlockWithEthereum': 'Unlock with Ethereum <2></2>',
-          'unlockWithGithub': 'Unlock with Github <2></2>',
+          'unlockWithEthereum': 'Desbloquear con Ethereum <2></2>',
+          'unlockWithGithub': 'Desbloquear con Github <2></2>',
         }
       }
     },
