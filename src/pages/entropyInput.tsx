@@ -32,6 +32,7 @@ const EntropyInputPage = () => {
   const [keyEntropy, setKeyEntropy] = useState('')
   const [mouseEntropy, setMouseEntropy] = useState('')
   const [lastMouseEntropyUpdate, setLastMouseEntropyUpdate] = useState(0)
+  const [mouseEntropyRandomOffset, setMouseEntropyRandomOffset] = useState(0)
   const [mouseEntropySamples, setMouseEntropySamples] = useState(0)
   const [percentage, setPercentage] = useState(0)
   const [player, setPlayer] = useState<Player | null>(null)
@@ -58,9 +59,9 @@ const EntropyInputPage = () => {
     from ~ U[0, 255] to increase sample periodicity variance.
     performance.now() is used for timestamps due to its sub-millisecond resolution in some browsers.
     */
-   const randOffset = randomBytes(1)[0]
-    if (performance.now() - lastMouseEntropyUpdate > randOffset) {
+    if (performance.now() - lastMouseEntropyUpdate > mouseEntropyRandomOffset) {
       setLastMouseEntropyUpdate(performance.now())
+      setMouseEntropyRandomOffset(randomBytes(1)[0])
       setMouseEntropySamples(mouseEntropySamples + 1)
       setMouseEntropy(`${mouseEntropy}${e.movementX}${e.movementY}${e.screenX}${e.screenY}${performance.now()}`)
     }
