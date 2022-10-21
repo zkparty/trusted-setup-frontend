@@ -15,6 +15,7 @@ import {
   SingleContainer as Container,
   SingleWrap as Wrap,
   Over,
+  OverRelative,
   TextSection,
   Bg,
   Img
@@ -95,103 +96,108 @@ const ContributingPage = () => {
   return (
     <>
       <HeaderJustGoingBack />
-      <Over>
-        <ContainerR complete={step === 'completed'}>
-          <Bg src={BgImg} />
-          <BgPulse src={BgImgPulse} />
-          <BgC src={BgImgColor} visible={step === 'completed'} />
-          <PizzaImg visible rounding={false} src={PizzaInner} />
-          <PizzaImg visible rounding={false} src={PizzaOuter} />
-          <Img src={InnerColor} />
-          <Img src={OuterColor} />
-          <Img src={SnakeColor} />
+      <OverRelative>
+        <Over>
+          <ContainerR complete={step === 'completed'}>
+            <Bg src={BgImg} />
+            <BgPulse src={BgImgPulse} />
+            <BgC src={BgImgColor} visible={step === 'completed'} />
+            <PizzaImg visible rounding={false} src={PizzaInner} />
+            <PizzaImg visible rounding={false} src={PizzaOuter} />
+            <Img src={InnerColor} />
+            <Img src={OuterColor} />
+            <Img src={SnakeColor} />
 
-          <Wrap>
-            <InnerWrap>
-              {step === 'downloading' ? (
-                <PageTitle>
-                  Spell
-                  <br />
-                  Activation
-                </PageTitle>
-              ) : step === 'calculating' ? (
-                <PageTitle>
-                  Spell
-                  <br />
-                  Activation
-                </PageTitle>
-              ) : step === 'contributing' ? (
-                <PageTitle>
-                  You have been
-                  <br />
-                  called upon
-                  <br />
-                  Now
-                </PageTitle>
-              ) : step === 'completed' ? (
-                <PageTitle>
-                  Contribution
-                  <br />
-                  Complete
-                </PageTitle>
-              ) : (
-                <PageTitle>
-                  Something
-                  <br />
-                  Went
-                  <br />
-                  Wrong
-                </PageTitle>
-              )}
-              <TextSection>
+            <Wrap>
+              <InnerWrap>
                 {step === 'downloading' ? (
-                  <>
-                    <Description>
-                      Your contribution has been accepted by the Sequencer. It
-                      will be cast, and then combined with the others.
-                    </Description>
-                    <Description>
-                      Getting the original contribution...
-                    </Description>
-                  </>
+                  <PageTitle>
+                    Spell
+                    <br />
+                    Activation
+                  </PageTitle>
                 ) : step === 'calculating' ? (
-                  <>
-                    <Description>
-                      The browser is using your random inputs to calculate
-                      something.
-                    </Description>
-                    <Description>
-                      Updating & producing the new contribution...
-                    </Description>
-                  </>
+                  <PageTitle>
+                    Spell
+                    <br />
+                    Activation
+                  </PageTitle>
                 ) : step === 'contributing' ? (
-                  <>
-                    <Description>
-                      You are now entrusted with the Powers of Tau.
-                      Your Secret, Sigil, and Sample are being fused with those that came before.
-                    </Description>
-                    <Description>
-                    Rituals cannot be hastened - time given here creates timeless artifacts.
-                    </Description>
-                  </>
+                  <PageTitle>
+                    You have been
+                    <br />
+                    called upon
+                    <br />
+                    Now
+                  </PageTitle>
                 ) : step === 'completed' ? (
-                  <Description>
-                    You have just succesfully complete the contribution. Don’t
-                    forget to return for the summoning ending & spread the words.
-                  </Description>
+                  <PageTitle>
+                    Contribution
+                    <br />
+                    Complete
+                  </PageTitle>
                 ) : (
-                  <Description>
-                    There was an error {error}. Reload and try again
-                  </Description>
+                  <PageTitle>
+                    Something
+                    <br />
+                    Went
+                    <br />
+                    Wrong
+                  </PageTitle>
                 )}
-              </TextSection>
-              {step === 'completed' && (
-                <PrimaryButton>View my contribution</PrimaryButton>
-              )}
-            </InnerWrap>
-          </Wrap>
-        </ContainerR>
-      </Over>
+                <TextSection>
+                  {step === 'downloading' ? (
+                    <>
+                      <Description>
+                        Your contribution has been accepted by the Sequencer. It
+                        will be cast, and then combined with the others.
+                      </Description>
+                      <Description>
+                        Getting the original contribution...
+                      </Description>
+                    </>
+                  ) : step === 'calculating' ? (
+                    <>
+                      <Description>
+                        The browser is using your random inputs to calculate
+                        something.
+                      </Description>
+                      <Description>
+                        Updating & producing the new contribution...
+                      </Description>
+                    </>
+                  ) : step === 'contributing' ? (
+                    <>
+                      <Description>
+                        You are now entrusted with the Powers of Tau. Your
+                        Secret, Sigil, and Sample are being fused with those
+                        that came before.
+                      </Description>
+                      <Description>
+                        Rituals cannot be hastened - time given here creates
+                        timeless artifacts.
+                      </Description>
+                    </>
+                  ) : step === 'completed' ? (
+                    <Description>
+                      You have just succesfully complete the contribution. Don’t
+                      forget to return for the summoning ending & spread the
+                      words.
+                    </Description>
+                  ) : (
+                    <Description>
+                      There was an error {error}. Reload and try again
+                    </Description>
+                  )}
+                </TextSection>
+                {step === 'completed' && (
+                  <PrimaryButton>View my contribution</PrimaryButton>
+                )}
+              </InnerWrap>
+            </Wrap>
+          </ContainerR>
+        </Over>
+      </OverRelative>
       <Explanation />
       <Footer />
     </>
