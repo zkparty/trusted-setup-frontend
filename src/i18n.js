@@ -16,11 +16,11 @@ export const languages = {
           'title': 'Dankshard <br/> esta cerca',
           'description': `
           <0>
-            ¡Éxito! Una parte de usted se fusiono permanentemente con los demás en esta Ceremonia de Invocación.
+            ¡Éxito! Una parte de usted se fusionó permanentemente con los demás en esta Ceremonia de Invocación.
           </0>
           <1>
             <0>Recuerde:</0>
-            una Ceremonia en la red de prueba - asegúrese de regresar para la invocación completa de Dankshard.
+            Esta es una Ceremonia en la red de prueba - asegúrese de regresar para la invocación completa de Dankshard.
           </1>`,
           'button': 'Vea su contribución',
         },
@@ -28,7 +28,7 @@ export const languages = {
           'title': 'Vincule su <br /> Contribución',
           'description': `
           <0>
-          Esta firma vincula la contribucion entrópica de cada Invocador a su address de Ethereum.
+          Esta firma vincula la contribución entrópica de cada Invocador a su dirección de Ethereum.
           </0>
           `,
           'button': 'Firmar',
@@ -36,17 +36,17 @@ export const languages = {
         entropyInput: {
           'title': 'Ingresar <br /> Entropía',
           'description': `
-          <0>La Ceremonia requiere tres entradas random de cada Invocador.</0>
+          <0>La Ceremonia requiere tres entradas aleatorias de cada Invocador.</0>
           <1>
-            <0>Secreto:</0> Una parte de usted en forma de texto, caracteres añadidos al azar. 
-            Unas palabras para el futuro, o el nombre de un ser querido.
+            <0>Secreto:</0> Una parte de usted en forma de texto, caracteres añadidos al azar. Pueden ser
+            unas palabras para el futuro, o el nombre de un ser querido.
           </1>
           <2>
             <0>Sello:</0> Recorra algunos elementos de la guía con
             el cursor - la interface capturará tu recorrido único.
           </2>
           <3>
-            <0>Muestra:</0> Su navegador generara su propia alateroridad en el background.
+            <0>Muestra:</0> Su navegador generara su propia aleatoriedad en segundo plano.
           </3>
           `,
           'button': 'Enviar'
@@ -58,8 +58,8 @@ export const languages = {
             Los susurros provenientes de las sombras hablan del poderoso espiritu Dankshard,
             que abrirá las puertas del próximo capítulo de la escalabilidad de Ethereum.
             Para invocar sus poderes, una Ceremonia necesita de su contribución.
-            Esta guía iluminada te conducirá a través de los movimientos 
-            para completar el ritual. 
+            Esta guía iluminada te conducirá a través de los movimientos
+            para completar el ritual.
           </0>
           <1>
             La magia de las matemáticas te esperan: ¿está preparado para ser parte de esta historia?
@@ -67,12 +67,41 @@ export const languages = {
           'button': 'Comenzar',
           'learn-more': '↓ o infórmese a continuación ↓',
         },
+        explanation: {
+          'title': 'PROTO-DANKSHARDING <br /> Y LA CEREMONIA',
+          'description': `
+          <0>
+            Esta configuracion de confianza es una Ceremonia multi-party diseñada para generar una
+            SRS segura (structured reference string ó cadena de referencia estructurada) que se utilizará en el
+            protocolo proto-danksharding. OK, vamos a ir más despacio y a hablar de estos términos con más detalle.
+          </0>
+          <1>
+            Proto-danksharding (también conocido como EIP-4844) es un cambio previsto en el protocolo de Ethereum
+            que permite que los datos de las transacciones de los rollups (Layer 2) sean
+            sucintamente representados en la Layer 1 (mainnet). Los beneficios
+            son fees de transacción más bajos en la L2, mayor escalabilidad y
+            ¡más accesibilidad a más personas!
+          </1>
+          <2>
+            La configuración de confianza es un paso preparatorio necesario para ciertos esquemas criptográficos como
+            el esquema de compromiso polinomial KZG, que ser[a] utilizado en el proto-danksharding. En nuestro caso,
+            el sujeto de confianza es un contribuyente que necesita ocultar con éxito su secreto para
+            para que el resultado sea seguro.
+          </2>
+          <3>
+            En un Ceremonia multi-party: cada uno de los contribuyentes crea un secreto y ejecuta
+            un cálculo para mezclarlo con las contribuciones anteriores y generar un
+            resultado que se puede hacer público y pasar al siguiente contribuyente.
+            Necesitamos protegernos contra los intentos de sabotear la ceremonia, por lo que necesitarás
+            una cuenta de Ethereum o GitHub con un historial establecido.
+          </3>`
+        },
         lobby: {
           'title': 'A la espera de ser <br /> Enviada',
           'description': `
           <0>
             Su contribución está lista para ser aceptada por el secuenciador.
-            Por favor, deje esta guía abierta y  
+            Por favor, deje esta guía abierta y
             añadiremos su contribución a las otras en breve.
           </0>
           <1>Deje esta guía abierta y este atento.</1>
@@ -87,17 +116,17 @@ export const languages = {
           'button': 'Volver a Inicio'
         },
         mobile: {
-          'description': 'Las contribuciones a la ceremonia sólo son posibles en desktop setting. ¡Vea allí!',
+          'description': 'Las contribuciones a la ceremonia sólo son posibles en ambiente de escritorio. ¡Nos vemos ahí!',
         },
         signin: {
           'title': 'ABRIR <br /> EL CAMINO',
           'description': `
           <0>
             La Ceremonia requiere almas de intenciones puras.
-            Los invocadores demuestran su integridad al desbloquear una address que tenga al menos tres transacciones enviadas.
+            Los invocadores demuestran su integridad al desbloquear una dirección que tenga al menos tres transacciones enviadas.
           </0>
           <1>
-            No envía fondos ni aprueba ningún contrato.
+            Esto no envía fondos ni aprueba ningún contrato.
             Este método nos permite entregar un POAP después de la Ceremonia.
           </1>
           `,
