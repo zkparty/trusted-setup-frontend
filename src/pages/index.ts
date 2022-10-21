@@ -10,7 +10,7 @@ import RecordPage from './record'
 import DoubleSignPage from './doubleSign'
 import GatePage from './gate'
 import MobilePage from './mobile'
-import RedirectPopup from './redirectPopup'
+import SigninRedirectPage from './signinRedirect'
 
 export {
   HomePage,
@@ -25,5 +25,5 @@ export {
   RecordPage,
   GatePage,
   MobilePage,
-  RedirectPopup
+  SigninRedirectPage
 }

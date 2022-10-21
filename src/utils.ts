@@ -1,7 +1,8 @@
 import ROUTES from './routes'
 import { ErrorRes } from './types'
 import { sign } from '@noble/bls12-381'
-import {Buffer} from 'buffer';
+import { Buffer } from 'buffer'
+import { OAuthRes } from './store/auth'
 
 // check if user agent is mobile device
 export function isMobile(): boolean {
@@ -90,7 +91,7 @@ export async function sha256(message: string) {
   // convert ArrayBuffer to Array
   const hashArray = Array.from(new Uint8Array(hashBuffer))
   // convert bytes to hex string
-  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
+  const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
   return hashHex
 }
 
@@ -101,25 +102,45 @@ export async function sha256(message: string) {
   i.e. eth|0xb1ab1af00.... for ethereum signin,
   or git|123456|@handle for github signin.
 */
-export async function blsSignId(secret: string, provider: string, id: string): Promise<string> {
-  if (secret.substring(0,2) === '0x') secret = secret.substring(2,);
+export async function blsSignId(
+  secret: string,
+  provider: string,
+  id: string
+): Promise<string> {
+  if (secret.substring(0, 2) === '0x') secret = secret.substring(2)
 
-  let identity = '';
+  let identity = ''
   switch (provider) {
     case 'Ethereum':
-      if (id.substring(0,2) !== '0x') id = '0x' + id;
-      identity = 'eth|' + id;
-      break;
+      if (id.substring(0, 2) !== '0x') id = '0x' + id
+      identity = 'eth|' + id
+      break
     case 'github':
-      if (id.substring(0,1) === '@') id = id.substring(1,);
-      const githubRes = await fetch(`https://api.github.com/users/${id}`).then(_res => _res.json());
-      identity = 'git|' + githubRes.id + '|@' + id;
-      break;
+      if (id.substring(0, 1) === '@') id = id.substring(1)
+      const githubRes = await fetch(`https://api.github.com/users/${id}`).then(
+        (_res) => _res.json()
+      )
+      identity = 'git|' + githubRes.id + '|@' + id
+      break
     default:
-      break;
+      break
   }
 
-  const identityAsArray = Uint8Array.from(identity.split("").map(x => x.charCodeAt(0)));
-  const sig = await sign(identityAsArray, secret);
-  return Buffer.from(sig).toString('hex');
+  const identityAsArray = Uint8Array.from(
+    identity.split('').map((x) => x.charCodeAt(0))
+  )
+  const sig = await sign(identityAsArray, secret)
+  return Buffer.from(sig).toString('hex')
+}
+
+export function validateSigninParams(params: {
+  [key: string]: string
+}): params is OAuthRes {
+  return (
+    !!params.exp &&
+    !!params.nickname &&
+    !!params.provider &&
+    !!params.session_id &&
+    !!params.sub
+  )
 }

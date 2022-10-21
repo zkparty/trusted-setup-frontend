@@ -12,7 +12,7 @@ import {
   RecordPage,
   GatePage,
   MobilePage,
-  RedirectPopup
+  SigninRedirectPage
 } from './pages'
 import RequireAuth from './components/helper/RequireAuth'
 import ROUTES from './routes'
@@ -80,7 +80,7 @@ function App() {
           </Route>
           <Route path={ROUTES.RECORD} element={<RecordPage />} />
           <Route path={ROUTES.GATE} element={<GatePage />} />
-          <Route path={ROUTES.REDIRECT} element={<RedirectPopup />} />
+          <Route path={ROUTES.REDIRECT} element={<SigninRedirectPage />} />
         </Routes>
       </BrowserRouter>
     </>
