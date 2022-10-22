@@ -57,6 +57,8 @@ const LobbyPage = () => {
         updateContribution(JSON.stringify(res))
         navigate(ROUTES.CONTRIBUTING)
       } else {
+        // TODO: get http status code from response
+        // TODO: check which code you are receiving
         //  try again after LOBBY_CHECKIN_FREUQUENCY
         await sleep(LOBBY_CHECKIN_FREQUENCY)
         return await poll()

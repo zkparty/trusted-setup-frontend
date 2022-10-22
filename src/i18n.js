@@ -138,7 +138,6 @@ export const languages = {
 };
 
 i18next.use(initReactI18next).init({
-    debug: true,
     fallbackLng: 'en',
     resources: languages
 })
