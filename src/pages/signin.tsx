@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import ErrorMessage from '../components/Error'
 import { PrimaryButton } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
@@ -121,11 +122,6 @@ export const ButtonSection = styled.div`
   align-items: center;
   justify-content: space-around;
   margin-top: 12px;
-`
-
-const ErrorMessage = styled.p`
-  color: ${({ theme }) => theme.error};
-  text-align: center;
 `
 
 export default SigninPage

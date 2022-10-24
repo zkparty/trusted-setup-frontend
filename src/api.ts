@@ -24,7 +24,7 @@ class APIClient {
     const res = await fetch(
       `${API_ROOT}/auth/callback/${provider}?code=${code}&state=${state}`
     )
-    let result: ErrorRes | OAuthRes = { error: '' }
+    let result: ErrorRes | OAuthRes = { error: '', code: '' }
     try {
       result = await res.json()
     } catch (error) {

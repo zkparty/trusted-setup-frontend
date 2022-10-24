@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import ErrorMessage from '../components/Error'
 import styled, { css, keyframes } from 'styled-components'
 import { Description, PageTitle } from '../components/Text'
 import {
@@ -27,10 +28,12 @@ import Explanation from '../components/Explanation'
 import Footer from '../components/Footer'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 import { Trans, useTranslation } from 'react-i18next'
+import { ErrorRes } from '../types'
 
 
 const LobbyPage = () => {
   useTranslation()
+  const [error, setError] = useState<null | string>(null)
   const [visible, setVisible] = useState(false)
   const [rounding, setRounding] = useState(false)
 
@@ -58,8 +61,21 @@ const LobbyPage = () => {
         updateContribution(JSON.stringify(res))
         navigate(ROUTES.CONTRIBUTING)
       } else {
-        // TODO: get http status code from response
-        // TODO: check which code you are receiving
+        const resError = res as ErrorRes
+        switch (resError.code) {
+          case 'TryContributeError::RateLimited':
+            setError(resError.error)
+            break;
+          case 'TryContributeError::UnknownSessionId':
+            setError(resError.error + '. You might have taken more time to get into the lobby. Please reload and sign in again')
+            break;
+          case 'TryContributeError::AnotherContributionInProgress':
+            setError(resError.error);
+            break;
+          default:
+            setError('Unknown error code: ' + resError.code)
+            break;
+        }
         //  try again after LOBBY_CHECKIN_FREUQUENCY
         await sleep(LOBBY_CHECKIN_FREQUENCY)
         return await poll()
@@ -90,6 +106,7 @@ const LobbyPage = () => {
                   </Trans>
                 </PageTitle>
                 <TextSection>
+                {error && <ErrorMessage>{error}</ErrorMessage>}
                 <Trans i18nKey="lobby.description">
                   <Description>
                     Your contribution is ready to be accepted by the Sequencer.
