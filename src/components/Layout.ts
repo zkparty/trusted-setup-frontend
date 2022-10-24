@@ -9,6 +9,15 @@ export const SingleContainer = styled.div`
   transform: scale(0.85);
 `
 
+export const OverRelative = styled.div`
+  height: 100vh;
+  width: 100vw;
+
+  min-height: 820px;
+  min-width: 960px;
+  position: relative;
+`
+
 export const Over = styled.div`
   height: 100vh;
   width: 100vw;
