@@ -42,13 +42,13 @@ const { error } = useAuthStore()
         <Img src={SnakeWhite} />
         <Wrap>
           <PageTitle>
-            <Trans i18nKey="sigin.title">
+            <Trans i18nKey="signin.title">
               OPEN <br /> THE WAY
             </Trans>
           </PageTitle>
           <TextSection>
           {error && <ErrorMessage>{error}</ErrorMessage>}
-            <Trans i18nKey="sigin.description">
+            <Trans i18nKey="signin.description">
               <Desc>
               The Ceremony requires souls of pure intent.
               Summoners show their integrity by unlocking with an address that
@@ -63,13 +63,13 @@ const { error } = useAuthStore()
 
           <ButtonSection>
             <PrimaryButton onClick={onSigninSIE} style={{ width: '360px' }}>
-              <Trans i18nKey="sigin.unlockWithEthereum">
+              <Trans i18nKey="signin.unlockWithEthereum">
                 Unlock with Ethereum{' '}
                 <ButtonIcon src={EthImg} alt="ETH icon" />
               </Trans>
             </PrimaryButton>
             <PrimaryButton onClick={onSigninGithub} style={{ width: '280px' }}>
-              <Trans i18nKey="sigin.unlockWithGithub">
+              <Trans i18nKey="signin.unlockWithGithub">
                 Unlock with Github{' '}
                 <ButtonIcon src={GithubImg} alt="Github icon" />
               </Trans>
