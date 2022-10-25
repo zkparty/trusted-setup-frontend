@@ -25,12 +25,12 @@ const RADIUS = {
 
 const API_ROOT = process.env.REACT_APP_API_ROOT || 'http://127.0.0.1:3000'
 const SIGNIN_REDIRECT_URL = process.env.REACT_APP_SIGNIN_REDIRECT_URL || 'http://localhost:3001/redirect'
+const LOBBY_CHECKIN_FREQUENCY = parseInt(process.env.REACT_APP_LOBBY_CHECKIN_FREQUENCY as string) || 25000;
+const MIN_MOUSE_ENTROPY_SAMPLES = parseInt(process.env.REACT_APP_MIN_MOUSE_ENTROPY_SAMPLES as string) || 64;
 
 const SERVER_ERROR = {
   LOBBY_IS_FULL: 'lobby is full'
 }
-
-const LOBBY_CHECKIN_FREQUENCY = 25000
 
 export {
   FONT_SIZE,
@@ -39,5 +39,6 @@ export {
   API_ROOT,
   SERVER_ERROR,
   SIGNIN_REDIRECT_URL,
-  LOBBY_CHECKIN_FREQUENCY
+  LOBBY_CHECKIN_FREQUENCY,
+  MIN_MOUSE_ENTROPY_SAMPLES,
 }

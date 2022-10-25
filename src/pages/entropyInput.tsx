@@ -19,10 +19,8 @@ import { hkdf } from '@noble/hashes/hkdf'
 import { sha256 } from '@noble/hashes/sha256'
 import { randomBytes } from '@noble/hashes/utils'
 import { Trans, useTranslation } from 'react-i18next'
+import { MIN_MOUSE_ENTROPY_SAMPLES } from '../constants'
 import 'text-security'
-
-
-const MIN_MOUSE_ENTROPY_SAMPLES = 64 // Chosen to target 128 bits of entropy, assuming 2 bits added per sample.
 
 type Player = {
   play: () => void
@@ -95,6 +93,7 @@ const EntropyInputPage = () => {
   }
 
   useEffect(() => {
+    // MIN_MOUSE_ENTROPY_SAMPLES Chosen to target 128 bits of entropy, assuming 2 bits added per sample.
     const percentage = Math.min(Math.floor((mouseEntropySamples / MIN_MOUSE_ENTROPY_SAMPLES) * 100), 100)
     setPercentage(percentage)
     if (player) player.seek(percentage)
