@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import styled, { css, keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { useContributionStore, Store } from '../store/contribute'
 import { useAuthStore } from '../store/auth'
 import { Description, PageTitle } from '../components/Text'
@@ -16,19 +16,8 @@ import {
   SingleWrap as Wrap,
   Over,
   OverRelative,
-  TextSection,
-  Bg,
-  Img
+  TextSection
 } from '../components/Layout'
-
-import BgImg from '../assets/img-graphic-base.svg'
-import BgImgPulse from '../assets/img-graphic-pulse.svg'
-import BgImgColor from '../assets/img-base-color.svg'
-import InnerColor from '../assets/inner-color.svg'
-import SnakeColor from '../assets/snake-color.svg'
-import OuterColor from '../assets/outer-color.svg'
-import PizzaInner from '../assets/crust.svg'
-import PizzaOuter from '../assets/fig.svg'
 
 type Steps = 'contributing' | 'completed' | 'error'
 
@@ -87,15 +76,6 @@ const ContributingPage = () => {
       <OverRelative>
         <Over>
           <ContainerR complete={step === 'completed'}>
-            <Bg src={BgImg} />
-            <BgPulse src={BgImgPulse} />
-            <BgC src={BgImgColor} visible={step === 'completed'} />
-            <PizzaImg visible rounding={false} src={PizzaInner} />
-            <PizzaImg visible rounding={false} src={PizzaOuter} />
-            <Img src={InnerColor} />
-            <Img src={OuterColor} />
-            <Img src={SnakeColor} />
-
             <Wrap>
               <InnerWrap>
                 {step === 'contributing' ? (
@@ -166,43 +146,12 @@ const ContainerR = styled(Container)<{ complete: boolean }>`
     complete ? `background-color: ${theme.surface};` : ''}
 `
 
-const BgC = styled(Bg)<{ visible: boolean }>`
-  opacity: ${({ visible }) => (visible ? 1 : 0)};
-  transition: opacity 2s linear;
-`
-
-const p = keyframes`
-  0%   { opacity: 0; }
-  50% {opacity: 1;}
-  100% { opacity: 0; }
-`
-
-const BgPulse = styled(Bg)`
-  animation: ${p} 10s ease-in-out infinite;
-`
-
 const InnerWrap = styled.div`
   margin-top: 100px;
   margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-`
-
-const r = keyframes`
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-`
-
-const PizzaImg = styled(Img)<{ visible: boolean; rounding: boolean }>`
-  transition: all 3s ease;
-  opacity: ${({ visible }) => (visible ? 1 : 0)};
-  ${({ rounding }) =>
-    rounding
-      ? css`
-          animation: ${r} 10s ease-in-out infinite;
-        `
-      : ''}
 `
 
 export default ContributingPage

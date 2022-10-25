@@ -6,17 +6,11 @@ import {
   SingleContainer as Container,
   Over,
   SingleWrap as Wrap,
-  Bg,
-  Img,
   TextSection
 } from '../components/Layout'
 import ROUTES from '../routes'
 import { blsSignId } from '../utils'
 import { useAuthStore } from '../store/auth'
-import BgImg from '../assets/img-graphic-base.svg'
-import InnerColor from '../assets/inner-color.svg'
-import SnakeColor from '../assets/snake-color.svg'
-import OuterWhite from '../assets/outer-white.svg'
 import { providers } from 'ethers'
 import { Trans, useTranslation } from 'react-i18next'
 import { useContributionStore, Store } from '../store/contribute'
@@ -99,10 +93,6 @@ const DoubleSignPage = () => {
       <HeaderJustGoingBack />
       <Over>
         <Container>
-          <Bg src={BgImg} />
-          <Img src={InnerColor} />
-          <Img src={OuterWhite} />
-          <Img src={SnakeColor} />
           <Wrap>
             <InnerWrap>
               <PageTitle>

@@ -1,12 +1,11 @@
 import { useEffect } from 'react'
-import { Outlet, useNavigate, useLocation } from 'react-router-dom'
-import WithBg from '../components/WithBg'
+import { Outlet, useNavigate } from 'react-router-dom'
+import Background from '../components/Background'
 import ROUTES from '../routes'
-import { isMobile, isBgRoute } from '../utils'
+import { isMobile } from '../utils'
 
 const HomePage = () => {
   const navigate = useNavigate()
-  const location = useLocation()
 
   // check device UA on initial render
   // redirect to mobile screen if
@@ -18,15 +17,11 @@ const HomePage = () => {
     // eslint-disable-next-line
   }, [])
 
-  if (isBgRoute(location.pathname)) {
-    return (
-      <WithBg>
-        <Outlet />
-      </WithBg>
-    )
-  }
-
-  return <Outlet />
+  return (
+    <Background>
+      <Outlet />
+    </Background>
+  )
 }
 
 export default HomePage

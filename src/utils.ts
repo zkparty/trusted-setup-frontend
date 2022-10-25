@@ -20,6 +20,7 @@ export function isMobile(): boolean {
 export function isBgRoute(route: string): boolean {
   return [
     ROUTES.CONTRIBUTING,
+    ROUTES.COMPLETE,
     ROUTES.SIGNIN,
     ROUTES.DOUBLE_SIGN,
     ROUTES.ENTROPY_INPUT,
