@@ -131,7 +131,7 @@ export const languages = {
           </1>
           `,
           'unlockWithEthereum': 'Desbloquear con Ethereum <2></2>',
-          'unlockWithGithub': 'Desbloquear con Github <2></2>',
+          'unlockWithGithub': 'ó desbloquear con Github <2></2>',
         }
       }
     },

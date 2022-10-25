@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import ErrorMessage from '../components/Error'
-import { PrimaryButton } from '../components/Button'
+import { PrimaryButton, SecondaryButton } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
@@ -8,7 +8,6 @@ import {
   Over
 } from '../components/Layout'
 import EthImg from '../assets/eth.svg'
-import GithubImg from '../assets/github.svg'
 import { useAuthStore } from '../store/auth'
 import BgImg from '../assets/img-graphic-base.svg'
 import InnerWhite from '../assets/inner-white.svg'
@@ -69,12 +68,11 @@ const { error } = useAuthStore()
                 <ButtonIcon src={EthImg} alt="ETH icon" />
               </Trans>
             </PrimaryButton>
-            <PrimaryButton onClick={onSigninGithub} style={{ width: '280px' }}>
+            <SecondaryButton onClick={onSigninGithub} style={{ width: '280px' }}>
               <Trans i18nKey="signin.unlockWithGithub">
-                Unlock with Github{' '}
-                <ButtonIcon src={GithubImg} alt="Github icon" />
+                or unlock with Github
               </Trans>
-            </PrimaryButton>
+            </SecondaryButton>
           </ButtonSection>
         </Wrap>
       </Container>
