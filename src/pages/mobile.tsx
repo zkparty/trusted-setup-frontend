@@ -32,8 +32,8 @@ const MobilePage = () => {
         <EthLogo src={EthLogoImg} />
         <Desc>
           <Trans i18nKey="mobile.description">
-          Ceremony contributions are only possible in the desktop setting. See
-          you there!
+            Ceremony contributions are only possible in the desktop setting. See
+            you there!
           </Trans>
         </Desc>
       </Section>

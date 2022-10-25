@@ -1,4 +1,9 @@
-import { useState, MouseEventHandler, useEffect, ChangeEventHandler } from 'react'
+import {
+  useState,
+  MouseEventHandler,
+  useEffect,
+  ChangeEventHandler
+} from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { PrimaryButton } from '../components/Button'
@@ -53,7 +58,6 @@ const EntropyInputPage = () => {
     }
   }
 
-
   const handleCaptureMouseEntropy: MouseEventHandler<HTMLDivElement> = (e) => {
     /*
     Mouse entropy is based off of recording the position and precise timing of mouse movements.
@@ -65,7 +69,11 @@ const EntropyInputPage = () => {
       setLastMouseEntropyUpdate(performance.now())
       setMouseEntropyRandomOffset(randomBytes(1)[0])
       setMouseEntropySamples(mouseEntropySamples + 1)
-      setMouseEntropy(`${mouseEntropy}${e.movementX}${e.movementY}${e.screenX}${e.screenY}${performance.now()}`)
+      setMouseEntropy(
+        `${mouseEntropy}${e.movementX}${e.movementY}${e.screenX}${
+          e.screenY
+        }${performance.now()}`
+      )
     }
   }
 
@@ -74,8 +82,10 @@ const EntropyInputPage = () => {
   }
 
   const processGeneratedEntropy = async () => {
-    const entropy = mouseEntropy + keyEntropy + randomBytes(32);
-    const entropyAsArray = Uint8Array.from(entropy.split("").map(x => x.charCodeAt(0)))
+    const entropy = mouseEntropy + keyEntropy + randomBytes(32)
+    const entropyAsArray = Uint8Array.from(
+      entropy.split('').map((x) => x.charCodeAt(0))
+    )
     /*
     In order to reduce modulo-bias in the entropy (w.r.t. the curve order):
     it is expanded out (and mixed) to at least 48 bytes before being reduced mod curve order.
@@ -83,9 +93,12 @@ const EntropyInputPage = () => {
     the IRTF BLS signature specs: https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bls-signature-05#section-2.3
     */
     const salt = randomBytes(32)
-    const expandedEntropy = hkdf(sha256, entropyAsArray, salt, '', 48);
+    const expandedEntropy = hkdf(sha256, entropyAsArray, salt, '', 48)
 
-    const hex96 = expandedEntropy.reduce((str, byte) => str + byte.toString(16).padStart(2,'0'),'')
+    const hex96 = expandedEntropy.reduce(
+      (str, byte) => str + byte.toString(16).padStart(2, '0'),
+      ''
+    )
     const expandedEntropyInt = BigInt('0x' + hex96)
     const secretInt = expandedEntropyInt % CURVE.r
     const secretHex = '0x' + secretInt.toString(16).padStart(64, '0')
@@ -94,60 +107,64 @@ const EntropyInputPage = () => {
 
   useEffect(() => {
     // MIN_MOUSE_ENTROPY_SAMPLES Chosen to target 128 bits of entropy, assuming 2 bits added per sample.
-    const percentage = Math.min(Math.floor((mouseEntropySamples / MIN_MOUSE_ENTROPY_SAMPLES) * 100), 100)
+    const percentage = Math.min(
+      Math.floor((mouseEntropySamples / MIN_MOUSE_ENTROPY_SAMPLES) * 100),
+      100
+    )
     setPercentage(percentage)
     if (player) player.seek(percentage)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mouseEntropy])
 
   return (
     <>
       <HeaderJustGoingBack />
       <Over>
-      <Container onMouseMove={handleCaptureMouseEntropy}>
-        <Bg src={BgImg} />
-        <SnakeProgress onSetPlayer={setPlayer} />
-        <Wrap>
-          <PageTitle>
-            <Trans i18nKey="entropyInput.title">
-              Entropy <br /> Entry
-            </Trans>
-          </PageTitle>
-          <TextSection>
-            <Trans i18nKey="entropyInput.description">
-              <Desc>
-              The Ceremony requires three random inputs from each Summoner.
-              </Desc>
-              <SubDesc>
-                <Bold>Secret:</Bold> A piece of you in text form, with random
-                characters added. A hope for the future, or the name of someone
-                dear.
-              </SubDesc>
-              <SubDesc>
-                <Bold>Sigil:</Bold> Trace some elements of the guide with
-                your cursor - the interface will capture your unique path.
-              </SubDesc>
-              <SubDesc>
-                <Bold>Sample:</Bold> Your browser will generate its own
-                randomness in the background.
-              </SubDesc>
-            </Trans>
-          </TextSection>
-          <Input
-            keyEntropy={keyEntropy}
-            placeholder="Secret"
-            onChange={handleCaptureKeyEntropy}
-          />
-
-          <ButtonSection>
-            <PrimaryButton disabled={percentage !== 100} onClick={handleSubmit}>
-              <Trans i18nKey="entropyInput.button">
-                Submit
+        <Container onMouseMove={handleCaptureMouseEntropy}>
+          <Bg src={BgImg} />
+          <SnakeProgress onSetPlayer={setPlayer} />
+          <Wrap>
+            <PageTitle>
+              <Trans i18nKey="entropyInput.title">
+                Entropy <br /> Entry
               </Trans>
-            </PrimaryButton>
-          </ButtonSection>
-        </Wrap>
-      </Container>
+            </PageTitle>
+            <TextSection>
+              <Trans i18nKey="entropyInput.description">
+                <Desc>
+                  The Ceremony requires three random inputs from each Summoner.
+                </Desc>
+                <SubDesc>
+                  <Bold>Secret:</Bold> A piece of you in text form, with random
+                  characters added. A hope for the future, or the name of
+                  someone dear.
+                </SubDesc>
+                <SubDesc>
+                  <Bold>Sigil:</Bold> Trace some elements of the guide with your
+                  cursor - the interface will capture your unique path.
+                </SubDesc>
+                <SubDesc>
+                  <Bold>Sample:</Bold> Your browser will generate its own
+                  randomness in the background.
+                </SubDesc>
+              </Trans>
+            </TextSection>
+            <Input
+              keyEntropy={keyEntropy}
+              placeholder="Secret"
+              onChange={handleCaptureKeyEntropy}
+            />
+
+            <ButtonSection>
+              <PrimaryButton
+                disabled={percentage !== 100}
+                onClick={handleSubmit}
+              >
+                <Trans i18nKey="entropyInput.button">Submit</Trans>
+              </PrimaryButton>
+            </ButtonSection>
+          </Wrap>
+        </Container>
       </Over>
     </>
   )
@@ -181,8 +198,9 @@ const Bold = styled.span`
   font-weight: 700;
 `
 
-const Input = styled.input<{keyEntropy: string}>`
-  font-family: ${({ keyEntropy }) => keyEntropy === '' ?  "inherit" : "text-security-disc"};
+const Input = styled.input<{ keyEntropy: string }>`
+  font-family: ${({ keyEntropy }) =>
+    keyEntropy === '' ? 'inherit' : 'text-security-disc'};
   text-align: center;
   text-security: disc;
   -moz-text-security: disc;

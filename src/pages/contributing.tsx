@@ -30,10 +30,7 @@ import OuterColor from '../assets/outer-color.svg'
 import PizzaInner from '../assets/crust.svg'
 import PizzaOuter from '../assets/fig.svg'
 
-type Steps =
-  | 'contributing'
-  | 'completed'
-  | 'error'
+type Steps = 'contributing' | 'completed' | 'error'
 
 const ContributingPage = () => {
   const { sessionId } = useAuthStore()
@@ -65,7 +62,7 @@ const ContributingPage = () => {
           sessionId!,
           contribution!,
           entropy!,
-          ECDSASignature,
+          ECDSASignature
         )
         if (isSuccessRes(res)) {
           setStep('completed')
