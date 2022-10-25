@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import ErrorMessage from '../components/Error'
 import styled, { css, keyframes } from 'styled-components'
 import { Description, PageTitle } from '../components/Text'
 import {
@@ -8,7 +9,8 @@ import {
   Over,
   TextSection,
   Bg,
-  Img
+  Img,
+  OverRelative
 } from '../components/Layout'
 import { LOBBY_CHECKIN_FREQUENCY } from '../constants'
 import useTryContribute from '../hooks/useTryContribute'
@@ -26,10 +28,12 @@ import Explanation from '../components/Explanation'
 import Footer from '../components/Footer'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 import { Trans, useTranslation } from 'react-i18next'
+import { ErrorRes } from '../types'
 
 
 const LobbyPage = () => {
   useTranslation()
+  const [error, setError] = useState<null | string>(null)
   const [visible, setVisible] = useState(false)
   const [rounding, setRounding] = useState(false)
 
@@ -57,8 +61,21 @@ const LobbyPage = () => {
         updateContribution(JSON.stringify(res))
         navigate(ROUTES.CONTRIBUTING)
       } else {
-        // TODO: get http status code from response
-        // TODO: check which code you are receiving
+        const resError = res as ErrorRes
+        switch (resError.code) {
+          case 'TryContributeError::RateLimited':
+            setError(resError.error)
+            break;
+          case 'TryContributeError::UnknownSessionId':
+            setError(resError.error + '. You might have taken more time to get into the lobby. Please reload and sign in again')
+            break;
+          case 'TryContributeError::AnotherContributionInProgress':
+            setError(resError.error);
+            break;
+          default:
+            setError('Unknown error code: ' + resError.code)
+            break;
+        }
         //  try again after LOBBY_CHECKIN_FREUQUENCY
         await sleep(LOBBY_CHECKIN_FREQUENCY)
         return await poll()
@@ -72,36 +89,38 @@ const LobbyPage = () => {
   return (
     <>
       <HeaderJustGoingBack />
-      <Over>
-        <Container>
-          <Bg src={BgImg} />
-
-        <PizzaImg visible={visible} rounding={rounding} src={PizzaInner} />
-        <PizzaImg visible={visible} rounding={rounding} src={PizzaOuter} />
-        <Img src={InnerColor} />
-        <Img src={OuterColor} />
-        <Img src={SnakeColor} />
-        <Wrap>
-          <InnerWrap>
-            <PageTitle>
-              <Trans i18nKey="lobby.title">
-                Waiting to be <br /> submitted
-              </Trans>
-            </PageTitle>
-            <TextSection>
-            <Trans i18nKey="lobby.description">
-              <Description>
-                Your contribution is ready to be accepted by the Sequencer.
-                Please leave this guide open in the background and we will add
-                your contribution to the others soon.
-              </Description>
-              <Description>Please leave this guide open and awake.</Description>
-            </Trans>
-            </TextSection>
-          </InnerWrap>
-        </Wrap>
-      </Container>
-      </Over>
+      <OverRelative>
+        <Over>
+          <Container>
+            <Bg src={BgImg} />
+            <PizzaImg visible={visible} rounding={rounding} src={PizzaInner} />
+            <PizzaImg visible={visible} rounding={rounding} src={PizzaOuter} />
+            <Img src={InnerColor} />
+            <Img src={OuterColor} />
+            <Img src={SnakeColor} />
+            <Wrap>
+              <InnerWrap>
+                <PageTitle>
+                  <Trans i18nKey="lobby.title">
+                    Waiting to be <br /> submitted
+                  </Trans>
+                </PageTitle>
+                <TextSection>
+                {error && <ErrorMessage>{error}</ErrorMessage>}
+                <Trans i18nKey="lobby.description">
+                  <Description>
+                    Your contribution is ready to be accepted by the Sequencer.
+                    Please leave this guide open in the background and we will add
+                    your contribution to the others soon.
+                  </Description>
+                  <Description>Please leave this guide open and awake.</Description>
+                </Trans>
+                </TextSection>
+              </InnerWrap>
+            </Wrap>
+          </Container>
+        </Over>
+      </OverRelative>
       <Explanation />
       <Footer />
     </>
