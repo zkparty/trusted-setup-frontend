@@ -17,37 +17,33 @@ const LobbyFullPage = () => {
 
   return (
     <Over>
-    <Container>
-      <Wrap>
-        <Logo />
-        <Title>
-          <Trans i18nKey="lobbyFull.title">
-            Sum of the parts.
+      <Container>
+        <Wrap>
+          <Logo />
+          <Title>
+            <Trans i18nKey="lobbyFull.title">Sum of the parts.</Trans>
+          </Title>
+          <Trans i18nKey="lobbyFull.description">
+            <Desc>
+              Please leave this guide open in the background - your contribution
+              will be collected soon.
+            </Desc>
+            <Desc>
+              Many others are alongside you in this Ceremony - your patience
+              will be rewarded.
+            </Desc>
           </Trans>
-        </Title>
-        <Trans i18nKey="lobbyFull.description">
-          <Desc>
-          Please leave this guide open in the background -
-          your contribution will be collected soon.
-          </Desc>
-          <Desc>
-          Many others are alongside you in this Ceremony -
-          your patience will be rewarded.
-          </Desc>
-        </Trans>
-        <ButtonSection>
-          <PrimaryButtonLarge
-            onClick={() => {
-              navigate(ROUTES.ROOT)
-            }}
-          >
-            <Trans i18nKey="lobbyFull.button">
-              Return to home
-            </Trans>
-          </PrimaryButtonLarge>
-        </ButtonSection>
-      </Wrap>
-    </Container>
+          <ButtonSection>
+            <PrimaryButtonLarge
+              onClick={() => {
+                navigate(ROUTES.ROOT)
+              }}
+            >
+              <Trans i18nKey="lobbyFull.button">Return to home</Trans>
+            </PrimaryButtonLarge>
+          </ButtonSection>
+        </Wrap>
+      </Container>
     </Over>
   )
 }

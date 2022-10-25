@@ -24,7 +24,7 @@ import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 
 declare global {
   interface Window {
-       ethereum: any
+    ethereum: any
   }
 }
 
@@ -33,7 +33,7 @@ const DoubleSignPage = () => {
   const { updateECDSASignature } = useContributionStore((state: Store) => ({
     entropy: state.entropy,
     updateECDSASignature: state.updateECDSASignature,
-    updateBLSSignatures: state.updateBLSSignatures,
+    updateBLSSignatures: state.updateBLSSignatures
   }))
   const navigate = useNavigate()
   const handleClickSign = async () => {
@@ -45,88 +45,87 @@ const DoubleSignPage = () => {
       updateBLSSignatures(i, signed);
     }
     */
-    await signPotPubkeysWithECDSA();
+    await signPotPubkeysWithECDSA()
     navigate(ROUTES.LOBBY)
   }
 
   const signPotPubkeysWithECDSA = async () => {
     const potPubkeys = [
-      "0x93e02b6052719f607dacd3a088274f65596bd0d09920b61ab5da61bbdc7f5049334cf11213945d57e5ac7d055d042b7e024aa2b2f08f0a91260805272dc51051c6e47ad4fa403b02b4510b647ae3d1770bac0326a805bbefd48056c8c121bdb8",
-      "0x93e02b6052719f607dacd3a088274f65596bd0d09920b61ab5da61bbdc7f5049334cf11213945d57e5ac7d055d042b7e024aa2b2f08f0a91260805272dc51051c6e47ad4fa403b02b4510b647ae3d1770bac0326a805bbefd48056c8c121bdb8",
-      "0x93e02b6052719f607dacd3a088274f65596bd0d09920b61ab5da61bbdc7f5049334cf11213945d57e5ac7d055d042b7e024aa2b2f08f0a91260805272dc51051c6e47ad4fa403b02b4510b647ae3d1770bac0326a805bbefd48056c8c121bdb8",
-      "0x93e02b6052719f607dacd3a088274f65596bd0d09920b61ab5da61bbdc7f5049334cf11213945d57e5ac7d055d042b7e024aa2b2f08f0a91260805272dc51051c6e47ad4fa403b02b4510b647ae3d1770bac0326a805bbefd48056c8c121bdb8",
+      '0x93e02b6052719f607dacd3a088274f65596bd0d09920b61ab5da61bbdc7f5049334cf11213945d57e5ac7d055d042b7e024aa2b2f08f0a91260805272dc51051c6e47ad4fa403b02b4510b647ae3d1770bac0326a805bbefd48056c8c121bdb8',
+      '0x93e02b6052719f607dacd3a088274f65596bd0d09920b61ab5da61bbdc7f5049334cf11213945d57e5ac7d055d042b7e024aa2b2f08f0a91260805272dc51051c6e47ad4fa403b02b4510b647ae3d1770bac0326a805bbefd48056c8c121bdb8',
+      '0x93e02b6052719f607dacd3a088274f65596bd0d09920b61ab5da61bbdc7f5049334cf11213945d57e5ac7d055d042b7e024aa2b2f08f0a91260805272dc51051c6e47ad4fa403b02b4510b647ae3d1770bac0326a805bbefd48056c8c121bdb8',
+      '0x93e02b6052719f607dacd3a088274f65596bd0d09920b61ab5da61bbdc7f5049334cf11213945d57e5ac7d055d042b7e024aa2b2f08f0a91260805272dc51051c6e47ad4fa403b02b4510b647ae3d1770bac0326a805bbefd48056c8c121bdb8'
     ]
     // built the message to be signed
     const numG1Powers = [4096, 8192, 16384, 32768]
     const potPubkeysObj = []
     for (let i = 0; i < 4; i++) {
       const element = {
-        "numG1Powers": numG1Powers[i],
-        "numG2Powers": 65,
-        "potPubkey": potPubkeys[i]
-      };
+        numG1Powers: numG1Powers[i],
+        numG2Powers: 65,
+        potPubkey: potPubkeys[i]
+      }
       potPubkeysObj.push(element)
     }
     const types = {
-      "PoTPubkeys": [
-        { "name": "potPubkeys", "type": "contributionPubkey[]"}
-      ],
-      "contributionPubkey": [
-        {"name": "numG1Powers", "type": "uint256"},
-        {"name": "numG2Powers", "type": "uint256"},
-        {"name": "potPubkey", "type": "bytes"}
-      ],
+      PoTPubkeys: [{ name: 'potPubkeys', type: 'contributionPubkey[]' }],
+      contributionPubkey: [
+        { name: 'numG1Powers', type: 'uint256' },
+        { name: 'numG2Powers', type: 'uint256' },
+        { name: 'potPubkey', type: 'bytes' }
+      ]
     }
     const domain = {
-      "name": "Ethereum KZG Ceremony",
-      "version": "1.0",
-      "chainId": 1
+      name: 'Ethereum KZG Ceremony',
+      version: '1.0',
+      chainId: 1
     }
     const message = {
-      "potPubkeys": potPubkeysObj
+      potPubkeys: potPubkeysObj
     }
-    const provider = new providers.Web3Provider(window.ethereum);
-    await provider.send('eth_requestAccounts', []);
-    const signer = provider.getSigner();
+    const provider = new providers.Web3Provider(window.ethereum)
+    await provider.send('eth_requestAccounts', [])
+    const signer = provider.getSigner()
     // sign with ether js
     // TODO: method name might change in the futue (no underscore)
     // https://docs.ethers.io/v5/api/signer/
     const signature = await signer._signTypedData(domain, types, message)
     // save signature for later
-    updateECDSASignature(signature);
+    updateECDSASignature(signature)
   }
 
   return (
     <>
       <HeaderJustGoingBack />
       <Over>
-      <Container>
-        <Bg src={BgImg} />
-        <Img src={InnerColor} />
-        <Img src={OuterWhite} />
-        <Img src={SnakeColor} />
-        <Wrap>
-          <InnerWrap>
-            <PageTitle>
-              <Trans i18nKey="doubleSign.title">
-                Bind your <br /> Contribution
-              </Trans>
-            </PageTitle>
-            <TextSection>
-              <Trans i18nKey="doubleSign.description">
-                <Description>
-                This signature binds each Summoner’s entropy contribution to their Ethereum address.
-                </Description>
-              </Trans>
-            </TextSection>
-            <ButtonSection>
-              <Trans i18nKey="doubleSign.button">
-                <PrimaryButton onClick={handleClickSign}>Sign</PrimaryButton>
-              </Trans>
-            </ButtonSection>
-          </InnerWrap>
-        </Wrap>
-      </Container>
+        <Container>
+          <Bg src={BgImg} />
+          <Img src={InnerColor} />
+          <Img src={OuterWhite} />
+          <Img src={SnakeColor} />
+          <Wrap>
+            <InnerWrap>
+              <PageTitle>
+                <Trans i18nKey="doubleSign.title">
+                  Bind your <br /> Contribution
+                </Trans>
+              </PageTitle>
+              <TextSection>
+                <Trans i18nKey="doubleSign.description">
+                  <Description>
+                    This signature binds each Summoner’s entropy contribution to
+                    their Ethereum address.
+                  </Description>
+                </Trans>
+              </TextSection>
+              <ButtonSection>
+                <Trans i18nKey="doubleSign.button">
+                  <PrimaryButton onClick={handleClickSign}>Sign</PrimaryButton>
+                </Trans>
+              </ButtonSection>
+            </InnerWrap>
+          </Wrap>
+        </Container>
       </Over>
     </>
   )

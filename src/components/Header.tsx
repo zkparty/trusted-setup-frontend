@@ -19,8 +19,14 @@ const Header = () => {
         <Border />
         <img src={Star} alt="sequencer status" />
         <SequencerStatus>
-          <span><Trans i18nKey="header.sequencer">Sequencer</Trans></span>
-          <Status style={{ color:  sequencerStatus === 'Online' ? '#61cc61' : 'red'}}>{sequencerStatus}</Status>
+          <span>
+            <Trans i18nKey="header.sequencer">Sequencer</Trans>
+          </span>
+          <Status
+            style={{ color: sequencerStatus === 'Online' ? '#61cc61' : 'red' }}
+          >
+            {sequencerStatus}
+          </Status>
         </SequencerStatus>
       </LeftSection>
       <LanguageSelector></LanguageSelector>

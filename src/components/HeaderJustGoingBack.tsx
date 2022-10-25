@@ -18,7 +18,7 @@ const HeaderJustGoingBack = () => {
       </LeftSection>
       <LanguageSelector></LanguageSelector>
       <CenterSection>
-      <Trans i18nKey="header.ceremony">TESTNET CEREMONY</Trans>
+        <Trans i18nKey="header.ceremony">TESTNET CEREMONY</Trans>
       </CenterSection>
     </Container>
   )
