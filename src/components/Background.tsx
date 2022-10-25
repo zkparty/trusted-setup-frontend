@@ -24,27 +24,29 @@ const Background = ({ children }: Props) => {
 
   return (
     <Container>
-      <Bg src={BgImg} visible={bg === 'white' || bg === 'animate'} />
-      {bg === 'animate' && (
-        <BgPulse src={BgImgPulse} visible={bg === 'animate'} />
-      )}
-      <Bg src={BgImgColor} visible={bg === 'color'} />
-      <PizzaImg
-        src={PizzaInner}
-        visible={pizza === 'color' || pizza === 'animate'}
-        rounding={pizza === 'animate'}
-      />
-      <PizzaImg
-        src={PizzaOuter}
-        visible={pizza === 'color' || pizza === 'animate'}
-        rounding={pizza === 'animate'}
-      />
-      <Img src={InnerWhite} visible={inner === 'white'} />
-      <Img src={InnerColor} visible={inner === 'color'} />
-      <Img src={OuterWhite} visible={outer === 'white'} />
-      <Img src={OuterColor} visible={outer === 'color'} />
-      <Img src={SnakeWhite} visible={snake === 'white'} />
-      <Img src={SnakeColor} visible={snake === 'color'} />
+      <BgContainer>
+        <Bg src={BgImg} visible={bg === 'white' || bg === 'animate'} />
+        {bg === 'animate' && (
+          <BgPulse src={BgImgPulse} visible={bg === 'animate'} />
+        )}
+        <Bg src={BgImgColor} visible={bg === 'color'} />
+        <PizzaImg
+          src={PizzaInner}
+          visible={pizza === 'color' || pizza === 'animate'}
+          rounding={pizza === 'animate'}
+        />
+        <PizzaImg
+          src={PizzaOuter}
+          visible={pizza === 'color' || pizza === 'animate'}
+          rounding={pizza === 'animate'}
+        />
+        <Img src={InnerWhite} visible={inner === 'white'} />
+        <Img src={InnerColor} visible={inner === 'color'} />
+        <Img src={OuterWhite} visible={outer === 'white'} />
+        <Img src={OuterColor} visible={outer === 'color'} />
+        <Img src={SnakeWhite} visible={snake === 'white'} />
+        <Img src={SnakeColor} visible={snake === 'color'} />
+      </BgContainer>
       {children}
     </Container>
   )
@@ -54,6 +56,13 @@ const Container = styled.div`
   color: ${({ theme }) => theme.text};
   height: 100vh;
   width: 100vw;
+`
+
+const BgContainer = styled.div`
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  overflow: hidden;
 `
 
 export default Background

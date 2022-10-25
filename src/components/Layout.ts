@@ -13,8 +13,6 @@ export const OverRelative = styled.div`
   height: 100vh;
   width: 100vw;
 
-  min-height: 820px;
-  min-width: 960px;
   position: relative;
 `
 
@@ -22,8 +20,6 @@ export const Over = styled.div`
   height: 100vh;
   width: 100vw;
 
-  min-height: 820px;
-  min-width: 960px;
   overflow: hidden;
   position: absolute;
 `
