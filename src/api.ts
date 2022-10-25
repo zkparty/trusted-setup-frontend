@@ -58,16 +58,15 @@ class APIClient {
     preContribution: string,
     entropy: string,
     signature: string | null,
-    onCalculationFinish: () => void
   ): Promise<ErrorRes | ContributeRes> {
 
     const { contribution } = await wasm.contribute(
       preContribution,
       entropy,
     )
-    onCalculationFinish()
     let contributionObj = null
-    /*if (signature) {
+    /* TODO: activate the following line
+    if (signature) {
       contributionObj = JSON.parse(contribution!)
       contributionObj.ecdsaSignature = signature
       contributionObj = JSON.stringify(contributionObj)

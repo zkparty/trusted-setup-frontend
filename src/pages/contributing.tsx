@@ -31,8 +31,6 @@ import PizzaInner from '../assets/crust.svg'
 import PizzaOuter from '../assets/fig.svg'
 
 type Steps =
-  | 'downloading'
-  | 'calculating'
   | 'contributing'
   | 'completed'
   | 'error'
@@ -53,10 +51,9 @@ const ContributingPage = () => {
     updateNewContribution: state.updateNewContribution
   }))
 
-  const [step, setStep] = useState<Steps>('downloading')
+  const [step, setStep] = useState<Steps>('contributing')
   const [error, setError] = useState<null | string>(null)
   const navigate = useNavigate()
-  // downloading, calculating, contributing, completed, error
 
   useEffect(() => {
     ;(async () => {
@@ -64,17 +61,11 @@ const ContributingPage = () => {
         if (!sessionId || !contribution) {
           throw new Error('invalid sessionId or contribution')
         }
-
-        setStep('calculating')
-
         const res = await api.contribute(
           sessionId!,
           contribution!,
           entropy!,
           ECDSASignature,
-          () => {
-            setStep('contributing')
-          }
         )
         if (isSuccessRes(res)) {
           setStep('completed')
@@ -110,19 +101,7 @@ const ContributingPage = () => {
 
             <Wrap>
               <InnerWrap>
-                {step === 'downloading' ? (
-                  <PageTitle>
-                    Spell
-                    <br />
-                    Activation
-                  </PageTitle>
-                ) : step === 'calculating' ? (
-                  <PageTitle>
-                    Spell
-                    <br />
-                    Activation
-                  </PageTitle>
-                ) : step === 'contributing' ? (
+                {step === 'contributing' ? (
                   <PageTitle>
                     You have been
                     <br />
@@ -146,27 +125,7 @@ const ContributingPage = () => {
                   </PageTitle>
                 )}
                 <TextSection>
-                  {step === 'downloading' ? (
-                    <>
-                      <Description>
-                        Your contribution has been accepted by the Sequencer. It
-                        will be cast, and then combined with the others.
-                      </Description>
-                      <Description>
-                        Getting the original contribution...
-                      </Description>
-                    </>
-                  ) : step === 'calculating' ? (
-                    <>
-                      <Description>
-                        The browser is using your random inputs to calculate
-                        something.
-                      </Description>
-                      <Description>
-                        Updating & producing the new contribution...
-                      </Description>
-                    </>
-                  ) : step === 'contributing' ? (
+                  {step === 'contributing' ? (
                     <>
                       <Description>
                         You are now entrusted with the Powers of Tau. Your

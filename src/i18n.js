@@ -13,7 +13,7 @@ export const languages = {
           'ceremony': 'CEREMONIA DE PRUEBA',
         },
         complete: {
-          'title': 'Dankshard <br/> esta cerca',
+          'title': 'Dankshard <br/> está cerca',
           'description': `
           <0>
             ¡Éxito! Una parte de usted se fusionó permanentemente con los demás en esta Ceremonia de Invocación.
