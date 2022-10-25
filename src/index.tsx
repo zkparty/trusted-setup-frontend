@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components'
 import { setAppElement } from 'react-modal'
 import App from './App'
 import theme from './style/theme'
+import './i18n'
 
 setAppElement('#root')
 

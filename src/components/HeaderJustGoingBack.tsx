@@ -1,11 +1,14 @@
-import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
 import ROUTES from '../routes'
-import LeftArrow from '../assets/left-arrow.svg'
+import styled from 'styled-components'
 import { FONT_SIZE } from '../constants'
 import { textSerif } from '../style/utils'
+import { useNavigate } from 'react-router-dom'
+import LeftArrow from '../assets/left-arrow.svg'
+import LanguageSelector from './LanguageSelector'
+import { Trans, useTranslation } from 'react-i18next'
 
 const HeaderJustGoingBack = () => {
+  useTranslation()
   const navigate = useNavigate()
 
   return (
@@ -13,8 +16,10 @@ const HeaderJustGoingBack = () => {
       <LeftSection onClick={() => navigate(ROUTES.ROOT)}>
         <img src={LeftArrow} alt="go back" />
       </LeftSection>
-      <CenterSection>TESTNET CEREMONY</CenterSection>
-      <div></div>
+      <LanguageSelector></LanguageSelector>
+      <CenterSection>
+      <Trans i18nKey="header.ceremony">TESTNET CEREMONY</Trans>
+      </CenterSection>
     </Container>
   )
 }

@@ -18,6 +18,8 @@ import { CURVE } from '@noble/bls12-381'
 import { hkdf } from '@noble/hashes/hkdf'
 import { sha256 } from '@noble/hashes/sha256'
 import { randomBytes } from '@noble/hashes/utils'
+import { Trans, useTranslation } from 'react-i18next'
+
 
 const MIN_MOUSE_ENTROPY_SAMPLES = 64 // Chosen to target 128 bits of entropy, assuming 2 bits added per sample.
 
@@ -28,6 +30,7 @@ type Player = {
 }
 
 const EntropyInputPage = () => {
+  useTranslation()
   const navigate = useNavigate()
   const [keyEntropy, setKeyEntropy] = useState('')
   const [mouseEntropy, setMouseEntropy] = useState('')
@@ -101,14 +104,17 @@ const EntropyInputPage = () => {
     <>
       <HeaderJustGoingBack />
       <Over>
-        <Container onMouseMove={handleCaptureMouseEntropy}>
-          <Bg src={BgImg} />
-          <SnakeProgress onSetPlayer={setPlayer} />
-          <Wrap>
-            <PageTitle>
+      <Container onMouseMove={handleCaptureMouseEntropy}>
+        <Bg src={BgImg} />
+        <SnakeProgress onSetPlayer={setPlayer} />
+        <Wrap>
+          <PageTitle>
+            <Trans i18nKey="entropyInput.title">
               Entropy <br /> Entry
-            </PageTitle>
-            <TextSection>
+            </Trans>
+          </PageTitle>
+          <TextSection>
+            <Trans i18nKey="entropyInput.description">
               <Desc>
               The Ceremony requires three random inputs from each Summoner.
               </Desc>
@@ -125,18 +131,22 @@ const EntropyInputPage = () => {
                 <Bold>Sample:</Bold> Your browser will generate its own
                 randomness in the background.
               </SubDesc>
-            </TextSection>
-            <Input
-              placeholder="Secret"
-              onChange={handleCaptureKeyEntropy}
-            />
-            <ButtonSection>
-              <PrimaryButton disabled={percentage !== 100} onClick={handleSubmit}>
+            </Trans>
+          </TextSection>
+          <Input
+            placeholder="Secret"
+            onChange={handleCaptureKeyEntropy}
+          />
+
+          <ButtonSection>
+            <PrimaryButton disabled={percentage !== 100} onClick={handleSubmit}>
+              <Trans i18nKey="entropyInput.button">
                 Submit
-              </PrimaryButton>
-            </ButtonSection>
-          </Wrap>
-        </Container>
+              </Trans>
+            </PrimaryButton>
+          </ButtonSection>
+        </Wrap>
+      </Container>
       </Over>
     </>
   )

@@ -25,8 +25,11 @@ import PizzaOuter from '../assets/fig.svg'
 import Explanation from '../components/Explanation'
 import Footer from '../components/Footer'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
+import { Trans, useTranslation } from 'react-i18next'
+
 
 const LobbyPage = () => {
+  useTranslation()
   const [visible, setVisible] = useState(false)
   const [rounding, setRounding] = useState(false)
 
@@ -54,6 +57,8 @@ const LobbyPage = () => {
         updateContribution(JSON.stringify(res))
         navigate(ROUTES.CONTRIBUTING)
       } else {
+        // TODO: get http status code from response
+        // TODO: check which code you are receiving
         //  try again after LOBBY_CHECKIN_FREUQUENCY
         await sleep(LOBBY_CHECKIN_FREQUENCY)
         return await poll()
@@ -71,30 +76,31 @@ const LobbyPage = () => {
         <Container>
           <Bg src={BgImg} />
 
-          <PizzaImg visible={visible} rounding={rounding} src={PizzaInner} />
-          <PizzaImg visible={visible} rounding={rounding} src={PizzaOuter} />
-          <Img src={InnerColor} />
-          <Img src={OuterColor} />
-          <Img src={SnakeColor} />
-          <Wrap>
-            <InnerWrap>
-              <PageTitle>
-                Waiting to be
-                <br /> submitted
-              </PageTitle>
-              <TextSection>
-                <Description>
-                  Your contribution is ready to be accepted by the Sequencer.
-                  Please leave this guide open in the background and we will add
-                  your contribution to the others soon.
-                </Description>
-                <Description>
-                  Please leave this guide open and awake.
-                </Description>
-              </TextSection>
-            </InnerWrap>
-          </Wrap>
-        </Container>
+        <PizzaImg visible={visible} rounding={rounding} src={PizzaInner} />
+        <PizzaImg visible={visible} rounding={rounding} src={PizzaOuter} />
+        <Img src={InnerColor} />
+        <Img src={OuterColor} />
+        <Img src={SnakeColor} />
+        <Wrap>
+          <InnerWrap>
+            <PageTitle>
+              <Trans i18nKey="lobby.title">
+                Waiting to be <br /> submitted
+              </Trans>
+            </PageTitle>
+            <TextSection>
+            <Trans i18nKey="lobby.description">
+              <Description>
+                Your contribution is ready to be accepted by the Sequencer.
+                Please leave this guide open in the background and we will add
+                your contribution to the others soon.
+              </Description>
+              <Description>Please leave this guide open and awake.</Description>
+            </Trans>
+            </TextSection>
+          </InnerWrap>
+        </Wrap>
+      </Container>
       </Over>
       <Explanation />
       <Footer />

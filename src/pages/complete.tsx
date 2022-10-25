@@ -12,13 +12,14 @@ import {
 } from '../components/Layout'
 import PizzaInner from '../assets/crust.svg'
 import PizzaOuter from '../assets/fig.svg'
-import BgImg from '../assets/img-graphic-base.svg'
 import BgImgColor from '../assets/img-base-color.svg'
 import InnerColor from '../assets/inner-color.svg'
 import SnakeColor from '../assets/snake-color.svg'
 import OuterColor from '../assets/outer-color.svg'
+import { Trans, useTranslation } from 'react-i18next'
 
 const CompletePage = () => {
+  useTranslation()
   const { contribution, newContribution } = useContributionStore(
     (state: Store) => ({
       contribution: state.contribution,
@@ -41,35 +42,42 @@ const CompletePage = () => {
     <>
       <Header />
       <Over>
-        <Container>
-          <Bg src={BgImgColor} />
-          <PizzaImg src={PizzaInner} />
-          <PizzaImg src={PizzaOuter} />
-          <Img src={InnerColor} />
-          <Img src={OuterColor} />
-          <Img src={SnakeColor} />
-          <Wrap>
-            <InnerWrap>
-              <PageTitle>
-                Dankshard <br /> draws near
-              </PageTitle>
+      <Container>
+      <Bg src={BgImgColor} />
+        <PizzaImg src={PizzaInner} />
+        <PizzaImg src={PizzaOuter} />
+        <Img src={InnerColor} />
+        <Img src={OuterColor} />
+        <Img src={SnakeColor} />
+        <Wrap>
+        <InnerWrap>
+          <PageTitle>
+            <Trans i18nKey="complete.title">Dankshard <br/> draws near</Trans>
+          </PageTitle>
 
-              <TextSection>
-                <Desc>
-                  Success! Echoes of you are permanently fused with the others
-                  in this Summoning Ceremony.
-                </Desc>
-                <Desc>
-                  <Bold>Remember:</Bold> this is only a testnet Ceremony - make
-                  sure to return for the full Dankshard summoning.
-                </Desc>
-              </TextSection>
+          <TextSection>
+          <Trans i18nKey="complete.description">
+            <Desc>
+            Success! Echoes of you are permanently fused
+            with the others in this Summoning Ceremony.
+            </Desc>
+            <Desc>
+            <Bold>Remember:</Bold> this is only
+            a testnet Ceremony - make sure to return for the full Dankshard summoning.
+            </Desc>
+          </Trans>
+          </TextSection>
 
-              <ButtonSection>
-                <PrimaryButtonLarge>View your contribution</PrimaryButtonLarge>
-              </ButtonSection>
-            </InnerWrap>
-          </Wrap>
+          <ButtonSection>
+          <PrimaryButtonLarge>
+            <Trans i18nKey="complete.button">
+              View your contribution
+            </Trans>
+          </PrimaryButtonLarge>
+
+          </ButtonSection>
+          </InnerWrap>
+        </Wrap>
         </Container>
       </Over>
     </>

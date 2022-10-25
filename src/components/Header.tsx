@@ -1,14 +1,17 @@
-import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
-import { PrimaryButton } from './Button'
 import Logo from './Logo'
-import Star from '../assets/star.svg'
 import ROUTES from '../routes'
-import { useAuthStore } from '../store/auth'
-import useSequencerStatus from '../hooks/useSequencerStatus'
+import Star from '../assets/star.svg'
+import styled from 'styled-components'
 import { FONT_SIZE } from '../constants'
+import { PrimaryButton } from './Button'
+import { useAuthStore } from '../store/auth'
+import { useNavigate } from 'react-router-dom'
+import LanguageSelector from './LanguageSelector'
+import { Trans, useTranslation } from 'react-i18next'
+import useSequencerStatus from '../hooks/useSequencerStatus'
 
 const Header = () => {
+  useTranslation()
   const navigate = useNavigate()
   const { nickname } = useAuthStore()
   const sequencerStatus = useSequencerStatus()
@@ -20,10 +23,11 @@ const Header = () => {
         <Border />
         <img src={Star} alt="sequencer status" />
         <SequencerStatus>
-          <span>Sequencer</span>
+          <span><Trans i18nKey="header.sequencer">Sequencer</Trans></span>
           <Status style={{ color:  sequencerStatus === 'Online' ? '#61cc61' : 'red'}}>{sequencerStatus}</Status>
         </SequencerStatus>
       </LeftSection>
+      <LanguageSelector></LanguageSelector>
       <ButtonGroup>
         {nickname ? (
           <span>{nickname.slice(0, 10)}</span>
@@ -32,7 +36,7 @@ const Header = () => {
             onClick={() => navigate(ROUTES.SIGNIN)}
             variant="white"
           >
-            Unlock
+            <Trans i18nKey="header.button">Unlock</Trans>
           </PrimaryButton>
         )}
       </ButtonGroup>

@@ -10,7 +10,6 @@ import {
   Img,
   TextSection
 } from '../components/Layout'
-import wasm from '../wasm'
 import ROUTES from '../routes'
 import { blsSignId } from '../utils'
 import { useAuthStore } from '../store/auth'
@@ -19,6 +18,7 @@ import InnerColor from '../assets/inner-color.svg'
 import SnakeColor from '../assets/snake-color.svg'
 import OuterWhite from '../assets/outer-white.svg'
 import { providers } from 'ethers'
+import { Trans, useTranslation } from 'react-i18next'
 import { useContributionStore, Store } from '../store/contribute'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 
@@ -29,6 +29,7 @@ declare global {
 }
 
 const DoubleSignPage = () => {
+  useTranslation()
   const { updateECDSASignature } = useContributionStore((state: Store) => ({
     entropy: state.entropy,
     updateECDSASignature: state.updateECDSASignature,
@@ -99,27 +100,33 @@ const DoubleSignPage = () => {
     <>
       <HeaderJustGoingBack />
       <Over>
-        <Container>
-          <Bg src={BgImg} />
-          <Img src={InnerColor} />
-          <Img src={OuterWhite} />
-          <Img src={SnakeColor} />
-          <Wrap>
-            <InnerWrap>
-              <PageTitle>
+      <Container>
+        <Bg src={BgImg} />
+        <Img src={InnerColor} />
+        <Img src={OuterWhite} />
+        <Img src={SnakeColor} />
+        <Wrap>
+          <InnerWrap>
+            <PageTitle>
+              <Trans i18nKey="doubleSign.title">
                 Bind your <br /> Contribution
-              </PageTitle>
-              <TextSection>
+              </Trans>
+            </PageTitle>
+            <TextSection>
+              <Trans i18nKey="doubleSign.description">
                 <Description>
                 This signature binds each Summoner’s entropy contribution to their Ethereum address.
                 </Description>
-              </TextSection>
-              <ButtonSection>
+              </Trans>
+            </TextSection>
+            <ButtonSection>
+              <Trans i18nKey="doubleSign.button">
                 <PrimaryButton onClick={handleClickSign}>Sign</PrimaryButton>
-              </ButtonSection>
-            </InnerWrap>
-          </Wrap>
-        </Container>
+              </Trans>
+            </ButtonSection>
+          </InnerWrap>
+        </Wrap>
+      </Container>
       </Over>
     </>
   )

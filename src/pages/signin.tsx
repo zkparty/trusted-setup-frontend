@@ -13,11 +13,13 @@ import BgImg from '../assets/img-graphic-base.svg'
 import InnerWhite from '../assets/inner-white.svg'
 import SnakeWhite from '../assets/snake-white.svg'
 import OuterWhite from '../assets/outer-white.svg'
+import { Trans, useTranslation } from 'react-i18next'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 import api from '../api'
 
 const SigninPage = () => {
-  const { error } = useAuthStore()
+useTranslation()
+const { error } = useAuthStore()
 
   const onSigninSIE = async () => {
     const requestLinks = await api.getRequestLink()
@@ -33,42 +35,48 @@ const SigninPage = () => {
     <>
       <HeaderJustGoingBack />
       <Over>
-        <Container>
-          <Bg src={BgImg} />
-          <Img src={InnerWhite} />
-          <Img src={OuterWhite} />
-          <Img src={SnakeWhite} />
-          <Wrap>
-            <PageTitle>
+      <Container>
+        <Bg src={BgImg} />
+        <Img src={InnerWhite} />
+        <Img src={OuterWhite} />
+        <Img src={SnakeWhite} />
+        <Wrap>
+          <PageTitle>
+            <Trans i18nKey="sigin.title">
               OPEN <br /> THE WAY
-            </PageTitle>
-            <TextSection>
-              {error && <ErrorMessage>{error}</ErrorMessage>}
+            </Trans>
+          </PageTitle>
+          <TextSection>
+          {error && <ErrorMessage>{error}</ErrorMessage>}
+            <Trans i18nKey="sigin.description">
               <Desc>
-                The Ceremony requires souls of pure intent. Summoners show their
-                integrity by unlocking with an address that has at least three
-                sent transactions.
+              The Ceremony requires souls of pure intent.
+              Summoners show their integrity by unlocking with an address that
+              has at least three sent transactions.
               </Desc>
               <Desc>
-                It does not send any funds or permit any contracts. This method
-                also allows us to deliver a POAP after the Ceremony.
+              It does not send any funds or permit any contracts.
+              This method also allows us to deliver a POAP after the Ceremony.
               </Desc>
-            </TextSection>
+            </Trans>
+          </TextSection>
 
-            <ButtonSection>
-              <PrimaryButton onClick={onSigninSIE} style={{ width: '360px' }}>
-                Unlock with Ethereum <ButtonIcon src={EthImg} alt="ETH icon" />
-              </PrimaryButton>
-              <PrimaryButton
-                onClick={onSigninGithub}
-                style={{ width: '280px' }}
-              >
+          <ButtonSection>
+            <PrimaryButton onClick={onSigninSIE} style={{ width: '360px' }}>
+              <Trans i18nKey="sigin.unlockWithEthereum">
+                Unlock with Ethereum{' '}
+                <ButtonIcon src={EthImg} alt="ETH icon" />
+              </Trans>
+            </PrimaryButton>
+            <PrimaryButton onClick={onSigninGithub} style={{ width: '280px' }}>
+              <Trans i18nKey="sigin.unlockWithGithub">
                 Unlock with Github{' '}
                 <ButtonIcon src={GithubImg} alt="Github icon" />
-              </PrimaryButton>
-            </ButtonSection>
-          </Wrap>
-        </Container>
+              </Trans>
+            </PrimaryButton>
+          </ButtonSection>
+        </Wrap>
+      </Container>
       </Over>
     </>
   )
