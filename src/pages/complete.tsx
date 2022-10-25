@@ -63,10 +63,6 @@ const CompletePage = () => {
                     Success! Echoes of you are permanently fused with the others
                     in this Summoning Ceremony.
                   </Desc>
-                  <Desc>
-                    <Bold>Remember:</Bold> this is only a testnet Ceremony -
-                    make sure to return for the full Dankshard summoning.
-                  </Desc>
                 </Trans>
               </TextSection>
 

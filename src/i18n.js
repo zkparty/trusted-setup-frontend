@@ -6,11 +6,7 @@ export const languages = {
   es: {
     nativeName: 'Español',
     translation: {
-      header: {
-        sequencer: 'Sequenciador',
-        button: 'Desbloquear',
-        ceremony: 'CEREMONIA DE PRUEBA'
-      },
+      header: { sequencer: 'Sequenciador' },
       complete: {
         title: 'Dankshard <br/> está cerca',
         description: `
@@ -132,7 +128,6 @@ export const languages = {
           `,
           'unlockWithEthereum': 'Desbloquear con Ethereum <2></2>',
           'unlockWithGithub': 'ó desbloquear con Github <2></2>',
-        }
       }
     }
   }
