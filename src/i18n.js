@@ -5,7 +5,7 @@ import { initReactI18next } from "react-i18next"
 export const languages = {
     en: { nativeName: 'English' },
     es: {
-      nativeName: 'Spanish',
+      nativeName: 'Español',
       translation: {
         header: {
           'sequencer': 'Sequenciador',
