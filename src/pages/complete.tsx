@@ -42,42 +42,43 @@ const CompletePage = () => {
     <>
       <Header />
       <Over>
-      <Container>
-      <Bg src={BgImgColor} />
-        <PizzaImg src={PizzaInner} />
-        <PizzaImg src={PizzaOuter} />
-        <Img src={InnerColor} />
-        <Img src={OuterColor} />
-        <Img src={SnakeColor} />
-        <Wrap>
-        <InnerWrap>
-          <PageTitle>
-            <Trans i18nKey="complete.title">Dankshard <br/> draws near</Trans>
-          </PageTitle>
+        <Container>
+          <Bg src={BgImgColor} />
+          <PizzaImg src={PizzaInner} />
+          <PizzaImg src={PizzaOuter} />
+          <Img src={InnerColor} />
+          <Img src={OuterColor} />
+          <Img src={SnakeColor} />
+          <Wrap>
+            <InnerWrap>
+              <PageTitle>
+                <Trans i18nKey="complete.title">
+                  Dankshard <br /> draws near
+                </Trans>
+              </PageTitle>
 
-          <TextSection>
-          <Trans i18nKey="complete.description">
-            <Desc>
-            Success! Echoes of you are permanently fused
-            with the others in this Summoning Ceremony.
-            </Desc>
-            <Desc>
-            <Bold>Remember:</Bold> this is only
-            a testnet Ceremony - make sure to return for the full Dankshard summoning.
-            </Desc>
-          </Trans>
-          </TextSection>
+              <TextSection>
+                <Trans i18nKey="complete.description">
+                  <Desc>
+                    Success! Echoes of you are permanently fused with the others
+                    in this Summoning Ceremony.
+                  </Desc>
+                  <Desc>
+                    <Bold>Remember:</Bold> this is only a testnet Ceremony -
+                    make sure to return for the full Dankshard summoning.
+                  </Desc>
+                </Trans>
+              </TextSection>
 
-          <ButtonSection>
-          <PrimaryButtonLarge>
-            <Trans i18nKey="complete.button">
-              View your contribution
-            </Trans>
-          </PrimaryButtonLarge>
-
-          </ButtonSection>
-          </InnerWrap>
-        </Wrap>
+              <ButtonSection>
+                <PrimaryButtonLarge>
+                  <Trans i18nKey="complete.button">
+                    View your contribution
+                  </Trans>
+                </PrimaryButtonLarge>
+              </ButtonSection>
+            </InnerWrap>
+          </Wrap>
         </Container>
       </Over>
     </>

@@ -30,7 +30,6 @@ import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 import { Trans, useTranslation } from 'react-i18next'
 import { ErrorRes } from '../types'
 
-
 const LobbyPage = () => {
   useTranslation()
   const [error, setError] = useState<null | string>(null)
@@ -65,16 +64,19 @@ const LobbyPage = () => {
         switch (resError.code) {
           case 'TryContributeError::RateLimited':
             setError(resError.error)
-            break;
+            break
           case 'TryContributeError::UnknownSessionId':
-            setError(resError.error + '. You might have taken more time to get into the lobby. Please reload and sign in again')
-            break;
+            setError(
+              resError.error +
+                '. You might have taken more time to get into the lobby. Please reload and sign in again'
+            )
+            break
           case 'TryContributeError::AnotherContributionInProgress':
-            setError(resError.error);
-            break;
+            setError(resError.error)
+            break
           default:
             setError('Unknown error code: ' + resError.code)
-            break;
+            break
         }
         //  try again after LOBBY_CHECKIN_FREUQUENCY
         await sleep(LOBBY_CHECKIN_FREQUENCY)
@@ -106,15 +108,17 @@ const LobbyPage = () => {
                   </Trans>
                 </PageTitle>
                 <TextSection>
-                {error && <ErrorMessage>{error}</ErrorMessage>}
-                <Trans i18nKey="lobby.description">
-                  <Description>
-                    Your contribution is ready to be accepted by the Sequencer.
-                    Please leave this guide open in the background and we will add
-                    your contribution to the others soon.
-                  </Description>
-                  <Description>Please leave this guide open and awake.</Description>
-                </Trans>
+                  {error && <ErrorMessage>{error}</ErrorMessage>}
+                  <Trans i18nKey="lobby.description">
+                    <Description>
+                      Your contribution is ready to be accepted by the
+                      Sequencer. Please leave this guide open in the background
+                      and we will add your contribution to the others soon.
+                    </Description>
+                    <Description>
+                      Please leave this guide open and awake.
+                    </Description>
+                  </Trans>
                 </TextSection>
               </InnerWrap>
             </Wrap>

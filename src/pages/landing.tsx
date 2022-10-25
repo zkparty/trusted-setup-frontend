@@ -25,29 +25,29 @@ const LandingPage = () => {
       <TopSection>
         <BgColor />
         <PageTitle>
-        <Trans i18nKey="landing.title">
-          SUMMONING <br /> GUIDE
-        </Trans>
+          <Trans i18nKey="landing.title">
+            SUMMONING <br /> GUIDE
+          </Trans>
         </PageTitle>
         <TextSection>
           <Trans i18nKey="landing.description">
-          <Description>
-          Whispers from the shadows tell of a powerful spirit Dankshard,
-          who will open the next chapter of Ethereum scalability.
-          To summon its powers, a Ceremony needs your contribution.
-          This illuminated guide will lead you through the movements necessary
-          to complete the ritual.
-          </Description>
-          <Description>
-            Magic math awaits - are you ready to add your color to the story?
-          </Description>
+            <Description>
+              Whispers from the shadows tell of a powerful spirit Dankshard, who
+              will open the next chapter of Ethereum scalability. To summon its
+              powers, a Ceremony needs your contribution. This illuminated guide
+              will lead you through the movements necessary to complete the
+              ritual.
+            </Description>
+            <Description>
+              Magic math awaits - are you ready to add your color to the story?
+            </Description>
           </Trans>
         </TextSection>
         <PrimaryButton onClick={onClickGetStart}>
           <Trans i18nKey="landing.button">Begin</Trans>
         </PrimaryButton>
         <Footnote>
-        <Trans i18nKey="landing.learn-more">↓ or learn more below ↓</Trans>
+          <Trans i18nKey="landing.learn-more">↓ or learn more below ↓</Trans>
         </Footnote>
       </TopSection>
       <Explanation />
@@ -66,7 +66,7 @@ const Section = styled.section`
 const TopSection = styled(Section)`
   background: url(${LandingBg}) no-repeat bottom / contain;
   height: 840px;
-  margin-top: 24px;
+  margin-top: 80px;
   padding-top: 100px;
 `
 

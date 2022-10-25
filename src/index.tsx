@@ -13,9 +13,9 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 const client = new QueryClient()
 
 root.render(
-    <ThemeProvider theme={theme}>
-      <QueryClientProvider client={client}>
-        <App />
-      </QueryClientProvider>
-    </ThemeProvider>
+  <ThemeProvider theme={theme}>
+    <QueryClientProvider client={client}>
+      <App />
+    </QueryClientProvider>
+  </ThemeProvider>
 )
