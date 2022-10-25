@@ -19,6 +19,7 @@ import { hkdf } from '@noble/hashes/hkdf'
 import { sha256 } from '@noble/hashes/sha256'
 import { randomBytes } from '@noble/hashes/utils'
 import { Trans, useTranslation } from 'react-i18next'
+import 'text-security'
 
 
 const MIN_MOUSE_ENTROPY_SAMPLES = 64 // Chosen to target 128 bits of entropy, assuming 2 bits added per sample.
@@ -134,6 +135,7 @@ const EntropyInputPage = () => {
             </Trans>
           </TextSection>
           <Input
+            keyEntropy={keyEntropy}
             placeholder="Secret"
             onChange={handleCaptureKeyEntropy}
           />
@@ -180,7 +182,8 @@ const Bold = styled.span`
   font-weight: 700;
 `
 
-const Input = styled.input`
+const Input = styled.input<{keyEntropy: string}>`
+  font-family: ${({ keyEntropy }) => keyEntropy === '' ?  "inherit" : "text-security-disc"};
   text-align: center;
   text-security: disc;
   -moz-text-security: disc;
