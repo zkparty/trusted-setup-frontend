@@ -134,8 +134,6 @@ const ContributingPage = () => {
           </ContainerR>
         </Over>
       </OverRelative>
-      <Explanation />
-      <Footer />
     </>
   )
 }

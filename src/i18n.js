@@ -6,11 +6,7 @@ export const languages = {
   es: {
     nativeName: 'Español',
     translation: {
-      header: {
-        sequencer: 'Sequenciador',
-        button: 'Desbloquear',
-        ceremony: 'CEREMONIA DE PRUEBA'
-      },
+      header: { sequencer: 'Sequenciador' },
       complete: {
         title: 'Dankshard <br/> está cerca',
         description: `
@@ -130,8 +126,8 @@ export const languages = {
             Este método nos permite entregar un POAP después de la Ceremonia.
           </1>
           `,
-        unlockWithEthereum: 'Desbloquear con Ethereum <2></2>',
-        unlockWithGithub: 'Desbloquear con Github <2></2>'
+          'unlockWithEthereum': 'Desbloquear con Ethereum <2></2>',
+          'unlockWithGithub': 'ó desbloquear con Github <2></2>',
       }
     }
   }

@@ -1,18 +1,14 @@
 import Logo from './Logo'
-import ROUTES from '../routes'
 import Star from '../assets/star.svg'
 import styled from 'styled-components'
 import { FONT_SIZE } from '../constants'
-import { PrimaryButton } from './Button'
 import { useAuthStore } from '../store/auth'
-import { useNavigate } from 'react-router-dom'
 import LanguageSelector from './LanguageSelector'
 import { Trans, useTranslation } from 'react-i18next'
 import useSequencerStatus from '../hooks/useSequencerStatus'
 
 const Header = () => {
   useTranslation()
-  const navigate = useNavigate()
   const { nickname } = useAuthStore()
   const sequencerStatus = useSequencerStatus()
 
@@ -35,16 +31,7 @@ const Header = () => {
       </LeftSection>
       <LanguageSelector></LanguageSelector>
       <ButtonGroup>
-        {nickname ? (
-          <span>{nickname.slice(0, 10)}</span>
-        ) : (
-          <PrimaryButton
-            onClick={() => navigate(ROUTES.SIGNIN)}
-            variant="white"
-          >
-            <Trans i18nKey="header.button">Unlock</Trans>
-          </PrimaryButton>
-        )}
+        {nickname ? (<span>{nickname.slice(0, 10)}</span>) : ("")}
       </ButtonGroup>
     </Container>
   )

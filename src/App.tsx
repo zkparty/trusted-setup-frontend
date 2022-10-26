@@ -20,6 +20,7 @@ import ROUTES from './routes'
 import GlobalStyle from './style/global'
 
 function App() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const loaded = usePreloadAllImages()
   return (
     <>

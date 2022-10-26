@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import ErrorMessage from '../components/Error'
-import { PrimaryButton } from '../components/Button'
+import SnakeProgress from '../components/SnakeProgress'
+import { PrimaryButton, SecondaryButton } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
@@ -8,7 +9,6 @@ import {
   Over
 } from '../components/Layout'
 import EthImg from '../assets/eth.svg'
-import GithubImg from '../assets/github.svg'
 import { useAuthStore } from '../store/auth'
 import { Trans, useTranslation } from 'react-i18next'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
@@ -33,6 +33,7 @@ const SigninPage = () => {
       <HeaderJustGoingBack />
       <Over>
         <Container>
+        <SnakeProgress onSetPlayer={()=>{}} />
           <Wrap>
             <PageTitle>
               <Trans i18nKey="signin.title">
@@ -54,25 +55,21 @@ const SigninPage = () => {
               </Trans>
             </TextSection>
 
-            <ButtonSection>
-              <PrimaryButton onClick={onSigninSIE} style={{ width: '360px' }}>
-                <Trans i18nKey="signin.unlockWithEthereum">
-                  Unlock with Ethereum{' '}
-                  <ButtonIcon src={EthImg} alt="ETH icon" />
-                </Trans>
-              </PrimaryButton>
-              <PrimaryButton
-                onClick={onSigninGithub}
-                style={{ width: '280px' }}
-              >
-                <Trans i18nKey="signin.unlockWithGithub">
-                  Unlock with Github{' '}
-                  <ButtonIcon src={GithubImg} alt="Github icon" />
-                </Trans>
-              </PrimaryButton>
-            </ButtonSection>
-          </Wrap>
-        </Container>
+          <ButtonSection>
+            <PrimaryButton onClick={onSigninSIE} style={{ width: '360px' }}>
+              <Trans i18nKey="signin.unlockWithEthereum">
+                Unlock with Ethereum{' '}
+                <ButtonIcon src={EthImg} alt="ETH icon" />
+              </Trans>
+            </PrimaryButton>
+            <SecondaryButton onClick={onSigninGithub} style={{ width: '280px' }}>
+              <Trans i18nKey="signin.unlockWithGithub">
+                or unlock with Github
+              </Trans>
+            </SecondaryButton>
+          </ButtonSection>
+        </Wrap>
+      </Container>
       </Over>
     </>
   )

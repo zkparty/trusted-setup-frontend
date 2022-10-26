@@ -96,9 +96,28 @@ const BorderedButtonLarge = styled(BorderedButton)`
   font-size: ${FONT_SIZE.L};
 `
 
+const SecondaryButton = styled.button`
+  border: none;
+  cursor: pointer;
+  background: transparent;
+
+  font-size: ${FONT_SIZE.M};
+  font-style: italic;
+  font-weight: 500;
+
+  :disabled {
+    cursor: default;
+  }
+  :hover:not([disabled]) {
+    filter: drop-shadow(0px 10px 12px #00000226);
+  }
+  ${textSerif}
+`
+
 export {
   PrimaryButton,
   PrimaryButtonLarge,
   BorderedButton,
-  BorderedButtonLarge
+  BorderedButtonLarge,
+  SecondaryButton,
 }

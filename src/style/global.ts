@@ -8,6 +8,7 @@ body {
   color: ${({ theme }) => theme.text};
   margin: 0;
   min-width: 100vw;
+  overflow-x: hidden;
   background-color: ${({ theme }) => theme.background}
 }
 input {
