@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import ErrorMessage from '../components/Error'
+import SnakeProgress from '../components/SnakeProgress'
 import { PrimaryButton, SecondaryButton } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
@@ -32,6 +33,7 @@ const SigninPage = () => {
       <HeaderJustGoingBack />
       <Over>
         <Container>
+        <SnakeProgress onSetPlayer={()=>{}} />
           <Wrap>
             <PageTitle>
               <Trans i18nKey="signin.title">
