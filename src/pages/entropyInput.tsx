@@ -15,7 +15,6 @@ import {
   Over
 } from '../components/Layout'
 import ROUTES from '../routes'
-import BgImg from '../assets/img-graphic-base.svg'
 import SnakeProgress from '../components/SnakeProgress'
 import { useAuthStore } from '../store/auth'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
@@ -121,7 +120,6 @@ const EntropyInputPage = () => {
       <HeaderJustGoingBack />
       <Over>
         <Container onMouseMove={handleCaptureMouseEntropy}>
-          <Bg src={BgImg} />
           <SnakeProgress onSetPlayer={setPlayer} />
           <Wrap>
             <PageTitle>
@@ -169,16 +167,6 @@ const EntropyInputPage = () => {
     </>
   )
 }
-
-const Bg = styled.img`
-  z-index: -2;
-  position: absolute;
-  top: -9999px;
-  bottom: -9999px;
-  left: -9999px;
-  right: -9999px;
-  margin: auto;
-`
 
 const Desc = styled(Description)`
   margin: 0 0 20px;

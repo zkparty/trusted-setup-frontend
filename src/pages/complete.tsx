@@ -10,12 +10,6 @@ import {
   SingleWrap as Wrap,
   Over
 } from '../components/Layout'
-import PizzaInner from '../assets/crust.svg'
-import PizzaOuter from '../assets/fig.svg'
-import BgImgColor from '../assets/img-base-color.svg'
-import InnerColor from '../assets/inner-color.svg'
-import SnakeColor from '../assets/snake-color.svg'
-import OuterColor from '../assets/outer-color.svg'
 import { Trans, useTranslation } from 'react-i18next'
 
 const CompletePage = () => {
@@ -43,12 +37,6 @@ const CompletePage = () => {
       <Header />
       <Over>
         <Container>
-          <Bg src={BgImgColor} />
-          <PizzaImg src={PizzaInner} />
-          <PizzaImg src={PizzaOuter} />
-          <Img src={InnerColor} />
-          <Img src={OuterColor} />
-          <Img src={SnakeColor} />
           <Wrap>
             <InnerWrap>
               <PageTitle>
@@ -98,25 +86,6 @@ const Desc = styled(Description)`
   font-size: 18px;
 `
 
-const Bg = styled.img`
-  z-index: -2;
-  position: absolute;
-  top: -9999px;
-  bottom: -9999px;
-  left: -9999px;
-  right: -9999px;
-  margin: auto;
-`
-
-const Img = styled.img`
-  position: absolute;
-  top: -9999px;
-  bottom: -9999px;
-  left: -9999px;
-  right: -9999px;
-  margin: auto;
-`
-
 export const ButtonSection = styled.div`
   display: flex;
   flex-direction: column;
@@ -124,10 +93,6 @@ export const ButtonSection = styled.div`
   align-items: center;
   justify-content: space-around;
   margin-top: 12px;
-`
-
-const PizzaImg = styled(Img)`
-  transition: all 3s ease;
 `
 
 const Bold = styled.span`
