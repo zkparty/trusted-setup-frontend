@@ -66,7 +66,7 @@ const Section = styled.section`
 const TopSection = styled(Section)`
   background: url(${LandingBg}) no-repeat bottom / contain;
   height: 840px;
-  margin-top: 80px;
+  margin-top: 90px;
   padding-top: 100px;
 `
 
