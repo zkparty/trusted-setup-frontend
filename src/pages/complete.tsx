@@ -91,8 +91,4 @@ export const ButtonSection = styled.div`
   margin-top: 12px;
 `
 
-const Bold = styled.span`
-  font-weight: 700;
-`
-
 export default CompletePage

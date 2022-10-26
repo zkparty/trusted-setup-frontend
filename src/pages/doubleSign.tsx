@@ -9,8 +9,6 @@ import {
   TextSection
 } from '../components/Layout'
 import ROUTES from '../routes'
-import { blsSignId } from '../utils'
-import { useAuthStore } from '../store/auth'
 import { providers } from 'ethers'
 import { Trans, useTranslation } from 'react-i18next'
 import { useContributionStore, Store } from '../store/contribute'
@@ -33,6 +31,10 @@ const DoubleSignPage = () => {
   const handleClickSign = async () => {
     /*
      TODO: this should be implemented in Rust
+
+    import { blsSignId } from '../utils'
+    import { useAuthStore } from '../store/auth'
+
     // do double sign
     for (let i = 0; i < entropy.length; i++) {
       const signed = await blsSignId(entropy, provider!, nickname!);
