@@ -9,10 +9,6 @@ import {
 } from '../components/Layout'
 import EthImg from '../assets/eth.svg'
 import { useAuthStore } from '../store/auth'
-import BgImg from '../assets/img-graphic-base.svg'
-import InnerWhite from '../assets/inner-white.svg'
-import SnakeWhite from '../assets/snake-white.svg'
-import OuterWhite from '../assets/outer-white.svg'
 import { Trans, useTranslation } from 'react-i18next'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 import api from '../api'
@@ -36,10 +32,6 @@ const SigninPage = () => {
       <HeaderJustGoingBack />
       <Over>
         <Container>
-          <Bg src={BgImg} />
-          <Img src={InnerWhite} />
-          <Img src={OuterWhite} />
-          <Img src={SnakeWhite} />
           <Wrap>
             <PageTitle>
               <Trans i18nKey="signin.title">
@@ -80,25 +72,6 @@ const SigninPage = () => {
     </>
   )
 }
-
-const Bg = styled.img`
-  z-index: -2;
-  position: absolute;
-  top: -9999px;
-  bottom: -9999px;
-  left: -9999px;
-  right: -9999px;
-  margin: auto;
-`
-
-const Img = styled.img`
-  position: absolute;
-  top: -9999px;
-  bottom: -9999px;
-  left: -9999px;
-  right: -9999px;
-  margin: auto;
-`
 
 const TextSection = styled.div`
   width: 360px;

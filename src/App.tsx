@@ -15,10 +15,12 @@ import {
   SigninRedirectPage
 } from './pages'
 import RequireAuth from './components/helper/RequireAuth'
+import usePreloadAllImages from './hooks/usePreloadAllImages'
 import ROUTES from './routes'
 import GlobalStyle from './style/global'
 
 function App() {
+  const loaded = usePreloadAllImages()
   return (
     <>
       <BrowserRouter>
