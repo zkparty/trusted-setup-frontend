@@ -64,13 +64,14 @@ const Section = styled.section`
 `
 
 const TopSection = styled(Section)`
-  border: 40px solid;
+  border: 10vw solid;
   border-image-source: url(${LandingBg});
   border-image-slice: 230;
   border-image-repeat: round;
-  margin: 100px auto 200px;
-  padding: 40px 60px;
-  width: fit-content;
+  margin: 6rem auto;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100ch;
 `
 
 const BgColor = styled.div`
