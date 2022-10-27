@@ -52,10 +52,11 @@ const SecondSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 100%;
 `
 
 const SecondTextSection = styled(TextSection)`
-  width: 698px;
+  width: 70ch;
 `
 
 export default Explanation
