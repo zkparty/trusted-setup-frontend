@@ -28,7 +28,7 @@ const LogoSection = styled.div`
 const LogoTextGroup = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 8px;
+  margin-inline-start: 8px;
 `
 
 const LogoTextMain = styled.span`

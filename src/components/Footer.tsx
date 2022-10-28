@@ -39,7 +39,7 @@ const Copyright = styled.p`
 `
 
 const LinkGroup = styled.div`
-  margin-left: 40px;
+  margin-inline-start: 40px;
   display: flex;
   flex-direction: column;
 `

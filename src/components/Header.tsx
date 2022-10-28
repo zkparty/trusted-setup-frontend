@@ -64,7 +64,7 @@ const Border = styled.span`
 `
 
 const SequencerStatus = styled.div`
-  margin-left: 12px;
+  margin-inline-start: 12px;
   font-size: ${FONT_SIZE.XS};
   display: flex;
   flex-direction: column;
