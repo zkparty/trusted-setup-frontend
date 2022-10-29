@@ -29,10 +29,14 @@ const Header = () => {
           </Status>
         </SequencerStatus>
       </LeftSection>
-      <LanguageSelector></LanguageSelector>
-      <ButtonGroup>
+      <RightSection>
+      <div>
         {nickname ? (<span>{nickname.slice(0, 10)}</span>) : ("")}
-      </ButtonGroup>
+      </div>
+      <div>
+        <LanguageSelector></LanguageSelector>
+      </div>
+      </RightSection>
     </Container>
   )
 }
@@ -43,7 +47,7 @@ const Container = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 10vw;
   width: 100vw;
   z-index: 3;
   position: absolute;
@@ -75,7 +79,7 @@ const Status = styled.span`
   font-size: ${FONT_SIZE.M};
 `
 
-const ButtonGroup = styled.div`
+const RightSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
