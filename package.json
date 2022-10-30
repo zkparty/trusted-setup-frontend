@@ -2,6 +2,7 @@
   "name": "trusted-setup-frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@noble/bls12-381": "^1.4.0",
     "@noble/hashes": "^1.1.3",

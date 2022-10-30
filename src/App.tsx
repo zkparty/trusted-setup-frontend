@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import {
   HomePage,
   LandingPage,
@@ -24,7 +24,7 @@ function App() {
   const loaded = usePreloadAllImages()
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <GlobalStyle />
         <Routes>
           <Route path={ROUTES.MOBILE} element={<MobilePage />} />
@@ -85,7 +85,7 @@ function App() {
           <Route path={ROUTES.GATE} element={<GatePage />} />
           <Route path={ROUTES.REDIRECT} element={<SigninRedirectPage />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </>
   )
 }
