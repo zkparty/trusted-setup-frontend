@@ -27,6 +27,7 @@
     "react-modal": "^3.15.1",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
+    "react-select": "^5.5.7",
     "siwe": "^1.1.6",
     "styled-components": "^5.3.5",
     "text-security": "^3.2.1",
