@@ -7,7 +7,10 @@ import type { ErrorRes, ContributeRes, TryContributeRes } from './types'
 class APIClient {
   async getRequestLink() {
     const res = await fetch(
-      `${API_ROOT}/auth/request_link?redirect_to=${SIGNIN_REDIRECT_URL}`
+      `${API_ROOT}/auth/request_link?redirect_to=${SIGNIN_REDIRECT_URL}`,
+      {
+        mode: 'no-cors'
+      }
     )
     return await res.json()
   }
