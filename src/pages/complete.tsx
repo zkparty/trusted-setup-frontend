@@ -1,5 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import ErrorMessage from '../components/Error'
 import { PrimaryButtonLarge } from '../components/Button'
 import Header from '../components/Header'
 import { Description, PageTitle } from '../components/Text'
@@ -14,6 +15,7 @@ import { Trans, useTranslation } from 'react-i18next'
 
 const CompletePage = () => {
   useTranslation()
+  const [error, setError] = useState<null | string>(null)
   const { contribution, newContribution } = useContributionStore(
     (state: Store) => ({
       contribution: state.contribution,
@@ -23,14 +25,20 @@ const CompletePage = () => {
 
   useEffect(() => {
     ;(async () => {
-      // TODO: check is done automatically or user start checking?
+      // TODO: should user have a start checking button?
       const checks = await wasm.checkContributions(
         contribution!,
         newContribution!
       )
-      console.log(checks)
+      if (!checks.checkContribution){
+        setError('Subgroup check failed in the contribution you received. Please report it inmmediately')
+      }
+      if (!checks.checkNewContribution){
+        setError('Subgroup check failed in your computed contribution. Please check your setup and try again')
+      }
     })()
-  })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>
@@ -46,6 +54,7 @@ const CompletePage = () => {
               </PageTitle>
 
               <TextSection>
+                {error && <ErrorMessage>{error}</ErrorMessage>}
                 <Trans i18nKey="complete.description">
                   <Desc>
                     Success! Echoes of you are permanently fused with the others

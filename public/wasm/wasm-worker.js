@@ -1,6 +1,7 @@
 import init, {
     init_threads,
     contribute_wasm,
+    subgroup_check_wasm,
     get_pot_pubkeys_wasm,
 } from "./pkg/wrapper_small_pot.js";
 
@@ -14,7 +15,7 @@ onmessage = async (event) => {
             contribute(event.data);
             break;
         case 'subgroupCheck':
-            console.log('TODO: implement post subgroups checks')
+            subgroupChecks(event.data);
             break;
         case 'getPotPubkeys':
             getPotPubkeys(event.data);
@@ -39,15 +40,9 @@ async function contribute(data){
     postMessage(result);
 }
 
-/*
+
 function subgroupChecks(data){
     let { contribution, newContribution } = data;
-    contribution = JSON.parse(contribution);
-    // Temporary solution until sequencer sends potPubkey in contributions
-    contribution['contributions'].forEach((contrib) => {
-        contrib['potPubkey'] = '0x0001';
-    })
-    contribution = JSON.stringify(contribution);
 
     console.log("start subgroup checks");
     const startTime = performance.now();
@@ -60,11 +55,11 @@ function subgroupChecks(data){
         checkNewContribution,
     }
     postMessage(result);
-}*/
+}
 
 function getPotPubkeys(data){
-    let { entropy } = data;
-    console.log("start getPotPubkeys");
+    const { entropy } = data;
+    console.log("start get potPubkeys");
     const startTime = performance.now();
     const potPubkeys = get_pot_pubkeys_wasm(entropy);
     const endTime = performance.now();
