@@ -43,7 +43,7 @@ class Wasm {
       worker.postMessage(data)
     })
   }
-  async getPotPubkeys(entropy: string[]) {
+  async getPotPubkeys(entropy: string) {
     return new Promise<string[]>((resolve) => {
       const worker = new Worker('./wasm/wasm-worker.js', {
         type: 'module'

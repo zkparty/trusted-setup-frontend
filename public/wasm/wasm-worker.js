@@ -1,6 +1,7 @@
 import init, {
     init_threads,
     contribute_wasm,
+    get_pot_pubkeys_wasm,
 } from "./pkg/wrapper_small_pot.js";
 
 onmessage = async (event) => {
@@ -16,7 +17,7 @@ onmessage = async (event) => {
             console.log('TODO: implement post subgroups checks')
             break;
         case 'getPotPubkeys':
-            console.log('TODO: implemente getPotPubkeys')
+            getPotPubkeys(event.data);
             break;
         default:
             break;
@@ -59,20 +60,14 @@ function subgroupChecks(data){
         checkNewContribution,
     }
     postMessage(result);
-}
+}*/
 
 function getPotPubkeys(data){
     let { entropy } = data;
     console.log("start getPotPubkeys");
     const startTime = performance.now();
-    const potPubkeys = get_pot_pubkeys_wasm(
-        entropy[0],
-        entropy[1],
-        entropy[2],
-        entropy[3],
-    );
+    const potPubkeys = get_pot_pubkeys_wasm(entropy);
     const endTime = performance.now();
     console.log(`Get PotPubkeys took ${endTime - startTime} milliseconds`);
     postMessage(potPubkeys);
 }
-*/

@@ -58,12 +58,11 @@ class APIClient {
   ): Promise<ErrorRes | ContributeRes> {
     const contribution  = await wasm.contribute(preContribution, entropy, identity)
     let contributionObj = null
-    /* TODO: activate the following line
     if (signature) {
       contributionObj = JSON.parse(contribution!)
-      contributionObj.ecdsaSignature = signature
+      contributionObj.ecdsa_signature = signature
       contributionObj = JSON.stringify(contributionObj)
-    }*/
+    }
 
     const res = await fetch(`${API_ROOT}/contribute`, {
       method: 'POST',
