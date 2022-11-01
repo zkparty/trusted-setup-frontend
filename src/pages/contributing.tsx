@@ -5,11 +5,9 @@ import { useContributionStore, Store } from '../store/contribute'
 import { useAuthStore } from '../store/auth'
 import { Description, PageTitle } from '../components/Text'
 import { PrimaryButton } from '../components/Button'
-import { isSuccessRes, parseErrorMessage } from '../utils'
+import { isSuccessRes, parseErrorMessage, processIdentity } from '../utils'
 import ROUTES from '../routes'
 import api from '../api'
-import Explanation from '../components/Explanation'
-import Footer from '../components/Footer'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 import {
   SingleContainer as Container,
@@ -22,7 +20,7 @@ import {
 type Steps = 'contributing' | 'completed' | 'error'
 
 const ContributingPage = () => {
-  const { sessionId } = useAuthStore()
+  const { sessionId, provider, nickname } = useAuthStore()
   const {
     entropy,
     ECDSASignature,
@@ -47,10 +45,12 @@ const ContributingPage = () => {
         if (!sessionId || !contribution) {
           throw new Error('invalid sessionId or contribution')
         }
+        const identity = await processIdentity(provider!, nickname!)
         const res = await api.contribute(
           sessionId!,
           contribution!,
           entropy!,
+          identity!,
           ECDSASignature
         )
         if (isSuccessRes(res)) {

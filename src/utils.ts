@@ -93,3 +93,27 @@ export function validateSigninParams(params: {
     !!params.sub
   )
 }
+
+export async function processIdentity(
+  provider: string,
+  nickname: string
+): Promise<string> {
+  let identity = ''
+  switch (provider) {
+    case 'Ethereum':
+      if (nickname.substring(0, 2) !== '0x') nickname = '0x' + nickname
+      identity = 'eth|' + nickname
+      break
+    case 'github':
+      if (nickname.substring(0, 1) === '@') nickname = nickname.substring(1)
+      const githubRes = await fetch(`https://api.github.com/users/${nickname}`).then(
+        (_res) => _res.json()
+      )
+      identity = 'git|' + githubRes.id + '|@' + nickname
+      break
+    default:
+      console.error('Unregistered auth provider for identity string')
+      break
+  }
+  return identity
+}

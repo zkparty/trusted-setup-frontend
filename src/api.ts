@@ -53,9 +53,10 @@ class APIClient {
     session_id: string,
     preContribution: string,
     entropy: string,
+    identity: string,
     signature: string | null
   ): Promise<ErrorRes | ContributeRes> {
-    const { contribution } = await wasm.contribute(preContribution, entropy)
+    const contribution  = await wasm.contribute(preContribution, entropy, identity)
     let contributionObj = null
     /* TODO: activate the following line
     if (signature) {
@@ -77,7 +78,7 @@ class APIClient {
       contribution
     } as ContributeRes
   }
-
+  // TODO: delete this
   async checkContribution(contribution: string, newContribution: string) {
     return new Promise<any>((resolve) => {
       const worker = new Worker('./wasm/wasm-worker.js', {

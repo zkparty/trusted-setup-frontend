@@ -25,16 +25,17 @@ onmessage = async (event) => {
 
 
 async function contribute(data){
-    const {contributionString, entropy} = data;
+    const {contributionString, entropy, identity} = data;
     console.log("start contributing");
     const startTime = performance.now();
     const result = contribute_wasm(
         contributionString,
         entropy,
+        identity,
     );
     const endTime = performance.now();
     console.log(`Contribution took ${endTime - startTime} milliseconds`)
-    postMessage({ contribution: result });
+    postMessage(result);
 }
 
 /*
