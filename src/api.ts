@@ -53,16 +53,16 @@ class APIClient {
     session_id: string,
     preContribution: string,
     entropy: string,
+    identity: string,
     signature: string | null
   ): Promise<ErrorRes | ContributeRes> {
-    const { contribution } = await wasm.contribute(preContribution, entropy)
+    const contribution  = await wasm.contribute(preContribution, entropy, identity)
     let contributionObj = null
-    /* TODO: activate the following line
     if (signature) {
       contributionObj = JSON.parse(contribution!)
-      contributionObj.ecdsaSignature = signature
+      contributionObj.ecdsa_signature = signature
       contributionObj = JSON.stringify(contributionObj)
-    }*/
+    }
 
     const res = await fetch(`${API_ROOT}/contribute`, {
       method: 'POST',
@@ -76,30 +76,6 @@ class APIClient {
       ...(await res.json()),
       contribution
     } as ContributeRes
-  }
-
-  async checkContribution(contribution: string, newContribution: string) {
-    return new Promise<any>((resolve) => {
-      const worker = new Worker('./wasm/wasm-worker.js', {
-        type: 'module'
-      })
-      const data = {
-        action: 'subgroupCheck',
-        contribution: contribution,
-        newContribution: newContribution
-      }
-
-      worker.onmessage = async (event) => {
-        const { checkContribution, checkNewContribution } = event.data
-        resolve({
-          checkContribution,
-          checkNewContribution
-        })
-        worker.terminate()
-      }
-
-      worker.postMessage(data)
-    })
   }
 }
 

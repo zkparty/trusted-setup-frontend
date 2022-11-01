@@ -1,7 +1,7 @@
 import type { SubgroupCheckResWasm } from './types'
 
 class Wasm {
-  async contribute(contribution: string, entropy: string): Promise<any> {
+  async contribute(contribution: string, entropy: string, identity: string): Promise<any> {
     return new Promise<any>((resolve) => {
       const worker = new Worker('./wasm/wasm-worker.js', {
         type: 'module'
@@ -9,7 +9,8 @@ class Wasm {
       const data = {
         action: 'contribute',
         contributionString: contribution,
-        entropy: entropy
+        entropy: entropy,
+        identity: identity,
       }
       worker.onmessage = async (event) => {
         resolve(event.data as any)
@@ -42,7 +43,7 @@ class Wasm {
       worker.postMessage(data)
     })
   }
-  async getPotPubkeys(entropy: string[]) {
+  async getPotPubkeys(entropy: string) {
     return new Promise<string[]>((resolve) => {
       const worker = new Worker('./wasm/wasm-worker.js', {
         type: 'module'

@@ -20,11 +20,6 @@ export type ErrorRes = {
   message?: string
 }
 
-export type ContributeResWasm = {
-  proofs: string | null
-  contribution: string | null
-}
-
 export type SubgroupCheckResWasm = {
   checkContribution: boolean | null
   checkNewContribution: boolean | null
