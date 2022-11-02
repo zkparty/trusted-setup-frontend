@@ -100,7 +100,7 @@ const EntropyInputPage = () => {
     )
     const expandedEntropyInt = BigInt('0x' + hex96)
     const secretInt = expandedEntropyInt % CURVE.r
-    const secretHex = '0x' + secretInt.toString(16).padStart(64, '0')
+    const secretHex = secretInt.toString(16).padStart(64, '0')
     updateEntropy(secretHex)
   }
 

@@ -13,6 +13,7 @@ import { providers } from 'ethers'
 import { Trans, useTranslation } from 'react-i18next'
 import { useContributionStore, Store } from '../store/contribute'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
+import wasm from '../wasm'
 
 declare global {
   interface Window {
@@ -22,36 +23,18 @@ declare global {
 
 const DoubleSignPage = () => {
   useTranslation()
-  const { updateECDSASignature } = useContributionStore((state: Store) => ({
+  const { entropy, updateECDSASignature } = useContributionStore((state: Store) => ({
     entropy: state.entropy,
     updateECDSASignature: state.updateECDSASignature,
-    updateBLSSignatures: state.updateBLSSignatures
   }))
   const navigate = useNavigate()
   const handleClickSign = async () => {
-    /*
-     TODO: this should be implemented in Rust
-
-    import { blsSignId } from '../utils'
-    import { useAuthStore } from '../store/auth'
-
-    // do double sign
-    for (let i = 0; i < entropy.length; i++) {
-      const signed = await blsSignId(entropy, provider!, nickname!);
-      updateBLSSignatures(i, signed);
-    }
-    */
     await signPotPubkeysWithECDSA()
     navigate(ROUTES.LOBBY)
   }
 
   const signPotPubkeysWithECDSA = async () => {
-    const potPubkeys = [
-      '0x93e02b6052719f607dacd3a088274f65596bd0d09920b61ab5da61bbdc7f5049334cf11213945d57e5ac7d055d042b7e024aa2b2f08f0a91260805272dc51051c6e47ad4fa403b02b4510b647ae3d1770bac0326a805bbefd48056c8c121bdb8',
-      '0x93e02b6052719f607dacd3a088274f65596bd0d09920b61ab5da61bbdc7f5049334cf11213945d57e5ac7d055d042b7e024aa2b2f08f0a91260805272dc51051c6e47ad4fa403b02b4510b647ae3d1770bac0326a805bbefd48056c8c121bdb8',
-      '0x93e02b6052719f607dacd3a088274f65596bd0d09920b61ab5da61bbdc7f5049334cf11213945d57e5ac7d055d042b7e024aa2b2f08f0a91260805272dc51051c6e47ad4fa403b02b4510b647ae3d1770bac0326a805bbefd48056c8c121bdb8',
-      '0x93e02b6052719f607dacd3a088274f65596bd0d09920b61ab5da61bbdc7f5049334cf11213945d57e5ac7d055d042b7e024aa2b2f08f0a91260805272dc51051c6e47ad4fa403b02b4510b647ae3d1770bac0326a805bbefd48056c8c121bdb8'
-    ]
+    const potPubkeys = await wasm.getPotPubkeys(entropy!)
     // built the message to be signed
     const numG1Powers = [4096, 8192, 16384, 32768]
     const potPubkeysObj = []
