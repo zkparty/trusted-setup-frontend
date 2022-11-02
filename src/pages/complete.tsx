@@ -79,7 +79,7 @@ const CompletePage = () => {
 }
 
 const InnerWrap = styled.div`
-  margin-top: 50px;
+  margin: auto;
 `
 
 const TextSection = styled.div`
