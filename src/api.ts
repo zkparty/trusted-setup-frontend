@@ -5,11 +5,12 @@ import { API_ROOT, SIGNIN_REDIRECT_URL } from './constants'
 import type { ErrorRes, ContributeRes, TryContributeRes } from './types'
 
 class APIClient {
-  async getRequestLink() {
+  async getRequestLink(path: string) {
+    console.log(`path is ${path}`)
     const res = await fetch(
-      `${API_ROOT}/auth/request_link?redirect_to=${SIGNIN_REDIRECT_URL}`,
+      `${API_ROOT}/auth/request_link?redirect_to=${path}/redirect`,
       {
-        mode: 'no-cors'
+        mode: 'cors'
       }
     )
     return await res.json()
