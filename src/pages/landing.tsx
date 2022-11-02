@@ -64,7 +64,7 @@ const Section = styled.section`
 `
 
 const TopSection = styled(Section)`
-  border: 10vw solid;
+  border: min(10vw, 6rem) solid;
   border-image-source: url(${LandingBg});
   border-image-slice: 230;
   border-image-repeat: round;
