@@ -9,10 +9,11 @@ import { useNavigate } from 'react-router-dom'
 import { PrimaryButton } from '../components/Button'
 import { Description, PageTitle, Bold } from '../components/Text'
 import { useContributionStore, Store } from '../store/contribute'
-import { TextSection, SingleButtonSection } from '../components/Layout'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap,
+  SingleButtonSection,
+  TextSection,
   Over
 } from '../components/Layout'
 import ROUTES from '../routes'

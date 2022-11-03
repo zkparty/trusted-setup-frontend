@@ -9,7 +9,9 @@ import wasm from '../wasm'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap,
-  Over
+  SingleButtonSection,
+  TextSection,
+  Over,
 } from '../components/Layout'
 import { Trans, useTranslation } from 'react-i18next'
 
@@ -56,10 +58,10 @@ const CompletePage = () => {
               <TextSection>
                 {error && <ErrorMessage>{error}</ErrorMessage>}
                 <Trans i18nKey="complete.description">
-                  <Desc>
+                  <Description>
                     Success! Echoes of you are permanently fused with the others
                     in this Summoning Ceremony.
-                  </Desc>
+                  </Description>
                 </Trans>
               </TextSection>
 
@@ -82,22 +84,9 @@ const InnerWrap = styled.div`
   margin: auto;
 `
 
-const TextSection = styled.div`
-  width: 360px;
-`
-
-const Desc = styled(Description)`
-  margin: 0 0 20px;
-  font-size: 18px;
-`
-
-export const ButtonSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 120px;
-  align-items: center;
-  justify-content: space-around;
+export const ButtonSection = styled(SingleButtonSection)`
   margin-top: 12px;
+  height: 120px;
 `
 
 export default CompletePage
