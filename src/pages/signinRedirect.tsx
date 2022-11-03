@@ -28,6 +28,7 @@ const SigninRedirect = () => {
       setError(params.message.replaceAll('+', ' '))
       navigate(ROUTES.SIGNIN)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return <div>Signin processing</div>
