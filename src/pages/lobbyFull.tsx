@@ -10,7 +10,6 @@ import {
   InnerWrap,
   Over,
 } from '../components/Layout'
-import Logo from '../components/Logo'
 import ROUTES from '../routes'
 
 const LobbyFullPage = () => {

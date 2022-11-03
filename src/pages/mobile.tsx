@@ -1,14 +1,14 @@
+import ROUTES from '../routes'
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
-import { SingleContainer } from '../components/Layout'
+import { isMobile } from '../utils'
 import Logo from '../components/Logo'
+import styled from 'styled-components'
+import { FONT_SIZE } from '../constants'
+import { useNavigate } from 'react-router-dom'
+import { Description } from '../components/Text'
 import { Trans, useTranslation } from 'react-i18next'
 import EthLogoImg from '../assets/eth-logo-purple.svg'
-import { PageTitle, Description } from '../components/Text'
-import ROUTES from '../routes'
-import { isMobile } from '../utils'
-import { FONT_SIZE } from '../constants'
+import { SingleContainer, InnerWrap } from '../components/Layout'
 
 const MobilePage = () => {
   useTranslation()
@@ -27,7 +27,7 @@ const MobilePage = () => {
   return (
     <Container>
       <Logo withVersion />
-
+    <InnerWrap>
       <Section>
         <EthLogo src={EthLogoImg} />
         <Desc>
@@ -37,6 +37,7 @@ const MobilePage = () => {
           </Trans>
         </Desc>
       </Section>
+      </InnerWrap>
     </Container>
   )
 }
@@ -46,7 +47,7 @@ const Container = styled(SingleContainer)`
 `
 
 const Desc = styled(Description)`
-  font-size: ${FONT_SIZE.XS};
+  font-size: ${FONT_SIZE.M};
   line-height: 1.6;
   text-align: center;
 `
