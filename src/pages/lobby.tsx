@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ErrorMessage from '../components/Error'
-import styled from 'styled-components'
 import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap,
   Over,
   TextSection,
-  OverRelative
+  OverRelative,
+  InnerWrap
 } from '../components/Layout'
 import { LOBBY_CHECKIN_FREQUENCY } from '../constants'
 import useTryContribute from '../hooks/useTryContribute'
@@ -104,9 +104,5 @@ const LobbyPage = () => {
     </>
   )
 }
-
-const InnerWrap = styled.div`
-  margin-top: 100px;
-`
 
 export default LobbyPage
