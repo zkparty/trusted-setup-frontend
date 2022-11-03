@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <Container>
       <LeftSection>
-        <Logo />
+        <Logo centerOnMobile />
         <Copyright>
           <Trans id="footer.copyright">
             Build by Ethereum Foundation, R&D team. 2022
