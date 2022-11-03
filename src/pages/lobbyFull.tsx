@@ -5,8 +5,10 @@ import { PrimaryButtonLarge } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
+  SingleWrap as Wrap,
+  TextSection,
+  InnerWrap,
   Over,
-  SingleWrap as Wrap
 } from '../components/Layout'
 import Logo from '../components/Logo'
 import ROUTES from '../routes'
@@ -19,20 +21,19 @@ const LobbyFullPage = () => {
     <Over>
       <Container>
         <Wrap>
-          <Logo />
-          <Title>
-            <Trans i18nKey="lobbyFull.title">Sum of the parts.</Trans>
-          </Title>
-          <Trans i18nKey="lobbyFull.description">
-            <Desc>
-              Please leave this guide open in the background - your contribution
-              will be collected soon.
-            </Desc>
-            <Desc>
-              Many others are alongside you in this Ceremony - your patience
-              will be rewarded.
-            </Desc>
-          </Trans>
+        <InnerWrap>
+          <PageTitle>
+            <Trans i18nKey="lobbyFull.title">Too much <br /> magic</Trans>
+          </PageTitle>
+          <TextSection>
+            <Trans i18nKey="lobbyFull.description">
+              <Description>
+              Too many summoners at this time, please come back later.
+              Close this window and try again in a moment to check
+              if there is a slot available in the lobby.
+              </Description>
+            </Trans>
+          </TextSection>
           <ButtonSection>
             <PrimaryButtonLarge
               onClick={() => {
@@ -42,20 +43,12 @@ const LobbyFullPage = () => {
               <Trans i18nKey="lobbyFull.button">Return to home</Trans>
             </PrimaryButtonLarge>
           </ButtonSection>
+        </InnerWrap>
         </Wrap>
       </Container>
     </Over>
   )
 }
-
-const Title = styled(PageTitle)`
-  color: ${({ theme }) => theme.text};
-  margin-top: 0;
-`
-
-const Desc = styled(Description)`
-  color: ${({ theme }) => theme.text};
-`
 
 const ButtonSection = styled.div`
   padding-bottom: 24px;
