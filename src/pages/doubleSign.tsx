@@ -6,7 +6,8 @@ import {
   SingleContainer as Container,
   Over,
   SingleWrap as Wrap,
-  TextSection
+  TextSection,
+  SingleButtonSection
 } from '../components/Layout'
 import ROUTES from '../routes'
 import { providers } from 'ethers'
@@ -110,11 +111,9 @@ const InnerWrap = styled.div`
   margin-top: 100px;
 `
 
-const ButtonSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const ButtonSection = styled(SingleButtonSection)`
   margin-top: 12px;
+  height: auto;
 `
 
 export default DoubleSignPage
