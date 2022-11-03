@@ -7,8 +7,9 @@ import {
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { PrimaryButton } from '../components/Button'
-import { Description, PageTitle } from '../components/Text'
+import { Description, PageTitle, Bold } from '../components/Text'
 import { useContributionStore, Store } from '../store/contribute'
+import { TextSection, SingleButtonSection } from '../components/Layout'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap,
@@ -23,7 +24,7 @@ import { hkdf } from '@noble/hashes/hkdf'
 import { sha256 } from '@noble/hashes/sha256'
 import { randomBytes } from '@noble/hashes/utils'
 import { Trans, useTranslation } from 'react-i18next'
-import { MIN_MOUSE_ENTROPY_SAMPLES } from '../constants'
+import { MIN_MOUSE_ENTROPY_SAMPLES, FONT_SIZE } from '../constants'
 import 'text-security'
 
 type Player = {
@@ -129,9 +130,9 @@ const EntropyInputPage = () => {
             </PageTitle>
             <TextSection>
               <Trans i18nKey="entropyInput.description">
-                <Desc>
+                <Description>
                   The Ceremony requires three random inputs from each Summoner.
-                </Desc>
+                </Description>
                 <SubDesc>
                   <Bold>Secret:</Bold> A piece of you in text form, with random
                   characters added. A hope for the future, or the name of
@@ -168,22 +169,8 @@ const EntropyInputPage = () => {
   )
 }
 
-const Desc = styled(Description)`
-  margin: 0 0 20px;
-  font-size: 18px;
-`
-
 const SubDesc = styled(Description)`
   margin: 0 0 15px;
-  font-size: 18px;
-`
-
-const TextSection = styled.div`
-  width: 360px;
-`
-
-const Bold = styled.span`
-  font-weight: 700;
 `
 
 const Input = styled.input<{ keyEntropy: string }>`
@@ -193,7 +180,7 @@ const Input = styled.input<{ keyEntropy: string }>`
   text-security: disc;
   -moz-text-security: disc;
   -webkit-text-security: disc;
-  font-size: 16px;
+  font-size: ${FONT_SIZE.M};
   margin-top: 5px;
   padding: 4px 8px;
   border: solid 1px ${({ theme }) => theme.text};
@@ -202,11 +189,9 @@ const Input = styled.input<{ keyEntropy: string }>`
   width: 300px;
 `
 
-const ButtonSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const ButtonSection = styled(SingleButtonSection)`
   margin-top: 12px;
+  height: auto;
 `
 
 export default EntropyInputPage
