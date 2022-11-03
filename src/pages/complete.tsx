@@ -11,6 +11,7 @@ import {
   SingleWrap as Wrap,
   SingleButtonSection,
   TextSection,
+  InnerWrap,
   Over,
 } from '../components/Layout'
 import { Trans, useTranslation } from 'react-i18next'
@@ -79,10 +80,6 @@ const CompletePage = () => {
     </>
   )
 }
-
-const InnerWrap = styled.div`
-  margin: auto;
-`
 
 export const ButtonSection = styled(SingleButtonSection)`
   margin-top: 12px;

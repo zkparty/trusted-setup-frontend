@@ -4,10 +4,11 @@ import { PrimaryButton } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
-  Over,
   SingleWrap as Wrap,
+  SingleButtonSection,
   TextSection,
-  SingleButtonSection
+  InnerWrap,
+  Over,
 } from '../components/Layout'
 import ROUTES from '../routes'
 import { providers } from 'ethers'
@@ -106,10 +107,6 @@ const DoubleSignPage = () => {
     </>
   )
 }
-
-const InnerWrap = styled.div`
-  margin-top: 100px;
-`
 
 const ButtonSection = styled(SingleButtonSection)`
   margin-top: 12px;

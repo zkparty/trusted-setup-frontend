@@ -41,6 +41,13 @@ export const SingleWrap = styled.div`
   align-items: center;
 `
 
+export const InnerWrap = styled.div`
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
 export const SingleButtonSection = styled.div`
   display: flex;
   flex-direction: column;
