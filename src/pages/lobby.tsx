@@ -48,7 +48,7 @@ const LobbyPage = () => {
           case 'TryContributeError::UnknownSessionId':
             setError(
               resError.error +
-                '. You might have taken more time to get into the lobby. Please reload and sign in again'
+                '. You might have taken more time than expected in the lobby. Please reload and sign in again with a different account'
             )
             break
           case 'TryContributeError::AnotherContributionInProgress':
