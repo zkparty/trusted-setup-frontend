@@ -27,6 +27,7 @@ import { randomBytes } from '@noble/hashes/utils'
 import { Trans, useTranslation } from 'react-i18next'
 import { MIN_MOUSE_ENTROPY_SAMPLES, FONT_SIZE } from '../constants'
 import 'text-security'
+import LoadingSpinner from '../components/LoadingSpinner'
 
 type Player = {
   play: () => void
@@ -37,6 +38,7 @@ type Player = {
 const EntropyInputPage = () => {
   useTranslation()
   const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
   const [keyEntropy, setKeyEntropy] = useState('')
   const [mouseEntropy, setMouseEntropy] = useState('')
   const [lastMouseEntropyUpdate, setLastMouseEntropyUpdate] = useState(0)
@@ -51,6 +53,7 @@ const EntropyInputPage = () => {
   )
   const handleSubmit = () => {
     if (percentage !== 100) return
+    setIsLoading(true)
     processGeneratedEntropy()
     if (provider === 'Ethereum') {
       navigate(ROUTES.DOUBLE_SIGN)
@@ -156,12 +159,16 @@ const EntropyInputPage = () => {
             />
 
             <ButtonSection>
+              {isLoading ?
+              <LoadingSpinner></LoadingSpinner>
+              :
               <PrimaryButton
                 disabled={percentage !== 100}
                 onClick={handleSubmit}
               >
                 <Trans i18nKey="entropyInput.button">Submit</Trans>
               </PrimaryButton>
+              }
             </ButtonSection>
           </Wrap>
         </Container>

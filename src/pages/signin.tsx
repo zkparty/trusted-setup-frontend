@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 import ErrorMessage from '../components/Error'
 import SnakeProgress from '../components/SnakeProgress'
@@ -15,17 +16,21 @@ import { useAuthStore } from '../store/auth'
 import { Trans, useTranslation } from 'react-i18next'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 import api from '../api'
+import LoadingSpinner from '../components/LoadingSpinner'
 
 const SigninPage = () => {
   useTranslation()
   const { error } = useAuthStore()
+  const [isLoading, setIsLoading] = useState(false)
 
   const onSigninSIE = async () => {
+    setIsLoading(true);
     const requestLinks = await api.getRequestLink()
     window.location.replace(requestLinks.eth_auth_url)
   }
 
   const onSigninGithub = async () => {
+    setIsLoading(true);
     const requestLinks = await api.getRequestLink()
     window.location.replace(requestLinks.github_auth_url)
   }
@@ -58,17 +63,23 @@ const SigninPage = () => {
             </TextSection>
 
           <ButtonSection>
-            <PrimaryButton onClick={onSigninSIE} style={{ width: '360px' }}>
-              <Trans i18nKey="signin.unlockWithEthereum">
-                Unlock with Ethereum{' '}
-                <ButtonIcon src={EthImg} alt="ETH icon" />
-              </Trans>
-            </PrimaryButton>
-            <SecondaryButton onClick={onSigninGithub} style={{ width: '280px' }}>
-              <Trans i18nKey="signin.unlockWithGithub">
-                or unlock with Github
-              </Trans>
-            </SecondaryButton>
+            {isLoading ?
+              <LoadingSpinner></LoadingSpinner>
+              :
+              <>
+              <PrimaryButton onClick={onSigninSIE} style={{ width: '360px' }} disabled={isLoading}>
+                <Trans i18nKey="signin.unlockWithEthereum">
+                  Unlock with Ethereum{' '}
+                  <ButtonIcon src={EthImg} alt="ETH icon" />
+                </Trans>
+              </PrimaryButton>
+              <SecondaryButton onClick={onSigninGithub} style={{ width: '280px' }} disabled={isLoading}>
+                <Trans i18nKey="signin.unlockWithGithub">
+                  or unlock with Github
+                </Trans>
+              </SecondaryButton>
+              </>
+            }
           </ButtonSection>
         </Wrap>
       </Container>
