@@ -1,3 +1,5 @@
+const CIRCLE_SIZE = 486;
+
 const FONT_SIZE = {
   XXS: '9px',
   XS: '11px',
@@ -37,6 +39,7 @@ const SERVER_ERROR = {
 
 export {
   FONT_SIZE,
+  CIRCLE_SIZE,
   SPACE,
   RADIUS,
   API_ROOT,
