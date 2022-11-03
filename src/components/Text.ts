@@ -6,7 +6,7 @@ import { textSerif } from '../style/utils'
 const PageTitle = styled.h1`
   text-align: center;
   text-transform: uppercase;
-  line-height: 38px;
+  line-height: 34px;
   font-size: ${FONT_SIZE.XXL};
   ${textSerif}
   font-weight: 700;

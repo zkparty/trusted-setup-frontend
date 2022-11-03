@@ -182,7 +182,7 @@ const Input = styled.input<{ keyEntropy: string }>`
   -moz-text-security: disc;
   -webkit-text-security: disc;
   font-size: ${FONT_SIZE.M};
-  margin-top: 5px;
+  margin-top: 3px;
   padding: 4px 8px;
   border: solid 1px ${({ theme }) => theme.text};
   border-radius: 4px;
