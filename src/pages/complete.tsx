@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ErrorMessage from '../components/Error'
 import { PrimaryButtonLarge } from '../components/Button'
-import Header from '../components/Header'
 import { Description, PageTitle } from '../components/Text'
 import { useContributionStore, Store } from '../store/contribute'
+import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 import wasm from '../wasm'
 import {
   SingleContainer as Container,
@@ -45,7 +45,7 @@ const CompletePage = () => {
 
   return (
     <>
-      <Header />
+      <HeaderJustGoingBack />
       <Over>
         <Container>
           <Wrap>
