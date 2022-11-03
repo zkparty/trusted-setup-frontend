@@ -8,7 +8,6 @@ const ROUTES = {
   CONTRIBUTING: '/contributing',
   COMPLETE: '/complete',
   RECORD: '/record',
-  GATE: '/gate',
   MOBILE: '/mobile',
   REDIRECT: '/redirect'
 }
