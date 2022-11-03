@@ -6,6 +6,8 @@ import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap,
+  SingleButtonSection,
+  TextSection,
   Over
 } from '../components/Layout'
 import EthImg from '../assets/eth.svg'
@@ -43,15 +45,15 @@ const SigninPage = () => {
             <TextSection>
               {error && <ErrorMessage>{error}</ErrorMessage>}
               <Trans i18nKey="signin.description">
-                <Desc>
+                <Description>
                   The Ceremony requires souls of pure intent. Summoners show
                   their integrity by unlocking with an address that has at least
                   three sent transactions.
-                </Desc>
-                <Desc>
+                </Description>
+                <Description>
                   It does not send any funds or permit any contracts. This
                   method also allows us to deliver a POAP after the Ceremony.
-                </Desc>
+                </Description>
               </Trans>
             </TextSection>
 
@@ -75,25 +77,12 @@ const SigninPage = () => {
   )
 }
 
-const TextSection = styled.div`
-  width: 360px;
-`
-
-const Desc = styled(Description)`
-  margin: 0 0 20px;
-  font-size: 18px;
-`
-
 const ButtonIcon = styled.img`
   margin-left: 16px;
 `
 
-export const ButtonSection = styled.div`
-  display: flex;
-  flex-direction: column;
+export const ButtonSection = styled(SingleButtonSection)`
   height: 120px;
-  align-items: center;
-  justify-content: space-around;
   margin-top: 12px;
 `
 
