@@ -1,14 +1,15 @@
 import wasm from './wasm'
 import { toParams } from './utils'
 import { OAuthProvider, OAuthRes } from './store/auth'
-import { API_ROOT, SIGNIN_REDIRECT_URL } from './constants'
+import { API_ROOT } from './constants'
 import type { ErrorRes, ContributeRes, TryContributeRes } from './types'
 
 class APIClient {
   async getRequestLink(path: string) {
-    console.log(`path is ${path}`)
+    const encodedPath = encodeURIComponent(`${path}#/redirect`)
+    console.log(`path is ${encodedPath}`)
     const res = await fetch(
-      `${API_ROOT}/auth/request_link?redirect_to=${path}/redirect`,
+      `${API_ROOT}/auth/request_link?redirect_to=${encodedPath}`,
       {
         mode: 'cors'
       }

@@ -17,7 +17,7 @@ import api from '../api'
 const SigninPage = () => {
   useTranslation()
   const { error } = useAuthStore()
-  const path = window.location.href;
+  const path = window.location.href.replace(/#?\/signin/, '');
 
   const onSigninSIE = async () => {
     const requestLinks = await api.getRequestLink(path);

@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom'
 import {
   HomePage,
   LandingPage,
@@ -22,6 +22,10 @@ import GlobalStyle from './style/global'
 function App() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const loaded = usePreloadAllImages()
+  const location = window.location
+  console.log(`location hash ${location.hash}`)
+  const isRedirect = location.hash.includes('redirect')
+  //const hasSessionId = query.get('session_id')
   return (
     <>
       <HashRouter>
@@ -30,7 +34,10 @@ function App() {
           <Route path={ROUTES.MOBILE} element={<MobilePage />} />
 
           <Route path={ROUTES.ROOT} element={<HomePage />}>
-            <Route path={ROUTES.ROOT} element={<LandingPage />} />
+              <Route path={ROUTES.ROOT} element={
+                  isRedirect ? 
+                    <SigninRedirectPage /> : 
+                    <LandingPage />} />
             <Route path={ROUTES.SIGNIN} element={<SigninPage />} />
             <Route
               path={ROUTES.ENTROPY_INPUT}
