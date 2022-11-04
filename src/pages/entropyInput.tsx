@@ -46,7 +46,6 @@ const EntropyInputPage = () => {
   const [mouseEntropySamples, setMouseEntropySamples] = useState(0)
   const [percentage, setPercentage] = useState(0)
   const [player, setPlayer] = useState<Player | null>(null)
-  const { provider } = useAuthStore()
 
   const updateEntropy = useContributionStore(
     (state: Store) => state.updateEntropy
@@ -55,11 +54,7 @@ const EntropyInputPage = () => {
     if (percentage !== 100) return
     setIsLoading(true)
     processGeneratedEntropy()
-    if (provider === 'Ethereum') {
-      navigate(ROUTES.DOUBLE_SIGN)
-    } else {
-      navigate(ROUTES.LOBBY)
-    }
+    navigate(ROUTES.SIGNIN)
   }
 
   const handleCaptureMouseEntropy: MouseEventHandler<HTMLDivElement> = (e) => {

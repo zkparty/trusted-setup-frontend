@@ -16,7 +16,7 @@ const LandingPage = () => {
   useTranslation()
   const navigate = useNavigate()
   const onClickGetStart = useCallback(() => {
-    navigate(ROUTES.SIGNIN)
+    navigate(ROUTES.ENTROPY_INPUT)
   }, [navigate])
 
   return (
