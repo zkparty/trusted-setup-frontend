@@ -10,7 +10,6 @@ import {
   ContributingPage,
   CompletePage,
   RecordPage,
-  GatePage,
   MobilePage,
   SigninRedirectPage
 } from './pages'
@@ -82,7 +81,6 @@ function App() {
             />
           </Route>
           <Route path={ROUTES.RECORD} element={<RecordPage />} />
-          <Route path={ROUTES.GATE} element={<GatePage />} />
           <Route path={ROUTES.REDIRECT} element={<SigninRedirectPage />} />
         </Routes>
       </BrowserRouter>

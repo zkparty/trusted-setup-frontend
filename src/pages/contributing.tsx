@@ -14,7 +14,8 @@ import {
   SingleWrap as Wrap,
   Over,
   OverRelative,
-  TextSection
+  TextSection,
+  InnerWrap
 } from '../components/Layout'
 
 type Steps = 'contributing' | 'completed' | 'error'
@@ -142,14 +143,6 @@ const ContainerR = styled(Container)<{ complete: boolean }>`
   transition: all 2s linear;
   ${({ complete, theme }) =>
     complete ? `background-color: ${theme.surface};` : ''}
-`
-
-const InnerWrap = styled.div`
-  margin-top: 100px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `
 
 export default ContributingPage

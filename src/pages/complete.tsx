@@ -2,14 +2,17 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ErrorMessage from '../components/Error'
 import { PrimaryButtonLarge } from '../components/Button'
-import Header from '../components/Header'
 import { Description, PageTitle } from '../components/Text'
 import { useContributionStore, Store } from '../store/contribute'
+import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 import wasm from '../wasm'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap,
-  Over
+  SingleButtonSection,
+  TextSection,
+  InnerWrap,
+  Over,
 } from '../components/Layout'
 import { Trans, useTranslation } from 'react-i18next'
 
@@ -42,7 +45,7 @@ const CompletePage = () => {
 
   return (
     <>
-      <Header />
+      <HeaderJustGoingBack />
       <Over>
         <Container>
           <Wrap>
@@ -56,10 +59,10 @@ const CompletePage = () => {
               <TextSection>
                 {error && <ErrorMessage>{error}</ErrorMessage>}
                 <Trans i18nKey="complete.description">
-                  <Desc>
+                  <Description>
                     Success! Echoes of you are permanently fused with the others
                     in this Summoning Ceremony.
-                  </Desc>
+                  </Description>
                 </Trans>
               </TextSection>
 
@@ -78,26 +81,9 @@ const CompletePage = () => {
   )
 }
 
-const InnerWrap = styled.div`
-  margin-top: 50px;
-`
-
-const TextSection = styled.div`
-  width: 360px;
-`
-
-const Desc = styled(Description)`
-  margin: 0 0 20px;
-  font-size: 18px;
-`
-
-export const ButtonSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 120px;
-  align-items: center;
-  justify-content: space-around;
+export const ButtonSection = styled(SingleButtonSection)`
   margin-top: 12px;
+  height: 120px;
 `
 
 export default CompletePage

@@ -4,13 +4,17 @@ import { PrimaryButton } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
-  Over,
   SingleWrap as Wrap,
-  TextSection
+  SingleButtonSection,
+  TextSection,
+  InnerWrap,
+  Over,
 } from '../components/Layout'
 import ROUTES from '../routes'
+import { useState } from 'react'
 import { providers } from 'ethers'
 import { Trans, useTranslation } from 'react-i18next'
+import LoadingSpinner from '../components/LoadingSpinner'
 import { useContributionStore, Store } from '../store/contribute'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 import wasm from '../wasm'
@@ -22,6 +26,7 @@ declare global {
 }
 
 const DoubleSignPage = () => {
+  const [isLoading, setIsLoading] = useState(false)
   useTranslation()
   const { entropy, updateECDSASignature } = useContributionStore((state: Store) => ({
     entropy: state.entropy,
@@ -29,6 +34,7 @@ const DoubleSignPage = () => {
   }))
   const navigate = useNavigate()
   const handleClickSign = async () => {
+    setIsLoading(true)
     await signPotPubkeysWithECDSA()
     navigate(ROUTES.LOBBY)
   }
@@ -94,9 +100,12 @@ const DoubleSignPage = () => {
                 </Trans>
               </TextSection>
               <ButtonSection>
-                <Trans i18nKey="doubleSign.button">
-                  <PrimaryButton onClick={handleClickSign}>Sign</PrimaryButton>
-                </Trans>
+                {isLoading ?
+                  <LoadingSpinner></LoadingSpinner>
+                  :
+                  <Trans i18nKey="doubleSign.button">
+                    <PrimaryButton onClick={handleClickSign} disabled={isLoading}>Sign</PrimaryButton>
+                  </Trans>}
               </ButtonSection>
             </InnerWrap>
           </Wrap>
@@ -106,15 +115,9 @@ const DoubleSignPage = () => {
   )
 }
 
-const InnerWrap = styled.div`
-  margin-top: 100px;
-`
-
-const ButtonSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const ButtonSection = styled(SingleButtonSection)`
   margin-top: 12px;
+  height: auto;
 `
 
 export default DoubleSignPage

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { CIRCLE_SIZE } from '../constants'
 import useBackgroundVisibility from '../hooks/useBackgroundVisibility'
 import { Img, Bg, BgPulse, PizzaImg } from '../components/Image'
 
@@ -32,20 +33,23 @@ const Background = ({ children }: Props) => {
         <Bg src={BgImgColor} visible={bg === 'color'} />
         <PizzaImg
           src={PizzaInner}
+          style={{width: (CIRCLE_SIZE + 434)+'px'}}
           visible={pizza === 'color' || pizza === 'animate'}
           rounding={pizza === 'animate'}
+
         />
         <PizzaImg
           src={PizzaOuter}
+          style={{width: (CIRCLE_SIZE + 284)+'px'}}
           visible={pizza === 'color' || pizza === 'animate'}
           rounding={pizza === 'animate'}
         />
-        <Img src={InnerWhite} visible={inner === 'white'} />
-        <Img src={InnerColor} visible={inner === 'color'} />
-        <Img src={OuterWhite} visible={outer === 'white'} />
-        <Img src={OuterColor} visible={outer === 'color'} />
-        <Img src={SnakeWhite} visible={snake === 'white'} />
-        <Img src={SnakeColor} visible={snake === 'color'} />
+        <Img src={InnerWhite} visible={inner === 'white'} style={{width: (CIRCLE_SIZE + 32)+'px'}} />
+        <Img src={InnerColor} visible={inner === 'color'} style={{width: (CIRCLE_SIZE + 32)+'px'}} />
+        <Img src={OuterWhite} visible={outer === 'white'} style={{width: (CIRCLE_SIZE + 95)+'px'}} />
+        <Img src={OuterColor} visible={outer === 'color'} style={{width: (CIRCLE_SIZE + 95)+'px'}} />
+        <Img src={SnakeWhite} visible={snake === 'white'} style={{width: (CIRCLE_SIZE + 85)+'px'}} />
+        <Img src={SnakeColor} visible={snake === 'color'} style={{width: (CIRCLE_SIZE + 85)+'px'}} />
       </BgContainer>
       {children}
     </Container>

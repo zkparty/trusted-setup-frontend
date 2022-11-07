@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef } from 'react'
 import { ReactComponent as Svg } from '../assets/snake-progressbar.svg'
+import { CIRCLE_SIZE } from '../constants'
 
 export default function SnakeProgress({ onSetPlayer }) {
   useEffect(() => {
@@ -2722,8 +2723,7 @@ export default function SnakeProgress({ onSetPlayer }) {
         left: '-9999px',
         right: '-9999px',
         margin: 'auto',
-        width: '686px',
-        height: '686px'
+        height: (CIRCLE_SIZE + 129)+'px',
       }}
     />
   )

@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import { SingleContainer } from '../components/Layout'
+import { SingleContainer as Container } from '../components/Layout'
 import RecordTable from '../components/RecordTable'
 import { FONT_SIZE } from '../constants'
-import { textSerif } from '../style/utils'
 import useRecord from '../hooks/useRecord'
 import SearchIcon from '../assets/search.svg'
+import { PageTitle } from '../components/Text'
 
 const RecordPage = () => {
   // add search param
@@ -14,15 +14,11 @@ const RecordPage = () => {
 
   return (
     <>
-      <HeaderWrapper>
-        <Header />
-      </HeaderWrapper>
+      <Header />
       <Container>
-        <Title>
-          Summon
-          <br />
-          trace
-        </Title>
+        <PageTitle>
+          Record
+        </PageTitle>
         <SearchInput placeholder="Search address, github handle..." />
         <RecordTable
           data={recordQuery.data || []}
@@ -33,26 +29,6 @@ const RecordPage = () => {
     </>
   )
 }
-
-const HeaderWrapper = styled.div`
-  padding: 0 24px;
-`
-
-const Container = styled(SingleContainer)`
-  min-height: calc(100vh - 80px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-
-const Title = styled.h2`
-  font-size: 96px;
-  line-height: 1;
-  text-transform: uppercase;
-  margin: 0 0 24px;
-  text-align: center;
-  ${textSerif}
-`
 
 const SearchInput = styled.input`
   font-size: ${FONT_SIZE.M};
