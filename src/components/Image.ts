@@ -6,7 +6,8 @@ const Base = styled.img<{ visible?: boolean }>`
   transition: all 1s ease;
 `
 
-export const Bg = styled(Base)`
+export const Bg = styled(Base)<{ display: string }>`
+  display: ${({ display }) => display};
   z-index: -2;
   position: absolute;
   top: -9999px;
@@ -16,7 +17,8 @@ export const Bg = styled(Base)`
   margin: auto;
 `
 
-export const Img = styled(Base)`
+export const Img = styled(Base)<{ display: string }>`
+  display: ${({ display }) => display};
   position: absolute;
   top: -9999px;
   bottom: -9999px;
@@ -30,7 +32,8 @@ const r = keyframes`
   100% { transform: rotate(360deg) scale(0.85); }
 `
 
-export const PizzaImg = styled(Img)<{ rounding: boolean }>`
+export const PizzaImg = styled(Img)<{ rounding: boolean; display: string }>`
+  display: ${({ display }) => display};
   transition: all 3s ease;
   ${({ rounding }) =>
     rounding

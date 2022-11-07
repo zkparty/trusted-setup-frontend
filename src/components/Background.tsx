@@ -21,31 +21,34 @@ type Props = {
 
 const Background = ({ children }: Props) => {
   const { bg, inner, outer, snake, pizza } = useBackgroundVisibility()
-
+  const getDisplay = (value: string): string => value === "hidden" ? "none" : "unset"
+  const displayContainer = [bg, inner, outer, snake, pizza].filter((value) => getDisplay(value) !== "none").length > 0 ? "unset" : "none"
   return (
     <Container>
-      <BgContainer>
-        <Bg src={BgImg} visible={bg === 'white' || bg === 'animate'} />
+      <BgContainer style={{ display: displayContainer }}>
+        <Bg src={BgImg} visible={bg === 'white' || bg === 'animate'} display={getDisplay(bg)} />
         {bg === 'animate' && (
-          <BgPulse src={BgImgPulse} visible={bg === 'animate'} />
+          <BgPulse src={BgImgPulse} visible={bg === 'animate'} display={getDisplay(bg)} />
         )}
-        <Bg src={BgImgColor} visible={bg === 'color'} />
+        <Bg src={BgImgColor} visible={bg === 'color'} display={getDisplay(bg)} />
         <PizzaImg
           src={PizzaInner}
           visible={pizza === 'color' || pizza === 'animate'}
           rounding={pizza === 'animate'}
+          display={getDisplay(pizza)}
         />
         <PizzaImg
           src={PizzaOuter}
           visible={pizza === 'color' || pizza === 'animate'}
           rounding={pizza === 'animate'}
+          display={getDisplay(pizza)}
         />
-        <Img src={InnerWhite} visible={inner === 'white'} />
-        <Img src={InnerColor} visible={inner === 'color'} />
-        <Img src={OuterWhite} visible={outer === 'white'} />
-        <Img src={OuterColor} visible={outer === 'color'} />
-        <Img src={SnakeWhite} visible={snake === 'white'} />
-        <Img src={SnakeColor} visible={snake === 'color'} />
+        <Img src={InnerWhite} visible={inner === 'white'} display={getDisplay(inner)} />
+        <Img src={InnerColor} visible={inner === 'color'} display={getDisplay(inner)} />
+        <Img src={OuterWhite} visible={outer === 'white'} display={getDisplay(outer)} />
+        <Img src={OuterColor} visible={outer === 'color'} display={getDisplay(outer)} />
+        <Img src={SnakeWhite} visible={snake === 'white'} display={getDisplay(snake)} />
+        <Img src={SnakeColor} visible={snake === 'color'} display={getDisplay(snake)} />
       </BgContainer>
       {children}
     </Container>
