@@ -1,5 +1,6 @@
 import wasm from './wasm'
 import { toParams } from './utils'
+import { useEntropyStore } from './store/contribute'
 import { OAuthProvider, OAuthRes } from './store/auth'
 import { API_ROOT, SIGNIN_REDIRECT_URL } from './constants'
 import type { ErrorRes, ContributeRes, TryContributeRes } from './types'
@@ -57,6 +58,7 @@ class APIClient {
     signature: string | null
   ): Promise<ErrorRes | ContributeRes> {
     const contribution  = await wasm.contribute(preContribution, entropy, identity)
+    useEntropyStore.persist.clearStorage()
     let contributionObj = null
     if (signature) {
       contributionObj = JSON.parse(contribution!)

@@ -10,12 +10,17 @@ import {
   InnerWrap,
   Over,
 } from '../components/Layout'
+import {
+  useContributionStore,
+  useEntropyStore,
+  EntropyStore,
+  Store,
+} from '../store/contribute'
 import ROUTES from '../routes'
 import { useState } from 'react'
 import { providers } from 'ethers'
 import { Trans, useTranslation } from 'react-i18next'
 import LoadingSpinner from '../components/LoadingSpinner'
-import { useContributionStore, Store } from '../store/contribute'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 import wasm from '../wasm'
 
@@ -28,10 +33,12 @@ declare global {
 const DoubleSignPage = () => {
   const [isLoading, setIsLoading] = useState(false)
   useTranslation()
-  const { entropy, updateECDSASignature } = useContributionStore((state: Store) => ({
-    entropy: state.entropy,
-    updateECDSASignature: state.updateECDSASignature,
-  }))
+  const entropy = useEntropyStore(
+    (state: EntropyStore) => state.entropy
+  )
+  const updateECDSASignature = useContributionStore(
+    (state: Store) => state.updateECDSASignature
+  )
   const navigate = useNavigate()
   const handleClickSign = async () => {
     setIsLoading(true)

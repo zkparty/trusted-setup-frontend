@@ -89,7 +89,8 @@ export const languages = {
             resultado que se puede hacer público y pasar al siguiente contribuyente.
             Necesitamos protegernos contra los intentos de sabotear la ceremonia, por lo que necesitarás
             una cuenta de Ethereum o GitHub con un historial establecido.
-          </3>`
+          </3>`,
+        button: 'Ver contribuciones'
       },
       lobby: {
         title: 'A la espera de ser <br /> Enviada',

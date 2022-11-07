@@ -9,10 +9,9 @@ import { toParams, validateSigninParams } from '../utils'
 const SigninRedirect = () => {
   const location = useLocation()
   const navigate = useNavigate()
-  const { signin, setError, provider } = useAuthStore((store) => ({
+  const { signin, setError } = useAuthStore((store) => ({
     signin: store.signin,
     setError: store.setError,
-    provider: store.provider,
   }))
 
   useEffect(() => {
@@ -20,8 +19,7 @@ const SigninRedirect = () => {
     if (validateSigninParams(params)) {
       // store signin data and redirect to entropy input page
       signin(params)
-      console.log(provider)
-      if (provider === 'Ethereum') {
+      if (params.provider === 'Ethereum') {
         navigate(ROUTES.DOUBLE_SIGN)
       } else {
         navigate(ROUTES.LOBBY)

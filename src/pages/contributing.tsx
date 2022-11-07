@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { useContributionStore, Store } from '../store/contribute'
+import {
+  useContributionStore,
+  useEntropyStore,
+  EntropyStore,
+  Store,
+} from '../store/contribute'
 import { useAuthStore } from '../store/auth'
 import { Description, PageTitle } from '../components/Text'
 import { PrimaryButton } from '../components/Button'
@@ -22,14 +27,15 @@ type Steps = 'contributing' | 'completed' | 'error'
 
 const ContributingPage = () => {
   const { sessionId, provider, nickname } = useAuthStore()
+  const entropy = useEntropyStore(
+    (state: EntropyStore) => state.entropy
+  )
   const {
-    entropy,
     ECDSASignature,
     contribution,
     updateReceipt,
     updateNewContribution
   } = useContributionStore((state: Store) => ({
-    entropy: state.entropy,
     ECDSASignature: state.ECDSASignature,
     contribution: state.contribution,
     updateReceipt: state.updateReceipt,
