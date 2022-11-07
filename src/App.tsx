@@ -30,15 +30,8 @@ function App() {
 
           <Route path={ROUTES.ROOT} element={<HomePage />}>
             <Route path={ROUTES.ROOT} element={<LandingPage />} />
+            <Route path={ROUTES.ENTROPY_INPUT} element={<EntropyInputPage />}/>
             <Route path={ROUTES.SIGNIN} element={<SigninPage />} />
-            <Route
-              path={ROUTES.ENTROPY_INPUT}
-              element={
-                <RequireAuth>
-                  <EntropyInputPage />
-                </RequireAuth>
-              }
-            />
             <Route
               path={ROUTES.DOUBLE_SIGN}
               element={

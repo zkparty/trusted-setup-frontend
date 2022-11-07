@@ -5,12 +5,13 @@ import ROUTES from '../routes'
 import { useAuthStore } from '../store/auth'
 import { toParams, validateSigninParams } from '../utils'
 
+
 const SigninRedirect = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const { signin, setError } = useAuthStore((store) => ({
     signin: store.signin,
-    setError: store.setError
+    setError: store.setError,
   }))
 
   useEffect(() => {
@@ -18,7 +19,11 @@ const SigninRedirect = () => {
     if (validateSigninParams(params)) {
       // store signin data and redirect to entropy input page
       signin(params)
-      navigate(ROUTES.ENTROPY_INPUT)
+      if (params.provider === 'Ethereum') {
+        navigate(ROUTES.DOUBLE_SIGN)
+      } else {
+        navigate(ROUTES.LOBBY)
+      }
     } else if (
       params.message.replaceAll('+', ' ') === SERVER_ERROR.LOBBY_IS_FULL
     ) {
