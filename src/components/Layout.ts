@@ -59,7 +59,8 @@ export const SingleButtonSection = styled.div`
 `
 
 export const TextSection = styled.div`
-  width: 360px;
+  width: 36ch;
+  max-width: 100%;
 `
 
 export const Bg = styled.img`

@@ -89,7 +89,7 @@ const SigninPage = () => {
 }
 
 const ButtonIcon = styled.img`
-  margin-left: 16px;
+  margin-inline-start: 16px;
 `
 
 export const ButtonSection = styled(SingleButtonSection)`
