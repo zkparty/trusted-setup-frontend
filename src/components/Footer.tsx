@@ -11,9 +11,9 @@ const Footer = () => {
       </LeftSection>
       <RightSection>
         <LinkGroup>
-          <LinkItem href="#">Github</LinkItem>
-          <LinkItem href="#">Documentation</LinkItem>
-          <LinkItem href="#">Audit report</LinkItem>
+          <LinkItem href="https://github.com/zkparty/trusted-setup-frontend">Github</LinkItem>
+          <LinkItem href="https://github.com/ethereum/kzg-ceremony">Documentation</LinkItem>
+          <LinkItem href="https://github.com/ethereum/kzg-ceremony/blob/main/KZG10-Ceremony-audit-report.pdf">Audit report</LinkItem>
         </LinkGroup>
       </RightSection>
     </Container>
