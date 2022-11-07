@@ -6,7 +6,7 @@ import { textSerif } from '../style/utils'
 const PageTitle = styled.h1`
   text-align: center;
   text-transform: uppercase;
-  line-height: 38px;
+  line-height: 34px;
   font-size: ${FONT_SIZE.XXL};
   ${textSerif}
   font-weight: 700;
@@ -26,7 +26,7 @@ const SectionTitle = styled.h2`
 
 const Description = styled.p`
   font-weight: 400;
-  font-size: 18px;
+  font-size: ${FONT_SIZE.M};
   margin: 0 0 20px;
 `
 
@@ -45,4 +45,8 @@ const LinkText = styled(Link)`
   transition: all 0.2s ease;
 `
 
-export { PageTitle, SectionTitle, Description, LinkText }
+const Bold = styled.span`
+font-weight: 700;
+`
+
+export { PageTitle, SectionTitle, Description, LinkText, Bold }

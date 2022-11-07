@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ErrorMessage from '../components/Error'
-import styled from 'styled-components'
 import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap,
   Over,
   TextSection,
-  OverRelative
+  OverRelative,
+  InnerWrap
 } from '../components/Layout'
 import { LOBBY_CHECKIN_FREQUENCY } from '../constants'
 import useTryContribute from '../hooks/useTryContribute'
@@ -48,7 +48,7 @@ const LobbyPage = () => {
           case 'TryContributeError::UnknownSessionId':
             setError(
               resError.error +
-                '. You might have taken more time to get into the lobby. Please reload and sign in again'
+                '. You might have taken more time than expected in the lobby. Please reload and sign in again with a different account'
             )
             break
           case 'TryContributeError::AnotherContributionInProgress':
@@ -104,9 +104,5 @@ const LobbyPage = () => {
     </>
   )
 }
-
-const InnerWrap = styled.div`
-  margin-top: 100px;
-`
 
 export default LobbyPage
