@@ -17,7 +17,7 @@ const RequireAuth = ({ children }: { children: JSX.Element }) => {
   )
 
   if (!authenticated) {
-    return <Navigate to={ROUTES.SIGNIN} replace />
+    return <Navigate to={ROUTES.ROOT} replace />
   }
 
   return children
