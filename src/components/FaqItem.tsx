@@ -24,7 +24,7 @@ const FaqItem = ({ title, content }: Props) => {
 const Container = styled.div`
   border-bottom: solid 1px ${({ theme }) => theme.primary};
   transition: background-color 0.1s linear;
-  padding: 1rem; 
+  padding: 1rem 2rem;
   :hover {
     background-color: #d6d6d6;
   }
