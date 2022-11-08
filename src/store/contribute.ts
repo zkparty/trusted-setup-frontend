@@ -1,4 +1,5 @@
 import create from 'zustand'
+import { persist } from 'zustand/middleware'
 
 export type Store = {
   entropy: string | null
@@ -13,6 +14,11 @@ export type Store = {
   updateNewContribution: (date: string | null) => void
 }
 
+export type EntropyStore = {
+  entropy: string | null
+  updateEntropy: (data: string | null) => void
+}
+
 export const useContributionStore = create<Store>((set, get) => ({
   entropy: null,
   receipt: null,
@@ -25,3 +31,15 @@ export const useContributionStore = create<Store>((set, get) => ({
   updateContribution: (data: string | null) => set({ contribution: data }),
   updateNewContribution: (data: string | null) => set({ newContribution: data })
 }))
+
+export const useEntropyStore = create<EntropyStore>()(
+  persist(
+    (set) => ({
+      entropy: null,
+      updateEntropy: (data: string | null) => set({ entropy: data }),
+    }),
+    {
+      name: 'kzg-temporary-entropy',
+      getStorage: () => sessionStorage,
+  })
+)

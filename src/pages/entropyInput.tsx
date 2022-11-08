@@ -8,7 +8,7 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { PrimaryButton } from '../components/Button'
 import { Description, PageTitle, Bold } from '../components/Text'
-import { useContributionStore, Store } from '../store/contribute'
+import { useEntropyStore, EntropyStore } from '../store/contribute'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap,
@@ -18,7 +18,6 @@ import {
 } from '../components/Layout'
 import ROUTES from '../routes'
 import SnakeProgress from '../components/SnakeProgress'
-import { useAuthStore } from '../store/auth'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 import { CURVE } from '@noble/bls12-381'
 import { hkdf } from '@noble/hashes/hkdf'
@@ -46,20 +45,15 @@ const EntropyInputPage = () => {
   const [mouseEntropySamples, setMouseEntropySamples] = useState(0)
   const [percentage, setPercentage] = useState(0)
   const [player, setPlayer] = useState<Player | null>(null)
-  const { provider } = useAuthStore()
 
-  const updateEntropy = useContributionStore(
-    (state: Store) => state.updateEntropy
+  const updateEntropy = useEntropyStore(
+    (state: EntropyStore) => state.updateEntropy
   )
   const handleSubmit = () => {
     if (percentage !== 100) return
     setIsLoading(true)
     processGeneratedEntropy()
-    if (provider === 'Ethereum') {
-      navigate(ROUTES.DOUBLE_SIGN)
-    } else {
-      navigate(ROUTES.LOBBY)
-    }
+    navigate(ROUTES.SIGNIN)
   }
 
   const handleCaptureMouseEntropy: MouseEventHandler<HTMLDivElement> = (e) => {

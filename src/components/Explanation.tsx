@@ -1,10 +1,19 @@
+import { useCallback } from 'react'
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 import { TextSection } from '../components/Layout'
+import { PrimaryButton } from '../components/Button'
 import { Trans, useTranslation } from 'react-i18next'
 import { Description, PageTitle } from '../components/Text'
+import ROUTES from '../routes'
 
 const Explanation = () => {
   useTranslation()
+  const navigate = useNavigate()
+  const onClickViewContributions = useCallback(() => {
+    navigate(ROUTES.COMPLETE) // TODO: redirect to contributions page
+  }, [navigate])
+
   return (
     <SecondSection>
       <PageTitle>
@@ -43,6 +52,9 @@ const Explanation = () => {
           </Description>
         </Trans>
       </SecondTextSection>
+      <PrimaryButton onClick={onClickViewContributions}>
+          <Trans i18nKey="explanation.button">View contributions</Trans>
+      </PrimaryButton>
     </SecondSection>
   )
 }
@@ -52,10 +64,11 @@ const SecondSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 100%;
 `
 
 const SecondTextSection = styled(TextSection)`
-  width: 698px;
+  width: 70ch;
 `
 
 export default Explanation

@@ -22,34 +22,34 @@ type Props = {
 
 const Background = ({ children }: Props) => {
   const { bg, inner, outer, snake, pizza } = useBackgroundVisibility()
-
+  const getDisplay = (value: string): string => value === "hidden" ? "none" : "unset"
+  const displayContainer = [bg, inner, outer, snake, pizza].filter((value) => getDisplay(value) !== "none").length > 0 ? "unset" : "none"
   return (
     <Container>
-      <BgContainer>
-        <Bg src={BgImg} visible={bg === 'white' || bg === 'animate'} />
+      <BgContainer style={{ display: displayContainer }}>
+        <Bg src={BgImg} visible={bg === 'white' || bg === 'animate'} style={{display: getDisplay(bg)}} />
         {bg === 'animate' && (
-          <BgPulse src={BgImgPulse} visible={bg === 'animate'} />
+          <BgPulse src={BgImgPulse} visible={bg === 'animate'} style={{display: getDisplay(bg)}} />
         )}
-        <Bg src={BgImgColor} visible={bg === 'color'} />
+        <Bg src={BgImgColor} visible={bg === 'color'} style={{display: getDisplay(bg)}} />
         <PizzaImg
           src={PizzaInner}
-          style={{width: (CIRCLE_SIZE + 434)+'px'}}
+          style={{width: (CIRCLE_SIZE + 434)+'px', display: getDisplay(pizza)}}
           visible={pizza === 'color' || pizza === 'animate'}
           rounding={pizza === 'animate'}
-
         />
         <PizzaImg
           src={PizzaOuter}
-          style={{width: (CIRCLE_SIZE + 284)+'px'}}
+          style={{width: (CIRCLE_SIZE + 284)+'px', display: getDisplay(pizza)}}
           visible={pizza === 'color' || pizza === 'animate'}
           rounding={pizza === 'animate'}
         />
-        <Img src={InnerWhite} visible={inner === 'white'} style={{width: (CIRCLE_SIZE + 32)+'px'}} />
-        <Img src={InnerColor} visible={inner === 'color'} style={{width: (CIRCLE_SIZE + 32)+'px'}} />
-        <Img src={OuterWhite} visible={outer === 'white'} style={{width: (CIRCLE_SIZE + 95)+'px'}} />
-        <Img src={OuterColor} visible={outer === 'color'} style={{width: (CIRCLE_SIZE + 95)+'px'}} />
-        <Img src={SnakeWhite} visible={snake === 'white'} style={{width: (CIRCLE_SIZE + 85)+'px'}} />
-        <Img src={SnakeColor} visible={snake === 'color'} style={{width: (CIRCLE_SIZE + 85)+'px'}} />
+        <Img src={InnerWhite} visible={inner === 'white'} style={{width: (CIRCLE_SIZE + 32)+'px', display: getDisplay(inner)}} />
+        <Img src={InnerColor} visible={inner === 'color'} style={{width: (CIRCLE_SIZE + 32)+'px', display: getDisplay(inner)}} />
+        <Img src={OuterWhite} visible={outer === 'white'} style={{width: (CIRCLE_SIZE + 95)+'px', display: getDisplay(outer)}} />
+        <Img src={OuterColor} visible={outer === 'color'} style={{width: (CIRCLE_SIZE + 95)+'px', display: getDisplay(outer)}} />
+        <Img src={SnakeWhite} visible={snake === 'white'} style={{width: (CIRCLE_SIZE + 85)+'px', display: getDisplay(snake)}} />
+        <Img src={SnakeColor} visible={snake === 'color'} style={{width: (CIRCLE_SIZE + 85)+'px', display: getDisplay(snake)}} />
       </BgContainer>
       {children}
     </Container>

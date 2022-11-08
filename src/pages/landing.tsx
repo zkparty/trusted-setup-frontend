@@ -16,7 +16,7 @@ const LandingPage = () => {
   useTranslation()
   const navigate = useNavigate()
   const onClickGetStart = useCallback(() => {
-    navigate(ROUTES.SIGNIN)
+    navigate(ROUTES.ENTROPY_INPUT)
   }, [navigate])
 
   return (
@@ -64,10 +64,14 @@ const Section = styled.section`
 `
 
 const TopSection = styled(Section)`
-  background: url(${LandingBg}) no-repeat bottom / contain;
-  height: 840px;
-  margin-top: 90px;
-  padding-top: 100px;
+  border: min(10vw, 6rem) solid;
+  border-image-source: url(${LandingBg});
+  border-image-slice: 230;
+  border-image-repeat: round;
+  margin: 6rem auto;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100ch;
 `
 
 const BgColor = styled.div`
