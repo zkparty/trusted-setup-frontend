@@ -12,6 +12,7 @@ const Footer = () => {
       <RightSection>
         <LinkGroup>
           <LinkItem href="#">Github</LinkItem>
+          <LinkItem href="/faq">FAQ</LinkItem>
           <LinkItem href="#">Documentation</LinkItem>
           <LinkItem href="#">Audit report</LinkItem>
         </LinkGroup>
