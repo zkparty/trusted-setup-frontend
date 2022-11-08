@@ -3,6 +3,9 @@ import styled from "styled-components"
 // Import components
 import FaqItem from "../components/FaqItem"
 import ExternalLink from "../components/ExternalLink"
+import Header from "../components/Header"
+import Footer from "../components/Footer"
+import { PageTitle } from "../components/Text"
 
 // FAQ question array
 const faqQuestions = [
@@ -81,28 +84,24 @@ const faqQuestions = [
 
 // FAQ section component
 const FaqPage = () => (
-  <FaqSection>
-    <Heading id="faq">FAQ</Heading>
-    {faqQuestions.map(({ title, content }) => (
-      <FaqItem key={title} title={title} content={content} />
-    ))}
-  </FaqSection>
+  <>
+    <Header />
+    <FaqSection>
+      <PageTitle id="faq">FAQ</PageTitle>
+      {faqQuestions.map(({ title, content }) => (
+        <FaqItem key={title} title={title} content={content} />
+        ))}
+    </FaqSection>
+    <Footer />
+  </>
 )
 
 // Styled components
-const FaqSection = styled.div`
-  padding-top: 100px;
+const FaqSection = styled.section`
+  padding-block: 8rem;
   width: 90ch;
   max-width: 100%;
   margin: 0 auto;
-`
-
-const Heading = styled.h2`
-  font-size: 2rem;
-  font-weight: 700;
-  text-align: center;
-  margin-block-end: 1rem;
-  margin-inline: auto;
 `
 
 export default FaqPage

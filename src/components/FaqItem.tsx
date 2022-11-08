@@ -24,7 +24,7 @@ const FaqItem = ({ title, content }: Props) => {
 const Container = styled.div`
   border-bottom: solid 1px ${({ theme }) => theme.primary};
   transition: background-color 0.1s linear;
-  padding: 0 1rem; 
+  padding: 1rem; 
   :hover {
     background-color: #d6d6d6;
   }
@@ -37,7 +37,7 @@ const Title = styled.p<{ open: boolean }>`
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  padding-block: 2rem;
+  padding-block: 1rem;
   margin-block: 0;
   :hover {
       cursor: pointer;
