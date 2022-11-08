@@ -5,8 +5,8 @@ type ExternalLinkProps = {
   children: React.ReactNode
 }
 
-const ExternalLink = ({ href, children }: ExternalLinkProps) => (
-  <ArrowLink href={href} target="_blank" rel="noreferrer noopener">
+const ExternalLink = ({ href, children, ...props }: ExternalLinkProps) => (
+  <ArrowLink href={href} target="_blank" rel="noreferrer noopener" {...props}>
     {children}
   </ArrowLink>
 )
