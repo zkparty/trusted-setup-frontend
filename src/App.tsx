@@ -11,7 +11,8 @@ import {
   CompletePage,
   RecordPage,
   MobilePage,
-  SigninRedirectPage
+  SigninRedirectPage,
+  FaqPage
 } from './pages'
 import RequireAuth from './components/helper/RequireAuth'
 import usePreloadAllImages from './hooks/usePreloadAllImages'
@@ -80,6 +81,7 @@ function App() {
               }
             />
           </Route>
+          <Route path={ROUTES.FAQ} element={<FaqPage />} />
           <Route path={ROUTES.RECORD} element={<RecordPage />} />
           <Route path={ROUTES.REDIRECT} element={<SigninRedirectPage />} />
         </Routes>

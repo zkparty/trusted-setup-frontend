@@ -9,7 +9,8 @@ const ROUTES = {
   COMPLETE: '/complete',
   RECORD: '/record',
   MOBILE: '/mobile',
-  REDIRECT: '/redirect'
+  REDIRECT: '/redirect',
+  FAQ: '/faq'
 }
 
 export default ROUTES

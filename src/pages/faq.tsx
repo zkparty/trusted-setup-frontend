@@ -1,8 +1,8 @@
 // Import libraries
 import styled from "styled-components"
 // Import components
-import FaqItem from "./FaqItem"
-import ExternalLink from "./ExternalLink"
+import FaqItem from "../components/FaqItem"
+import ExternalLink from "../components/ExternalLink"
 
 // FAQ question array
 const faqQuestions = [
@@ -80,7 +80,7 @@ const faqQuestions = [
 ]
 
 // FAQ section component
-const FAQ = () => (
+const FaqPage = () => (
   <FaqSection>
     <Heading id="faq">FAQ</Heading>
     {faqQuestions.map(({ title, content }) => (
@@ -105,4 +105,4 @@ const Heading = styled.h2`
   margin-inline: auto;
 `
 
-export default FAQ
+export default FaqPage
