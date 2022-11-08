@@ -1,6 +1,6 @@
-import { useState } from 'react'
 import styled from 'styled-components'
-import { FONT_SIZE } from '../constants'
+import { useState } from 'react'
+import { BREAKPOINT, FONT_SIZE } from '../constants'
 import { textSerif } from '../style/utils'
 
 type Props = {
@@ -44,6 +44,9 @@ const Title = styled.p<{ open: boolean }>`
   }
   ::after {
     content: "${({ open }) => open ? '-' : '+'}";
+  }
+  @media (max-width: ${BREAKPOINT.M}) {
+    font-size: ${FONT_SIZE.L};
   }
 `
 
