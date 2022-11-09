@@ -1,6 +1,6 @@
 import Modal from 'react-modal'
 import styled from 'styled-components'
-import { Record } from '../hooks/useRecord'
+import type { Record } from '../hooks/useRecord'
 import { textSerif } from '../style/utils'
 
 type Props = {
