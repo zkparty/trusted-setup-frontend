@@ -33,7 +33,7 @@ const RecordTable = ({ data, isLoading }: Props) => {
         </Col>
       </TableHead>
       {data.map((record) => (
-        <Raw key={record.id}>
+        <Row key={record.id}>
           <Col>{record.sequenceNumber}</Col>
           <Col flex={3}>{record.id}</Col>
           <Col center>
@@ -51,7 +51,7 @@ const RecordTable = ({ data, isLoading }: Props) => {
               View
             </ViewButton>
           </Col>
-        </Raw>
+        </Row>
       ))}
       <TranscriptModal
         record={selectedTranscriptItem}
@@ -67,8 +67,10 @@ const RecordTable = ({ data, isLoading }: Props) => {
 
 const Container = styled.div`
   margin-top: 40px;
-  min-width: 800px;
-  width: 80%;
+  /* min-width: 800px; */
+  /* width: 80%; */
+  width: 90ch;
+  max-width: 100%;
 `
 
 const TableHead = styled.div`
@@ -76,7 +78,7 @@ const TableHead = styled.div`
   height: 60px;
 `
 
-const Raw = styled.div`
+const Row = styled.div`
   display: flex;
   align-items: center;
   height: 60px;
