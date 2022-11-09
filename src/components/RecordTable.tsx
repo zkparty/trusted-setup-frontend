@@ -26,16 +26,16 @@ const RecordTable = ({ data, isLoading }: Props) => {
     <Container>
       <TableHead>
         <Col>Seq. #</Col>
-        <Col flex={3}>Identifier spec</Col>
+        <Col flex={4} width="0">Identifier spec</Col>
         <Col center>Signature</Col>
-        <Col width="80px" center>
-          Transcript
-        </Col>
+        <Col width="80px" center>Transcript</Col>
       </TableHead>
       {data.map((record) => (
-        <Row key={record.id}>
+        <Row key={record.sequenceNumber}>
           <Col>{record.sequenceNumber}</Col>
-          <Col flex={3}>{record.id}</Col>
+          <Col flex={4} width="0">
+            <Address>{record.id}</Address>
+          </Col>
           <Col center>
             <BlockiesIdenticon
               onClick={() => setSelectedSignatureItem(record)}
@@ -67,8 +67,6 @@ const RecordTable = ({ data, isLoading }: Props) => {
 
 const Container = styled.div`
   margin-top: 40px;
-  /* min-width: 800px; */
-  /* width: 80%; */
   width: 90ch;
   max-width: 100%;
 `
@@ -76,6 +74,7 @@ const Container = styled.div`
 const TableHead = styled.div`
   display: flex;
   height: 60px;
+  gap: 1rem;
 `
 
 const Row = styled.div`
@@ -83,6 +82,7 @@ const Row = styled.div`
   align-items: center;
   height: 60px;
   border-bottom: solid 1px ${({ theme }) => theme.text};
+  gap: 1rem;
 `
 
 type ColProps = {
@@ -93,10 +93,16 @@ type ColProps = {
 
 const Col = styled.div<ColProps>`
   ${({ width }) => width && `width: ${width};`}
-  ${({ flex, width }) => !width && `flex: ${flex || '1'}`};
+  ${({ flex }) => `flex: ${flex || '1'}`};
   font-size: ${FONT_SIZE.M};
   display: flex;
   ${({ center }) => center && 'justify-content: center'}
+`
+
+const Address = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;  
 `
 
 const ViewButton = styled.button`
