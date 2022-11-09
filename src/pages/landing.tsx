@@ -81,6 +81,7 @@ const BgColor = styled.div`
   background-color: ${({ theme }) => theme.surface};
   height: 500px;
   width: 500px;
+  max-width: 100%;
   border-radius: 50%;
   box-shadow: 0 0 200px 120px ${({ theme }) => theme.surface};
   position: absolute;
