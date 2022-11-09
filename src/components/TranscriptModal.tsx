@@ -17,13 +17,15 @@ const TranscriptModal = ({ record, onDeselect }: Props) => {
       style={{
         overlay: {
           backgroundColor: 'rgba(255, 255, 255, 0.5)',
-          backdropFilter: 'blur(6px)'
+          backdropFilter: 'blur(6px)',
+          padding: '2rem',
         },
         content: {
           border: 'none',
           height: '320px',
-          width: '800px',
-          margin: 'auto'
+          width: 'clamp(200px, 75%, 800px)',
+          inset: '25% 0 0 0',
+          marginInline: 'auto',
         }
       }}
     >
