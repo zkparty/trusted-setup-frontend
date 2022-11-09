@@ -5,7 +5,6 @@ import ROUTES from '../routes'
 import { useAuthStore } from '../store/auth'
 import { toParams, validateSigninParams } from '../utils'
 
-
 const SigninRedirect = () => {
   const location = useLocation()
   const navigate = useNavigate()
