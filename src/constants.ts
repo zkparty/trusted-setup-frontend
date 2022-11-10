@@ -25,6 +25,13 @@ const RADIUS = {
   L: '12px'
 } as const
 
+const BREAKPOINT = {
+  S: '480px',
+  M: '768px',
+  L: '1024px',
+  XL: '1280px'
+} as const
+
 const API_ROOT = process.env.REACT_APP_API_ROOT || 'http://127.0.0.1:3000'
 const SIGNIN_REDIRECT_URL =
   process.env.REACT_APP_SIGNIN_REDIRECT_URL || 'http://localhost:3001/redirect'
@@ -34,7 +41,7 @@ const MIN_MOUSE_ENTROPY_SAMPLES =
   parseInt(process.env.REACT_APP_MIN_MOUSE_ENTROPY_SAMPLES as string) || 64
 
 const SERVER_ERROR = {
-  LOBBY_IS_FULL: 'lobby is full'
+  LOBBY_IS_FULL: 'lobby is full' //? Enable translation?
 }
 
 export {
@@ -42,6 +49,7 @@ export {
   CIRCLE_SIZE,
   SPACE,
   RADIUS,
+  BREAKPOINT,
   API_ROOT,
   SERVER_ERROR,
   SIGNIN_REDIRECT_URL,
