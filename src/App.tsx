@@ -23,10 +23,11 @@ function App() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const loaded = usePreloadAllImages()
   const location = window.location
-  const sessionId = new URLSearchParams(window.location.search).get('session_id')
-  console.log(`location hash ${location.hash}`)
-  console.log(`session_id ${sessionId}`)
-  const isRedirect = (sessionId !== null)
+  const params = new URLSearchParams(location.search)
+  const sessionId = params.get('session_id')
+  const message = params.get('message')
+  const isRedirect = (sessionId !== null || message !== null)
+
   /* Considerations for the IPFS build: 
     - IPFS gateways comsider anything after the / a path to a folder. So our preferred method
     of using route names to route to a page won't work. Solution is to use HashRouter in lieu of
@@ -37,8 +38,8 @@ function App() {
     - We want to route to the /redirect logic upon return from sign-in, so we need to 
     pass /#/redirect at the end of the URL. The sequencer sees the # as an in-page reference, and
     repositions it at the end of the URL, following the query string parameters it returns. This messes up the routing
-    a bit. The request goes to redirect page OK, but without the query parameters. We need to 
-    customise the routing to fix this. 
+    a bit. The workaround is to omit the #/redirect, and detect a redirect using the presence of session_id as a query param. 
+    All query parameters are passed to SignInRedirectPage via props.
 */
 
   return (
