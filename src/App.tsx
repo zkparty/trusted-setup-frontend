@@ -26,6 +26,20 @@ function App() {
   console.log(`location hash ${location.hash}`)
   const isRedirect = location.hash.includes('redirect')
   //const hasSessionId = query.get('session_id')
+  /* Considerations for the IPFS build: 
+    - IPFS gateways comsider anything after the / a path to a folder. So our preferred method
+    of using route names to route to a page won't work. Solution is to use HashRouter in lieu of
+    BrowserRouter. Now, pages can be router using /#/<page> at the end of the URL.
+    A couple of problems arise with the redirect URL we need to send along with the sign-in request.
+    - As the URL is an IPFS CID, it's not known until it is built. It can't be hard-coded. We cam
+    use window.location to solve that. 
+    - We want to route to the /redirect logic upon return from sign-in, so we need to 
+    pass /#/redirect at the end of the URL. The sequencer sees the # as an in-page reference, and
+    repositions it at the end of the URL, following the query string parameters it returns. This messes up the routing
+    a bit: the request goes to redirect page OK, but without the query parameters. We need to 
+    customise the routing to fix this. 
+*/
+
   return (
     <>
       <HashRouter>
