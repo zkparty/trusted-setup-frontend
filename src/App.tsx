@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import {
   HomePage,
   LandingPage,
@@ -23,20 +23,21 @@ function App() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const loaded = usePreloadAllImages()
   const location = window.location
+  const sessionId = new URLSearchParams(window.location.search).get('session_id')
   console.log(`location hash ${location.hash}`)
-  const isRedirect = location.hash.includes('redirect')
-  //const hasSessionId = query.get('session_id')
+  console.log(`session_id ${sessionId}`)
+  const isRedirect = (sessionId !== null)
   /* Considerations for the IPFS build: 
     - IPFS gateways comsider anything after the / a path to a folder. So our preferred method
     of using route names to route to a page won't work. Solution is to use HashRouter in lieu of
-    BrowserRouter. Now, pages can be router using /#/<page> at the end of the URL.
+    BrowserRouter. Now, pages can be router using /#/<route> at the end of the URL.
     A couple of problems arise with the redirect URL we need to send along with the sign-in request.
     - As the URL is an IPFS CID, it's not known until it is built. It can't be hard-coded. We cam
     use window.location to solve that. 
     - We want to route to the /redirect logic upon return from sign-in, so we need to 
     pass /#/redirect at the end of the URL. The sequencer sees the # as an in-page reference, and
     repositions it at the end of the URL, following the query string parameters it returns. This messes up the routing
-    a bit: the request goes to redirect page OK, but without the query parameters. We need to 
+    a bit. The request goes to redirect page OK, but without the query parameters. We need to 
     customise the routing to fix this. 
 */
 
@@ -50,7 +51,7 @@ function App() {
           <Route path={ROUTES.ROOT} element={<HomePage />}>
               <Route path={ROUTES.ROOT} element={
                   isRedirect ? 
-                    <SigninRedirectPage /> : 
+                    <SigninRedirectPage search={location.search} /> : 
                     <LandingPage />} />
             <Route path={ROUTES.SIGNIN} element={<SigninPage />} />
             <Route
@@ -104,7 +105,7 @@ function App() {
           </Route>
           <Route path={ROUTES.RECORD} element={<RecordPage />} />
           <Route path={ROUTES.GATE} element={<GatePage />} />
-          <Route path={ROUTES.REDIRECT} element={<SigninRedirectPage />} />
+          <Route path={ROUTES.REDIRECT} element={<SigninRedirectPage search={location.search} />} />
         </Routes>
       </HashRouter>
     </>

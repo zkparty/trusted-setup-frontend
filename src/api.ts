@@ -6,7 +6,7 @@ import type { ErrorRes, ContributeRes, TryContributeRes } from './types'
 
 class APIClient {
   async getRequestLink(path: string) {
-    const encodedPath = encodeURIComponent(`${path}#/redirect`)
+    const encodedPath = encodeURIComponent(`${path}`)
     console.log(`path is ${encodedPath}`)
     const res = await fetch(
       `${API_ROOT}/auth/request_link?redirect_to=${encodedPath}`,
