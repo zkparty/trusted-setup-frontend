@@ -61,6 +61,7 @@ const Container = styled.header`
   z-index: 3;
   position: absolute;
   top: 0;
+  gap: 1rem;
 `
 
 const LeftSection = styled.div`

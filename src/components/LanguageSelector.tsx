@@ -1,11 +1,11 @@
 import Select, { StylesConfig } from 'react-select'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-
 import TranslatorImg from '../assets/translator.svg'
 
 import { FONT_SIZE } from '../constants'
 import { locales } from '../locales'
+import { isMobile } from '../utils'
 
 const LanguageSelector = () => {
   const { i18n, t } = useTranslation()
@@ -17,9 +17,10 @@ const LanguageSelector = () => {
   const MAIN_COLOR = 'black'
 
   const getOptions = () => {
+    const mobile = isMobile()
     const options = Object.keys(locales).map((language) => ({
       value: language,
-      label: t(language, { lng: 'en' })
+      label: mobile ? language : t(language, { lng: 'en' })
     }))
     return options
   }
@@ -34,7 +35,7 @@ const LanguageSelector = () => {
       color: MAIN_COLOR,
       cursor: 'pointer',
       display: 'flex',
-      width: '125px'
+      width: 'fit-content'
     }),
     indicatorSeparator: (styles: any) => ({
       ...styles,
@@ -62,13 +63,13 @@ const LanguageSelector = () => {
 
   return (
     <Container>
-      <img src={TranslatorImg} alt="translator logo"></img>
+      <img src={TranslatorImg} alt="translator logo" />
       <Select
         isSearchable={false}
         styles={selectStyles}
         options={getOptions()}
         onChange={handleChange}
-        defaultValue={{ value: 'en', label: t('en', { lng: 'en' }) }}
+        defaultValue={{ value: 'en', label: isMobile() ? 'en' : t('en', { lng: 'en' }) }}
       />
     </Container>
   )
@@ -77,7 +78,6 @@ const LanguageSelector = () => {
 const Container = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 10px;
 `
 
 export default LanguageSelector
