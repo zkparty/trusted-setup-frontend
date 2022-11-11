@@ -14,10 +14,10 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "blockies-identicon": "^0.1.0",
-    "ethers": "^5.7.1",
     "husky": "^8.0.1",
     "i18next": "^21.10.0",
     "lint-staged": "^13.0.3",
+    "node-polyfill-webpack-plugin": "^2.0.1",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -33,9 +33,9 @@
     "zustand": "^4.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -69,6 +69,7 @@
     }
   },
   "devDependencies": {
+    "@craco/craco": "^7.0.0",
     "@types/react-modal": "^3.13.1",
     "@types/styled-components": "^5.1.26"
   }
