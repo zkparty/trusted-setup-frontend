@@ -95,8 +95,7 @@ const Status = styled.span<{ color: string }>`
 const RightSection = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  shape-outside: circle();
+  gap: 1rem;
 `
 
 const Indicator = styled(Star)<{ isOnline: boolean; color: string }>`

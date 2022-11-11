@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import TranslatorImg from '../assets/translator.svg'
 
-import { FONT_SIZE } from '../constants'
+import { BREAKPOINT, FONT_SIZE } from '../constants'
 import { locales } from '../locales'
 
 const LanguageSelector = () => {
@@ -77,7 +77,12 @@ const LanguageSelector = () => {
 const Container = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 10px;
+  width: fit-content;
+  div[class*=singleValue] {
+    @media (max-width: ${BREAKPOINT.S}) {
+      display: none;
+    }
+  }
 `
 
 export default LanguageSelector
