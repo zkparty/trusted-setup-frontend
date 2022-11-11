@@ -39,12 +39,10 @@ const Header = () => {
         </SequencerStatus>
       </LeftSection>
       <RightSection>
-        <div>
-          {nickname ? (<span>{nickname.slice(0, 10)}</span>) : ("")}
-        </div>
-        <div>
-          <LanguageSelector />
-        </div>
+        <Address>
+          {nickname}
+        </Address>
+        <LanguageSelector />
       </RightSection>
     </Container>
   )
@@ -105,6 +103,16 @@ const Indicator = styled(Star)<{ isOnline: boolean; color: string }>`
   color: black;
   @media (max-width: ${BREAKPOINT.S}) {
     color: ${({ color }) => color};
+  }
+`
+
+const Address = styled.div`
+  max-width: 11ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  @media (max-width: ${BREAKPOINT.M}) {
+    display: none;
   }
 `
 
