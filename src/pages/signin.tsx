@@ -17,15 +17,14 @@ import api from '../api'
 const SigninPage = () => {
   useTranslation()
   const { error } = useAuthStore()
-  const path = window.location.href.replace(/#?\/signin/, '');
 
   const onSigninSIE = async () => {
-    const requestLinks = await api.getRequestLink(path);
+    const requestLinks = await api.getRequestLink();
     window.location.replace(requestLinks.eth_auth_url)
   }
 
   const onSigninGithub = async () => {
-    const requestLinks = await api.getRequestLink(path)
+    const requestLinks = await api.getRequestLink()
     window.location.replace(requestLinks.github_auth_url)
   }
 
