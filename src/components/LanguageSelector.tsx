@@ -77,12 +77,15 @@ const LanguageSelector = () => {
 const Container = styled.div`
   display: flex;
   align-items: center;
-  width: fit-content;
-  div[class*=singleValue] {
+  div {
+    width: fit-content;
+  }
+  [class*=ValueContainer] {
     @media (max-width: ${BREAKPOINT.S}) {
       display: none;
     }
   }
+
 `
 
 export default LanguageSelector
