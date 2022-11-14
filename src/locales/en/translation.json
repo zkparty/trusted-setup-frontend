@@ -12,8 +12,21 @@
       "description": "<0>Success! Echoes of you are permanently fused with the others in this Summoning Ceremony.</0>",
       "title": "Dankshard <br/> draws near"
     },
+    "contributing": {
+      "button": "View your contribution",
+      "description": {
+        "contributing": "<0>You are now entrusted with the Powers of Tau. Your Secret, Sigil, and Sample are being fused with those that came before.</0><1>Rituals cannot be hastened - time given here creates timeless artifacts.</1>",
+        "completed": "<0>You have just succesfully complete the contribution. Don’t forget to return for the summoning ending & spread the words.</0>",
+        "error": "There was an error {{error}}. Reload and try again"
+      },
+      "title": {
+        "contributing": "You have been <br /> called upon <br /> Now",
+        "completed": "Contribution <br /> Complete",
+        "error": "Something <br /> Went <br /> Wrong"
+      }
+    },
     "doubleSign": {
-      "button": "<0>Sign</0>",
+      "button": "Sign",
       "description": "<0>This signature binds each Summoner’s entropy contribution to their Ethereum address.</0>",
       "title": "Bind your <br/> Contribution"
     },
@@ -55,6 +68,17 @@
       "title": "OPEN <br/> THE WAY",
       "unlockWithEthereum": "Unlock with Ethereum <2></2>",
       "unlockWithGithub": "or unlock with Github"
+    },
+    "error": {
+      "notSameWallet": "Use the same wallet you used to signing with Ethereum",
+      "pastSubgroupChecksFailed": "Subgroup check failed in the contribution you received. Please report it inmmediately",
+      "newSubgroupChecksFailed": "Subgroup check failed in your computed contribution. Please check your setup and try again",
+      "tryContributeError": {
+        "rateLimited": "Your call to the sequencer came too early. Remember that there is a specific time interval between calls",
+        "unknownSessionId": "You might have taken more time than expected in the lobby. Please reload and sign in again with a different account",
+        "anotherContributionInProgress": "There is another contribution been computed at the moment. Please wait for your turn to contribute",
+        "unknownError": "There has been an unknown error: {{error}} . code: {{code}}"
+      }
     }
   }
 }

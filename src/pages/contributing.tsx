@@ -14,6 +14,7 @@ import { isSuccessRes, parseErrorMessage, processIdentity } from '../utils'
 import ROUTES from '../routes'
 import api from '../api'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
+import { Trans, useTranslation } from 'react-i18next'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap,
@@ -45,6 +46,7 @@ const ContributingPage = () => {
   const [step, setStep] = useState<Steps>('contributing')
   const [error, setError] = useState<null | string>(null)
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   useEffect(() => {
     ;(async () => {
@@ -87,54 +89,68 @@ const ContributingPage = () => {
               <InnerWrap>
                 {step === 'contributing' ? (
                   <PageTitle>
+                    <Trans i18nKey="contributing.title.contributing">
                     You have been
                     <br />
                     called upon
                     <br />
                     Now
+                    </Trans>
                   </PageTitle>
                 ) : step === 'completed' ? (
                   <PageTitle>
+                    <Trans i18nKey="contributing.title.completed">
                     Contribution
                     <br />
                     Complete
+                    </Trans>
                   </PageTitle>
                 ) : (
                   <PageTitle>
+                    <Trans i18nKey="contributing.title.error">
                     Something
                     <br />
                     Went
                     <br />
                     Wrong
+                    </Trans>
                   </PageTitle>
                 )}
                 <TextSection>
                   {step === 'contributing' ? (
                     <>
-                      <Description>
-                        You are now entrusted with the Powers of Tau. Your
-                        Secret, Sigil, and Sample are being fused with those
-                        that came before.
-                      </Description>
-                      <Description>
-                        Rituals cannot be hastened - time given here creates
-                        timeless artifacts.
-                      </Description>
+                      <Trans i18nKey="contributing.description.contributing">
+                        <Description>
+                          You are now entrusted with the Powers of Tau. Your
+                          Secret, Sigil, and Sample are being fused with those
+                          that came before.
+                        </Description>
+                        <Description>
+                          Rituals cannot be hastened - time given here creates
+                          timeless artifacts.
+                        </Description>
+                      </Trans>
                     </>
                   ) : step === 'completed' ? (
-                    <Description>
-                      You have just succesfully complete the contribution. Don’t
-                      forget to return for the summoning ending & spread the
-                      words.
-                    </Description>
+                    <Trans i18nKey="contributing.description.completed">
+                      <Description>
+                        You have just succesfully complete the contribution. Don’t
+                        forget to return for the summoning ending & spread the
+                        words.
+                      </Description>
+                    </Trans>
                   ) : (
-                    <Description>
-                      There was an error {error}. Reload and try again
-                    </Description>
+                      <Description>
+                        { t('contributing.description.error', {error: error}) }
+                      </Description>
                   )}
                 </TextSection>
                 {step === 'completed' && (
-                  <PrimaryButton>View my contribution</PrimaryButton>
+                  <PrimaryButton>
+                    <Trans i18nKey="contributing.button">
+                      View my contribution
+                    </Trans>
+                  </PrimaryButton>
                 )}
               </InnerWrap>
             </Wrap>

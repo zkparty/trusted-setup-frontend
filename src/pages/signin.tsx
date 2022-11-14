@@ -26,6 +26,8 @@ const SigninPage = () => {
   const onSigninSIE = async () => {
     setIsLoading(true);
     const requestLinks = await api.getRequestLink()
+    // TODO: checkout that your wallet is in Ethereum mainnet
+    // MAYBE: print the requestLinks.eth_auth_url. Send chain id here
     window.location.replace(requestLinks.eth_auth_url)
   }
 

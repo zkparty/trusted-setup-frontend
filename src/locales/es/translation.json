@@ -8,6 +8,19 @@
       "description": "<0>¡Éxito! Una parte de usted se fusionó permanentemente con los demás en esta Ceremonia de Invocación.</0><1><0>Recuerde:</0>Esta es una Ceremonia en la red de prueba - asegúrese de regresar para la invocación completa de Dankshard.</1>",
       "button": "Vea su contribución"
     },
+    "contributing": {
+      "button": "Vea su contribución",
+      "description": {
+        "contributing": "<0>Le han confiado los Poderes de Tau. Su Secreto, Sello y Muestra serán fusionados con los que vinieron anteriormente.</0><1>Los rituales no deben ser apresurados - el tiempo invertido crea artefactos eternos.</1>",
+        "completed": "<0>Ha completado exitosamente la contribución. No olvide de regresar al final de la ceremonia para compartir la noticia.</0>",
+        "error": "Hubo un error {{error}}. Recarga e intenta de nuevo"
+      },
+      "title": {
+        "contributing": "Ha sido <br /> elegido <br /> ahora",
+        "completed": "Contribución <br /> Completada",
+        "error": "Algo <br /> Salió <br /> mal"
+      }
+    },
     "doubleSign": {
       "title": "Vincule su <br /> Contribución",
       "description": "<0>Esta firma vincula la contribución entrópica de cada Invocador a su dirección de Ethereum.</0>",
@@ -46,6 +59,17 @@
       "description": "<0>La Ceremonia requiere almas de intenciones puras. Los invocadores demuestran su integridad al desbloquear una dirección que tenga al menos tres transacciones enviadas.</0><1>Esto no envía fondos ni aprueba ningún contrato. Este método nos permite entregar un POAP después de la Ceremonia.</1>",
       "unlockWithEthereum": "Desbloquear con Ethereum <2></2>",
       "unlockWithGithub": "ó desbloquear con Github <2></2>"
+    },
+    "error":{
+      "notSameWallet": "Utiliza la misma wallet que utilizaste para iniciar sesión con Ethereum",
+      "pastSubgroupChecksFailed": "El control de subgrupos falló en la contribución que recibiste. Por favor reportelo inmediatamente",
+      "newSubgroupChecksFailed": "El control de subgrupos falló en la contribución que computó. Por favor revise su configuración e intente de nuevo",
+      "tryContributeError": {
+        "rateLimited": "Su llamada al sequenciador se realizó muy temprano. Recuerde que hay un tiempo específico entre llamadas",
+        "unknownSessionId": "Ha tomado más tiempo del esperado en el lobby. Por favor recargue la página e inicie sesión con una cuenta diferente",
+        "anotherContributionInProgress": "Existe otra contribución siendo computada. Por favor espere su turno para contribuir",
+        "unknownError": "Ocurrió un error desconocido: {{error}} . código: {{code}}"
+      }
     }
   }
 }
