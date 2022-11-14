@@ -172,9 +172,12 @@ const DoubleSignPage = () => {
                 {isLoading ?
                   <LoadingSpinner></LoadingSpinner>
                   :
-                  <Trans i18nKey="doubleSign.button">
-                    <PrimaryButton onClick={handleClickSign} disabled={isLoading}>Sign</PrimaryButton>
-                  </Trans>}
+                  <PrimaryButton onClick={handleClickSign} disabled={isLoading}>
+                    <Trans i18nKey="doubleSign.button">
+                      Sign
+                    </Trans>
+                  </PrimaryButton>
+                }
               </ButtonSection>
             </InnerWrap>
           </Wrap>

@@ -26,7 +26,7 @@
       }
     },
     "doubleSign": {
-      "button": "<0>Sign</0>",
+      "button": "Sign",
       "description": "<0>This signature binds each Summoner’s entropy contribution to their Ethereum address.</0>",
       "title": "Bind your <br/> Contribution"
     },
@@ -70,7 +70,15 @@
       "unlockWithGithub": "or unlock with Github"
     },
     "error": {
-      "notSameWallet": "Use the same wallet you used to signing with Ethereum"
+      "notSameWallet": "Use the same wallet you used to signing with Ethereum",
+      "pastSubgroupChecksFailed": "Subgroup check failed in the contribution you received. Please report it inmmediately",
+      "newSubgroupChecksFailed": "Subgroup check failed in your computed contribution. Please check your setup and try again",
+      "tryContributeError": {
+        "rateLimited": "Your call to the sequencer came too early. Remember that there is a specific time interval between calls",
+        "unknownSessionId": "You might have taken more time than expected in the lobby. Please reload and sign in again with a different account",
+        "anotherContributionInProgress": "There is another contribution been computed at the moment. Please wait for your turn to contribute",
+        "unknownError": "There has been an unknown error: {{error}} . code: {{code}}"
+      }
     }
   }
 }

@@ -61,7 +61,15 @@
       "unlockWithGithub": "ó desbloquear con Github <2></2>"
     },
     "error":{
-      "notSameWallet": "Utiliza la misma wallet que utilizaste para iniciar sesión con Ethereum"
+      "notSameWallet": "Utiliza la misma wallet que utilizaste para iniciar sesión con Ethereum",
+      "pastSubgroupChecksFailed": "El control de subgrupos falló en la contribución que recibiste. Por favor reportelo inmediatamente",
+      "newSubgroupChecksFailed": "El control de subgrupos falló en la contribución que computó. Por favor revise su configuración e intente de nuevo",
+      "tryContributeError": {
+        "rateLimited": "Su llamada al sequenciador se realizó muy temprano. Recuerde que hay un tiempo específico entre llamadas",
+        "unknownSessionId": "Ha tomado más tiempo del esperado en el lobby. Por favor recargue la página e inicie sesión con una cuenta diferente",
+        "anotherContributionInProgress": "Existe otra contribución siendo computada. Por favor espere su turno para contribuir",
+        "unknownError": "Ocurrió un error desconocido: {{error}} . código: {{code}}"
+      }
     }
   }
 }

@@ -17,7 +17,7 @@ import {
 import { Trans, useTranslation } from 'react-i18next'
 
 const CompletePage = () => {
-  useTranslation()
+  const { t } = useTranslation()
   const [error, setError] = useState<null | string>(null)
   const { contribution, newContribution } = useContributionStore(
     (state: Store) => ({
@@ -34,10 +34,10 @@ const CompletePage = () => {
         newContribution!
       )
       if (!checks.checkContribution){
-        setError('Subgroup check failed in the contribution you received. Please report it inmmediately')
+        setError( t('error.pastSubgroupChecksFailed') )
       }
       if (!checks.checkNewContribution){
-        setError('Subgroup check failed in your computed contribution. Please check your setup and try again')
+        setError( t('error.newSubgroupChecksFailed'))
       }
     })()
   // eslint-disable-next-line react-hooks/exhaustive-deps
