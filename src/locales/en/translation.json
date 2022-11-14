@@ -12,6 +12,19 @@
       "description": "<0>Success! Echoes of you are permanently fused with the others in this Summoning Ceremony.</0>",
       "title": "Dankshard <br/> draws near"
     },
+    "contributing": {
+      "button": "View your contribution",
+      "description": {
+        "contributing": "<0>You are now entrusted with the Powers of Tau. Your Secret, Sigil, and Sample are being fused with those that came before.</0><1>Rituals cannot be hastened - time given here creates timeless artifacts.</1>",
+        "completed": "<0>You have just succesfully complete the contribution. Don’t forget to return for the summoning ending & spread the words.</0>",
+        "error": "There was an error {{error}}. Reload and try again"
+      },
+      "title": {
+        "contributing": "You have been <br /> called upon <br /> Now",
+        "completed": "Contribution <br /> Complete",
+        "error": "Something <br /> Went <br /> Wrong"
+      }
+    },
     "doubleSign": {
       "button": "<0>Sign</0>",
       "description": "<0>This signature binds each Summoner’s entropy contribution to their Ethereum address.</0>",

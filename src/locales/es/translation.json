@@ -8,6 +8,19 @@
       "description": "<0>¡Éxito! Una parte de usted se fusionó permanentemente con los demás en esta Ceremonia de Invocación.</0><1><0>Recuerde:</0>Esta es una Ceremonia en la red de prueba - asegúrese de regresar para la invocación completa de Dankshard.</1>",
       "button": "Vea su contribución"
     },
+    "contributing": {
+      "button": "Vea su contribución",
+      "description": {
+        "contributing": "<0>Le han confiado los Poderes de Tau. Su Secreto, Sello y Muestra serán fusionados con los que vinieron anteriormente.</0><1>Los rituales no deben ser apresurados - el tiempo invertido crea artefactos eternos.</1>",
+        "completed": "<0>Ha completado exitosamente la contribución. No olvide de regresar al final de la ceremonia para compartir la noticia.</0>",
+        "error": "Hubo un error {{error}}. Recarga e intenta de nuevo"
+      },
+      "title": {
+        "contributing": "Ha sido <br /> elegido <br /> ahora",
+        "completed": "Contribución <br /> Completada",
+        "error": "Algo <br /> Salió <br /> mal"
+      }
+    },
     "doubleSign": {
       "title": "Vincule su <br /> Contribución",
       "description": "<0>Esta firma vincula la contribución entrópica de cada Invocador a su dirección de Ethereum.</0>",
