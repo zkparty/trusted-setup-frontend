@@ -41,9 +41,6 @@ const MIN_MOUSE_ENTROPY_SAMPLES =
   parseInt(process.env.REACT_APP_MIN_MOUSE_ENTROPY_SAMPLES as string) || 64
 
 const INFURA_ID = process.env.REACT_APP_INFURA_ID || 'cd82571d19ab490e828dd0f86ec3cbf0'
-const PORTIS_ID = process.env.REACT_APP_PORTIS_ID || 'd6418a0a-18ae-4dfd-a206-3398012907ec'
-const FORTMATIC_KEY = process.env.REACT_APP_FORTMATIC_KEY || 'pk_live_AAE763E3E8AC097E'
-
 const SERVER_ERROR = {
   LOBBY_IS_FULL: 'lobby is full' //? Enable translation?
 }
@@ -60,6 +57,4 @@ export {
   LOBBY_CHECKIN_FREQUENCY,
   MIN_MOUSE_ENTROPY_SAMPLES,
   INFURA_ID,
-  PORTIS_ID,
-  FORTMATIC_KEY,
 }
