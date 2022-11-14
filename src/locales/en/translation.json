@@ -55,6 +55,9 @@
       "title": "OPEN <br/> THE WAY",
       "unlockWithEthereum": "Unlock with Ethereum <2></2>",
       "unlockWithGithub": "or unlock with Github"
+    },
+    "error": {
+      "notSameWallet": "Use the same wallet you used to signing with Ethereum"
     }
   }
 }

@@ -46,6 +46,9 @@
       "description": "<0>La Ceremonia requiere almas de intenciones puras. Los invocadores demuestran su integridad al desbloquear una dirección que tenga al menos tres transacciones enviadas.</0><1>Esto no envía fondos ni aprueba ningún contrato. Este método nos permite entregar un POAP después de la Ceremonia.</1>",
       "unlockWithEthereum": "Desbloquear con Ethereum <2></2>",
       "unlockWithGithub": "ó desbloquear con Github <2></2>"
+    },
+    "error":{
+      "notSameWallet": "Utiliza la misma wallet que utilizaste para iniciar sesión con Ethereum"
     }
   }
 }
