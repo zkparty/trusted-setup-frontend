@@ -17,20 +17,20 @@ const Header = () => {
   useTranslation()
   const { nickname } = useAuthStore()
   const sequencerStatus = useSequencerStatus()
-  const isOnline = sequencerStatus === "Online"
-  const indicatorColor = isOnline ? "#61cc61" : "red"
+  const isonline = sequencerStatus === "Online"
+  const indicatorColor = isonline ? "#61cc61" : "red"
   return (
     <Container>
       <LeftSection>
         <Logo />
         <Border />
-        <Indicator aria-label="sequencer status" isOnline={isOnline} color={indicatorColor} />
+        <Indicator aria-label="sequencer status" isonline={isonline.toString()} color={indicatorColor} />
         <SequencerStatus>
           <span>
             <Trans i18nKey="header.sequencer">Sequencer</Trans>
           </span>
           <Status color={indicatorColor}>
-            {isOnline ? (
+            {isonline ? (
               <Trans i18nKey="header.online">Online</Trans>
             ) : (
               <Trans i18nKey="header.offline">Offline</Trans>
@@ -95,12 +95,11 @@ const Status = styled.span<{ color: string }>`
 const RightSection = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  shape-outside: circle();
+  gap: 1rem;
 `
 
-const Indicator = styled(Star)<{ isOnline: boolean; color: string }>`
-  transform: rotate(${({ isOnline }) => isOnline ? '0deg' : '45deg'});
+const Indicator = styled(Star)<{ isonline: string; color: string }>`
+  transform: rotate(${({ isonline }) => isonline === 'true' ? '0deg' : '45deg'});
   transition: all 0.2s;
   color: black;
   @media (max-width: ${BREAKPOINT.S}) {
