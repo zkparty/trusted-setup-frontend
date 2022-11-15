@@ -4,7 +4,7 @@ import { BREAKPOINT, FONT_SIZE } from '../constants'
 import { textSerif } from '../style/utils'
 
 type Props = {
-  title: string
+  title: string | React.ReactNode | JSX.Element
   content: string | React.ReactNode | JSX.Element
 }
 
