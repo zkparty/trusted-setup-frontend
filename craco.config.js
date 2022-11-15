@@ -3,7 +3,9 @@ module.exports = {
   webpack: {
     plugins: {
       add: [
-        new NodePolyfillPlugin()
+        new NodePolyfillPlugin({
+          excludeAliases: ['console'],
+        })
       ],
     },
     configure: {
