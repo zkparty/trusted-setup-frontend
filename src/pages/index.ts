@@ -8,7 +8,6 @@ import ContributingPage from './contributing'
 import CompletePage from './complete'
 import RecordPage from './record'
 import DoubleSignPage from './doubleSign'
-import MobilePage from './mobile'
 import SigninRedirectPage from './signinRedirect'
 
 export {
@@ -22,6 +21,5 @@ export {
   CompletePage,
   DoubleSignPage,
   RecordPage,
-  MobilePage,
   SigninRedirectPage
 }

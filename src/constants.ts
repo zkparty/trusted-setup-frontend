@@ -40,9 +40,7 @@ const LOBBY_CHECKIN_FREQUENCY =
 const MIN_MOUSE_ENTROPY_SAMPLES =
   parseInt(process.env.REACT_APP_MIN_MOUSE_ENTROPY_SAMPLES as string) || 64
 
-const SERVER_ERROR = {
-  LOBBY_IS_FULL: 'lobby is full' //? Enable translation?
-}
+const INFURA_ID = process.env.REACT_APP_INFURA_ID || 'cd82571d19ab490e828dd0f86ec3cbf0'
 
 export {
   FONT_SIZE,
@@ -51,8 +49,8 @@ export {
   RADIUS,
   BREAKPOINT,
   API_ROOT,
-  SERVER_ERROR,
   SIGNIN_REDIRECT_URL,
   LOBBY_CHECKIN_FREQUENCY,
-  MIN_MOUSE_ENTROPY_SAMPLES
+  MIN_MOUSE_ENTROPY_SAMPLES,
+  INFURA_ID,
 }

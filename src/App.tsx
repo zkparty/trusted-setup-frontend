@@ -10,7 +10,6 @@ import {
   ContributingPage,
   CompletePage,
   RecordPage,
-  MobilePage,
   SigninRedirectPage
 } from './pages'
 import RequireAuth from './components/helper/RequireAuth'
@@ -26,8 +25,6 @@ function App() {
       <BrowserRouter>
         <GlobalStyle />
         <Routes>
-          <Route path={ROUTES.MOBILE} element={<MobilePage />} />
-
           <Route path={ROUTES.ROOT} element={<HomePage />}>
             <Route path={ROUTES.ROOT} element={<LandingPage />} />
             <Route path={ROUTES.ENTROPY_INPUT} element={<EntropyInputPage />}/>

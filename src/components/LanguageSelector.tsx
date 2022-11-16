@@ -1,12 +1,14 @@
-import TranslatorImg from '../assets/translator.svg'
 import Select, { StylesConfig } from 'react-select'
 import { useTranslation } from 'react-i18next'
-import { FONT_SIZE } from '../constants'
 import styled from 'styled-components'
-import { languages } from '../i18n'
+
+import TranslatorImg from '../assets/translator.svg'
+
+import { BREAKPOINT, FONT_SIZE } from '../constants'
+import { locales } from '../locales'
 
 const LanguageSelector = () => {
-  const { i18n } = useTranslation()
+  const { i18n, t } = useTranslation()
 
   const handleChange = (event: any) => {
     i18n.changeLanguage(event.value)
@@ -15,10 +17,9 @@ const LanguageSelector = () => {
   const MAIN_COLOR = 'black'
 
   const getOptions = () => {
-    const keys = Object.keys(languages)
-    const options = keys.map((language) => ({
-        'value': language,
-        'label' : (languages as any)[language].nativeName as string,
+    const options = Object.keys(locales).map((language) => ({
+      value: language,
+      label: t(language, { lng: 'en' })
     }))
     return options
   }
@@ -33,7 +34,7 @@ const LanguageSelector = () => {
       color: MAIN_COLOR,
       cursor: 'pointer',
       display: 'flex',
-      width: '125px',
+      width: '125px'
     }),
     indicatorSeparator: (styles: any) => ({
       ...styles,
@@ -41,11 +42,11 @@ const LanguageSelector = () => {
     }),
     dropdownIndicator: (styles: any) => ({
       ...styles,
-      color: MAIN_COLOR,
+      color: MAIN_COLOR
     }),
     singleValue: (styles: any) => ({
       ...styles,
-      color: MAIN_COLOR,
+      color: MAIN_COLOR
     }),
     option: (styles: any) => ({
       ...styles,
@@ -56,8 +57,8 @@ const LanguageSelector = () => {
         ...styles[':hover'],
         backgroundColor: '#FFF8E7'
       }
-    }),
-  };
+    })
+  }
 
   return (
     <Container>
@@ -67,7 +68,7 @@ const LanguageSelector = () => {
         styles={selectStyles}
         options={getOptions()}
         onChange={handleChange}
-        defaultValue={ {'value': 'en', 'label': 'English'} }
+        defaultValue={{ value: 'en', label: t('en', { lng: 'en' }) }}
       />
     </Container>
   )
@@ -76,7 +77,15 @@ const LanguageSelector = () => {
 const Container = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 10px;
-`;
+  div {
+    width: fit-content;
+  }
+  [class*=ValueContainer] {
+    @media (max-width: ${BREAKPOINT.S}) {
+      display: none;
+    }
+  }
+
+`
 
 export default LanguageSelector

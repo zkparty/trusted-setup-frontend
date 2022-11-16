@@ -15,7 +15,7 @@ const Explanation = () => {
   }, [navigate])
 
   return (
-    <SecondSection>
+    <SecondSection id="explanation">
       <PageTitle>
         <Trans i18nKey="explanation.title">
           PROTO-DANKSHARDING <br /> AND THE CEREMONY

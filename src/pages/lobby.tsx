@@ -23,7 +23,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { ErrorRes } from '../types'
 
 const LobbyPage = () => {
-  useTranslation()
+  const { t } = useTranslation()
   const [error, setError] = useState<null | string>(null)
 
   const tryContribute = useTryContribute()
@@ -43,19 +43,20 @@ const LobbyPage = () => {
         const resError = res as ErrorRes
         switch (resError.code) {
           case 'TryContributeError::RateLimited':
-            setError(resError.error)
+            setError( t('error.tryContributeError.rateLimited') )
+            console.log(resError.error)
             break
           case 'TryContributeError::UnknownSessionId':
-            setError(
-              resError.error +
-                '. You might have taken more time than expected in the lobby. Please reload and sign in again with a different account'
-            )
+            setError( t('error.tryContributeError.unknownSessionId') )
+            console.log(resError.error)
             break
           case 'TryContributeError::AnotherContributionInProgress':
-            setError(resError.error)
+            setError( t('error.tryContributeError.anotherContributionInProgress') )
+            console.log(resError.error)
             break
           default:
-            setError('Unknown error code: ' + resError.code)
+            setError( t('error.tryContributeError.unknownError', resError) )
+            console.log(resError)
             break
         }
         //  try again after LOBBY_CHECKIN_FREUQUENCY
