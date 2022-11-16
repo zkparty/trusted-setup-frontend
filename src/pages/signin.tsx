@@ -69,7 +69,7 @@ const SigninPage = () => {
               <LoadingSpinner></LoadingSpinner>
               :
               <>
-              <PrimaryButton onClick={onSigninSIE} style={{ width: '360px' }} disabled={isLoading}>
+              <PrimaryButton onClick={onSigninSIE} style={{ width: '300px' }} disabled={isLoading}>
                 <Trans i18nKey="signin.unlockWithEthereum">
                   Unlock with Ethereum{' '}
                   <ButtonIcon src={EthImg} alt="ETH icon" />

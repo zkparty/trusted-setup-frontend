@@ -78,6 +78,26 @@
         "unknownSessionId": "You might have taken more time than expected in the lobby. Please reload and sign in again with a different account",
         "anotherContributionInProgress": "There is another contribution been computed at the moment. Please wait for your turn to contribute",
         "unknownError": "There has been an unknown error: {{error}} . code: {{code}}"
+      },
+      "authErrorPayload": {
+        "userAlreadyContributed": "This wallet has already contributed to the ceremony",
+        "invalidAuthCode": "The web application is using an invalid authorization code. Please report it on Github",
+        "fetchUserDataError": "The sequencer could not get user data from the authorization service. Please report it on Github",
+        "couldNotExtractUserData": "The sequencer could not extract user data from the authorization service. Please report it on Github",
+        "userCreatedAfterDeadline": "Your wallet does not have the minimum transaction quantity to pass our antisybil tests.",
+        "customError": "There has been an unknown error: {{error}}"
+      },
+      "contributeError": {
+        "notUsersTurn": "It is not your turn to upload your contribution",
+        "invalidContribution": {
+          "unexpectedNumContributions": "An unexpected number of contributions have been send"
+        },
+        "signature": {
+          "signatureCreation": "There was a problem creating the signed receipt",
+          "invalidToken": "The signature is not a valid hex string",
+          "invalidSignature": "The sequencer could not parse the signature"
+        },
+        "customError": "There has been an unknown error: {{error}}"
       }
     }
   }
