@@ -29,25 +29,25 @@ const SigninRedirect = () => {
       switch (code) {
         case 'AuthErrorPayload::LobbyIsFull':
           navigate(ROUTES.LOBBY_FULL)
-          return;
+          return
         case 'AuthErrorPayload::UserAlreadyContributed':
           setError(t('error.authErrorPayload.userAlreadyContributed'))
-          break;
+          break
         case 'AuthErrorPayload::InvalidAuthCode':
           setError(t('error.authErrorPayload.invalidAuthCode'))
-          break;
+          break
         case 'AuthErrorPayload::FetchUserDataError':
           setError(t('error.authErrorPayload.fetchUserDataError'))
-          break;
+          break
         case 'AuthErrorPayload::CouldNotExtractUserData':
           setError(t('error.authErrorPayload.couldNotExtractUserData'))
-          break;
+          break
         case 'AuthErrorPayload::UserCreatedAfterDeadline':
           setError(t('error.authErrorPayload.userCreatedAfterDeadline'))
-          break;
+          break
         default:
           setError(t('error.authErrorPayload.customError', {error: code}))
-          break;
+          break
       }
       navigate(ROUTES.SIGNIN)
     }

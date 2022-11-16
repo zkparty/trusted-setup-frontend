@@ -77,6 +77,18 @@
         "couldNotExtractUserData": "El sequenciador no pudo extraer los datos de usuario del servidor de autorización. Por favor reportelo en Github",
         "userCreatedAfterDeadline": "Su wallet no tiene la cantidad mínima de transacciones requeridas para pasar nuestro método antisybil. Utilice otra wallet",
         "customError": "Ocurrió un error desconocido: {{error}}"
+      },
+      "contributeError": {
+        "notUsersTurn": "No es su turno de subir la contribución",
+        "invalidContribution": {
+          "unexpectedNumContributions": "Se ha enviado un número inesperado de contribuciones"
+        },
+        "signature": {
+          "signatureCreation": "Hubo un problema creando el recibo firmado",
+          "invalidToken": "La firma no tiene un formato hexadecimal correcto",
+          "invalidSignature": "El sequenciador no pudo validar la firma"
+        },
+        "customError": "Ocurrió un error desconocido: {{error}}"
       }
     }
   }

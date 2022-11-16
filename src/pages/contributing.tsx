@@ -10,7 +10,7 @@ import {
 import { useAuthStore } from '../store/auth'
 import { Description, PageTitle } from '../components/Text'
 import { PrimaryButton } from '../components/Button'
-import { isSuccessRes, parseErrorMessage, processIdentity } from '../utils'
+import { isSuccessRes, processIdentity } from '../utils'
 import ROUTES from '../routes'
 import api from '../api'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
@@ -49,7 +49,7 @@ const ContributingPage = () => {
   const { t } = useTranslation()
 
   useEffect(() => {
-    ;(async () => {
+    (async () => {
       try {
         if (!sessionId || !contribution) {
           throw new Error('invalid sessionId or contribution')
@@ -68,7 +68,28 @@ const ContributingPage = () => {
           updateNewContribution(res.contribution)
           navigate(ROUTES.COMPLETE)
         } else {
-          setError(parseErrorMessage(res))
+          console.log(res)
+          const code = decodeURIComponent(res.code)
+          switch (code) {
+            case 'ContributeError::NotUsersTurn':
+              setError(t('error.contributeError.notUsersTurn'))
+              break
+            case 'ContributeError::InvalidContribution::UnexpectedNumContributions':
+              setError(t('error.contributeError.invalidContribution.unexpectedNumContributions'))
+              break
+            case 'ContributeError::Signature::SignatureCreation':
+              setError(t('error.contributeError.signature.signatureCreation'))
+              break
+              case 'ContributeError::Signature::InvalidToken':
+                setError(t('error.contributeError.signature.invalidToken'))
+                break
+              case 'ContributeError::Signature::InvalidSignature':
+                setError(t('error.contributeError.signature.invalidSignature'))
+                break
+            default:
+              setError(t('error.contributeError.customError', {error: code}))
+              break
+          }
           setStep('error')
         }
       } catch (error) {
