@@ -1,6 +1,6 @@
 import Modal from 'react-modal'
 import styled from 'styled-components'
-import type { Record } from '../hooks/useRecord'
+import { Record } from '../types'
 import { textSerif } from '../style/utils'
 
 type Props = {
@@ -28,7 +28,7 @@ const SignatureModal = ({ record, onDeselect }: Props) => {
       }}
     >
       <Title>Signature</Title>
-      <Content>{JSON.stringify(record?.publicKey)}</Content>
+      <Content>{record?.participantEcdsaSignature}</Content>
     </Modal>
   )
 }

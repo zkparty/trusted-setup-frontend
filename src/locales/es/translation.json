@@ -51,8 +51,12 @@
       "description": "<0>Por favor, deje esta guía abierta - su contribución se verá en breve.</0><1>Muchos otros están junto a usted en esta Ceremonia - su paciencia será recompensada.</1>",
       "button": "Volver a Inicio"
     },
-    "mobile": {
-      "description": "Las contribuciones a la ceremonia sólo son posibles en ambiente de escritorio. ¡Nos vemos ahí!"
+    "record": {
+      "headers": "<0>Seq. #</0><1>Identificador</1><2>Firmas</2><3>Detalles</3>",
+      "loading": "Cargando registros...",
+      "searchBar": "Buscar wallet, ENS, usuario de github, #1, ...",
+      "button": "Ver",
+      "title": "REGISTRO"
     },
     "signin": {
       "title": "ABRIR <br /> EL CAMINO",

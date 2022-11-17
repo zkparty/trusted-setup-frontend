@@ -60,8 +60,12 @@
       "description": "<0>Too many summoners at this time, please come back later. Close this window and try again in a moment to check if there is a slot available in the lobby.</0>",
       "title": "Too much <br/> magic"
     },
-    "mobile": {
-      "description": "Ceremony contributions are only possible in the desktop setting. See you there!"
+    "record": {
+      "headers": "<0>Seq. #</0><1>Identifier specification</1><2>Signatures</2><3>Details</3>",
+      "loading": "Loading records...",
+      "searchBar": "Search address, ENS, github handle, #1, ...",
+      "button": "View",
+      "title": "RECORD"
     },
     "signin": {
       "description": "<0>The Ceremony requires souls of pure intent. Summoners show their integrity by unlocking with an address that has at least three sent transactions.</0><1>It does not send any funds or permit any contracts. This method also allows us to deliver a POAP after the Ceremony.</1>",

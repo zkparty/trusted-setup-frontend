@@ -8,14 +8,13 @@ import Pagination from '../components/Pagination'
 import RecordTable from '../components/RecordTable'
 import { PageTitle } from '../components/Text'
 // Constant imports
-import { FONT_SIZE } from '../constants'
+import { FONT_SIZE, PAGE_SIZE } from '../constants'
+import { Transcript, Record } from '../types'
 // Asset imports
 import SearchIcon from '../assets/search.svg'
 // Hook imports
-import useRecord, { Record } from '../hooks/useRecord'
+import useRecord from '../hooks/useRecord'
 
-// Constants
-const PAGE_SIZE = 20
 
 // RecordPage component
 const RecordPage = () => {
@@ -26,17 +25,53 @@ const RecordPage = () => {
   const recordQuery = useRecord()
 
   // Helper function
-  const recordString = ({ id, sequenceNumber, publicKey, transcript }: Record): string => 
-    (id + sequenceNumber.toString() + publicKey + transcript).toLowerCase()
+  const isSearchQueryInRecords = (record: Record, query: string): boolean => {
+    let string = '';
+    string = string + '#' + record.position;
+    string = string + ' ' + record.participantId;
+    string = string + ' ' + record.participantEcdsaSignature;
+    string = string + ' '
+    string = string.toLowerCase()
+    return string.includes( query.toLowerCase() )
+  }
 
   // Memoized data
   const data = useMemo<Record[]>(() => {
     if (!recordQuery.data) return []
-    // Sort data by sequence number, descending
-    const sortedData = recordQuery.data.sort((a, b) => b.sequenceNumber - a.sequenceNumber)
-    // Filter by search query
-    const filteredData = sortedData.filter((record) => recordString(record).includes(searchQuery.toLowerCase()))
-    return filteredData
+    const { transcripts, participantIds, participantEcdsaSignatures } = recordQuery.data as Transcript;
+
+    const records: Record[] = [];
+    for (let i = 0, ni=participantIds.length; i < ni; i++) {
+      const participantId = participantIds[i].replace('eth|','')
+      const participantEcdsaSignature = participantEcdsaSignatures[i]
+      const record: Record = {
+        position: i,
+        participantId,
+        participantEcdsaSignature,
+        transcripts: [
+          {
+            potPubkeys: transcripts[0].witness.potPubkeys[i],
+            blsSignature: transcripts[0].witness.blsSignatures[i],
+          },
+          {
+            potPubkeys: transcripts[1].witness.potPubkeys[i],
+            blsSignature: transcripts[1].witness.blsSignatures[i],
+          },
+          {
+            potPubkeys: transcripts[2].witness.potPubkeys[i],
+            blsSignature: transcripts[2].witness.blsSignatures[i],
+          },
+          {
+            potPubkeys: transcripts[3].witness.potPubkeys[i],
+            blsSignature: transcripts[3].witness.blsSignatures[i],
+          }
+        ],
+      }
+      if ( isSearchQueryInRecords(record, searchQuery) ){
+        records.push(record)
+      }
+    }
+    return records
   }, [recordQuery, searchQuery])
 
   const pageData = useMemo<Record[]>(() => {
@@ -53,7 +88,7 @@ const RecordPage = () => {
   const handleInput = (e: any) => {
     setSearchQuery(e.target.value)
   }
-  
+
   return (
     <>
       <Header />

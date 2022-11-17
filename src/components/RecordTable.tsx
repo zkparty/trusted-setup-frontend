@@ -2,10 +2,12 @@ import { useState } from 'react'
 import styled from 'styled-components'
 
 import { FONT_SIZE } from '../constants'
-import type { Record } from '../hooks/useRecord'
+import { Record } from '../types'
 import BlockiesIdenticon from './Blockies'
 import SignatureModal from './SignatureModal'
 import TranscriptModal from './TranscriptModal'
+import { Trans, useTranslation } from 'react-i18next'
+import LoadingSpinner from './LoadingSpinner'
 
 type Props = {
   data: Record[]
@@ -13,34 +15,42 @@ type Props = {
 }
 
 const RecordTable = ({ data, isLoading }: Props) => {
+  useTranslation()
   const [selectedTranscriptItem, setSelectedTranscriptItem] =
     useState<null | Record>(null)
   const [selectedSignatureItem, setSelectedSignatureItem] =
     useState<null | Record>(null)
 
   if (isLoading) {
-    return <div>Loading records...</div>
+    return (
+      <div style={{ marginTop: '30px' }}>
+        <Trans i18nKey="record.loading">Loading records...</Trans>
+        <LoadingSpinner></LoadingSpinner>
+      </div>
+    )
   }
 
   return (
     <Container>
       <TableHead>
-        <Col>Seq. #</Col>
-        <Col flex={4} width="0">Identifier spec</Col>
-        <Col center>Signature</Col>
-        <Col width="80px" center>Transcript</Col>
+        <Trans i18nKey="record.headers">
+          <Col>Seq. #</Col>
+          <Col flex={4} width="0">Identifier specification</Col>
+          <Col center>Signatures</Col>
+          <Col width="80px" center>Details</Col>
+        </Trans>
       </TableHead>
       {data.map((record) => (
-        <Row key={record.sequenceNumber}>
-          <Col>{record.sequenceNumber}</Col>
+        <Row key={record.position}>
+          <Col>{record.position}</Col>
           <Col flex={4} width="0">
-            <Address>{record.id}</Address>
+            <Address>{record.participantId}</Address>
           </Col>
           <Col center>
             <BlockiesIdenticon
               onClick={() => setSelectedSignatureItem(record)}
               opts={{
-                seed: record.publicKey,
+                seed: record.participantEcdsaSignature!,
                 size: 8,
                 scale: 5
               }}
@@ -48,7 +58,7 @@ const RecordTable = ({ data, isLoading }: Props) => {
           </Col>
           <Col width="80px" center>
             <ViewButton onClick={() => setSelectedTranscriptItem(record)}>
-              View
+              <Trans i18nKey="record.button">View</Trans>
             </ViewButton>
           </Col>
         </Row>
@@ -102,7 +112,7 @@ const Col = styled.div<ColProps>`
 const Address = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;  
+  white-space: nowrap;
 `
 
 const ViewButton = styled.button`
