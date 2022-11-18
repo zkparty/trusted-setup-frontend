@@ -6,13 +6,13 @@ import type { ErrorRes, ContributeRes, TryContributeRes } from './types'
 
 class APIClient {
   async getRequestLink() {
-    let redirectUrl: string = ''
-    //if (BUILD_TARGET === 'IPFS') {
+    let redirectUrl = ''
+    if (process.env.REACT_APP_BUILD_TARGET === 'ipfs') {
       const path = window.location.href.replace(/#?\/signin/, '');
       redirectUrl = encodeURIComponent(`${path}`)
-    // } else {
-    //   redirectUrl = SIGNIN_REDIRECT_URL
-    // }
+    } else {
+      redirectUrl = SIGNIN_REDIRECT_URL
+    }
     const res = await fetch(
       `${API_ROOT}/auth/request_link?redirect_to=${redirectUrl}`,
       {
