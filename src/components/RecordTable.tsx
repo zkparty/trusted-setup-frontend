@@ -47,14 +47,42 @@ const RecordTable = ({ data, isLoading }: Props) => {
             <Address>{record.participantId}</Address>
           </Col>
           <Col center>
-            <BlockiesIdenticon
-              onClick={() => setSelectedSignatureItem(record)}
-              opts={{
-                seed: record.participantEcdsaSignature!,
-                size: 8,
-                scale: 5
-              }}
-            />
+            <BlockieColumn>
+              <BlockiesIdenticon
+                onClick={() => setSelectedSignatureItem(record)}
+                opts={{
+                  seed: record.transcripts[0].potPubkeys,
+                  size: 8,
+                  scale: 5
+                }}
+              />
+              <BlockiesIdenticon
+                onClick={() => setSelectedSignatureItem(record)}
+                opts={{
+                  seed: record.transcripts[1].potPubkeys,
+                  size: 8,
+                  scale: 5
+                }}
+              />
+            </BlockieColumn>
+            <BlockieColumn>
+              <BlockiesIdenticon
+                onClick={() => setSelectedSignatureItem(record)}
+                opts={{
+                  seed: record.transcripts[2].potPubkeys,
+                  size: 8,
+                  scale: 5
+                }}
+              />
+              <BlockiesIdenticon
+                onClick={() => setSelectedSignatureItem(record)}
+                opts={{
+                  seed: record.transcripts[3].potPubkeys,
+                  size: 8,
+                  scale: 5
+                }}
+              />
+            </BlockieColumn>
           </Col>
           <Col width="80px" center>
             <ViewButton onClick={() => setSelectedTranscriptItem(record)}>
@@ -90,9 +118,15 @@ const TableHead = styled.div`
 const Row = styled.div`
   display: flex;
   align-items: center;
-  height: 60px;
+  height: 80px;
   border-bottom: solid 1px ${({ theme }) => theme.text};
   gap: 1rem;
+`
+
+const BlockieColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
 `
 
 type ColProps = {
