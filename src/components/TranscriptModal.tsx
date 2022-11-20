@@ -1,6 +1,7 @@
 import Modal from 'react-modal'
 import { Record } from '../types'
 import styled from 'styled-components'
+import { FONT_SIZE } from '../constants'
 import { Bold, Description } from './Text'
 import { textSerif } from '../style/utils'
 import { useEffect } from 'react'
@@ -85,6 +86,8 @@ export const SubTitle = styled(Bold)`
 
 export const Desc = styled(Description)`
   word-break: break-word;
+  font-size: ${FONT_SIZE.S};
+  margin: 0 0 10px;
 `
 
 export default TranscriptModal
