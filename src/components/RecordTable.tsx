@@ -19,7 +19,7 @@ const RecordTable = ({ data, isLoading }: Props) => {
   const [selectedTranscriptItem, setSelectedTranscriptItem] =
     useState<null | Record>(null)
   const [selectedSignatureItem, setSelectedSignatureItem] =
-    useState<null | Record>(null)
+    useState<null | string>(null)
 
   if (isLoading) {
     return (
@@ -49,7 +49,7 @@ const RecordTable = ({ data, isLoading }: Props) => {
           <Col center>
             <BlockieColumn>
               <BlockiesIdenticon
-                onClick={() => setSelectedSignatureItem(record)}
+                onClick={() => setSelectedSignatureItem(record.transcripts[0].potPubkeys)}
                 opts={{
                   seed: record.transcripts[0].potPubkeys,
                   size: 8,
@@ -57,7 +57,7 @@ const RecordTable = ({ data, isLoading }: Props) => {
                 }}
               />
               <BlockiesIdenticon
-                onClick={() => setSelectedSignatureItem(record)}
+                onClick={() => setSelectedSignatureItem(record.transcripts[1].potPubkeys)}
                 opts={{
                   seed: record.transcripts[1].potPubkeys,
                   size: 8,
@@ -67,7 +67,7 @@ const RecordTable = ({ data, isLoading }: Props) => {
             </BlockieColumn>
             <BlockieColumn>
               <BlockiesIdenticon
-                onClick={() => setSelectedSignatureItem(record)}
+                onClick={() => setSelectedSignatureItem(record.transcripts[2].potPubkeys)}
                 opts={{
                   seed: record.transcripts[2].potPubkeys,
                   size: 8,
@@ -75,7 +75,7 @@ const RecordTable = ({ data, isLoading }: Props) => {
                 }}
               />
               <BlockiesIdenticon
-                onClick={() => setSelectedSignatureItem(record)}
+                onClick={() => setSelectedSignatureItem(record.transcripts[3].potPubkeys)}
                 opts={{
                   seed: record.transcripts[3].potPubkeys,
                   size: 8,
@@ -96,7 +96,7 @@ const RecordTable = ({ data, isLoading }: Props) => {
         onDeselect={() => setSelectedTranscriptItem(null)}
       />
       <SignatureModal
-        record={selectedSignatureItem}
+        signature={selectedSignatureItem}
         onDeselect={() => setSelectedSignatureItem(null)}
       />
     </Container>

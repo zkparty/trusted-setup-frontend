@@ -1,10 +1,9 @@
 import Modal from 'react-modal'
 import { Record } from '../types'
-import { TextSection } from './Layout'
 import styled from 'styled-components'
-import { FONT_SIZE } from '../constants'
 import { Bold, Description } from './Text'
 import { textSerif } from '../style/utils'
+import { useEffect } from 'react'
 
 
 type Props = {
@@ -13,6 +12,12 @@ type Props = {
 }
 
 const TranscriptModal = ({ record, onDeselect }: Props) => {
+  const open = !!record
+  useEffect(() => {
+    if (open)  document.body.style.overflow = 'hidden';
+    else  document.body.style.overflow = 'unset';
+  }, [open])
+
   return (
     <Modal
       isOpen={!!record}
@@ -22,56 +27,64 @@ const TranscriptModal = ({ record, onDeselect }: Props) => {
         overlay: {
           backgroundColor: 'rgba(255, 255, 255, 0.5)',
           backdropFilter: 'blur(6px)',
-          padding: '2rem',
+          cursor: 'pointer',
+          overflowY: 'scroll'
         },
         content: {
+          cursor: 'auto',
           border: 'none',
-          height: '800px',
+          blockSize: 'fit-content',
           width: 'clamp(90%, 75%, 70%)',
           inset: '15% 0 0 0',
           marginInline: 'auto',
+          paddingBlock: '20px',
+          paddingInline: '5%',
+          boxShadow: '5px 10px 8px 10px #b4b2b2',
         }
       }}
     >
       <Title>Contribution details</Title>
-      <TextSection>
-        <Bold>Participant ID:</Bold>
-        <Desc>{record?.participantId}</Desc>
-      </TextSection>
-      <TextSection>
-        <Bold>Pot Pubkeys:</Bold>
-        <ol>
-          <li><Desc>{record?.transcripts[0].potPubkeys}</Desc></li>
-          <li><Desc>{record?.transcripts[1].potPubkeys}</Desc></li>
-          <li><Desc>{record?.transcripts[2].potPubkeys}</Desc></li>
-          <li><Desc>{record?.transcripts[3].potPubkeys}</Desc></li>
-        </ol>
-      </TextSection>
-      <TextSection>
-        <Bold>BLS Signatures:</Bold>
-        <ol>
-          <li><Desc>{record?.transcripts[0].blsSignature}</Desc></li>
-          <li><Desc>{record?.transcripts[1].blsSignature}</Desc></li>
-          <li><Desc>{record?.transcripts[2].blsSignature}</Desc></li>
-          <li><Desc>{record?.transcripts[3].blsSignature}</Desc></li>
-        </ol>
-      </TextSection>
-      <TextSection>
-        <Bold>ECDSA Signature (optional):</Bold>
+
+      <SubTitle>Participant ID:</SubTitle>
+      <Desc>{record?.participantId}</Desc>
+
+      <SubTitle>Pot Pubkeys:</SubTitle>
+      <ol>
+        <li><Desc>{record?.transcripts[0].potPubkeys}</Desc></li>
+        <li><Desc>{record?.transcripts[1].potPubkeys}</Desc></li>
+        <li><Desc>{record?.transcripts[2].potPubkeys}</Desc></li>
+        <li><Desc>{record?.transcripts[3].potPubkeys}</Desc></li>
+      </ol>
+
+      <SubTitle>BLS Signatures:</SubTitle>
+      <ol>
+        <li><Desc>{record?.transcripts[0].blsSignature}</Desc></li>
+        <li><Desc>{record?.transcripts[1].blsSignature}</Desc></li>
+        <li><Desc>{record?.transcripts[2].blsSignature}</Desc></li>
+        <li><Desc>{record?.transcripts[3].blsSignature}</Desc></li>
+      </ol>
+      {record?.participantEcdsaSignature ?
+        <>
+        <SubTitle>ECDSA Signature (optional):</SubTitle>
         <Desc>{record?.participantEcdsaSignature}</Desc>
-      </TextSection>
+        </>
+        :
+        null
+      }
     </Modal>
   )
 }
 
-const Title = styled.h2`
+export const Title = styled.h2`
   ${textSerif}
 `
 
-const Desc = styled(Description)`
+export const SubTitle = styled(Bold)`
+  ${textSerif}
+`
+
+export const Desc = styled(Description)`
   word-break: break-word;
-  width: 100vh;
-  font-size: ${FONT_SIZE.M};
 `
 
 export default TranscriptModal
