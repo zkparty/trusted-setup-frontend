@@ -112,7 +112,7 @@ const ContributionModal = ({ contribution, receipt, open, onDeselect }: Props) =
             </Trans>
           </Title>
           <Desc>
-            <Trans i18nKey="complete.modal.timestamp">
+            <Trans i18nKey="complete.modal.receipt">
               Contribution receipt:
             </Trans>
             <br/>
@@ -127,7 +127,7 @@ const ContributionModal = ({ contribution, receipt, open, onDeselect }: Props) =
       </Desc>
       <Desc style={{ textAlign: 'center', marginBottom: '45px'}}>
         <Trans i18nKey="complete.modal.integrityChecks">
-          <b>Integrity checks</b> <span style={{color: '#61cc61'}}>{'Passed'}</span>
+          <b>Integrity checks</b> <span style={{color: '#61cc61'}}>Passed</span>
         </Trans>
       </Desc>
       <BottomSection>

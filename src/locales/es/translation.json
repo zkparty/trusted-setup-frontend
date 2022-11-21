@@ -6,7 +6,16 @@
     "complete": {
       "title": "Dankshard <br/> está cerca",
       "description": "<0>¡Éxito! Una parte de usted se fusionó permanentemente con los demás en esta Ceremonia de Invocación.</0><1><0>Recuerde:</0>Esta es una Ceremonia en la red de prueba - asegúrese de regresar para la invocación completa de Dankshard.</1>",
-      "button": "Vea su contribución"
+      "button": "Vea su contribución",
+      "modal": {
+        "keys": "MIS LLAVES",
+        "timestamp": "Contribución completada el:",
+        "acknowledgment": "RECONOCIMIENTO DEL SEQUENCIADOR",
+        "receipt": "Recibo de la contribución:",
+        "signedBy": "Firmado por",
+        "integrityChecks": "Pruebas de integridad",
+        "shareTwitter": "Compartir en Twitter"
+      }
     },
     "contributing": {
       "button": "Vea su contribución",

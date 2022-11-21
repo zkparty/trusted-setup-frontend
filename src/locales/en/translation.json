@@ -10,7 +10,16 @@
     "complete": {
       "button": "View your contribution",
       "description": "<0>Success! Echoes of you are permanently fused with the others in this Summoning Ceremony.</0>",
-      "title": "Dankshard <br/> draws near"
+      "title": "Dankshard <br/> draws near",
+      "modal": {
+        "keys": "MY KEYS",
+        "timestamp": "Contribution completed at:",
+        "acknowledgment": "SEQUENCER ACKNOWLEDGMENT",
+        "receipt": "Contribution receipt:",
+        "signedBy": "Signed by",
+        "integrityChecks": "Integrity checks",
+        "shareTwitter": "Share on Twitter"
+      }
     },
     "contributing": {
       "button": "View your contribution",
