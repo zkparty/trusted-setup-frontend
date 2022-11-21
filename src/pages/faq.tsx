@@ -14,7 +14,16 @@ const faqQuestions = [
     title: <Trans i18nKey="faq.q1.title">How do I contribute randomness to the Ceremony?</Trans>,
     content: (
       <Trans i18nKey="faq.q1.content">
-        The Ethereum Foundation is hosting an interface at <ExternalLink href="https://ceremony.ethereum.org/">ceremony.ethereum.org</ExternalLink> during the public contribution period from X date to Y date. If you'd like an alternative to the hosted interface, you are welcome to contribute via a <ExternalLink href="https://github.com/crate-crypto/kzg-ceremony-cli.git">CLI</ExternalLink>. After this public contribution period, we will accept special contributions from bespoke <ExternalLink href="https://github.com/ethereum/kzg-ceremony#client-implementations">implementations</ExternalLink> or unique randomness generation. Funding is available for both of these, more information will be shared in the coming weeks.
+        <p>
+          The Ethereum Foundation is hosting an interface at <ExternalLink href="https://ceremony.ethereum.org/">ceremony.ethereum.org</ExternalLink> during the public contribution period from X date to Y date.
+        </p>
+        <p>
+          If you'd like an alternative to the hosted interface, you are welcome to contribute via a <ExternalLink href="https://github.com/crate-crypto/kzg-ceremony-cli.git">CLI</ExternalLink>.
+        </p>
+        <p>
+          After this public contribution period, we will accept special contributions from bespoke <ExternalLink href="https://github.com/ethereum/kzg-ceremony#client-implementations">implementations</ExternalLink> or unique randomness generation.
+          Funding is available for both of these, more information will be shared in the coming weeks.
+        </p>
       </Trans>
     ),
   },
@@ -102,6 +111,7 @@ const FaqSection = styled.section`
   width: 90ch;
   max-width: 100%;
   margin: 0 auto;
+  line-height: 140%;
 `
 
 export default FaqPage
