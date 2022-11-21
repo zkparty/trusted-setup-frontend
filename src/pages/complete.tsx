@@ -83,7 +83,7 @@ const CompletePage = () => {
             </InnerWrap>
           </Wrap>
           <ContributionModal
-            contribution={contribution}
+            contribution={newContribution}
             receipt={receipt}
             open={isModalOpen}
             onDeselect={() => setIsModalOpen(false)}

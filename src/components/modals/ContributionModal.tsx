@@ -22,11 +22,10 @@ const ContributionModal = ({ contribution, receipt, open, onDeselect }: Props) =
 
   const receiptObj = JSON.parse(receipt!)
   const contributionObj = JSON.parse(contribution!)['contributions']
-  // TODO: potPubkeys are the same
-  console.log(contributionObj)
 
   const handleClickShareTwitter = () => {
     // TODO: implement this
+    console.log('Send image as base64?')
   }
 
   return (
@@ -121,14 +120,12 @@ const ContributionModal = ({ contribution, receipt, open, onDeselect }: Props) =
         </LeftSection>
       </TopSection>
       <Desc style={{ textAlign: 'center'}}>
-        <Trans i18nKey="complete.modal.SignedBy">
-          <b>Signed by</b> { receiptObj['identity'] }
-        </Trans>
+        <b><Trans i18nKey="complete.modal.SignedBy">Signed by </Trans></b>
+        { receiptObj['identity'] }
       </Desc>
       <Desc style={{ textAlign: 'center', marginBottom: '45px'}}>
-        <Trans i18nKey="complete.modal.integrityChecks">
-          <b>Integrity checks</b> <span style={{color: '#61cc61'}}>Passed</span>
-        </Trans>
+        <b><Trans i18nKey="complete.modal.integrityChecks">Integrity checks </Trans></b>
+        <span style={{color: '#61cc61'}}> {'Passed'} </span>
       </Desc>
       <BottomSection>
         <PrimaryButton onClick={handleClickShareTwitter} style={{ width: '300px' }}>
