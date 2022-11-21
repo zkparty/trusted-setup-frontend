@@ -1,6 +1,7 @@
 // Library imports
 import { Trans, useTranslation } from 'react-i18next'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
+import { getDefaultProvider } from "ethers";
 import styled from 'styled-components'
 // Component imports
 import Footer from '../components/Footer'
@@ -9,7 +10,7 @@ import Pagination from '../components/Pagination'
 import RecordTable from '../components/RecordTable'
 import { PageTitle } from '../components/Text'
 // Constant imports
-import { BREAKPOINT, FONT_SIZE, PAGE_SIZE } from '../constants'
+import { BREAKPOINT, FONT_SIZE, INFURA_ID, PAGE_SIZE } from '../constants'
 import { Transcript, Record, SequencerStatus } from '../types'
 // Asset imports
 import SearchIcon from '../assets/search.svg'
@@ -23,71 +24,86 @@ const RecordPage = () => {
   const { t } = useTranslation()
   const [searchQuery, setSearchQuery] = useState('')
   const [page, setPage] = useState(1)
+  const [formattedData, setFormattedData] = useState<Record[]>([])
+  const [pageData, setPageData] = useState<Record[]>([])
+  const [totalPages, setTotalPages] = useState(0)
 
   // load data from API
-  const recordQuery = useRecord()
+  const {isLoading, data } = useRecord()
   const sequencerStatus = useSequencerStatus()
 
   // Helper function
-  const isSearchQueryInRecords = (record: Record, query: string): boolean => {
+  const isSearchQueryInRecords = async (record: Record, query: string): Promise<boolean> => {
+    const queryLowercase = query.toLowerCase()
     let string = '';
     string = string + '#' + record.position;
     string = string + ' ' + record.participantId;
     string = string + ' ' + record.participantEcdsaSignature;
     string = string + ' '
     string = string.toLowerCase()
-    return string.includes( query.toLowerCase() )
+
+    if (queryLowercase.includes( '.eth' )){
+      const provider = getDefaultProvider('mainnet', {
+        infura: INFURA_ID
+      })
+      const ensAddress = await provider.lookupAddress(queryLowercase)
+      return string.includes( ensAddress ||  'NOTFOUND')
+    }
+    return string.includes( queryLowercase )
   }
 
-  // Memoized data
-  const data = useMemo<Record[]>(() => {
-    if (!recordQuery.data) return []
-    const { transcripts, participantIds, participantEcdsaSignatures } = recordQuery.data as Transcript;
-
-    const records: Record[] = [];
-    for (let i = 0, ni=participantIds.length; i < ni; i++) {
-      const participantId = participantIds[i].replace('eth|','')
-      const participantEcdsaSignature = participantEcdsaSignatures[i]
-      const record: Record = {
-        position: i,
-        participantId,
-        participantEcdsaSignature,
-        transcripts: [
-          {
-            potPubkeys: transcripts[0].witness.potPubkeys[i],
-            blsSignature: transcripts[0].witness.blsSignatures[i],
-          },
-          {
-            potPubkeys: transcripts[1].witness.potPubkeys[i],
-            blsSignature: transcripts[1].witness.blsSignatures[i],
-          },
-          {
-            potPubkeys: transcripts[2].witness.potPubkeys[i],
-            blsSignature: transcripts[2].witness.blsSignatures[i],
-          },
-          {
-            potPubkeys: transcripts[3].witness.potPubkeys[i],
-            blsSignature: transcripts[3].witness.blsSignatures[i],
-          }
-        ],
+  useEffect(() => {
+    let active = true
+    const formatDataFromRecord = async () => {
+      if (!data) { return }
+      const { transcripts, participantIds, participantEcdsaSignatures } = data! as Transcript;
+      const records: Record[] = [];
+      for (let i = 0, ni=participantIds.length; i < ni; i++) {
+        const participantId = participantIds[i].replace('eth|','')
+        const participantEcdsaSignature = participantEcdsaSignatures[i]
+        const record: Record = {
+          position: i,
+          participantId,
+          participantEcdsaSignature,
+          transcripts: [
+            {
+              potPubkeys: transcripts[0].witness.potPubkeys[i],
+              blsSignature: transcripts[0].witness.blsSignatures[i],
+            },
+            {
+              potPubkeys: transcripts[1].witness.potPubkeys[i],
+              blsSignature: transcripts[1].witness.blsSignatures[i],
+            },
+            {
+              potPubkeys: transcripts[2].witness.potPubkeys[i],
+              blsSignature: transcripts[2].witness.blsSignatures[i],
+            },
+            {
+              potPubkeys: transcripts[3].witness.potPubkeys[i],
+              blsSignature: transcripts[3].witness.blsSignatures[i],
+            }
+          ],
+        }
+        if ( await isSearchQueryInRecords(record, searchQuery) ){
+          records.push(record)
+        }
       }
-      if ( isSearchQueryInRecords(record, searchQuery) ){
-        records.push(record)
-      }
+      if (!active) { return }
+      setFormattedData( records )
+      setTotalPages( records ? Math.ceil(records.length / PAGE_SIZE) : 0 )
     }
-    return records
-  }, [recordQuery, searchQuery])
+    formatDataFromRecord();
+    return () => { active = false }
+  }, [data, searchQuery])
 
-  const pageData = useMemo<Record[]>(() => {
+  useEffect(() => {
     // Slice by page
     const sliceStart = (page - 1) * PAGE_SIZE
-    const sliceEnd = sliceStart + PAGE_SIZE > data.length ? data.length : sliceStart + PAGE_SIZE
-    const slicedData = data.slice(sliceStart, sliceEnd)
-    return slicedData
-  }, [data, page])
+    const sliceEnd = sliceStart + PAGE_SIZE > formattedData.length ? formattedData.length : sliceStart + PAGE_SIZE
+    setPageData( formattedData.slice(sliceStart, sliceEnd) )
+  }, [formattedData, page])
 
-  const totalPages = useMemo<number>(() => data ? Math.ceil(data.length / PAGE_SIZE) : 0, [data])
-
+  // Memoized data
   const stats = useMemo<SequencerStatus>(() => {
     const status = sequencerStatus.data!
     return status
@@ -122,7 +138,7 @@ const RecordPage = () => {
         <SearchInput placeholder={t('record.searchBar')} onChange={handleInput} />
         <RecordTable
           data={pageData}
-          isLoading={recordQuery.isLoading}
+          isLoading={isLoading}
         />
         <Pagination page={page} setPage={setPage} totalPages={totalPages} />
       </Container>
