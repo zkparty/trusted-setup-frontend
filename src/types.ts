@@ -56,3 +56,10 @@ export type TranscriptDetails = {
   potPubkeys: string,
   blsSignature: string
 }
+
+export type SequencerStatus = {
+  lobby_size: number,
+  num_contributions: number,
+  sequencer_address: string,
+  status: string,
+}

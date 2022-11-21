@@ -8,12 +8,13 @@ import Pagination from '../components/Pagination'
 import RecordTable from '../components/RecordTable'
 import { PageTitle } from '../components/Text'
 // Constant imports
-import { FONT_SIZE, PAGE_SIZE } from '../constants'
-import { Transcript, Record } from '../types'
+import { BREAKPOINT, FONT_SIZE, PAGE_SIZE } from '../constants'
+import { Transcript, Record, SequencerStatus } from '../types'
 // Asset imports
 import SearchIcon from '../assets/search.svg'
 // Hook imports
 import useRecord from '../hooks/useRecord'
+import useSequencerStatus from '../hooks/useSequencerStatus'
 
 
 // RecordPage component
@@ -21,8 +22,9 @@ const RecordPage = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [page, setPage] = useState(1)
 
-  // add search param
+  // load data from API
   const recordQuery = useRecord()
+  const sequencerStatus = useSequencerStatus()
 
   // Helper function
   const isSearchQueryInRecords = (record: Record, query: string): boolean => {
@@ -84,6 +86,11 @@ const RecordPage = () => {
 
   const totalPages = useMemo<number>(() => data ? Math.ceil(data.length / PAGE_SIZE) : 0, [data])
 
+  const stats = useMemo<SequencerStatus>(() => {
+    const status = sequencerStatus.data!
+    return status
+  }, [sequencerStatus])
+
   // Handler functions
   const handleInput = (e: any) => {
     setSearchQuery(e.target.value)
@@ -96,6 +103,14 @@ const RecordPage = () => {
         <PageTitle>
           Record
         </PageTitle>
+        <StatsContainer>
+          <StatsTitle>Lobby size:</StatsTitle>
+          <StatsText> {stats?.lobby_size}</StatsText>
+          <StatsTitle>Contributions:</StatsTitle>
+          <StatsText> {stats?.num_contributions}</StatsText>
+          <StatsTitle>Sequencer address:</StatsTitle>
+          <StatsText> {stats?.sequencer_address}</StatsText>
+        </StatsContainer>
         <SearchInput placeholder="Search address, github handle..." onChange={handleInput} />
         <RecordTable
           data={pageData}
@@ -129,6 +144,30 @@ const SearchInput = styled.input`
   color: ${({ theme }) => theme.text};
   width: 320px;
   background: url(${SearchIcon}) no-repeat scroll right 12px bottom 50%;
+`
+
+const StatsContainer = styled.div`
+  width: 100%;
+  display: flex;
+  font-size: ${FONT_SIZE.S};
+  margin-bottom: 20px;
+  justify-content: space-between;
+
+  @media (max-width: ${BREAKPOINT.M}) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    word-break: break-word;
+  }
+`
+const StatsTitle = styled.p`
+  margin: 0px;
+  font-weight: 800;
+`
+
+const StatsText = styled.p`
+  margin: 0px;
+  margin-bottom: 7px;
 `
 
 export default RecordPage

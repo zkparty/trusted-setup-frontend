@@ -5,6 +5,7 @@ import { Transcript } from '../types'
 export default function useRecord() {
   return useQuery(['record'], async () => {
     return new Promise<Transcript>((resolve) => {
+      // network connection error is handle with useSequencerStatus
       fetch(API_ROOT + '/info/current_state')
       .then((_res) => _res.json())
       .then((data) => {

@@ -16,8 +16,8 @@ const Header = () => {
 
   useTranslation()
   const { nickname } = useAuthStore()
-  const sequencerStatus = useSequencerStatus()
-  const isonline = sequencerStatus === "Online"
+  const { data } = useSequencerStatus()
+  const isonline = data?.status === "Online"
   const indicatorColor = isonline ? "#61cc61" : "red"
   return (
     <Container>
