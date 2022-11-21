@@ -1,9 +1,9 @@
 import Modal from 'react-modal'
-import { Record } from '../types'
+import { Record } from '../../types'
 import styled from 'styled-components'
-import { FONT_SIZE } from '../constants'
-import { Bold, Description } from './Text'
-import { textSerif } from '../style/utils'
+import { FONT_SIZE } from '../../constants'
+import { Bold, Description } from '../Text'
+import { textSerif } from '../../style/utils'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 

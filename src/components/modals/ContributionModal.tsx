@@ -1,10 +1,10 @@
 import Modal from 'react-modal'
 import { useEffect } from 'react'
 import styled from 'styled-components'
-import BlockiesIdenticon from './Blockies'
-import { PrimaryButton } from '../components/Button'
+import BlockiesIdenticon from '../Blockies'
+import { PrimaryButton } from '../Button'
 import { Trans, useTranslation } from 'react-i18next'
-import {Title, Desc } from '../components/TranscriptModal'
+import {Title, Desc } from './TranscriptModal'
 
 type Props = {
   contribution: string | null

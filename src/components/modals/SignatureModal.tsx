@@ -1,7 +1,7 @@
 import Modal from 'react-modal'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Title, Desc } from '../components/TranscriptModal'
+import { Title, Desc } from './TranscriptModal'
 
 type Props = {
   signature: string | null

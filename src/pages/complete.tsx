@@ -15,7 +15,7 @@ import {
   Over,
 } from '../components/Layout'
 import { Trans, useTranslation } from 'react-i18next'
-import ContributionModal from '../components/ContributionModal'
+import ContributionModal from '../components/modals/ContributionModal'
 
 const CompletePage = () => {
   const { t } = useTranslation()
