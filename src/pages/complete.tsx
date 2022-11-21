@@ -15,16 +15,23 @@ import {
   Over,
 } from '../components/Layout'
 import { Trans, useTranslation } from 'react-i18next'
+import ContributionModal from '../components/modals/ContributionModal'
 
 const CompletePage = () => {
   const { t } = useTranslation()
   const [error, setError] = useState<null | string>(null)
-  const { contribution, newContribution } = useContributionStore(
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const { contribution, newContribution, receipt } = useContributionStore(
     (state: Store) => ({
       contribution: state.contribution,
-      newContribution: state.newContribution
+      newContribution: state.newContribution,
+      receipt: state.receipt,
     })
   )
+
+  const handleClickViewContribution = async () => {
+    setIsModalOpen(true);
+  }
 
   useEffect(() => {
     ;(async () => {
@@ -67,7 +74,7 @@ const CompletePage = () => {
               </TextSection>
 
               <ButtonSection>
-                <PrimaryButtonLarge>
+                <PrimaryButtonLarge onClick={handleClickViewContribution}>
                   <Trans i18nKey="complete.button">
                     View your contribution
                   </Trans>
@@ -75,6 +82,12 @@ const CompletePage = () => {
               </ButtonSection>
             </InnerWrap>
           </Wrap>
+          <ContributionModal
+            contribution={contribution}
+            receipt={receipt}
+            open={isModalOpen}
+            onDeselect={() => setIsModalOpen(false)}
+          />
         </Container>
       </Over>
     </>

@@ -24,3 +24,42 @@ export type SubgroupCheckResWasm = {
   checkContribution: boolean | null
   checkNewContribution: boolean | null
 }
+
+export type Transcript = {
+  transcripts: SubTranscript[],
+  participantIds: string[],
+  participantEcdsaSignatures: string[],
+}
+
+export type SubTranscript = {
+  numG1Powers: number,
+  numG2Powers: number,
+  powersOfTau: {
+    G1Powers: string[]
+    G2Powers: string[]
+  },
+  witness: {
+    potPubkeys: string[],
+    blsSignatures: string[],
+    runningProducts: string[],
+  }
+}
+
+export type Record = {
+  position: number
+  participantId: string | null
+  participantEcdsaSignature: string | null
+  transcripts: TranscriptDetails[]
+}
+
+export type TranscriptDetails = {
+  potPubkeys: string,
+  blsSignature: string
+}
+
+export type SequencerStatus = {
+  lobby_size: number,
+  num_contributions: number,
+  sequencer_address: string,
+  status: string,
+}

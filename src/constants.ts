@@ -1,5 +1,7 @@
 const CIRCLE_SIZE = 486;
 
+const PAGE_SIZE = 20;
+
 const FONT_SIZE = {
   XXS: '9px',
   XS: '11px',
@@ -45,6 +47,7 @@ const INFURA_ID = process.env.REACT_APP_INFURA_ID || 'cd82571d19ab490e828dd0f86e
 export {
   FONT_SIZE,
   CIRCLE_SIZE,
+  PAGE_SIZE,
   SPACE,
   RADIUS,
   BREAKPOINT,
