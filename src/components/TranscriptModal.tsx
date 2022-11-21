@@ -5,6 +5,7 @@ import { FONT_SIZE } from '../constants'
 import { Bold, Description } from './Text'
 import { textSerif } from '../style/utils'
 import { useEffect } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 
 
 type Props = {
@@ -14,6 +15,7 @@ type Props = {
 
 const TranscriptModal = ({ record, onDeselect }: Props) => {
   const open = !!record
+  useTranslation()
   useEffect(() => {
     if (open)  document.body.style.overflow = 'hidden';
     else  document.body.style.overflow = 'unset';
@@ -44,12 +46,24 @@ const TranscriptModal = ({ record, onDeselect }: Props) => {
         }
       }}
     >
-      <Title>Contribution details</Title>
+      <Title>
+        <Trans i18nKey="record.transcriptModal.title">
+          Contribution details
+        </Trans>
+      </Title>
 
-      <SubTitle>Participant ID:</SubTitle>
+      <SubTitle>
+        <Trans i18nKey="record.transcriptModal.id">
+          Participant ID:
+        </Trans>
+      </SubTitle>
       <Desc>{record?.participantId}</Desc>
 
-      <SubTitle>Pot Pubkeys:</SubTitle>
+      <SubTitle>
+        <Trans i18nKey="record.transcriptModal.potpubkeys">
+          Pot Pubkeys:
+        </Trans>
+      </SubTitle>
       <ol>
         <li><Desc>{record?.transcripts[0].potPubkeys}</Desc></li>
         <li><Desc>{record?.transcripts[1].potPubkeys}</Desc></li>
@@ -57,7 +71,11 @@ const TranscriptModal = ({ record, onDeselect }: Props) => {
         <li><Desc>{record?.transcripts[3].potPubkeys}</Desc></li>
       </ol>
 
-      <SubTitle>BLS Signatures:</SubTitle>
+      <SubTitle>
+        <Trans i18nKey="record.transcriptModal.bls">
+          BLS Signatures:
+        </Trans>
+      </SubTitle>
       <ol>
         <li><Desc>{record?.transcripts[0].blsSignature}</Desc></li>
         <li><Desc>{record?.transcripts[1].blsSignature}</Desc></li>
@@ -66,7 +84,11 @@ const TranscriptModal = ({ record, onDeselect }: Props) => {
       </ol>
       {record?.participantEcdsaSignature ?
         <>
-        <SubTitle>ECDSA Signature (optional):</SubTitle>
+        <SubTitle>
+          <Trans i18nKey="record.transcriptModal.ecdsa">
+            ECDSA Signature (optional):
+          </Trans>
+        </SubTitle>
         <Desc>{record?.participantEcdsaSignature}</Desc>
         </>
         :

@@ -56,7 +56,22 @@
       "loading": "Cargando registros...",
       "searchBar": "Buscar wallet, ENS, usuario de github, #1, ...",
       "button": "Ver",
-      "title": "REGISTRO"
+      "title": "REGISTRO",
+      "stats": {
+        "lobby": "Lobby:",
+        "contributions": "Contribuciones:",
+        "address": "Wallet sequenciador:"
+      },
+      "transcriptModal": {
+        "title": "Detalle de la contribución",
+        "id": "ID del participante:",
+        "potpubkeys": "Llaves públicas PoT:",
+        "bls": "Firmas BLS:",
+        "ecdsa": "Firma ECDSA (opcional):"
+      },
+      "signatureModal": {
+        "title": "Llaves públicas PoT:"
+      }
     },
     "signin": {
       "title": "ABRIR <br /> EL CAMINO",

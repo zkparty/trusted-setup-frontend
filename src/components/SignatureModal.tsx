@@ -1,5 +1,6 @@
 import Modal from 'react-modal'
 import { useEffect } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { Title, Desc } from '../components/TranscriptModal'
 
 type Props = {
@@ -9,6 +10,7 @@ type Props = {
 
 const SignatureModal = ({ signature, onDeselect }: Props) => {
   const open = !!signature
+  useTranslation()
   useEffect(() => {
     if (open)  document.body.style.overflow = 'hidden';
     else  document.body.style.overflow = 'unset';
@@ -39,7 +41,9 @@ const SignatureModal = ({ signature, onDeselect }: Props) => {
         }
       }}
     >
-      <Title>PoT Pubkey:</Title>
+      <Title>
+        <Trans i18nKey="record.signatureModal.title">PoT Pubkey:</Trans>
+      </Title>
       <Desc>{signature}</Desc>
     </Modal>
   )

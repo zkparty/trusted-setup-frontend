@@ -1,4 +1,5 @@
 // Library imports
+import { Trans, useTranslation } from 'react-i18next'
 import { useState, useMemo } from 'react'
 import styled from 'styled-components'
 // Component imports
@@ -19,6 +20,7 @@ import useSequencerStatus from '../hooks/useSequencerStatus'
 
 // RecordPage component
 const RecordPage = () => {
+  const { t } = useTranslation()
   const [searchQuery, setSearchQuery] = useState('')
   const [page, setPage] = useState(1)
 
@@ -101,17 +103,23 @@ const RecordPage = () => {
       <Header />
       <Container>
         <PageTitle>
-          Record
+          <Trans i18nKey="record.title">Record</Trans>
         </PageTitle>
         <StatsContainer>
-          <StatsTitle>Lobby size:</StatsTitle>
+          <StatsTitle>
+            <Trans i18nKey="record.stats.lobby">Lobby size:</Trans>
+          </StatsTitle>
           <StatsText> {stats?.lobby_size}</StatsText>
-          <StatsTitle>Contributions:</StatsTitle>
+          <StatsTitle>
+            <Trans i18nKey="record.stats.contributions">Contributions:</Trans>
+          </StatsTitle>
           <StatsText> {stats?.num_contributions}</StatsText>
-          <StatsTitle>Sequencer address:</StatsTitle>
+          <StatsTitle>
+            <Trans i18nKey="record.stats.address">Sequencer address:</Trans>
+          </StatsTitle>
           <StatsText> {stats?.sequencer_address}</StatsText>
         </StatsContainer>
-        <SearchInput placeholder="Search address, github handle..." onChange={handleInput} />
+        <SearchInput placeholder={t('record.searchBar')} onChange={handleInput} />
         <RecordTable
           data={pageData}
           isLoading={recordQuery.isLoading}
