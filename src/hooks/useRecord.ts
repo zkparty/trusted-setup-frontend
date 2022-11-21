@@ -4,7 +4,12 @@ import { Transcript } from '../types'
 
 export default function useRecord() {
   return useQuery(['record'], async () => {
-    const result: Transcript = await fetch(API_ROOT + '/info/current_state').then((_res) => _res.json())
-    return result
+    return new Promise<Transcript>((resolve) => {
+      fetch(API_ROOT + '/info/current_state')
+      .then((_res) => _res.json())
+      .then((data) => {
+        resolve(data)
+      })
+    })
   })
 }
