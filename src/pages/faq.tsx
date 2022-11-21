@@ -73,23 +73,23 @@ const faqQuestions = [
       </Trans>
     ),
   },
-
   {
-    title: <Trans i18nKey="faq.q6.title">How can the Ceremony be compromised? What attacks are possible in this situation?</Trans>,
-    content: <Trans i18nKey="faq.q6.content">TODO</Trans>,
+    title: <Trans i18nKey="faq.q6.title">How long does it take to contribute?</Trans>,
+    content: <Trans i18nKey="faq.q6.content">It should only take a few minutes to complete the contribution on a standard laptop and internet connection.</Trans>,
   },
   {
-    title: <Trans i18nKey="faq.q7.title">How long does it take to contribute?</Trans>,
-    content: <Trans i18nKey="faq.q7.content">It should only take a few minutes to complete the contribution on a standard laptop and internet connection.</Trans>,
+    title: <Trans i18nKey="faq.q7.title">How can I verify the final Ceremony output?</Trans>,
+    content: (<Trans i18nKey="faq.q7.content">By reading the <ExternalLink href="#LINK">transcript</ExternalLink>.</Trans>),
   },
   {
-    title: <Trans i18nKey="faq.q8.title">How can I verify the final Ceremony output?</Trans>,
-    content: (<Trans i18nKey="faq.q8.content">By reading the <ExternalLink href="#LINK">transcript</ExternalLink>.</Trans>),
+    title: <Trans i18nKey="faq.q8.title">Why can't I contribute on a mobile device?</Trans>,
+    content: <Trans i18nKey="faq.q8.content">The Ceremony isn't optimized for the mobile environment.</Trans>,
   },
-  {
-    title: <Trans i18nKey="faq.q9.title">Why can't I contribute on a mobile device?</Trans>,
-    content: <Trans i18nKey="faq.q9.content">The Ceremony isn't optimized for the mobile environment.</Trans>,
-  },
+  // TODO: Complete answer for this FAQ item
+  // {
+  //   title: <Trans i18nKey="faq.q9.title">How can the Ceremony be compromised? What attacks are possible in this situation?</Trans>,
+  //   content: <Trans i18nKey="faq.q9.content"></Trans>,
+  // },
 ]
 // FAQ section component
 const FaqPage = () => (
