@@ -10,7 +10,16 @@
     "complete": {
       "button": "View your contribution",
       "description": "<0>Success! Echoes of you are permanently fused with the others in this Summoning Ceremony.</0>",
-      "title": "Dankshard <br/> draws near"
+      "title": "Dankshard <br/> draws near",
+      "modal": {
+        "keys": "MY KEYS",
+        "timestamp": "Contribution completed at:",
+        "acknowledgment": "SEQUENCER ACKNOWLEDGMENT",
+        "receipt": "Contribution receipt:",
+        "signedBy": "Signed by",
+        "integrityChecks": "Integrity checks",
+        "shareTwitter": "Share on Twitter"
+      }
     },
     "contributing": {
       "button": "View your contribution",
@@ -60,8 +69,27 @@
       "description": "<0>Too many summoners at this time, please come back later. Close this window and try again in a moment to check if there is a slot available in the lobby.</0>",
       "title": "Too much <br/> magic"
     },
-    "mobile": {
-      "description": "Ceremony contributions are only possible in the desktop setting. See you there!"
+    "record": {
+      "headers": "<0>Seq. #</0><1>Identifier specification</1><2>Signatures</2><3>Details</3>",
+      "loading": "Loading records...",
+      "searchBar": "Search address, ENS, github handle, #1, ...",
+      "button": "View",
+      "title": "RECORD",
+      "stats": {
+        "lobby": "Lobby size:",
+        "contributions": "Contributions:",
+        "address": "Sequencer address:"
+      },
+      "transcriptModal": {
+        "title": "Contribution details",
+        "id": "Participant ID:",
+        "potpubkeys": "Pot Pubkeys:",
+        "bls": "BLS Signatures:",
+        "ecdsa": "ECDSA Signature (optional):"
+      },
+      "signatureModal": {
+        "title": "PoT Pubkey:"
+      }
     },
     "signin": {
       "description": "<0>The Ceremony requires souls of pure intent. Summoners show their integrity by unlocking with an address that has at least three sent transactions.</0><1>It does not send any funds or permit any contracts. This method also allows us to deliver a POAP after the Ceremony.</1>",
@@ -78,6 +106,26 @@
         "unknownSessionId": "You might have taken more time than expected in the lobby. Please reload and sign in again with a different account",
         "anotherContributionInProgress": "There is another contribution been computed at the moment. Please wait for your turn to contribute",
         "unknownError": "There has been an unknown error: {{error}} . code: {{code}}"
+      },
+      "authErrorPayload": {
+        "userAlreadyContributed": "This wallet has already contributed to the ceremony",
+        "invalidAuthCode": "The web application is using an invalid authorization code. Please report it on Github",
+        "fetchUserDataError": "The sequencer could not get user data from the authorization service. Please report it on Github",
+        "couldNotExtractUserData": "The sequencer could not extract user data from the authorization service. Please report it on Github",
+        "userCreatedAfterDeadline": "Your wallet does not have the minimum transaction quantity to pass our antisybil tests.",
+        "customError": "There has been an unknown error: {{error}}"
+      },
+      "contributeError": {
+        "notUsersTurn": "It is not your turn to upload your contribution",
+        "invalidContribution": {
+          "unexpectedNumContributions": "An unexpected number of contributions have been send"
+        },
+        "signature": {
+          "signatureCreation": "There was a problem creating the signed receipt",
+          "invalidToken": "The signature is not a valid hex string",
+          "invalidSignature": "The sequencer could not parse the signature"
+        },
+        "customError": "There has been an unknown error: {{error}}"
       }
     }
   }

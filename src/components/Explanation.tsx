@@ -11,7 +11,7 @@ const Explanation = () => {
   useTranslation()
   const navigate = useNavigate()
   const onClickViewContributions = useCallback(() => {
-    navigate(ROUTES.COMPLETE) // TODO: redirect to contributions page
+    navigate(ROUTES.RECORD)
   }, [navigate])
 
   return (

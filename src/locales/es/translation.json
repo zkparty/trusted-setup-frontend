@@ -6,7 +6,16 @@
     "complete": {
       "title": "Dankshard <br/> está cerca",
       "description": "<0>¡Éxito! Una parte de usted se fusionó permanentemente con los demás en esta Ceremonia de Invocación.</0><1><0>Recuerde:</0>Esta es una Ceremonia en la red de prueba - asegúrese de regresar para la invocación completa de Dankshard.</1>",
-      "button": "Vea su contribución"
+      "button": "Vea su contribución",
+      "modal": {
+        "keys": "MIS LLAVES",
+        "timestamp": "Contribución completada el:",
+        "acknowledgment": "RECONOCIMIENTO DEL SEQUENCIADOR",
+        "receipt": "Recibo de la contribución:",
+        "signedBy": "Firmado por",
+        "integrityChecks": "Pruebas de integridad",
+        "shareTwitter": "Compartir en Twitter"
+      }
     },
     "contributing": {
       "button": "Vea su contribución",
@@ -51,8 +60,27 @@
       "description": "<0>Por favor, deje esta guía abierta - su contribución se verá en breve.</0><1>Muchos otros están junto a usted en esta Ceremonia - su paciencia será recompensada.</1>",
       "button": "Volver a Inicio"
     },
-    "mobile": {
-      "description": "Las contribuciones a la ceremonia sólo son posibles en ambiente de escritorio. ¡Nos vemos ahí!"
+    "record": {
+      "headers": "<0>Seq. #</0><1>Identificador</1><2>Firmas</2><3>Detalles</3>",
+      "loading": "Cargando registros...",
+      "searchBar": "Buscar wallet, ENS, usuario de github, #1, ...",
+      "button": "Ver",
+      "title": "REGISTRO",
+      "stats": {
+        "lobby": "Lobby:",
+        "contributions": "Contribuciones:",
+        "address": "Wallet sequenciador:"
+      },
+      "transcriptModal": {
+        "title": "Detalle de la contribución",
+        "id": "ID del participante:",
+        "potpubkeys": "Llaves públicas PoT:",
+        "bls": "Firmas BLS:",
+        "ecdsa": "Firma ECDSA (opcional):"
+      },
+      "signatureModal": {
+        "title": "Llaves públicas PoT:"
+      }
     },
     "signin": {
       "title": "ABRIR <br /> EL CAMINO",
@@ -69,6 +97,26 @@
         "unknownSessionId": "Ha tomado más tiempo del esperado en el lobby. Por favor recargue la página e inicie sesión con una cuenta diferente",
         "anotherContributionInProgress": "Existe otra contribución siendo computada. Por favor espere su turno para contribuir",
         "unknownError": "Ocurrió un error desconocido: {{error}} . código: {{code}}"
+      },
+      "authErrorPayload": {
+        "userAlreadyContributed": "Esta wallet ya ha contribuido a esta ceremonia",
+        "invalidAuthCode": "La aplicación web está utilizando un código de autorización inválido. Por favor reportelo en Github",
+        "fetchUserDataError": "El sequenciador no pudo conseguir los datos de usuario del servidor de autorización. Por favor reportelo en Github",
+        "couldNotExtractUserData": "El sequenciador no pudo extraer los datos de usuario del servidor de autorización. Por favor reportelo en Github",
+        "userCreatedAfterDeadline": "Su wallet no tiene la cantidad mínima de transacciones requeridas para pasar nuestro método antisybil. Utilice otra wallet",
+        "customError": "Ocurrió un error desconocido: {{error}}"
+      },
+      "contributeError": {
+        "notUsersTurn": "No es su turno de subir la contribución",
+        "invalidContribution": {
+          "unexpectedNumContributions": "Se ha enviado un número inesperado de contribuciones"
+        },
+        "signature": {
+          "signatureCreation": "Hubo un problema creando el recibo firmado",
+          "invalidToken": "La firma no tiene un formato hexadecimal correcto",
+          "invalidSignature": "El sequenciador no pudo validar la firma"
+        },
+        "customError": "Ocurrió un error desconocido: {{error}}"
       }
     }
   }

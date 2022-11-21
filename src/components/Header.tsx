@@ -10,18 +10,21 @@ import { ReactComponent as Star } from '../assets/star.svg'
 import { FONT_SIZE, BREAKPOINT } from '../constants'
 // Import hooks
 import useSequencerStatus from '../hooks/useSequencerStatus'
+import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../store/auth'
+import ROUTES from '../routes'
 
 const Header = () => {
 
   useTranslation()
+  const navigate = useNavigate()
   const { nickname } = useAuthStore()
-  const sequencerStatus = useSequencerStatus()
-  const isonline = sequencerStatus === "Online"
+  const { data } = useSequencerStatus()
+  const isonline = data?.status === "Online"
   const indicatorColor = isonline ? "#61cc61" : "red"
   return (
     <Container>
-      <LeftSection>
+      <LeftSection onClick={() => navigate(ROUTES.ROOT)}>
         <Logo />
         <Border />
         <Indicator aria-label="sequencer status" isonline={isonline.toString()} color={indicatorColor} />
@@ -39,12 +42,10 @@ const Header = () => {
         </SequencerStatus>
       </LeftSection>
       <RightSection>
-        <div>
-          {nickname ? (<span>{nickname.slice(0, 10)}</span>) : ("")}
-        </div>
-        <div>
-          <LanguageSelector />
-        </div>
+        <Address>
+          {nickname}
+        </Address>
+        <LanguageSelector />
       </RightSection>
     </Container>
   )
@@ -67,6 +68,7 @@ const LeftSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 `
 
 const Border = styled.span`
@@ -104,6 +106,16 @@ const Indicator = styled(Star)<{ isonline: string; color: string }>`
   color: black;
   @media (max-width: ${BREAKPOINT.S}) {
     color: ${({ color }) => color};
+  }
+`
+
+const Address = styled.div`
+  max-width: 11ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  @media (max-width: ${BREAKPOINT.M}) {
+    display: none;
   }
 `
 

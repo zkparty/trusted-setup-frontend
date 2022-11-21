@@ -2,10 +2,12 @@ import { useState } from 'react'
 import styled from 'styled-components'
 
 import { FONT_SIZE } from '../constants'
-import type { Record } from '../hooks/useRecord'
+import { Record } from '../types'
 import BlockiesIdenticon from './Blockies'
-import SignatureModal from './SignatureModal'
-import TranscriptModal from './TranscriptModal'
+import SignatureModal from './modals/SignatureModal'
+import TranscriptModal from './modals/TranscriptModal'
+import { Trans, useTranslation } from 'react-i18next'
+import LoadingSpinner from './LoadingSpinner'
 
 type Props = {
   data: Record[]
@@ -13,52 +15,88 @@ type Props = {
 }
 
 const RecordTable = ({ data, isLoading }: Props) => {
+  useTranslation()
   const [selectedTranscriptItem, setSelectedTranscriptItem] =
     useState<null | Record>(null)
   const [selectedSignatureItem, setSelectedSignatureItem] =
-    useState<null | Record>(null)
+    useState<null | string>(null)
 
   if (isLoading) {
-    return <div>Loading records...</div>
+    return (
+      <div style={{ marginTop: '30px' }}>
+        <Trans i18nKey="record.loading">Loading records...</Trans>
+        <LoadingSpinner></LoadingSpinner>
+      </div>
+    )
   }
 
   return (
     <Container>
       <TableHead>
-        <Col>Seq. #</Col>
-        <Col flex={3}>Identifier spec</Col>
-        <Col center>Signature</Col>
-        <Col width="80px" center>
-          Transcript
-        </Col>
+        <Trans i18nKey="record.headers">
+          <Col>Seq. #</Col>
+          <Col flex={4} width="0">Identifier specification</Col>
+          <Col center>Signatures</Col>
+          <Col width="80px" center>Details</Col>
+        </Trans>
       </TableHead>
       {data.map((record) => (
-        <Raw key={record.id}>
-          <Col>{record.sequenceNumber}</Col>
-          <Col flex={3}>{record.id}</Col>
+        <Row key={record.position}>
+          <Col>{record.position}</Col>
+          <Col flex={4} width="0">
+            <Address>{record.participantId}</Address>
+          </Col>
           <Col center>
-            <BlockiesIdenticon
-              onClick={() => setSelectedSignatureItem(record)}
-              opts={{
-                seed: record.publicKey,
-                size: 8,
-                scale: 5
-              }}
-            />
+            <BlockieColumn>
+              <BlockiesIdenticon
+                onClick={() => setSelectedSignatureItem(record.transcripts[0].potPubkeys)}
+                opts={{
+                  seed: record.transcripts[0].potPubkeys,
+                  size: 8,
+                  scale: 5
+                }}
+              />
+              <BlockiesIdenticon
+                onClick={() => setSelectedSignatureItem(record.transcripts[1].potPubkeys)}
+                opts={{
+                  seed: record.transcripts[1].potPubkeys,
+                  size: 8,
+                  scale: 5
+                }}
+              />
+            </BlockieColumn>
+            <BlockieColumn>
+              <BlockiesIdenticon
+                onClick={() => setSelectedSignatureItem(record.transcripts[2].potPubkeys)}
+                opts={{
+                  seed: record.transcripts[2].potPubkeys,
+                  size: 8,
+                  scale: 5
+                }}
+              />
+              <BlockiesIdenticon
+                onClick={() => setSelectedSignatureItem(record.transcripts[3].potPubkeys)}
+                opts={{
+                  seed: record.transcripts[3].potPubkeys,
+                  size: 8,
+                  scale: 5
+                }}
+              />
+            </BlockieColumn>
           </Col>
           <Col width="80px" center>
             <ViewButton onClick={() => setSelectedTranscriptItem(record)}>
-              View
+              <Trans i18nKey="record.button">View</Trans>
             </ViewButton>
           </Col>
-        </Raw>
+        </Row>
       ))}
       <TranscriptModal
         record={selectedTranscriptItem}
         onDeselect={() => setSelectedTranscriptItem(null)}
       />
       <SignatureModal
-        record={selectedSignatureItem}
+        signature={selectedSignatureItem}
         onDeselect={() => setSelectedSignatureItem(null)}
       />
     </Container>
@@ -67,20 +105,28 @@ const RecordTable = ({ data, isLoading }: Props) => {
 
 const Container = styled.div`
   margin-top: 40px;
-  min-width: 800px;
-  width: 80%;
+  width: 90ch;
+  max-width: 100%;
 `
 
 const TableHead = styled.div`
   display: flex;
   height: 60px;
+  gap: 1rem;
 `
 
-const Raw = styled.div`
+const Row = styled.div`
   display: flex;
   align-items: center;
-  height: 60px;
+  height: 80px;
   border-bottom: solid 1px ${({ theme }) => theme.text};
+  gap: 1rem;
+`
+
+const BlockieColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
 `
 
 type ColProps = {
@@ -91,10 +137,16 @@ type ColProps = {
 
 const Col = styled.div<ColProps>`
   ${({ width }) => width && `width: ${width};`}
-  ${({ flex, width }) => !width && `flex: ${flex || '1'}`};
+  ${({ flex }) => `flex: ${flex || '1'}`};
   font-size: ${FONT_SIZE.M};
   display: flex;
   ${({ center }) => center && 'justify-content: center'}
+`
+
+const Address = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `
 
 const ViewButton = styled.button`
