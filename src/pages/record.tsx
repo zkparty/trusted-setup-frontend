@@ -1,7 +1,7 @@
 // Library imports
 import { Trans, useTranslation } from 'react-i18next'
 import { useState, useMemo, useEffect } from 'react'
-import { getDefaultProvider } from "ethers";
+import { providers } from "ethers";
 import styled from 'styled-components'
 // Component imports
 import Footer from '../components/Footer'
@@ -22,14 +22,15 @@ import useSequencerStatus from '../hooks/useSequencerStatus'
 // RecordPage component
 const RecordPage = () => {
   const { t } = useTranslation()
-  const [searchQuery, setSearchQuery] = useState('')
   const [page, setPage] = useState(1)
-  const [formattedData, setFormattedData] = useState<Record[]>([])
-  const [pageData, setPageData] = useState<Record[]>([])
   const [totalPages, setTotalPages] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [pageData, setPageData] = useState<Record[]>([])
+  const [formattedData, setFormattedData] = useState<Record[]>([])
 
   // load data from API
-  const {isLoading, data } = useRecord()
+  const { data } = useRecord()
   const sequencerStatus = useSequencerStatus()
 
   // Helper function
@@ -41,14 +42,6 @@ const RecordPage = () => {
     string = string + ' ' + record.participantEcdsaSignature;
     string = string + ' '
     string = string.toLowerCase()
-
-    if (queryLowercase.includes( '.eth' )){
-      const provider = getDefaultProvider('mainnet', {
-        infura: INFURA_ID
-      })
-      const ensAddress = await provider.lookupAddress(queryLowercase)
-      return string.includes( ensAddress ||  'NOTFOUND')
-    }
     return string.includes( queryLowercase )
   }
 
@@ -58,6 +51,16 @@ const RecordPage = () => {
       if (!data) { return }
       const { transcripts, participantIds, participantEcdsaSignatures } = data! as Transcript;
       const records: Record[] = [];
+
+      let queryLowercase = searchQuery.toLowerCase()
+      if (queryLowercase.includes( '.eth' )){
+        setIsLoading(true)
+        const provider = new providers.InfuraProvider('homestead', INFURA_ID)
+        const ensAddress = await provider.resolveName(queryLowercase)
+        queryLowercase = ensAddress ? ensAddress?.toLowerCase() : 'NOTFOUND'
+        setIsLoading(false)
+      }
+
       for (let i = 0, ni=participantIds.length; i < ni; i++) {
         const participantId = participantIds[i].replace('eth|','')
         const participantEcdsaSignature = participantEcdsaSignatures[i]
@@ -84,13 +87,14 @@ const RecordPage = () => {
             }
           ],
         }
-        if ( await isSearchQueryInRecords(record, searchQuery) ){
+        if ( await isSearchQueryInRecords(record, queryLowercase) ){
           records.push(record)
         }
       }
       if (!active) { return }
       setFormattedData( records )
       setTotalPages( records ? Math.ceil(records.length / PAGE_SIZE) : 0 )
+      setIsLoading(false)
     }
     formatDataFromRecord();
     return () => { active = false }
