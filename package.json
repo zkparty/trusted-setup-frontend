@@ -38,9 +38,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "REACT_APP_BUILD_TARGET=server; react-scripts build",
-    "build-win": "set REACT_APP_BUILD_TARGET=server && react-scripts build",
-    "build-ipfs": "REACT_APP_BUILD_TARGET=ipfs; react-scripts build",
-    "build-ipfs-win": "set REACT_APP_BUILD_TARGET=ipfs && react-scripts build",
+    "build:win": "set REACT_APP_BUILD_TARGET=server && react-scripts build",
+    "build:ipfs": "REACT_APP_BUILD_TARGET=ipfs; react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
