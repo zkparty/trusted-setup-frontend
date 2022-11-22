@@ -35,12 +35,14 @@ const ContributingPage = () => {
     ECDSASignature,
     contribution,
     updateReceipt,
-    updateNewContribution
+    updateNewContribution,
+    updateSequencerSignature,
   } = useContributionStore((state: Store) => ({
     ECDSASignature: state.ECDSASignature,
     contribution: state.contribution,
     updateReceipt: state.updateReceipt,
-    updateNewContribution: state.updateNewContribution
+    updateNewContribution: state.updateNewContribution,
+    updateSequencerSignature: state.updateSequencerSignature,
   }))
 
   const [step, setStep] = useState<Steps>('contributing')
@@ -66,6 +68,7 @@ const ContributingPage = () => {
           setStep('completed')
           updateReceipt(res.receipt)
           updateNewContribution(res.contribution)
+          updateSequencerSignature(res.signature)
           navigate(ROUTES.COMPLETE)
         } else {
           console.log(res)

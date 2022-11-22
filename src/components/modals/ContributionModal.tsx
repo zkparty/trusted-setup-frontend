@@ -1,21 +1,25 @@
+import { utils } from 'ethers'
 import Modal from 'react-modal'
 import styled from 'styled-components'
 import { PrimaryButton } from '../Button'
 import BlockiesIdenticon from '../Blockies'
 import { useEffect, useState } from 'react'
+import SignatureModal from './SignatureModal'
 import {Title, Desc } from './TranscriptModal'
 import { Trans, useTranslation } from 'react-i18next'
-import SignatureModal from './SignatureModal'
+import useSequencerStatus from '../../hooks/useSequencerStatus'
 
 type Props = {
+  signature: string | null
   contribution: string | null
   receipt: string | null
   open: boolean
   onDeselect: () => void
 }
 
-const ContributionModal = ({ contribution, receipt, open, onDeselect }: Props) => {
+const ContributionModal = ({ signature, contribution, receipt, open, onDeselect }: Props) => {
   const { t } = useTranslation()
+  const { data } = useSequencerStatus()
   const [now, setNow] = useState<string>('')
   const [checks, setChecks] = useState<string>('')
   const [identity, setIdentity] = useState<string>('')
@@ -27,22 +31,43 @@ const ContributionModal = ({ contribution, receipt, open, onDeselect }: Props) =
     if (open)  document.body.style.overflow = 'hidden';
     else  document.body.style.overflow = 'unset';
 
-    // TODO: implement signature checks
     const receiptObj = JSON.parse(receipt!)
+    const _witnesses = receiptObj['witness']
+    const _contributions = JSON.parse(contribution!)['contributions']
     setNow( new Date().toUTCString() )
-    setWitnesses(receiptObj['witness'])
+    setWitnesses(_witnesses)
     setIdentity(receiptObj['identity'])
-    setContributions( JSON.parse(contribution!)['contributions'] )
-    console.log(receiptObj)
+    setContributions(_contributions)
 
-
-    setChecks( t('complete.modal.checks.failed') )
-    setChecksColor('red')
-
+    // witnesses should be potPubkeys
+    for (let i = 0, ni=witnesses.length; i < ni; i++) {
+      const witness = _witnesses[i]
+      const potPubkey = _contributions[i]['potPubkey']
+      if (witness !==  potPubkey){
+        setChecks( t('complete.modal.checks.failedWitness') )
+        setChecksColor('red')
+        return
+      }
+    }
+    // signature check
+    try {
+      const hash = utils.hashMessage(receipt!)
+      const signer = utils.recoverAddress(hash, '0x' + signature!)
+      if (signer !== data?.sequencer_address){
+        setChecks( t('complete.modal.checks.failedSignature') )
+        setChecksColor('red')
+        return
+      }
+    } catch (error) {
+      setChecks( t('complete.modal.checks.failedComputeSignature') )
+      setChecksColor('red')
+      return
+    }
+    // everything is ok
     setChecks( t('complete.modal.checks.success') )
     setChecksColor('#61cc61')
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [contribution, receipt, open])
+  }, [signature, contribution, receipt, open])
 
   const handleClickShareTwitter = () => {
     const tweet = t('complete.modal.tweet', {identity})

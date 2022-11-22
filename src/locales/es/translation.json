@@ -17,7 +17,9 @@
         "shareTwitter": "Compartir en Twitter",
         "tweet": "Acabo de contribuir a la ceremonia KZG para escalar Ethereum usando {{identity}}. Tú también lo puedes hacer aquí https://ceremony.ethereum.org @ethereum #KZGCeremony",
         "checks": {
-          "failed": "Error",
+          "failedWitness": "Testigo no es igual a llave pública PoT",
+          "failedComputeSignature": "No se pudo procesar la firma",
+          "failedSignature": "Firma del sequenciador no contiene wallet del sequenciador",
           "success": "Aprobadas"
         }
       }

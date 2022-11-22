@@ -21,7 +21,9 @@
         "shareTwitter": "Share on Twitter",
         "tweet": "I just contributed to the KZG Ceremony to scale Ethereum using {{identity}}. You can do it too in https://ceremony.ethereum.org @ethereum #KZGCeremony",
         "checks": {
-          "failed": "Failed",
+          "failedWitness": "Witness does not match PoT pubkeys",
+          "failedComputeSignature": "Signature was not processed correctly",
+          "failedSignature": "Sequencer signature does not contain sequencer address",
           "success": "Passed"
         }
       }
