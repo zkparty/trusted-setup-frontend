@@ -62,7 +62,7 @@ class APIClient {
     let contributionObj = null
     if (signature) {
       contributionObj = JSON.parse(contribution!)
-      contributionObj.ecdsa_signature = signature
+      contributionObj.ecdsa_signature = signature // TODO: change this when PR is merged https://github.com/ethereum/kzg-ceremony-sequencer/pull/127
       contributionObj = JSON.stringify(contributionObj)
     }
 

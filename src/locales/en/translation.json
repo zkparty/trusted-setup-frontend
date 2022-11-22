@@ -18,7 +18,14 @@
         "receipt": "Contribution receipt:",
         "signedBy": "Signed by",
         "integrityChecks": "Integrity checks",
-        "shareTwitter": "Share on Twitter"
+        "shareTwitter": "Share on Twitter",
+        "tweet": "I just contributed to the KZG Ceremony to scale Ethereum using {{identity}}. You can do it too in https://ceremony.ethereum.org @ethereum #KZGCeremony",
+        "checks": {
+          "failedWitness": "Witness does not match PoT pubkeys",
+          "failedComputeSignature": "Signature was not processed correctly",
+          "failedSignature": "Sequencer signature does not contain sequencer address",
+          "success": "Passed"
+        }
       }
     },
     "contributing": {
