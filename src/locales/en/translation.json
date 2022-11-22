@@ -111,7 +111,7 @@
       "tryContributeError": {
         "rateLimited": "Your call to the sequencer came too early. Remember that there is a specific time interval between calls",
         "unknownSessionId": "You might have taken more time than expected in the lobby. Please reload and sign in again with a different account",
-        "anotherContributionInProgress": "There is another contribution been computed at the moment. Please wait for your turn to contribute",
+        "anotherContributionInProgress": "There is another contribution being computed at the moment. Please wait for your turn to contribute",
         "unknownError": "There has been an unknown error: {{error}} . code: {{code}}"
       },
       "authErrorPayload": {
