@@ -8,6 +8,11 @@ import Footer from "../components/Footer"
 import { PageTitle } from "../components/Text"
 import { Trans } from 'react-i18next'
 
+// Get from/to dates from environment variables, format using toLocaleDateString
+const startDate = process.env.REACT_APP_START_DATE || ''
+const endDate = process.env.REACT_APP_END_DATE || ''
+const [from, to] = [startDate, endDate].map((date: string) => (new Date(date)).toLocaleDateString())
+
 // FAQ question array
 const faqQuestions = [
   {
@@ -15,7 +20,7 @@ const faqQuestions = [
     content: (
       <Trans i18nKey="faq.q1.content">
         <p>
-          The Ethereum Foundation is hosting an interface at <ExternalLink href="https://ceremony.ethereum.org/">ceremony.ethereum.org</ExternalLink> during the public contribution period from X date to Y date.
+          The Ethereum Foundation is hosting an interface at <ExternalLink href="https://ceremony.ethereum.org/">ceremony.ethereum.org</ExternalLink> during the public contribution period from {from} to {to}.
         </p>
         <p>
           If you'd like an alternative to the hosted interface, you are welcome to contribute via a <ExternalLink href="https://github.com/crate-crypto/kzg-ceremony-cli.git">CLI</ExternalLink>.
