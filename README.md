@@ -25,3 +25,49 @@ To start this app execute the following steps:
 
 Note: If the Rust code is updated, copy the `/wasm` directory from the [wrapper library](https://github.com/zkparty/wrapper-small-pot) in the `public/` directory. Most of the times the `wasm-worker.js` text will not change.
 
+
+## Build for IPFS
+
+### Clone this repo
+
+`git clone https://github.com/zkparty/trusted-setup-frontend.git`
+
+### Install dependencies
+
+`cd trusted-setup-frontend`
+
+`yarn install`
+
+### Build the computation code
+The computation code is written in Rust and compiled to WASM. The compiled WASM package is available in this repo for convenience, but a thorough build for IPFS will involve rebuilding that package.
+
+Clone the repo at 
+https://github.com/zkparty/wrapper-small-pot
+
+Follow the instructions there to build the code as a wasm package.
+
+Copy the `wrapper-small-pot/wasm` folder to `trusted-setup-frontend/wasm`
+
+### Build the front-end 
+
+`yarn run build-ipfs`
+
+This will create the `build` folder and add the site content to it.
+
+### Add to IPFS
+
+Choose an IPFS node, or install one locally. See [here](https://docs.ipfs.tech/install/ipfs-desktop/) to install a node.
+
+The site needs to be added to IPFS as a folder. The command to this in ipfs cli is: ```ipfs add -r <your path>/trusted-setup-frontend/build```
+
+This will result in a series of log messages reporting the CID of each object in the folder. The CID of the build folder itself is the important one for our purposes. 
+
+> ...
+> `added QmV7zRBYTYf8wmQQzXfnfRFTyYBUByJGaLB37VuHjsj6Y6 build/wasm/pkg`
+> `added QmZTdJheNur4R2esdej5w1gktGS5aLHYHtLsChMjACmzuk build/wasm`
+> added <span style='color:yellow'>QmbTGA1mPf3nb5RRWehvrHn7cz3jwVQdj91r3c6eHmdx4k</span> build
+> `13.80 MiB / 13.80 MiB [=======================================================================================] 100.00%`
+
+The reported CID is expected to match the CID of the client, as published.
+
+

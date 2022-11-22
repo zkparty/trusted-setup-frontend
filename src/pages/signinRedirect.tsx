@@ -3,10 +3,10 @@ import { useEffect } from 'react'
 import { useAuthStore } from '../store/auth'
 import { useTranslation } from 'react-i18next'
 import { toParams, validateSigninParams } from '../utils'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-const SigninRedirect = () => {
-  const location = useLocation()
+const SigninRedirect = (props: any) => {
+  //const location = useLocation()
   const navigate = useNavigate()
   const { t } = useTranslation()
   const { signin, setError } = useAuthStore((store) => ({
@@ -15,7 +15,7 @@ const SigninRedirect = () => {
   }))
 
   useEffect(() => {
-    const params = toParams(location.search.replace(/^\?/, ''))
+    const params = toParams(props.search.replace(/^\?/, '') )
     if (validateSigninParams(params)) {
       // store signin data and redirect to entropy input page
       signin(params)

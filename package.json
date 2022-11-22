@@ -2,6 +2,7 @@
   "name": "trusted-setup-frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@coinbase/wallet-sdk": "^3.5.4",
     "@noble/bls12-381": "^1.4.0",
@@ -37,7 +38,9 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build",
+    "build": "REACT_APP_BUILD_TARGET=server; craco build",
+    "build:win": "set REACT_APP_BUILD_TARGET=server && craco build",
+    "build:ipfs": "REACT_APP_BUILD_TARGET=ipfs; craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
     "extract": "babel -f .babelrc 'src/**/*.{js,jsx,ts,tsx}'"
