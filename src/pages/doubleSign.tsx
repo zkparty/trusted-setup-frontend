@@ -1,4 +1,3 @@
-import wasm from '../wasm'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { PrimaryButton } from '../components/Button'
@@ -39,8 +38,8 @@ const DoubleSignPage = () => {
   const { nickname } = useAuthStore()
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const entropy = useEntropyStore(
-    (state: EntropyStore) => state.entropy
+  const potPubkeys = useEntropyStore(
+    (state: EntropyStore) => state.potPubkeys
   )
   const updateECDSASignature = useContributionStore(
     (state: Store) => state.updateECDSASignature
@@ -50,6 +49,7 @@ const DoubleSignPage = () => {
     setError(null)
     setIsLoading(true)
     await signPotPubkeysWithECDSA()
+    navigate(ROUTES.LOBBY)
   }
 
   const buildEIP712Message = async (): Promise<[
@@ -57,7 +57,6 @@ const DoubleSignPage = () => {
     Record<string, TypedDataField[]>,
     Record<string, any>
   ]> => {
-    const potPubkeys = await wasm.getPotPubkeys(entropy!)
     // built the message to be signed
     const numG1Powers = [4096, 8192, 16384, 32768]
     const potPubkeysObj = []
@@ -65,7 +64,7 @@ const DoubleSignPage = () => {
       const element = {
         numG1Powers: numG1Powers[i],
         numG2Powers: 65,
-        potPubkey: potPubkeys[i]
+        potPubkey: potPubkeys![i]
       }
       potPubkeysObj.push(element)
     }
@@ -144,7 +143,6 @@ const DoubleSignPage = () => {
     const signature = await signer._signTypedData(domain, types, message)
     // save signature for later
     updateECDSASignature(signature)
-    navigate(ROUTES.LOBBY)
   }
 
   return (
