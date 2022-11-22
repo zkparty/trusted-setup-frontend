@@ -7,10 +7,21 @@
 export function init_threads(n: number): Promise<any>;
 /**
 * @param {string} input
-* @param {string} entropy_string
+* @param {string} string_secret
+* @param {string} string_identity
 * @returns {any}
 */
-export function contribute_wasm(input: string, entropy_string: string): any;
+export function contribute_wasm(input: string, string_secret: string, string_identity: string): any;
+/**
+* @param {string} input
+* @returns {boolean}
+*/
+export function subgroup_check_wasm(input: string): boolean;
+/**
+* @param {string} string_secret
+* @returns {any}
+*/
+export function get_pot_pubkeys_wasm(string_secret: string): any;
 /**
 * @param {number} num_threads
 * @returns {Promise<any>}
@@ -45,7 +56,9 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly init_threads: (a: number) => number;
-  readonly contribute_wasm: (a: number, b: number, c: number, d: number) => number;
+  readonly contribute_wasm: (a: number, b: number, c: number, d: number, e: number, f: number) => number;
+  readonly subgroup_check_wasm: (a: number, b: number) => number;
+  readonly get_pot_pubkeys_wasm: (a: number, b: number) => number;
   readonly __wbg_wbg_rayon_poolbuilder_free: (a: number) => void;
   readonly wbg_rayon_poolbuilder_mainJS: (a: number) => number;
   readonly wbg_rayon_poolbuilder_numThreads: (a: number) => number;
@@ -57,7 +70,6 @@ export interface InitOutput {
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
   readonly __wbindgen_free: (a: number, b: number) => void;
-  readonly __wbindgen_exn_store: (a: number) => void;
   readonly __wbindgen_thread_destroy: () => void;
   readonly __wbindgen_start: () => void;
 }

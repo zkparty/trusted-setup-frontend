@@ -1,19 +1,35 @@
 import styled from 'styled-components'
 import Logo from './Logo'
 import { FONT_SIZE } from '../constants'
+import { Trans } from 'react-i18next'
+import { BREAKPOINT } from '../constants'
 
 const Footer = () => {
   return (
     <Container>
       <LeftSection>
-        <Logo />
-        <Copyright>Build by Ethereum Foundation, R&D team. 2022</Copyright>
+        <Logo centerOnMobile />
+        <Copyright>
+          <Trans id="footer.copyright">
+            Build by Ethereum Foundation, R&D team. 2022
+          </Trans>
+        </Copyright>
       </LeftSection>
       <RightSection>
         <LinkGroup>
-          <LinkItem href="#">Github</LinkItem>
-          <LinkItem href="#">Documentation</LinkItem>
-          <LinkItem href="#">Audit report</LinkItem>
+          <LinkItem href="https://github.com/zkparty/trusted-setup-frontend">
+            GitHub
+          </LinkItem>
+          <LinkItem href="https://github.com/ethereum/kzg-ceremony">
+            <Trans id="footer.documentation">
+              Documentation
+            </Trans>
+          </LinkItem>
+          <LinkItem href="https://github.com/ethereum/kzg-ceremony/blob/main/KZG10-Ceremony-audit-report.pdf">
+            <Trans id="footer.audit">
+              Audit report
+            </Trans>
+          </LinkItem>
         </LinkGroup>
       </RightSection>
     </Container>
@@ -22,13 +38,27 @@ const Footer = () => {
 
 const Container = styled.footer`
   background-color: ${({ theme }) => theme.surface2};
-  height: 360px;
+  /* height: 360px; */
   padding: 120px 10%;
   display: flex;
   justify-content: space-between;
+  gap: 2.5rem;
+  @media (max-width: ${BREAKPOINT.M}) {
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
-const LeftSection = styled.div``
+const LeftSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media (max-width: ${BREAKPOINT.M}) {
+    align-items: center;
+  }
+  p {
+    text-align: center;
+  }
+`
 
 const RightSection = styled.div`
   display: flex;
@@ -39,9 +69,11 @@ const Copyright = styled.p`
 `
 
 const LinkGroup = styled.div`
-  margin-left: 40px;
   display: flex;
   flex-direction: column;
+  @media (max-width: ${BREAKPOINT.M}) {
+    align-items: center;
+  }
 `
 
 const LinkItem = styled.a`

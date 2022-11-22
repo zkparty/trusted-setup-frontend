@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { CIRCLE_SIZE } from '../constants'
 
 // Single section page
 export const SingleContainer = styled.div`
@@ -31,10 +32,17 @@ export const SingleWrap = styled.div`
   top: -20000px;
   bottom: -20000px;
 
-  width: 542px;
-  height: 542px;
+  width: ${CIRCLE_SIZE}px;
+  height: ${CIRCLE_SIZE}px;
   background-color: ${({ theme }) => theme.surface};
   border-radius: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+export const InnerWrap = styled.div`
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -51,7 +59,8 @@ export const SingleButtonSection = styled.div`
 `
 
 export const TextSection = styled.div`
-  width: 360px;
+  width: 36ch;
+  max-width: 100%;
 `
 
 export const Bg = styled.img`

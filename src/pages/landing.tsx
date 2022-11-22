@@ -11,12 +11,13 @@ import { PrimaryButton } from '../components/Button'
 import { Trans, useTranslation } from 'react-i18next'
 import LandingBg from '../assets/landing-boarder.png'
 import { Description, PageTitle } from '../components/Text'
+import { isMobile } from '../utils'
 
 const LandingPage = () => {
   useTranslation()
   const navigate = useNavigate()
   const onClickGetStart = useCallback(() => {
-    navigate(ROUTES.SIGNIN)
+    navigate(ROUTES.ENTROPY_INPUT)
   }, [navigate])
 
   return (
@@ -43,12 +44,14 @@ const LandingPage = () => {
             </Description>
           </Trans>
         </TextSection>
-        <PrimaryButton onClick={onClickGetStart}>
-          <Trans i18nKey="landing.button">Begin</Trans>
+        <PrimaryButton onClick={onClickGetStart} disabled={isMobile()} >
+          {isMobile() ? <Trans i18nKey="landing.button-mobile">Proceed on desktop</Trans> : <Trans i18nKey="landing.button">Begin</Trans>}
         </PrimaryButton>
-        <Footnote>
-          <Trans i18nKey="landing.learn-more">↓ or learn more below ↓</Trans>
-        </Footnote>
+        <Link href="#explanation">
+          <Footnote>
+            {isMobile() ? <Trans i18nKey="landing.learn-more-mobile">↓ learn more below ↓</Trans> : <Trans i18nKey="landing.learn-more">↓ or learn more below ↓</Trans>}
+          </Footnote>
+        </Link>
       </TopSection>
       <Explanation />
       <Footer />
@@ -64,16 +67,21 @@ const Section = styled.section`
 `
 
 const TopSection = styled(Section)`
-  background: url(${LandingBg}) no-repeat bottom / contain;
-  height: 840px;
-  margin-top: 90px;
-  padding-top: 100px;
+  border: min(10vw, 6rem) solid;
+  border-image-source: url(${LandingBg});
+  border-image-slice: 230;
+  border-image-repeat: round;
+  margin: 6rem auto;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100ch;
 `
 
 const BgColor = styled.div`
   background-color: ${({ theme }) => theme.surface};
   height: 500px;
   width: 500px;
+  max-width: 100%;
   border-radius: 50%;
   box-shadow: 0 0 200px 120px ${({ theme }) => theme.surface};
   position: absolute;
@@ -85,5 +93,7 @@ const Footnote = styled.p`
   font-style: italic;
   ${textSerif}
 `
+
+const Link = styled.a``
 
 export default LandingPage

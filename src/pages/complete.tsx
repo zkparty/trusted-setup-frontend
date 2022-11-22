@@ -1,40 +1,58 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import ErrorMessage from '../components/Error'
 import { PrimaryButtonLarge } from '../components/Button'
-import Header from '../components/Header'
 import { Description, PageTitle } from '../components/Text'
 import { useContributionStore, Store } from '../store/contribute'
+import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 import wasm from '../wasm'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap,
-  Over
+  SingleButtonSection,
+  TextSection,
+  InnerWrap,
+  Over,
 } from '../components/Layout'
 import { Trans, useTranslation } from 'react-i18next'
+import ContributionModal from '../components/modals/ContributionModal'
 
 const CompletePage = () => {
-  useTranslation()
-  const { contribution, newContribution } = useContributionStore(
+  const { t } = useTranslation()
+  const [error, setError] = useState<null | string>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const { contribution, newContribution, receipt } = useContributionStore(
     (state: Store) => ({
       contribution: state.contribution,
-      newContribution: state.newContribution
+      newContribution: state.newContribution,
+      receipt: state.receipt,
     })
   )
 
+  const handleClickViewContribution = async () => {
+    setIsModalOpen(true);
+  }
+
   useEffect(() => {
     ;(async () => {
-      // TODO: check is done automatically or user start checking?
+      // TODO: should user have a start checking button?
       const checks = await wasm.checkContributions(
         contribution!,
         newContribution!
       )
-      console.log(checks)
+      if (!checks.checkContribution){
+        setError( t('error.pastSubgroupChecksFailed') )
+      }
+      if (!checks.checkNewContribution){
+        setError( t('error.newSubgroupChecksFailed'))
+      }
     })()
-  })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>
-      <Header />
+      <HeaderJustGoingBack />
       <Over>
         <Container>
           <Wrap>
@@ -46,16 +64,17 @@ const CompletePage = () => {
               </PageTitle>
 
               <TextSection>
+                {error && <ErrorMessage>{error}</ErrorMessage>}
                 <Trans i18nKey="complete.description">
-                  <Desc>
+                  <Description>
                     Success! Echoes of you are permanently fused with the others
                     in this Summoning Ceremony.
-                  </Desc>
+                  </Description>
                 </Trans>
               </TextSection>
 
               <ButtonSection>
-                <PrimaryButtonLarge>
+                <PrimaryButtonLarge onClick={handleClickViewContribution}>
                   <Trans i18nKey="complete.button">
                     View your contribution
                   </Trans>
@@ -63,32 +82,21 @@ const CompletePage = () => {
               </ButtonSection>
             </InnerWrap>
           </Wrap>
+          <ContributionModal
+            contribution={contribution}
+            receipt={receipt}
+            open={isModalOpen}
+            onDeselect={() => setIsModalOpen(false)}
+          />
         </Container>
       </Over>
     </>
   )
 }
 
-const InnerWrap = styled.div`
-  margin-top: 50px;
-`
-
-const TextSection = styled.div`
-  width: 360px;
-`
-
-const Desc = styled(Description)`
-  margin: 0 0 20px;
-  font-size: 18px;
-`
-
-export const ButtonSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 120px;
-  align-items: center;
-  justify-content: space-around;
+export const ButtonSection = styled(SingleButtonSection)`
   margin-top: 12px;
+  height: 120px;
 `
 
 export default CompletePage

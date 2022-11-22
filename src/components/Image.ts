@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from 'styled-components'
+import { CIRCLE_SIZE } from '../constants'
 
 const Base = styled.img<{ visible?: boolean }>`
   opacity: ${({ visible }) => (visible ? 1 : 0)};
@@ -14,6 +15,8 @@ export const Bg = styled(Base)`
   left: -9999px;
   right: -9999px;
   margin: auto;
+  height: auto;
+  width: ${CIRCLE_SIZE + 1244}px;
 `
 
 export const Img = styled(Base)`
@@ -23,6 +26,7 @@ export const Img = styled(Base)`
   left: -9999px;
   right: -9999px;
   margin: auto;
+  height: auto;
 `
 
 const r = keyframes`
@@ -31,6 +35,7 @@ const r = keyframes`
 `
 
 export const PizzaImg = styled(Img)<{ rounding: boolean }>`
+  height: auto;
   transition: all 3s ease;
   ${({ rounding }) =>
     rounding
@@ -49,4 +54,6 @@ const p = keyframes`
 export const BgPulse = styled(Bg)`
   opacity: ${({ visible }) => (visible ? 1 : 0)};
   animation: ${p} 10s ease-in-out infinite;
+  height: auto;
+  width: ${CIRCLE_SIZE + 1244}px;
 `

@@ -7,24 +7,26 @@ import {
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { PrimaryButton } from '../components/Button'
-import { Description, PageTitle } from '../components/Text'
-import { useContributionStore, Store } from '../store/contribute'
+import { Description, PageTitle, Bold } from '../components/Text'
+import { useEntropyStore, EntropyStore } from '../store/contribute'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap,
+  SingleButtonSection,
+  TextSection,
   Over
 } from '../components/Layout'
 import ROUTES from '../routes'
 import SnakeProgress from '../components/SnakeProgress'
-import { useAuthStore } from '../store/auth'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 import { CURVE } from '@noble/bls12-381'
 import { hkdf } from '@noble/hashes/hkdf'
 import { sha256 } from '@noble/hashes/sha256'
 import { randomBytes } from '@noble/hashes/utils'
 import { Trans, useTranslation } from 'react-i18next'
-import { MIN_MOUSE_ENTROPY_SAMPLES } from '../constants'
+import { MIN_MOUSE_ENTROPY_SAMPLES, FONT_SIZE } from '../constants'
 import 'text-security'
+import LoadingSpinner from '../components/LoadingSpinner'
 
 type Player = {
   play: () => void
@@ -35,6 +37,7 @@ type Player = {
 const EntropyInputPage = () => {
   useTranslation()
   const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
   const [keyEntropy, setKeyEntropy] = useState('')
   const [mouseEntropy, setMouseEntropy] = useState('')
   const [lastMouseEntropyUpdate, setLastMouseEntropyUpdate] = useState(0)
@@ -42,19 +45,15 @@ const EntropyInputPage = () => {
   const [mouseEntropySamples, setMouseEntropySamples] = useState(0)
   const [percentage, setPercentage] = useState(0)
   const [player, setPlayer] = useState<Player | null>(null)
-  const { provider } = useAuthStore()
 
-  const updateEntropy = useContributionStore(
-    (state: Store) => state.updateEntropy
+  const updateEntropy = useEntropyStore(
+    (state: EntropyStore) => state.updateEntropy
   )
   const handleSubmit = () => {
     if (percentage !== 100) return
+    setIsLoading(true)
     processGeneratedEntropy()
-    if (provider === 'Ethereum') {
-      navigate(ROUTES.DOUBLE_SIGN)
-    } else {
-      navigate(ROUTES.LOBBY)
-    }
+    navigate(ROUTES.SIGNIN)
   }
 
   const handleCaptureMouseEntropy: MouseEventHandler<HTMLDivElement> = (e) => {
@@ -100,7 +99,7 @@ const EntropyInputPage = () => {
     )
     const expandedEntropyInt = BigInt('0x' + hex96)
     const secretInt = expandedEntropyInt % CURVE.r
-    const secretHex = '0x' + secretInt.toString(16).padStart(64, '0')
+    const secretHex = secretInt.toString(16).padStart(64, '0')
     updateEntropy(secretHex)
   }
 
@@ -129,9 +128,9 @@ const EntropyInputPage = () => {
             </PageTitle>
             <TextSection>
               <Trans i18nKey="entropyInput.description">
-                <Desc>
+                <Description>
                   The Ceremony requires three random inputs from each Summoner.
-                </Desc>
+                </Description>
                 <SubDesc>
                   <Bold>Secret:</Bold> A piece of you in text form, with random
                   characters added. A hope for the future, or the name of
@@ -154,12 +153,16 @@ const EntropyInputPage = () => {
             />
 
             <ButtonSection>
+              {isLoading ?
+              <LoadingSpinner></LoadingSpinner>
+              :
               <PrimaryButton
                 disabled={percentage !== 100}
                 onClick={handleSubmit}
               >
                 <Trans i18nKey="entropyInput.button">Submit</Trans>
               </PrimaryButton>
+              }
             </ButtonSection>
           </Wrap>
         </Container>
@@ -168,22 +171,8 @@ const EntropyInputPage = () => {
   )
 }
 
-const Desc = styled(Description)`
-  margin: 0 0 20px;
-  font-size: 18px;
-`
-
 const SubDesc = styled(Description)`
   margin: 0 0 15px;
-  font-size: 18px;
-`
-
-const TextSection = styled.div`
-  width: 360px;
-`
-
-const Bold = styled.span`
-  font-weight: 700;
 `
 
 const Input = styled.input<{ keyEntropy: string }>`
@@ -193,8 +182,8 @@ const Input = styled.input<{ keyEntropy: string }>`
   text-security: disc;
   -moz-text-security: disc;
   -webkit-text-security: disc;
-  font-size: 16px;
-  margin-top: 5px;
+  font-size: ${FONT_SIZE.M};
+  margin-top: 3px;
   padding: 4px 8px;
   border: solid 1px ${({ theme }) => theme.text};
   border-radius: 4px;
@@ -202,11 +191,9 @@ const Input = styled.input<{ keyEntropy: string }>`
   width: 300px;
 `
 
-const ButtonSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const ButtonSection = styled(SingleButtonSection)`
   margin-top: 12px;
+  height: auto;
 `
 
 export default EntropyInputPage

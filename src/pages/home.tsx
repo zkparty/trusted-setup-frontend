@@ -1,22 +1,20 @@
 import { useEffect } from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import Background from '../components/Background'
-import ROUTES from '../routes'
+import ROUTES, { MOBILE_FRIENDLY_ROUTES } from '../routes'
 import { isMobile } from '../utils'
 
 const HomePage = () => {
+  const location = useLocation()
   const navigate = useNavigate()
-
-  // check device UA on initial render
-  // redirect to mobile screen if
   useEffect(() => {
+    // check device UA on initial render
     const mobile = isMobile()
-    if (mobile) {
-      navigate(ROUTES.MOBILE)
+    // If mobile and location is not mobile friendly, redirect to root route
+    if (mobile && !MOBILE_FRIENDLY_ROUTES.includes(location.pathname)) {
+      navigate(ROUTES.ROOT)
     }
-    // eslint-disable-next-line
-  }, [])
-
+  }, [location.pathname, navigate])
   return (
     <Background>
       <Outlet />

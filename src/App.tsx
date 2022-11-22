@@ -10,8 +10,6 @@ import {
   ContributingPage,
   CompletePage,
   RecordPage,
-  GatePage,
-  MobilePage,
   SigninRedirectPage
 } from './pages'
 import RequireAuth from './components/helper/RequireAuth'
@@ -47,22 +45,13 @@ function App() {
       <HashRouter>
         <GlobalStyle />
         <Routes>
-          <Route path={ROUTES.MOBILE} element={<MobilePage />} />
-
           <Route path={ROUTES.ROOT} element={<HomePage />}>
               <Route path={ROUTES.ROOT} element={
                   isRedirect ? 
                     <SigninRedirectPage search={location.search} /> : 
                     <LandingPage />} />
+            <Route path={ROUTES.ENTROPY_INPUT} element={<EntropyInputPage />}/>
             <Route path={ROUTES.SIGNIN} element={<SigninPage />} />
-            <Route
-              path={ROUTES.ENTROPY_INPUT}
-              element={
-                <RequireAuth>
-                  <EntropyInputPage />
-                </RequireAuth>
-              }
-            />
             <Route
               path={ROUTES.DOUBLE_SIGN}
               element={
@@ -105,7 +94,6 @@ function App() {
             />
           </Route>
           <Route path={ROUTES.RECORD} element={<RecordPage />} />
-          <Route path={ROUTES.GATE} element={<GatePage />} />
           <Route path={ROUTES.REDIRECT} element={<SigninRedirectPage search={location.search} />} />
         </Routes>
       </HashRouter>
