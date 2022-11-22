@@ -1,4 +1,5 @@
 import create from 'zustand'
+import { persist } from 'zustand/middleware'
 
 export type OAuthProvider = 'github' | 'eth'
 
@@ -10,7 +11,7 @@ export type OAuthRes = {
   sub: string
 }
 
-type Store = {
+export type Store = {
   provider: string | null
   sessionId: string | null
   nickname: string | null
@@ -22,27 +23,34 @@ type Store = {
   setError: (msg: string) => void
 }
 
-export const useAuthStore = create<Store>((set) => ({
-  provider: null,
-  sessionId: null,
-  nickname: null,
-  exp: null,
-  sub: null,
-  error: null,
-  signin: (res: OAuthRes) =>
-    set({
-      ...res,
-      sessionId: res.session_id,
-      error: null
-    }),
-  signout: () =>
-    set({
+export const useAuthStore = create<Store>()(
+  persist(
+    (set) => ({
       provider: null,
       sessionId: null,
       nickname: null,
       exp: null,
       sub: null,
-      error: null
+      error: null,
+      signin: (res: OAuthRes) =>
+        set({
+          ...res,
+          sessionId: res.session_id,
+          error: null
+        }),
+      signout: () =>
+        set({
+          provider: null,
+          sessionId: null,
+          nickname: null,
+          exp: null,
+          sub: null,
+          error: null
+        }),
+      setError: (msg: string) => set({ error: msg })
     }),
-  setError: (msg: string) => set({ error: msg })
-}))
+    {
+      name: 'kzg-auth',
+      getStorage: () => sessionStorage,
+  })
+)

@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
 import { PrimaryButton } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
@@ -36,7 +35,6 @@ const DoubleSignPage = () => {
   const [error, setError] = useState<null | string>(null)
   const [isLoading, setIsLoading] = useState(false)
   const { nickname } = useAuthStore()
-  const navigate = useNavigate()
   const { t } = useTranslation()
   const potPubkeys = useEntropyStore(
     (state: EntropyStore) => state.potPubkeys
@@ -49,7 +47,7 @@ const DoubleSignPage = () => {
     setError(null)
     setIsLoading(true)
     await signPotPubkeysWithECDSA()
-    navigate(ROUTES.LOBBY)
+    window.location.href = ROUTES.LOBBY
   }
 
   const buildEIP712Message = async (): Promise<[

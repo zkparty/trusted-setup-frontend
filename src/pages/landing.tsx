@@ -1,11 +1,12 @@
 import ROUTES from '../routes'
-import { useCallback } from 'react'
 import styled from 'styled-components'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { textSerif } from '../style/utils'
+import { useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { TextSection } from '../components/Layout'
+import { useAuthStore, Store } from '../store/auth'
 import Explanation from '../components/Explanation'
 import { PrimaryButton } from '../components/Button'
 import { Trans, useTranslation } from 'react-i18next'
@@ -19,6 +20,15 @@ const LandingPage = () => {
   const onClickGetStart = useCallback(() => {
     navigate(ROUTES.ENTROPY_INPUT)
   }, [navigate])
+  const signout = useAuthStore(
+    (state: Store) => state.signout
+  )
+
+  useEffect(() => {
+    signout();
+    useAuthStore.persist.clearStorage()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>

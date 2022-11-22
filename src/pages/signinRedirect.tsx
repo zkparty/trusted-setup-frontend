@@ -20,7 +20,7 @@ const SigninRedirect = () => {
       // store signin data and redirect to entropy input page
       signin(params)
       if (params.provider === 'Ethereum') {
-        navigate(ROUTES.DOUBLE_SIGN)
+        window.location.href = ROUTES.DOUBLE_SIGN
       } else {
         navigate(ROUTES.LOBBY)
       }
