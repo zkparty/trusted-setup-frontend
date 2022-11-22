@@ -14,18 +14,23 @@ type Props = {
 }
 
 const ContributionModal = ({ contribution, receipt, open, onDeselect }: Props) => {
-  useTranslation()
+  const { t } = useTranslation()
   useEffect(() => {
     if (open)  document.body.style.overflow = 'hidden';
     else  document.body.style.overflow = 'unset';
   }, [open])
 
+  const now = new Date().toUTCString()
   const receiptObj = JSON.parse(receipt!)
+  const witness = receiptObj['witness']
+  const identity = receiptObj['identity']
   const contributionObj = JSON.parse(contribution!)['contributions']
 
   const handleClickShareTwitter = () => {
-    // TODO: implement this
-    console.log('Send image as base64?')
+    const tweet = t('complete.modal.tweet', {identity})
+    const encoded = encodeURIComponent( tweet )
+    const link = `https://twitter.com/intent/tweet?text=${encoded}`
+    window.open(link, '_blank');
   }
 
   return (
@@ -67,7 +72,7 @@ const ContributionModal = ({ contribution, receipt, open, onDeselect }: Props) =
               Contribution completed at:
             </Trans>
             <br/>
-            { new Date().toUTCString() }
+            { now }
           </Desc>
           <BlockieRow>
             <BlockiesIdenticon
@@ -115,13 +120,13 @@ const ContributionModal = ({ contribution, receipt, open, onDeselect }: Props) =
               Contribution receipt:
             </Trans>
             <br/>
-            { receiptObj['witness'] }
+            { witness }
           </Desc>
         </LeftSection>
       </TopSection>
       <Desc style={{ textAlign: 'center'}}>
         <b><Trans i18nKey="complete.modal.SignedBy">Signed by </Trans></b>
-        { receiptObj['identity'] }
+        { identity }
       </Desc>
       <Desc style={{ textAlign: 'center', marginBottom: '45px'}}>
         <b><Trans i18nKey="complete.modal.integrityChecks">Integrity checks </Trans></b>
