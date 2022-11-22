@@ -15,7 +15,11 @@
         "signedBy": "Firmado por",
         "integrityChecks": "Pruebas de integridad",
         "shareTwitter": "Compartir en Twitter",
-        "tweet": "Acabo de contribuir a la ceremonia KZG para escalar Ethereum usando {{identity}}. Tú también lo puedes hacer aquí https://ceremony.ethereum.org @ethereum #KZGCeremony"
+        "tweet": "Acabo de contribuir a la ceremonia KZG para escalar Ethereum usando {{identity}}. Tú también lo puedes hacer aquí https://ceremony.ethereum.org @ethereum #KZGCeremony",
+        "checks": {
+          "failed": "Error",
+          "success": "Aprobadas"
+        }
       }
     },
     "contributing": {

@@ -1,10 +1,11 @@
 import Modal from 'react-modal'
-import { useEffect } from 'react'
 import styled from 'styled-components'
-import BlockiesIdenticon from '../Blockies'
 import { PrimaryButton } from '../Button'
-import { Trans, useTranslation } from 'react-i18next'
+import BlockiesIdenticon from '../Blockies'
+import { useEffect, useState } from 'react'
 import {Title, Desc } from './TranscriptModal'
+import { Trans, useTranslation } from 'react-i18next'
+import SignatureModal from './SignatureModal'
 
 type Props = {
   contribution: string | null
@@ -15,16 +16,33 @@ type Props = {
 
 const ContributionModal = ({ contribution, receipt, open, onDeselect }: Props) => {
   const { t } = useTranslation()
+  const [now, setNow] = useState<string>('')
+  const [checks, setChecks] = useState<string>('')
+  const [identity, setIdentity] = useState<string>('')
+  const [witnesses, setWitnesses] = useState<string[]>(['','','',''])
+  const [selectedSignatureItem, setSelectedSignatureItem] = useState<string|null>(null)
+  const [contributions, setContributions] = useState<any>(null)
+  const [checksColor, setChecksColor] = useState<string>('')
   useEffect(() => {
     if (open)  document.body.style.overflow = 'hidden';
     else  document.body.style.overflow = 'unset';
-  }, [open])
 
-  const now = new Date().toUTCString()
-  const receiptObj = JSON.parse(receipt!)
-  const witness = receiptObj['witness']
-  const identity = receiptObj['identity']
-  const contributionObj = JSON.parse(contribution!)['contributions']
+    // TODO: implement signature checks
+    const receiptObj = JSON.parse(receipt!)
+    setNow( new Date().toUTCString() )
+    setWitnesses(receiptObj['witness'])
+    setIdentity(receiptObj['identity'])
+    setContributions( JSON.parse(contribution!)['contributions'] )
+    console.log(receiptObj)
+
+
+    setChecks( t('complete.modal.checks.failed') )
+    setChecksColor('red')
+
+    setChecks( t('complete.modal.checks.success') )
+    setChecksColor('#61cc61')
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [contribution, receipt, open])
 
   const handleClickShareTwitter = () => {
     const tweet = t('complete.modal.tweet', {identity})
@@ -34,6 +52,7 @@ const ContributionModal = ({ contribution, receipt, open, onDeselect }: Props) =
   }
 
   return (
+    <>
     <Modal
       isOpen={open}
       shouldCloseOnOverlayClick
@@ -68,41 +87,43 @@ const ContributionModal = ({ contribution, receipt, open, onDeselect }: Props) =
             </Trans>
           </Title>
           <Desc>
-            <Trans i18nKey="complete.modal.timestamp">
-              Contribution completed at:
-            </Trans>
+            <b>
+              <Trans i18nKey="complete.modal.timestamp">
+                Contribution completed at:
+              </Trans>
+            </b>
             <br/>
             { now }
           </Desc>
           <BlockieRow>
             <BlockiesIdenticon
-              onClick={() => {}}
+              onClick={() => setSelectedSignatureItem(contributions[0]['potPubkey'])}
               opts={{
-                seed: contributionObj[0]['potPubkey'],
+                seed: contributions ? contributions[0]['potPubkey'] : null,
                 size: 8,
                 scale: 5
               }}
             />
             <BlockiesIdenticon
-              onClick={() => {}}
+              onClick={() => setSelectedSignatureItem(contributions[1]['potPubkey'])}
               opts={{
-                seed: contributionObj[1]['potPubkey'],
+                seed: contributions ? contributions[1]['potPubkey'] : null,
                 size: 8,
                 scale: 5
               }}
             />
             <BlockiesIdenticon
-              onClick={() => {}}
+              onClick={() => setSelectedSignatureItem(contributions[2]['potPubkey'])}
               opts={{
-                seed: contributionObj[2]['potPubkey'],
+                seed: contributions ? contributions[2]['potPubkey'] : null,
                 size: 8,
                 scale: 5
               }}
             />
             <BlockiesIdenticon
-              onClick={() => {}}
+              onClick={() => setSelectedSignatureItem(contributions[3]['potPubkey'])}
               opts={{
-                seed: contributionObj[3]['potPubkey'],
+                seed: contributions ? contributions[3]['potPubkey'] : null,
                 size: 8,
                 scale: 5
               }}
@@ -116,12 +137,18 @@ const ContributionModal = ({ contribution, receipt, open, onDeselect }: Props) =
             </Trans>
           </Title>
           <Desc>
-            <Trans i18nKey="complete.modal.receipt">
-              Contribution receipt:
-            </Trans>
-            <br/>
-            { witness }
+            <b>
+              <Trans i18nKey="complete.modal.receipt">
+                Contribution receipt:
+              </Trans>
+            </b>
           </Desc>
+          <ol>
+            <li><Desc style={{marginBottom: '6px'}}>{witnesses[0]}</Desc></li>
+            <li><Desc style={{marginBottom: '6px'}}>{witnesses[1]}</Desc></li>
+            <li><Desc style={{marginBottom: '6px'}}>{witnesses[2]}</Desc></li>
+            <li><Desc style={{marginBottom: '6px'}}>{witnesses[3]}</Desc></li>
+          </ol>
         </LeftSection>
       </TopSection>
       <Desc style={{ textAlign: 'center'}}>
@@ -130,7 +157,7 @@ const ContributionModal = ({ contribution, receipt, open, onDeselect }: Props) =
       </Desc>
       <Desc style={{ textAlign: 'center', marginBottom: '45px'}}>
         <b><Trans i18nKey="complete.modal.integrityChecks">Integrity checks </Trans></b>
-        <span style={{color: '#61cc61'}}> {'Passed'} </span>
+        <span style={{color: checksColor}}> {checks} </span>
       </Desc>
       <BottomSection>
         <PrimaryButton onClick={handleClickShareTwitter} style={{ width: '300px' }}>
@@ -140,6 +167,11 @@ const ContributionModal = ({ contribution, receipt, open, onDeselect }: Props) =
         </PrimaryButton>
       </BottomSection>
     </Modal>
+    <SignatureModal
+      signature={selectedSignatureItem}
+      onDeselect={() => setSelectedSignatureItem(null)}
+    />
+    </>
   )
 }
 
