@@ -47,9 +47,9 @@ const ContributionModal = ({ contribution, receipt, open, onDeselect }: Props) =
           width: 'clamp(90%, 75%, 70%)',
           inset: '15% 0 0 0',
           marginInline: 'auto',
-          paddingBlock: '20px',
+          paddingTop: '20px',
           paddingBottom: '70px',
-          paddingInline: '5%',
+          paddingInline: '6%',
           background: '#FFF8E7',
           boxShadow: '5px 10px 8px 10px #b4b2b2',
         }
