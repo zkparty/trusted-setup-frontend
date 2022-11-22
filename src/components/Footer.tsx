@@ -17,6 +17,11 @@ const Footer = () => {
       </LeftSection>
       <RightSection>
         <LinkGroup>
+          <LinkItem href="/faq">
+            <Trans id="footer.faq">
+              FAQ
+            </Trans>
+          </LinkItem>
           <LinkItem href="https://github.com/zkparty/trusted-setup-frontend">
             GitHub
           </LinkItem>

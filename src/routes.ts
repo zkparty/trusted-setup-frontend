@@ -8,7 +8,8 @@ const ROUTES = {
   CONTRIBUTING: '/contributing',
   COMPLETE: '/complete',
   RECORD: '/record',
-  REDIRECT: '/redirect'
+  REDIRECT: '/redirect',
+  FAQ: '/faq'
 }
 
 export const MOBILE_FRIENDLY_ROUTES = [
