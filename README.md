@@ -75,11 +75,13 @@ The site needs to be added to IPFS as a folder. The command to this in ipfs cli 
 
 This will result in a series of log messages reporting the CID of each object in the folder. The CID of the build folder itself is the important one for our purposes. 
 
-> ...
-> `added QmV7zRBYTYf8wmQQzXfnfRFTyYBUByJGaLB37VuHjsj6Y6 build/wasm/pkg`
-> `added QmZTdJheNur4R2esdej5w1gktGS5aLHYHtLsChMjACmzuk build/wasm`
-> added <span style='color:yellow'>QmbTGA1mPf3nb5RRWehvrHn7cz3jwVQdj91r3c6eHmdx4k</span> build
-> `13.80 MiB / 13.80 MiB [=======================================================================================] 100.00%`
+```
+...
+added QmV7zRBYTYf8wmQQzXfnfRFTyYBUByJGaLB37VuHjsj6Y6 build/wasm/pkg
+added QmZTdJheNur4R2esdej5w1gktGS5aLHYHtLsChMjACmzuk build/wasm
+added QmbTGA1mPf3nb5RRWehvrHn7cz3jwVQdj91r3c6eHmdx4k build
+13.80 MiB / 13.80 MiB [=======================================================================================] 100.00%
+```
 
 The reported CID should be `Qm.....<CID to be determined>`.
 
