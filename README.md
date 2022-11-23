@@ -39,6 +39,7 @@ The following environment was used to build the IPFS release:
 | node.js | v18.12.1 |
 | Package manager | npm v9.1.2 |
 | cargo | 1.64.0 (387270bc7 2022-09-16) |
+| wasm-pack | 0.10.3 |
 
 
 ### Clone this repo
