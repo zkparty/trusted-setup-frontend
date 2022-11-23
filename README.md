@@ -28,15 +28,28 @@ Note: If the Rust code is updated, copy the `/wasm` directory from the [wrapper 
 
 ## Build for IPFS
 
+A build for IPFS should result in the same CID as others who have built from the same source. However, it is necessary
+to use a compatible environment and tool set to ensure that differences aren't introduced.
+
+The following environment was used to build the IPFS release:
+
+| Component | Version |
+| -------- | ----------- |
+| OS | Ubuntu 22.04 |
+| node.js | v18.12.1 |
+| Package manager | npm v9.1.2 |
+| cargo | 1.64.0 (387270bc7 2022-09-16) |
+
+
 ### Clone this repo
 
-`git clone https://github.com/zkparty/trusted-setup-frontend.git`
+`git clone -b ipfs-release https://github.com/zkparty/trusted-setup-frontend.git`
 
 ### Install dependencies
 
 `cd trusted-setup-frontend`
 
-`yarn install`
+`npm install`
 
 ### Build the computation code
 The computation code is written in Rust and compiled to WASM. The compiled WASM package is available in this repo for convenience, but a thorough build for IPFS will involve rebuilding that package.
@@ -50,7 +63,7 @@ Copy the `wrapper-small-pot/wasm` folder to `trusted-setup-frontend/wasm`
 
 ### Build the front-end 
 
-`yarn run build-ipfs`
+`npm run build`
 
 This will create the `build` folder and add the site content to it.
 
@@ -68,6 +81,5 @@ This will result in a series of log messages reporting the CID of each object in
 > added <span style='color:yellow'>QmbTGA1mPf3nb5RRWehvrHn7cz3jwVQdj91r3c6eHmdx4k</span> build
 > `13.80 MiB / 13.80 MiB [=======================================================================================] 100.00%`
 
-The reported CID is expected to match the CID of the client, as published.
-
+The reported CID should be `Qm.....<CID to be determined>`.
 
