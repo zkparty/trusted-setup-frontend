@@ -8,7 +8,7 @@ import type { ErrorRes, ContributeRes, TryContributeRes } from './types'
 class APIClient {
   async getRequestLink() {
     let redirectUrl = ''
-    if (process.env.REACT_APP_BUILD_TARGET === 'ipfs') {
+    if (!SIGNIN_REDIRECT_URL) {
       const path = window.location.href.replace(/#?\/signin/, '');
       redirectUrl = encodeURIComponent(`${path}`)
     } else {

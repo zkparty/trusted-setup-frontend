@@ -35,8 +35,7 @@ const BREAKPOINT = {
 } as const
 
 const API_ROOT = process.env.REACT_APP_API_ROOT || 'http://127.0.0.1:3000'
-const SIGNIN_REDIRECT_URL =
-  process.env.REACT_APP_SIGNIN_REDIRECT_URL || 'https://localhost:3000/redirect'
+const SIGNIN_REDIRECT_URL = process.env.REACT_APP_SIGNIN_REDIRECT_URL
 const LOBBY_CHECKIN_FREQUENCY =
   parseInt(process.env.REACT_APP_LOBBY_CHECKIN_FREQUENCY as string) || 25000
 const MIN_MOUSE_ENTROPY_SAMPLES =

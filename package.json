@@ -1,6 +1,6 @@
 {
   "name": "trusted-setup-frontend",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "homepage": ".",
   "dependencies": {
@@ -38,9 +38,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "REACT_APP_BUILD_TARGET=server; craco build",
-    "build:win": "set REACT_APP_BUILD_TARGET=server && craco build",
-    "build:ipfs": "REACT_APP_BUILD_TARGET=ipfs; craco build",
+    "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
     "extract": "babel -f .babelrc 'src/**/*.{js,jsx,ts,tsx}'"
