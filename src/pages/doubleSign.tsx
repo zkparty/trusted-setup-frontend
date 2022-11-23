@@ -17,6 +17,8 @@ import {
 } from '../store/contribute'
 import {
   INFURA_ID,
+  //PORTIS_ID,
+  FORTMATIC_KEY,
 } from '../constants'
 import ROUTES from '../routes'
 import { useState } from 'react'
@@ -30,6 +32,9 @@ import { TypedDataDomain, TypedDataField } from "@ethersproject/abstract-signer"
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import CoinbaseWalletSDK from '@coinbase/wallet-sdk'
 import { Client } from '@spruceid/siwe-web3modal'
+import Torus from '@toruslabs/torus-embed'
+import Fortmatic from 'fortmatic'
+//import Portis from '@portis/web3' // TODO: implement Portis
 
 const DoubleSignPage = () => {
   const [error, setError] = useState<null | string>(null)
@@ -109,6 +114,21 @@ const DoubleSignPage = () => {
             options: {
               infuraId: INFURA_ID,
               pollingInterval: 100000,
+            },
+          },
+          torus: {
+            package: Torus,
+          },
+          /*portis: {
+            package: Portis,
+            options: {
+              id: PORTIS_ID,
+            },
+          },*/
+          fortmatic: {
+            package: Fortmatic,
+            options: {
+              key: FORTMATIC_KEY,
             },
           },
           walletlink: {

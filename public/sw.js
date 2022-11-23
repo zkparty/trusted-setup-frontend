@@ -17,8 +17,11 @@ self.addEventListener("install", function () {
     let url = event.request.url;
     if (url.includes("/redirect")) return;
     if (url.includes("fonts.googleapis.com")) return;
+    if (url.includes("portis")) return;
+    if (url.includes("https://app.tor.us/")) return;
+    if (url.includes("https://static.fortmatic.com")) return;
+    if (url.includes("https://api.fortmatic.com")) return;
 
-    event.preventDefault();
     event.respondWith(
       fetch(event.request)
         .then(function (response) {
@@ -27,17 +30,13 @@ self.addEventListener("install", function () {
           //if (!response.url.includes("index.html")) return response;
           //TODO: Refine this to detect only IPFS fetches?
 
-          let coep = 'require-corp';
-          let coop = 'same-origin';
-          if ( event.request.url.includes('/double_sign') ){
-            //coep = 'all'; // TODO: change value
-            console.log('INSIDE IF ====>')
-            coop = 'same-origin-allow-popups'; // TODO: change value
-          }
-
           const newHeaders = new Headers(response.headers);
-          newHeaders.set("Cross-Origin-Embedder-Policy", coep);
-          newHeaders.set("Cross-Origin-Opener-Policy", coop);
+          newHeaders.set("Cross-Origin-Embedder-Policy", 'require-corp');
+          newHeaders.set("Cross-Origin-Opener-Policy", 'same-origin');
+          if ( url.includes('/double_sign') ){
+            newHeaders.delete("Cross-Origin-Embedder-Policy")
+            newHeaders.delete("Cross-Origin-Opener-Policy")
+          }
 
           const moddedResponse = new Response(response.body, {
             status: response.status,
