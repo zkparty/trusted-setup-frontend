@@ -17,7 +17,7 @@ import {
 } from '../store/contribute'
 import {
   INFURA_ID,
-  //PORTIS_ID,
+  PORTIS_ID,
   FORTMATIC_KEY,
 } from '../constants'
 import ROUTES from '../routes'
@@ -34,7 +34,7 @@ import CoinbaseWalletSDK from '@coinbase/wallet-sdk'
 import { Client } from '@spruceid/siwe-web3modal'
 import Torus from '@toruslabs/torus-embed'
 import Fortmatic from 'fortmatic'
-//import Portis from '@portis/web3' // TODO: implement Portis
+import Portis from '@portis/web3' // TODO: implement Portis
 
 const DoubleSignPage = () => {
   const [error, setError] = useState<null | string>(null)
@@ -119,12 +119,12 @@ const DoubleSignPage = () => {
           torus: {
             package: Torus,
           },
-          /*portis: {
+          portis: {
             package: Portis,
             options: {
               id: PORTIS_ID,
             },
-          },*/
+          },
           fortmatic: {
             package: Fortmatic,
             options: {
