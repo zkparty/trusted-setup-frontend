@@ -2,13 +2,14 @@ import wasm from './wasm'
 import { toParams } from './utils'
 import { useEntropyStore } from './store/contribute'
 import { OAuthProvider, OAuthRes } from './store/auth'
-import { API_ROOT, SIGNIN_REDIRECT_URL } from './constants'
+import { API_ROOT } from './constants'
 import type { ErrorRes, ContributeRes, TryContributeRes } from './types'
 
 class APIClient {
   async getRequestLink() {
+    let redirectUrl = window.location.origin + '/redirect';
     const res = await fetch(
-      `${API_ROOT}/auth/request_link?redirect_to=${SIGNIN_REDIRECT_URL}`
+      `${API_ROOT}/auth/request_link?redirect_to=${encodeURIComponent(redirectUrl)}`
     )
     return await res.json()
   }

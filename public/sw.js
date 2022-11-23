@@ -13,6 +13,11 @@ self.addEventListener("install", function () {
       return;
     }
 
+    // TODO: fix these requests
+    let url = event.request.url;
+    if (url.includes("/redirect")) return;
+    if (url.includes("fonts.googleapis.com")) return;
+
     event.preventDefault();
     event.respondWith(
       fetch(event.request)
@@ -22,9 +27,9 @@ self.addEventListener("install", function () {
           //if (!response.url.includes("index.html")) return response;
           //TODO: Refine this to detect only IPFS fetches?
 
-          const coep = 'require-corp';
-          const coop = 'same-origin';
-          if ( event.request.url.includes('.double_sign') ){
+          let coep = 'require-corp';
+          let coop = 'same-origin';
+          if ( event.request.url.includes('/double_sign') ){
             //coep = 'all'; // TODO: change value
             console.log('INSIDE IF ====>')
             coop = 'same-origin-allow-popups'; // TODO: change value
