@@ -1,11 +1,13 @@
 import { utils } from 'ethers'
 import Modal from 'react-modal'
+import ROUTES from '../../routes'
 import styled from 'styled-components'
 import { PrimaryButton } from '../Button'
 import BlockiesIdenticon from '../Blockies'
 import { useEffect, useState } from 'react'
 import SignatureModal from './SignatureModal'
 import {Title, Desc } from './TranscriptModal'
+import { useNavigate } from 'react-router-dom'
 import { Trans, useTranslation } from 'react-i18next'
 import useSequencerStatus from '../../hooks/useSequencerStatus'
 
@@ -19,6 +21,7 @@ type Props = {
 
 const ContributionModal = ({ signature, contribution, receipt, open, onDeselect }: Props) => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const { data } = useSequencerStatus()
   const [now, setNow] = useState<string>('')
   const [checks, setChecks] = useState<string>('')
@@ -30,6 +33,11 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
   useEffect(() => {
     if (open)  document.body.style.overflow = 'hidden';
     else  document.body.style.overflow = 'unset';
+
+    if ( !(signature && contribution && receipt) ){
+      navigate(ROUTES.ROOT)
+      return
+    }
 
     const receiptObj = JSON.parse(receipt!)
     const _witnesses = receiptObj['witness']
