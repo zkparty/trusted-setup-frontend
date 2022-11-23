@@ -12,8 +12,12 @@ To start this app execute the following steps:
 
 1. Setup environment variables:
 
+- Sequencer API URL
+
     Ubuntu: `export REACT_APP_API_ROOT=http://localhost:3000`
     Windows (Powershell): ` $env:REACT_APP_API_ROOT="http://localhost:3000" `
+
+- Redirect URL. Settings this URL is optional and not recommended.
 
     Ubuntu: `export REACT_APP_SIGNIN_REDIRECT_URL=http://localhost:3001/redirect`
     Windows (Powershell): ` $env:REACT_APP_SIGNIN_REDIRECT_URL="http://localhost:3001/redirect" `
@@ -38,7 +42,9 @@ The following environment was used to build the IPFS release:
 | OS | Ubuntu 22.04 |
 | node.js | v18.12.1 |
 | Package manager | npm v9.1.2 |
-| cargo | 1.64.0 (387270bc7 2022-09-16) |
+| rustc | 1.65.0 (897e37553 2022-11-02) |
+| cargo | 1.65.0 (897e37553 2022-11-02) |
+| wasm-pack | 0.10.3 |
 
 
 ### Clone this repo
