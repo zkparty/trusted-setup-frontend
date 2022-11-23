@@ -4,6 +4,12 @@ import { useAuthStore } from '../store/auth'
 import { useTranslation } from 'react-i18next'
 import { toParams, validateSigninParams } from '../utils'
 import { useLocation, useNavigate } from 'react-router-dom'
+import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
+import {
+  SingleContainer as Container,
+  SingleWrap as Wrap,
+  Over
+} from '../components/Layout'
 
 const SigninRedirect = () => {
   const location = useLocation()
@@ -54,7 +60,16 @@ const SigninRedirect = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return <div>Signin processing</div>
+  return (
+    <>
+      <HeaderJustGoingBack />
+      <Over>
+        <Container>
+          <Wrap></Wrap>
+      </Container>
+      </Over>
+    </>
+  )
 }
 
 export default SigninRedirect
