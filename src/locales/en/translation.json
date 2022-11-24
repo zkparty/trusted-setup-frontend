@@ -7,6 +7,7 @@
       " 2022": "Build by Ethereum Foundation, R&D team. 2022"
     },
     "Documentation": "Documentation",
+    "FAQ": "FAQ",
     "complete": {
       "button": "View your contribution",
       "description": "<0>Success! Echoes of you are permanently fused with the others in this Summoning Ceremony.</0>",
@@ -14,10 +15,10 @@
       "modal": {
         "keys": "MY KEYS",
         "timestamp": "Contribution completed at:",
-        "acknowledgment": "SEQUENCER ACKNOWLEDGMENT",
+        "acknowledgment": "SEQUENCER ACKNOWLEDGEMENT",
         "receipt": "Contribution receipt:",
-        "signedBy": "Signed by",
-        "integrityChecks": "Integrity checks",
+        "SignedBy": "Signed by ",
+        "integrityChecks": "Integrity checks ",
         "shareTwitter": "Share on Twitter",
         "tweet": "I just contributed to the KZG Ceremony to scale Ethereum using {{identity}}. You can do it too in https://ceremony.ethereum.org @ethereum #KZGCeremony",
         "checks": {
@@ -29,16 +30,16 @@
       }
     },
     "contributing": {
-      "button": "View your contribution",
+      "button": "View my contribution",
       "description": {
         "contributing": "<0>You are now entrusted with the Powers of Tau. Your Secret, Sigil, and Sample are being fused with those that came before.</0><1>Rituals cannot be hastened - time given here creates timeless artifacts.</1>",
         "completed": "<0>You have just succesfully complete the contribution. Don’t forget to return for the summoning ending & spread the words.</0>",
         "error": "There was an error {{error}}. Reload and try again"
       },
       "title": {
-        "contributing": "You have been <br /> called upon <br /> Now",
-        "completed": "Contribution <br /> Complete",
-        "error": "Something <br /> Went <br /> Wrong"
+        "contributing": "You have been<br/>called upon<br/>Now",
+        "completed": "Contribution<br/>Complete",
+        "error": "Something<br/>Went<br/>Wrong"
       }
     },
     "doubleSign": {
@@ -56,6 +57,40 @@
       "description": "<0>This Trusted Setup is a multi-party ceremony designed to generate a secure SRS (structured reference string) to be used in the proto-danksharding protocol. OK, let's slow down and talk about those terms in more detail.</0><1>Proto-danksharding (aka EIP-4844) is a planned change to the Ethereum protocol which allows transaction data from rollups (Layer 2s) to be succinctly represented on the Layer 1 (mainnet). The benefits are lower transaction fees on the L2, greater scalability and more accessibility to more people!</1><2>The Trusted Setup is a preparatory step required for certain cryptographic schemes such as the KZG polynomial commitment scheme to be used in proto-danksharding. In our case, the trust assumption is that one contributor needs to successfully conceal their secret for the result to be secure.</2><3>It's a multi-party ceremony: Contributors each create a secret and run a computation to mix it with previous contributions and generate a result that can be made public and passed to the next contributor. We need to guard against attempts to control the ceremony, so you'll need an Ethereum or GitHub account with an established history.</3>",
       "title": "PROTO-DANKSHARDING <br/> AND THE CEREMONY"
     },
+    "faq": {
+      "q1": {
+        "content": "<0>The Ethereum Foundation is hosting an interface at <1>ceremony.ethereum.org</1> during the public contribution period from X date to Y date.</0><1>If you'd like an alternative to the hosted interface, you are welcome to contribute via a <1>CLI</1>.</1><2>After this public contribution period, we will accept special contributions from bespoke <1>implementations</1> or unique randomness generation. Funding is available for both of these, more information will be shared in the coming weeks.</2>",
+        "title": "How do I contribute randomness to the Ceremony?"
+      },
+      "q2": {
+        "content": "KZG comes from Kate, Zaverucha, and Goldberg. These are the author surnames from the paper <1>\"Constant-Size Commitments to Polynomials and Their Applications\"</1>, which outlines the underlying cryptographic mechanism that the Ethereum ceremony plans to utilize.",
+        "title": "What does KZG stand for?"
+      },
+      "q3": {
+        "content": "<0><0>A Summoner runs a computation using three random inputs (aka secrets) they provide. Three different kinds of secrets are required in this Ceremony: text, cursor movements, and browser generated.</0><1>The output of that computation is then passed to the Sequencer - a coordinating server which orchestrates transfers between participants.</1><2>The Sequencer passes the computation from step two to the next summoner, who is waiting to start. This participant computes an output using their secret inputs, and combines it with the work from Summoner 1. At this point the cycle starts again.</2></0><p>While it’s important that summoners discard the random secrets they use, the Ceremony only requires one honest participant to do so. As long as one person does this, observers can be sure that the final output can never be fully reverse engineered or corrupted.</p><2>Here's another framing from the <1>Cryptography Rationale</1>:</2><3>For EIP-4844, Ethereum needs four different Structured Reference Strings (SRS) each of different sizes. Each SRS has a secret associated with it. For security, the SRS’s must be computed in such a way that no single person knows the secret associated with them. The solution is to have multiple people contribute to the secret. If all of these people collude, then they can recover the secret. If even one person does not collude, then the secret is unrecoverable. The process of multiple people contributing to the secret is known as a ceremony.</3>",
+        "title": "What happens during a Ceremony?"
+      },
+      "q4": {
+        "content": "Using anything other than KZG (eg. IPA or SHA256) would make the sharding roadmap much more difficult. Learn more from Vitalik's <1>Proto-Danksharding FAQ</1>.",
+        "title": "Couldn’t another commitment scheme without a \"trusted setup\" be used?"
+      },
+      "q5": {
+        "content": "<p>The Sequencer is a server hosted by the Ethereum Foundation which coordinates contributions. It keeps track of who is trying to contribute, serves them the necessary data to download, and takes each contribution.</p><1>You don't have to trust the Sequencer to produce a biased or invalid final output. The <1>transcript</1> provides a verifiable record of all randomness contributions. As long as there is one honest participant who doesn't record their randomness, the secret cannot be reconstructed.</1>",
+        "title": "What is the Sequencer and what does it do?"
+      },
+      "q6": {
+        "content": "It should only take a few minutes to complete the contribution on a standard laptop and internet connection.",
+        "title": "How long does it take to contribute?"
+      },
+      "q7": {
+        "content": "By reading the <1>transcript</1>.",
+        "title": "How can I verify the final Ceremony output?"
+      },
+      "q8": {
+        "content": "The Ceremony isn't optimized for the mobile environment.",
+        "title": "Why can't I contribute on a mobile device?"
+      }
+    },
     "header": {
       "offline": "Offline",
       "online": "Online",
@@ -63,8 +98,10 @@
     },
     "landing": {
       "button": "Begin",
+      "button-mobile": "Proceed on desktop",
       "description": "<0>Whispers from the shadows tell of a powerful spirit Dankshard, who will open the next chapter of Ethereum scalability. To summon its powers, a Ceremony needs your contribution. This illuminated guide will lead you through the movements necessary to complete the ritual.</0><1>Magic math awaits - are you ready to add your color to the story?</1>",
       "learn-more": "↓ or learn more below ↓",
+      "learn-more-mobile": "↓ learn more below ↓",
       "title": "SUMMONING <br/> GUIDE"
     },
     "lobby": {
@@ -81,7 +118,7 @@
       "loading": "Loading records...",
       "searchBar": "Search address, ENS, github handle, #1, ...",
       "button": "View",
-      "title": "RECORD",
+      "title": "Record",
       "stats": {
         "lobby": "Lobby size:",
         "contributions": "Contributions:",
