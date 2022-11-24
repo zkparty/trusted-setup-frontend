@@ -89,5 +89,7 @@ added QmbTGA1mPf3nb5RRWehvrHn7cz3jwVQdj91r3c6eHmdx4k build
 13.80 MiB / 13.80 MiB [=======================================================================================] 100.00%
 ```
 
-The reported CID should be `Qm.....<CID to be determined>`.
+The build as at the release time has this CID: `QmSCqoKMuRdoT8d8tXoq8wuNJBDHsuz2xWm6PKhfzgskKP`
+
+or, in base32: `bafybeibzn2r7w3cyxu6bwjamr6vfc7qrslcpdlpeens6j5pjzvqeqjugsy` 
 
