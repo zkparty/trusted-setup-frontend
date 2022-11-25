@@ -7,7 +7,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Description, PageTitle } from '../components/Text'
 import ROUTES from '../routes'
 
-const Explanation = () => {
+const Explanation = ({ refFromLanding }: any) => {
   useTranslation()
   const navigate = useNavigate()
   const onClickViewContributions = useCallback(() => {
@@ -15,7 +15,7 @@ const Explanation = () => {
   }, [navigate])
 
   return (
-    <SecondSection id="explanation">
+    <SecondSection id="explanation" ref={refFromLanding}>
       <PageTitle>
         <Trans i18nKey="explanation.title">
           PROTO-DANKSHARDING <br /> AND THE CEREMONY

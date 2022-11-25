@@ -1,5 +1,5 @@
 import ROUTES from '../routes'
-import { useCallback } from 'react'
+import { useCallback, useRef } from 'react'
 import styled from 'styled-components'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -15,10 +15,15 @@ import { isMobile } from '../utils'
 
 const LandingPage = () => {
   useTranslation()
+  const ref = useRef<null | HTMLElement>(null)
   const navigate = useNavigate()
   const onClickGetStart = useCallback(() => {
     navigate(ROUTES.ENTROPY_INPUT)
   }, [navigate])
+
+  const onLearnMoreClick = () => {
+    ref.current?.scrollIntoView({behavior: 'smooth'})
+  }
 
   return (
     <>
@@ -47,13 +52,13 @@ const LandingPage = () => {
         <PrimaryButton onClick={onClickGetStart} disabled={isMobile()} >
           {isMobile() ? <Trans i18nKey="landing.button-mobile">Proceed on desktop</Trans> : <Trans i18nKey="landing.button">Begin</Trans>}
         </PrimaryButton>
-        <Link href="#explanation">
+        <Link onClick={onLearnMoreClick}>
           <Footnote>
             {isMobile() ? <Trans i18nKey="landing.learn-more-mobile">↓ learn more below ↓</Trans> : <Trans i18nKey="landing.learn-more">↓ or learn more below ↓</Trans>}
           </Footnote>
         </Link>
       </TopSection>
-      <Explanation />
+      <Explanation refFromLanding={ref} />
       <Footer />
     </>
   )
@@ -94,6 +99,8 @@ const Footnote = styled.p`
   ${textSerif}
 `
 
-const Link = styled.a``
+const Link = styled.a`
+  cursor: pointer;
+`
 
 export default LandingPage
