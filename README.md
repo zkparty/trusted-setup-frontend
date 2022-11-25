@@ -17,11 +17,6 @@ To start this app execute the following steps:
     Ubuntu: `export REACT_APP_API_ROOT=http://localhost:3000`
     Windows (Powershell): ` $env:REACT_APP_API_ROOT="http://localhost:3000" `
 
-- Redirect URL. Settings this URL is optional and not recommended.
-
-    Ubuntu: `export REACT_APP_SIGNIN_REDIRECT_URL=http://localhost:3001/redirect`
-    Windows (Powershell): ` $env:REACT_APP_SIGNIN_REDIRECT_URL="http://localhost:3001/redirect" `
-
 2. Install dependencies: `yarn install`
 
 4. Start application: `yarn start`
@@ -60,14 +55,14 @@ The following environment was used to build the IPFS release:
 ### Build the computation code
 The computation code is written in Rust and compiled to WASM. The compiled WASM package is available in this repo for convenience, but a thorough build for IPFS will involve rebuilding that package.
 
-Clone the repo at 
+Clone the repo at
 https://github.com/zkparty/wrapper-small-pot
 
 Follow the instructions there to build the code as a wasm package.
 
 Copy the `wrapper-small-pot/wasm` folder to `trusted-setup-frontend/wasm`
 
-### Build the front-end 
+### Build the front-end
 
 `npm run build`
 
@@ -79,7 +74,7 @@ Choose an IPFS node, or install one locally. See [here](https://docs.ipfs.tech/i
 
 The site needs to be added to IPFS as a folder. The command to this in ipfs cli is: ```ipfs add -r <your path>/trusted-setup-frontend/build```
 
-This will result in a series of log messages reporting the CID of each object in the folder. The CID of the build folder itself is the important one for our purposes. 
+This will result in a series of log messages reporting the CID of each object in the folder. The CID of the build folder itself is the important one for our purposes.
 
 ```
 ...
@@ -91,5 +86,5 @@ added QmbTGA1mPf3nb5RRWehvrHn7cz3jwVQdj91r3c6eHmdx4k build
 
 The build as at the release time has this CID: `QmSCqoKMuRdoT8d8tXoq8wuNJBDHsuz2xWm6PKhfzgskKP`
 
-or, in base32: `bafybeibzn2r7w3cyxu6bwjamr6vfc7qrslcpdlpeens6j5pjzvqeqjugsy` 
+or, in base32: `bafybeibzn2r7w3cyxu6bwjamr6vfc7qrslcpdlpeens6j5pjzvqeqjugsy`
 
