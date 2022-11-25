@@ -3,6 +3,8 @@ import Logo from './Logo'
 import { FONT_SIZE } from '../constants'
 import { Trans } from 'react-i18next'
 import { BREAKPOINT } from '../constants'
+import { Link } from "react-router-dom"
+import ROUTES from '../routes'
 
 const Footer = () => {
   return (
@@ -17,11 +19,11 @@ const Footer = () => {
       </LeftSection>
       <RightSection>
         <LinkGroup>
-          <LinkItem href="/faq">
+          <LinkItemLink to={ROUTES.FAQ}>
             <Trans id="footer.faq">
               FAQ
             </Trans>
-          </LinkItem>
+          </LinkItemLink>
           <LinkItem href="https://github.com/zkparty/trusted-setup-frontend">
             GitHub
           </LinkItem>
@@ -82,6 +84,13 @@ const LinkGroup = styled.div`
 `
 
 const LinkItem = styled.a`
+  font-size: ${FONT_SIZE.L};
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 24px;
+`
+
+const LinkItemLink = styled(Link)`
   font-size: ${FONT_SIZE.L};
   font-weight: 600;
   cursor: pointer;

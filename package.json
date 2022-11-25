@@ -1,7 +1,8 @@
 {
   "name": "trusted-setup-frontend",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@coinbase/wallet-sdk": "^3.5.4",
     "@noble/bls12-381": "^1.4.0",

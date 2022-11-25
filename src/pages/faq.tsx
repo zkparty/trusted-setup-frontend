@@ -2,11 +2,16 @@
 import styled from 'styled-components'
 // Import components
 import FaqItem from '../components/FaqItem'
+import { START_DATE, END_DATE } from '../constants'
 import ExternalLink from '../components/ExternalLink'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { PageTitle } from '../components/Text'
 import { Trans } from 'react-i18next'
+
+const [from, to] = [START_DATE, END_DATE].map((date: string) =>
+  new Date(date).toLocaleDateString()
+)
 
 // FAQ question array
 const faqQuestions = [
@@ -171,9 +176,9 @@ const faqQuestions = [
     content: (
       <Trans i18nKey="faq.q6.content">
         <p>This interface will walk you through the following steps:</p>
-        <ol>
-          <li>Log in with Ethereum or Github to prevent spam.</li>
+        <ol>          
           <li>You provide random inputs from three different sources.</li>
+          <li>Log in with Ethereum or Github to prevent spam.</li>
           <li>
             Ask the Sequencer if you may participate. When it&#39;s your turn,
             the Sequencer will send you the &quot;Powers of Tau&quot; data.

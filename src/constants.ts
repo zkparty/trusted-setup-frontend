@@ -35,12 +35,13 @@ const BREAKPOINT = {
 } as const
 
 const API_ROOT = process.env.REACT_APP_API_ROOT || 'http://127.0.0.1:3000'
-const SIGNIN_REDIRECT_URL =
-  process.env.REACT_APP_SIGNIN_REDIRECT_URL || 'http://localhost:3001/redirect'
 const LOBBY_CHECKIN_FREQUENCY =
   parseInt(process.env.REACT_APP_LOBBY_CHECKIN_FREQUENCY as string) || 25000
 const MIN_MOUSE_ENTROPY_SAMPLES =
   parseInt(process.env.REACT_APP_MIN_MOUSE_ENTROPY_SAMPLES as string) || 64
+
+const START_DATE = process.env.REACT_APP_START_DATE || ''
+const END_DATE = process.env.REACT_APP_END_DATE || ''
 
 const INFURA_ID = process.env.REACT_APP_INFURA_ID || 'cd82571d19ab490e828dd0f86ec3cbf0'
 
@@ -52,8 +53,9 @@ export {
   RADIUS,
   BREAKPOINT,
   API_ROOT,
-  SIGNIN_REDIRECT_URL,
   LOBBY_CHECKIN_FREQUENCY,
   MIN_MOUSE_ENTROPY_SAMPLES,
+  START_DATE,
+  END_DATE,
   INFURA_ID,
 }

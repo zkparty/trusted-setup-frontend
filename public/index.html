@@ -43,7 +43,21 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <!-- This script should be deleted after Firefox implements Module Workers: https://bugzilla.mozilla.org/show_bug.cgi?id=1247687-->
-    <script src="/module-workers-polyfill.min.js"></script>
+    <script src="%PUBLIC_URL%/module-workers-polyfill.min.js"></script>
+      <script>
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function() {
+            navigator.serviceWorker.register('sw.js').then(function(registration) {
+            }, function(err) {
+              console.log('Worker registration failed', err);
+            }).catch(function(err) {
+              console.log(err);
+            });
+          });
+        } else {
+          console.log('Service Worker is not supported by browser.');
+        }
+      </script>
     <div id="root"></div>
   </body>
 </html>
