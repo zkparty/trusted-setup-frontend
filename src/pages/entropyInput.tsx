@@ -188,6 +188,7 @@ const Input = styled.input<{ keyEntropy: string }>`
   border: solid 1px ${({ theme }) => theme.text};
   border-radius: 4px;
   background-color: ${({ theme }) => theme.surface};
+  min-height: 29px;
   width: 300px;
 `
 
