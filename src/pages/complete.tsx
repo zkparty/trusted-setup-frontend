@@ -21,11 +21,12 @@ const CompletePage = () => {
   const { t } = useTranslation()
   const [error, setError] = useState<null | string>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const { contribution, newContribution, receipt } = useContributionStore(
+  const { receipt, contribution, newContribution, sequencerSignature } = useContributionStore(
     (state: Store) => ({
+      receipt: state.receipt,
       contribution: state.contribution,
       newContribution: state.newContribution,
-      receipt: state.receipt,
+      sequencerSignature: state.sequencerSignature,
     })
   )
 
@@ -83,7 +84,8 @@ const CompletePage = () => {
             </InnerWrap>
           </Wrap>
           <ContributionModal
-            contribution={contribution}
+            signature={sequencerSignature}
+            contribution={newContribution}
             receipt={receipt}
             open={isModalOpen}
             onDeselect={() => setIsModalOpen(false)}

@@ -9,6 +9,7 @@ import CompletePage from './complete'
 import RecordPage from './record'
 import DoubleSignPage from './doubleSign'
 import SigninRedirectPage from './signinRedirect'
+import FaqPage from './faq'
 
 export {
   HomePage,
@@ -21,5 +22,6 @@ export {
   CompletePage,
   DoubleSignPage,
   RecordPage,
-  SigninRedirectPage
+  SigninRedirectPage,
+  FaqPage
 }

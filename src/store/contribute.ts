@@ -7,11 +7,13 @@ export type Store = {
   ECDSASignature: string | null
   contribution: string | null
   newContribution: string | null
+  sequencerSignature: string | null
   updateEntropy: (data: string | null) => void
   updateReceipt: (data: string | null) => void
   updateECDSASignature: (data: string | null) => void
   updateContribution: (data: string | null) => void
-  updateNewContribution: (date: string | null) => void
+  updateNewContribution: (data: string | null) => void
+  updateSequencerSignature: (data: string | null) => void
 }
 
 export type EntropyStore = {
@@ -25,11 +27,13 @@ export const useContributionStore = create<Store>((set, get) => ({
   ECDSASignature: null,
   contribution: null,
   newContribution: null,
+  sequencerSignature: null,
   updateEntropy: (data: string | null) => set({ entropy: data }),
   updateReceipt: (data: string | null) => set({ receipt: data }),
   updateECDSASignature: (data: string | null) => set({ ECDSASignature: data }),
   updateContribution: (data: string | null) => set({ contribution: data }),
-  updateNewContribution: (data: string | null) => set({ newContribution: data })
+  updateNewContribution: (data: string | null) => set({ newContribution: data }),
+  updateSequencerSignature: (data: string | null) => set({ sequencerSignature: data }),
 }))
 
 export const useEntropyStore = create<EntropyStore>()(
