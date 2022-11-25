@@ -12,31 +12,17 @@ self.addEventListener("install", function () {
     if (event.request.cache === "only-if-cached" && event.request.mode !== "same-origin") {
       return;
     }
-
-    // TODO: fix these requests
+    // We only need headers for /
+    let origin = self.location.origin;
     let url = event.request.url;
-    if (url.includes("/redirect")) return;
-    if (url.includes("fonts.googleapis.com")) return;
-    if (url.includes("portis")) return;
-    if (url.includes("https://app.tor.us/")) return;
-    if (url.includes("https://static.fortmatic.com")) return;
-    if (url.includes("https://api.fortmatic.com")) return;
+    if (url !== origin + "/" && url !== origin + "/#/") return;
 
     event.respondWith(
       fetch(event.request)
         .then(function (response) {
-          // It seems like we only need to set the headers for index.html
-          // If you want to be on the safe side, comment this out
-          //if (!response.url.includes("index.html")) return response;
-          //TODO: Refine this to detect only IPFS fetches?
-
           const newHeaders = new Headers(response.headers);
-          newHeaders.set("Cross-Origin-Embedder-Policy", 'require-corp');
-          newHeaders.set("Cross-Origin-Opener-Policy", 'same-origin');
-          if ( url.includes('/double_sign') ){
-            newHeaders.delete("Cross-Origin-Embedder-Policy")
-            newHeaders.delete("Cross-Origin-Opener-Policy")
-          }
+          newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
+          newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
 
           const moddedResponse = new Response(response.body, {
             status: response.status,

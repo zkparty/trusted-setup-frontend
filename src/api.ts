@@ -7,9 +7,9 @@ import type { ErrorRes, ContributeRes, TryContributeRes } from './types'
 
 class APIClient {
   async getRequestLink() {
-    let redirectUrl = window.location.origin + '/redirect';
+    const path = window.location.href.replace(/#?\/signin/, '')
     const res = await fetch(
-      `${API_ROOT}/auth/request_link?redirect_to=${encodeURIComponent(redirectUrl)}`
+      `${API_ROOT}/auth/request_link?redirect_to=${encodeURIComponent(path)}`
     )
     return await res.json()
   }

@@ -25,6 +25,7 @@ import { useState } from 'react'
 import { providers } from "ethers";
 import { useAuthStore } from '../store/auth'
 import ErrorMessage from '../components/Error'
+import { useNavigate } from 'react-router-dom'
 import { Trans, useTranslation } from 'react-i18next'
 import LoadingSpinner from '../components/LoadingSpinner'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
@@ -37,6 +38,7 @@ import Fortmatic from 'fortmatic'
 import Portis from '@portis/web3' // TODO: implement Portis
 
 const DoubleSignPage = () => {
+  const navigate = useNavigate()
   const [error, setError] = useState<null | string>(null)
   const [isLoading, setIsLoading] = useState(false)
   const { nickname } = useAuthStore()
@@ -52,7 +54,7 @@ const DoubleSignPage = () => {
     setError(null)
     setIsLoading(true)
     await signPotPubkeysWithECDSA()
-    window.location.href = ROUTES.LOBBY
+    navigate(ROUTES.LOBBY)
   }
 
   const buildEIP712Message = async (): Promise<[

@@ -53,10 +53,10 @@ const EntropyInputPage = () => {
       updatePotPubkeys: state.updatePotPubkeys,
     })
   )
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (percentage !== 100) return
     setIsLoading(true)
-    processGeneratedEntropy()
+    await processGeneratedEntropy()
     navigate(ROUTES.SIGNIN)
   }
 
@@ -137,16 +137,16 @@ const EntropyInputPage = () => {
                 <Description>
                   The Ceremony requires three random inputs from each Summoner.
                 </Description>
-                <SubDesc>
+                <SubDesc hidden={isLoading}>
                   <Bold>Secret:</Bold> A piece of you in text form, with random
                   characters added. A hope for the future, or the name of
                   someone dear.
                 </SubDesc>
-                <SubDesc>
+                <SubDesc hidden={isLoading}>
                   <Bold>Sigil:</Bold> Trace some elements of the guide with your
                   cursor - the interface will capture your unique path.
                 </SubDesc>
-                <SubDesc>
+                <SubDesc hidden={isLoading}>
                   <Bold>Sample:</Bold> Your browser will generate its own
                   randomness in the background.
                 </SubDesc>
