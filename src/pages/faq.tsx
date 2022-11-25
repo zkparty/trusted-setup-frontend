@@ -52,7 +52,11 @@ const faqQuestions = [
     )
   },
   {
-    title: <Trans i18nKey="faq.q2.title">What is a Summoning Ceremony?</Trans>,
+    title: (
+      <Trans i18nKey="faq.q2.title">
+        What is a Summoning Ceremony?
+      </Trans>
+    ),
     content: (
       <Trans i18nKey="faq.q2.content">
         <p>
@@ -146,7 +150,11 @@ const faqQuestions = [
     )
   },
   {
-    title: <Trans i18nKey="faq.q5.title">What does KZG stand for?</Trans>,
+    title: (
+      <Trans i18nKey="faq.q5.title">
+        What does KZG stand for?
+      </Trans>
+    ),
     content: (
       <Trans i18nKey="faq.q5.content">
         <p>
@@ -176,7 +184,7 @@ const faqQuestions = [
     content: (
       <Trans i18nKey="faq.q6.content">
         <p>This interface will walk you through the following steps:</p>
-        <ol>          
+        <ol>
           <li>You provide random inputs from three different sources.</li>
           <li>Log in with Ethereum or Github to prevent spam.</li>
           <li>
@@ -200,7 +208,11 @@ const faqQuestions = [
     )
   },
   {
-    title: <Trans i18nKey="faq.q7.title">What are the Powers of Tau?</Trans>,
+    title: (
+      <Trans i18nKey="faq.q7.title">
+        What are the Powers of Tau?
+      </Trans>
+    ),
     content: (
       <Trans i18nKey="faq.q7.content">
         <p>
@@ -440,11 +452,6 @@ const faqQuestions = [
       </Trans>
     )
   }
-  // TODO: Complete answer for this FAQ item
-  // {
-  //   title: <Trans i18nKey="faq.q9.title">How can the Ceremony be compromised? What attacks are possible in this situation?</Trans>,
-  //   content: <Trans i18nKey="faq.q9.content"></Trans>,
-  // },
 ]
 // FAQ section component
 const FaqPage = () => (
