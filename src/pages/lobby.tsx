@@ -51,7 +51,6 @@ const LobbyPage = () => {
             console.log(resError.error)
             break
           case 'TryContributeError::AnotherContributionInProgress':
-            setError( t('error.tryContributeError.anotherContributionInProgress') )
             console.log(resError.error)
             break
           default:
