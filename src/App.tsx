@@ -13,6 +13,7 @@ import {
   SigninRedirectPage,
   FaqPage
 } from './pages'
+import ScrollToTop from './components/ScrollToTop'
 import RequireAuth from './components/helper/RequireAuth'
 import usePreloadAllImages from './hooks/usePreloadAllImages'
 import ROUTES from './routes'
@@ -27,17 +28,17 @@ function App() {
   const message = params.get('message')
   const isRedirect = (sessionId !== null || message !== null)
 
-  /* Considerations for the IPFS build: 
+  /* Considerations for the IPFS build:
     - IPFS gateways comsider anything after the / a path to a folder. So our preferred method
     of using route names to route to a page won't work. Solution is to use HashRouter in lieu of
     BrowserRouter. Now, pages can be router using /#/<route> at the end of the URL.
     A couple of problems arise with the redirect URL we need to send along with the sign-in request.
     - As the URL is an IPFS CID, it's not known until it is built. It can't be hard-coded. We cam
-    use window.location to solve that. 
-    - We want to route to the /redirect logic upon return from sign-in, so we need to 
+    use window.location to solve that.
+    - We want to route to the /redirect logic upon return from sign-in, so we need to
     pass /#/redirect at the end of the URL. The sequencer sees the # as an in-page reference, and
     repositions it at the end of the URL, following the query string parameters it returns. This messes up the routing
-    a bit. The workaround is to omit the #/redirect, and detect a redirect using the presence of session_id as a query param. 
+    a bit. The workaround is to omit the #/redirect, and detect a redirect using the presence of session_id as a query param.
     All query parameters are passed to SignInRedirectPage via props.
 */
 
@@ -45,12 +46,15 @@ function App() {
     <>
       <HashRouter>
         <GlobalStyle />
+        <ScrollToTop />
         <Routes>
           <Route path={ROUTES.ROOT} element={<HomePage />}>
               <Route path={ROUTES.ROOT} element={
-                  isRedirect ? 
-                    <SigninRedirectPage search={location.search} /> : 
-                    <LandingPage />} />
+                  isRedirect ?
+                    <SigninRedirectPage search={location.search} />
+                  :
+                    <LandingPage />
+               }/>
             <Route path={ROUTES.ENTROPY_INPUT} element={<EntropyInputPage />}/>
             <Route path={ROUTES.SIGNIN} element={<SigninPage />} />
             <Route

@@ -14,7 +14,7 @@ const ROUTES = {
 
 export const MOBILE_FRIENDLY_ROUTES = [
   ROUTES.ROOT,
-  // ROUTES.FAQ, // TODO: Uncomment when FAQ is available
+  ROUTES.FAQ,
   ROUTES.RECORD
 ]
 
