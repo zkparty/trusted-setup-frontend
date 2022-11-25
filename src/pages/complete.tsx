@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { useEffect, useState } from 'react'
 import ErrorMessage from '../components/Error'
 import { PrimaryButtonLarge } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
@@ -35,7 +35,7 @@ const CompletePage = () => {
   }
 
   useEffect(() => {
-    ;(async () => {
+    (async () => {
       // TODO: should user have a start checking button?
       const checks = await wasm.checkContributions(
         contribution!,

@@ -35,9 +35,9 @@ export default function useBackgroundVisibility(): Visibilities {
   if (location.pathname === ROUTES.SIGNIN)
     return {
       bg: 'white',
-      inner: 'white',
+      inner: 'color',
       outer: 'white',
-      snake: 'white',
+      snake: 'color',
       pizza: 'hidden'
     }
 
@@ -71,7 +71,7 @@ export default function useBackgroundVisibility(): Visibilities {
     return {
       bg: 'white',
       inner: 'color',
-      outer: 'white',
+      outer: 'color',
       snake: 'color',
       pizza: 'hidden'
     }

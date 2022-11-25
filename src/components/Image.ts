@@ -43,6 +43,15 @@ export const PizzaImg = styled(Img)<{ rounding: boolean }>`
           animation: ${r} 12s linear infinite;
         `
       : ''}
+
+  animation: fadeInAnimation 0s 1.5s forwards;
+  -o-animation: fadeInAnimation 0s 1.5s forwards;
+  -moz-animation: fadeInAnimation 0s 1.5s forwards;
+  animation-duration: 4s;
+  opacity: 0;
+  @keyframes fadeInAnimation {
+    to   { opacity: 1; }
+  }
 `
 
 const p = keyframes`
