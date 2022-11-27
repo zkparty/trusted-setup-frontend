@@ -25,6 +25,9 @@ self.addEventListener("install", function () {
       request = event.request.url;
     }
 
+    console.debug(`URL: ${url}`)
+    //if (url.includes('signin.html')) return;
+
     event.respondWith(
       fetch(request)
         .then(function (response) {
@@ -32,7 +35,7 @@ self.addEventListener("install", function () {
           newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
           newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
 
-          if ( url.includes('/double_sign') ){
+          if ( url.includes('/signin.html') ){
             newHeaders.delete("Cross-Origin-Embedder-Policy", "require-corp");
             newHeaders.delete("Cross-Origin-Opener-Policy", "same-origin");
           }
