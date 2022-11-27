@@ -35,11 +35,6 @@ self.addEventListener("install", function () {
           newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
           newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
 
-          if ( url.includes('/signin.html') ){
-            newHeaders.delete("Cross-Origin-Embedder-Policy", "require-corp");
-            newHeaders.delete("Cross-Origin-Opener-Policy", "same-origin");
-          }
-
           const moddedResponse = new Response(response.body, {
             status: response.status,
             statusText: response.statusText,

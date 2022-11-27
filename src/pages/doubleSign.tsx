@@ -24,7 +24,7 @@ import {
 } from '../constants'
 import ROUTES from '../routes'
 import { useState } from 'react'
-import { providers } from "ethers";
+import { providers } from "ethers"
 import { useAuthStore } from '../store/auth'
 import ErrorMessage from '../components/Error'
 import { Trans, useTranslation } from 'react-i18next'
