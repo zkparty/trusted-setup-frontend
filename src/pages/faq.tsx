@@ -29,7 +29,7 @@ const faqQuestions = [
           <ExternalLink href="https://ethereum.org/en/layer-2/">
             Layer-2s (L2s)
           </ExternalLink>
-          . L2s increase the total blockspace available to users while still
+          . L2s increase the total block space available to users while still
           maintaining the security offered by the Ethereum Layer 1 (L1).
         </p>
         <p>

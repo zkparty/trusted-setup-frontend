@@ -1,7 +1,9 @@
 {
   "translation": {
-    "es": "Español",
-    "en": "Inglés",
+    "language": {
+      "es": "Español",
+      "en": "Inglés"
+    },
     "header": { "sequencer": "Sequenciador" },
     "complete": {
       "title": "Dankshard <br/> está cerca",
