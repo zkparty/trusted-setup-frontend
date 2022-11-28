@@ -177,7 +177,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
         </LeftSection>
       </TopSection>
       <Desc style={{ textAlign: 'center'}}>
-        <b><Trans i18nKey="complete.modal.SignedBy">Signed by </Trans></b>
+        <b><Trans i18nKey="complete.modal.signedBy">Signed by </Trans></b>
         { identity }
       </Desc>
       <Desc style={{ textAlign: 'center', marginBottom: '45px'}}>
