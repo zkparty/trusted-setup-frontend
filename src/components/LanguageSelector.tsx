@@ -19,7 +19,7 @@ const LanguageSelector = () => {
   const getOptions = () => {
     const options = Object.keys(locales).map((language) => ({
       value: language,
-      label: t(language, { lng: 'en' })
+      label: t(`language.${language}`, { lng: language })
     }))
     return options
   }
@@ -68,7 +68,7 @@ const LanguageSelector = () => {
         styles={selectStyles}
         options={getOptions()}
         onChange={handleChange}
-        defaultValue={{ value: 'en', label: t('en', { lng: 'en' }) }}
+        defaultValue={{ value: 'en', label: t('language.en', { lng: 'en' }) }}
       />
     </Container>
   )
