@@ -1,0 +1,215 @@
+{
+  "complete": {
+    "button": "View your contribution",
+    "description": "<0>Success! Echoes of you are permanently fused with the others in this Summoning Ceremony.</0>",
+    "modal": {
+      "acknowledgment": "SEQUENCER ACKNOWLEDGEMENT",
+      "checks": {
+        "failedComputeSignature": "Signature was not processed correctly",
+        "failedSignature": "Sequencer signature does not contain sequencer address",
+        "failedWitness": "Witness does not match PoT pubkeys",
+        "success": "Passed"
+      },
+      "integrityChecks": "Integrity checks ",
+      "keys": "MY KEYS",
+      "receipt": "Contribution receipt:",
+      "shareTwitter": "Share on Twitter",
+      "signedBy": "Signed by ",
+      "timestamp": "Contribution completed at:",
+      "tweet": "I just contributed to the KZG Ceremony to scale Ethereum using {{identity}}. You can do it too in https://ceremony.ethereum.org @ethereum #KZGCeremony"
+    },
+    "title": "Dankshard <br/> draws near"
+  },
+  "contributing": {
+    "button": "View my contribution",
+    "description": {
+      "completed": "<0>You have just succesfully complete the contribution. Don’t forget to return for the summoning ending & spread the words.</0>",
+      "contributing": "<0>You are now entrusted with the Powers of Tau. Your Secret, Sigil, and Sample are being fused with those that came before.</0><1>Rituals cannot be hastened - time given here creates timeless artifacts.</1>",
+      "error": "There was an error {{error}}. Reload and try again"
+    },
+    "title": {
+      "completed": "Contribution<br/>Complete",
+      "contributing": "You have been<br/>called upon<br/>Now",
+      "error": "Something<br/>Went<br/>Wrong"
+    }
+  },
+  "de": "German",
+  "doubleSign": {
+    "button": "Sign",
+    "description": "<0>This signature binds each Summoner’s entropy contribution to their Ethereum address.</0>",
+    "title": "Bind your <br/> Contribution"
+  },
+  "en": "English",
+  "entropyInput": {
+    "button": "Submit",
+    "description": "<0>The Ceremony requires three random inputs from each Summoner.</0><1><0>Secret:</0> A piece of you in text form, with random characters added. A hope for the future, or the name of someone dear.</1><2><0>Sigil:</0> Trace some elements of the guide with your cursor - the interface will capture your unique path.</2><3><0>Sample:</0> Your browser will generate its own randomness in the background.</3>",
+    "title": "Entropy <br/> Entry"
+  },
+  "error": {
+    "authErrorPayload": {
+      "couldNotExtractUserData": "The sequencer could not extract user data from the authorization service. Please report it on Github",
+      "customError": "There has been an unknown error: {{error}}",
+      "fetchUserDataError": "The sequencer could not get user data from the authorization service. Please report it on Github",
+      "invalidAuthCode": "The web application is using an invalid authorization code. Please report it on Github",
+      "userAlreadyContributed": "This wallet has already contributed to the ceremony",
+      "userCreatedAfterDeadline": "Your wallet does not have the minimum transaction quantity to pass our antisybil tests."
+    },
+    "contributeError": {
+      "customError": "There has been an unknown error: {{error}}",
+      "invalidContribution": {
+        "unexpectedNumContributions": "An unexpected number of contributions have been send"
+      },
+      "notUsersTurn": "It is not your turn to upload your contribution",
+      "signature": {
+        "invalidSignature": "The sequencer could not parse the signature",
+        "invalidToken": "The signature is not a valid hex string",
+        "signatureCreation": "There was a problem creating the signed receipt"
+      }
+    },
+    "newSubgroupChecksFailed": "Subgroup check failed in your computed contribution. Please check your setup and try again",
+    "notSameWallet": "Use the same wallet you used to signing with Ethereum",
+    "pastSubgroupChecksFailed": "Subgroup check failed in the contribution you received. Please report it inmmediately",
+    "tryContributeError": {
+      "anotherContributionInProgress": "There is another contribution been computed at the moment. Please wait for your turn to contribute",
+      "rateLimited": "Your call to the sequencer came too early. Remember that there is a specific time interval between calls",
+      "unknownError": "There has been an unknown error: {{error}} . code: {{code}}",
+      "unknownSessionId": "You might have taken more time than expected in the lobby. Please reload and sign in again with a different account"
+    }
+  },
+  "es": "Spanish",
+  "explanation": {
+    "button": "View contributions",
+    "description": "<0>This Trusted Setup is a multi-party ceremony designed to generate a secure SRS (structured reference string) to be used in the proto-danksharding protocol. OK, let's slow down and talk about those terms in more detail.</0><1>Proto-danksharding (aka EIP-4844) is a planned change to the Ethereum protocol which allows transaction data from rollups (Layer 2s) to be succinctly represented on the Layer 1 (mainnet). The benefits are lower transaction fees on the L2, greater scalability and more accessibility to more people!</1><2>The Trusted Setup is a preparatory step required for certain cryptographic schemes such as the KZG polynomial commitment scheme to be used in proto-danksharding. In our case, the trust assumption is that one contributor needs to successfully conceal their secret for the result to be secure.</2><3>It's a multi-party ceremony: Contributors each create a secret and run a computation to mix it with previous contributions and generate a result that can be made public and passed to the next contributor. We need to guard against attempts to control the ceremony, so you'll need an Ethereum or GitHub account with an established history.</3>",
+    "title": "PROTO-DANKSHARDING <br/> AND THE CEREMONY"
+  },
+  "faq": {
+    "q1": {
+      "content": "<0>The Ethereum Foundation is hosting an interface at <1>ceremony.ethereum.org</1> during the public contribution period from X date to Y date.</0><1>If you'd like an alternative to the hosted interface, you are welcome to contribute via a <1>CLI</1>.</1><2>After this public contribution period, we will accept special contributions from bespoke <1>implementations</1> or unique randomness generation. Funding is available for both of these, more information will be shared in the coming weeks.</2>",
+      "title": "How do I contribute randomness to the Ceremony?"
+    },
+    "q10": {
+      "content": "<p>The ceremony has a \"1-of-N\" trust assumption, which means that only a single participant in the entire ceremony needs to have not revealed their secret input for everything to be secure.</p><p>This means that every participant would have to strip apart the software that they are using to contribute, get that software to give them the secret, and then collude with every single other participant to reconstruct the final secret.</p><p>A more realistic failure mode is a common bug which leaks the randomness. To combat this, this site has been audited and there are alternative implementations of the contribution software built on entirely different software stacks.</p><p>This is why there will be thousands of participants using different pieces of software on different operating systems to help prevent single points of failure both in the people and hardware/software.</p>",
+      "title": "What needs to go wrong for the safety of the ceremony to break?"
+    },
+    "q11": {
+      "content": "<p>Should the secret somehow be extracted from the Powers of Tau, an attacker would be able to make arbitrary claims about the data in EIP-4844. This effectively would break all services & applications dependent on EIP-4844 blob data.</p>",
+      "title": "What attacks are possible in this situation?"
+    },
+    "q12": {
+      "content": "<p>Depending on how many others are trying to contribute at the same time, you could end up waiting a while for your turn to come up to contribute. Once it is your turn, it should only take less than 3 minutes to complete the contribution with a standard laptop and internet connection.</p>",
+      "title": "How long does it take to contribute?"
+    },
+    "q13": {
+      "content": "<p>In order to reduce Sybil attacks against the Ceremony, the Sequencer needs to verify that you are a (somewhat) unique human otherwise one person could submit many different contributions preventing others from getting a turn to contribute.</p><1><0>Sign in with Ethereum - This is the preferred choice as it something that all Ethereum community members should already have and it allows signatures for later verification of the transcript. Each account is required to have sent at least 3 transactions to prevent spinning up new accounts just for this ceremony.</0><1>Sign in with GitHub - This option is offered as an alternative for those who are more distant to the community but who'd still like to participate.</1></1>",
+      "title": "Why do I need to sign in with Ethereum or GitHub?"
+    },
+    "q14": {
+      "content": "<p>When this ceremony is over, you should review the ceremony transcript (which will be hosted on this site as well as being widely available on the internet). This transcript will contain all the necessary data to verify who participated.</p><p>If you used your Ethereum address to sign-in, then there will be cryptographic proof that you participated via a signed message from your account.</p>",
+      "title": "How do I know my contribution was included?"
+    },
+    "q15": {
+      "content": "<p>After this ceremony is over it is important for the community to verify that the ceremony ran correctly, this is comprised of two components:</p><1><0>Verifying that either you or enough people you trust actually participated, by checking their identities appear in the transcript.</0><1>Verifying that the transcript was constructed correctly including all the witnesses (proofs of correct contribution) and that the Powers of Tau are indeed powers.</1></1>",
+      "title": "How can I verify the final Ceremony output?"
+    },
+    "q16": {
+      "content": "<p>While the processing power of some mobile devices is sufficient to participate in this ceremony, many mobile browsers don't handle WASM well, lock the screen and otherwise downclock the CPU before the computation could complete, and generally there a lot of variance between devices which is hard to account for.</p>",
+      "title": "Why can't I contribute on a mobile device?"
+    },
+    "q2": {
+      "content": "KZG comes from Kate, Zaverucha, and Goldberg. These are the author surnames from the paper <1>\"Constant-Size Commitments to Polynomials and Their Applications\"</1>, which outlines the underlying cryptographic mechanism that the Ethereum ceremony plans to utilize.",
+      "title": "What does KZG stand for?"
+    },
+    "q3": {
+      "content": "<0><0>A Summoner runs a computation using three random inputs (aka secrets) they provide. Three different kinds of secrets are required in this Ceremony: text, cursor movements, and browser generated.</0><1>The output of that computation is then passed to the Sequencer - a coordinating server which orchestrates transfers between participants.</1><2>The Sequencer passes the computation from step two to the next summoner, who is waiting to start. This participant computes an output using their secret inputs, and combines it with the work from Summoner 1. At this point the cycle starts again.</2></0><p>While it’s important that summoners discard the random secrets they use, the Ceremony only requires one honest participant to do so. As long as one person does this, observers can be sure that the final output can never be fully reverse engineered or corrupted.</p><2>Here's another framing from the <1>Cryptography Rationale</1>:</2><3>For EIP-4844, Ethereum needs four different Structured Reference Strings (SRS) each of different sizes. Each SRS has a secret associated with it. For security, the SRS’s must be computed in such a way that no single person knows the secret associated with them. The solution is to have multiple people contribute to the secret. If all of these people collude, then they can recover the secret. If even one person does not collude, then the secret is unrecoverable. The process of multiple people contributing to the secret is known as a ceremony.</3>",
+      "title": "What happens during a Ceremony?"
+    },
+    "q4": {
+      "content": "Using anything other than KZG (eg. IPA or SHA256) would make the sharding roadmap much more difficult. Learn more from Vitalik's <1>Proto-Danksharding FAQ</1>.",
+      "title": "Couldn’t another commitment scheme without a \"trusted setup\" be used?"
+    },
+    "q5": {
+      "content": "<p>The Sequencer is a server hosted by the Ethereum Foundation which coordinates contributions. It keeps track of who is trying to contribute, serves them the necessary data to download, and takes each contribution.</p><1>You don't have to trust the Sequencer to produce a biased or invalid final output. The <1>transcript</1> provides a verifiable record of all randomness contributions. As long as there is one honest participant who doesn't record their randomness, the secret cannot be reconstructed.</1>",
+      "title": "What is the Sequencer and what does it do?"
+    },
+    "q6": {
+      "content": "It should only take a few minutes to complete the contribution on a standard laptop and internet connection.",
+      "title": "How long does it take to contribute?"
+    },
+    "q7": {
+      "content": "By reading the <1>transcript</1>.",
+      "title": "How can I verify the final Ceremony output?"
+    },
+    "q8": {
+      "content": "The Ceremony isn't optimized for the mobile environment.",
+      "title": "Why can't I contribute on a mobile device?"
+    },
+    "q9": {
+      "content": "<0>Using anything other than KZG (eg. IPA or SHA256) would make the sharding roadmap much more difficult. Learn more from Vitalik's <2>Proto-Danksharding FAQ</2>.</0>",
+      "title": "Couldn’t another commitment scheme without a \"trusted setup\" be used?"
+    }
+  },
+  "footer": {
+    "audit": "Audit report",
+    "copyright": "Build by Ethereum Foundation, R&D team. 2022",
+    "documentation": "Documentation",
+    "faq": "FAQ"
+  },
+  "fr": "French",
+  "header": {
+    "offline": "Offline",
+    "online": "Online",
+    "sequencer": "Sequencer"
+  },
+  "hi": "Hindi",
+  "id": "Indonesian",
+  "ja": "Japanese",
+  "ko": "Korean",
+  "landing": {
+    "button": "Begin",
+    "button-mobile": "Proceed on desktop",
+    "description": "<0>Whispers from the shadows tell of a powerful spirit Dankshard, who will open the next chapter of Ethereum scalability. To summon its powers, a Ceremony needs your contribution. This illuminated guide will lead you through the movements necessary to complete the ritual.</0><1>Magic math awaits - are you ready to add your color to the story?</1>",
+    "learn-more": "↓ or learn more below ↓",
+    "learn-more-mobile": "↓ learn more below ↓",
+    "title": "SUMMONING <br/> GUIDE"
+  },
+  "lobby": {
+    "description": "<0>Your contribution is ready to be accepted by the Sequencer. Please leave this guide open in the background and we will add your contribution to the others soon.</0><1>Please leave this guide open and awake.</1>",
+    "title": "Waiting to be <br/> submitted"
+  },
+  "lobbyFull": {
+    "button": "Return to home",
+    "description": "<0>Too many summoners at this time, please come back later. Close this window and try again in a moment to check if there is a slot available in the lobby.</0>",
+    "title": "Too much <br/> magic"
+  },
+  "record": {
+    "button": "View",
+    "headers": "<0>Seq. #</0><1>Identifier specification</1><2>Signatures</2><3>Details</3>",
+    "loading": "Loading records...",
+    "searchBar": "Search address, ENS, github handle, #1, ...",
+    "signatureModal": {
+      "title": "PoT Pubkey:"
+    },
+    "stats": {
+      "address": "Sequencer address:",
+      "contributions": "Contributions:",
+      "lobby": "Lobby size:"
+    },
+    "title": "Record",
+    "transcriptModal": {
+      "bls": "BLS Signatures:",
+      "ecdsa": "ECDSA Signature (optional):",
+      "id": "Participant ID:",
+      "potpubkeys": "Pot Pubkeys:",
+      "title": "Contribution details"
+    }
+  },
+  "ro": "Romanian",
+  "ru": "Russian",
+  "signin": {
+    "description": "<0>The Ceremony requires souls of pure intent. Summoners show their integrity by unlocking with an address that has at least three sent transactions.</0><1>It does not send any funds or permit any contracts. This method also allows us to deliver a POAP after the Ceremony.</1>",
+    "title": "OPEN <br/> THE WAY",
+    "unlockWithEthereum": "Unlock with Ethereum <2></2>",
+    "unlockWithGithub": "or unlock with Github"
+  },
+  "zh": "Chinese"
+}
