@@ -24,8 +24,8 @@ self.addEventListener("install", function () {
     if (url.includes('session_id')){
       request = event.request.url;
     }
+    console.log(`url: ${url}`)
 
-    console.debug(`URL: ${url}`)
     //if (url.includes('signin.html')) return;
 
     event.respondWith(
@@ -34,6 +34,11 @@ self.addEventListener("install", function () {
           const newHeaders = new Headers(response.headers);
           newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
           newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
+
+          if (url && url.includes('double_sign')) {
+            newHeaders.delete("Cross-Origin-Embedder-Policy");
+            newHeaders.delete("Cross-Origin-Opener-Policy");
+          }
 
           const moddedResponse = new Response(response.body, {
             status: response.status,

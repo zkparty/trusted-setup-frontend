@@ -169,9 +169,13 @@ const DoubleSignPage = () => {
     setError(null)
     setIsLoading(true)
     // eslint-disable-next-line no-restricted-globals
-    //navigate(ROUTES.DOUBLE_SIGN_IFRAME)
-    await signPotPubkeysWithECDSA()
-    navigate(ROUTES.LOBBY)
+    if (!self.crossOriginIsolated) {
+      console.log('refreshing...')
+      navigate(0)
+    } else {
+      console.log('not x-origin isolated')
+      await signPotPubkeysWithECDSA()
+    }
   }
 
   return (
