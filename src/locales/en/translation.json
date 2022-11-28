@@ -2,12 +2,6 @@
   "translation": {
     "es": "Spanish",
     "en": "English",
-    "Audit report": "Audit report",
-    "Build by Ethereum Foundation, R&D team": {
-      " 2022": "Build by Ethereum Foundation, R&D team. 2022"
-    },
-    "Documentation": "Documentation",
-    "FAQ": "FAQ",
     "complete": {
       "button": "View your contribution",
       "description": "<0>Success! Echoes of you are permanently fused with the others in this Summoning Ceremony.</0>",
@@ -17,7 +11,7 @@
         "timestamp": "Contribution completed at:",
         "acknowledgment": "SEQUENCER ACKNOWLEDGEMENT",
         "receipt": "Contribution receipt:",
-        "SignedBy": "Signed by ",
+        "signedBy": "Signed by ",
         "integrityChecks": "Integrity checks ",
         "shareTwitter": "Share on Twitter",
         "tweet": "I just contributed to the KZG Ceremony to scale Ethereum using {{identity}}. You can do it too in https://ceremony.ethereum.org @ethereum #KZGCeremony",
@@ -123,7 +117,13 @@
         "title": "Couldn’t another commitment scheme without a \"trusted setup\" be used?"
       }
     },
-    "header": {
+    "footer": {
+      "audit": "Audit report",
+      "copyright": "Build by Ethereum Foundation, R&D team. 2022",
+      "documentation": "Documentation",
+      "faq": "FAQ"
+    },
+      "header": {
       "offline": "Offline",
       "online": "Online",
       "sequencer": "Sequencer"

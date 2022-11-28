@@ -12,7 +12,7 @@ const Footer = () => {
       <LeftSection>
         <Logo centerOnMobile />
         <Copyright>
-          <Trans id="footer.copyright">
+          <Trans i18nKey="footer.copyright">
             Build by Ethereum Foundation, R&D team. 2022
           </Trans>
         </Copyright>
@@ -20,7 +20,7 @@ const Footer = () => {
       <RightSection>
         <LinkGroup>
           <LinkItemLink to={ROUTES.FAQ}>
-            <Trans id="footer.faq">
+            <Trans i18nKey="footer.faq">
               FAQ
             </Trans>
           </LinkItemLink>
@@ -28,12 +28,12 @@ const Footer = () => {
             GitHub
           </LinkItem>
           <LinkItem href="https://github.com/ethereum/kzg-ceremony">
-            <Trans id="footer.documentation">
+            <Trans i18nKey="footer.documentation">
               Documentation
             </Trans>
           </LinkItem>
           <LinkItem href="https://github.com/ethereum/kzg-ceremony/blob/main/KZG10-Ceremony-audit-report.pdf">
-            <Trans id="footer.audit">
+            <Trans i18nKey="footer.audit">
               Audit report
             </Trans>
           </LinkItem>
