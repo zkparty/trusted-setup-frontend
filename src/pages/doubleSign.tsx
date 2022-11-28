@@ -1,5 +1,5 @@
-import wasm from '../wasm'
 import styled from 'styled-components'
+import wasm from '../wasm'
 import { useNavigate } from 'react-router-dom'
 import { PrimaryButton } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
@@ -24,7 +24,7 @@ import {
 } from '../constants'
 import ROUTES from '../routes'
 import { useState } from 'react'
-import { providers } from "ethers";
+import { providers } from "ethers"
 import { useAuthStore } from '../store/auth'
 import ErrorMessage from '../components/Error'
 import { Trans, useTranslation } from 'react-i18next'
@@ -37,6 +37,7 @@ import { Client } from '@spruceid/siwe-web3modal'
 import Torus from '@toruslabs/torus-embed'
 import Fortmatic from 'fortmatic'
 import Portis from '@portis/web3'
+
 
 const DoubleSignPage = () => {
   const [error, setError] = useState<null | string>(null)
@@ -51,11 +52,6 @@ const DoubleSignPage = () => {
     (state: Store) => state.updateECDSASignature
   )
 
-  const handleClickSign = async () => {
-    setError(null)
-    setIsLoading(true)
-    await signPotPubkeysWithECDSA()
-  }
 
   const buildEIP712Message = async (): Promise<[
     TypedDataDomain,
@@ -106,6 +102,7 @@ const DoubleSignPage = () => {
     }
     return false;
   }
+
 
   const signPotPubkeysWithECDSA = async () => {
     const client = new Client({
@@ -165,6 +162,20 @@ const DoubleSignPage = () => {
     // save signature for later
     updateECDSASignature(signature)
     navigate(ROUTES.LOBBY)
+  }
+
+
+  const handleClickSign = async () => {
+    setError(null)
+    setIsLoading(true)
+    // eslint-disable-next-line no-restricted-globals
+    if (!self.crossOriginIsolated) {
+      console.log('refreshing...')
+      navigate(0)
+    } else {
+      console.log('not x-origin isolated')
+      await signPotPubkeysWithECDSA()
+    }
   }
 
   return (
