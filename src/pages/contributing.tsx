@@ -158,7 +158,7 @@ const ContributingPage = () => {
                   ) : step === 'completed' ? (
                     <Trans i18nKey="contributing.description.completed">
                       <Description>
-                        You have just succesfully complete the contribution. Don’t
+                        You have just successfully complete the contribution. Don’t
                         forget to return for the summoning ending & spread the
                         words.
                       </Description>
