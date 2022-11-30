@@ -9,6 +9,7 @@ import Footer from '../components/Footer'
 import { PageTitle } from '../components/Text'
 import { Trans } from 'react-i18next'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const [from, to] = [START_DATE, END_DATE].map((date: string) =>
   new Date(date).toLocaleDateString()
 )
