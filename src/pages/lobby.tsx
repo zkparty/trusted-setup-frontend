@@ -7,7 +7,6 @@ import {
   SingleWrap as Wrap,
   Over,
   TextSection,
-  OverRelative,
   InnerWrap
 } from '../components/Layout'
 import { LOBBY_CHECKIN_FREQUENCY } from '../constants'
@@ -16,8 +15,6 @@ import ROUTES from '../routes'
 import { useContributionStore, Store } from '../store/contribute'
 import { isSuccessRes, sleep } from '../utils'
 
-import Explanation from '../components/Explanation'
-import Footer from '../components/Footer'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 import { Trans, useTranslation } from 'react-i18next'
 import { ErrorRes } from '../types'
