@@ -137,6 +137,13 @@ const DoubleSignPage = () => {
       setIsLoading(false)
       return
     }
+    const { chainId } = await provider.getNetwork();
+    if (chainId !== 1){
+      setError('Select the Ethereum Mainnet network in your signing wallet')
+      setIsLoading(false)
+      return
+    }
+
     const [domain, types, message] = await buildEIP712Message()
     // TODO: method name might change in the future (no underscore)
     // https://docs.ethers.io/v5/api/signer/
