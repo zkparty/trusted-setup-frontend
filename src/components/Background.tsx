@@ -8,6 +8,7 @@ import PizzaInner from '../assets/crust.svg'
 import PizzaOuter from '../assets/fig.svg'
 import BgImg from '../assets/img-graphic-base.svg'
 import BgImgColor from '../assets/img-base-color.svg'
+import BgImgNoPiz from '../assets/img-base-no-piz.svg'
 import BgImgPulse from '../assets/img-graphic-pulse.svg'
 import InnerWhite from '../assets/inner-white.svg'
 import InnerColor from '../assets/inner-color.svg'
@@ -31,6 +32,7 @@ const Background = ({ children }: Props) => {
         {bg === 'animate' && (
           <BgPulse src={BgImgPulse} visible={bg === 'animate'} style={{display: getDisplay(bg)}} />
         )}
+        <Bg src={BgImgNoPiz} visible={bg === 'white-no-pizza'} style={{display: getDisplay(bg)}} />
         <Bg src={BgImgColor} visible={bg === 'color'} style={{display: getDisplay(bg)}} />
         <PizzaImg
           src={PizzaInner}

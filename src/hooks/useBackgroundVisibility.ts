@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom'
 import ROUTES from '../routes'
 import { isBgRoute } from '../utils'
 
-type ColorState = 'hidden' | 'white' | 'color'
+type ColorState = 'hidden' | 'white' | 'color' | 'white-no-pizza'
 type AnimateState = ColorState | 'animate'
 
 type InnerState = ColorState
@@ -52,7 +52,7 @@ export default function useBackgroundVisibility(): Visibilities {
 
   if (location.pathname === ROUTES.LOBBY)
     return {
-      bg: 'white',
+      bg: 'white-no-pizza',
       inner: 'color',
       outer: 'color',
       snake: 'color',
