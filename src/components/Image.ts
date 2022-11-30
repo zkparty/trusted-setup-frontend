@@ -34,24 +34,22 @@ const r = keyframes`
   100% { transform: rotate(360deg) scale(0.85); }
 `
 
+const o = keyframes`
+  to   { opacity: 1; }
+`
+
 export const PizzaImg = styled(Img)<{ rounding: boolean }>`
   height: auto;
   transition: all 3s ease;
+  opacity: 0;
+  animation: ${o} 0s 1.5s forwards;
+  animation-duration: fadeInAnimation 3s;
   ${({ rounding }) =>
     rounding
       ? css`
-          animation: ${r} 12s linear infinite;
+          animation: ${r} 40s linear infinite, ${o} 3s forwards;
         `
       : ''}
-
-  animation: fadeInAnimation 0s 1.5s forwards;
-  -o-animation: fadeInAnimation 0s 1.5s forwards;
-  -moz-animation: fadeInAnimation 0s 1.5s forwards;
-  animation-duration: 4s;
-  opacity: 0;
-  @keyframes fadeInAnimation {
-    to   { opacity: 1; }
-  }
 `
 
 const p = keyframes`
