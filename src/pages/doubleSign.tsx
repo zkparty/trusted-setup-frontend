@@ -106,6 +106,7 @@ const DoubleSignPage = () => {
     const client = new Client({
       modal: {
         theme: 'dark',
+        lightboxOpacity: 0.7,
         providerOptions: {
           walletconnect: {
             package: WalletConnectProvider,
