@@ -1,15 +1,16 @@
 import ROUTES from '../routes'
-import { useCallback, useRef } from 'react'
 import styled from 'styled-components'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { textSerif } from '../style/utils'
+import { useAuthStore } from '../store/auth'
 import { useNavigate } from 'react-router-dom'
 import { TextSection } from '../components/Layout'
 import Explanation from '../components/Explanation'
 import { PrimaryButton } from '../components/Button'
 import { Trans, useTranslation } from 'react-i18next'
 import LandingBg from '../assets/landing-boarder.png'
+import { useCallback, useRef, useEffect } from 'react'
 import { Description, PageTitle } from '../components/Text'
 import { isMobile } from '../utils'
 
@@ -17,9 +18,15 @@ const LandingPage = () => {
   useTranslation()
   const ref = useRef<null | HTMLElement>(null)
   const navigate = useNavigate()
+  const { signout } = useAuthStore()
   const onClickGetStart = useCallback(() => {
     navigate(ROUTES.ENTROPY_INPUT)
   }, [navigate])
+
+  useEffect(() => {
+    signout()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const onLearnMoreClick = () => {
     ref.current?.scrollIntoView({behavior: 'smooth'})
