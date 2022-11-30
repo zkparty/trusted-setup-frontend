@@ -16,6 +16,8 @@ const SigninRedirect = (props: any) => {
 
   useEffect(() => {
     const params = toParams(props.search.replace(/^\?/, '') )
+    window.history.replaceState(null, '', window.location.pathname)
+
     if (validateSigninParams(params)) {
       // store signin data and redirect to entropy input page
       signin(params)
