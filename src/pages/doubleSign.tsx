@@ -139,7 +139,7 @@ const DoubleSignPage = () => {
     }
     const { chainId } = await provider.getNetwork();
     if (chainId !== 1){
-      setError('Select the Ethereum Mainnet network in your signing wallet')
+      setError(t('error.incorrectChainId'))
       setIsLoading(false)
       return
     }

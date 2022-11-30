@@ -99,6 +99,7 @@
     },
     "error":{
       "notSameWallet": "Utiliza la misma wallet que utilizaste para iniciar sesión con Ethereum",
+      "incorrectChainId": "Selecciona la red Ethereum Mainnet en la wallet que firma",
       "pastSubgroupChecksFailed": "El control de subgrupos falló en la contribución que recibiste. Por favor reportelo inmediatamente",
       "newSubgroupChecksFailed": "El control de subgrupos falló en la contribución que computó. Por favor revise su configuración e intente de nuevo",
       "tryContributeError": {

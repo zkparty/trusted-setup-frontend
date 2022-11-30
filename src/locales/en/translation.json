@@ -186,6 +186,7 @@
     },
     "error": {
       "notSameWallet": "Use the same wallet you used to signing with Ethereum",
+      "incorrectChainId": "Select the Ethereum Mainnet network in your signing wallet",
       "pastSubgroupChecksFailed": "Subgroup check failed in the contribution you received. Please report it immediately",
       "newSubgroupChecksFailed": "Subgroup check failed in your computed contribution. Please check your setup and try again",
       "tryContributeError": {
