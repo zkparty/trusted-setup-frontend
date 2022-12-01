@@ -2,6 +2,7 @@ import {
   useState,
   MouseEventHandler,
   useEffect,
+  forwardRef,
   ChangeEventHandler
 } from 'react'
 import styled from 'styled-components'
@@ -35,7 +36,7 @@ type Player = {
   seek: (percent: number) => void
 }
 
-const EntropyInputPage = () => {
+const EntropyInputPage = forwardRef((_, bgRef: any) => {
   useTranslation()
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
@@ -120,7 +121,7 @@ const EntropyInputPage = () => {
       <HeaderJustGoingBack />
       <Over style={{ cursor: 'none' }}>
         <Container onMouseMove={handleCaptureMouseEntropy}>
-          <AnimatedCursor/>
+          <AnimatedCursor ref={bgRef}/>
           <SnakeProgress onSetPlayer={setPlayer} />
           <Wrap>
             <PageTitle>
@@ -171,7 +172,7 @@ const EntropyInputPage = () => {
       </Over>
     </>
   )
-}
+})
 
 const SubDesc = styled(Description)`
   margin: 0 0 15px;

@@ -33,7 +33,7 @@ function useEventListener(eventName: string, handler: ({ clientX, clientY }: any
  *
  * @author Stephen Scaff
  */
-const AnimatedCursor = forwardRef(({}: any, bgRef: any) => {
+const AnimatedCursor = forwardRef((_, bgRef: any) => {
   const cursorInnerRef = useRef<any>()
   const cursorOuterRef_1 = useRef<any>()
   const cursorOuterRef_2 = useRef<any>()
@@ -56,7 +56,7 @@ const AnimatedCursor = forwardRef(({}: any, bgRef: any) => {
       cursorOuterRef_3!.current.style.top = clientY + 'px'
       cursorOuterRef_3!.current.style.left = clientX + 'px'
     }, 240)
-  }, [])
+  }, [bgRef])
 
   useEventListener('mousemove', onMouseMove, document)
 

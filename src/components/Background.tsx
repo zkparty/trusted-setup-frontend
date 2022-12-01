@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, {forwardRef} from 'react'
+import styled, { css } from 'styled-components'
 import { CIRCLE_SIZE } from '../constants'
 import useBackgroundVisibility from '../hooks/useBackgroundVisibility'
 import { Img, Bg, BgPulse, PizzaImg } from '../components/Image'
@@ -22,12 +22,12 @@ type Props = {
   children: React.ReactNode
 }
 
-const Background = ({ children }: Props) => {
-  const { bg, inner, outer, snake, pizza } = useBackgroundVisibility()
+const Background = forwardRef(({ children }: Props, bgRef: any) => {
+  const { bg, dark, inner, outer, snake, pizza } = useBackgroundVisibility()
   const getDisplay = (value: string): string => value === "hidden" ? "none" : "unset"
   const displayContainer = [bg, inner, outer, snake, pizza].filter((value) => getDisplay(value) !== "none").length > 0 ? "unset" : "none"
   return (
-    <Container>
+    <Container ref={bgRef} dark={dark}>
       <BgContainer style={{ display: displayContainer }}>
         <Bg src={BgImg} visible={bg === 'white' || bg === 'animate'} style={{display: getDisplay(bg)}} />
         {bg === 'animate' && (
@@ -58,12 +58,28 @@ const Background = ({ children }: Props) => {
       {children}
     </Container>
   )
-}
+})
 
-const Container = styled.div`
+const Container = styled.div<{dark: string}>`
   color: ${({ theme }) => theme.text};
   height: 100vh;
   width: 100vw;
+
+  --cursorX: 30px;
+  --cursorY: 30px;
+
+  ${({ dark }) => dark !== 'hidden' ?
+    css`
+      background: radial-gradient(
+        circle 80px at var(--cursorX) var(--cursorY),
+        rgb(255,252,187) 0%,
+        rgba(0,0,0,.5) 80%,
+        rgba(0,0,0,.85) 100%
+      )
+    `
+    :
+    ''
+  }
 `
 
 const BgContainer = styled.div`
