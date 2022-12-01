@@ -1,6 +1,7 @@
 import {
     useEffect,
     useRef,
+    forwardRef,
     useCallback,
   } from 'react'
 import styled, { keyframes } from 'styled-components'
@@ -32,13 +33,15 @@ function useEventListener(eventName: string, handler: ({ clientX, clientY }: any
  *
  * @author Stephen Scaff
  */
-const AnimatedCursor = () => {
+const AnimatedCursor = forwardRef(({}: any, bgRef: any) => {
   const cursorInnerRef = useRef<any>()
   const cursorOuterRef_1 = useRef<any>()
   const cursorOuterRef_2 = useRef<any>()
   const cursorOuterRef_3 = useRef<any>()
 
   const onMouseMove = useCallback(({ clientX, clientY }: any) => {
+    bgRef!.current.style.setProperty('--cursorX', clientX + 'px')
+    bgRef!.current.style.setProperty('--cursorY', clientY + 'px')
     cursorInnerRef!.current.style.top = clientY + 'px'
     cursorInnerRef!.current.style.left = clientX + 'px'
     setTimeout(() => {
@@ -65,7 +68,7 @@ const AnimatedCursor = () => {
       <TailElement ref={cursorOuterRef_3}></TailElement>
     </>
   )
-}
+})
 
 const pulsate = keyframes`
   50% { opacity: 0.9; filter: blur(3px); }
