@@ -1,7 +1,7 @@
 import wasm from './wasm'
 import { API_ROOT } from './constants'
 import { useEntropyStore } from './store/contribute'
-import type { ErrorRes, ContributeRes, TryContributeRes, RequestLinkRes } from './types'
+import type { ErrorRes, ContributeRes, TryContributeRes, RequestLinkRes, SequencerStatus, Transcript } from './types'
 
 class APIClient {
   async getRequestLink(): Promise<RequestLinkRes | ErrorRes> {
@@ -15,9 +15,33 @@ class APIClient {
     return await res.json()
   }
 
-  async getStatus() {}
+  async getStatus(): Promise<SequencerStatus> {
+    let result: SequencerStatus
+    try {
+      result = await fetch(API_ROOT + '/info/status')
+      .then((_res) => _res.json())
+      result.status = 'Online'
+    } catch (error) {
+      result = {
+        lobby_size: 0,
+        num_contributions: 0,
+        sequencer_address: '0x000',
+        status: 'Offline',
+      }
+    }
+    return result
+  }
 
-  async getCurrentState() {}
+  async getCurrentState(): Promise<Transcript | null> {
+    let result: Transcript | null
+    try {
+      result = await fetch(`${API_ROOT}/info/current_state`)
+      .then((_res) => _res.json())
+    } catch (error) {
+      result = null
+    }
+    return result
+  }
 
   async tryContribute(
     session_id: string
