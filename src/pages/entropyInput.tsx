@@ -157,7 +157,7 @@ const EntropyInputPage = () => {
               <LoadingSpinner></LoadingSpinner>
               :
               <PrimaryButton
-                disabled={percentage !== 100}
+                disabled={percentage !== 100 || keyEntropy === ''}
                 onClick={handleSubmit}
               >
                 <Trans i18nKey="entropyInput.button">Submit</Trans>
