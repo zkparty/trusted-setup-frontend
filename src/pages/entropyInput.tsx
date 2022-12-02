@@ -82,10 +82,12 @@ const EntropyInputPage = forwardRef((_, bgRef: any) => {
   }
 
   const processGeneratedEntropy = async () => {
-    const entropy = mouseEntropy + keyEntropy + randomBytes(32)
-    const entropyAsArray = Uint8Array.from(
-      entropy.split('').map((x) => x.charCodeAt(0))
-    )
+    const entropyGenerated = mouseEntropy + keyEntropy
+    const entropyGeneratedAsBytes = Uint8Array.from( entropyGenerated.split('').map((x) => x.charCodeAt(0)) )
+    const entropyRandomAsBytes = randomBytes(32)
+    const entropyAsBytes = new Uint8Array(entropyGeneratedAsBytes.length + entropyRandomAsBytes.length)
+    entropyAsBytes.set(entropyGeneratedAsBytes)
+    entropyAsBytes.set(entropyRandomAsBytes, entropyGeneratedAsBytes.length)
     /*
     In order to reduce modulo-bias in the entropy (w.r.t. the curve order):
     it is expanded out (and mixed) to at least 48 bytes before being reduced mod curve order.
@@ -93,7 +95,7 @@ const EntropyInputPage = forwardRef((_, bgRef: any) => {
     the IRTF BLS signature specs: https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bls-signature-05#section-2.3
     */
     const salt = randomBytes(32)
-    const expandedEntropy = hkdf(sha256, entropyAsArray, salt, '', 48)
+    const expandedEntropy = hkdf(sha256, entropyAsBytes, salt, '', 48)
 
     const hex96 = expandedEntropy.reduce(
       (str, byte) => str + byte.toString(16).padStart(2, '0'),
