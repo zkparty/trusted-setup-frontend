@@ -169,13 +169,14 @@ const DoubleSignPage = () => {
     setError(null)
     setIsLoading(true)
     // eslint-disable-next-line no-restricted-globals
-    if (!self.crossOriginIsolated) {
-      console.log('refreshing...')
-      navigate(0)
-    } else {
-      console.log('not x-origin isolated')
+    // if (!self.crossOriginIsolated) {
+    //   console.log('refreshing...')
+    //   navigate(0)
+    // } else {
+      console.log(`${window.crossOriginIsolated ? "" : "not"} x-origin isolated`)
+      console.log(`secure context?: ${window.isSecureContext}`)
       await signPotPubkeysWithECDSA()
-    }
+    //}
   }
 
   return (

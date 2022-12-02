@@ -35,10 +35,10 @@ self.addEventListener("install", function () {
           newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
           newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
 
-          if (url && url.includes('double_sign')) {
-            newHeaders.delete("Cross-Origin-Embedder-Policy");
-            newHeaders.delete("Cross-Origin-Opener-Policy");
-          }
+          //if (url && url.includes('double_sign')) {
+            //newHeaders.delete("Cross-Origin-Embedder-Policy");
+            //newHeaders.set("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+          //}
 
           const moddedResponse = new Response(response.body, {
             status: response.status,
