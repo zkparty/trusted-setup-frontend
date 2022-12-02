@@ -146,7 +146,7 @@ const ContributingPage = () => {
                       <Trans i18nKey="contributing.description.contributing">
                         <Description>
                           You are now entrusted with the Powers of Tau. Your
-                          Secret, Sigil, and Sample are being fused with those
+                          Secret, Sigil and Sample are being fused with those
                           that came before.
                         </Description>
                         <Description>
@@ -160,7 +160,7 @@ const ContributingPage = () => {
                       <Description>
                         You have just successfully complete the contribution. Don’t
                         forget to return for the summoning ending & spread the
-                        words.
+                        word.
                       </Description>
                     </Trans>
                   ) : (

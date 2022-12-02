@@ -1,8 +1,6 @@
 import wasm from './wasm'
-import { toParams } from './utils'
 import { API_ROOT } from './constants'
 import { useEntropyStore } from './store/contribute'
-import { OAuthProvider, OAuthRes } from './store/auth'
 import type { ErrorRes, ContributeRes, TryContributeRes, RequestLinkRes } from './types'
 
 class APIClient {
@@ -15,23 +13,6 @@ class APIClient {
       }
     )
     return await res.json()
-  }
-
-  async getAuthorized(
-    provider: OAuthProvider,
-    code: string,
-    state: string
-  ): Promise<ErrorRes | OAuthRes> {
-    const res = await fetch(
-      `${API_ROOT}/auth/callback/${provider}?code=${code}&state=${state}`
-    )
-    let result: ErrorRes | OAuthRes = { error: '', code: '' }
-    try {
-      result = await res.json()
-    } catch (error) {
-      result = toParams(res.url.split('?')[1]) as ErrorRes | OAuthRes
-    }
-    return result
   }
 
   async getStatus() {}

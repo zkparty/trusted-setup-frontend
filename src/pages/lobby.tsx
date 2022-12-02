@@ -31,7 +31,7 @@ const LobbyPage = () => {
 
   useEffect(() => {
     async function poll(): Promise<void> {
-      // periodically post /slot/join
+      // periodically post /lobby/try_contribute
       const res = await tryContribute.mutateAsync()
       if (isSuccessRes(res) && res.hasOwnProperty('contributions')) {
         updateContribution(JSON.stringify(res))
