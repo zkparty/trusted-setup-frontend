@@ -42,8 +42,10 @@ const AnimatedCursor = forwardRef((_, bgRef: any) => {
   const cursorOuterRef_4 = useRef<any>()
 
   const onMouseMove = useCallback(({ clientX, clientY }: any) => {
-    bgRef!.current.style.setProperty('--cursorX', clientX + 'px')
-    bgRef!.current.style.setProperty('--cursorY', clientY + 'px')
+    if (bgRef && bgRef.current){
+      bgRef.current.style.setProperty('--cursorX', clientX + 'px')
+      bgRef.current.style.setProperty('--cursorY', clientY + 'px')
+    }
 
     let x = 0
     if (clientX > (width/2)){
@@ -60,20 +62,28 @@ const AnimatedCursor = forwardRef((_, bgRef: any) => {
     }
 
     setTimeout(() => {
-      cursorOuterRef_1!.current.style.top = y + 'px'
-      cursorOuterRef_1!.current.style.left = x + 'px'
+      if (cursorOuterRef_1 && cursorOuterRef_1.current){
+        cursorOuterRef_1.current.style.top = y + 'px'
+        cursorOuterRef_1.current.style.left = x + 'px'
+      }
     }, 90)
     setTimeout(() => {
-      cursorOuterRef_2!.current.style.top = y + 'px'
-      cursorOuterRef_2!.current.style.left = x + 'px'
+      if (cursorOuterRef_2 && cursorOuterRef_2.current){
+        cursorOuterRef_2.current.style.top = y + 'px'
+        cursorOuterRef_2.current.style.left = x + 'px'
+      }
     }, 180)
     setTimeout(() => {
-      cursorOuterRef_3!.current.style.top = y + 'px'
-      cursorOuterRef_3!.current.style.left = x + 'px'
+      if (cursorOuterRef_3 && cursorOuterRef_3.current){
+        cursorOuterRef_3.current.style.top = y + 'px'
+        cursorOuterRef_3.current.style.left = x + 'px'
+      }
     }, 270)
     setTimeout(() => {
-      cursorOuterRef_4!.current.style.top = y + 'px'
-      cursorOuterRef_4!.current.style.left = x + 'px'
+      if (cursorOuterRef_4 && cursorOuterRef_4.current){
+        cursorOuterRef_4.current.style.top = y + 'px'
+        cursorOuterRef_4.current.style.left = x + 'px'
+      }
     }, 360)
   }, [bgRef, height, width])
 
