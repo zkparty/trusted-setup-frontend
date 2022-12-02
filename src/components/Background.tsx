@@ -1,6 +1,6 @@
 import React, {forwardRef} from 'react'
 import styled, { css } from 'styled-components'
-import { CIRCLE_SIZE } from '../constants'
+import { CIRCLE_SIZE, BACKGROUND_DARKNESS } from '../constants'
 import useBackgroundVisibility from '../hooks/useBackgroundVisibility'
 import { Img, Bg, BgPulse, PizzaImg } from '../components/Image'
 import { ColorWrap } from '../components/Layout'
@@ -47,7 +47,7 @@ const Background = forwardRef(({ children }: Props, bgRef: any) => {
           visible={pizza === 'color' || pizza === 'animate'}
           rounding={pizza === 'animate'}
         />
-
+        <ColorWrap></ColorWrap>
         <Img src={InnerWhite} visible={inner === 'white'} style={{width: (CIRCLE_SIZE + 27)+'px', display: getDisplay(inner)}} />
         <Img src={InnerColor} visible={inner === 'color'} style={{width: (CIRCLE_SIZE + 27)+'px', display: getDisplay(inner)}} />
         <Img src={OuterWhite} visible={outer === 'white'} style={{width: (CIRCLE_SIZE + 87.5)+'px', display: getDisplay(outer)}} />
@@ -74,7 +74,7 @@ const Container = styled.div<{dark: string}>`
         circle 70px at var(--cursorX) var(--cursorY),
         rgb(255,252,187, 0.5) 20%,
         rgba(0,0,0,.3) 70%,
-        rgba(0,0,0,.65) 100%
+        rgba(0,0,0,${BACKGROUND_DARKNESS}) 100%
       )
     `
     :

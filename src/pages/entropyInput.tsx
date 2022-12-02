@@ -123,7 +123,7 @@ const EntropyInputPage = forwardRef((_, bgRef: any) => {
         <Container onMouseMove={handleCaptureMouseEntropy}>
           <AnimatedCursor ref={bgRef}/>
           <SnakeProgress onSetPlayer={setPlayer} />
-          <Wrap>
+          <Wrap style={{ cursor: 'auto' }}>
             <PageTitle>
               <Trans i18nKey="entropyInput.title">
                 Entropy <br /> Entry
