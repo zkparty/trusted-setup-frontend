@@ -3,10 +3,10 @@ import { toParams } from './utils'
 import { API_ROOT } from './constants'
 import { useEntropyStore } from './store/contribute'
 import { OAuthProvider, OAuthRes } from './store/auth'
-import type { ErrorRes, ContributeRes, TryContributeRes } from './types'
+import type { ErrorRes, ContributeRes, TryContributeRes, RequestLinkRes } from './types'
 
 class APIClient {
-  async getRequestLink() {
+  async getRequestLink(): Promise<RequestLinkRes | ErrorRes> {
     const path = window.location.href.replace(/#?\/signin/, '');
     const res = await fetch(
       `${API_ROOT}/auth/request_link?redirect_to=${encodeURIComponent(path)}`,

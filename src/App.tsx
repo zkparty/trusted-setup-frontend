@@ -67,14 +67,7 @@ function App() {
                 </RequireAuth>
               }
             />
-            <Route
-              path={ROUTES.LOBBY_FULL}
-              element={
-                <RequireAuth>
-                  <LobbyFullPage />
-                </RequireAuth>
-              }
-            />
+            <Route path={ROUTES.LOBBY_FULL} element={<LobbyFullPage />} />
             <Route
               path={ROUTES.LOBBY}
               element={

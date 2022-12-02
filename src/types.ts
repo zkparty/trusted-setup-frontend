@@ -20,6 +20,11 @@ export type ErrorRes = {
   message?: string
 }
 
+export type RequestLinkRes = {
+  eth_auth_url: string
+  github_auth_url: string
+}
+
 export type SubgroupCheckResWasm = {
   checkContribution: boolean | null
   checkNewContribution: boolean | null
