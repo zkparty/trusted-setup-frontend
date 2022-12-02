@@ -46,10 +46,7 @@ class APIClient {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${session_id}`
-      },
-      body: JSON.stringify({
-        session_id
-      })
+      }
     })
     return await res.json()
   }
