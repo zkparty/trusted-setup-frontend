@@ -1,5 +1,6 @@
 // Import libraries
 import { Trans, useTranslation } from 'react-i18next'
+import { textSerif } from '../style/utils'
 import styled from 'styled-components'
 // Import components
 import Logo from './Logo'
@@ -41,6 +42,9 @@ const Header = () => {
           </Status>
         </SequencerStatus>
       </LeftSection>
+      <CenterSection>
+        <Trans i18nKey="header.ceremony">TEST CEREMONY</Trans>
+      </CenterSection>
       <RightSection>
         <Address>
           {nickname}
@@ -69,6 +73,16 @@ const LeftSection = styled.div`
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+`
+
+const CenterSection = styled.div`
+  display: flex;
+  color: #3e70bc;
+  align-items: start;
+  font-size: ${FONT_SIZE.XXL};
+  ${textSerif}
+  font-weight: 800;
+  letter-spacing: 2px;
 `
 
 const Border = styled.span`
