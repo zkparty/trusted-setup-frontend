@@ -64,19 +64,10 @@ const Container = styled.div<{dark: string}>`
   color: ${({ theme }) => theme.text};
   height: 100vh;
   width: 100vw;
-
-  --cursorX: 30px;
-  --cursorY: 30px;
+  transition: background-color 1000ms ease-out;
 
   ${({ dark }) => dark !== 'hidden' ?
-    css`
-      background: radial-gradient(
-        circle 70px at var(--cursorX) var(--cursorY),
-        rgb(255,252,187, 0.5) 20%,
-        rgba(0,0,0,.3) 70%,
-        rgba(0,0,0,${BACKGROUND_DARKNESS}) 100%
-      )
-    `
+    css`background: rgba(0,0,0,${BACKGROUND_DARKNESS})`
     :
     ''
   }
