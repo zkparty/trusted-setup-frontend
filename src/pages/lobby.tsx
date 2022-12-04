@@ -32,32 +32,36 @@ const LobbyPage = () => {
   useEffect(() => {
     async function poll(): Promise<void> {
       // periodically post /lobby/try_contribute
-      const res = await tryContribute.mutateAsync()
-      if (isSuccessRes(res) && res.hasOwnProperty('contributions')) {
-        updateContribution(JSON.stringify(res))
-        navigate(ROUTES.CONTRIBUTING)
-      } else {
-        const resError = res as ErrorRes
-        switch (resError.code) {
-          case 'TryContributeError::RateLimited':
-            setError( t('error.tryContributeError.rateLimited') )
-            console.log(resError.error)
-            break
-          case 'TryContributeError::UnknownSessionId':
-            setError( t('error.tryContributeError.unknownSessionId') )
-            console.log(resError.error)
-            break
-          case 'TryContributeError::AnotherContributionInProgress':
-            console.log(resError.error)
-            break
-          default:
-            setError( t('error.tryContributeError.unknownError', resError) )
-            console.log(resError)
-            break
+      let timeToContribute = false
+      while (!timeToContribute){
+        const res = await tryContribute.mutateAsync()
+        if (isSuccessRes(res) && res.hasOwnProperty('contributions')) {
+          timeToContribute = true
+          updateContribution(JSON.stringify(res))
+          navigate(ROUTES.CONTRIBUTING)
+          return
+        } else {
+          const resError = res as ErrorRes
+          switch (resError.code) {
+            case 'TryContributeError::RateLimited':
+              setError( t('error.tryContributeError.rateLimited') )
+              console.log(resError.error)
+              break
+            case 'TryContributeError::UnknownSessionId':
+              setError( t('error.tryContributeError.unknownSessionId') )
+              console.log(resError.error)
+              break
+            case 'TryContributeError::AnotherContributionInProgress':
+              console.log(resError.error)
+              break
+            default:
+              setError( t('error.tryContributeError.unknownError', resError) )
+              console.log(resError)
+              break
+          }
+          //  try again after LOBBY_CHECKIN_FREUQUENCY
+          await sleep(LOBBY_CHECKIN_FREQUENCY)
         }
-        //  try again after LOBBY_CHECKIN_FREUQUENCY
-        await sleep(LOBBY_CHECKIN_FREQUENCY)
-        return await poll()
       }
     }
     poll()
