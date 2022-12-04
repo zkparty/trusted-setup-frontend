@@ -38,7 +38,7 @@ const BACKGROUND_DARKNESS = 0.7
 
 const API_ROOT = process.env.REACT_APP_API_ROOT || 'http://127.0.0.1:3000'
 const LOBBY_CHECKIN_FREQUENCY =
-  parseInt(process.env.REACT_APP_LOBBY_CHECKIN_FREQUENCY as string) || 25000
+  parseInt(process.env.REACT_APP_LOBBY_CHECKIN_FREQUENCY as string) || 30000
 const MIN_MOUSE_ENTROPY_SAMPLES =
   parseInt(process.env.REACT_APP_MIN_MOUSE_ENTROPY_SAMPLES as string) || 64
 
