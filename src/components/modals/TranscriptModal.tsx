@@ -61,7 +61,7 @@ const TranscriptModal = ({ record, onDeselect }: Props) => {
 
       <SubTitle>
         <Trans i18nKey="record.transcriptModal.potpubkeys">
-          Pot Pubkeys:
+          Powers of Tau Pubkeys:
         </Trans>
       </SubTitle>
       <ol>

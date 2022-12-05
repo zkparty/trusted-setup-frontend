@@ -67,7 +67,7 @@
         "title": "How long does it take to contribute?"
       },
       "q13": {
-        "content": "<p>In order to reduce Sybil attacks against the Ceremony, the Sequencer needs to verify that you are a (somewhat) unique human otherwise one person could submit many different contributions preventing others from getting a turn to contribute.</p><1><0>Sign in with Ethereum - This is the preferred choice as it something that all Ethereum community members should already have and it allows signatures for later verification of the transcript. Each account is required to have sent at least 3 transactions to prevent spinning up new accounts just for this ceremony.</0><1>Sign in with GitHub - This option is offered as an alternative for those who are more distant to the community but who'd still like to participate.</1></1>",
+        "content": "<p>In order to reduce Sybil attacks against the Ceremony, the Sequencer needs to verify that you are a (somewhat) unique human otherwise one person could submit many different contributions preventing others from getting a turn to contribute.</p><1><0>Sign in with Ethereum - This is the preferred choice as it something that all Ethereum community members should already have and it allows signatures for later verification of the contribution. Each account is required to have sent at least 3 transactions to prevent spinning up new accounts just for this ceremony.</0><1>Sign in with GitHub - This option is offered as an alternative for those who are more distant to the community but who'd still like to participate.</1></1>",
         "title": "Why do I need to sign in with Ethereum or GitHub?"
       },
       "q14": {
@@ -157,11 +157,11 @@
       "title": "Too much <br/> magic"
     },
     "record": {
-      "headers": "<0>Seq. #</0><1>Identifier specification</1><2>Signatures</2><3>Details</3>",
-      "loading": "Loading records...",
+      "headers": "<0>#</0><1>Participant ID</1><2>Signatures</2><3>Details</3>",
+      "loading": "Loading transcript...",
       "searchBar": "Search address, ENS, github handle, #1, ...",
       "button": "View",
-      "title": "Record",
+      "title": "Contributions Transcript",
       "stats": {
         "lobby": "Lobby size:",
         "contributions": "Contributions:",
@@ -170,7 +170,7 @@
       "transcriptModal": {
         "title": "Contribution details",
         "id": "Participant ID:",
-        "potpubkeys": "Pot Pubkeys:",
+        "potpubkeys": "Powers of Tau Pubkeys:",
         "bls": "BLS Signatures:",
         "ecdsa": "ECDSA Signature (optional):"
       },

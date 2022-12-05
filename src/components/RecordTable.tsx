@@ -24,7 +24,7 @@ const RecordTable = ({ data, isLoading }: Props) => {
   if (isLoading) {
     return (
       <div style={{ marginTop: '30px' }}>
-        <Trans i18nKey="record.loading">Loading records...</Trans>
+        <Trans i18nKey="record.loading">Loading transcript...</Trans>
         <LoadingSpinner></LoadingSpinner>
       </div>
     )
@@ -34,8 +34,8 @@ const RecordTable = ({ data, isLoading }: Props) => {
     <Container>
       <TableHead>
         <Trans i18nKey="record.headers">
-          <Col>Seq. #</Col>
-          <Col flex={4} width="0">Identifier specification</Col>
+          <Col>#</Col>
+          <Col flex={4} width="0">Participant ID</Col>
           <Col center>Signatures</Col>
           <Col width="80px" center>Details</Col>
         </Trans>

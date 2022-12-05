@@ -70,11 +70,11 @@
       "button": "Volver a Inicio"
     },
     "record": {
-      "headers": "<0>Seq. #</0><1>Identificador</1><2>Firmas</2><3>Detalles</3>",
-      "loading": "Cargando registros...",
+      "headers": "<0>#</0><1>Identificador</1><2>Firmas</2><3>Detalles</3>",
+      "loading": "Cargando manuscrito...",
       "searchBar": "Buscar wallet, ENS, usuario de github, #1, ...",
       "button": "Ver",
-      "title": "REGISTRO",
+      "title": "Manuscrito de Contribuciones",
       "stats": {
         "lobby": "Lobby:",
         "contributions": "Contribuciones:",
@@ -83,7 +83,7 @@
       "transcriptModal": {
         "title": "Detalle de la contribución",
         "id": "ID del participante:",
-        "potpubkeys": "Llaves públicas PoT:",
+        "potpubkeys": "Llaves públicas Powers of Tau:",
         "bls": "Firmas BLS:",
         "ecdsa": "Firma ECDSA (opcional):"
       },
