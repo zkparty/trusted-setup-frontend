@@ -35,11 +35,11 @@ const Pagination = ({ page, setPage, totalPages }: Props) => {
 
   return (
     <PaginationContainer>
-      <LeftArrowIcon onClick={() => setPage(prev => prev - 1)} style={{ visibility: page > 1 ? "visible" : "hidden" }}/>
+      <LeftArrowIcon onClick={() => setPage(prev => prev - 1)} style={{ visibility: page > 1 ? "visible" : "hidden", "cursor": "pointer" }}/>
       {pageNumbersToDisplay.map((pageNumber) => (
         <PageIndicator key={pageNumber} active={pageNumber === page} onClick={() => setPage(pageNumber)}>{pageNumber}</PageIndicator>
       ))}
-      <RightArrowIcon onClick={() => setPage(page + 1)} style={{ visibility: page < totalPages ? "visible" : "hidden" }}/>
+      <RightArrowIcon onClick={() => setPage(page + 1)} style={{ visibility: page < totalPages ? "visible" : "hidden", "cursor": "pointer" }}/>
     </PaginationContainer>
   )
 }
@@ -54,6 +54,7 @@ const PaginationContainer = styled.div`
 
 const PageIndicator = styled.button<{ active?: boolean }>`
   display: grid;
+  cursor: pointer;
   place-items: center;
   height: 2rem;
   min-width: 2rem;
