@@ -124,6 +124,7 @@
     "header": {
       "offline": "Offline",
       "online": "Online",
+      "title": "Test Ceremony",
       "sequencer": "Sequencer"
     },
     "landing": {

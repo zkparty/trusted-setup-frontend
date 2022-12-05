@@ -36,6 +36,8 @@ const BREAKPOINT = {
 
 const BACKGROUND_DARKNESS = 0.7
 
+const ENVIRONMENT = process.env.REACT_APP_ENVIRONMENT || 'testnet'
+
 const API_ROOT = process.env.REACT_APP_API_ROOT || 'http://127.0.0.1:3000'
 const LOBBY_CHECKIN_FREQUENCY =
   parseInt(process.env.REACT_APP_LOBBY_CHECKIN_FREQUENCY as string) || 30000
@@ -54,6 +56,7 @@ export {
   SPACE,
   RADIUS,
   BREAKPOINT,
+  ENVIRONMENT,
   BACKGROUND_DARKNESS,
   API_ROOT,
   LOBBY_CHECKIN_FREQUENCY,
