@@ -46,7 +46,7 @@ const Footer = () => {
 const Container = styled.footer`
   background-color: ${({ theme }) => theme.surface2};
   /* height: 360px; */
-  padding: 120px 10%;
+  padding: 60px 10%;
   display: flex;
   justify-content: space-between;
   gap: 2.5rem;
