@@ -1,3 +1,4 @@
+import ROUTES from '../routes'
 import { useState } from 'react'
 import styled from 'styled-components'
 import ErrorMessage from '../components/Error'
@@ -12,6 +13,8 @@ import {
 } from '../components/Layout'
 import EthImg from '../assets/eth.svg'
 import { useAuthStore } from '../store/auth'
+import { useNavigate } from 'react-router-dom'
+import { ErrorRes, RequestLinkRes } from '../types'
 import { Trans, useTranslation } from 'react-i18next'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
 import api from '../api'
@@ -19,19 +22,45 @@ import LoadingSpinner from '../components/LoadingSpinner'
 
 const SigninPage = () => {
   useTranslation()
+  const navigate = useNavigate()
   const { error } = useAuthStore()
+  const [showError, setShowError] = useState(error)
   const [isLoading, setIsLoading] = useState(false)
 
   const onSigninSIE = async () => {
-    setIsLoading(true);
+    setIsLoading(true)
     const requestLinks = await api.getRequestLink()
-    window.location.replace(requestLinks.eth_auth_url)
+    const code = (requestLinks as ErrorRes).code
+    switch (code) {
+      case undefined:
+        window.location.replace((requestLinks as RequestLinkRes).eth_auth_url)
+        break
+      case 'AuthErrorPayload::LobbyIsFull':
+        navigate(ROUTES.LOBBY_FULL)
+        return
+      default:
+        setShowError(JSON.stringify(requestLinks))
+        break
+    }
+    setIsLoading(false)
   }
 
   const onSigninGithub = async () => {
-    setIsLoading(true);
+    setIsLoading(true)
     const requestLinks = await api.getRequestLink()
-    window.location.replace(requestLinks.github_auth_url)
+    const code = (requestLinks as ErrorRes).code
+    switch (code) {
+      case undefined:
+        window.location.replace((requestLinks as RequestLinkRes).github_auth_url)
+        break
+      case 'AuthErrorPayload::LobbyIsFull':
+        navigate(ROUTES.LOBBY_FULL)
+        return
+      default:
+        setShowError(JSON.stringify(requestLinks))
+        break
+    }
+    setIsLoading(false)
   }
 
   return (
@@ -46,7 +75,7 @@ const SigninPage = () => {
               </Trans>
             </PageTitle>
             <TextSection>
-              {error && <ErrorMessage>{error}</ErrorMessage>}
+              {showError && <ErrorMessage>{showError}</ErrorMessage>}
               <Trans i18nKey="signin.description">
                 <Description>
                   The Ceremony requires souls of pure intent. Summoners show

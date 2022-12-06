@@ -19,6 +19,7 @@ import {
 } from '../store/contribute'
 import {
   INFURA_ID,
+  BACKGROUND_DARKNESS,
 } from '../constants'
 import ROUTES from '../routes'
 import { useState } from 'react'
@@ -106,7 +107,7 @@ const DoubleSignPage = () => {
     const client = new Client({
       modal: {
         theme: 'dark',
-        lightboxOpacity: 0.7,
+        lightboxOpacity: BACKGROUND_DARKNESS,
         providerOptions: {
           walletconnect: {
             package: WalletConnectProvider,

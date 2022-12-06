@@ -4,7 +4,12 @@
       "es": "Español",
       "en": "Inglés"
     },
-    "header": { "sequencer": "Sequenciador" },
+    "header": {
+      "offline": "Offline",
+      "online": "Online",
+      "title": "Ceremonia de Test",
+      "sequencer": "Sequenciador"
+    },
     "complete": {
       "title": "Dankshard <br/> está cerca",
       "description": "<0>¡Éxito! Una parte de usted se fusionó permanentemente con los demás en esta Ceremonia de Invocación.</0><1><0>Recuerde:</0>Esta es una Ceremonia en la red de prueba - asegúrese de regresar para la invocación completa de Dankshard.</1>",
@@ -57,7 +62,7 @@
     },
     "explanation": {
       "title": "PROTO-DANKSHARDING <br /> Y LA CEREMONIA",
-      "description": "<0>Esta configuracion de confianza es una Ceremonia multi-party diseñada para generar una SRS segura (structured reference string ó cadena de referencia estructurada) que se utilizará en el protocolo proto-danksharding. OK, vamos a ir más despacio y a hablar de estos términos con más detalle.</0><1>Proto-danksharding (también conocido como EIP-4844) es un cambio previsto en el protocolo de Ethereum que permite que los datos de las transacciones de los rollups (Layer 2) sean sucintamente representados en la Layer 1 (mainnet). Los beneficios son fees de transacción más bajos en la L2, mayor escalabilidad y ¡más accesibilidad a más personas!</1><2>La configuración de confianza es un paso preparatorio necesario para ciertos esquemas criptográficos como el esquema de compromiso polinomial KZG, que ser[a] utilizado en el proto-danksharding. En nuestro caso, el sujeto de confianza es un contribuyente que necesita ocultar con éxito su secreto para para que el resultado sea seguro.</2><3>En un Ceremonia multi-party: cada uno de los contribuyentes crea un secreto y ejecuta un cálculo para mezclarlo con las contribuciones anteriores y generar un resultado que se puede hacer público y pasar al siguiente contribuyente. Necesitamos protegernos contra los intentos de sabotear la ceremonia, por lo que necesitarás una cuenta de Ethereum o GitHub con un historial establecido.</3>",
+      "description": "<0>Esta configuración de confianza es una Ceremonia multi-party diseñada para generar una SRS segura (structured reference string ó cadena de referencia estructurada) que se utilizará en el protocolo proto-danksharding. OK, vamos a ir más despacio y a hablar de estos términos con más detalle.</0><1>Proto-danksharding (también conocido como EIP-4844) es un cambio previsto en el protocolo de Ethereum que permite que los datos de las transacciones de los rollups (Layer 2) sean sucintamente representados en la Layer 1 (mainnet). Los beneficios son fees de transacción más bajos en la L2, mayor escalabilidad y ¡más accesibilidad a más personas!</1><2>La configuración de confianza es un paso preparatorio necesario para ciertos esquemas criptográficos como el esquema de compromiso polinomial KZG, que será utilizado en el proto-danksharding. En nuestro caso, el sujeto de confianza es un contribuyente que necesita ocultar con éxito su secreto para para que el resultado sea seguro.</2><3>En una Ceremonia multi-party: cada uno de los contribuyentes crea un secreto y ejecuta un cálculo para mezclarlo con las contribuciones anteriores y generar un resultado que se puede hacer público y pasar al siguiente contribuyente. Necesitamos protegernos contra los intentos de sabotear la ceremonia, por lo que necesitarás una cuenta de Ethereum o GitHub con un historial establecido.</3>",
       "button": "Ver contribuciones"
     },
     "lobby": {
@@ -103,8 +108,8 @@
       "pastSubgroupChecksFailed": "El control de subgrupos falló en la contribución que recibiste. Por favor reportelo inmediatamente",
       "newSubgroupChecksFailed": "El control de subgrupos falló en la contribución que computó. Por favor revise su configuración e intente de nuevo",
       "tryContributeError": {
-        "rateLimited": "Su llamada al sequenciador se realizó muy temprano. Recuerde que hay un tiempo específico entre llamadas",
-        "unknownSessionId": "Ha tomado más tiempo del esperado en el lobby. Por favor recargue la página e inicie sesión con una cuenta diferente",
+        "rateLimited": "La llamada al sequenciador se realizó muy temprano. Publica el bug en Github",
+        "unknownSessionId": "Usuario no conocido. Por favor inicia nuevamente con una cuenta diferente",
         "anotherContributionInProgress": "Existe otra contribución siendo computada. Por favor espere su turno para contribuir",
         "unknownError": "Ocurrió un error desconocido: {{error}} . código: {{code}}"
       },

@@ -8,7 +8,7 @@ import LanguageSelector from './LanguageSelector'
 // Import image assets
 import { ReactComponent as Star } from '../assets/star.svg'
 // Import constants
-import { FONT_SIZE, BREAKPOINT } from '../constants'
+import { FONT_SIZE, BREAKPOINT, ENVIRONMENT } from '../constants'
 // Import hooks
 import useSequencerStatus from '../hooks/useSequencerStatus'
 import { useNavigate } from 'react-router-dom'
@@ -42,9 +42,13 @@ const Header = () => {
           </Status>
         </SequencerStatus>
       </LeftSection>
-      <CenterSection>
-        <Trans i18nKey="header.ceremony">TEST CEREMONY</Trans>
-      </CenterSection>
+      { ENVIRONMENT === 'testnet' ?
+        <CenterSection>
+          <Trans i18nKey="header.ceremony">TEST CEREMONY</Trans>
+        </CenterSection>
+        :
+        <></>
+      }
       <RightSection>
         <Address>
           {nickname}

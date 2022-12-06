@@ -24,8 +24,8 @@
     "contributing": {
       "button": "View my contribution",
       "description": {
-        "completed": "<0>You have just successfully complete the contribution. Don’t forget to return for the summoning ending & spread the words.</0>",
-        "contributing": "<0>You are now entrusted with the Powers of Tau. Your Secret, Sigil, and Sample are being fused with those that came before.</0><1>Rituals cannot be hastened - time given here creates timeless artifacts.</1>",
+        "completed": "<0>You have just successfully complete the contribution. Don’t forget to return for the summoning ending & spread the word.</0>",
+        "contributing": "<0>You are now entrusted with the Powers of Tau. Your Secret, Sigil and Sample are being fused with those that came before.</0><1>Rituals cannot be hastened - time given here creates timeless artifacts.</1>",
         "error": "There was an error {{error}}. Reload and try again"
       },
       "title": {
@@ -124,6 +124,7 @@
     "header": {
       "offline": "Offline",
       "online": "Online",
+      "title": "Test Ceremony",
       "sequencer": "Sequencer"
     },
     "landing": {
@@ -185,13 +186,13 @@
       "unlockWithGithub": "or unlock with Github"
     },
     "error": {
-      "notSameWallet": "Use the same wallet you used to signing with Ethereum",
+      "notSameWallet": "Use the same wallet you used to sign-in with Ethereum",
       "incorrectChainId": "Select the Ethereum Mainnet network in your signing wallet",
       "pastSubgroupChecksFailed": "Subgroup check failed in the contribution you received. Please report it immediately",
       "newSubgroupChecksFailed": "Subgroup check failed in your computed contribution. Please check your setup and try again",
       "tryContributeError": {
-        "rateLimited": "Your call to the sequencer came too early. Remember that there is a specific time interval between calls",
-        "unknownSessionId": "You might have taken more time than expected in the lobby. Please reload and sign in again with a different account",
+        "rateLimited": "The call to sequencer came too early. Submit the bug in Github",
+        "unknownSessionId": "Unknown user. Please sign in again with a different account",
         "anotherContributionInProgress": "There is another contribution being computed at the moment. Please wait for your turn to contribute",
         "unknownError": "There has been an unknown error: {{error}} . code: {{code}}"
       },
@@ -206,7 +207,7 @@
       "contributeError": {
         "notUsersTurn": "It is not your turn to upload your contribution",
         "invalidContribution": {
-          "unexpectedNumContributions": "An unexpected number of contributions have been send"
+          "unexpectedNumContributions": "An unexpected number of contributions have been sent"
         },
         "signature": {
           "signatureCreation": "There was a problem creating the signed receipt",

@@ -8,16 +8,15 @@ export type ContributeRes = {
   contribution: string | null
 }
 
-// TODO: API backend is sending session_id & other params
-export type GetAuthorizedRes = {
-  id_token: string
-  session_id: string
-}
-
 export type ErrorRes = {
   code: string
   error: string
   message?: string
+}
+
+export type RequestLinkRes = {
+  eth_auth_url: string
+  github_auth_url: string
 }
 
 export type SubgroupCheckResWasm = {
