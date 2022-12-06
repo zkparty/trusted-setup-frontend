@@ -17,8 +17,8 @@ const TranscriptModal = ({ record, onDeselect }: Props) => {
   const open = !!record
   useTranslation()
   useEffect(() => {
-    if (open)  document.body.style.overflow = 'hidden';
-    else  document.body.style.overflow = 'unset';
+    if (open)  document.body.style.overflowY = 'hidden';
+    else  document.body.style.overflowY = 'unset';
   }, [open])
 
   return (

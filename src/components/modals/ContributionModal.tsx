@@ -28,8 +28,8 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
   const [contributions, setContributions] = useState<any>(null)
   const [checksColor, setChecksColor] = useState<string>('')
   useEffect(() => {
-    if (open)  document.body.style.overflow = 'hidden';
-    else  document.body.style.overflow = 'unset';
+    if (open)  document.body.style.overflowY = 'hidden';
+    else  document.body.style.overflowY = 'unset';
 
     const receiptObj = JSON.parse(receipt!)
     const _witnesses = receiptObj['witness']
