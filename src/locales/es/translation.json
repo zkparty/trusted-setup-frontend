@@ -4,7 +4,12 @@
       "es": "Español",
       "en": "Inglés"
     },
-    "header": { "sequencer": "Sequenciador" },
+    "header": {
+      "offline": "Offline",
+      "online": "Online",
+      "title": "Ceremonia de Test",
+      "sequencer": "Sequenciador"
+    },
     "complete": {
       "title": "Dankshard <br/> está cerca",
       "description": "<0>¡Éxito! Una parte de usted se fusionó permanentemente con los demás en esta Ceremonia de Invocación.</0><1><0>Recuerde:</0>Esta es una Ceremonia en la red de prueba - asegúrese de regresar para la invocación completa de Dankshard.</1>",
