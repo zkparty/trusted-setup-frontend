@@ -158,7 +158,7 @@
       "title": "Too much <br/> magic"
     },
     "record": {
-      "headers": "<0>#</0><1>Participant ID</1><2>Signatures</2><3>Details</3>",
+      "headers": "<0>#</0><1>Participant ID</1><2>Signatures</2>",
       "loading": "Loading transcript...",
       "searchBar": "Search address, ENS, github handle, #1, ...",
       "button": "View",

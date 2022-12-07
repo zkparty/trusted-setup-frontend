@@ -46,7 +46,7 @@ const Canvas = styled.canvas`
   transition: all linear 0.1s;
   height: 30px;
   width: 30px;
-  margin-bottom: 5px;
+  margin-left: 5px;
 
   :hover {
     transform: translateY(-2px) scale(1.05);

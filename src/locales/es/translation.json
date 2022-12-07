@@ -75,7 +75,7 @@
       "button": "Volver a Inicio"
     },
     "record": {
-      "headers": "<0>#</0><1>Identificador</1><2>Firmas</2><3>Detalles</3>",
+      "headers": "<0>#</0><1>Identificador</1><2>Firmas</2>",
       "loading": "Cargando manuscrito...",
       "searchBar": "Buscar wallet, ENS, usuario de github, #1, ...",
       "button": "Ver",

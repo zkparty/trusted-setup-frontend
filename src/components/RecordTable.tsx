@@ -37,17 +37,15 @@ const RecordTable = ({ data, isLoading }: Props) => {
           <Col>#</Col>
           <Col flex={4} width="0">Participant ID</Col>
           <Col center>Signatures</Col>
-          <Col width="80px" center>Details</Col>
         </Trans>
       </TableHead>
       {data.map((record) => (
-        <Row key={record.position}>
+        <Row key={record.position} onClick={() => setSelectedTranscriptItem(record)}>
           <Col>{record.position}</Col>
           <Col flex={4} width="0">
             <Address>{record.participantId}</Address>
           </Col>
           <Col center>
-            <BlockieColumn>
               <BlockiesIdenticon
                 onClick={() => setSelectedSignatureItem(record.transcripts[0].potPubkeys)}
                 opts={{
@@ -64,8 +62,6 @@ const RecordTable = ({ data, isLoading }: Props) => {
                   scale: 5
                 }}
               />
-            </BlockieColumn>
-            <BlockieColumn>
               <BlockiesIdenticon
                 onClick={() => setSelectedSignatureItem(record.transcripts[2].potPubkeys)}
                 opts={{
@@ -82,12 +78,6 @@ const RecordTable = ({ data, isLoading }: Props) => {
                   scale: 5
                 }}
               />
-            </BlockieColumn>
-          </Col>
-          <Col width="80px" center>
-            <ViewButton onClick={() => setSelectedTranscriptItem(record)}>
-              <Trans i18nKey="record.button">View</Trans>
-            </ViewButton>
           </Col>
         </Row>
       ))}
@@ -118,15 +108,19 @@ const TableHead = styled.div`
 const Row = styled.div`
   display: flex;
   align-items: center;
-  height: 80px;
+  height: 70px;
+  padding-inline: 15px;
   border-bottom: solid 1px ${({ theme }) => theme.text};
   gap: 1rem;
-`
+  cursor: pointer;
 
-const BlockieColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-right: 5px;
+  :hover:not([disabled]) {
+    box-shadow: 1px 2px 6px 6px #b4b2b2;
+
+    border-bottom: none;
+    border-right: none;
+    border-left: none;
+  }
 `
 
 type ColProps = {
@@ -147,19 +141,6 @@ const Address = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-`
-
-const ViewButton = styled.button`
-  cursor: pointer;
-  color: ${({ theme }) => theme.text};
-  border: none;
-  background-color: transparent;
-  font-weight: 600;
-
-  transition: all 0.1s ease;
-  :hover {
-    border-bottom: solid 1px ${({ theme }) => theme.text};
-  }
 `
 
 export default RecordTable
