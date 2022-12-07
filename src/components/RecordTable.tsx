@@ -1,10 +1,8 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-
 import { FONT_SIZE } from '../constants'
 import { Record } from '../types'
 import BlockiesIdenticon from './Blockies'
-import SignatureModal from './modals/SignatureModal'
 import TranscriptModal from './modals/TranscriptModal'
 import { Trans, useTranslation } from 'react-i18next'
 import LoadingSpinner from './LoadingSpinner'
@@ -18,8 +16,6 @@ const RecordTable = ({ data, isLoading }: Props) => {
   useTranslation()
   const [selectedTranscriptItem, setSelectedTranscriptItem] =
     useState<null | Record>(null)
-  const [selectedSignatureItem, setSelectedSignatureItem] =
-    useState<null | string>(null)
 
   if (isLoading) {
     return (
@@ -46,48 +42,23 @@ const RecordTable = ({ data, isLoading }: Props) => {
             <Address>{record.participantId}</Address>
           </Col>
           <Col center>
+            {record.transcripts.map((transcript, i) => (
               <BlockiesIdenticon
-                onClick={() => setSelectedSignatureItem(record.transcripts[0].potPubkeys)}
+                key={transcript.potPubkeys + i}
+                onClick={() => {}}
                 opts={{
-                  seed: record.transcripts[0].potPubkeys,
+                  seed: transcript.potPubkeys,
                   size: 8,
                   scale: 5
                 }}
               />
-              <BlockiesIdenticon
-                onClick={() => setSelectedSignatureItem(record.transcripts[1].potPubkeys)}
-                opts={{
-                  seed: record.transcripts[1].potPubkeys,
-                  size: 8,
-                  scale: 5
-                }}
-              />
-              <BlockiesIdenticon
-                onClick={() => setSelectedSignatureItem(record.transcripts[2].potPubkeys)}
-                opts={{
-                  seed: record.transcripts[2].potPubkeys,
-                  size: 8,
-                  scale: 5
-                }}
-              />
-              <BlockiesIdenticon
-                onClick={() => setSelectedSignatureItem(record.transcripts[3].potPubkeys)}
-                opts={{
-                  seed: record.transcripts[3].potPubkeys,
-                  size: 8,
-                  scale: 5
-                }}
-              />
+            ))}
           </Col>
         </Row>
       ))}
       <TranscriptModal
         record={selectedTranscriptItem}
         onDeselect={() => setSelectedTranscriptItem(null)}
-      />
-      <SignatureModal
-        signature={selectedSignatureItem}
-        onDeselect={() => setSelectedSignatureItem(null)}
       />
     </Container>
   )
