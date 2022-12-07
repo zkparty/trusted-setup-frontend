@@ -21,6 +21,7 @@ import {
   INFURA_ID,
   PORTIS_ID,
   FORTMATIC_KEY,
+  BACKGROUND_DARKNESS,
 } from '../constants'
 import ROUTES from '../routes'
 import { useState } from 'react'
@@ -108,6 +109,7 @@ const DoubleSignPage = () => {
     const client = new Client({
       modal: {
         theme: 'dark',
+        lightboxOpacity: BACKGROUND_DARKNESS,
         providerOptions: {
           walletconnect: {
             package: WalletConnectProvider,
@@ -154,6 +156,13 @@ const DoubleSignPage = () => {
       setIsLoading(false)
       return
     }
+    const { chainId } = await provider.getNetwork();
+    if (chainId !== 1){
+      setError(t('error.incorrectChainId'))
+      setIsLoading(false)
+      return
+    }
+
     const [domain, types, message] = await buildEIP712Message()
     // TODO: method name might change in the future (no underscore)
     // https://docs.ethers.io/v5/api/signer/
@@ -169,14 +178,14 @@ const DoubleSignPage = () => {
     setError(null)
     setIsLoading(true)
     // eslint-disable-next-line no-restricted-globals
-    // if (!self.crossOriginIsolated) {
-    //   console.log('refreshing...')
-    //   navigate(0)
-    // } else {
+     if (self.crossOriginIsolated) {
+       console.log('refreshing...')
+       navigate(0)
+     } else {
       console.log(`${window.crossOriginIsolated ? "" : "not"} x-origin isolated`)
       console.log(`secure context?: ${window.isSecureContext}`)
       await signPotPubkeysWithECDSA()
-    //}
+    }
   }
 
   return (

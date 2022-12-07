@@ -2723,7 +2723,7 @@ export default function SnakeProgress({ onSetPlayer }) {
         left: '-9999px',
         right: '-9999px',
         margin: 'auto',
-        height: (CIRCLE_SIZE + 129)+'px',
+        height: (CIRCLE_SIZE + 120.5)+'px',
       }}
     />
   )

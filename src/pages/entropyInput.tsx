@@ -2,6 +2,7 @@ import {
   useState,
   MouseEventHandler,
   useEffect,
+  forwardRef,
   ChangeEventHandler
 } from 'react'
 import styled from 'styled-components'
@@ -27,6 +28,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { MIN_MOUSE_ENTROPY_SAMPLES, FONT_SIZE } from '../constants'
 import 'text-security'
 import LoadingSpinner from '../components/LoadingSpinner'
+import AnimatedCursor from '../components/AnimatedCursor'
 
 type Player = {
   play: () => void
@@ -34,7 +36,7 @@ type Player = {
   seek: (percent: number) => void
 }
 
-const EntropyInputPage = () => {
+const EntropyInputPage = forwardRef((_, bgRef: any) => {
   useTranslation()
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
@@ -80,10 +82,12 @@ const EntropyInputPage = () => {
   }
 
   const processGeneratedEntropy = async () => {
-    const entropy = mouseEntropy + keyEntropy + randomBytes(32)
-    const entropyAsArray = Uint8Array.from(
-      entropy.split('').map((x) => x.charCodeAt(0))
-    )
+    const entropyGenerated = mouseEntropy + keyEntropy
+    const entropyGeneratedAsBytes = Uint8Array.from( entropyGenerated.split('').map((x) => x.charCodeAt(0)) )
+    const entropyRandomAsBytes = randomBytes(32)
+    const entropyAsBytes = new Uint8Array(entropyGeneratedAsBytes.length + entropyRandomAsBytes.length)
+    entropyAsBytes.set(entropyGeneratedAsBytes)
+    entropyAsBytes.set(entropyRandomAsBytes, entropyGeneratedAsBytes.length)
     /*
     In order to reduce modulo-bias in the entropy (w.r.t. the curve order):
     it is expanded out (and mixed) to at least 48 bytes before being reduced mod curve order.
@@ -91,7 +95,7 @@ const EntropyInputPage = () => {
     the IRTF BLS signature specs: https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-bls-signature-05#section-2.3
     */
     const salt = randomBytes(32)
-    const expandedEntropy = hkdf(sha256, entropyAsArray, salt, '', 48)
+    const expandedEntropy = hkdf(sha256, entropyAsBytes, salt, '', 48)
 
     const hex96 = expandedEntropy.reduce(
       (str, byte) => str + byte.toString(16).padStart(2, '0'),
@@ -117,10 +121,11 @@ const EntropyInputPage = () => {
   return (
     <>
       <HeaderJustGoingBack />
-      <Over>
+      <Over style={{ cursor: 'none' }}>
         <Container onMouseMove={handleCaptureMouseEntropy}>
+          <AnimatedCursor ref={bgRef}/>
           <SnakeProgress onSetPlayer={setPlayer} />
-          <Wrap>
+          <Wrap style={{ cursor: 'auto' }}>
             <PageTitle>
               <Trans i18nKey="entropyInput.title">
                 Entropy <br /> Entry
@@ -169,7 +174,7 @@ const EntropyInputPage = () => {
       </Over>
     </>
   )
-}
+})
 
 const SubDesc = styled(Description)`
   margin: 0 0 15px;

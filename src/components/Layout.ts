@@ -34,12 +34,16 @@ export const SingleWrap = styled.div`
 
   width: ${CIRCLE_SIZE}px;
   height: ${CIRCLE_SIZE}px;
-  background-color: ${({ theme }) => theme.surface};
+  background-color: transparent;
   border-radius: 50%;
   margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+`
+
+export const ColorWrap = styled(SingleWrap)`
+  background-color: ${({ theme }) => theme.surface};
 `
 
 export const InnerWrap = styled.div`

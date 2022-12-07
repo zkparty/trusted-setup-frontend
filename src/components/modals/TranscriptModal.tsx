@@ -3,9 +3,11 @@ import { Record } from '../../types'
 import styled from 'styled-components'
 import { FONT_SIZE } from '../../constants'
 import { Bold, Description } from '../Text'
+import SignatureModal from './SignatureModal'
 import { textSerif } from '../../style/utils'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import BlockiesIdenticon from '../../components/Blockies'
 
 
 type Props = {
@@ -16,12 +18,14 @@ type Props = {
 const TranscriptModal = ({ record, onDeselect }: Props) => {
   const open = !!record
   useTranslation()
+  const [selectedSignatureItem, setSelectedSignatureItem] = useState<string|null>(null)
   useEffect(() => {
-    if (open)  document.body.style.overflow = 'hidden';
-    else  document.body.style.overflow = 'unset';
+    if (open)  document.body.style.overflowY = 'hidden';
+    else  document.body.style.overflowY = 'unset';
   }, [open])
 
   return (
+    <>
     <Modal
       isOpen={!!record}
       shouldCloseOnOverlayClick
@@ -61,14 +65,26 @@ const TranscriptModal = ({ record, onDeselect }: Props) => {
 
       <SubTitle>
         <Trans i18nKey="record.transcriptModal.potpubkeys">
-          Pot Pubkeys:
+          Powers of Tau Pubkeys:
         </Trans>
       </SubTitle>
-      <ol>
-        <li><Desc>{record?.transcripts[0].potPubkeys}</Desc></li>
-        <li><Desc>{record?.transcripts[1].potPubkeys}</Desc></li>
-        <li><Desc>{record?.transcripts[2].potPubkeys}</Desc></li>
-        <li><Desc>{record?.transcripts[3].potPubkeys}</Desc></li>
+      <ol style={{ paddingInlineStart: '20px' }}>
+        {record?.transcripts.map((transcript) => (
+          <li key={transcript.potPubkeys}>
+            <div style={{ display: 'flex' }}>
+              <BlockiesIdenticon
+                onClick={() => {setSelectedSignatureItem(transcript.potPubkeys)}}
+                hover={true}
+                opts={{
+                  seed: transcript.potPubkeys,
+                  size: 8,
+                  scale: 5
+                }}
+              />
+              <Desc>{transcript.potPubkeys}</Desc>
+            </div>
+          </li>
+        ))}
       </ol>
 
       <SubTitle>
@@ -76,11 +92,10 @@ const TranscriptModal = ({ record, onDeselect }: Props) => {
           BLS Signatures:
         </Trans>
       </SubTitle>
-      <ol>
-        <li><Desc>{record?.transcripts[0].blsSignature}</Desc></li>
-        <li><Desc>{record?.transcripts[1].blsSignature}</Desc></li>
-        <li><Desc>{record?.transcripts[2].blsSignature}</Desc></li>
-        <li><Desc>{record?.transcripts[3].blsSignature}</Desc></li>
+      <ol style={{ paddingInlineStart: '20px' }}>
+      {record?.transcripts.map((transcript) => (
+         <li key={transcript.potPubkeys}><Desc>{transcript.blsSignature}</Desc></li>
+      ))}
       </ol>
       {record?.participantEcdsaSignature ?
         <>
@@ -95,6 +110,11 @@ const TranscriptModal = ({ record, onDeselect }: Props) => {
         null
       }
     </Modal>
+    <SignatureModal
+      signature={selectedSignatureItem}
+      onDeselect={() => setSelectedSignatureItem(null)}
+    />
+    </>
   )
 }
 

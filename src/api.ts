@@ -1,12 +1,10 @@
 import wasm from './wasm'
-import { toParams } from './utils'
 import { API_ROOT } from './constants'
 import { useEntropyStore } from './store/contribute'
-import { OAuthProvider, OAuthRes } from './store/auth'
-import type { ErrorRes, ContributeRes, TryContributeRes } from './types'
+import type { ErrorRes, ContributeRes, TryContributeRes, RequestLinkRes, SequencerStatus, Transcript } from './types'
 
 class APIClient {
-  async getRequestLink() {
+  async getRequestLink(): Promise<RequestLinkRes | ErrorRes> {
     const path = window.location.href.replace(/#?\/signin/, '');
     const res = await fetch(
       `${API_ROOT}/auth/request_link?redirect_to=${encodeURIComponent(path)}`,
@@ -17,26 +15,33 @@ class APIClient {
     return await res.json()
   }
 
-  async getAuthorized(
-    provider: OAuthProvider,
-    code: string,
-    state: string
-  ): Promise<ErrorRes | OAuthRes> {
-    const res = await fetch(
-      `${API_ROOT}/auth/callback/${provider}?code=${code}&state=${state}`
-    )
-    let result: ErrorRes | OAuthRes = { error: '', code: '' }
+  async getStatus(): Promise<SequencerStatus> {
+    let result: SequencerStatus
     try {
-      result = await res.json()
+      result = await fetch(API_ROOT + '/info/status')
+      .then((_res) => _res.json())
+      result.status = 'Online'
     } catch (error) {
-      result = toParams(res.url.split('?')[1]) as ErrorRes | OAuthRes
+      result = {
+        lobby_size: 0,
+        num_contributions: 0,
+        sequencer_address: '0x000',
+        status: 'Offline',
+      }
     }
     return result
   }
 
-  async getStatus() {}
-
-  async getCurrentState() {}
+  async getCurrentState(): Promise<Transcript | null> {
+    let result: Transcript | null
+    try {
+      result = await fetch(`${API_ROOT}/info/current_state`)
+      .then((_res) => _res.json())
+    } catch (error) {
+      result = null
+    }
+    return result
+  }
 
   async tryContribute(
     session_id: string
@@ -46,10 +51,7 @@ class APIClient {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${session_id}`
-      },
-      body: JSON.stringify({
-        session_id
-      })
+      }
     })
     return await res.json()
   }
@@ -66,7 +68,7 @@ class APIClient {
     let contributionObj = null
     if (signature) {
       contributionObj = JSON.parse(contribution!)
-      contributionObj.ecdsa_signature = signature // TODO: change this when PR is merged https://github.com/ethereum/kzg-ceremony-sequencer/pull/127
+      contributionObj.ecdsaSignature = signature
       contributionObj = JSON.stringify(contributionObj)
     }
 

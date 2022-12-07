@@ -1,44 +1,36 @@
 {
   "translation": {
-    "es": "Spanish",
-    "en": "English",
-    "Audit report": "Audit report",
-    "Build by Ethereum Foundation, R&D team": {
-      " 2022": "Build by Ethereum Foundation, R&D team. 2022"
-    },
-    "Documentation": "Documentation",
-    "FAQ": "FAQ",
     "complete": {
       "button": "View your contribution",
       "description": "<0>Success! Echoes of you are permanently fused with the others in this Summoning Ceremony.</0>",
-      "title": "Dankshard <br/> draws near",
       "modal": {
-        "keys": "MY KEYS",
-        "timestamp": "Contribution completed at:",
         "acknowledgment": "SEQUENCER ACKNOWLEDGEMENT",
-        "receipt": "Contribution receipt:",
-        "SignedBy": "Signed by ",
-        "integrityChecks": "Integrity checks ",
-        "shareTwitter": "Share on Twitter",
-        "tweet": "I just contributed to the KZG Ceremony to scale Ethereum using {{identity}}. You can do it too in https://ceremony.ethereum.org @ethereum #KZGCeremony",
         "checks": {
-          "failedWitness": "Witness does not match PoT pubkeys",
           "failedComputeSignature": "Signature was not processed correctly",
           "failedSignature": "Sequencer signature does not contain sequencer address",
+          "failedWitness": "Witness does not match PoT pubkeys",
           "success": "Passed"
-        }
-      }
+        },
+        "integrityChecks": "Integrity checks ",
+        "keys": "MY KEYS",
+        "receipt": "Contribution receipt:",
+        "shareTwitter": "Share on Twitter",
+        "signedBy": "Signed by ",
+        "timestamp": "Contribution completed at:",
+        "tweet": "I just contributed to the test KZG Ceremony to scale Ethereum using {{identity}}"
+      },
+      "title": "Dankshard <br/> draws near"
     },
     "contributing": {
       "button": "View my contribution",
       "description": {
-        "contributing": "<0>You are now entrusted with the Powers of Tau. Your Secret, Sigil, and Sample are being fused with those that came before.</0><1>Rituals cannot be hastened - time given here creates timeless artifacts.</1>",
-        "completed": "<0>You have just succesfully complete the contribution. Don’t forget to return for the summoning ending & spread the words.</0>",
+        "completed": "<0>You have just successfully complete the contribution. Don’t forget to return for the summoning ending & spread the word.</0>",
+        "contributing": "<0>You are now entrusted with the Powers of Tau. Your Secret, Sigil and Sample are being fused with those that came before.</0><1>Rituals cannot be hastened - time given here creates timeless artifacts.</1>",
         "error": "There was an error {{error}}. Reload and try again"
       },
       "title": {
-        "contributing": "You have been<br/>called upon<br/>Now",
         "completed": "Contribution<br/>Complete",
+        "contributing": "You have been<br/>called upon<br/>Now",
         "error": "Something<br/>Went<br/>Wrong"
       }
     },
@@ -59,7 +51,7 @@
     },
     "faq": {
       "q1": {
-        "content": "<0>The Ethereum community is scaling to global accessibility through <2>Layer-2s (L2s)</2>. L2s increase the total blockspace available to users while still maintaining the security offered by the Ethereum Layer 1 (L1).</0><1>L2s need to publish a lot of data on Ethereum, and the network currently charges high fees for doing so. To fix this, Ethereum will create a new data layer, often referred to as <1>sharding</1>. This provides what is called \"data availability\" guarantees to L2 users. The L1 only holds the data for a limited time, which means we can scale the chain without sacrificing decentralization for smaller L1 node operators.</1><2>The current leading design for this is called Danksharding. The rollout for this will happen in several steps, with the first one being <2>EIP-4844</2>, also known as ProtoDanksharding. </2>",
+        "content": "<0>The Ethereum community is scaling to global accessibility through <2>Layer-2s (L2s)</2>. L2s increase the total block space available to users while still maintaining the security offered by the Ethereum Layer 1 (L1).</0><1>L2s need to publish a lot of data on Ethereum, and the network currently charges high fees for doing so. To fix this, Ethereum will create a new data layer, often referred to as <1>sharding</1>. This provides what is called \"data availability\" guarantees to L2 users. The L1 only holds the data for a limited time, which means we can scale the chain without sacrificing decentralization for smaller L1 node operators.</1><2>The current leading design for this is called Danksharding. The rollout for this will happen in several steps, with the first one being <2>EIP-4844</2>, also known as ProtoDanksharding. </2>",
         "title": "What is EIP-4844, a.k.a. Proto-Danksharding, and how does it relate to scaling Ethereum"
       },
       "q10": {
@@ -75,7 +67,7 @@
         "title": "How long does it take to contribute?"
       },
       "q13": {
-        "content": "<p>In order to reduce Sybil attacks against the Ceremony, the Sequencer needs to verify that you are a (somewhat) unique human otherwise one person could submit many different contributions preventing others from getting a turn to contribute.</p><1><0>Sign in with Ethereum - This is the preferred choice as it something that all Ethereum community members should already have and it allows signatures for later verification of the transcript. Each account is required to have sent at least 3 transactions to prevent spinning up new accounts just for this ceremony.</0><1>Sign in with GitHub - This option is offered as an alternative for those who are more distant to the community but who'd still like to participate.</1></1>",
+        "content": "<p>In order to reduce Sybil attacks against the Ceremony, the Sequencer needs to verify that you are a (somewhat) unique human otherwise one person could submit many different contributions preventing others from getting a turn to contribute.</p><1><0>Sign in with Ethereum - This is the preferred choice as it something that all Ethereum community members should already have and it allows signatures for later verification of the contribution. Each account is required to have sent at least 3 transactions to prevent spinning up new accounts just for this ceremony.</0><1>Sign in with GitHub - This option is offered as an alternative for those who are more distant to the community but who'd still like to participate.</1></1>",
         "title": "Why do I need to sign in with Ethereum or GitHub?"
       },
       "q14": {
@@ -107,7 +99,7 @@
         "title": "What does KZG stand for?"
       },
       "q6": {
-        "content": "<p>This interface will walk you through the following steps:</p><1><0>Log in with Ethereum or Github to prevent spam.</0><1>You provide random inputs from three different sources.</1><2>Ask the Sequencer if you may participate. When it's your turn, the Sequencer will send you the \"Powers of Tau\" data.</2><3>Your computer will mix your randomness into the Powers of Tau and when completed, send it back to the Sequencer.</3><4>The Sequencer will verify that your computer did everything correctly and pass the Powers of Tau on to the next participant.</4></1><p>After the ceremony is completed, you should return to verify that your contribution was indeed included in the final transcript.</p>",
+        "content": "<p>This interface will walk you through the following steps:</p><1><0>You provide random inputs from three different sources.</0><1>Log in with Ethereum or Github to prevent spam.</1><2>Ask the Sequencer if you may participate. When it's your turn, the Sequencer will send you the \"Powers of Tau\" data.</2><3>Your computer will mix your randomness into the Powers of Tau and when completed, send it back to the Sequencer.</3><4>The Sequencer will verify that your computer did everything correctly and pass the Powers of Tau on to the next participant.</4></1><p>After the ceremony is completed, you should return to verify that your contribution was indeed included in the final transcript.</p>",
         "title": "What happens during this Ceremony?"
       },
       "q7": {
@@ -123,9 +115,16 @@
         "title": "Couldn’t another commitment scheme without a \"trusted setup\" be used?"
       }
     },
+    "footer": {
+      "audit": "Audit report",
+      "copyright": "Build by Ethereum Foundation, R&D team. 2022",
+      "documentation": "Documentation",
+      "faq": "FAQ"
+    },
     "header": {
       "offline": "Offline",
       "online": "Online",
+      "title": "Test Ceremony",
       "sequencer": "Sequencer"
     },
     "landing": {
@@ -135,6 +134,19 @@
       "learn-more": "↓ or learn more below ↓",
       "learn-more-mobile": "↓ learn more below ↓",
       "title": "SUMMONING <br/> GUIDE"
+    },
+    "language": {
+      "de": "German",
+      "es": "Spanish",
+      "en": "English",
+      "fr": "French",
+      "hi": "Hindi",
+      "id": "Indonesian",
+      "ja": "Japanese",
+      "ko": "Korean",
+      "ro": "Romanian",
+      "ru": "Russian",
+      "zh": "Chinese"
     },
     "lobby": {
       "description": "<0>Your contribution is ready to be accepted by the Sequencer. Please leave this guide open in the background and we will add your contribution to the others soon.</0><1>Please leave this guide open and awake.</1>",
@@ -146,11 +158,11 @@
       "title": "Too much <br/> magic"
     },
     "record": {
-      "headers": "<0>Seq. #</0><1>Identifier specification</1><2>Signatures</2><3>Details</3>",
-      "loading": "Loading records...",
+      "headers": "<0>#</0><1>Participant ID</1><2>Signatures</2>",
+      "loading": "Loading transcript...",
       "searchBar": "Search address, ENS, github handle, #1, ...",
       "button": "View",
-      "title": "Record",
+      "title": "Contributions Transcript",
       "stats": {
         "lobby": "Lobby size:",
         "contributions": "Contributions:",
@@ -159,7 +171,7 @@
       "transcriptModal": {
         "title": "Contribution details",
         "id": "Participant ID:",
-        "potpubkeys": "Pot Pubkeys:",
+        "potpubkeys": "Powers of Tau Pubkeys:",
         "bls": "BLS Signatures:",
         "ecdsa": "ECDSA Signature (optional):"
       },
@@ -174,12 +186,13 @@
       "unlockWithGithub": "or unlock with Github"
     },
     "error": {
-      "notSameWallet": "Use the same wallet you used to signing with Ethereum",
-      "pastSubgroupChecksFailed": "Subgroup check failed in the contribution you received. Please report it inmmediately",
+      "notSameWallet": "Use the same wallet you used to sign-in with Ethereum",
+      "incorrectChainId": "Select the Ethereum Mainnet network in your signing wallet",
+      "pastSubgroupChecksFailed": "Subgroup check failed in the contribution you received. Please report it immediately",
       "newSubgroupChecksFailed": "Subgroup check failed in your computed contribution. Please check your setup and try again",
       "tryContributeError": {
-        "rateLimited": "Your call to the sequencer came too early. Remember that there is a specific time interval between calls",
-        "unknownSessionId": "You might have taken more time than expected in the lobby. Please reload and sign in again with a different account",
+        "rateLimited": "The call to sequencer came too early. Submit the bug in Github",
+        "unknownSessionId": "Unknown user. Please sign in again with a different account",
         "anotherContributionInProgress": "There is another contribution being computed at the moment. Please wait for your turn to contribute",
         "unknownError": "There has been an unknown error: {{error}} . code: {{code}}"
       },
@@ -188,13 +201,13 @@
         "invalidAuthCode": "The web application is using an invalid authorization code. Please report it on Github",
         "fetchUserDataError": "The sequencer could not get user data from the authorization service. Please report it on Github",
         "couldNotExtractUserData": "The sequencer could not extract user data from the authorization service. Please report it on Github",
-        "userCreatedAfterDeadline": "Your wallet does not have the minimum transaction quantity to pass our antisybil tests.",
+        "userCreatedAfterDeadline": "Your wallet does not have the minimum transaction quantity to pass our anti-Sybil tests.",
         "customError": "There has been an unknown error: {{error}}"
       },
       "contributeError": {
         "notUsersTurn": "It is not your turn to upload your contribution",
         "invalidContribution": {
-          "unexpectedNumContributions": "An unexpected number of contributions have been send"
+          "unexpectedNumContributions": "An unexpected number of contributions have been sent"
         },
         "signature": {
           "signatureCreation": "There was a problem creating the signed receipt",

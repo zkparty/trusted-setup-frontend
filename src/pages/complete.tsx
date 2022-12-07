@@ -36,7 +36,6 @@ const CompletePage = () => {
 
   useEffect(() => {
     (async () => {
-      // TODO: should user have a start checking button?
       const checks = await wasm.checkContributions(
         contribution!,
         newContribution!

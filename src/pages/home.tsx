@@ -1,10 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, forwardRef } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import Background from '../components/Background'
 import ROUTES, { MOBILE_FRIENDLY_ROUTES } from '../routes'
 import { isMobile } from '../utils'
 
-const HomePage = () => {
+const HomePage = forwardRef((_, bgRef: any) => {
   const location = useLocation()
   const navigate = useNavigate()
   useEffect(() => {
@@ -16,10 +16,10 @@ const HomePage = () => {
     }
   }, [location.pathname, navigate])
   return (
-    <Background>
+    <Background ref={bgRef}>
       <Outlet />
     </Background>
   )
-}
+})
 
 export default HomePage

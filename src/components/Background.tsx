@@ -1,13 +1,15 @@
-import React from 'react'
-import styled from 'styled-components'
-import { CIRCLE_SIZE } from '../constants'
+import React, {forwardRef} from 'react'
+import styled, { css } from 'styled-components'
+import { CIRCLE_SIZE, BACKGROUND_DARKNESS } from '../constants'
 import useBackgroundVisibility from '../hooks/useBackgroundVisibility'
 import { Img, Bg, BgPulse, PizzaImg } from '../components/Image'
+import { ColorWrap } from '../components/Layout'
 
 import PizzaInner from '../assets/crust.svg'
 import PizzaOuter from '../assets/fig.svg'
 import BgImg from '../assets/img-graphic-base.svg'
 import BgImgColor from '../assets/img-base-color.svg'
+import BgImgNoPiz from '../assets/img-base-no-piz.svg'
 import BgImgPulse from '../assets/img-graphic-pulse.svg'
 import InnerWhite from '../assets/inner-white.svg'
 import InnerColor from '../assets/inner-color.svg'
@@ -20,21 +22,22 @@ type Props = {
   children: React.ReactNode
 }
 
-const Background = ({ children }: Props) => {
-  const { bg, inner, outer, snake, pizza } = useBackgroundVisibility()
+const Background = forwardRef(({ children }: Props, bgRef: any) => {
+  const { bg, dark, inner, outer, snake, pizza } = useBackgroundVisibility()
   const getDisplay = (value: string): string => value === "hidden" ? "none" : "unset"
   const displayContainer = [bg, inner, outer, snake, pizza].filter((value) => getDisplay(value) !== "none").length > 0 ? "unset" : "none"
   return (
-    <Container>
+    <Container ref={bgRef} dark={dark}>
       <BgContainer style={{ display: displayContainer }}>
         <Bg src={BgImg} visible={bg === 'white' || bg === 'animate'} style={{display: getDisplay(bg)}} />
         {bg === 'animate' && (
           <BgPulse src={BgImgPulse} visible={bg === 'animate'} style={{display: getDisplay(bg)}} />
         )}
+        <Bg src={BgImgNoPiz} visible={bg === 'white-no-pizza'} style={{display: getDisplay(bg)}} />
         <Bg src={BgImgColor} visible={bg === 'color'} style={{display: getDisplay(bg)}} />
         <PizzaImg
           src={PizzaInner}
-          style={{width: (CIRCLE_SIZE + 434)+'px', display: getDisplay(pizza)}}
+          style={{width: (CIRCLE_SIZE + 405)+'px', display: getDisplay(pizza)}}
           visible={pizza === 'color' || pizza === 'animate'}
           rounding={pizza === 'animate'}
         />
@@ -44,22 +47,30 @@ const Background = ({ children }: Props) => {
           visible={pizza === 'color' || pizza === 'animate'}
           rounding={pizza === 'animate'}
         />
-        <Img src={InnerWhite} visible={inner === 'white'} style={{width: (CIRCLE_SIZE + 32)+'px', display: getDisplay(inner)}} />
-        <Img src={InnerColor} visible={inner === 'color'} style={{width: (CIRCLE_SIZE + 32)+'px', display: getDisplay(inner)}} />
-        <Img src={OuterWhite} visible={outer === 'white'} style={{width: (CIRCLE_SIZE + 95)+'px', display: getDisplay(outer)}} />
-        <Img src={OuterColor} visible={outer === 'color'} style={{width: (CIRCLE_SIZE + 95)+'px', display: getDisplay(outer)}} />
-        <Img src={SnakeWhite} visible={snake === 'white'} style={{width: (CIRCLE_SIZE + 85)+'px', display: getDisplay(snake)}} />
-        <Img src={SnakeColor} visible={snake === 'color'} style={{width: (CIRCLE_SIZE + 85)+'px', display: getDisplay(snake)}} />
+        <ColorWrap></ColorWrap>
+        <Img src={InnerWhite} visible={inner === 'white'} style={{width: (CIRCLE_SIZE + 27)+'px', display: getDisplay(inner)}} />
+        <Img src={InnerColor} visible={inner === 'color'} style={{width: (CIRCLE_SIZE + 27)+'px', display: getDisplay(inner)}} />
+        <Img src={OuterWhite} visible={outer === 'white'} style={{width: (CIRCLE_SIZE + 87.5)+'px', display: getDisplay(outer)}} />
+        <Img src={OuterColor} visible={outer === 'color'} style={{width: (CIRCLE_SIZE + 87.5)+'px', display: getDisplay(outer)}} />
+        <Img src={SnakeWhite} visible={snake === 'white'} style={{width: (CIRCLE_SIZE + 76.5)+'px', display: getDisplay(snake)}} />
+        <Img src={SnakeColor} visible={snake === 'color'} style={{width: (CIRCLE_SIZE + 76.5)+'px', display: getDisplay(snake)}} />
       </BgContainer>
       {children}
     </Container>
   )
-}
+})
 
-const Container = styled.div`
+const Container = styled.div<{dark: string}>`
   color: ${({ theme }) => theme.text};
   height: 100vh;
   width: 100vw;
+  transition: background-color 1000ms ease-out;
+
+  ${({ dark }) => dark !== 'hidden' ?
+    css`background: rgba(0,0,0,${BACKGROUND_DARKNESS})`
+    :
+    ''
+  }
 `
 
 const BgContainer = styled.div`

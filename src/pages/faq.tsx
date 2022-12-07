@@ -9,6 +9,7 @@ import Footer from '../components/Footer'
 import { PageTitle } from '../components/Text'
 import { Trans } from 'react-i18next'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const [from, to] = [START_DATE, END_DATE].map((date: string) =>
   new Date(date).toLocaleDateString()
 )
@@ -29,7 +30,7 @@ const faqQuestions = [
           <ExternalLink href="https://ethereum.org/en/layer-2/">
             Layer-2s (L2s)
           </ExternalLink>
-          . L2s increase the total blockspace available to users while still
+          . L2s increase the total block space available to users while still
           maintaining the security offered by the Ethereum Layer 1 (L1).
         </p>
         <p>
@@ -372,7 +373,7 @@ const faqQuestions = [
           <li>
             Sign in with Ethereum - This is the preferred choice as it something
             that all Ethereum community members should already have and it
-            allows signatures for later verification of the transcript. Each
+            allows signatures for later verification of the contribution. Each
             account is required to have sent at least 3 transactions to prevent
             spinning up new accounts just for this ceremony.
           </li>
