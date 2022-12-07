@@ -18,7 +18,9 @@ export type Store = {
 
 export type EntropyStore = {
   entropy: string | null
+  potPubkeys: string[] | null
   updateEntropy: (data: string | null) => void
+  updatePotPubkeys: (data: string[] | null) => void
 }
 
 export const useContributionStore = create<Store>((set, get) => ({
@@ -40,7 +42,9 @@ export const useEntropyStore = create<EntropyStore>()(
   persist(
     (set) => ({
       entropy: null,
+      potPubkeys: null,
       updateEntropy: (data: string | null) => set({ entropy: data }),
+      updatePotPubkeys: (data: string[] | null) => set({ potPubkeys: data }),
     }),
     {
       name: 'kzg-temporary-entropy',

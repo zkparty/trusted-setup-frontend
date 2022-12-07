@@ -31,6 +31,15 @@ const LobbyPage = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
+    // eslint-disable-next-line no-restricted-globals
+    if (!self.crossOriginIsolated) {
+      console.log('refreshing...')
+      navigate(0)
+    } else {
+      console.log(`${window.crossOriginIsolated ? "" : "not"} x-origin isolated`)
+      console.log(`secure context?: ${window.isSecureContext}`)
+    }
+
     async function poll(): Promise<void> {
       // periodically post /lobby/try_contribute
       let timeToContribute = false

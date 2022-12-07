@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import wasm from '../wasm'
 import { useNavigate } from 'react-router-dom'
 import { PrimaryButton } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
@@ -14,7 +13,6 @@ import {
 import {
   useContributionStore,
   useEntropyStore,
-  EntropyStore,
   Store,
 } from '../store/contribute'
 import {
@@ -24,7 +22,7 @@ import {
   BACKGROUND_DARKNESS,
 } from '../constants'
 import ROUTES from '../routes'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { providers } from "ethers"
 import { useAuthStore } from '../store/auth'
 import ErrorMessage from '../components/Error'
@@ -46,12 +44,21 @@ const DoubleSignPage = () => {
   const { nickname } = useAuthStore()
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const entropy = useEntropyStore(
-    (state: EntropyStore) => state.entropy
-  )
+  const { potPubkeys } = useEntropyStore()
   const updateECDSASignature = useContributionStore(
     (state: Store) => state.updateECDSASignature
   )
+
+  useEffect(() => {
+    // eslint-disable-next-line no-restricted-globals
+    if (self.crossOriginIsolated) {
+      console.log('refreshing...')
+      navigate(0)
+    } else {
+      console.log(`${window.crossOriginIsolated ? "" : "not"} x-origin isolated`)
+      console.log(`secure context?: ${window.isSecureContext}`)
+    }
+  }, [])
 
 
   const buildEIP712Message = async (): Promise<[
@@ -59,7 +66,6 @@ const DoubleSignPage = () => {
     Record<string, TypedDataField[]>,
     Record<string, any>
   ]> => {
-    const potPubkeys = await wasm.getPotPubkeys(entropy!)
     // built the message to be signed
     const numG1Powers = [4096, 8192, 16384, 32768]
     const potPubkeysObj = []
@@ -67,7 +73,7 @@ const DoubleSignPage = () => {
       const element = {
         numG1Powers: numG1Powers[i],
         numG2Powers: 65,
-        potPubkey: potPubkeys[i]
+        potPubkey: potPubkeys![i]
       }
       potPubkeysObj.push(element)
     }
@@ -177,15 +183,7 @@ const DoubleSignPage = () => {
   const handleClickSign = async () => {
     setError(null)
     setIsLoading(true)
-    // eslint-disable-next-line no-restricted-globals
-     if (self.crossOriginIsolated) {
-       console.log('refreshing...')
-       navigate(0)
-     } else {
-      console.log(`${window.crossOriginIsolated ? "" : "not"} x-origin isolated`)
-      console.log(`secure context?: ${window.isSecureContext}`)
-      await signPotPubkeysWithECDSA()
-    }
+    await signPotPubkeysWithECDSA()
   }
 
   return (
