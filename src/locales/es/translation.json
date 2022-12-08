@@ -22,6 +22,7 @@
         "signedBy": "Firmado por",
         "integrityChecks": "Pruebas de integridad",
         "shareTwitter": "Compartir en Twitter",
+        "downloadReceipt": "Descargar Recibo",
         "tweet": "Acabo de contribuir a la ceremonia KZG de prueba para escalar Ethereum usando {{identity}}",
         "checks": {
           "failedWitness": "Testigo no es igual a llave pública PoT",

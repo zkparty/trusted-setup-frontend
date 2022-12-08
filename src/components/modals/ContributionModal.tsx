@@ -76,6 +76,15 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
     window.open(link, '_blank');
   }
 
+  const handleClickDownloadReceipt = () => {
+    const encodedReceipt = encodeURIComponent(receipt!)
+    const jsonString = `data:text/json;chatset=utf-8,${encodedReceipt}`
+    const link = document.createElement("a");
+    link.href = jsonString;
+    link.download = "data.json";
+    link.click();
+  }
+
   return (
     <>
     <Modal
@@ -188,6 +197,11 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
         <PrimaryButton onClick={handleClickShareTwitter} style={{ width: '300px' }}>
           <Trans i18nKey="complete.modal.shareTwitter">
             Share on Twitter
+          </Trans>
+        </PrimaryButton>
+        <PrimaryButton onClick={handleClickDownloadReceipt} style={{ width: '300px' }}>
+          <Trans i18nKey="complete.modal.downloadReceipt">
+            Download Receipt
           </Trans>
         </PrimaryButton>
       </BottomSection>

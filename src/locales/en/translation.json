@@ -15,6 +15,7 @@
         "keys": "MY KEYS",
         "receipt": "Contribution receipt:",
         "shareTwitter": "Share on Twitter",
+        "downloadReceipt": "Download Receipt",
         "signedBy": "Signed by ",
         "timestamp": "Contribution completed at:",
         "tweet": "I just contributed to the test KZG Ceremony to scale Ethereum using {{identity}}"
