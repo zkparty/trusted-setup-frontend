@@ -67,6 +67,7 @@
     },
     "lobby": {
       "title": "A la espera de ser <br /> Enviada",
+      "lobby_size": "participantes en el lobby",
       "description": "<0>Su contribución está lista para ser aceptada por el secuenciador. Por favor, deje esta guía abierta y añadiremos su contribución a las otras en breve.</0><1>Deje esta guía abierta y este atento.</1>"
     },
     "lobbyFull": {
