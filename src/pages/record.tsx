@@ -116,6 +116,7 @@ const RecordPage = () => {
   // Handler functions
   const handleInput = (e: any) => {
     setSearchQuery(e.target.value)
+    setPage(1)
   }
 
   return (

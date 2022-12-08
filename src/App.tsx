@@ -14,7 +14,6 @@ import {
   SigninRedirectPage,
   FaqPage
 } from './pages'
-import ScrollToTop from './components/ScrollToTop'
 import RequireAuth from './components/helper/RequireAuth'
 import usePreloadAllImages from './hooks/usePreloadAllImages'
 import ROUTES from './routes'
@@ -48,7 +47,6 @@ function App() {
     <>
       <HashRouter>
         <GlobalStyle />
-        <ScrollToTop />
         <Routes>
           <Route path={ROUTES.ROOT} element={<HomePage ref={bgRef}/>}>
               <Route path={ROUTES.ROOT} element={

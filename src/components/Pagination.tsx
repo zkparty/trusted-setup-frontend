@@ -35,11 +35,41 @@ const Pagination = ({ page, setPage, totalPages }: Props) => {
 
   return (
     <PaginationContainer>
-      <LeftArrowIcon onClick={() => setPage(prev => prev - 1)} style={{ visibility: page > 1 ? "visible" : "hidden", "cursor": "pointer" }}/>
+      <LeftArrowIcon
+        style={{ visibility: page > 1 ? "visible" : "hidden", "cursor": "pointer" }}
+        onClick={() => {
+          setPage(prev => prev - 1)
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          })
+        }}
+      />
       {pageNumbersToDisplay.map((pageNumber) => (
-        <PageIndicator key={pageNumber} active={pageNumber === page} onClick={() => setPage(pageNumber)}>{pageNumber}</PageIndicator>
+        <PageIndicator
+          key={pageNumber}
+          active={pageNumber === page}
+          onClick={() => {
+            setPage(pageNumber)
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+            })
+          }}
+        >
+        {pageNumber}
+        </PageIndicator>
       ))}
-      <RightArrowIcon onClick={() => setPage(page + 1)} style={{ visibility: page < totalPages ? "visible" : "hidden", "cursor": "pointer" }}/>
+      <RightArrowIcon
+        style={{ visibility: page < totalPages ? "visible" : "hidden", "cursor": "pointer" }}
+        onClick={() => {
+          setPage(page + 1)
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          })
+        }}
+      />
     </PaginationContainer>
   )
 }

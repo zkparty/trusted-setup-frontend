@@ -72,6 +72,7 @@ const Container = styled.div`
 
 const TableHead = styled.div`
   display: flex;
+  padding-inline: 15px;
   height: 60px;
   gap: 1rem;
 `
