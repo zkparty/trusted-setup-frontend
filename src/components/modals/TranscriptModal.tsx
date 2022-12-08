@@ -68,22 +68,21 @@ const TranscriptModal = ({ record, onDeselect }: Props) => {
           Powers of Tau Pubkeys:
         </Trans>
       </SubTitle>
-      <ol style={{ paddingInlineStart: '20px' }}>
-        {record?.transcripts.map((transcript) => (
-          <li key={transcript.potPubkeys}>
-            <div style={{ display: 'flex' }}>
-              <BlockiesIdenticon
-                onClick={() => {setSelectedSignatureItem(transcript.potPubkeys)}}
-                hover={true}
-                opts={{
-                  seed: transcript.potPubkeys,
-                  size: 8,
-                  scale: 5
-                }}
-              />
-              <Desc>{transcript.potPubkeys}</Desc>
-            </div>
-          </li>
+      <ol style={{ paddingInlineStart: '20px', paddingLeft: '0px' }}>
+        {record?.transcripts.map((transcript, index) => (
+          <div style={{ display: 'flex', paddingBottom: '3px' }} key={transcript.potPubkeys}>
+            <BlockiesIdenticon
+              onClick={() => {setSelectedSignatureItem(transcript.potPubkeys)}}
+              hover={true}
+              opts={{
+                seed: transcript.potPubkeys,
+                size: 8,
+                scale: 5
+              }}
+            />
+            <span style={{ paddingRight: '7px', paddingLeft: '5px' }}>{(index+1) + '.'}</span>
+            <Desc>{transcript.potPubkeys}</Desc>
+          </div>
         ))}
       </ol>
 
