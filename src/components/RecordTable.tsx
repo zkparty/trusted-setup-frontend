@@ -1,11 +1,11 @@
 import { useState } from 'react'
+import { Record } from '../types'
 import styled from 'styled-components'
 import { FONT_SIZE } from '../constants'
-import { Record } from '../types'
 import BlockiesIdenticon from './Blockies'
-import TranscriptModal from './modals/TranscriptModal'
-import { Trans, useTranslation } from 'react-i18next'
 import LoadingSpinner from './LoadingSpinner'
+import { Trans, useTranslation } from 'react-i18next'
+import TranscriptModal from './modals/TranscriptModal'
 
 type Props = {
   data: Record[]
@@ -45,7 +45,6 @@ const RecordTable = ({ data, isLoading }: Props) => {
             {record.transcripts.map((transcript, i) => (
               <BlockiesIdenticon
                 key={transcript.potPubkeys + i}
-                onClick={() => {}}
                 opts={{
                   seed: transcript.potPubkeys,
                   size: 8,

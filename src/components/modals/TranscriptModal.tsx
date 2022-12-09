@@ -3,9 +3,8 @@ import { Record } from '../../types'
 import styled from 'styled-components'
 import { FONT_SIZE } from '../../constants'
 import { Bold, Description } from '../Text'
-import SignatureModal from './SignatureModal'
 import { textSerif } from '../../style/utils'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import BlockiesIdenticon from '../../components/Blockies'
 
@@ -19,7 +18,6 @@ type Props = {
 const TranscriptModal = ({ record, onDeselect, onChange }: Props) => {
   const open = !!record
   useTranslation()
-  const [selectedSignatureItem, setSelectedSignatureItem] = useState<string|null>(null)
   useEffect(() => {
     if (open)  document.body.style.overflowY = 'hidden';
     else  document.body.style.overflowY = 'unset';
@@ -86,8 +84,6 @@ const TranscriptModal = ({ record, onDeselect, onChange }: Props) => {
         {record?.transcripts.map((transcript, index) => (
           <div style={{ display: 'flex', paddingBottom: '3px' }} key={transcript.potPubkeys}>
             <BlockiesIdenticon
-              onClick={() => {setSelectedSignatureItem(transcript.potPubkeys)}}
-              hover={true}
               opts={{
                 seed: transcript.potPubkeys,
                 size: 8,
@@ -123,10 +119,6 @@ const TranscriptModal = ({ record, onDeselect, onChange }: Props) => {
         null
       }
     </Modal>
-    <SignatureModal
-      signature={selectedSignatureItem}
-      onDeselect={() => setSelectedSignatureItem(null)}
-    />
     </>
   )
 }
@@ -151,6 +143,9 @@ export const Arrow = styled.div`
 export const ArrowSection = styled.div`
   display: inline-flex;
   align-items: center;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 `
 
 export const Desc = styled(Description)`

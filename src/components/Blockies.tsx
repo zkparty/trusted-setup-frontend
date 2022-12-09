@@ -1,7 +1,9 @@
+import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 import { useEffect, useRef } from 'react'
-import styled, { css } from 'styled-components'
 import blockies from 'blockies-identicon'
 import { stringToColor } from '../utils'
+import ReactTooltip from 'react-tooltip'
 
 type Props = {
   opts: {
@@ -9,15 +11,12 @@ type Props = {
     size?: number
     scale?: number
   }
-  hover?: boolean
-  onClick: () => void
 }
 
 const BlockiesIdenticon = ({
   opts: { seed = 'foo', size = 15, scale = 3 },
-  hover = false,
-  onClick
 }: Props) => {
+  const { t } = useTranslation();
   const canvasRef = useRef<HTMLCanvasElement>(null!)
 
   useEffect(() => {
@@ -39,27 +38,23 @@ const BlockiesIdenticon = ({
     // eslint-disable-next-line
   }, [])
 
-  return <Canvas ref={canvasRef} onClick={onClick} hover={hover} />
+  return (
+    <>
+      <Canvas ref={canvasRef} data-tip={t("record.transcriptModal.potPubkeyTooltip")}/>
+      <ReactTooltip place="right" backgroundColor='black' effect="solid"/>
+    </>
+  )
 }
 
-const hoverCSS = css`
-  :hover {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0px 6px 6px 2px #00000033;
-  }
-`
-
-const Canvas = styled.canvas<{hover: boolean}>`
-  cursor: pointer;
+const Canvas = styled.canvas`
   border-radius: 6px;
   transition: all linear 0.1s;
   height: 30px;
   width: 30px;
   margin-right: 5px;
-  ${({ hover }) => hover ?
-    hoverCSS
-    :
-    ''
+  :hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0px 6px 6px 2px #00000033;
   }
 `
 

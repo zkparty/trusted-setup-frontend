@@ -25,7 +25,7 @@
         "downloadReceipt": "Descargar Recibo",
         "tweet": "Acabo de contribuir a la ceremonia KZG de prueba para escalar Ethereum usando {{identity}}",
         "checks": {
-          "failedWitness": "Testigo no es igual a llave pública PoT",
+          "failedWitness": "Testigo no es igual a llave pública Powers of Tau",
           "failedComputeSignature": "No se pudo procesar la firma",
           "failedSignature": "Firma del sequenciador no contiene wallet del sequenciador",
           "success": "Aprobadas"
@@ -92,7 +92,8 @@
         "id": "ID del participante:",
         "potpubkeys": "Llaves públicas Powers of Tau:",
         "bls": "Firmas BLS:",
-        "ecdsa": "Firma ECDSA (opcional):"
+        "ecdsa": "Firma ECDSA (opcional):",
+        "potPubkeyTooltip": "Tu llave pública Powers of Tau representa tu huella única asegurando Ethereum. Fue generada por tu secreto."
       },
       "signatureModal": {
         "title": "Llaves públicas PoT:"

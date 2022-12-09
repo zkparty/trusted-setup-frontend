@@ -131,7 +131,6 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
           </Desc>
           <BlockieRow>
             <BlockiesIdenticon
-              onClick={() => setSelectedSignatureItem(contributions[0]['potPubkey'])}
               opts={{
                 seed: contributions ? contributions[0]['potPubkey'] : null,
                 size: 8,
@@ -139,7 +138,6 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
               }}
             />
             <BlockiesIdenticon
-              onClick={() => setSelectedSignatureItem(contributions[1]['potPubkey'])}
               opts={{
                 seed: contributions ? contributions[1]['potPubkey'] : null,
                 size: 8,
@@ -147,7 +145,6 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
               }}
             />
             <BlockiesIdenticon
-              onClick={() => setSelectedSignatureItem(contributions[2]['potPubkey'])}
               opts={{
                 seed: contributions ? contributions[2]['potPubkey'] : null,
                 size: 8,
@@ -155,7 +152,6 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
               }}
             />
             <BlockiesIdenticon
-              onClick={() => setSelectedSignatureItem(contributions[3]['potPubkey'])}
               opts={{
                 seed: contributions ? contributions[3]['potPubkey'] : null,
                 size: 8,
