@@ -13,9 +13,10 @@ import BlockiesIdenticon from '../../components/Blockies'
 type Props = {
   record: Record | null
   onDeselect: () => void
+  onChange: (i: number) => void
 }
 
-const TranscriptModal = ({ record, onDeselect }: Props) => {
+const TranscriptModal = ({ record, onDeselect, onChange }: Props) => {
   const open = !!record
   useTranslation()
   const [selectedSignatureItem, setSelectedSignatureItem] = useState<string|null>(null)
@@ -23,6 +24,10 @@ const TranscriptModal = ({ record, onDeselect }: Props) => {
     if (open)  document.body.style.overflowY = 'hidden';
     else  document.body.style.overflowY = 'unset';
   }, [open])
+
+  const onArrowClick = (i: number) => {
+    onChange(record?.position! + i)
+  }
 
   return (
     <>
@@ -55,6 +60,15 @@ const TranscriptModal = ({ record, onDeselect }: Props) => {
           Contribution details
         </Trans>
       </Title>
+
+      <ArrowSection>
+      <SubTitle style={{ paddingRight: '10px' }}>
+        # {record?.position}
+      </SubTitle>
+      <Arrow onClick={() => onArrowClick(-1)}>{'<-'}</Arrow>
+      <Arrow onClick={() => onArrowClick(+1)}>{'->'}</Arrow>
+      </ArrowSection>
+      <br/>
 
       <SubTitle>
         <Trans i18nKey="record.transcriptModal.id">
@@ -123,6 +137,20 @@ export const Title = styled.h2`
 
 export const SubTitle = styled(Bold)`
   ${textSerif}
+`
+
+export const Arrow = styled.div`
+  cursor: pointer;
+  padding-right: 4px;
+
+  :hover {
+    color: #7dbcff;
+  }
+`
+
+export const ArrowSection = styled.div`
+  display: inline-flex;
+  align-items: center;
 `
 
 export const Desc = styled(Description)`

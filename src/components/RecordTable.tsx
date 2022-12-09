@@ -59,6 +59,7 @@ const RecordTable = ({ data, isLoading }: Props) => {
       <TranscriptModal
         record={selectedTranscriptItem}
         onDeselect={() => setSelectedTranscriptItem(null)}
+        onChange={(i: number) => setSelectedTranscriptItem(data[i])}
       />
     </Container>
   )
