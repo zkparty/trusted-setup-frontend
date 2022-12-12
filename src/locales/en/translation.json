@@ -136,16 +136,21 @@
       "title": "SUMMONING <br/> GUIDE"
     },
     "language": {
+      "ar": "Arabic",
+      "bn": "Bengali",
       "de": "German",
       "es": "Spanish",
       "en": "English",
       "fr": "French",
       "hi": "Hindi",
       "id": "Indonesian",
+      "it": "Italian",
       "ja": "Japanese",
       "ko": "Korean",
-      "ro": "Romanian",
+      "pt": "Portuguese",
       "ru": "Russian",
+      "sw": "Swahili",
+      "tr": "Turkish",
       "zh": "Chinese"
     },
     "lobby": {

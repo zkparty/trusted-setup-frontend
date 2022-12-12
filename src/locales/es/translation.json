@@ -1,8 +1,125 @@
 {
   "translation": {
-    "language": {
-      "es": "Español",
-      "en": "Inglés"
+    "complete": {
+      "button": "Vea su contribución",
+      "description": "<0>¡Éxito! Una parte de usted se fusionó permanentemente con los demás en esta Ceremonia de Invocación.</0><1><0>Recuerde:</0>Esta es una Ceremonia en la red de prueba - asegúrese de regresar para la invocación completa de Dankshard.</1>",
+      "modal": {
+        "acknowledgment": "RECONOCIMIENTO DEL SEQUENCIADOR",
+        "checks": {
+          "failedComputeSignature": "No se pudo procesar la firma",
+          "failedSignature": "Firma del sequenciador no contiene wallet del sequenciador",
+          "failedWitness": "Testigo no es igual a llave pública PoT",
+          "success": "Aprobadas"
+        },
+        "integrityChecks": "Pruebas de integridad",
+        "keys": "MIS LLAVES",
+        "receipt": "Recibo de la contribución:",
+        "shareTwitter": "Compartir en Twitter",
+        "signedBy": "Firmado por",
+        "timestamp": "Contribución completada el:",
+        "tweet": "Acabo de contribuir a la ceremonia KZG de prueba para escalar Ethereum usando {{identity}}"
+      },
+      "title": "Dankshard <br/> está cerca"
+    },
+    "contributing": {
+      "button": "Vea su contribución",
+      "description": {
+        "completed": "<0>Ha completado exitosamente la contribución. No olvide de regresar al final de la ceremonia para compartir la noticia.</0>",
+        "contributing": "<0>Le han confiado los Poderes de Tau. Su Secreto, Sello y Muestra serán fusionados con los que vinieron anteriormente.</0><1>Los rituales no deben ser apresurados - el tiempo invertido crea artefactos eternos.</1>",
+        "error": "Hubo un error {{error}}. Recarga e intenta de nuevo"
+      },
+      "title": {
+        "completed": "Contribución <br /> Completada",
+        "contributing": "Ha sido <br /> elegido <br /> ahora",
+        "error": "Algo <br /> Salió <br /> mal"
+      }
+    },
+    "doubleSign": {
+      "button": "Firmar",
+      "description": "<0>Esta firma vincula la contribución entrópica de cada Invocador a su dirección de Ethereum.</0>",
+      "title": "Vincule su <br /> Contribución"
+    },
+    "entropyInput": {
+      "button": "Enviar",
+      "description": "<0>La Ceremonia requiere tres entradas aleatorias de cada Invocador.</0><1><0>Secreto:</0> Una parte de usted en forma de texto, caracteres añadidos al azar. Pueden serunas palabras para el futuro, o el nombre de un ser querido.</1><2><0>Sello:</0> Recorra algunos elementos de la guía con el cursor - la interface capturará tu recorrido único.</2><3><0>Muestra:</0> Su navegador generara su propia aleatoriedad en segundo plano.</3>",
+      "title": "Ingresar <br /> Entropía"
+    },
+    "explanation": {
+      "button": "Ver contribuciones",
+      "description": "<0>Esta configuración de confianza es una Ceremonia multi-party diseñada para generar una SRS segura (structured reference string ó cadena de referencia estructurada) que se utilizará en el protocolo proto-danksharding. OK, vamos a ir más despacio y a hablar de estos términos con más detalle.</0><1>Proto-danksharding (también conocido como EIP-4844) es un cambio previsto en el protocolo de Ethereum que permite que los datos de las transacciones de los rollups (Layer 2) sean sucintamente representados en la Layer 1 (mainnet). Los beneficios son fees de transacción más bajos en la L2, mayor escalabilidad y ¡más accesibilidad a más personas!</1><2>La configuración de confianza es un paso preparatorio necesario para ciertos esquemas criptográficos como el esquema de compromiso polinomial KZG, que será utilizado en el proto-danksharding. En nuestro caso, el sujeto de confianza es un contribuyente que necesita ocultar con éxito su secreto para para que el resultado sea seguro.</2><3>En una Ceremonia multi-party: cada uno de los contribuyentes crea un secreto y ejecuta un cálculo para mezclarlo con las contribuciones anteriores y generar un resultado que se puede hacer público y pasar al siguiente contribuyente. Necesitamos protegernos contra los intentos de sabotear la ceremonia, por lo que necesitarás una cuenta de Ethereum o GitHub con un historial establecido.</3>",
+      "title": "PROTO-DANKSHARDING <br /> Y LA CEREMONIA"
+    },
+    "faq": {
+      "q1": {
+        "content": "<0>La comunidad Ethereum está escalando a la accesibilidad global a través de la <2>Capa 2 (L2)</2>. Las L2 incrementan el espacio total de bloque disponible para los usuarios manteniendo la seguridad que ofrece la capa 1 de Ethereum (L1).</0><2>La L2 necesita publicar muchos datos en Ethereum, y la red actualmente cobra altas comisiones por hacerlo. Para solucionar esto, Ethereum creará una nueva capa de datos, a menudo conocida como <2>fragmentación</2>. Esto proporciona lo que se llama garantía de «disponibilidad de datos» a los usuarios de L2. La L1 solo guarda los datos por un tiempo limitado, lo que significa que podemos escalar la cadena sin sacrificar la descentralización para los operadores de nodos L1 más pequeños.</2><1>El diseño actual predominante para esto se llama Danksharding. El despliegue para esto sucederá en varios pasos, siendo el primero <1>EIP-4844</1>, también conocido como ProtoDanksharding. </1>",
+        "title": "¿Qué es EIP-4844, también conocido como Proto-Danksharding, y cómo se relaciona con la escalabilidad en Ethereum?"
+      },
+      "q10": {
+        "content": "<p>La ceremonia tiene un supuesto de confianza «1-de-N», lo que significa que todo es seguro aunque solo fuera un único participante el que no desvelara su aportación secreta.</p><p>Es decir, que cada participante tendría que despojar el software que está utilizando para contribuir, obtener ese software para que se haga conocer el secreto, y luego colaborar con el resto de los participantes para reconstruir el secreto final.</p><p>Un modo de fallo más realista es un error común que filtra la aleatoriedad. Para combatirlo, se ha auditado este sitio y hay implementaciones alternativas del software de contribución construidas sobre pilas de software totalmente diferentes.</p><p>Por eso habrá miles de participantes que usarán diferentes piezas de software en distintos sistemas operativos para ayudar a prevenir puntos únicos de fallo tanto en las personas como en hardware/software.</p>",
+        "title": "¿Qué tiene que ir mal para que se comprometa la seguridad de la ceremonia?"
+      },
+      "q11": {
+        "content": "<p>¿Debe extraerse el secreto de algún modo de los Poderes de Tau? Un atacante podría hacer afirmaciones arbitrarias sobre los datos del EIP-4844. Esto efectivamente rompería todos los servicios y aplicaciones dependientes de los datos blob EIP-4844.</p>",
+        "title": "¿Qué ataques se pueden producir en esta situación?"
+      },
+      "q12": {
+        "content": "<p>En función de la cantidad de participantes que estén intentando contribuir al mismo tiempo, podría tener que esperar un rato a que le llegue su turno, pero cuando llegue su momento, solo le llevará menos de 3 minutos completar la contribución con un portátil estándar y una conexión a Internet.</p>",
+        "title": "¿Cuánto tiempo se tarda en contribuir?"
+      },
+      "q13": {
+        "content": "<p>Para reducir los ataques Sybil contra la Ceremonía, el secuenciador necesita verificar su condición de humano único, de lo contrario una persona podría presentar muchas contribuciones diferentes que impiden que otros tengan su turno para contribuir.</p><1><0>Iniciar sesión en Ethereum: Esta es la opción preferida, ya que es algo que todos los miembros de la comunidad Ethereum deberían tener y que permite firmas para la verificación posterior de la transcripción. Se requiere de cada cuenta que haya enviado al menos 3 transacciones para evitar abrir nuevas cuentas solo para esta ceremonia. </0><1>Iniciar sesión con GitHub: Esta opción se ofrece como una alternativa para aquellos que están más lejos de la comunidad pero a quienes les gustaría participar. </1></1>",
+        "title": "¿Por qué necesito iniciar sesión con Ethereum o GitHub?"
+      },
+      "q14": {
+        "content": "<p>Cuando esta ceremonia termine, debe revisar la transcripción de la misma (que se alojará en este sitio, así como estar ampliamente disponible en Internet). La transcripción contendrá todos los datos necesarios para verificar quién participó.</p><p>Si usó su dirección de Ethereum para iniciar sesión, entonces habrá pruebas criptográficas de que participó a través de un mensaje firmado desde su cuenta.</p>",
+        "title": "¿Cómo sé que mi contribución se ha incluido?"
+      },
+      "q15": {
+        "content": "<p>Una vez terminada la ceremonia, es importante que la comunidad verifique que funcionó correctamente. Para ello son necesarios dos componentes:</p><1><0>Verificar que usted o suficientes personas en las que confía participaron realmente, comprobando las identidades que aparecen en la transcripción. </0><1>Verificar que la transcripción se ha anotado correctamente, incluyendo todos los testimonios (pruebas de la contribución correcta) y que los Poderes de Tau son efectivamente poderes.</1></1>",
+        "title": "¿Cómo puedo verificar la salida final de la Ceremonia?"
+      },
+      "q16": {
+        "content": "<p>Mientras que la potencia de procesamiento de algunos dispositivos móviles es suficiente para participar en esta ceremonia, muchos navegadores móviles no manejan bien WASM, el bloqueo de pantalla y de otro modo apagar la CPU antes de que el cálculo pueda completarse; y por lo general, hay una gran diferencia entre los dispositivos que es difícil de tener en cuenta.</p>",
+        "title": "¿Por qué no puedo contribuir en un dispositivo móvil?"
+      },
+      "q2": {
+        "content": "<0>Las ceremonias utilizan entradas secretas para producir una salida de una manera que hace imposible revertir la ingeniería y descubrir los secretos iniciales. </0><1>He aquí un breve resumen de cómo funcionan: </p><2><0>Participante 1 elige un número aleatorio (por ejemplo 5) y luego ejecuta un cálculo en él.</0><p>La salida de ese cálculo se pasa al participante 2, que repite el paso 1 con su propia entrada secreta (p. ej., 3) y la mezcla con la salida del primer participante (por ejemplo, 5 x 3=15).</1><2>Esto se repite hasta que haya un número suficiente de participantes, en cuyo momento la última salida de la secuencia se convierte en la salida final.</2></2><p>A las ceremonias también se les denomina «Configuraciones de confianza», las más famosamente utilizadas por Zcash para arrancar sus características de privacidad. Sin embargo, también se puede utilizar para añadir mecanismos de escalabilidad, como está haciendo Ethereum.</p><4><0>Carl Beekhuizen Devcon Talk</0> en esta ceremonia explica de forma simple y en profundidad cómo y por qué funciona esta ceremonia. O puede explorar las especificaciones de <4>ceremonia</4> para entrar en el meollo de la cuestión y potencialmente escribir su propia implementación.</4>",
+        "title": "¿Qué es una Ceremonia de Invocación?"
+      },
+      "q3": {
+        "content": "<p>(Proto)-Danksharding requiere un esquema de compromiso para los datos subyacentes que sea rápido de probar y verificar (incluyendo dentro de SNARKS para L2 con sede en SNARK), al tiempo que tiene un pequeño tamaño de compromiso. El plan de compromiso polinómico que mejor cumple los criterios son los compromisos de KZG.</p><p>El esquema KZG se compromete a un polinomio evaluándolo con un valor secreto (específicamente, un punto de curva elíptica). El objetivo de esta ceremonia es construir este valor secreto de una manera que ninguna persona sepa lo que es este secreto y lo haga de una manera en la que mucha gente esté convencida de que nadie lo sepa ni siquiera en muchos años.</p>",
+        "title": "¿Por qué (Proto)-Danksharding necesita una Ceremonia?"
+      },
+      "q4": {
+        "content": "<p>Aquí mismo en este sitio, puede iniciar sesión con su dirección de Ethereum o cuenta de Github para participar, le llevará menos de 5 minutos de su tiempo.</p><1>Si desea una alternativa a esta interfaz, hay otras muchas CLI y páginas web disponibles (enlaces + IPFS). Después de este período de contribución pública, aceptaremos contribuciones especiales de las denominadas <2>implementaciones</2> o generacion de aleatoriedad única. Hay financiación está disponible para ambos casos, se compartirá más información en las próximas semanas.</1>",
+        "title": "¿Cómo puedo contribuir a la Ceremonia?"
+      },
+      "q5": {
+        "content": "<0>KZG viene de Kate, Zaverucha y Goldberg. Estos son los apellidos de los autores del artículo <2>«Compromisos de tamaño constante con los polinomios y sus aplicaciones»</2>, que describe el mecanismo criptográfico subyacente que EIP-4844 planea utilizar. </0><2>Sumérjase en la criptografía de los compromisos de KZG, <1>La publicación del blog de Dankrad Feist</1> es un buen punto de partida.</2>",
+        "title": "¿Qué significa KZG?"
+      },
+      "q6": {
+        "content": "<4>Esta interfaz le guiará a través de los siguientes pasos:</p><1><p>Proporcione entradas aleatorias de tres fuentes diferentes.</p><1>Inicie sesión con Ethereum o Github para evitar spam.</1><0>Pregunte al secuenciador si desea participar. Cuando sea su turno, el secuenciador le enviará los datos de «Poderes de Tau».</0><2>Su ordenador mezclará su aleatoriedad en los Poderes de Tau y cuando esté completado, la enviará de vuelta al secuenciador.</2><3>El secuenciador verificará que su ordenador ha hecho todo correctamente y pasará los Poderes de Tau al siguiente participante. </4></1><p>Una vez finalizada la ceremonia, debería volver a verificar que su contribución se haya incluido en la transcripción final.</2>",
+        "title": "¿Qué pasa durante esta Ceremonia?"
+      },
+      "q7": {
+        "content": "<p>El nombre «Poderes de Tau» proviene de la literatura de criptografía sobre configuraciones de confianza y SRS.</p><p>«Tau» proviene de la letra griega τ que es la abreviación de secreto al que se hace referencia en esta documentación.</p><1>«Poderes» hace referencia al hecho de que necesitamos no solo el secreto, sino también los poderes consecutivos del secreto. (p. ej., [1, τ, τ<1>2</1>, τ<3>3</3>,..., τ<5>2<2>12-1</2></5>])</1><p>Vale la pena señalar que los Poderes de Tau no son cifras en bruto, pero que están codificados como puntos de curva elíptica que «encripta» y por lo tanto los oculta.</p>",
+        "title": "¿Qué son los Poderes de Tau?"
+      },
+      "q8": {
+        "content": "<p>El secuenciador es un servidor alojado por Ethereum Foundation que coordina contribuciones. Mantiene un seguimiento de quién está intentando contribuir, les sirve los datos necesarios para descargar, y verifica cada contribución antes de enviar los datos al siguiente participante.</p><1>No tiene que confiar en el secuenciador para producir una salida final sesgada o no válida. La <2>transcripción</2> proporciona un registro verificable de todas las contribuciones al azar que pueda verificar por sí mismo.</1>",
+        "title": "¿Qué es el secuenciador y qué hace?"
+      },
+      "q9": {
+        "content": "<0>Usar cualquier otra cosa que no sea KZG (por ejemplo, IPA o SHA256) haría que el mapa de desfragmentación fuera mucho más difícil. Amplíe conocimientos de <2>Proto-Danksharding FAQ</2>.</0>",
+        "title": "¿No podría utilizarse otro esquema de compromiso sin una «configuración de confianza»?"
+      }
+    },
+    "footer": {
+      "audit": "Informe de auditoría",
+      "copyright": "Elaborado por Ethereum Foundation, equipo de I+D. 2022",
+      "documentation": "Documentación",
+      "faq": "Preguntas frecuentes"
     },
     "header": {
       "offline": "Offline",
@@ -10,69 +127,40 @@
       "title": "Ceremonia de Test",
       "sequencer": "Sequenciador"
     },
-    "complete": {
-      "title": "Dankshard <br/> está cerca",
-      "description": "<0>¡Éxito! Una parte de usted se fusionó permanentemente con los demás en esta Ceremonia de Invocación.</0><1><0>Recuerde:</0>Esta es una Ceremonia en la red de prueba - asegúrese de regresar para la invocación completa de Dankshard.</1>",
-      "button": "Vea su contribución",
-      "modal": {
-        "keys": "MIS LLAVES",
-        "timestamp": "Contribución completada el:",
-        "acknowledgment": "RECONOCIMIENTO DEL SEQUENCIADOR",
-        "receipt": "Recibo de la contribución:",
-        "signedBy": "Firmado por",
-        "integrityChecks": "Pruebas de integridad",
-        "shareTwitter": "Compartir en Twitter",
-        "tweet": "Acabo de contribuir a la ceremonia KZG de prueba para escalar Ethereum usando {{identity}}",
-        "checks": {
-          "failedWitness": "Testigo no es igual a llave pública PoT",
-          "failedComputeSignature": "No se pudo procesar la firma",
-          "failedSignature": "Firma del sequenciador no contiene wallet del sequenciador",
-          "success": "Aprobadas"
-        }
-      }
-    },
-    "contributing": {
-      "button": "Vea su contribución",
-      "description": {
-        "contributing": "<0>Le han confiado los Poderes de Tau. Su Secreto, Sello y Muestra serán fusionados con los que vinieron anteriormente.</0><1>Los rituales no deben ser apresurados - el tiempo invertido crea artefactos eternos.</1>",
-        "completed": "<0>Ha completado exitosamente la contribución. No olvide de regresar al final de la ceremonia para compartir la noticia.</0>",
-        "error": "Hubo un error {{error}}. Recarga e intenta de nuevo"
-      },
-      "title": {
-        "contributing": "Ha sido <br /> elegido <br /> ahora",
-        "completed": "Contribución <br /> Completada",
-        "error": "Algo <br /> Salió <br /> mal"
-      }
-    },
-    "doubleSign": {
-      "title": "Vincule su <br /> Contribución",
-      "description": "<0>Esta firma vincula la contribución entrópica de cada Invocador a su dirección de Ethereum.</0>",
-      "button": "Firmar"
-    },
-    "entropyInput": {
-      "title": "Ingresar <br /> Entropía",
-      "description": "<0>La Ceremonia requiere tres entradas aleatorias de cada Invocador.</0><1><0>Secreto:</0> Una parte de usted en forma de texto, caracteres añadidos al azar. Pueden serunas palabras para el futuro, o el nombre de un ser querido.</1><2><0>Sello:</0> Recorra algunos elementos de la guía con el cursor - la interface capturará tu recorrido único.</2><3><0>Muestra:</0> Su navegador generara su propia aleatoriedad en segundo plano.</3>",
-      "button": "Enviar"
-    },
     "landing": {
-      "title": "GUÍA DE <br/> INVOCACIÓN",
-      "description": "<0>Los susurros provenientes de las sombras hablan del poderoso espiritu Dankshard, que abrirá las puertas del próximo capítulo de la escalabilidad de Ethereum. Para invocar sus poderes, una Ceremonia necesita de su contribución. Esta guía iluminada te conducirá a través de los movimientos para completar el ritual.</0><1>La magia de las matemáticas te esperan: ¿está preparado para ser parte de esta historia?</1>",
       "button": "Comenzar",
-      "learn-more": "↓ o infórmese a continuación ↓"
+      "button-mobile": "Continuar en el escritorio",
+      "description": "<0>Los susurros provenientes de las sombras hablan del poderoso espiritu Dankshard, que abrirá las puertas del próximo capítulo de la escalabilidad de Ethereum. Para invocar sus poderes, una Ceremonia necesita de su contribución. Esta guía iluminada te conducirá a través de los movimientos para completar el ritual.</0><1>La magia de las matemáticas te esperan: ¿está preparado para ser parte de esta historia?</1>",
+      "learn-more": "↓ o infórmese a continuación ↓",
+      "learn-more-mobile": "↓ más información a continuación ↓",
+      "title": "GUÍA DE <br/> INVOCACIÓN"
     },
-    "explanation": {
-      "title": "PROTO-DANKSHARDING <br /> Y LA CEREMONIA",
-      "description": "<0>Esta configuración de confianza es una Ceremonia multi-party diseñada para generar una SRS segura (structured reference string ó cadena de referencia estructurada) que se utilizará en el protocolo proto-danksharding. OK, vamos a ir más despacio y a hablar de estos términos con más detalle.</0><1>Proto-danksharding (también conocido como EIP-4844) es un cambio previsto en el protocolo de Ethereum que permite que los datos de las transacciones de los rollups (Layer 2) sean sucintamente representados en la Layer 1 (mainnet). Los beneficios son fees de transacción más bajos en la L2, mayor escalabilidad y ¡más accesibilidad a más personas!</1><2>La configuración de confianza es un paso preparatorio necesario para ciertos esquemas criptográficos como el esquema de compromiso polinomial KZG, que será utilizado en el proto-danksharding. En nuestro caso, el sujeto de confianza es un contribuyente que necesita ocultar con éxito su secreto para para que el resultado sea seguro.</2><3>En una Ceremonia multi-party: cada uno de los contribuyentes crea un secreto y ejecuta un cálculo para mezclarlo con las contribuciones anteriores y generar un resultado que se puede hacer público y pasar al siguiente contribuyente. Necesitamos protegernos contra los intentos de sabotear la ceremonia, por lo que necesitarás una cuenta de Ethereum o GitHub con un historial establecido.</3>",
-      "button": "Ver contribuciones"
+    "language": {
+      "ar": "Árabe",
+      "bn": "Bengalí",
+      "de": "Alemán",
+      "es": "Español",
+      "en": "Inglés",
+      "fr": "Francés",
+      "hi": "Hindi",
+      "id": "Indonesio",
+      "it": "Italiano",
+      "ja": "Japonés",
+      "ko": "Coreano",
+      "pt": "Portugués",
+      "ru": "Ruso",
+      "sw": "Suajili",
+      "tr": "Turco",
+      "zh": "Chino"
     },
     "lobby": {
-      "title": "A la espera de ser <br /> Enviada",
-      "description": "<0>Su contribución está lista para ser aceptada por el secuenciador. Por favor, deje esta guía abierta y añadiremos su contribución a las otras en breve.</0><1>Deje esta guía abierta y este atento.</1>"
+      "description": "<0>Su contribución está lista para ser aceptada por el secuenciador. Por favor, deje esta guía abierta y añadiremos su contribución a las otras en breve.</0><1>Deje esta guía abierta y este atento.</1>",
+      "title": "A la espera de ser <br /> Enviada"
     },
     "lobbyFull": {
-      "title": "La suma de las partes.",
+      "button": "Volver a Inicio",
       "description": "<0>Por favor, deje esta guía abierta - su contribución se verá en breve.</0><1>Muchos otros están junto a usted en esta Ceremonia - su paciencia será recompensada.</1>",
-      "button": "Volver a Inicio"
+      "title": "La suma de las partes."
     },
     "record": {
       "headers": "<0>Seq. #</0><1>Identificador</1><2>Firmas</2><3>Detalles</3>",
@@ -97,14 +185,13 @@
       }
     },
     "signin": {
-      "title": "ABRIR <br /> EL CAMINO",
       "description": "<0>La Ceremonia requiere almas de intenciones puras. Los invocadores demuestran su integridad al desbloquear una dirección que tenga al menos tres transacciones enviadas.</0><1>Esto no envía fondos ni aprueba ningún contrato. Este método nos permite entregar un POAP después de la Ceremonia.</1>",
+      "title": "ABRIR <br /> EL CAMINO",
       "unlockWithEthereum": "Desbloquear con Ethereum <2></2>",
-      "unlockWithGithub": "ó desbloquear con Github <2></2>"
+      "unlockWithGithub": "ó desbloquear con Github"
     },
     "error":{
       "notSameWallet": "Utiliza la misma wallet que utilizaste para iniciar sesión con Ethereum",
-      "incorrectChainId": "Selecciona la red Ethereum Mainnet en la wallet que firma",
       "pastSubgroupChecksFailed": "El control de subgrupos falló en la contribución que recibiste. Por favor reportelo inmediatamente",
       "newSubgroupChecksFailed": "El control de subgrupos falló en la contribución que computó. Por favor revise su configuración e intente de nuevo",
       "tryContributeError": {
@@ -132,7 +219,8 @@
           "invalidSignature": "El sequenciador no pudo validar la firma"
         },
         "customError": "Ocurrió un error desconocido: {{error}}"
-      }
+      },
+      "incorrectChainId": "Selecciona la red Ethereum Mainnet en la wallet que firma"
     }
   }
 }
