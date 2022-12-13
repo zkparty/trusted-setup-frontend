@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { PrimaryButton } from '../Button'
 import BlockiesIdenticon from '../Blockies'
 import { useEffect, useState } from 'react'
+import { ENVIRONMENT } from '../../constants'
 import SignatureModal from './SignatureModal'
 import {Title, Desc } from './TranscriptModal'
 import { Trans, useTranslation } from 'react-i18next'
@@ -71,7 +72,10 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
   }, [signature, contribution, receipt, open])
 
   const handleClickShareTwitter = () => {
-    const tweet = t('complete.modal.tweet', {identity})
+    let tweet = t('complete.modal.tweet', {identity})
+    if ( ENVIRONMENT === 'testnet' ){
+      tweet = '**TEST**: ' + tweet
+    }
     const encoded = encodeURIComponent( tweet )
     const link = `https://twitter.com/intent/tweet?text=${encoded}`
     window.open(link, '_blank');
