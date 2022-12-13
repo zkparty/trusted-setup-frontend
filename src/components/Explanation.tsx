@@ -56,7 +56,7 @@ const Explanation = ({ refFromLanding }: any) => {
           </Description>
         </Trans>
       </SecondTextSection>
-      <FlowerAnimation></FlowerAnimation>
+      <FlowerAnimation inverse={true}></FlowerAnimation>
       </Container>
       <PrimaryButton onClick={onClickViewContributions}>
           <Trans i18nKey="explanation.button">View contributions</Trans>
