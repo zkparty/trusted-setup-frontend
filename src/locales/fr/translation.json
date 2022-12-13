@@ -1,0 +1,225 @@
+{
+  "translation": {
+    "complete": {
+      "button": "Voir votre contribution ",
+      "description": "<0>Et voilà ! Vos contributions ont fusionnée de manière permanente avec les autres contributions lors de cette Cérémonie d'invocation.</0>",
+      "modal": {
+        "acknowledgment": "INDICATION DU SÉQUENCEUR",
+        "checks": {
+          "failedComputeSignature": "La signature n'a pas été traitée correctement",
+          "failedSignature": "La signature du séquenceur ne contient pas l'adresse du séquenceur",
+          "failedWitness": "Le témoin ne correspond pas aux clés publiques PoT",
+          "success": "Validé"
+        },
+        "integrityChecks": "Contrôles d'intégrité ",
+        "keys": "MES CLÉS",
+        "receipt": "Reçu de contribution :",
+        "shareTwitter": "Partager sur Twitter",
+        "signedBy": "Signé par ",
+        "timestamp": "Contribution terminée à :",
+        "tweet": "Je viens de contribuer à la Cérémonie KZG pour faire évoluer Ethereum en utilisant {{identity}}. Vous pouvez faire de même vous aussi sur https://ceremony.ethereum.org @ethereum #KZGCeremony"
+      },
+      "title": "Dankshard <br/> se rapproche"
+    },
+    "contributing": {
+      "button": "Voir ma contribution",
+      "description": {
+        "completed": "<0>Vous avez apporté avec succès votre contribution. N'oubliez pas de revenir pour la fin de la cérémonie d'invocation et de passer le mot.</0>",
+        "contributing": "<0>Les Pouvoirs de la Tau sont désormais entre vos mains. Votre secret, Sigil, et votre Échantillon sont en train de fusionner avec ceux qui vous ont précédé.</0><1>Les rituels ne sauraient être brusqués - le temps donné ici crée des artefacts intemporels.</1>",
+        "error": "Une erreur est survenue {{error}}. Essayez à nouveau"
+      },
+      "title": {
+        "completed": "Contribution<br/>Terminée",
+        "contributing": "Vous êtes <br/>demandé<br/>Maintenant",
+        "error": "Quelque chose <br/>s'est mal<br/>passé"
+      }
+    },
+    "doubleSign": {
+      "button": "Signer",
+      "description": "<0>Cette signature lie la contribution entropique de chaque Invocateur à son adresse Ethereum.</0>",
+      "title": "Liez votre <br/> Contribution"
+    },
+    "entropyInput": {
+      "button": "Envoyer",
+      "placeholder": "Secret",
+      "description": "<0>La cérémonie nécessite trois apports aléatoires de chaque Invocateur. </0><1><0>Secret :</0> Un peu de vous au format texte, avec des caractères aléatoires ajoutés. Une note d'espoir pour l'avenir ou le nom d'une personne chère. </1><2><0>Sigil :</0> Suivez la trace de certains éléments du guide avec votre curseur - l'interface restituera votre chemin personnel. </2><3><0>Échantillon :</0> Votre navigateur va générer sa propre sélection aléatoire en arrière-plan.</3>",
+      "title": "Entrée <br/> Entropie"
+    },
+    "explanation": {
+      "button": "Voir les contributions",
+      "description": "<0>Ce Trusted Setup est une cérémonie multipartite qui vise à générer une SRS sécurisée (chaîne structurée de référence) à utiliser dans le protocole proto-danksharding. Ceci dit, commençons par examiner ces termes plus en détail.</0><1>Proto-danksharding (ou EIP-4844) est une modification prévue du protocole Ethereum qui permet de représenter succinctement les données de transaction à partir de rollups (Couche 2) sur la couche 1 (réseau principal). Avantages : des frais de transaction plus faibles sur la Couche 2, une plus grande évolutivité et un accès élargi à un plus grand nombre de personnes !</1><2>Le Trusted Setup est une étape préparatoire nécessaire pour que certains schémas cryptographiques, tels que le schéma d'engagement polynomial KZG, puissent être utilisés dans le proto-dankharding. Dans notre cas, l'hypothèse de confiance de départ est qu'un contributeur doit réussir à dissimuler son secret pour que le résultat soit sécurisé.</2><3>C'est une cérémonie multipartite : Les contributeurs créent chacun un secret et exécutent un calcul pour le mélanger aux contributions précédentes et générer un résultat qui peut être rendu public et transmis au contributeur suivant. Nous devons nous protéger contre les tentatives de contrôle de la cérémonie. Vous aurez donc besoin d'un compte Ethereum ou GitHub avec un historique établi.</3>",
+      "title": "PROTO-DANKSHARDING <br/> ET CÉRÉMONIE"
+    },
+    "faq": {
+      "q1": {
+        "content": "<0>La communauté Ethereum s'ouvre actuellement à l'accessibilité mondiale à travers le lancement de réseaux de <2>Couche-2 (L2)</2>. Les L2 augmentent l'espace de blocs total mis à la disposition des utilisateurs tout en préservant les garanties de sécurité offertes par la couche 1 d'Ethereum (L1).</0><2>Les L2 doivent publier beaucoup de données sur Ethereum, et le réseau facture actuellement des frais élevés pour ce faire. Pour résoudre ce problème, Ethereum créera une nouvelle couche de données, souvent appelée <2>sharding</2>. Le sharding garantit une « dsponibilité des données » aux utilisateurs L2. Le L1 ne conserve les données que pendant une durée limitée, ce qui signifie que nous pouvons faire évoluer la chaîne sans compromettre la décentralisation pour les petits opérateurs de noeuds L1.</2><1>Le design actuel est appelé Danksharding. Le déploiement de celui-ci se fera en plusieurs étapes, la première étant l'<1>EIP-4844</1>, également connu sous le nom de ProtoDanksharding. </1>",
+        "title": "Qu'est-ce que l'EIP-4844 (Proto-Danksharding) et quel est son rapport avec l'évolution d'Ethereum ?"
+      },
+      "q10": {
+        "content": "<p>La cérémonie repose sur une hypothèse de confiance « 1/N », ce qui signifie qu'il suffit qu'un seul participant à la cérémonie n'ait pas révélé sa contribution secrète pour que l'ensemble soit sécurisé.</p><p>En d'autres termes, chaque participant doit démonter le logiciel qu'il utilise pour contribuer, faire en sorte que ce logiciel lui révèle un secret, puis s'associer à tous les autres participants pour reconstituer le secret final.</p><p>Les contributions aléatoires peuvent fuiter en raison d'un bug courant lié à des défaillances réalistes. Pour éviter cela, ce site a été audité et il existe des implémentations alternatives du logiciel collaboratif conçu dans des environnement logiciels totalement différents.</p><p>C'est pourquoi il y aura des milliers de participants qui utiliseront des logiciels différents sur différents systèmes d'exploitation pour contribuer à prévenir des points de défaillance spécifiques à la fois chez les personnes et au niveau du matériel/logiciel.</p>",
+        "title": "Qu'est-ce qui peut compromettre la sécurité de la cérémonie ?"
+      },
+      "q11": {
+        "content": "<p>Si le secret devait échapper d'une manière ou d'une autre aux Pouvoirs de Tau, un attaquant pourrait faire des déclarations arbitraires sur les données de l'EIP-4844. Cela aurait pour effet d'interrompre tous les services et applications qui dépendent des données blob de l'EIP-4844.</p>",
+        "title": "Quelles sont les attaques possibles dans cette situation ?"
+      },
+      "q12": {
+        "content": "<p>Selon le nombre d'autres personnes qui essaient de contribuer en même temps, vous pourriez avoir à attendre un certain temps avant que votre tour de contribuer ne vienne. Une fois votre tour venu, cela ne devrait prendre que moins de 3 minutes pour apporter sa contribution avec un ordinateur portable standard et une connexion Internet.</p>",
+        "title": "Combien de temps faut-il pour apporter sa contribution ?"
+      },
+      "q13": {
+        "content": "<0>Afin de réduire les attaques Sybil contre la cérémonie, le Séquenceur doit vérifier que vous êtes un être humain (quelque peu) unique, sinon une seule et même personne pourrait soumettre de nombreuses contributions différentes, empêchant ainsi les autres de contribuer à leur tour.</p><1><p>Connectez-vous avec Ethereum - C'est le moyen le plus simple dans la mesure où tous les membres de la communauté Ethereum devraient déjà disposer d'un accès, lequel donne lieu à des signatures pour vérification ultérieure de la transcription. Chaque compte doit avoir envoyé au moins 3 transactions pour éviter que de nouveaux comptes doivent être créés juste pour cette cérémonie.</0><1>Se connecter avec GitHub - Cette option est une alternative pour ceux qui sont moins proches de la communauté mais qui souhaitent tout de même participer.</1></1>",
+        "title": "Pourquoi dois-je me connecter avec Ethereum ou GitHub ?"
+      },
+      "q14": {
+        "content": "<p>Une fois la cérémonie terminée, vous devrez examiner la transcription de la cérémonie (qui sera hébergée sur ce site et largement disponible sur Internet). Cette transcription contiendra toutes les données nécessaires pour vérifier qui a participé.</p><p>Si vous avez utilisé votre adresse Ethereum pour vous connecter, il y aura une preuve cryptographique de votre participation via un message signé en provenance de votre compte.</p>",
+        "title": "Comment puis-je savoir si ma contribution a été incluse ?"
+      },
+      "q15": {
+        "content": "<0>Une fois la cérémonie terminée, il est important que la communauté vérifie que la cérémonie s'est déroulée correctement. Cela se fait en deux temps :</p><1><p>Vérifiez que vous-même ou un nombre suffisant de personnes de confiance ont effectivement participé, en vous assurant que leurs identités apparaissent dans la transcription.</0><1>Vérifiez que la transcription a été correctement réalisée en incluant tous les témoins (preuves de contribution appropriée) et que les Pouvoirs de Tau sont bien des pouvoirs.</1></1>",
+        "title": "Comment puis-je vérifier le résultat final issu de la cérémonie ?"
+      },
+      "q16": {
+        "content": "<p>Bien que la puissance de traitement de certains appareils mobiles soit suffisante pour participer à cette cérémonie, de nombreux navigateurs mobiles ne prennent pas bien en charge WASM, verrouillent l'écran et ralentissent le processeur avant que le calcul ne puisse être terminé. De plus, il y a généralement de nombreux écarts entre les appareils, qui sont difficiles à prendre en compte.</p>",
+        "title": "Pourquoi ne puis-je pas apporter ma contribution sur un appareil mobile ?"
+      },
+      "q2": {
+        "content": "<0>Les cérémonies utilisent des entrées secrètes pour produire un résultat d'une manière qui rend impossible la rétro-ingénierie et la découverte des secrets initiaux. </0><1>Voici un résumé très bref de leur fonctionnement : </p><2><0>Le Participant 1 choisit un nombre aléatoire (par exemple 5. puis effectue un calcul avec celui-ci.</0><p>Le résultat de ce calcul est transmis au participant 2, qui répète l'étape 1 avec sa propre entrée secrète (par exemple 3) et la mélange au résultat du premier participant (par exemple 5x3=15).</1><2>Ceci se répète jusqu'à ce qu'il y ait un nombre suffisant de participants, auquel cas le dernier résultat de la séquence devient le résultat final.</2></2><p>Les cérémonies, également été appelées « Trusted Setups », sont utilisées notamment par Zcash pour activer les fonctions de confidentialité. Elles peuvent cependant également être utilisées pour ajouter des mécanismes d'évolutivité, comme le fait Ethereum.</p><4><0>Dans le cadre de son intervention Devcon, Carl Beekhuizen</0> explique comment et pourquoi cette cérémonie fonctionne. Vous pouvez également explorer les <4>spécifications de la cérémonie</4> pour vraiment creuser dans les détails, et potentiellement écrire votre propre implémentation.</4>",
+        "title": "Qu'est-ce qu'une Cérémonie d'invocation ?"
+      },
+      "q3": {
+        "content": "<p>Le (proto)-Danksharding nécessite un schéma d'engagement pour les données sous-jacentes qui soit rapide à prouver et à vérifier (y compris dans SNARKS pour les L2 basées sur SNARK) tout en ayant une petite taille d'engagement. Le schéma d'engagement polynomial qui répond le mieux à ces critères est celui des engagements KZG.</p><p>Le schéma KZG s'engage sur un polynôme en l'évaluant à une valeur secrète (plus précisément, un point de courbe elliptique). Le but de cette cérémonie est de construire cette valeur secrète de manière à ce que personne ne connaisse ce secret et de manière à ce que de nombreuses personnes soient convaincues que personne ne le connaîtra même dans plusieurs années.</p>",
+        "title": "Pourquoi le (Proto)-Danksharding a-t-il besoin d'une cérémonie ?"
+      },
+      "q4": {
+        "content": "<p>Ici même sur ce site, vous pouvez vous connecter avec votre adresse Ethereum ou votre compte Github pour participer, Cela devrait prendre moins de 5 minutes de votre temps.</p><1>Si vous souhaitez une alternative à cette interface, il y a plusieurs autres CLI et pages Web disponibles (liens + IPFS). Au terme de cette période de contribution publique, nous accepterons des contributions spéciales provenant de <2>implémentations</2> ou générées aléatoirement. Des financements sont disponibles pour ces deux contributions. De plus amples informations seront partagées dans les semaines à venir.</1>",
+        "title": "Comment puis-je contribuer à la Cérémonie ?"
+      },
+      "q5": {
+        "content": "<0>KZG vient de Kate, Zaverucha, et Goldberg. Ce sont les noms de famille des auteurs du document <2>« Engagements constants à l'égard des polynômes et de leurs applications »</2>, qui décrit le mécanisme cryptographique sous-jacent que l'EIP-4844 prévoit d'utiliser.</0><2>Pour en savoir plus sur la cryptographie des engagements KZG, <1>Le blog de Dankrad Feist</1> est un bon point de départ.</2>",
+        "title": "Que signifie KZG ?"
+      },
+      "q6": {
+        "content": "<4>Cette interface vous guidera tout au long des étapes suivantes :</p><1><p>Fournissez des entrées aléatoires de trois sources différentes. </p><1>Connectez-vous avec Ethereum ou Github pour éviter les spams.</1><0>Demandez au Séquenceur si vous pouvez participer. Quand vient votre tour, le Séquenceur vous enverra les données « Pouvoirs de Tau ».</0><2>Votre ordinateur va mélanger vos données aléatoires dans les Pouvoirs de Tau, et une fois terminé, les renverra au Séquenceur. </2><3>Le Séquenceur vérifiera que votre ordinateur a tout fait correctement et confiera les Pouvoirs de Tau au au participant suivant.</4></1><p>Une fois la cérémonie terminée, vous devez revenir vérifier que votre contribution a bien été incluse dans la transcription finale.</2>",
+        "title": "Que se passe-t-il lors de cette Cérémonie ?"
+      },
+      "q7": {
+        "content": "<p>L'expression Pouvoirs de Tau » est tirée de la littérature cryptographique sur les configurations sécurisées et les SRS.</p><p> « Tau » vient de la lettre grecque τ qui est l'abréviation du « secret» auquel il est fait référence dans cette documentation.</p><1>« Pouvoirs » fait référence au fait que nous avons besoin non seulement du secret, mais aussi des pouvoirs qui en découlent (ex. [1, τ, τ<1>2</1>, τ<3>3</3>,... τ<5>2<2>12-1</2></5>])</1><p>Il convient de noter que les pouvoirs de Tau ne sont pas des nombres bruts, mais qu'ils sont encodés sous la forme de points d'une courbe elliptique qui les « crypte » et donc les cache.</p>",
+        "title": "Que sont les Pouvoirs de Tau ?"
+      },
+      "q8": {
+        "content": "<p>Le Séquenceur est un serveur hébergé par la Fondation Ethereum qui coordonne les contributions. Il garde la trace des personnes qui essaient de contribuer, leur fournit les données nécessaires au téléchargement et vérifie chaque contribution avant d'envoyer les données au participant suivant.</p><1>Vous n'avez pas à vous assurer que le Séquenceur ne produit pas un résultat final biaisé ou non valide. La <2>transcription</2> fournit un enregistrement vérifiable de toutes les contributions aléatoires que vous pouvez vérifier par vous-même.</1>",
+        "title": "Qu'est-ce que le Séquenceur et quelle est sa fonction ?"
+      },
+      "q9": {
+        "content": "<0>Utiliser autre chose que KZG (par exemple IPA ou SHA256) rendrait la feuille de route du sharding beaucoup plus difficile. Consultez la <2>FAQ Proto-Danksharding</2>de Vitalik pour en savoir plus.</0>",
+        "title": "Ne pourrait-on pas utiliser un autre système d'engagement sans « trusted setup » ?"
+      }
+    },
+    "footer": {
+      "audit": "Rapport d'audit",
+      "copyright": "Construit par la Fondation Ethereum, équipe de R&D. 2022",
+      "documentation": "Documentation",
+      "faq": "FAQ"
+    },
+    "header": {
+      "offline": "Hors ligne",
+      "online": "En ligne",
+      "sequencer": "Séquenceur"
+    },
+    "landing": {
+      "button": "Commencer",
+      "button-mobile": "Continuer sur le bureau",
+      "description": "<0>Dans l'ombre, il se murmure qu'un esprit puissant, Dankshard, ouvrira le prochain chapitre de l'évolutivité d'Ethereum. Pour invoquer ses pouvoirs, une Cérémonie, à laquelle vous êtes invité à contribuer, sera organisée. Ce guide lumineux vous montrera les gestes à effectuer pour accomplir le rituel.</0><1>La magie des mathématiques vous attend - êtes-vous prêt à ajouter votre couleur à l'histoire ?</1>",
+      "learn-more": "↓ ou en savoir plus ci-dessous ↓",
+      "learn-more-mobile": "↓ en savoir plus ci-dessous ↓",
+      "title": "GUIDE <br/> D'INVOCATION"
+    },
+    "language": {
+      "ar": "Arabe",
+      "bn": "Bengali",
+      "de": "Allemand",
+      "es": "Espagnol",
+      "en": "Anglais",
+      "fr": "Français",
+      "hi": "Hindi",
+      "id": "Indonésien",
+      "it": "Italien",
+      "ja": "Japonais",
+      "ko": "Coréen",
+      "pt": "Portugais",
+      "ru": "Russe",
+      "sw": "Swahili",
+      "tr": "Turc",
+      "zh": "Chinois"
+    },
+    "lobby": {
+      "description": "<0>Votre contribution est prête à être acceptée par le Séquenceur. Veuillez laisser ce guide ouvert en arrière-plan et nous ajouterons bientôt votre contribution aux autres.</0><1>Veuillez laisser ce guide ouvert et actif.</1>",
+      "title": "En attente d' <br/> envoi"
+    },
+    "lobbyFull": {
+      "button": "Retour à la page d'accueil",
+      "description": "<0>Trop d'invocateurs actuellement, veuillez revenir plus tard. Fermez cette fenêtre et réessayez dans un instant pour vérifier s'il y a un créneau disponible dans la salle d'attente.</0>",
+      "title": "Trop de <br/> magie"
+    },
+    "record": {
+      "headers": "<0>Seq. #</0><1>Spécification de l’identifiant</1><2>Signatures</2><3>Détails</3>",
+      "loading": "Chargement des enregistrements...",
+      "searchBar": "Rechercher une adresse, un ENS, un gestionnaire github, #1, ...",
+      "button": "Voir",
+      "title": "Enregistrement",
+      "stats": {
+        "lobby": "Taille de la salle d'attente :",
+        "contributions": "Contributions :",
+        "address": "Adresse du Séquenceur :"
+      },
+      "transcriptModal": {
+        "title": "Détails de la contribution",
+        "id": "ID participant :",
+        "potpubkeys": "Clés publiques PoT :",
+        "bls": "Signatures BLS :",
+        "ecdsa": "Signature ECDSA (facultatif) :"
+      },
+      "signatureModal": {
+        "title": "Clé publique PoT :"
+      }
+    },
+    "signin": {
+      "description": "<0>La Cérémonie a besoin d'âmes aux intentions pures. Les invocateurs prouvent leur intégrité en déverrouillant un passage grâce à l'envoi d'au moins trois transactions depuis une adresse.</0><1>Nul besoin de virer des fonds ni de conclure quelque contrat que ce soit. Cette méthode permet également de livrer un POAP après la cérémonie.</1>",
+      "title": "OUVRIR <br/> LA VOIE",
+      "unlockWithEthereum": "Déverrouiller avec Ethereum <2></2>",
+      "unlockWithGithub": "ou déverrouiller avec Github"
+    },
+    "error": {
+      "notSameWallet": "Utilisez le même portefeuille que vous avez utilisé pour signer avec Ethereum",
+      "pastSubgroupChecksFailed": "La vérification du sous-groupe a échoué pour la contribution que vous avez reçue. Veuillez le signaler immédiatement",
+      "newSubgroupChecksFailed": "La vérification du sous-groupe a échoué pour votre contribution de calcul. Veuillez vérifier votre configuration et réessayer",
+      "tryContributeError": {
+        "rateLimited": "Votre appel au séquenceur est arrivé trop tôt. N'oubliez pas qu'il y a un intervalle de temps spécifique à respecter entre les appels",
+        "unknownSessionId": "Vous avez peut-être passé plus de temps que prévu dans la salle d'attente. Veuillez recharger la page et vous reconnecter avec un autre compte",
+        "anotherContributionInProgress": "Une autre contribution est en cours de calcul actuellement. Veuillez attendre que votre tour pour apporter votre contribution",
+        "unknownError": "Une erreur inconnue s'est produite : {{error}} . code : {{code}}"
+      },
+      "authErrorPayload": {
+        "userAlreadyContributed": "Ce portefeuille a déjà contribué à la cérémonie",
+        "invalidAuthCode": "L'application web utilise un code d'autorisation non valable. Veuillez le signaler sur Github",
+        "fetchUserDataError": "Le séquenceur n'a pas pu obtenir les données utilisateur auprès du service des autorisations. Veuillez le signaler sur Github",
+        "couldNotExtractUserData": "Le séquenceur n'a pas pu extraire les données utilisateur du service des autorisations. Veuillez le signaler sur Github",
+        "userCreatedAfterDeadline": "Votre portefeuille n'a pas le nombre minimum de transaction requis pour passer nos tests anti-Sybil.",
+        "customError": "Une erreur inconnue s'est produite : {{error}}"
+      },
+      "contributeError": {
+        "notUsersTurn": "Ce n'est pas à votre tour de télécharger votre contribution",
+        "invalidContribution": {
+          "unexpectedNumContributions": "Un nombre inattendu de contributions ont été envoyées"
+        },
+        "signature": {
+          "signatureCreation": "Un problème est survenu lors de la création du reçu signé",
+          "invalidToken": "La signature n'est pas une chaîne hexadécimale valide",
+          "invalidSignature": "Le séquenceur n'a pas pu analyser la signature"
+        },
+        "customError": "Une erreur inconnue s'est produite : {{error}}"
+      }
+    }
+  }
+}

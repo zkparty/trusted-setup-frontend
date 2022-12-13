@@ -37,7 +37,7 @@ type Player = {
 }
 
 const EntropyInputPage = forwardRef((_, bgRef: any) => {
-  useTranslation()
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [keyEntropy, setKeyEntropy] = useState('')
@@ -153,7 +153,7 @@ const EntropyInputPage = forwardRef((_, bgRef: any) => {
             </TextSection>
             <Input
               keyEntropy={keyEntropy}
-              placeholder="Secret"
+              placeholder={t("entropyInput.placeholder")}
               onChange={handleCaptureKeyEntropy}
             />
 
