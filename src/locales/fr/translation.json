@@ -41,6 +41,7 @@
     },
     "entropyInput": {
       "button": "Envoyer",
+      "placeholder": "Secret",
       "description": "<0>La cérémonie nécessite trois apports aléatoires de chaque Invocateur. </0><1><0>Secret :</0> Un peu de vous au format texte, avec des caractères aléatoires ajoutés. Une note d'espoir pour l'avenir ou le nom d'une personne chère. </1><2><0>Sigil :</0> Suivez la trace de certains éléments du guide avec votre curseur - l'interface restituera votre chemin personnel. </2><3><0>Échantillon :</0> Votre navigateur va générer sa propre sélection aléatoire en arrière-plan.</3>",
       "title": "Entrée <br/> Entropie"
     },

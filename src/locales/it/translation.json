@@ -41,6 +41,7 @@
     },
     "entropyInput": {
       "button": "Invia",
+      "placeholder": "Segreto",
       "description": "<0>La cerimonia richiede tre ingressi casuali da ogni convocatore.</0><1><0>Segreto:</0> una parte di te sotto forma di testo, con caratteri casuali aggiunti. Una speranza per il futuro, o il nome di qualcuno caro.</1><2><0>Sigil:</0> traccia alcuni elementi della guida con il cursore, l'interfaccia salverà il tuo percorso unico.</2><3><0>Campione:</0> il tuo browser genererà i propri elementi casuali in background.</3>",
       "title": "Voce <br/> entropia"
     },

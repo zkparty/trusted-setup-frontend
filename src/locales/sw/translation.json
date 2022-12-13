@@ -41,6 +41,7 @@
     },
     "entropyInput": {
       "button": "Wasilisha",
+      "placeholder": "Siri",
       "description": "<0>Sherehe inahitaji ingizo tatu yoyote kutoka kwa kila Mwitaji.</0><1><0>Siri:</0> Sehemu yako kwa muundo wa matini, iliyoongezwa herufi zozote. Tumaini la siku zijazo, au jina la mpendwa.</1><2><0>Ishara:</0> Fuatilia vipengele fulani vya mwongozo huo kwa kutumia kasa yako - kiolesura kitanasa kijia chako cha kipekee.</2><3><0>Sampuli:</0> Kivinjari chako kitazalisha ubashiri wake binafsi kwenye usuli.</3>",
       "title": "Ingizo la <br/> Entropi"
     },

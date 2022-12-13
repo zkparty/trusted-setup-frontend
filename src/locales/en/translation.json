@@ -41,6 +41,7 @@
     },
     "entropyInput": {
       "button": "Submit",
+      "placeholder": "Secret",
       "description": "<0>The Ceremony requires three random inputs from each Summoner.</0><1><0>Secret:</0> A piece of you in text form, with random characters added. A hope for the future, or the name of someone dear.</1><2><0>Sigil:</0> Trace some elements of the guide with your cursor - the interface will capture your unique path.</2><3><0>Sample:</0> Your browser will generate its own randomness in the background.</3>",
       "title": "Entropy <br/> Entry"
     },

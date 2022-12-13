@@ -41,6 +41,7 @@
     },
     "entropyInput": {
       "button": "Absenden",
+      "placeholder": "Geheimnis",
       "description": "<0>Die Zeremonie benötigt drei willkürliche Eingaben von allen Beschwörern.</0><1><0>Geheimnis:</0> Ein Stück Ihres Selbst in Textform, mit zufälligen hinzugefügten Zeichen. Ein Wunsch für die Zukunft oder der Name eines lieben Menschen.</1><2><0>Siegel:</0> Fahren Sie einige Elemente des Leitfadens mit Ihrem Cursor nach – die Benutzeroberfläche erfasst Ihren einzigartigen Pfad.</2><3><0>Muster:</0> Ihr Browser generiert eigene zufällige Eigenschaften im Hintergrund.</3>",
       "title": "Entropie <br/> Eintrag"
     },

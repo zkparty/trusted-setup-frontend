@@ -41,6 +41,7 @@
     },
     "entropyInput": {
       "button": "Kirim",
+      "placeholder": "Secret",
       "description": "<0>Upacara memerlukan tiga input acak dari setiap Pemanggil.</0><1><0>Secret:</0> Potongan diri Anda dalam bentuk teks, dengan karakter acak ditambahkan. Harapan untuk masa depan, atau nama seseorang yang disayangi.</1><2><0>Sigil:</0> Lacak beberapa elemen panduan dengan kursor Anda - antarmuka ini akan menangkap jalur unik Anda.</2><3><0>Sampel:</0> Browser Anda akan menghasilkan keacakan sendiri di latar belakang.</3>",
       "title": "Entropi <br/> Entri"
     },

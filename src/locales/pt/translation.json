@@ -41,6 +41,7 @@
     },
     "entropyInput": {
       "button": "Enviar",
+      "placeholder": "Segredo",
       "description": "<0>A Cerimônia requer três entradas aleatórias de cada invocador.</0><1><0>Segredo:</0> Uma parte sua em forma de texto, com caracteres aleatórios adicionados. Uma esperança para o futuro ou o nome de alguém querido.</1><2><0>Emblema:</0> rastreie alguns elementos do guia com seu cursor – a interface irá capturar seu caminho único.</2><3><0>Exemplo:</0> seu navegador irá gerar sua própria aleatoriedade em segundo plano.</3>",
       "title": "Entrada <br/> Entropia"
     },

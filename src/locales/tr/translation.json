@@ -41,6 +41,7 @@
     },
     "entropyInput": {
       "button": "Gönder",
+      "placeholder": "Parola",
       "description": "<0>Seremoni, her Çağrıcıdan rastgele üç girdi talep eder.</0><1><0>Parola:</0> Rastgele karakterler eklenmiş halde, metin biçiminde size ait bir şeyler. Geleceğe dair bir umudunuz veya sevdiğiniz birinin adı gibi.</1><2><0>Mühür:</0> Kılavuzun bazı öğelerini imlecinizle takip edin; arayüz, size ait benzersiz yolu yakalayacaktır.</2><3><0>Örnek:</0> Tarayıcınız, arka planda kendi rastgeleliğini üretecektir.</3>",
       "title": "Entropi <br/> Giriş"
     },
