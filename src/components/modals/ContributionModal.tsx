@@ -24,6 +24,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
   const [checks, setChecks] = useState<string>('')
   const [identity, setIdentity] = useState<string>('')
   const [witnesses, setWitnesses] = useState<string[]>(['','','',''])
+  const [selectedIndex, setSelectedIndex] = useState<number|null>(null)
   const [selectedSignatureItem, setSelectedSignatureItem] = useState<string|null>(null)
   const [contributions, setContributions] = useState<any>(null)
   const [checksColor, setChecksColor] = useState<string>('')
@@ -131,6 +132,11 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
           </Desc>
           <BlockieRow>
             <BlockiesIdenticon
+              onClick={ () => {
+                setSelectedSignatureItem(contributions[0]['potPubkey'])
+                setSelectedIndex(0)
+              } }
+              clickable={true}
               opts={{
                 seed: contributions ? contributions[0]['potPubkey'] : null,
                 size: 8,
@@ -138,6 +144,11 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
               }}
             />
             <BlockiesIdenticon
+              onClick={ () => {
+                setSelectedSignatureItem(contributions[1]['potPubkey'])
+                setSelectedIndex(1)
+              } }
+              clickable={true}
               opts={{
                 seed: contributions ? contributions[1]['potPubkey'] : null,
                 size: 8,
@@ -145,6 +156,11 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
               }}
             />
             <BlockiesIdenticon
+              onClick={ () => {
+                setSelectedSignatureItem(contributions[2]['potPubkey'])
+                setSelectedIndex(2)
+              } }
+              clickable={true}
               opts={{
                 seed: contributions ? contributions[2]['potPubkey'] : null,
                 size: 8,
@@ -152,6 +168,11 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
               }}
             />
             <BlockiesIdenticon
+              onClick={ () => {
+                setSelectedSignatureItem(contributions[3]['potPubkey'])
+                setSelectedIndex(3)
+              } }
+              clickable={true}
               opts={{
                 seed: contributions ? contributions[3]['potPubkey'] : null,
                 size: 8,
@@ -203,6 +224,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
       </BottomSection>
     </Modal>
     <SignatureModal
+      index={selectedIndex}
       signature={selectedSignatureItem}
       onDeselect={() => setSelectedSignatureItem(null)}
     />

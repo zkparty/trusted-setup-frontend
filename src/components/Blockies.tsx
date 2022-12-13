@@ -11,10 +11,12 @@ type Props = {
     size?: number
     scale?: number
   }
+  onClick?: () => void
+  clickable?: boolean
 }
 
 const BlockiesIdenticon = ({
-  opts: { seed = 'foo', size = 15, scale = 3 },
+  opts: { seed = 'foo', size = 15, scale = 3 }, onClick, clickable = false
 }: Props) => {
   const { t } = useTranslation();
   const canvasRef = useRef<HTMLCanvasElement>(null!)
@@ -40,13 +42,19 @@ const BlockiesIdenticon = ({
 
   return (
     <>
-      <Canvas ref={canvasRef} data-tip={t("record.transcriptModal.potPubkeyTooltip")}/>
+      <Canvas
+        ref={canvasRef}
+        onClick={onClick}
+        clickable={clickable}
+        data-tip={t("record.transcriptModal.potPubkeyTooltip")}
+      />
       <ReactTooltip place="right" backgroundColor='black' effect="solid"/>
     </>
   )
 }
 
-const Canvas = styled.canvas`
+const Canvas = styled.canvas<{clickable: boolean}>`
+  cursor: ${ ({ clickable }) => clickable ? 'pointer' : ''};
   border-radius: 6px;
   transition: all linear 0.1s;
   height: 30px;

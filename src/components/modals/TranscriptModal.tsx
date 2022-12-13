@@ -23,6 +23,8 @@ const TranscriptModal = ({ record, onDeselect, onChange }: Props) => {
     else  document.body.style.overflowY = 'unset';
   }, [open])
 
+  const powers = [12, 13, 14, 15]
+
   const onArrowClick = (i: number) => {
     onChange(record?.position! + i)
   }
@@ -90,8 +92,7 @@ const TranscriptModal = ({ record, onDeselect, onChange }: Props) => {
                 scale: 5
               }}
             />
-            <span style={{ paddingRight: '7px', paddingLeft: '5px' }}>{(index+1) + '.'}</span>
-            <Desc>{transcript.potPubkeys}</Desc>
+            <Desc><Bold>{`(2^${powers[index]}): `}</Bold>{transcript.potPubkeys}</Desc>
           </div>
         ))}
       </ol>
@@ -149,7 +150,7 @@ export const ArrowSection = styled.div`
 `
 
 export const Desc = styled(Description)`
-  word-break: break-word;
+  word-break: break-all;
   font-size: ${FONT_SIZE.S};
   margin: 0 0 10px;
 `
