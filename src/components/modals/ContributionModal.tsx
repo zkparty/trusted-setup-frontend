@@ -130,6 +130,22 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
             <br/>
             { now }
           </Desc>
+          <Desc>
+            <b>
+              <Trans i18nKey="complete.modal.identity">
+                Participant identity:
+              </Trans>
+            </b>
+            <br/>
+            { identity }
+          </Desc>
+          <Desc>
+            <b>
+              <Trans i18nKey="complete.modal.potPubkeys">
+                Powers of Tau Pubkeys:
+              </Trans>
+            </b>
+          </Desc>
           <BlockieRow>
             <BlockiesIdenticon
               onClick={ () => {
@@ -204,7 +220,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
       </TopSection>
       <Desc style={{ textAlign: 'center'}}>
         <b><Trans i18nKey="complete.modal.signedBy">Signed by </Trans></b>
-        { identity }
+        { data?.sequencer_address }
       </Desc>
       <Desc style={{ textAlign: 'center', marginBottom: '45px'}}>
         <b><Trans i18nKey="complete.modal.integrityChecks">Integrity checks </Trans></b>

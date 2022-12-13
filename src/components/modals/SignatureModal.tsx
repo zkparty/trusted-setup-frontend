@@ -41,6 +41,7 @@ const SignatureModal = ({ signature, index, onDeselect }: Props) => {
           paddingBlock: '20px',
           paddingInline: '5%',
           boxShadow: '5px 10px 8px 10px #b4b2b2',
+          background: '#FFF8E7',
         }
       }}
     >
