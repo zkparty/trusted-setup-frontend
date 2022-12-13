@@ -1,13 +1,11 @@
 import { useState } from 'react'
-import styled from 'styled-components'
-
-import { FONT_SIZE } from '../constants'
 import { Record } from '../types'
+import styled from 'styled-components'
+import { FONT_SIZE } from '../constants'
 import BlockiesIdenticon from './Blockies'
-import SignatureModal from './modals/SignatureModal'
-import TranscriptModal from './modals/TranscriptModal'
-import { Trans, useTranslation } from 'react-i18next'
 import LoadingSpinner from './LoadingSpinner'
+import { Trans, useTranslation } from 'react-i18next'
+import TranscriptModal from './modals/TranscriptModal'
 
 type Props = {
   data: Record[]
@@ -18,13 +16,11 @@ const RecordTable = ({ data, isLoading }: Props) => {
   useTranslation()
   const [selectedTranscriptItem, setSelectedTranscriptItem] =
     useState<null | Record>(null)
-  const [selectedSignatureItem, setSelectedSignatureItem] =
-    useState<null | string>(null)
 
   if (isLoading) {
     return (
       <div style={{ marginTop: '30px' }}>
-        <Trans i18nKey="record.loading">Loading records...</Trans>
+        <Trans i18nKey="record.loading">Loading transcript...</Trans>
         <LoadingSpinner></LoadingSpinner>
       </div>
     )
@@ -34,70 +30,35 @@ const RecordTable = ({ data, isLoading }: Props) => {
     <Container>
       <TableHead>
         <Trans i18nKey="record.headers">
-          <Col>Seq. #</Col>
-          <Col flex={4} width="0">Identifier specification</Col>
+          <Col>#</Col>
+          <Col flex={4} width="0">Participant ID</Col>
           <Col center>Signatures</Col>
-          <Col width="80px" center>Details</Col>
         </Trans>
       </TableHead>
       {data.map((record) => (
-        <Row key={record.position}>
+        <Row key={record.position} onClick={() => setSelectedTranscriptItem(record)}>
           <Col>{record.position}</Col>
           <Col flex={4} width="0">
             <Address>{record.participantId}</Address>
           </Col>
           <Col center>
-            <BlockieColumn>
+            {record.transcripts.map((transcript, i) => (
               <BlockiesIdenticon
-                onClick={() => setSelectedSignatureItem(record.transcripts[0].potPubkeys)}
+                key={transcript.potPubkeys + i}
                 opts={{
-                  seed: record.transcripts[0].potPubkeys,
+                  seed: transcript.potPubkeys,
                   size: 8,
                   scale: 5
                 }}
               />
-              <BlockiesIdenticon
-                onClick={() => setSelectedSignatureItem(record.transcripts[1].potPubkeys)}
-                opts={{
-                  seed: record.transcripts[1].potPubkeys,
-                  size: 8,
-                  scale: 5
-                }}
-              />
-            </BlockieColumn>
-            <BlockieColumn>
-              <BlockiesIdenticon
-                onClick={() => setSelectedSignatureItem(record.transcripts[2].potPubkeys)}
-                opts={{
-                  seed: record.transcripts[2].potPubkeys,
-                  size: 8,
-                  scale: 5
-                }}
-              />
-              <BlockiesIdenticon
-                onClick={() => setSelectedSignatureItem(record.transcripts[3].potPubkeys)}
-                opts={{
-                  seed: record.transcripts[3].potPubkeys,
-                  size: 8,
-                  scale: 5
-                }}
-              />
-            </BlockieColumn>
-          </Col>
-          <Col width="80px" center>
-            <ViewButton onClick={() => setSelectedTranscriptItem(record)}>
-              <Trans i18nKey="record.button">View</Trans>
-            </ViewButton>
+            ))}
           </Col>
         </Row>
       ))}
       <TranscriptModal
         record={selectedTranscriptItem}
         onDeselect={() => setSelectedTranscriptItem(null)}
-      />
-      <SignatureModal
-        signature={selectedSignatureItem}
-        onDeselect={() => setSelectedSignatureItem(null)}
+        onChange={(i: number) => setSelectedTranscriptItem(data[i])}
       />
     </Container>
   )
@@ -111,6 +72,7 @@ const Container = styled.div`
 
 const TableHead = styled.div`
   display: flex;
+  padding-inline: 15px;
   height: 60px;
   gap: 1rem;
 `
@@ -118,15 +80,19 @@ const TableHead = styled.div`
 const Row = styled.div`
   display: flex;
   align-items: center;
-  height: 80px;
+  height: 70px;
+  padding-inline: 15px;
   border-bottom: solid 1px ${({ theme }) => theme.text};
   gap: 1rem;
-`
+  cursor: pointer;
 
-const BlockieColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-right: 5px;
+  :hover:not([disabled]) {
+    box-shadow: 1px 2px 6px 6px #b4b2b2;
+
+    border-bottom: none;
+    border-right: none;
+    border-left: none;
+  }
 `
 
 type ColProps = {
@@ -147,19 +113,6 @@ const Address = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-`
-
-const ViewButton = styled.button`
-  cursor: pointer;
-  color: ${({ theme }) => theme.text};
-  border: none;
-  background-color: transparent;
-  font-weight: 600;
-
-  transition: all 0.1s ease;
-  :hover {
-    border-bottom: solid 1px ${({ theme }) => theme.text};
-  }
 `
 
 export default RecordTable
