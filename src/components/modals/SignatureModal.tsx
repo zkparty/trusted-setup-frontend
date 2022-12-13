@@ -5,16 +5,19 @@ import { Title, Desc } from './TranscriptModal'
 
 type Props = {
   signature: string | null
+  index: number | null
   onDeselect: () => void
 }
 
-const SignatureModal = ({ signature, onDeselect }: Props) => {
+const SignatureModal = ({ signature, index, onDeselect }: Props) => {
   const open = !!signature
   useTranslation()
   useEffect(() => {
-    if (open)  document.body.style.overflow = 'hidden';
-    else  document.body.style.overflow = 'unset';
+    if (open)  document.body.style.overflowY = 'hidden';
+    else  document.body.style.overflowY = 'unset';
   }, [open])
+
+  const powers = [12, 13, 14, 15]
 
   return (
     <Modal
@@ -38,13 +41,14 @@ const SignatureModal = ({ signature, onDeselect }: Props) => {
           paddingBlock: '20px',
           paddingInline: '5%',
           boxShadow: '5px 10px 8px 10px #b4b2b2',
+          background: '#FFF8E7',
         }
       }}
     >
       <Title>
         <Trans i18nKey="record.signatureModal.title">PoT Pubkey:</Trans>
       </Title>
-      <Desc>{signature}</Desc>
+      <Desc><b>{`(2^${powers[index!]}): `}</b>{signature}</Desc>
     </Modal>
   )
 }

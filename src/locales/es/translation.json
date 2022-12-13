@@ -8,13 +8,16 @@
         "checks": {
           "failedComputeSignature": "No se pudo procesar la firma",
           "failedSignature": "Firma del sequenciador no contiene wallet del sequenciador",
-          "failedWitness": "Testigo no es igual a llave pública PoT",
+          "failedWitness": "Testigo no es igual a llave pública Powers of Tau",
           "success": "Aprobadas"
         },
+        "downloadReceipt": "Descargar Recibo",
+        "identity": "Identidad del participante:",
         "integrityChecks": "Pruebas de integridad",
         "keys": "MIS LLAVES",
         "receipt": "Recibo de la contribución:",
-        "shareTwitter": "Compartir en Twitter",
+        "shareTwitter": "Compartir en Twitter",                
+        "potPubkeys": "Llaves públicas Powers of Tau",
         "signedBy": "Firmado por",
         "timestamp": "Contribución completada el:",
         "tweet": "Acabo de contribuir a la ceremonia KZG de prueba para escalar Ethereum usando {{identity}}"
@@ -155,8 +158,9 @@
       "zh": "Chino"
     },
     "lobby": {
-      "description": "<0>Su contribución está lista para ser aceptada por el secuenciador. Por favor, deje esta guía abierta y añadiremos su contribución a las otras en breve.</0><1>Deje esta guía abierta y este atento.</1>",
-      "title": "A la espera de ser <br /> Enviada"
+      "title": "A la espera de ser <br /> Enviada",
+      "lobby_size": "participantes en el lobby",
+      "description": "<0>Su contribución está lista para ser aceptada por el secuenciador. Por favor, deje esta guía abierta y añadiremos su contribución a las otras en breve.</0><1>Deje esta guía abierta y esté atento.</1>"
     },
     "lobbyFull": {
       "button": "Volver a Inicio",
@@ -164,11 +168,11 @@
       "title": "La suma de las partes."
     },
     "record": {
-      "headers": "<0>Seq. #</0><1>Identificador</1><2>Firmas</2><3>Detalles</3>",
-      "loading": "Cargando registros...",
+      "headers": "<0>#</0><1>Identificador</1><2>Firmas</2>",
+      "loading": "Cargando manuscrito...",
       "searchBar": "Buscar wallet, ENS, usuario de github, #1, ...",
       "button": "Ver",
-      "title": "REGISTRO",
+      "title": "Manuscrito de Contribuciones",
       "stats": {
         "lobby": "Lobby:",
         "contributions": "Contribuciones:",
@@ -177,12 +181,13 @@
       "transcriptModal": {
         "title": "Detalle de la contribución",
         "id": "ID del participante:",
-        "potpubkeys": "Llaves públicas PoT:",
+        "potpubkeys": "Llaves públicas Powers of Tau:",
         "bls": "Firmas BLS:",
-        "ecdsa": "Firma ECDSA (opcional):"
+        "ecdsa": "Firma ECDSA (opcional):",
+        "potPubkeyTooltip": "Tu llave pública Powers of Tau representa tu huella única asegurando Ethereum. Fue generada por tu secreto."
       },
       "signatureModal": {
-        "title": "Llaves públicas PoT:"
+        "title": "Llave pública Powers of Tau:"
       }
     },
     "signin": {

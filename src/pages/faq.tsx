@@ -373,7 +373,7 @@ const faqQuestions = [
           <li>
             Sign in with Ethereum - This is the preferred choice as it something
             that all Ethereum community members should already have and it
-            allows signatures for later verification of the transcript. Each
+            allows signatures for later verification of the contribution. Each
             account is required to have sent at least 3 transactions to prevent
             spinning up new accounts just for this ceremony.
           </li>

@@ -1,11 +1,13 @@
+import ROUTES from '../routes'
+import { isMobile } from '../utils'
 import { useCallback } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
+import FlowerAnimation from './FlowerAnimation'
 import { TextSection } from '../components/Layout'
 import { PrimaryButton } from '../components/Button'
 import { Trans, useTranslation } from 'react-i18next'
 import { Description, PageTitle } from '../components/Text'
-import ROUTES from '../routes'
 
 const Explanation = ({ refFromLanding }: any) => {
   useTranslation()
@@ -21,6 +23,8 @@ const Explanation = ({ refFromLanding }: any) => {
           PROTO-DANKSHARDING <br /> AND THE CEREMONY
         </Trans>
       </PageTitle>
+      <Container>
+      <FlowerAnimation></FlowerAnimation>
       <SecondTextSection>
         <Trans i18nKey="explanation.description">
           <Description>
@@ -52,12 +56,21 @@ const Explanation = ({ refFromLanding }: any) => {
           </Description>
         </Trans>
       </SecondTextSection>
+      <FlowerAnimation></FlowerAnimation>
+      </Container>
       <PrimaryButton onClick={onClickViewContributions}>
           <Trans i18nKey="explanation.button">View contributions</Trans>
       </PrimaryButton>
     </SecondSection>
   )
 }
+
+const Container = styled.div`
+  display : ${ isMobile() ? '' : 'flex'};
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+`
 
 const SecondSection = styled.section`
   padding: 0 24px 40px;

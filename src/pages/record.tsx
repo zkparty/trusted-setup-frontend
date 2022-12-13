@@ -116,6 +116,7 @@ const RecordPage = () => {
   // Handler functions
   const handleInput = (e: any) => {
     setSearchQuery(e.target.value)
+    setPage(1)
   }
 
   return (
@@ -123,7 +124,7 @@ const RecordPage = () => {
       <Header />
       <Container>
         <PageTitle>
-          <Trans i18nKey="record.title">Record</Trans>
+          <Trans i18nKey="record.title">Contributions Transcript</Trans>
         </PageTitle>
         <StatsContainer>
           <StatsTitle>
@@ -170,8 +171,12 @@ const SearchInput = styled.input`
   border-radius: 8px;
   background-color: ${({ theme }) => theme.primary};
   color: ${({ theme }) => theme.text};
-  width: 320px;
   background: url(${SearchIcon}) no-repeat scroll right 12px bottom 50%;
+  width: 70%;
+
+  @media (max-width: ${BREAKPOINT.M}) {
+    width: 100%;
+  }
 `
 
 const StatsContainer = styled.div`
