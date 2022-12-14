@@ -1,5 +1,6 @@
 import ROUTES from '../routes'
 import styled from 'styled-components'
+import FaqPage from '../components/Faq'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { textSerif } from '../style/utils'
@@ -67,6 +68,7 @@ const LandingPage = () => {
         </Link>
       </TopSection>
       <Explanation refFromLanding={ref} />
+      <FaqPage />
       <Footer />
     </>
   )

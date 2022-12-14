@@ -2,9 +2,8 @@ import Logo from './Logo'
 import ROUTES from '../routes'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 import { BREAKPOINT, FONT_SIZE } from '../constants'
-import { Link, useNavigate } from "react-router-dom"
-
 
 const Footer = () => {
   const navigate = useNavigate()
@@ -20,11 +19,6 @@ const Footer = () => {
       </LeftSection>
       <RightSection>
         <LinkGroup>
-          <LinkItemLink to={ROUTES.FAQ}>
-            <Trans i18nKey="footer.faq">
-              FAQ
-            </Trans>
-          </LinkItemLink>
           <LinkItem href="https://github.com/zkparty/trusted-setup-frontend">
             GitHub
           </LinkItem>
@@ -85,13 +79,6 @@ const LinkGroup = styled.div`
 `
 
 const LinkItem = styled.a`
-  font-size: ${FONT_SIZE.L};
-  font-weight: 600;
-  cursor: pointer;
-  margin-bottom: 24px;
-`
-
-const LinkItemLink = styled(Link)`
   font-size: ${FONT_SIZE.L};
   font-weight: 600;
   cursor: pointer;
