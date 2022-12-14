@@ -1,16 +1,17 @@
-import styled from 'styled-components'
 import Logo from './Logo'
-import { FONT_SIZE } from '../constants'
-import { Trans } from 'react-i18next'
-import { BREAKPOINT } from '../constants'
-import { Link } from "react-router-dom"
 import ROUTES from '../routes'
+import { Trans } from 'react-i18next'
+import styled from 'styled-components'
+import { BREAKPOINT, FONT_SIZE } from '../constants'
+import { Link, useNavigate } from "react-router-dom"
+
 
 const Footer = () => {
+  const navigate = useNavigate()
   return (
     <Container>
       <LeftSection>
-        <Logo centerOnMobile />
+        <Logo centerOnMobile onClick={() => navigate(ROUTES.ROOT)}/>
         <Copyright>
           <Trans i18nKey="footer.copyright">
             Build by Ethereum Foundation, R&D team. 2022

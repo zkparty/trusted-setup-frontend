@@ -25,8 +25,8 @@ const Header = () => {
   const indicatorColor = isonline ? "#61cc61" : "red"
   return (
     <Container>
-      <LeftSection onClick={() => navigate(ROUTES.ROOT)}>
-        <Logo />
+      <LeftSection>
+        <Logo onClick={() => navigate(ROUTES.ROOT)} />
         <Border />
         <Indicator aria-label="sequencer status" isonline={isonline.toString()} color={indicatorColor} />
         <SequencerStatus>
@@ -76,7 +76,6 @@ const LeftSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
 `
 
 const CenterSection = styled.div`
