@@ -44,7 +44,7 @@ const LandingPage = () => {
             SUMMONING <br /> GUIDE
           </Trans>
         </PageTitle>
-        <TextSection>
+        <TextSection style={{ width: '48ch' }}>
           <Trans i18nKey="landing.description">
             <Description>
               Whispers from the shadows tell of a powerful spirit Dankshard, who
