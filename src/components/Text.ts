@@ -26,7 +26,7 @@ const SectionTitle = styled.h2`
 
 const Description = styled.p`
   font-weight: 400;
-  font-size: ${FONT_SIZE.M};
+  font-size: ${FONT_SIZE.SM};
   margin: 0 0 20px;
 `
 
