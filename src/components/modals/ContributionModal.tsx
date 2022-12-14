@@ -224,7 +224,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
       </TopSection>
       <Desc style={{ textAlign: 'center'}}>
         <b><Trans i18nKey="complete.modal.signedBy">Signed by </Trans></b>
-        { data?.sequencer_address }
+        { ' ' + data?.sequencer_address }
       </Desc>
       <Desc style={{ textAlign: 'center', marginBottom: '45px'}}>
         <b><Trans i18nKey="complete.modal.integrityChecks">Integrity checks </Trans></b>

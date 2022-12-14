@@ -1,17 +1,19 @@
+import TranslatorImg from '../assets/translator.svg'
+import { useLanguageStore } from '../store/language'
+import { BREAKPOINT, FONT_SIZE } from '../constants'
 import Select, { StylesConfig } from 'react-select'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-
-import TranslatorImg from '../assets/translator.svg'
-
-import { BREAKPOINT, FONT_SIZE } from '../constants'
 import { locales } from '../locales'
+import { useEffect } from 'react'
 
 const LanguageSelector = () => {
   const { i18n, t } = useTranslation()
+  const { selectedLanguage, updateSelectedLanguage } = useLanguageStore()
 
   const handleChange = (event: any) => {
     i18n.changeLanguage(event.value)
+    updateSelectedLanguage(event.value)
   }
 
   const MAIN_COLOR = 'black'
@@ -23,6 +25,14 @@ const LanguageSelector = () => {
     }))
     return options
   }
+
+  const selectedLanguageToUse = selectedLanguage || 'en'
+
+  useEffect(() => {
+    if (selectedLanguage){
+      i18n.changeLanguage(selectedLanguage)
+    }
+  }, [i18n, selectedLanguage])
 
   const selectStyles: StylesConfig = {
     control: (styles: any) => ({
@@ -68,7 +78,10 @@ const LanguageSelector = () => {
         styles={selectStyles}
         options={getOptions()}
         onChange={handleChange}
-        defaultValue={{ value: 'en', label: t('language.en', { lng: 'en' }) }}
+        defaultValue={{
+          value: selectedLanguageToUse,
+          label: t('language.' + selectedLanguageToUse, { lng: selectedLanguageToUse })
+        }}
       />
     </Container>
   )
