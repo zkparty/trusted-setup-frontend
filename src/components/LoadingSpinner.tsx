@@ -17,8 +17,8 @@ const SpinnerLoading = styled.div`
     height: 50px;
     margin: 8px;
     border-radius: 50%;
-    border: 6px solid ${({ theme }) => theme.primary};
-    border-color: ${({ theme }) => theme.primary} transparent ${({ theme }) => theme.primary} transparent;
+    border: 6px solid ${({ theme }) => theme.loader};
+    border-color: ${({ theme }) => theme.loader} transparent ${({ theme }) => theme.loader} transparent;
 
     animation: ${Spin} 1.5s linear infinite;
 `;
