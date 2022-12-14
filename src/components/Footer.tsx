@@ -14,7 +14,7 @@ const Footer = () => {
         <Logo centerOnMobile onClick={() => navigate(ROUTES.ROOT)}/>
         <Copyright>
           <Trans i18nKey="footer.copyright">
-            Build by Ethereum Foundation, R&D team. 2022
+            Build by the Ethereum Community - 2022
           </Trans>
         </Copyright>
       </LeftSection>
