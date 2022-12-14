@@ -32,7 +32,7 @@ const RecordTable = ({ data, isLoading }: Props) => {
         <Trans i18nKey="record.headers">
           <Col>#</Col>
           <Col flex={4} width="0">Participant ID</Col>
-          <Col center>Signatures</Col>
+          <Col atEnd>Signatures</Col>
         </Trans>
       </TableHead>
       {data.map((record) => (
@@ -98,6 +98,7 @@ const Row = styled.div`
 type ColProps = {
   flex?: number
   width?: string
+  atEnd?: boolean
   center?: boolean
 }
 
@@ -106,6 +107,7 @@ const Col = styled.div<ColProps>`
   ${({ flex }) => `flex: ${flex || '1'}`};
   font-size: ${FONT_SIZE.M};
   display: flex;
+  ${({ atEnd }) => atEnd && 'justify-content: end'}
   ${({ center }) => center && 'justify-content: center'}
 `
 
