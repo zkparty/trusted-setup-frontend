@@ -463,7 +463,7 @@ const FaqPage = () => (
 // Styled components
 const FaqSection = styled.section`
   padding-bottom: 8rem;
-  width: 90ch;
+  width: 55ch;
   max-width: 100%;
   margin: 0 auto;
   line-height: 140%;
