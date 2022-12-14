@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { textSerif } from '../style/utils'
+import { CIRCLE_SIZE } from '../constants'
 import { useAuthStore } from '../store/auth'
 import { useNavigate } from 'react-router-dom'
 import { TextSection } from '../components/Layout'
@@ -91,14 +92,14 @@ const TopSection = styled(Section)`
 
 const BgColor = styled.div`
   background-color: ${({ theme }) => theme.surface};
-  height: 500px;
-  width: 500px;
+  height: ${CIRCLE_SIZE}px;
+  width: ${CIRCLE_SIZE}px;
   max-width: 100%;
   border-radius: 50%;
   box-shadow: 0 0 200px 120px ${({ theme }) => theme.surface};
   position: absolute;
   z-index: -1;
-  top: 240px;
+  margin-top: -30px;
 `
 
 const Footnote = styled.p`
