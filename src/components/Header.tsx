@@ -13,6 +13,7 @@ import { FONT_SIZE, BREAKPOINT, ENVIRONMENT } from '../constants'
 import useSequencerStatus from '../hooks/useSequencerStatus'
 import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../store/auth'
+import { isMobile } from '../utils'
 import ROUTES from '../routes'
 
 const Header = () => {
@@ -43,7 +44,7 @@ const Header = () => {
         </SequencerStatus>
       </LeftSection>
       { ENVIRONMENT === 'testnet' ?
-        <CenterSection>
+        <CenterSection isMobile={isMobile()}>
           <Trans i18nKey="header.ceremony">TEST CEREMONY</Trans>
         </CenterSection>
         :
@@ -78,14 +79,14 @@ const LeftSection = styled.div`
   align-items: center;
 `
 
-const CenterSection = styled.div`
+const CenterSection = styled.div<{ isMobile: boolean }>`
   display: flex;
   color: #3e70bc;
   align-items: start;
-  font-size: ${FONT_SIZE.XXL};
+  font-size: ${({isMobile}) => isMobile ? FONT_SIZE.S : FONT_SIZE.XXL};
+  letter-spacing: ${({isMobile}) => isMobile ? '0.5px' : '2px'};
   ${textSerif}
   font-weight: 800;
-  letter-spacing: 2px;
 `
 
 const Border = styled.span`
