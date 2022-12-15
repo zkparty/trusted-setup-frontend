@@ -3,9 +3,8 @@ import { Record } from '../../types'
 import styled from 'styled-components'
 import { FONT_SIZE } from '../../constants'
 import { Bold, Description } from '../Text'
-import SignatureModal from './SignatureModal'
 import { textSerif } from '../../style/utils'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import BlockiesIdenticon from '../../components/Blockies'
 
@@ -13,16 +12,22 @@ import BlockiesIdenticon from '../../components/Blockies'
 type Props = {
   record: Record | null
   onDeselect: () => void
+  onChange: (i: number) => void
 }
 
-const TranscriptModal = ({ record, onDeselect }: Props) => {
+const TranscriptModal = ({ record, onDeselect, onChange }: Props) => {
   const open = !!record
   useTranslation()
-  const [selectedSignatureItem, setSelectedSignatureItem] = useState<string|null>(null)
   useEffect(() => {
     if (open)  document.body.style.overflowY = 'hidden';
     else  document.body.style.overflowY = 'unset';
   }, [open])
+
+  const powers = [12, 13, 14, 15]
+
+  const onArrowClick = (i: number) => {
+    onChange(record?.position! + i)
+  }
 
   return (
     <>
@@ -56,6 +61,15 @@ const TranscriptModal = ({ record, onDeselect }: Props) => {
         </Trans>
       </Title>
 
+      <ArrowSection>
+      <SubTitle style={{ paddingRight: '10px' }}>
+        # {record?.position}
+      </SubTitle>
+      <Arrow onClick={() => onArrowClick(-1)}>{'<-'}</Arrow>
+      <Arrow onClick={() => onArrowClick(+1)}>{'->'}</Arrow>
+      </ArrowSection>
+      <br/>
+
       <SubTitle>
         <Trans i18nKey="record.transcriptModal.id">
           Participant ID:
@@ -68,22 +82,18 @@ const TranscriptModal = ({ record, onDeselect }: Props) => {
           Powers of Tau Pubkeys:
         </Trans>
       </SubTitle>
-      <ol style={{ paddingInlineStart: '20px' }}>
-        {record?.transcripts.map((transcript) => (
-          <li key={transcript.potPubkeys}>
-            <div style={{ display: 'flex' }}>
-              <BlockiesIdenticon
-                onClick={() => {setSelectedSignatureItem(transcript.potPubkeys)}}
-                hover={true}
-                opts={{
-                  seed: transcript.potPubkeys,
-                  size: 8,
-                  scale: 5
-                }}
-              />
-              <Desc>{transcript.potPubkeys}</Desc>
-            </div>
-          </li>
+      <ol style={{ paddingInlineStart: '20px', paddingLeft: '0px' }}>
+        {record?.transcripts.map((transcript, index) => (
+          <div style={{ display: 'flex', paddingBottom: '3px' }} key={transcript.potPubkeys}>
+            <BlockiesIdenticon
+              opts={{
+                seed: transcript.potPubkeys,
+                size: 8,
+                scale: 5
+              }}
+            />
+            <Desc><Bold>{`(2^${powers[index]}): `}</Bold>{transcript.potPubkeys}</Desc>
+          </div>
         ))}
       </ol>
 
@@ -110,10 +120,6 @@ const TranscriptModal = ({ record, onDeselect }: Props) => {
         null
       }
     </Modal>
-    <SignatureModal
-      signature={selectedSignatureItem}
-      onDeselect={() => setSelectedSignatureItem(null)}
-    />
     </>
   )
 }
@@ -126,8 +132,25 @@ export const SubTitle = styled(Bold)`
   ${textSerif}
 `
 
+export const Arrow = styled.div`
+  cursor: pointer;
+  padding-right: 4px;
+
+  :hover {
+    color: #7dbcff;
+  }
+`
+
+export const ArrowSection = styled.div`
+  display: inline-flex;
+  align-items: center;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+`
+
 export const Desc = styled(Description)`
-  word-break: break-word;
+  word-break: break-all;
   font-size: ${FONT_SIZE.S};
   margin: 0 0 10px;
 `

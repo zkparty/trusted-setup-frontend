@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ErrorMessage from '../components/Error'
-import { Description, PageTitle } from '../components/Text'
+import { Description, PageTitle, Bold } from '../components/Text'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap,
@@ -16,6 +16,7 @@ import { useContributionStore, Store } from '../store/contribute'
 import { isSuccessRes, sleep } from '../utils'
 import { useAuthStore } from '../store/auth'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
+import useSequencerStatus from '../hooks/useSequencerStatus'
 import { Trans, useTranslation } from 'react-i18next'
 import { ErrorRes } from '../types'
 
@@ -24,6 +25,7 @@ const LobbyPage = () => {
   const { error, setError } = useAuthStore()
   const [showError, setShowError] = useState(error)
 
+  const { data } = useSequencerStatus()
   const tryContribute = useTryContribute()
   const updateContribution = useContributionStore(
     (state: Store) => state.updateContribution
@@ -95,6 +97,12 @@ const LobbyPage = () => {
               </PageTitle>
               <TextSection>
                 {showError && <ErrorMessage>{showError}</ErrorMessage>}
+                <Description>
+                  <Bold>{data?.lobby_size} </Bold>
+                  <Trans i18nKey="looby.lobby_size">
+                    participants in the lobby.
+                  </Trans>
+                </Description>
                 <Trans i18nKey="lobby.description">
                   <Description>
                     Your contribution is ready to be accepted by the

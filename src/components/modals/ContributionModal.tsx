@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { PrimaryButton } from '../Button'
 import BlockiesIdenticon from '../Blockies'
 import { useEffect, useState } from 'react'
+import { ENVIRONMENT } from '../../constants'
 import SignatureModal from './SignatureModal'
 import {Title, Desc } from './TranscriptModal'
 import { Trans, useTranslation } from 'react-i18next'
@@ -24,6 +25,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
   const [checks, setChecks] = useState<string>('')
   const [identity, setIdentity] = useState<string>('')
   const [witnesses, setWitnesses] = useState<string[]>(['','','',''])
+  const [selectedIndex, setSelectedIndex] = useState<number|null>(null)
   const [selectedSignatureItem, setSelectedSignatureItem] = useState<string|null>(null)
   const [contributions, setContributions] = useState<any>(null)
   const [checksColor, setChecksColor] = useState<string>('')
@@ -70,10 +72,22 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
   }, [signature, contribution, receipt, open])
 
   const handleClickShareTwitter = () => {
-    const tweet = t('complete.modal.tweet', {identity})
+    let tweet = t('complete.modal.tweet', {identity})
+    if ( ENVIRONMENT === 'testnet' ){
+      tweet = '**TEST**: ' + tweet
+    }
     const encoded = encodeURIComponent( tweet )
     const link = `https://twitter.com/intent/tweet?text=${encoded}`
     window.open(link, '_blank');
+  }
+
+  const handleClickDownloadReceipt = () => {
+    const encodedReceipt = encodeURIComponent(receipt!)
+    const jsonString = `data:text/json;chatset=utf-8,${encodedReceipt}`
+    const link = document.createElement("a");
+    link.href = jsonString;
+    link.download = "data.json";
+    link.click();
   }
 
   return (
@@ -120,9 +134,29 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
             <br/>
             { now }
           </Desc>
+          <Desc>
+            <b>
+              <Trans i18nKey="complete.modal.identity">
+                Participant identity:
+              </Trans>
+            </b>
+            <br/>
+            { identity }
+          </Desc>
+          <Desc>
+            <b>
+              <Trans i18nKey="complete.modal.potPubkeys">
+                Powers of Tau Pubkeys:
+              </Trans>
+            </b>
+          </Desc>
           <BlockieRow>
             <BlockiesIdenticon
-              onClick={() => setSelectedSignatureItem(contributions[0]['potPubkey'])}
+              onClick={ () => {
+                setSelectedSignatureItem(contributions[0]['potPubkey'])
+                setSelectedIndex(0)
+              } }
+              clickable={true}
               opts={{
                 seed: contributions ? contributions[0]['potPubkey'] : null,
                 size: 8,
@@ -130,7 +164,11 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
               }}
             />
             <BlockiesIdenticon
-              onClick={() => setSelectedSignatureItem(contributions[1]['potPubkey'])}
+              onClick={ () => {
+                setSelectedSignatureItem(contributions[1]['potPubkey'])
+                setSelectedIndex(1)
+              } }
+              clickable={true}
               opts={{
                 seed: contributions ? contributions[1]['potPubkey'] : null,
                 size: 8,
@@ -138,7 +176,11 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
               }}
             />
             <BlockiesIdenticon
-              onClick={() => setSelectedSignatureItem(contributions[2]['potPubkey'])}
+              onClick={ () => {
+                setSelectedSignatureItem(contributions[2]['potPubkey'])
+                setSelectedIndex(2)
+              } }
+              clickable={true}
               opts={{
                 seed: contributions ? contributions[2]['potPubkey'] : null,
                 size: 8,
@@ -146,7 +188,11 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
               }}
             />
             <BlockiesIdenticon
-              onClick={() => setSelectedSignatureItem(contributions[3]['potPubkey'])}
+              onClick={ () => {
+                setSelectedSignatureItem(contributions[3]['potPubkey'])
+                setSelectedIndex(3)
+              } }
+              clickable={true}
               opts={{
                 seed: contributions ? contributions[3]['potPubkey'] : null,
                 size: 8,
@@ -178,7 +224,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
       </TopSection>
       <Desc style={{ textAlign: 'center'}}>
         <b><Trans i18nKey="complete.modal.signedBy">Signed by </Trans></b>
-        { identity }
+        { data?.sequencer_address }
       </Desc>
       <Desc style={{ textAlign: 'center', marginBottom: '45px'}}>
         <b><Trans i18nKey="complete.modal.integrityChecks">Integrity checks </Trans></b>
@@ -190,9 +236,15 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
             Share on Twitter
           </Trans>
         </PrimaryButton>
+        <PrimaryButton onClick={handleClickDownloadReceipt} style={{ width: '300px' }}>
+          <Trans i18nKey="complete.modal.downloadReceipt">
+            Download Receipt
+          </Trans>
+        </PrimaryButton>
       </BottomSection>
     </Modal>
     <SignatureModal
+      index={selectedIndex}
       signature={selectedSignatureItem}
       onDeselect={() => setSelectedSignatureItem(null)}
     />

@@ -1,0 +1,225 @@
+{
+  "translation": {
+    "complete": {
+      "button": "Katkınızı görüntüleyin",
+      "description": "<0>Başarılı! Yankılarınız, bu Çağrı Seremonisinde yer alan diğerleriyle kalıcı biçimde kaynaştırıldı.</0>",
+      "modal": {
+        "acknowledgment": "SEQUENCER ONAYI",
+        "checks": {
+          "failedComputeSignature": "İmza doğru şekilde işlenmedi",
+          "failedSignature": "Sequencer imzası, sequencer adresi içermiyor",
+          "failedWitness": "Tanık, PoT genel anahtarlarını eşleştirmiyor",
+          "success": "Geçti"
+        },
+        "integrityChecks": "Bütünlük denetimleri ",
+        "keys": "ANAHTARLARIM",
+        "receipt": "Katkı makbuzu:",
+        "shareTwitter": "Twitter'da Paylaş",
+        "signedBy": "İmzalayan ",
+        "timestamp": "Katkının tamamlandığı konum:",
+        "tweet": "Biraz önce {{identity}} kimliğini kullanarak KZG Ceremony'nin Ethereum ölçeklendirmesine katkıda bulundum. Aynısını bu adresten siz de yapabilirsiniz: https://ceremony.ethereum.org @ethereum #KZGCeremony"
+      },
+      "title": "Dankshard <br/> yaklaşıyor"
+    },
+    "contributing": {
+      "button": "Katkımı görüntüle",
+      "description": {
+        "completed": "<0>Katkıyı başarıyla tamamladınız. Çağrı sonu için tekrar gelmeyi unutmayın ve haberi herkese duyurun.</0>",
+        "contributing": "<0>Tau'nun Üstleri kullanımınıza sunuldu. Size ait Parola, Mühür ve Örnek, sizden daha önce gelenlerinkiyle kaynaştırılıyor.</0><1>Ritüeller aceleye gelmez; burada harcanan zaman, zamanın ötesinde eserler yaratır.</1>",
+        "error": "Bir hatayla karşılaşıldı {{error}}. Yeniden yükleyip tekrar deneyin"
+      },
+      "title": {
+        "completed": "Katkı<br/>Tamamlandı",
+        "contributing": "Davet<br/>edildiniz<br/>Şimdi",
+        "error": "Bir<br/>Sorun<br/>Oluştu"
+      }
+    },
+    "doubleSign": {
+      "button": "İmza",
+      "description": "<0>Bu imza, her Çağrıcının entropi katkısını kendi Ethereum adresine bağlar.</0>",
+      "title": "Katkınızı <br/> bağlayın"
+    },
+    "entropyInput": {
+      "button": "Gönder",
+      "placeholder": "Parola",
+      "description": "<0>Seremoni, her Çağrıcıdan rastgele üç girdi talep eder.</0><1><0>Parola:</0> Rastgele karakterler eklenmiş halde, metin biçiminde size ait bir şeyler. Geleceğe dair bir umudunuz veya sevdiğiniz birinin adı gibi.</1><2><0>Mühür:</0> Kılavuzun bazı öğelerini imlecinizle takip edin; arayüz, size ait benzersiz yolu yakalayacaktır.</2><3><0>Örnek:</0> Tarayıcınız, arka planda kendi rastgeleliğini üretecektir.</3>",
+      "title": "Entropi <br/> Giriş"
+    },
+    "explanation": {
+      "button": "Katkıları görüntüle",
+      "description": "<0>Bu Güvenilir Kurulum, proto-danksharding protokolünde kullanılmak üzere güvenilir bir SRS (yapılandırılmış referans dizesi) üretmek amacıyla tasarlanmış çok taraflı bir seremonidir. Gelin biraz ağırdan alıp bu terimleri daha ayrıntılı inceleyelim.</0><1>Proto-danksharding (EIP-4844), Ethereum protokolü üzerinde yapılması planlanan ve toplamalardan (Katman 2) alınan işlem verilerinin Katman 1 (ana ağ) üzerinde kısa ve öz bir şekilde temsil edilmesine olanak tanıyan bir değişikliktir. Avantajları; L2'de daha düşük işlem ücretleri, daha büyük ölçeklenebilirlik ve daha fazla sayıda insana daha yüksek erişilebilirlik olarak ifade edilebilir!</1><2>Güvenilir Kurulum, KZG polinom taahhüt düzeni gibi belirli kriptografik düzenlerde proto-danksharding aşamasında kullanılmak üzere gerekli bir hazırlık adımıdır. Bizim örneğimizde güven varsayımı, sonucun güvenli olabilmesi için bir katkıda bulunanın parolasını başarılı bir şekilde gizli tutması gerektiğidir.</2><3>Bu, çok taraflı bir seremonidir: Her katkıda bulunan bir parola oluşturup hesaplama çalıştırır ve bu parolayı önceki katkılarla karıştırarak herkese açık hale getirilebilecek ve sıradaki katkıda bulunana iletilebilecek bir sonuç üretir. Seremoniyi kontrol altına alma girişimlerine karşı önlem almamız gerektiğinden saygın geçmişe sahip bir Ethereum veya GitHub hesabına sahip olmanız gerekecektir.</3>",
+      "title": "PROTO-DANKSHARDING <br/> VE SEREMONİ"
+    },
+    "faq": {
+      "q1": {
+        "content": "<0>Ethereum topluluğu, <2>Katman-2'ler (L2)</2> aracılığıyla küresel erişilebilirliğe göre ölçeklendiriliyor. L2'ler, bir yandan Ethereum Katman 1 (L1) tarafından sunulan güvenliği korurken diğer yandan kullanıcılara sunulan toplam blok alanını artırıyor.</0><2>L2'lerin Ethereum üzerinde çok miktarda veri yayımlaması gerekirken ağ, şu anda bunun için yüksek ücretler uyguluyor. Bu sorunu gidermek adına Ethereum, genellikle <2>parçalama</2> olarak anılan yeni bir veri katmanı oluşturacak. Bu, L2 kullanıcılarına \"veri kullanılabilirliği\" garantileri sunuyor. L1 verileri sadece sınırlı bir süre için tutabiliyor. Başka bir ifadeyle, daha küçük L1 düğüm operatörleri için zinciri, yerinden yönetimden ödün vermeden ölçeklendirebileceğimiz anlamına geliyor.</2><1>Bu konuda şu anda öncü olan tasarıma Danksharding adı veriliyor. Bunun kullanıma sunulması birkaç aşamada gerçekleşecek ve ilk aşamaya ProtoDanksharding olarak da bilinen <1>EIP-4844</1>adı veriliyor. </1>",
+        "title": "Proto-Danksharding olarak da bilinen EIP-4844 nedir ve Ethereum'un ölçeklendirilmesiyle nasıl ilişkilidir?"
+      },
+      "q10": {
+        "content": "<p>Seremoni, \"1/N\" güven varsayımına dayalıdır. Bir başka ifadeyle, her şeyin güvenli olması için seremoninin tümünde sadece tek bir katılımcının parola girdisini ifşa etmemiş olması yeterlidir.</p><p>Bu, her katılımcının katkıda bulunmak için kullandığı yazılımı parçalamak, söz konusu yazılımın parolayı vermesini sağlamak ve ardından diğer katılımcıların her biriyle iş birliği yaparak nihai parolayı yeniden yapılandırmak zorunda kaalcağı anlamına gelir.</p><p>Daha gerçekçi bir arıza modu ise, rastgeleliği sızdıran yaygın bir hatadır. Bununla mücadele etmek için bu site denetlenmiştir ve katkı yazılımının tamamen farklı yazılım yığınları üzerine geliştirildiği alternatif uygulamalar mevcuttur.</p><p>İşte bu nedenle, gerek insanlarda gerekse donanım/yazılımda tek arıza noktalarının önlenmesine yardımcı olmak üzere farklı işletim sistemlerinde farklı yazılımlar kullanan katılımcıların sayısı binlerle ifade edilecek kadar çok olacaktır.</p>",
+        "title": "Seremoninin güvenliğinin çökmesi için ne gibi sorunların yaşanması gerekir?"
+      },
+      "q11": {
+        "content": "<p>Parolanın herhangi bir şekilde Tau'nun Üstlerinden çıkarılması durumunda, bir saldırganın EIP-4844 içindeki veriler hakkında keyfi talep ve iddialarda bulunması mümkün hale gelir. Bu, EIP-4844 blob verilerine bağımlı tüm hizmet ve uygulamaların çökmesine neden olur.</p>",
+        "title": "Bu durumda hangi saldırıların gerçekleştirilmesi mümkündür?"
+      },
+      "q12": {
+        "content": "<p>Aynı anda başka kaç kişinin katkıda bulunmaya çalıştığına bağlı olarak katkıda bulunma sıranızın gelmesi için bir süre beklemeniz gerekebilir. Sıranız geldiğinde, standart bir dizüstü bilgisayar ve internet bağlantısı ile katkınızı tamamlamanız 3 dakikadan daha az bir süre alacaktır.</p>",
+        "title": "Katkıda bulunmak ne kadar sürer?"
+      },
+      "q13": {
+        "content": "<p>Seremoniye karşı düzenlenen Sybil saldırılarının sayısını azaltmak için Sequencer'ın sizin (bir şekilde) benzersiz bir insan olduğunuzu doğrulaması gerekir. Aksi takdirde, tek bir kişi çok sayıda farklı katkı göndererek katkıda bulunma sırasının başkalarına geçmesini engelleyebilir.</p><1><0>Ethereum ile oturum aç - Tüm Ethereum topluluğu üyelerinin zaten sahip olması gereken bir şey olduğundan ve dökümün daha sonra doğrulanması için imzalara izin verdiğinden tercih edilen seçim budur. Sadece bu seremoni için yeni hesaplar oluşturulmasını önlemek adına her hesabın en az 3 işlem göndermiş olması gerekir.</0><1>GitHub ile oturum aç - Bu seçenek, topluluğa uzak olmakla birlikte katılım göstermek isteyen kişiler için bir alternatif olarak sunulmaktadır.</1></1>",
+        "title": "Niçin Ethereum veya GitHub ile oturum açmam gerekiyor?"
+      },
+      "q14": {
+        "content": "<p>Bu seremoni sona erdiğinde, seremoni dökümünü (hem bu sitede yayımlanacak hem de internette rahatlıkla bulunabilecektir) gözden geçirmelisiniz. Bu döküm, katılımcıların kimler olduğunu doğrulamak için gereken tüm verileri içerecektir.</p><p>Oturum açmak için Ethereum adresinizi kullandıysanız, hesabınızdan gelen imzalı bir mesaj aracılığıyla katılım gösterdiğinize ilişkin kriptografik bir kanıt mevcut olacaktır.</p>",
+        "title": "Katkımın dahil edildiğini nereden bileceğim?"
+      },
+      "q15": {
+        "content": "<p>Bu seremoni sona erdikten sonra seremoninin doğru yürütüldüğünü doğrulamak topluluk açısından önemlidir. Bu sürecin iki bileşeni vardır:</p><1><0>Sizin veya dökümde yer alan kimliklerini kontrol ederek güvendiğiniz yeterli sayıda kişinin fiili olarak katılım gösterdiğini doğrulamak.</0><1>Dökümün tüm tanıklar (doğru katkı tanıkları) dahil olmak üzere doğru yapılandırılmış olduğunu ve Tau'nun Üstlerinin gerçekten de üstler olduğunu doğrulamak.</1></1>",
+        "title": "Nihai Seremoni çıktısını nasıl doğrulayabilirim?"
+      },
+      "q16": {
+        "content": "<p>Bazı mobil cihazların işleme gücü bu seremoniye katılmak için yeterli olsa da, mobil tarayıcıların çoğu WASM'yi pek iyi idare edemez, ekranı kilitler ve hesaplama tamamlanmadan önce işlemcinin saat hızını düşürür. Ayrıca, cihazlar arasında açıklanması güç olan ciddi sapmalar söz konusudur.</p>",
+        "title": "Niçin mobil bir cihazdan katkıda bulunamıyorum?"
+      },
+      "q2": {
+        "content": "<0>Seremoniler, parola girdilerini kullanarak tersine mühendislik uygulamayı ve başlangıçtaki parolaları bulmayı imkansız hale getirecek şekilde bir çıktı üretir. </0><p>Nasıl çalıştıklarına ilişkin kısa bir özeti burada bulabilirsiniz: </p><2><0>Katılımcı 1, rastgele bir sayı (örneğin 5) seçer ve ardından üzerinde bir hesaplama gerçekleştirir.</0><1>Bu hesaplamadan elde edilen çıktı, Katılımcı 2'ye aktarılır ve bu kişi 1. Adımı kendi parola girdisiyle (örneğin 3) tekrar edip 1. Katılımcının çıktısıyla karıştırır (örneğin 5x3=15).</1><2>Bu, yeterli sayıda katılımcıya ulaşılana kadar tekrar eder ve yeterli sayıya ulaşıldığı andaki son çıktı, nihai çıktı olur.</2></2><p>Seremoniler, en çok Zcash tarafından gizlilik özelliklerini önyüklemek amacıyla kullanıldığı bilinen \"Güvenilir Kurulumlar\" olarak da adlandırılmıştır. Bununla birlikte, Ethereum'un yaptığı gibi ölçeklenebilirlik mekanizmaları eklemek için de kullanılabilir.</p><4><0>Carl Beekhuizen'in bu Seremoni hakkındaki Devcon Konuşması</0>, bu seremoninin nasıl çalıştığını ve neden işe yaradığını hem basit hem de ayrıntılı bir şekilde açıklamaktadır. Alternatif olarak, konunun özüne inmek ve belki de kendi uygulamanızı yazmak için <4>seremoni özelliklerini</4> inceleyebilirsiniz.</4>",
+        "title": "Çağrı Seremonisi nedir?"
+      },
+      "q3": {
+        "content": "<p>(Proto)-Danksharding, temel alınan veriler için küçük bir taahhüt boyutuna sahip olsa da kanıtlaması ve doğrulaması hızlı bir taahhüt düzeni gerektirir (SNARK tabanlı L2'ler için SNARKS'ın içi dahil). Kriterleri en iyi karşılayan polinom taahhüt düzeni KZG taahhütleridir.</p><p>KZG düzeni, bir parola değerinde (daha açık bir ifadeyle, eliptik bir eğri noktası) değerlendirerek polinoma yönelik taahhütte bulunur. Bu seremoninin amacı, söz konusu parola değerini, bu parolayı tek bir kişinin bilemeyeceği bir şekilde oluşturmak ve bunu yaparken çok sayıda insanı, parolayı yıllar sonra bile kimsenin bilmeyeceğine ikna etmektir.</p>",
+        "title": "(Proto)-Danksharding için neden Seremoni gereklidir?"
+      },
+      "q4": {
+        "content": "<p>Katılmak için bu sitede Ethereum adresiniz veya Github hesabınızla oturum açabilirsiniz, sadece 5 dakikanızı alacaktır.</p><1>Bu arayüz için bir alternatif isterseniz, kullanabileceğiniz birkaç başka CLI ve web sitesi mevcuttur (bağlantılar + IPFS). Bu herkese açık katkı döneminin ardından, ısmarlama <2>uygulamalardan</2> veya benzersiz rastgelelelik oluşturma üzerinden özel katkıları kabul edeceğiz. Her iki seçenek için finansman olanağı mevcuttur; ilerleyen haftalarda daha fazla bilgi paylaşılacaktır.</1>",
+        "title": "Seremoniye nasıl katkıda bulunabilirim?"
+      },
+      "q5": {
+        "content": "<0>KZG kısaltması; Kate, Zaverucha ve Goldberg sözcüklerinin ilk harflerinden oluşuyor. Bunlar, EIP-4844'ün kullanmayı planladığı temel kriptografi mekanizmasını ana hatlarıyla özetleyen <2>\"Constant-Size Commitments to Polynomials and Their Applications\"</2> (Polinomlara Yönelik Sabit Boyutlu Taahhütler ve Uygulamaları) isimli makalenin yazarlarının soyadları.</0><2>KZG taahhütlerinin kriptografisi hakkında daha ayrıntılı bilgi sahibi olmak istiyorsanız, <1>Dankrad Feist'ın blog gönderisi</1> iyi bir başlangıç noktasıdır.</2>",
+        "title": "KZG ne anlama geliyor?"
+      },
+      "q6": {
+        "content": "<4>Bu arayüz, aşağıdaki adımlarda size yol gösterecektir:</p><1><p>Üç farklı kaynaktan rastgele girdiler sağlarsınız.</p><1>İstenmeyen içerikleri engellemek için Ethereum veya Github ile oturum açın.</1><0>Sequencer'a katılıp katılamayacağınızı sorun. Sıranız geldiğinde, Sequencer size \"Tau'nun Üstleri\" verilerini gönderecektir.</0><2>Bilgisayarınız rastgeleliğinizi Tau'nun Üstleri ile birleştirecek ve tamamlandığında tekrar Sequencer'a gönderecektir.</2><3>Sequencer, bilgisayarınızın her şeyi doğru yaptığını doğrulayıp Tau'nun Üstlerini bir sonraki katılımcıya aktaracaktır.</4></1><p>Seremoni tamamlandıktan sonra, geri dönüp katkınızın gerçekten de nihai dökümde yer aldığını doğrulamalısınız.</2>",
+        "title": "Bu Seremoni sırasında neler olur?"
+      },
+      "q7": {
+        "content": "<p>\"Tau'nun Üstleri\" adı, güvenilir kurulumlar ve SRS'ler hakkındaki kriptografi literatüründen gelir.</p><p>\"Tau\", bu dokümanlarda atıfta bulunulan \"parola\" sözcüğünün kısayolu olan Yunanca τ harfinden gelir.</p><1>\"Üstler\" ise, sadece parolaya değil, parolanın ardışık üstlerine de ihtiyacımız olduğunu ifade eder. (örneğin [1, τ, τ<1>2</1>, τ<3>3</3>,..., τ<5>2<2>12-1</2></5>])</1><p>Tau'nun Üstlerinin ham sayılar olmadığı, aksine eliptik eğri noktaları olarak kodlanmış olduklarının ve bunları \"şifreleyip\" gizlediklerinin bilinmesi de önemlidir.</p>",
+        "title": "Tau'nun Üstleri nedir?"
+      },
+      "q8": {
+        "content": "<p>Sequencer, Ethereum Foundation tarafından barındırılan ve katkıları koordine eden bir sunucudur. Katkıda bulunmaya çalışan kişilerin kaydını tutar, bu kişilere indirilmesi gereken verileri sağlar ve verileri sıradaki katılımcıya göndermeden önce her katkıyı doğrular.</p><1>Yanlı veya geçersiz bir nihai çıktı üreteceği konusunda Sequencer'a güvenmek zorunda değilsiniz. <2>Döküm</2>, tüm rastgelelik katkılarının doğrulanabilir bir kaydını sağlar ve bunu kendi başınıza doğrulayabilirsiniz.</1>",
+        "title": "Sequencer nedir ve ne işe yarar?"
+      },
+      "q9": {
+        "content": "<0>KZG dışında bir şey (örneğin IPA veya SHA256) kullanılması, parçalama yol haritasını çok daha zor hale getirecektir. Vitalik'in <2>Proto-Danksharding SSS</2> içeriğinden daha fazla bilfi edinebilirsiniz.</0>",
+        "title": "\"Güvenilir kurulum\" barındırmayan başka bir taahhüt düzeni kullanılamaz mı?"
+      }
+    },
+    "footer": {
+      "audit": "Denetim raporu",
+      "copyright": "Ethereum Foundation Ar-Ge ekibi tarafından geliştirilmiştir. 2022",
+      "documentation": "Dökümanlar",
+      "faq": "SSS"
+    },
+    "header": {
+      "offline": "Çevrimdışı",
+      "online": "Çevrimiçi",
+      "sequencer": "Sequencer"
+    },
+    "landing": {
+      "button": "Başla",
+      "button-mobile": "Masaüstünde devam et",
+      "description": "<0>Gölgelerden gelen fısıltılar, Ethereum ölçeklenebilirliğinde yeni bir devir açacak olan Dankshard isimli güçlü ruh hakkında hikayeler anlatıyor. Güçlerini çağırabilmek için bir Seremoniye katkıda bulunmanız gerekiyor. Bu aydınlatılmış kılavuz, ritüeli tamamlamak için gereken hareketleri size gösterecek.</0><1>Sihirli matematik sizi bekliyor; hikayeye kendi renginizi eklemeye hazır mısınız?</1>",
+      "learn-more": "↓ veya aşağıdan daha fazla bilgi edinin ↓",
+      "learn-more-mobile": "↓ aşağıdan daha fazla bilgi edinin ↓",
+      "title": "ÇAPRI <br/> KILAVUZU"
+    },
+    "language": {
+      "ar": "Arapça",
+      "bn": "Bengalce",
+      "de": "Almanca",
+      "es": "İspanyolca",
+      "en": "İngilizce",
+      "fr": "Fransızca",
+      "hi": "Hintçe",
+      "id": "Endonezyaca",
+      "it": "İtalyanca",
+      "ja": "Japonca",
+      "ko": "Korece",
+      "pt": "Portekizce",
+      "ru": "Rusça",
+      "sw": "Svahilice",
+      "tr": "Türkçe",
+      "zh": "Çince"
+    },
+    "lobby": {
+      "description": "<0>Katkınız, Sequencer tarafından kabul edilmeye hazır. Lütfen bu kılavuzu arka planda açık bırakın. Katkınızı kısa süre içinde diğerlerine ekleyeceğiz.</0><1>Lütfen bu kılavuzu açık ve faal bırakın.</1>",
+      "title": "Gönderilmeyi <br/> bekliyor"
+    },
+    "lobbyFull": {
+      "button": "Ana sayfaya geri dön",
+      "description": "<0>Şu anda çok fazla sayıda çağrıcı var, lütfen daha sonra tekrar gelin. Lobide kullanılabilir bir yuva olup olmadığını kontrol etmek için bu pencereyi kapatıp kısa bir süre sonra tekrar deneyin.</0>",
+      "title": "Çok fazla <br/> sihir"
+    },
+    "record": {
+      "headers": "<0>Seq. Numarası</0><1>Tanımlayıcı özelliği</1><2>İmzalar</2><3>Ayrıntılar</3>",
+      "loading": "Kayıtlar yükleniyor...",
+      "searchBar": "Adres, ENS, github tanıtıcısı, #1, ara...",
+      "button": "Görüntüle",
+      "title": "Kaydet",
+      "stats": {
+        "lobby": "Lobi boyutu:",
+        "contributions": "Katkılar:",
+        "address": "Sequencer adresi:"
+      },
+      "transcriptModal": {
+        "title": "Katkı ayrıntıları",
+        "id": "Katılımcı Kimliği:",
+        "potpubkeys": "PoT Genel Anahtarları:",
+        "bls": "BLS İmzaları:",
+        "ecdsa": "ECDSA İmzası (isteğe bağlı):"
+      },
+      "signatureModal": {
+        "title": "PoT Genel Anahtarı:"
+      }
+    },
+    "signin": {
+      "description": "<0>Seremoni, temiz niyetli kişilere ihtiyaç duyar. Çağrıcılar, gönderilmiş en az üç işleme sahip bir adresle kilidi açarak dürüstlüklerini gösterir.</0><1>Herhangi bir tutarda para göndermez veya herhangi bir sözleşmeye izin vermez. Bu yöntem, Seremoni sonrası bir POAP teslim etmemize de olanak sağlar.</1>",
+      "title": "YOLU <br/> AÇIN",
+      "unlockWithEthereum": "Ethereum ile kilidini aç <2></2>",
+      "unlockWithGithub": "veya Github ile kilidini aç"
+    },
+    "error": {
+      "notSameWallet": "Ethereum ile oturum açarken kullandığınız cüzdanı kullanın",
+      "pastSubgroupChecksFailed": "Aldığınız katkıda alt grup kontrolü başarısız oldu. Bu durumu lütfen hemen bildirin",
+      "newSubgroupChecksFailed": "Hesaplanan katkınızda alt grup kontrolü başarısız oldu. Lütfen kurulumunuzu kontrol edip tekrar deneyin",
+      "tryContributeError": {
+        "rateLimited": "Sequencer çağrınız çok erken geldi. Çağrılar arasında belirli bir zaman aralığı olduğunu unutmayın",
+        "unknownSessionId": "Lobide beklenenden daha fazla zaman geçirmiş olabilirsiniz. Lütfen yeniden yükleyip farklı bir hesapla tekrar oturum açın",
+        "anotherContributionInProgress": "Şu anda hesaplanan başka bir katkı var. Lütfen katkıda bulunmak için sıranızı bekleyin",
+        "unknownError": "Bilinmeyen bir hata meydana geldi: {{error}} . kod: {{code}}"
+      },
+      "authErrorPayload": {
+        "userAlreadyContributed": "Bu cüzdan seremoniye zaten katkıda bulunmuş",
+        "invalidAuthCode": "Web uygulaması geçersiz bir yetkilendirme kodu kullanıyor. Lütfen bu durumu Github'da bildirin",
+        "fetchUserDataError": "Sequencer, yetkilendirme hizmetinden kullanıcı verilerini alamadı. Lütfen bu durumu Github'da bildirin",
+        "couldNotExtractUserData": "Sequencer, yetkilendirme hizmetinden kullanıcı verilerini çıkaramadı. Lütfen bu durumu Github'da bildirin",
+        "userCreatedAfterDeadline": "Cüzdanınız, Sybil önleyici testlerimizi geçmek için gereken minimum işlem miktarına sahip değil.",
+        "customError": "Bilinmeyen bir hata meydana geldi: {{error}}"
+      },
+      "contributeError": {
+        "notUsersTurn": "Katkı yükleme sırası sizde değil",
+        "invalidContribution": {
+          "unexpectedNumContributions": "Beklenmeyen sayıda katkı gönderildi"
+        },
+        "signature": {
+          "signatureCreation": "İmzalı makbuz oluşturulurken bir sorun meydana geldi",
+          "invalidToken": "İmza, geçerli bir onaltılık dize değil",
+          "invalidSignature": "Sequencer imzayı ayrıştıramadı"
+        },
+        "customError": "Bilinmeyen bir hata meydana geldi: {{error}}"
+      }
+    }
+  }
+}
