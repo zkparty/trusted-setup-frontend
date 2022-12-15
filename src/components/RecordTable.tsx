@@ -74,7 +74,6 @@ const TableHead = styled.div`
   display: flex;
   padding-inline: 15px;
   height: 60px;
-  gap: 1rem;
 `
 
 const Row = styled.div`
