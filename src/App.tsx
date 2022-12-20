@@ -52,16 +52,9 @@ function App() {
                   :
                     <LandingPage />
                }/>
-            <Route path={ROUTES.ENTROPY_INPUT} element={<EntropyInputPage/>}/>
+            <Route path={ROUTES.ENTROPY_INPUT} element={<EntropyInputPage/>} />
             <Route path={ROUTES.SIGNIN} element={<SigninPage />} />
-            <Route
-              path={ROUTES.DOUBLE_SIGN}
-              element={
-                <RequireAuth>
-                  <DoubleSignPage />
-                </RequireAuth>
-              }
-            />
+            <Route path={ROUTES.DOUBLE_SIGN} element={<DoubleSignPage />} />
             <Route path={ROUTES.LOBBY_FULL} element={<LobbyFullPage />} />
             <Route
               path={ROUTES.LOBBY}
@@ -89,7 +82,6 @@ function App() {
             />
           </Route>
           <Route path={ROUTES.RECORD} element={<RecordPage />} />
-          <Route path={ROUTES.REDIRECT} element={<SigninRedirectPage search={location.search} />} />
         </Routes>
       </HashRouter>
     </>

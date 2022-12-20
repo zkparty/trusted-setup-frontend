@@ -24,9 +24,6 @@ self.addEventListener("install", function () {
     if (url.includes('session_id')){
       request = event.request.url;
     }
-    console.log(`url: ${url}`)
-
-    //if (url.includes('signin.html')) return;
 
     event.respondWith(
       fetch(request)
@@ -38,7 +35,7 @@ self.addEventListener("install", function () {
             newHeaders.set("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
           } else {
             newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
-            newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");  
+            newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
           }
 
           const moddedResponse = new Response(response.body, {

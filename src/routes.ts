@@ -8,7 +8,6 @@ const ROUTES = {
   CONTRIBUTING: '/contributing',
   COMPLETE: '/complete',
   RECORD: '/record',
-  REDIRECT: '/redirect'
 }
 
 export const MOBILE_FRIENDLY_ROUTES = [
