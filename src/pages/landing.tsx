@@ -27,6 +27,13 @@ const LandingPage = () => {
 
   useEffect(() => {
     signout()
+    // eslint-disable-next-line no-restricted-globals
+    if (!self.crossOriginIsolated) {
+      console.log('refreshing...')
+      navigate(0)
+    } else {
+      console.log(`${window.crossOriginIsolated ? "" : "not"} x-origin isolated`)
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

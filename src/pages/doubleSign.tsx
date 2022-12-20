@@ -51,7 +51,6 @@ const DoubleSignPage = () => {
       navigate(0)
     } else {
       console.log(`${window.crossOriginIsolated ? "" : "not"} x-origin isolated`)
-      console.log(`secure context?: ${window.isSecureContext}`)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
