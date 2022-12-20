@@ -120,7 +120,7 @@ const RecordPage = () => {
   }
 
   return (
-    <>
+    <BgContainer>
       <Header />
       <Container>
         <PageTitle>
@@ -148,9 +148,15 @@ const RecordPage = () => {
         <Pagination page={page} setPage={setPage} totalPages={totalPages} />
       </Container>
       <Footer />
-    </>
+    </BgContainer>
   )
 }
+
+const BgContainer = styled.div`
+  background-color: #FFF8E7;
+  position: absolute;
+  width: 100%;
+`
 
 const Container = styled.div`
   display: flex;
