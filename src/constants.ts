@@ -1,4 +1,4 @@
-const CIRCLE_SIZE = 486;
+const CIRCLE_SIZE = 490;
 
 const PAGE_SIZE = 20;
 
@@ -6,6 +6,7 @@ const FONT_SIZE = {
   XXS: '9px',
   XS: '11px',
   S: '13px',
+  SM: '14px',
   M: '15px',
   L: '19px',
   XL: '23px',

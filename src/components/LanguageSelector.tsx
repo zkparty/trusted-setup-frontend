@@ -1,17 +1,20 @@
+import TranslatorImg from '../assets/translator.svg'
+import { useLanguageStore } from '../store/language'
+import { BREAKPOINT, FONT_SIZE } from '../constants'
 import Select, { StylesConfig } from 'react-select'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-
-import TranslatorImg from '../assets/translator.svg'
-
-import { BREAKPOINT, FONT_SIZE } from '../constants'
 import { locales } from '../locales'
+import { isMobile } from '../utils'
+import { useEffect } from 'react'
 
 const LanguageSelector = () => {
   const { i18n, t } = useTranslation()
+  const { selectedLanguage, updateSelectedLanguage } = useLanguageStore()
 
   const handleChange = (event: any) => {
     i18n.changeLanguage(event.value)
+    updateSelectedLanguage(event.value)
   }
 
   const MAIN_COLOR = 'black'
@@ -24,6 +27,14 @@ const LanguageSelector = () => {
     return options
   }
 
+  const selectedLanguageToUse = selectedLanguage || 'en'
+
+  useEffect(() => {
+    if (selectedLanguage){
+      i18n.changeLanguage(selectedLanguage)
+    }
+  }, [i18n, selectedLanguage])
+
   const selectStyles: StylesConfig = {
     control: (styles: any) => ({
       ...styles,
@@ -35,6 +46,14 @@ const LanguageSelector = () => {
       cursor: 'pointer',
       display: 'flex',
       width: '125px'
+    }),
+    menuList: (styles: any) => ({
+      ...styles,
+      position: 'absolute',
+      right: isMobile() ? '-55px' : '-110px',
+      background: '#FFFFFF',
+      borderRadius: '0px 0px 5px 5px',
+      minWidth: '135px !important'
     }),
     indicatorSeparator: (styles: any) => ({
       ...styles,
@@ -52,6 +71,7 @@ const LanguageSelector = () => {
       ...styles,
       cursor: 'pointer',
       backgroundColor: 'transparent',
+      width: '100% !important',
       color: MAIN_COLOR,
       ':hover': {
         ...styles[':hover'],
@@ -68,7 +88,10 @@ const LanguageSelector = () => {
         styles={selectStyles}
         options={getOptions()}
         onChange={handleChange}
-        defaultValue={{ value: 'en', label: t('language.en', { lng: 'en' }) }}
+        defaultValue={{
+          value: selectedLanguageToUse,
+          label: t('language.' + selectedLanguageToUse, { lng: selectedLanguageToUse })
+        }}
       />
     </Container>
   )

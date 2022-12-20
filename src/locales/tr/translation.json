@@ -118,7 +118,7 @@
     },
     "footer": {
       "audit": "Denetim raporu",
-      "copyright": "Ethereum Foundation Ar-Ge ekibi tarafından geliştirilmiştir. 2022",
+      "copyright": "Ethereum Topluluğu tarafından geliştirilmiştir. 2022",
       "documentation": "Dökümanlar",
       "faq": "SSS"
     },
@@ -141,6 +141,7 @@
       "de": "Almanca",
       "es": "İspanyolca",
       "en": "İngilizce",
+      "sim_en": "Basitleştirilmiş ingilizce",
       "fr": "Fransızca",
       "hi": "Hintçe",
       "id": "Endonezyaca",

@@ -1,29 +1,24 @@
-import styled from 'styled-components'
 import Logo from './Logo'
-import { FONT_SIZE } from '../constants'
-import { Trans } from 'react-i18next'
-import { BREAKPOINT } from '../constants'
-import { Link } from "react-router-dom"
 import ROUTES from '../routes'
+import { Trans } from 'react-i18next'
+import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
+import { BREAKPOINT, FONT_SIZE } from '../constants'
 
 const Footer = () => {
+  const navigate = useNavigate()
   return (
     <Container>
       <LeftSection>
-        <Logo centerOnMobile />
+        <Logo centerOnMobile onClick={() => navigate(ROUTES.ROOT)}/>
         <Copyright>
           <Trans i18nKey="footer.copyright">
-            Build by Ethereum Foundation, R&D team. 2022
+            Build by the Ethereum Community - 2022
           </Trans>
         </Copyright>
       </LeftSection>
       <RightSection>
         <LinkGroup>
-          <LinkItemLink to={ROUTES.FAQ}>
-            <Trans i18nKey="footer.faq">
-              FAQ
-            </Trans>
-          </LinkItemLink>
           <LinkItem href="https://github.com/zkparty/trusted-setup-frontend">
             GitHub
           </LinkItem>
@@ -84,13 +79,6 @@ const LinkGroup = styled.div`
 `
 
 const LinkItem = styled.a`
-  font-size: ${FONT_SIZE.L};
-  font-weight: 600;
-  cursor: pointer;
-  margin-bottom: 24px;
-`
-
-const LinkItemLink = styled(Link)`
   font-size: ${FONT_SIZE.L};
   font-weight: 600;
   cursor: pointer;

@@ -2,7 +2,7 @@
   "translation": {
     "complete": {
       "button": "View your contribution",
-      "description": "<0>Success! Echoes of you are permanently fused with the others in this Summoning Ceremony.</0>",
+      "description": "<0>Success! You have succesfully completed your contribution in this Summoning Ceremony.</0>",
       "modal": {
         "acknowledgment": "SEQUENCER ACKNOWLEDGEMENT",
         "checks": {
@@ -28,7 +28,7 @@
       "button": "View my contribution",
       "description": {
         "completed": "<0>You have just successfully complete the contribution. Don’t forget to return for the summoning ending & spread the word.</0>",
-        "contributing": "<0>You are now entrusted with the Powers of Tau. Your Secret, Sigil and Sample are being fused with those that came before.</0><1>Rituals cannot be hastened - time given here creates timeless artifacts.</1>",
+        "contributing": "<0>You have been chosen. Your Secret, Stir and Sample are being mixed with those that came before.</0><1>Rituals cannot be hastened - time given here creates timeless artifacts.</1>",
         "error": "There was an error {{error}}. Reload and try again"
       },
       "title": {
@@ -39,18 +39,18 @@
     },
     "doubleSign": {
       "button": "Sign",
-      "description": "<0>This signature binds each Summoner’s entropy contribution to their Ethereum address.</0>",
-      "title": "Bind your <br/> Contribution"
+      "description": "<0>Sign your contribution to prove that it really was you who participated.</0>",
+      "title": "Sign your <br/> Contribution"
     },
     "entropyInput": {
       "button": "Submit",
       "placeholder": "Secret",
-      "description": "<0>The Ceremony requires three random inputs from each Summoner.</0><1><0>Secret:</0> A piece of you in text form, with random characters added. A hope for the future, or the name of someone dear.</1><2><0>Sigil:</0> Trace some elements of the guide with your cursor - the interface will capture your unique path.</2><3><0>Sample:</0> Your browser will generate its own randomness in the background.</3>",
+      "description": "<0>The Ceremony requires three random inputs from each Summoner.</0><1><0>Secret:</0> Enter a secret in text form, with random characters added. A hope for the future, or the name of someone dear.</1><2><0>Stir:</0> Move your cursor around the page - the interface will capture your unique path.</2><3><0>Sample:</0> Your browser will generate its own randomness in the background.</3>",
       "title": "Entropy <br/> Entry"
     },
     "explanation": {
       "button": "View contributions",
-      "description": "<0>This Trusted Setup is a multi-party ceremony designed to generate a secure SRS (structured reference string) to be used in the proto-danksharding protocol. OK, let's slow down and talk about those terms in more detail.</0><1>Proto-danksharding (aka EIP-4844) is a planned change to the Ethereum protocol which allows transaction data from rollups (Layer 2s) to be succinctly represented on the Layer 1 (mainnet). The benefits are lower transaction fees on the L2, greater scalability and more accessibility to more people!</1><2>The Trusted Setup is a preparatory step required for certain cryptographic schemes such as the KZG polynomial commitment scheme to be used in proto-danksharding. In our case, the trust assumption is that one contributor needs to successfully conceal their secret for the result to be secure.</2><3>It's a multi-party ceremony: Contributors each create a secret and run a computation to mix it with previous contributions and generate a result that can be made public and passed to the next contributor. We need to guard against attempts to control the ceremony, so you'll need an Ethereum or GitHub account with an established history.</3>",
+      "description": "<0>This Trusted Setup is a multi-party ceremony designed to generate a secure SRS (structured reference string) to be used in the proto-danksharding protocol. OK, let’s slow down and talk about those terms in more detail.</0><1>Proto-danksharding (aka EIP-4844) is a planned change to the Ethereum protocol which allows transaction data from rollups (Layer 2s) to be succinctly represented on the Layer 1 (mainnet). The benefits are lower transaction fees on the L2, greater scalability and more accessibility to more people!</1><2>The Trusted Setup is a preparatory step required for certain cryptographic schemes such as the KZG polynomial commitment scheme to be used in proto-danksharding. In our case, the trust assumption is that one contributor needs to successfully conceal their secret for the result to be secure.</2><3>It’s a multi-party ceremony: Contributors each create a secret and run a computation to mix it with previous contributions and generate a result that can be made public and passed to the next contributor. We need to guard against attempts to control the ceremony, so you’ll need an Ethereum or GitHub account with an established history.</3>",
       "title": "PROTO-DANKSHARDING <br/> AND THE CEREMONY"
     },
     "faq": {
@@ -134,7 +134,7 @@
     "landing": {
       "button": "Begin",
       "button-mobile": "Proceed on desktop",
-      "description": "<0>Whispers from the shadows tell of a powerful spirit Dankshard, who will open the next chapter of Ethereum scalability. To summon its powers, a Ceremony needs your contribution. This illuminated guide will lead you through the movements necessary to complete the ritual.</0><1>Magic math awaits - are you ready to add your color to the story?</1>",
+      "description": "<0>Proto-danksharding (aka EIP-4844) is an upcoming upgrade to the Ethereum protocol that enables massive scalability in combination with Layer 2s. In order to make this happen, a Ceremony is needed to generate a shared secret. This guide will walk you through contributing yourself.</0><1>Help contribute to Ethereum’s security by adding your randomness to the KZG ceremony.</1>",
       "learn-more": "↓ or learn more below ↓",
       "learn-more-mobile": "↓ learn more below ↓",
       "title": "SUMMONING <br/> GUIDE"
@@ -145,6 +145,7 @@
       "de": "German",
       "es": "Spanish",
       "en": "English",
+      "sim_en": "Simple English",
       "fr": "French",
       "hi": "Hindi",
       "id": "Indonesian",
@@ -158,7 +159,7 @@
       "zh": "Chinese"
     },
     "lobby": {
-      "description": "<0>Your contribution is ready to be accepted by the Sequencer. Please leave this guide open in the background and we will add your contribution to the others soon.</0><1>Please leave this guide open and awake.</1>",
+      "description": "<0>Your contribution is ready to be accepted by the Sequencer. Please leave this page open in the background and your contribution will be added to the others as soon as it is your turn.</0><1>Leave this page open and your computer awake.</1>",
       "lobby_size": "participants in the lobby",
       "title": "Waiting to be <br/> submitted"
     },
@@ -191,10 +192,10 @@
       }
     },
     "signin": {
-      "description": "<0>The Ceremony requires souls of pure intent. Summoners show their integrity by unlocking with an address that has at least three sent transactions.</0><1>It does not send any funds or permit any contracts. This method also allows us to deliver a POAP after the Ceremony.</1>",
+      "description": "<0>In order to ensure you are a unique human, you need to sign in with an Ethereum account that has at least three sent transactions.</0><1>It does not send any funds or permit any contracts. This method also allows us to deliver a POAP after the Ceremony.</1>",
       "title": "OPEN <br/> THE WAY",
-      "unlockWithEthereum": "Unlock with Ethereum <2></2>",
-      "unlockWithGithub": "or unlock with Github"
+      "unlockWithEthereum": "Sign-in with Ethereum <2></2>",
+      "unlockWithGithub": "or sign-in with GitHub"
     },
     "error": {
       "notSameWallet": "Use the same wallet you used to sign-in with Ethereum",

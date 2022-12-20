@@ -118,7 +118,7 @@
     },
     "footer": {
       "audit": "Ripoti ya ukaguzi",
-      "copyright": "Imetengenezwa na Shirika la Ethereum, timu ya Utafiti na Ustawishaji. 2022",
+      "copyright": "Imeundwa na Jumuiya ya Ethereum - 2022",
       "documentation": "Nyaraka",
       "faq": "Maswali Yanayoulizwa Sana"
     },
@@ -141,6 +141,7 @@
       "de": "Kijerumani",
       "es": "Kihispania",
       "en": "Kiingereza",
+      "sim_en": "Kiingereza Kilichorahisishwa",
       "fr": "Kifaransa",
       "hi": "Kihindi",
       "id": "Kiindonesia",

@@ -2,7 +2,6 @@ import {
   useState,
   MouseEventHandler,
   useEffect,
-  forwardRef,
   ChangeEventHandler
 } from 'react'
 import wasm from '../wasm'
@@ -37,7 +36,7 @@ type Player = {
   seek: (percent: number) => void
 }
 
-const EntropyInputPage = forwardRef((_, bgRef: any) => {
+const EntropyInputPage = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
@@ -125,7 +124,7 @@ const EntropyInputPage = forwardRef((_, bgRef: any) => {
       <HeaderJustGoingBack />
       <Over style={{ cursor: 'none' }}>
         <Container onMouseMove={handleCaptureMouseEntropy}>
-          <AnimatedCursor ref={bgRef}/>
+          <AnimatedCursor/>
           <SnakeProgress onSetPlayer={setPlayer} />
           <Wrap style={{ cursor: 'auto' }}>
             <PageTitle>
@@ -176,7 +175,7 @@ const EntropyInputPage = forwardRef((_, bgRef: any) => {
       </Over>
     </>
   )
-})
+}
 
 const SubDesc = styled(Description)`
   margin: 0 0 15px;

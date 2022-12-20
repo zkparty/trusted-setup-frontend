@@ -118,7 +118,7 @@
     },
     "footer": {
       "audit": "Laporan audit",
-      "copyright": "Dibuat oleh tim R&D, Ethereum Foundation. 2022",
+      "copyright": "Dibuat oleh Komunitas Ethereum 2022",
       "documentation": "Dokumentasi",
       "faq": "PERTANYAAN YANG SERING DITANYAKAN"
     },
@@ -141,6 +141,7 @@
       "de": "Bahasa Jerman",
       "es": "Bahasa Spanyol",
       "en": "Bahasa Inggris",
+      "sim_en": "Bahasa Inggris yang disederhanakan",
       "fr": "Bahasa Prancis",
       "hi": "Bahasa Hindi",
       "id": "Bahasa Indonesia",
