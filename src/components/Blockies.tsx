@@ -46,9 +46,13 @@ const BlockiesIdenticon = ({
         ref={canvasRef}
         onClick={onClick}
         clickable={clickable}
-        data-tip={t("record.transcriptModal.potPubkeyTooltip")}
+        data-tip={"Content is set in div below"}
       />
-      <ReactTooltip place="right" backgroundColor='black' effect="solid"/>
+      <ReactTooltip place="right" backgroundColor='black' effect="solid" padding='12px'>
+      <div style={{width: '40ch'}}>
+        {t("record.transcriptModal.potPubkeyTooltip")}
+      </div>
+      </ReactTooltip>
     </>
   )
 }

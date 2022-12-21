@@ -41,9 +41,6 @@ const o = keyframes`
 export const PizzaImg = styled(Img)<{ rounding: boolean }>`
   height: auto;
   transition: all 3s ease;
-  opacity: 0;
-  animation: ${o} 0s 1.5s forwards;
-  animation-duration: fadeInAnimation 3s;
   ${({ rounding }) =>
     rounding
       ? css`

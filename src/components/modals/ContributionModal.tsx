@@ -33,9 +33,13 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
     if (open)  document.body.style.overflowY = 'hidden';
     else  document.body.style.overflowY = 'unset';
 
-    const receiptObj = JSON.parse(receipt!)
+    if (!signature || !contribution || !receipt ){
+      return;
+    }
+
+    const receiptObj = JSON.parse(receipt)
     const _witnesses = receiptObj['witness']
-    const _contributions = JSON.parse(contribution!)['contributions']
+    const _contributions = JSON.parse(contribution)['contributions']
     setNow( new Date().toUTCString() )
     setWitnesses(_witnesses)
     setIdentity(receiptObj['identity'])
@@ -53,8 +57,8 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
     }
     // signature check
     try {
-      const hash = utils.hashMessage(receipt!)
-      const signer = utils.recoverAddress(hash, '0x' + signature!)
+      const hash = utils.hashMessage(receipt)
+      const signer = utils.recoverAddress(hash, '0x' + signature)
       if (signer !== data?.sequencer_address){
         setChecks( t('complete.modal.checks.failedSignature') )
         setChecksColor('red')

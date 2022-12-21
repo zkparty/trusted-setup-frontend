@@ -5,6 +5,7 @@ import Select, { StylesConfig } from 'react-select'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { locales } from '../locales'
+import { isMobile } from '../utils'
 import { useEffect } from 'react'
 
 const LanguageSelector = () => {
@@ -46,6 +47,14 @@ const LanguageSelector = () => {
       display: 'flex',
       width: '125px'
     }),
+    menuList: (styles: any) => ({
+      ...styles,
+      position: 'absolute',
+      right: isMobile() ? '-55px' : '-110px',
+      background: '#FFFFFF',
+      borderRadius: '0px 0px 5px 5px',
+      minWidth: '135px !important'
+    }),
     indicatorSeparator: (styles: any) => ({
       ...styles,
       display: 'none'
@@ -62,6 +71,7 @@ const LanguageSelector = () => {
       ...styles,
       cursor: 'pointer',
       backgroundColor: 'transparent',
+      width: '100% !important',
       color: MAIN_COLOR,
       ':hover': {
         ...styles[':hover'],

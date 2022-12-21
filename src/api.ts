@@ -5,9 +5,9 @@ import type { ErrorRes, ContributeRes, TryContributeRes, RequestLinkRes, Sequenc
 
 class APIClient {
   async getRequestLink(): Promise<RequestLinkRes | ErrorRes> {
-    const path = window.location.href.replace(/#?\/signin/, '');
+    const origin = window.location.origin + window.location.pathname;
     const res = await fetch(
-      `${API_ROOT}/auth/request_link?redirect_to=${encodeURIComponent(path)}`,
+      `${API_ROOT}/auth/request_link?redirect_to=${encodeURIComponent(origin)}`,
       {
         mode: 'cors'
       }

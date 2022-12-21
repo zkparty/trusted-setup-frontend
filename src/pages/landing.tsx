@@ -1,8 +1,10 @@
 import ROUTES from '../routes'
 import styled from 'styled-components'
+import FaqPage from '../components/Faq'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { textSerif } from '../style/utils'
+import { CIRCLE_SIZE } from '../constants'
 import { useAuthStore } from '../store/auth'
 import { useNavigate } from 'react-router-dom'
 import { TextSection } from '../components/Layout'
@@ -24,7 +26,17 @@ const LandingPage = () => {
   }, [navigate])
 
   useEffect(() => {
-    signout()
+    (async () => {
+      signout()
+      await navigator.serviceWorker.ready
+      // eslint-disable-next-line no-restricted-globals
+      if (!self.crossOriginIsolated) {
+        console.log('refreshing...')
+        navigate(0)
+      } else {
+        console.log(`${window.crossOriginIsolated ? "" : "not"} x-origin isolated`)
+      }
+    })();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -42,7 +54,7 @@ const LandingPage = () => {
             SUMMONING <br /> GUIDE
           </Trans>
         </PageTitle>
-        <TextSection>
+        <TextSection style={{ width: '48ch' }}>
           <Trans i18nKey="landing.description">
             <Description>
               Whispers from the shadows tell of a powerful spirit Dankshard, who
@@ -66,6 +78,7 @@ const LandingPage = () => {
         </Link>
       </TopSection>
       <Explanation refFromLanding={ref} />
+      <FaqPage />
       <Footer />
     </>
   )
@@ -91,14 +104,14 @@ const TopSection = styled(Section)`
 
 const BgColor = styled.div`
   background-color: ${({ theme }) => theme.surface};
-  height: 500px;
-  width: 500px;
+  height: ${CIRCLE_SIZE}px;
+  width: ${CIRCLE_SIZE}px;
   max-width: 100%;
   border-radius: 50%;
   box-shadow: 0 0 200px 120px ${({ theme }) => theme.surface};
   position: absolute;
   z-index: -1;
-  top: 240px;
+  margin-top: -30px;
 `
 
 const Footnote = styled.p`

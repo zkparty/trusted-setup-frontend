@@ -2,14 +2,14 @@ import {
   useState,
   MouseEventHandler,
   useEffect,
-  forwardRef,
   ChangeEventHandler
 } from 'react'
+import wasm from '../wasm'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { PrimaryButton } from '../components/Button'
 import { Description, PageTitle, Bold } from '../components/Text'
-import { useEntropyStore, EntropyStore } from '../store/contribute'
+import { useEntropyStore } from '../store/contribute'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap,
@@ -36,7 +36,7 @@ type Player = {
   seek: (percent: number) => void
 }
 
-const EntropyInputPage = forwardRef((_, bgRef: any) => {
+const EntropyInputPage = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
@@ -48,9 +48,7 @@ const EntropyInputPage = forwardRef((_, bgRef: any) => {
   const [percentage, setPercentage] = useState(0)
   const [player, setPlayer] = useState<Player | null>(null)
 
-  const updateEntropy = useEntropyStore(
-    (state: EntropyStore) => state.updateEntropy
-  )
+  const { updateEntropy, updatePotPubkeys } = useEntropyStore()
   const handleSubmit = () => {
     if (percentage !== 100) return
     setIsLoading(true)
@@ -104,7 +102,10 @@ const EntropyInputPage = forwardRef((_, bgRef: any) => {
     const expandedEntropyInt = BigInt('0x' + hex96)
     const secretInt = expandedEntropyInt % CURVE.r
     const secretHex = secretInt.toString(16).padStart(64, '0')
+    const potPubkeys = await wasm.getPotPubkeys(secretHex)
+
     updateEntropy(secretHex)
+    updatePotPubkeys(potPubkeys)
   }
 
   useEffect(() => {
@@ -123,7 +124,7 @@ const EntropyInputPage = forwardRef((_, bgRef: any) => {
       <HeaderJustGoingBack />
       <Over style={{ cursor: 'none' }}>
         <Container onMouseMove={handleCaptureMouseEntropy}>
-          <AnimatedCursor ref={bgRef}/>
+          <AnimatedCursor/>
           <SnakeProgress onSetPlayer={setPlayer} />
           <Wrap style={{ cursor: 'auto' }}>
             <PageTitle>
@@ -174,7 +175,7 @@ const EntropyInputPage = forwardRef((_, bgRef: any) => {
       </Over>
     </>
   )
-})
+}
 
 const SubDesc = styled(Description)`
   margin: 0 0 15px;

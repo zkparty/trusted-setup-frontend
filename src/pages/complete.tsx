@@ -1,10 +1,14 @@
+import ROUTES from '../routes'
 import styled from 'styled-components'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import ErrorMessage from '../components/Error'
+import { Trans, useTranslation } from 'react-i18next'
 import { PrimaryButtonLarge } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import { useContributionStore, Store } from '../store/contribute'
 import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
+import ContributionModal from '../components/modals/ContributionModal'
 import wasm from '../wasm'
 import {
   SingleContainer as Container,
@@ -14,11 +18,10 @@ import {
   InnerWrap,
   Over,
 } from '../components/Layout'
-import { Trans, useTranslation } from 'react-i18next'
-import ContributionModal from '../components/modals/ContributionModal'
 
 const CompletePage = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const [error, setError] = useState<null | string>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const { receipt, contribution, newContribution, sequencerSignature } = useContributionStore(
@@ -36,6 +39,10 @@ const CompletePage = () => {
 
   useEffect(() => {
     (async () => {
+      if (!contribution || !newContribution){
+        navigate(ROUTES.ROOT)
+        return
+      }
       const checks = await wasm.checkContributions(
         contribution!,
         newContribution!

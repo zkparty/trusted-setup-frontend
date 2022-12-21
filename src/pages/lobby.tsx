@@ -33,6 +33,7 @@ const LobbyPage = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
+
     async function poll(): Promise<void> {
       // periodically post /lobby/try_contribute
       let timeToContribute = false
@@ -59,7 +60,12 @@ const LobbyPage = () => {
             case 'TryContributeError::AnotherContributionInProgress':
               console.log(resError.error)
               break
+            case 'TryContributeError::LobbyIsFull':
+              console.log(resError.error)
+              navigate(ROUTES.LOBBY_FULL)
+              break
             default:
+              // StorageError and TaskError keep you in the lobby until sequencer gets fixed
               setShowError( t('error.tryContributeError.unknownError', resError) )
               console.log(resError)
               break

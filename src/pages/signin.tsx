@@ -27,22 +27,9 @@ const SigninPage = () => {
   const [showError, setShowError] = useState(error)
   const [isLoading, setIsLoading] = useState(false)
 
-  const onSigninSIE = async () => {
+  const onSigninSIWE = async () => {
     setIsLoading(true)
-    const requestLinks = await api.getRequestLink()
-    const code = (requestLinks as ErrorRes).code
-    switch (code) {
-      case undefined:
-        window.location.replace((requestLinks as RequestLinkRes).eth_auth_url)
-        break
-      case 'AuthErrorPayload::LobbyIsFull':
-        navigate(ROUTES.LOBBY_FULL)
-        return
-      default:
-        setShowError(JSON.stringify(requestLinks))
-        break
-    }
-    setIsLoading(false)
+    navigate(ROUTES.DOUBLE_SIGN)
   }
 
   const onSigninGithub = async () => {
@@ -94,7 +81,7 @@ const SigninPage = () => {
               <LoadingSpinner></LoadingSpinner>
               :
               <>
-              <PrimaryButton onClick={onSigninSIE} style={{ width: '300px' }} disabled={isLoading}>
+              <PrimaryButton onClick={onSigninSIWE} style={{ width: '300px' }} disabled={isLoading}>
                 <Trans i18nKey="signin.unlockWithEthereum">
                   Unlock with Ethereum{' '}
                   <ButtonIcon src={EthImg} alt="ETH icon" />
