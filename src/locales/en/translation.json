@@ -18,7 +18,7 @@
         "downloadReceipt": "Download Receipt",
         "signedBy": "Signed by ",
         "timestamp": "Contribution completed at:",
-        "identity": "Participant identity:",
+        "identity": "Participant ID:",
         "potPubkeys": "Powers of Tau Pubkeys",
         "tweet": "I just contributed to the test KZG Ceremony to scale Ethereum using {{identity}}"
       },
