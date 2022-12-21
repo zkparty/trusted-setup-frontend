@@ -5,7 +5,7 @@ import type { ErrorRes, ContributeRes, TryContributeRes, RequestLinkRes, Sequenc
 
 class APIClient {
   async getRequestLink(): Promise<RequestLinkRes | ErrorRes> {
-    const origin = window.location.origin;
+    const origin = window.location.origin + window.location.pathname;
     const res = await fetch(
       `${API_ROOT}/auth/request_link?redirect_to=${encodeURIComponent(origin)}`,
       {
