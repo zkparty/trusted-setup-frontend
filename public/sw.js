@@ -29,8 +29,14 @@ self.addEventListener("install", function () {
       fetch(request)
         .then(function (response) {
           const newHeaders = new Headers(response.headers);
-          newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
-          newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
+
+          if (url && url.includes('double_sign')) {
+            newHeaders.delete("Cross-Origin-Embedder-Policy");
+            newHeaders.set("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+          } else {
+            newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
+            newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
+          }
 
           const moddedResponse = new Response(response.body, {
             status: response.status,

@@ -13,6 +13,7 @@ import { FONT_SIZE, BREAKPOINT, ENVIRONMENT } from '../constants'
 import useSequencerStatus from '../hooks/useSequencerStatus'
 import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../store/auth'
+import { isMobile } from '../utils'
 import ROUTES from '../routes'
 
 const Header = () => {
@@ -25,8 +26,8 @@ const Header = () => {
   const indicatorColor = isonline ? "#61cc61" : "red"
   return (
     <Container>
-      <LeftSection onClick={() => navigate(ROUTES.ROOT)}>
-        <Logo />
+      <LeftSection>
+        <Logo onClick={() => navigate(ROUTES.ROOT)} />
         <Border />
         <Indicator aria-label="sequencer status" isonline={isonline.toString()} color={indicatorColor} />
         <SequencerStatus>
@@ -43,7 +44,7 @@ const Header = () => {
         </SequencerStatus>
       </LeftSection>
       { ENVIRONMENT === 'testnet' ?
-        <CenterSection>
+        <CenterSection isMobile={isMobile()}>
           <Trans i18nKey="header.ceremony">TEST CEREMONY</Trans>
         </CenterSection>
         :
@@ -76,17 +77,16 @@ const LeftSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
 `
 
-const CenterSection = styled.div`
+const CenterSection = styled.div<{ isMobile: boolean }>`
   display: flex;
   color: #3e70bc;
   align-items: start;
-  font-size: ${FONT_SIZE.XXL};
+  font-size: ${({isMobile}) => isMobile ? FONT_SIZE.S : FONT_SIZE.XXL};
+  letter-spacing: ${({isMobile}) => isMobile ? '0.5px' : '2px'};
   ${textSerif}
   font-weight: 800;
-  letter-spacing: 2px;
 `
 
 const Border = styled.span`

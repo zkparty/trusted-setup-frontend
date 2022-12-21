@@ -1,13 +1,9 @@
-// Import libraries
-import styled from 'styled-components'
-// Import components
-import FaqItem from '../components/FaqItem'
-import { START_DATE, END_DATE } from '../constants'
-import ExternalLink from '../components/ExternalLink'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import { PageTitle } from '../components/Text'
+import FaqItem from './FaqItem'
+import { PageTitle } from './Text'
 import { Trans } from 'react-i18next'
+import styled from 'styled-components'
+import ExternalLink from './ExternalLink'
+import { START_DATE, END_DATE } from '../constants'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const [from, to] = [START_DATE, END_DATE].map((date: string) =>
@@ -456,22 +452,18 @@ const faqQuestions = [
 ]
 // FAQ section component
 const FaqPage = () => (
-  <>
-    <Header />
-    <FaqSection>
-      <PageTitle id="faq">FAQ</PageTitle>
-      {faqQuestions.map(({ title, content }, index) => (
-        <FaqItem key={index} title={title} content={content} />
-      ))}
-    </FaqSection>
-    <Footer />
-  </>
+  <FaqSection>
+    <PageTitle id="faq">FAQ</PageTitle>
+    {faqQuestions.map(({ title, content }, index) => (
+      <FaqItem key={index} title={title} content={content} />
+    ))}
+  </FaqSection>
 )
 
 // Styled components
 const FaqSection = styled.section`
-  padding-block: 8rem;
-  width: 90ch;
+  padding-bottom: 8rem;
+  width: 55ch;
   max-width: 100%;
   margin: 0 auto;
   line-height: 140%;
