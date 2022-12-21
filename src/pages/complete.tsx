@@ -97,10 +97,20 @@ const CompletePage = () => {
             onDeselect={() => setIsModalOpen(false)}
           />
         </Container>
+        <TannedBackground/>
       </Over>
     </>
   )
 }
+
+const TannedBackground = styled.div`
+  top: 0px;
+  z-index: -3;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: #FFF8E7;
+`
 
 export const ButtonSection = styled(SingleButtonSection)`
   margin-top: 12px;
