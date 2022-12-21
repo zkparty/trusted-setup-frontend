@@ -39,6 +39,7 @@
     },
     "doubleSign": {
       "button": "Sign",
+      "checkWallet": "Check your wallet to sign the contribution",
       "description": "<0>This signature binds each Summoner’s entropy contribution to their Ethereum address.</0>",
       "title": "Bind your <br/> Contribution"
     },
