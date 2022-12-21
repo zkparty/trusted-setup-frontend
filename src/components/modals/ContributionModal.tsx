@@ -141,7 +141,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
           <Desc>
             <b>
               <Trans i18nKey="complete.modal.identity">
-                Participant identity:
+                Participant ID:
               </Trans>
             </b>
             <br/>
@@ -161,6 +161,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
                 setSelectedIndex(0)
               } }
               clickable={true}
+              tooltipPlace={"bottom"}
               opts={{
                 seed: contributions ? contributions[0]['potPubkey'] : null,
                 size: 8,
@@ -173,6 +174,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
                 setSelectedIndex(1)
               } }
               clickable={true}
+              tooltipPlace={"bottom"}
               opts={{
                 seed: contributions ? contributions[1]['potPubkey'] : null,
                 size: 8,
@@ -185,6 +187,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
                 setSelectedIndex(2)
               } }
               clickable={true}
+              tooltipPlace={"bottom"}
               opts={{
                 seed: contributions ? contributions[2]['potPubkey'] : null,
                 size: 8,
@@ -197,6 +200,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
                 setSelectedIndex(3)
               } }
               clickable={true}
+              tooltipPlace={"bottom"}
               opts={{
                 seed: contributions ? contributions[3]['potPubkey'] : null,
                 size: 8,

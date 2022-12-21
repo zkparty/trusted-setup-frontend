@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useEffect, useRef } from 'react'
 import blockies from 'blockies-identicon'
 import { stringToColor } from '../utils'
-import ReactTooltip from 'react-tooltip'
+import ReactTooltip, {Place} from 'react-tooltip'
 
 type Props = {
   opts: {
@@ -13,10 +13,14 @@ type Props = {
   }
   onClick?: () => void
   clickable?: boolean
+  tooltipPlace?: Place
 }
 
 const BlockiesIdenticon = ({
-  opts: { seed = 'foo', size = 15, scale = 3 }, onClick, clickable = false
+  opts: { seed = 'foo', size = 15, scale = 3 },
+  onClick,
+  clickable = false,
+  tooltipPlace = "right"
 }: Props) => {
   const { t } = useTranslation();
   const canvasRef = useRef<HTMLCanvasElement>(null!)
@@ -48,7 +52,7 @@ const BlockiesIdenticon = ({
         clickable={clickable}
         data-tip={"Content is set in div below"}
       />
-      <ReactTooltip place="right" backgroundColor='black' effect="solid" padding='12px'>
+      <ReactTooltip place={tooltipPlace} backgroundColor='black' effect="solid" padding='12px'>
       <div style={{width: '40ch'}}>
         {t("record.transcriptModal.potPubkeyTooltip")}
       </div>
