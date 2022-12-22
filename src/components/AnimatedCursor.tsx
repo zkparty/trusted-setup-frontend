@@ -110,8 +110,8 @@ const TailElement = styled.div`
   height: 130px;
   filter: blur(6px);
   background: radial-gradient(
-    rgb(255,255,255,0.4) 20%,
-    rgb(255,252,187,0.2) 60%
+    rgb(187, 250, 204,0.9) 20%,
+    rgb(92, 247, 133,0.4) 60%
   );
   animation: ${pulsate} 5s ease-out infinite, ${growing} 5s linear infinite;
 `
