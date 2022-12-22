@@ -49,10 +49,10 @@ const EntropyInputPage = () => {
   const [player, setPlayer] = useState<Player | null>(null)
 
   const { updateEntropy, updatePotPubkeys } = useEntropyStore()
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (percentage !== 100) return
     setIsLoading(true)
-    processGeneratedEntropy()
+    await processGeneratedEntropy()
     navigate(ROUTES.SIGNIN)
   }
 
