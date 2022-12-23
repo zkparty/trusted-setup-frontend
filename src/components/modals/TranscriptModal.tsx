@@ -84,7 +84,7 @@ const TranscriptModal = ({ record, onDeselect, onChange }: Props) => {
       </SubTitle>
       <ol style={{ paddingInlineStart: '20px', paddingLeft: '0px' }}>
         {record?.transcripts.map((transcript, index) => (
-          <div style={{ display: 'flex', paddingBottom: '3px' }} key={transcript.potPubkeys}>
+          <div style={{ display: 'flex', paddingBottom: '3px' }} key={transcript.potPubkeys + index}>
             <BlockiesIdenticon
               opts={{
                 seed: transcript.potPubkeys,
@@ -96,17 +96,33 @@ const TranscriptModal = ({ record, onDeselect, onChange }: Props) => {
           </div>
         ))}
       </ol>
-
-      <SubTitle>
-        <Trans i18nKey="record.transcriptModal.bls">
-          BLS Signatures:
-        </Trans>
-      </SubTitle>
-      <ol style={{ paddingInlineStart: '20px' }}>
-      {record?.transcripts.map((transcript) => (
-         <li key={transcript.potPubkeys}><Desc>{transcript.blsSignature}</Desc></li>
-      ))}
-      </ol>
+      {record?.position === 0 ?
+        <>
+          <SubTitle>
+            <Trans i18nKey="record.transcriptModal.zero.title">
+              What is this is contribution?
+            </Trans>
+          </SubTitle>
+          <Desc>
+            <Trans i18nKey="record.transcriptModal.zero.description">
+            The genesis contribution helps out as an starting point for the coming ones. It does not contain a participant ID, BLS signatures or ECDSA signatures.
+            </Trans>
+          </Desc>
+        </>
+        :
+        <>
+          <SubTitle>
+            <Trans i18nKey="record.transcriptModal.bls">
+              BLS Signatures:
+            </Trans>
+          </SubTitle>
+          <ol style={{ paddingInlineStart: '20px' }}>
+          {record?.transcripts.map((transcript, index) => (
+            <li key={transcript.potPubkeys + index}><Desc>{transcript.blsSignature}</Desc></li>
+          ))}
+          </ol>
+        </>
+      }
       {record?.participantEcdsaSignature ?
         <>
         <SubTitle>
