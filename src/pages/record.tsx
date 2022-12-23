@@ -163,7 +163,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   color: ${({ theme }) => theme.text};
-  width: 90ch;
+  width: 100ch;
   max-width: 100%;
   margin: 8rem auto;
   padding-inline: 5vw;
@@ -201,11 +201,13 @@ const StatsContainer = styled.div`
 `
 const StatsTitle = styled.p`
   margin: 0px;
+  margin-right: 3px;
   font-weight: 800;
 `
 
 const StatsText = styled.p`
   margin: 0px;
+  margin-right: 3px;
   margin-bottom: 7px;
 `
 
