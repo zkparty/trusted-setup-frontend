@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Record } from '../types'
-import styled from 'styled-components'
+import styled, { css }  from 'styled-components'
 import { FONT_SIZE } from '../constants'
 import BlockiesIdenticon from './Blockies'
 import LoadingSpinner from './LoadingSpinner'
@@ -10,10 +10,12 @@ import TranscriptModal from './modals/TranscriptModal'
 type Props = {
   data: Record[]
   isLoading: boolean
+  reOrderFormattedData: () => void
 }
 
-const RecordTable = ({ data, isLoading }: Props) => {
+const RecordTable = ({ data, isLoading, reOrderFormattedData }: Props) => {
   useTranslation()
+  const [increaseOrder, setIncreaseOrder] = useState(true);
   const [selectedTranscriptItem, setSelectedTranscriptItem] =
     useState<null | Record>(null)
 
@@ -26,11 +28,16 @@ const RecordTable = ({ data, isLoading }: Props) => {
     )
   }
 
+  const handleOnClickChevron = () => {
+    reOrderFormattedData()
+    setIncreaseOrder(!increaseOrder)
+  }
+
   return (
     <Container>
       <TableHead>
+          <Col># <Chevron onClick={handleOnClickChevron} increaseOrder={increaseOrder}>{'>'}</Chevron></Col>
         <Trans i18nKey="record.headers">
-          <Col>#</Col>
           <Col flex={4} width="0">Participant ID</Col>
           <Col atEnd>Signatures</Col>
         </Trans>
@@ -71,12 +78,33 @@ const Container = styled.div`
 `
 
 const TableHead = styled.div`
+  padding-inline: 5px;
   display: flex;
   height: 60px;
 `
 
+const Chevron = styled.span<{increaseOrder: boolean}>`
+  cursor: pointer;
+  user-select: none;
+  margin-left: 12px;
+  ${({ increaseOrder }) => increaseOrder ?
+    css`
+      transform: rotate(90deg);
+      height: 18px;
+      width: 12px;
+    `
+    :
+    css`
+      transform: rotate(270deg);
+      height: 20px;
+      width: 10px;
+    `
+  }
+`
+
 const Row = styled.div`
   display: flex;
+  padding-inline: 5px;
   align-items: center;
   height: 70px;
   border-bottom: solid 1px ${({ theme }) => theme.text};
@@ -85,7 +113,6 @@ const Row = styled.div`
 
   :hover:not([disabled]) {
     box-shadow: 1px 2px 6px 6px #b4b2b2;
-
     border-bottom: none;
     border-right: none;
     border-left: none;

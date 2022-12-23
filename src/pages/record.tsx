@@ -119,6 +119,17 @@ const RecordPage = () => {
     setPage(1)
   }
 
+  const reOrderFormattedData = () => {
+    setIsLoading(true);
+    const records: Record[] = [];
+    for (let i = formattedData.length-1, ni = 0; i >= ni; i--) {
+      const record = formattedData[i];
+      records.push(record)
+    }
+    setFormattedData( records )
+    setIsLoading(false);
+  }
+
   return (
     <BgContainer>
       <Header />
@@ -144,6 +155,7 @@ const RecordPage = () => {
         <RecordTable
           data={pageData}
           isLoading={isLoading}
+          reOrderFormattedData={reOrderFormattedData}
         />
         <Pagination page={page} setPage={setPage} totalPages={totalPages} />
       </Container>
@@ -189,6 +201,7 @@ const StatsContainer = styled.div`
   width: 100%;
   display: flex;
   font-size: ${FONT_SIZE.S};
+  padding-inline: 5px;
   margin-bottom: 20px;
   justify-content: space-between;
 
