@@ -66,13 +66,12 @@ const RecordTable = ({ data, isLoading }: Props) => {
 
 const Container = styled.div`
   margin-top: 40px;
-  width: 90ch;
+  width: 100ch;
   max-width: 100%;
 `
 
 const TableHead = styled.div`
   display: flex;
-  padding-inline: 15px;
   height: 60px;
 `
 
@@ -80,7 +79,6 @@ const Row = styled.div`
   display: flex;
   align-items: center;
   height: 70px;
-  padding-inline: 15px;
   border-bottom: solid 1px ${({ theme }) => theme.text};
   gap: 1rem;
   cursor: pointer;

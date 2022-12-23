@@ -138,7 +138,7 @@ const RecordPage = () => {
           <StatsTitle>
             <Trans i18nKey="record.stats.address">Sequencer address:</Trans>
           </StatsTitle>
-          <StatsText> {stats?.sequencer_address}</StatsText>
+          <StatsText style={{ marginRight: '0px' }}> {stats?.sequencer_address}</StatsText>
         </StatsContainer>
         <SearchInput placeholder={t('record.searchBar')} onChange={handleInput} />
         <RecordTable
@@ -201,13 +201,13 @@ const StatsContainer = styled.div`
 `
 const StatsTitle = styled.p`
   margin: 0px;
-  margin-right: 3px;
+  margin-right: 2px;
   font-weight: 800;
 `
 
 const StatsText = styled.p`
   margin: 0px;
-  margin-right: 3px;
+  margin-right: 2px;
   margin-bottom: 7px;
 `
 
