@@ -89,7 +89,7 @@ const PageIndicator = styled.button<{ active?: boolean }>`
   height: 2rem;
   min-width: 2rem;
   border-radius: 1rem;
-  background: #FFF8E7;
+  background: ${({ theme }) => theme.surface};
   border: solid ${({ theme }) => theme.text};
   border-width: ${({ active }) => (active ? '1px' : '0px')};
 `

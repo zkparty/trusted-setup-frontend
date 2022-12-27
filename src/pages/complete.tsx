@@ -109,7 +109,7 @@ const TannedBackground = styled.div`
   width: 100vw;
   height: 100vh;
   position: fixed;
-  background: #FFF8E7;
+  background: ${({ theme }) => theme.surface };
 `
 
 export const ButtonSection = styled(SingleButtonSection)`

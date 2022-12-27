@@ -1,5 +1,6 @@
 import Modal from 'react-modal'
 import { Record } from '../../types'
+import theme from '../../style/theme'
 import styled from 'styled-components'
 import { FONT_SIZE } from '../../constants'
 import { Bold, Description } from '../Text'
@@ -51,6 +52,7 @@ const TranscriptModal = ({ record, onDeselect, onChange }: Props) => {
           marginInline: 'auto',
           paddingBlock: '20px',
           paddingInline: '5%',
+          background: theme.surface,
           boxShadow: '5px 10px 8px 10px #b4b2b2',
         }
       }}

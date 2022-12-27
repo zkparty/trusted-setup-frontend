@@ -1,5 +1,6 @@
 import { utils } from 'ethers'
 import Modal from 'react-modal'
+import theme from '../../style/theme'
 import styled from 'styled-components'
 import { PrimaryButton } from '../Button'
 import BlockiesIdenticon from '../Blockies'
@@ -117,7 +118,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
           paddingTop: '20px',
           paddingBottom: '70px',
           paddingInline: '6%',
-          background: '#FFF8E7',
+          background: theme.surface,
           boxShadow: '5px 10px 8px 10px #b4b2b2',
         }
       }}

@@ -1,5 +1,6 @@
 import Modal from 'react-modal'
 import { useEffect } from 'react'
+import theme from '../../style/theme'
 import { Trans, useTranslation } from 'react-i18next'
 import { Title, Desc } from './TranscriptModal'
 
@@ -41,7 +42,7 @@ const SignatureModal = ({ signature, index, onDeselect }: Props) => {
           paddingBlock: '20px',
           paddingInline: '5%',
           boxShadow: '5px 10px 8px 10px #b4b2b2',
-          background: '#FFF8E7',
+          background: theme.surface,
         }
       }}
     >

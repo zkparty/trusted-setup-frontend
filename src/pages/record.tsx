@@ -1,7 +1,7 @@
 // Library imports
 import { Trans, useTranslation } from 'react-i18next'
 import { useState, useMemo, useEffect } from 'react'
-import { providers } from "ethers";
+import { providers } from 'ethers'
 import styled from 'styled-components'
 // Component imports
 import Footer from '../components/Footer'
@@ -165,7 +165,7 @@ const RecordPage = () => {
 }
 
 const BgContainer = styled.div`
-  background-color: #FFF8E7;
+  background-color: ${({ theme }) => theme.surface };
   position: absolute;
   width: 100%;
 `

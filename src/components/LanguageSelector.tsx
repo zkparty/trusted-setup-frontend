@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { locales } from '../locales'
 import { isMobile } from '../utils'
+import theme from '../style/theme'
 import { useEffect } from 'react'
 
 const LanguageSelector = () => {
@@ -75,7 +76,7 @@ const LanguageSelector = () => {
       color: MAIN_COLOR,
       ':hover': {
         ...styles[':hover'],
-        backgroundColor: '#FFF8E7'
+        backgroundColor: theme.surface
       }
     })
   }
