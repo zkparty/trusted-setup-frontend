@@ -1,5 +1,6 @@
 import ROUTES from '../routes'
 import styled from 'styled-components'
+import { ENVIRONMENT } from '../constants'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ErrorMessage from '../components/Error'
@@ -32,6 +33,18 @@ const CompletePage = () => {
       sequencerSignature: state.sequencerSignature,
     })
   )
+
+  const handleClickShareTwitter = () => {
+    const receiptObj = JSON.parse(receipt!)
+    const { identity } = receiptObj
+    let tweet = t('complete.modal.tweet', {identity})
+    if ( ENVIRONMENT === 'testnet' ){
+      tweet = '**TEST**: ' + tweet
+    }
+    const encoded = encodeURIComponent( tweet )
+    const link = `https://twitter.com/intent/tweet?text=${encoded}`
+    window.open(link, '_blank');
+  }
 
   const handleClickViewContribution = async () => {
     setIsModalOpen(true);
@@ -81,6 +94,11 @@ const CompletePage = () => {
               </TextSection>
 
               <ButtonSection>
+                <PrimaryButtonLarge onClick={handleClickShareTwitter} style={{ width: '300px' }}>
+                  <Trans i18nKey="complete.shareTwitter">
+                    Share on Twitter
+                  </Trans>
+                </PrimaryButtonLarge>
                 <PrimaryButtonLarge onClick={handleClickViewContribution}>
                   <Trans i18nKey="complete.button">
                     View your contribution

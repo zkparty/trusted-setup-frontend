@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import { PrimaryButton } from '../Button'
 import BlockiesIdenticon from '../Blockies'
 import { useEffect, useState } from 'react'
-import { ENVIRONMENT } from '../../constants'
 import SignatureModal from './SignatureModal'
 import {Title, Desc } from './TranscriptModal'
 import { Trans, useTranslation } from 'react-i18next'
@@ -75,16 +74,6 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
     setChecksColor('#61cc61')
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [signature, contribution, receipt, open])
-
-  const handleClickShareTwitter = () => {
-    let tweet = t('complete.modal.tweet', {identity})
-    if ( ENVIRONMENT === 'testnet' ){
-      tweet = '**TEST**: ' + tweet
-    }
-    const encoded = encodeURIComponent( tweet )
-    const link = `https://twitter.com/intent/tweet?text=${encoded}`
-    window.open(link, '_blank');
-  }
 
   const handleClickDownloadReceipt = () => {
     const encodedReceipt = encodeURIComponent(receipt!)
@@ -240,11 +229,6 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
         <span style={{color: checksColor}}> {checks} </span>
       </Desc>
       <BottomSection>
-        <PrimaryButton onClick={handleClickShareTwitter} style={{ width: '300px' }}>
-          <Trans i18nKey="complete.modal.shareTwitter">
-            Share on Twitter
-          </Trans>
-        </PrimaryButton>
         <PrimaryButton onClick={handleClickDownloadReceipt} style={{ width: '300px' }}>
           <Trans i18nKey="complete.modal.downloadReceipt">
             Download Receipt

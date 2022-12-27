@@ -14,7 +14,6 @@
         "integrityChecks": "Integrity checks ",
         "keys": "MY KEYS",
         "receipt": "Contribution receipt:",
-        "shareTwitter": "Share on Twitter",
         "downloadReceipt": "Download Receipt",
         "signedBy": "Signed by ",
         "timestamp": "Contribution completed at:",
@@ -22,6 +21,7 @@
         "potPubkeys": "Powers of Tau Pubkeys",
         "tweet": "I just contributed to the test KZG Ceremony to scale Ethereum using {{identity}}"
       },
+      "shareTwitter": "Share on Twitter",
       "title": "Dankshard <br/> draws near"
     },
     "contributing": {
