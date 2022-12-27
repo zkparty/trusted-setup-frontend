@@ -1,20 +1,12 @@
-import ROUTES from '../routes'
 import { isMobile } from '../utils'
-import { useCallback } from 'react'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
 import FlowerAnimation from './FlowerAnimation'
 import { TextSection } from '../components/Layout'
-import { PrimaryButton } from '../components/Button'
 import { Trans, useTranslation } from 'react-i18next'
 import { Description, PageTitle } from '../components/Text'
 
 const Explanation = ({ refFromLanding }: any) => {
   useTranslation()
-  const navigate = useNavigate()
-  const onClickViewContributions = useCallback(() => {
-    navigate(ROUTES.RECORD)
-  }, [navigate])
 
   return (
     <SecondSection id="explanation" ref={refFromLanding}>
@@ -58,9 +50,6 @@ const Explanation = ({ refFromLanding }: any) => {
       </SecondTextSection>
       <FlowerAnimation inverse={true}></FlowerAnimation>
       </Container>
-      <PrimaryButton onClick={onClickViewContributions}>
-          <Trans i18nKey="explanation.button">View contributions</Trans>
-      </PrimaryButton>
     </SecondSection>
   )
 }

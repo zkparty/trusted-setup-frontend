@@ -50,7 +50,6 @@
       "title": "Entropy <br/> Entry"
     },
     "explanation": {
-      "button": "View contributions",
       "description": "<0>This Trusted Setup is a multi-party ceremony designed to generate a secure SRS (structured reference string) to be used in the proto-danksharding protocol. OK, let's slow down and talk about those terms in more detail.</0><1>Proto-danksharding (aka EIP-4844) is a planned change to the Ethereum protocol which allows transaction data from rollups (Layer 2s) to be succinctly represented on the Layer 1 (mainnet). The benefits are lower transaction fees on the L2, greater scalability and more accessibility to more people!</1><2>The Trusted Setup is a preparatory step required for certain cryptographic schemes such as the KZG polynomial commitment scheme to be used in proto-danksharding. In our case, the trust assumption is that one contributor needs to successfully conceal their secret for the result to be secure.</2><3>It's a multi-party ceremony: Contributors each create a secret and run a computation to mix it with previous contributions and generate a result that can be made public and passed to the next contributor. We need to guard against attempts to control the ceremony, so you'll need an Ethereum or GitHub account with an established history.</3>",
       "title": "PROTO-DANKSHARDING <br/> AND THE CEREMONY"
     },
@@ -157,6 +156,10 @@
       "sw": "Swahili",
       "tr": "Turkish",
       "zh": "Chinese"
+    },
+    "latestRecords": {
+      "title": "LATEST CONTRIBUTIONS",
+      "button": "View all contributions"
     },
     "lobby": {
       "description": "<0>Your contribution is ready to be accepted by the Sequencer. Please leave this guide open in the background and we will add your contribution to the others soon.</0><1>Please leave this guide open and awake.</1>",

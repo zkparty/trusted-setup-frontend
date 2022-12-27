@@ -13,6 +13,7 @@ import { PrimaryButton } from '../components/Button'
 import { Trans, useTranslation } from 'react-i18next'
 import LandingBg from '../assets/landing-boarder.png'
 import { useCallback, useRef, useEffect } from 'react'
+import LatestRecords from '../components/LatestRecords'
 import { Description, PageTitle } from '../components/Text'
 import { isMobile } from '../utils'
 
@@ -78,6 +79,7 @@ const LandingPage = () => {
         </Link>
       </TopSection>
       <Explanation refFromLanding={ref} />
+      <LatestRecords />
       <FaqPage />
       <Footer />
     </>

@@ -10,10 +10,16 @@ import TranscriptModal from './modals/TranscriptModal'
 type Props = {
   data: Record[]
   isLoading: boolean
+  showChevron?: boolean
   reOrderFormattedData: () => void
 }
 
-const RecordTable = ({ data, isLoading, reOrderFormattedData }: Props) => {
+const RecordTable = ({
+  data,
+  isLoading,
+  showChevron = true,
+  reOrderFormattedData
+}: Props) => {
   useTranslation()
   const [increaseOrder, setIncreaseOrder] = useState(true);
   const [selectedTranscriptItem, setSelectedTranscriptItem] =
@@ -36,7 +42,11 @@ const RecordTable = ({ data, isLoading, reOrderFormattedData }: Props) => {
   return (
     <Container>
       <TableHead>
-          <Col># <Chevron onClick={handleOnClickChevron} increaseOrder={increaseOrder}>{'>'}</Chevron></Col>
+          <Col># { showChevron ?
+          <Chevron onClick={handleOnClickChevron} increaseOrder={increaseOrder}>{'>'}</Chevron>
+          :
+          ''
+          }</Col>
         <Trans i18nKey="record.headers">
           <Col flex={4} width="0">Participant ID</Col>
           <Col atEnd>Signatures</Col>
