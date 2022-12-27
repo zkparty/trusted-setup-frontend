@@ -1,20 +1,20 @@
 // Import libraries
 import { Trans, useTranslation } from 'react-i18next'
-import { textSerif } from '../style/utils'
+import { textSerif } from '../../style/utils'
 import styled from 'styled-components'
 // Import components
-import Logo from './Logo'
-import LanguageSelector from './LanguageSelector'
+import Logo from '../Logo'
+import LanguageSelector from '../LanguageSelector'
 // Import image assets
-import { ReactComponent as Star } from '../assets/star.svg'
+import { ReactComponent as Star } from '../../assets/star.svg'
 // Import constants
-import { FONT_SIZE, BREAKPOINT, ENVIRONMENT } from '../constants'
+import { FONT_SIZE, BREAKPOINT, ENVIRONMENT } from '../../constants'
 // Import hooks
-import useSequencerStatus from '../hooks/useSequencerStatus'
+import useSequencerStatus from '../../hooks/useSequencerStatus'
 import { useNavigate } from 'react-router-dom'
-import { useAuthStore } from '../store/auth'
-import { isMobile } from '../utils'
-import ROUTES from '../routes'
+import { useAuthStore } from '../../store/auth'
+import { isMobile } from '../../utils'
+import ROUTES from '../../routes'
 
 const Header = () => {
 

@@ -25,7 +25,7 @@ import ErrorMessage from '../components/Error'
 import { ErrorRes, RequestLinkRes } from '../types'
 import { Trans, useTranslation } from 'react-i18next'
 import LoadingSpinner from '../components/LoadingSpinner'
-import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
+import HeaderJustGoingBack from '../components/headers/HeaderJustGoingBack'
 import { TypedDataDomain, TypedDataField } from '@ethersproject/abstract-signer';
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import CoinbaseWalletSDK from '@coinbase/wallet-sdk'

@@ -19,7 +19,7 @@ import {
 } from '../components/Layout'
 import ROUTES from '../routes'
 import SnakeProgress from '../components/SnakeProgress'
-import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
+import HeaderJustGoingBack from '../components/headers/HeaderJustGoingBack'
 import { CURVE } from '@noble/bls12-381'
 import { hkdf } from '@noble/hashes/hkdf'
 import { sha256 } from '@noble/hashes/sha256'

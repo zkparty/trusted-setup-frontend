@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Trans, useTranslation } from 'react-i18next'
 import { PrimaryButtonLarge } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
-import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
+import HeaderJustGoingBack from '../components/headers/HeaderJustGoingBack'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap,

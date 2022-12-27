@@ -16,7 +16,7 @@ import { useAuthStore } from '../store/auth'
 import { useNavigate } from 'react-router-dom'
 import { ErrorRes, RequestLinkRes } from '../types'
 import { Trans, useTranslation } from 'react-i18next'
-import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
+import HeaderJustGoingBack from '../components/headers/HeaderJustGoingBack'
 import api from '../api'
 import LoadingSpinner from '../components/LoadingSpinner'
 

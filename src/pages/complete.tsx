@@ -7,7 +7,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { PrimaryButtonLarge } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import { useContributionStore, Store } from '../store/contribute'
-import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
+import HeaderJustGoingBack from '../components/headers/HeaderJustGoingBack'
 import ContributionModal from '../components/modals/ContributionModal'
 import wasm from '../wasm'
 import {

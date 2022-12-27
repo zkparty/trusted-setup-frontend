@@ -1,7 +1,7 @@
 import ROUTES from '../routes'
 import styled from 'styled-components'
 import FaqPage from '../components/Faq'
-import Header from '../components/Header'
+import Header from '../components/headers/Header'
 import Footer from '../components/Footer'
 import { textSerif } from '../style/utils'
 import { CIRCLE_SIZE } from '../constants'

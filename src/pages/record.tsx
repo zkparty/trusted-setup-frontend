@@ -5,7 +5,7 @@ import { providers } from "ethers";
 import styled from 'styled-components'
 // Component imports
 import Footer from '../components/Footer'
-import Header from '../components/Header'
+import Header from '../components/headers/Header'
 import Pagination from '../components/Pagination'
 import RecordTable from '../components/RecordTable'
 import { PageTitle } from '../components/Text'
