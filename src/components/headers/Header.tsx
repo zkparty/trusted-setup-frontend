@@ -8,13 +8,14 @@ import LanguageSelector from '../LanguageSelector'
 // Import image assets
 import { ReactComponent as Star } from '../../assets/star.svg'
 // Import constants
-import { FONT_SIZE, BREAKPOINT, ENVIRONMENT } from '../../constants'
+import { FONT_SIZE, BREAKPOINT, ENVIRONMENT, COMPUTE_DEADLINE } from '../../constants'
 // Import hooks
 import useSequencerStatus from '../../hooks/useSequencerStatus'
 import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../../store/auth'
 import { isMobile } from '../../utils'
 import ROUTES from '../../routes'
+import { Bold } from '../Text'
 
 const Header = () => {
 
@@ -41,6 +42,21 @@ const Header = () => {
               <Trans i18nKey="header.offline">Offline</Trans>
             )}
           </Status>
+        </SequencerStatus>
+        <Border  />
+        <SequencerStatus style={{ fontSize: FONT_SIZE.XXS }}>
+          <span style={{ paddingBottom: '2px' }}>
+            <Bold>{data?.num_contributions} {' '}</Bold>
+            <Trans i18nKey="header.totalContributions">total contributions</Trans>
+          </span>
+          <span style={{ paddingBottom: '2px' }}>
+            <Bold>{data?.lobby_size} {' '}</Bold>
+            <Trans i18nKey="header.participantsInLobby">participants in lobby</Trans>
+          </span>
+          <span>
+            <Bold>{ ((data?.lobby_size! * COMPUTE_DEADLINE) / 60).toFixed(0) } {' '}</Bold>
+            <Trans i18nKey="header.waitTime">min estimated wait time</Trans>
+          </span>
         </SequencerStatus>
       </LeftSection>
       { ENVIRONMENT === 'testnet' ?

@@ -129,7 +129,10 @@
       "offline": "Offline",
       "online": "Online",
       "title": "Test Ceremony",
-      "sequencer": "Sequencer"
+      "sequencer": "Sequencer",
+      "totalContributions": "total contributions",
+      "participantsInLobby": "participants in lobby",
+      "waitTime": "min estimated wait time"
     },
     "landing": {
       "button": "Begin",
