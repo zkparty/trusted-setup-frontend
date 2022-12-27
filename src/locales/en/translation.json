@@ -19,6 +19,7 @@
         "timestamp": "Contribution completed at:",
         "identity": "Participant ID:",
         "potPubkeys": "Powers of Tau Pubkeys",
+        "transcript": "full transcript",
         "tweet": "I just contributed to the test KZG Ceremony to scale Ethereum using {{identity}}"
       },
       "shareTwitter": "Share on Twitter",

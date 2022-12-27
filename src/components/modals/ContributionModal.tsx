@@ -3,10 +3,12 @@ import Modal from 'react-modal'
 import theme from '../../style/theme'
 import styled from 'styled-components'
 import { PrimaryButton } from '../Button'
+import ExternalLink from '../ExternalLink'
 import BlockiesIdenticon from '../Blockies'
 import { useEffect, useState } from 'react'
 import SignatureModal from './SignatureModal'
 import {Title, Desc } from './TranscriptModal'
+import { API_ROOT, FONT_SIZE } from '../../constants'
 import { Trans, useTranslation } from 'react-i18next'
 import useSequencerStatus from '../../hooks/useSequencerStatus'
 
@@ -118,6 +120,11 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
             <Trans i18nKey="complete.modal.keys">
               MY KEYS
             </Trans>
+            <Link href={`${API_ROOT}/info/current_state`}>
+              <Trans i18nKey="complete.modal.transcript">
+                full transcript
+              </Trans>
+            </Link>
           </Title>
           <Desc>
             <b>
@@ -244,6 +251,14 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
     </>
   )
 }
+
+const Link = styled(ExternalLink)`
+  text-decoration-line: underline;
+  font-family: 'Inter', sans-serif;
+  font-size: ${FONT_SIZE.S};
+  font-weight: 100;
+  margin-left: 9px;
+`
 
 const BlockieRow = styled.div`
   display: flex;
