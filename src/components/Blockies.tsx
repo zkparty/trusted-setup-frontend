@@ -50,10 +50,17 @@ const BlockiesIdenticon = ({
         ref={canvasRef}
         onClick={onClick}
         clickable={clickable}
-        data-tip={"Content is set in div below"}
+        data-tip={"Blockie tooltip content in div below"}
+        data-for={"blockiePoT"}
       />
-      <ReactTooltip place={tooltipPlace} backgroundColor='black' effect="solid" padding='12px'>
-      <div style={{width: '40ch'}}>
+      <ReactTooltip
+        id="blockiePoT"
+        place={tooltipPlace}
+        backgroundColor="black"
+        effect="solid"
+        padding="12px"
+      >
+      <div style={{ width: "40ch", wordBreak: "break-word" }}>
         {t("record.transcriptModal.potPubkeyTooltip")}
       </div>
       </ReactTooltip>

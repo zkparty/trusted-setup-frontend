@@ -8,7 +8,8 @@
         "checks": {
           "failedComputeSignature": "Signature was not processed correctly",
           "failedSignature": "Sequencer signature does not contain sequencer address",
-          "failedWitness": "Witness does not match Powers of Tau pubkeys",
+          "failedWitness": "Witness does not match Powers of Tau pubkey",
+          "tooltip": "The integrity checks consist of performing the subgroup checks in the previous and post contribution data, comparing the receipt witness attributes with your Powers of Tau Pubkeys and validating the sequencer signature in the receipt.",
           "success": "Passed"
         },
         "integrityChecks": "Integrity checks ",

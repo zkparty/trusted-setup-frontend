@@ -2,6 +2,7 @@ import { utils } from 'ethers'
 import Modal from 'react-modal'
 import theme from '../../style/theme'
 import styled from 'styled-components'
+import ReactTooltip from 'react-tooltip'
 import { PrimaryButton } from '../Button'
 import ExternalLink from '../ExternalLink'
 import BlockiesIdenticon from '../Blockies'
@@ -231,10 +232,26 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
         <b><Trans i18nKey="complete.modal.signedBy">Signed by </Trans></b>
         { ' ' + data?.sequencer_address }
       </Desc>
-      <Desc style={{ textAlign: 'center', marginBottom: '45px'}}>
+      <DescIntegrity
+        data-for={"integrityChecks"}
+        data-tip={"Integrity checks tooltip content in div below"}
+      >
         <b><Trans i18nKey="complete.modal.integrityChecks">Integrity checks </Trans></b>
-        <span style={{color: checksColor}}> {checks} </span>
-      </Desc>
+        <span style={{ color: checksColor }}>
+          {checks}
+        </span>
+      </DescIntegrity>
+      <ReactTooltip
+        id="integrityChecks"
+        place="bottom"
+        backgroundColor="black"
+        effect="solid"
+        padding="12px"
+      >
+        <div style={{ width: '40ch', wordBreak: 'break-word' }}>
+          { t("complete.modal.checks.tooltip") }
+        </div>
+      </ReactTooltip>
       <BottomSection>
         <PrimaryButton onClick={handleClickDownloadReceipt} style={{ width: '300px' }}>
           <Trans i18nKey="complete.modal.downloadReceipt">
@@ -277,6 +294,12 @@ const LeftSection = styled.div`
 const BottomSection = styled.div`
   display: flex;
   justify-content: space-around;
+`
+
+const DescIntegrity = styled(Desc)`
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 45px;
 `
 
 export default ContributionModal
