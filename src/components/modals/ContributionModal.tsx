@@ -85,6 +85,16 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
     window.open(link, '_blank');
   }
 
+  const handleClickShareLenster = () => {
+    let post = t('complete.modal.post', {identity})
+    if ( ENVIRONMENT === 'testnet' ){
+      post = '**TEST**: ' + post
+    }
+    const encoded = encodeURIComponent( post )
+    const link = `https://lenster.xyz/?text=${encoded}`
+    window.open(link, '_blank');
+  }
+
   const handleClickDownloadReceipt = () => {
     const encodedReceipt = encodeURIComponent(receipt!)
     const jsonString = `data:text/json;chatset=utf-8,${encodedReceipt}`
@@ -238,6 +248,11 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
         <PrimaryButton onClick={handleClickShareTwitter} style={{ width: '300px' }}>
           <Trans i18nKey="complete.modal.shareTwitter">
             Share on Twitter
+          </Trans>
+        </PrimaryButton>
+        <PrimaryButton onClick={handleClickShareLenster} style={{ width: '300px' }}>
+          <Trans i18nKey="complete.modal.shareLenster">
+            Share on Lenster
           </Trans>
         </PrimaryButton>
         <PrimaryButton onClick={handleClickDownloadReceipt} style={{ width: '300px' }}>
