@@ -14,7 +14,8 @@ docker run -it --rm \
     kzg-ceremony-frontend 
 
 # Start IPFS node
-docker run -it --rm \
+docker run -d --rm \
+    --name ipfs-host \
     -v "${PWD}/build:/export" \
     -v "${PWD}/ipfs:/data/ipfs" \
     -e IPFS_PROFILE=server \
