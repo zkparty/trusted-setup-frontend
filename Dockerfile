@@ -5,7 +5,6 @@ FROM node:19-bullseye
 
 COPY . .
 
-
 COPY --from=wrapper /root/wasm/pkg/ ./public/wasm/pkg/
 
-RUN npm run build
+CMD [ "npm", "run", "build"]
