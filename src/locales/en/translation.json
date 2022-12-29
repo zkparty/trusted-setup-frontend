@@ -13,13 +13,13 @@
           "success": "Passed"
         },
         "integrityChecks": "Integrity checks ",
-        "keys": "MY KEYS",
+        "keys": "CONTRIBUTION DETAILS",
         "receipt": "Contribution receipt:",
         "downloadReceipt": "Download Receipt",
         "signedBy": "Signed by ",
         "timestamp": "Contribution completed at:",
         "identity": "Participant ID:",
-        "potPubkeys": "Powers of Tau Pubkeys",
+        "potPubkeys": "Powers of Tau Pubkeys:",
         "transcript": "full transcript",
         "tweet": "I just contributed to the test KZG Ceremony to scale Ethereum using {{identity}}"
       },
@@ -188,7 +188,7 @@
         "address": "Sequencer address:"
       },
       "transcriptModal": {
-        "title": "Contribution details",
+        "title": "CONTRIBUTION DETAILS",
         "id": "Participant ID:",
         "potpubkeys": "Powers of Tau Pubkeys:",
         "bls": "BLS Signatures:",

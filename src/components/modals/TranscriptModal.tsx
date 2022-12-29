@@ -47,7 +47,7 @@ const TranscriptModal = ({ record, onDeselect, onChange }: Props) => {
           cursor: 'auto',
           border: 'none',
           blockSize: 'fit-content',
-          width: 'clamp(90%, 75%, 70%)',
+          width: 'clamp(40%, 40%, 60%)',
           inset: '15% 0 0 0',
           marginInline: 'auto',
           paddingBlock: '20px',
@@ -59,7 +59,7 @@ const TranscriptModal = ({ record, onDeselect, onChange }: Props) => {
     >
       <Title>
         <Trans i18nKey="record.transcriptModal.title">
-          Contribution details
+          CONTRIBUTION DETAILS
         </Trans>
       </Title>
 

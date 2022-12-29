@@ -1,3 +1,4 @@
+import { Bold } from '../Text'
 import { utils } from 'ethers'
 import Modal from 'react-modal'
 import theme from '../../style/theme'
@@ -8,9 +9,9 @@ import ExternalLink from '../ExternalLink'
 import BlockiesIdenticon from '../Blockies'
 import { useEffect, useState } from 'react'
 import SignatureModal from './SignatureModal'
-import {Title, Desc } from './TranscriptModal'
 import { API_ROOT, FONT_SIZE } from '../../constants'
 import { Trans, useTranslation } from 'react-i18next'
+import {Title, Desc, SubTitle } from './TranscriptModal'
 import useSequencerStatus from '../../hooks/useSequencerStatus'
 
 type Props = {
@@ -30,7 +31,8 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
   const [witnesses, setWitnesses] = useState<string[]>(['','','',''])
   const [selectedIndex, setSelectedIndex] = useState<number|null>(null)
   const [selectedSignatureItem, setSelectedSignatureItem] = useState<string|null>(null)
-  const [contributions, setContributions] = useState<any>(null)
+  const [contributions, setContributions] = useState<any>([])
+  const [ecdsaSignature, setEcdsaSignature] = useState<any>(null)
   const [checksColor, setChecksColor] = useState<string>('')
   useEffect(() => {
     if (open)  document.body.style.overflowY = 'hidden';
@@ -42,11 +44,14 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
 
     const receiptObj = JSON.parse(receipt)
     const _witnesses = receiptObj['witness']
-    const _contributions = JSON.parse(contribution)['contributions']
+    const contributionObj = JSON.parse(contribution)
+    const _contributions = contributionObj['contributions']
+    const _ecdsaSignature = contributionObj['ecdsaSignature']
     setNow( new Date().toUTCString() )
     setWitnesses(_witnesses)
     setIdentity(receiptObj['identity'])
     setContributions(_contributions)
+    setEcdsaSignature(_ecdsaSignature)
 
     // witnesses should be potPubkeys
     for (let i = 0, ni=witnesses.length; i < ni; i++) {
@@ -78,6 +83,8 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [signature, contribution, receipt, open])
 
+  const powers = [12, 13, 14, 15]
+
   const handleClickDownloadReceipt = () => {
     const encodedReceipt = encodeURIComponent(receipt!)
     const jsonString = `data:text/json;chatset=utf-8,${encodedReceipt}`
@@ -104,7 +111,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
           cursor: 'auto',
           border: 'none',
           blockSize: 'fit-content',
-          width: 'clamp(90%, 75%, 70%)',
+          width: 'clamp(40%, 45%, 60%)',
           inset: '15% 0 0 0',
           marginInline: 'auto',
           paddingTop: '20px',
@@ -115,119 +122,109 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
         }
       }}
     >
-      <TopSection>
-        <RightSection>
-          <Title>
-            <Trans i18nKey="complete.modal.keys">
-              MY KEYS
+      <Section>
+        <Title>
+          <Trans i18nKey="complete.modal.keys">
+            CONTRIBUTION DETAILS
+          </Trans>
+          <Link href={`${API_ROOT}/info/current_state`}>
+            <Trans i18nKey="complete.modal.transcript">
+              full transcript
             </Trans>
-            <Link href={`${API_ROOT}/info/current_state`}>
-              <Trans i18nKey="complete.modal.transcript">
-                full transcript
-              </Trans>
-            </Link>
-          </Title>
-          <Desc>
-            <b>
-              <Trans i18nKey="complete.modal.timestamp">
-                Contribution completed at:
-              </Trans>
-            </b>
-            <br/>
-            { now }
-          </Desc>
-          <Desc>
-            <b>
-              <Trans i18nKey="complete.modal.identity">
-                Participant ID:
-              </Trans>
-            </b>
-            <br/>
-            { identity }
-          </Desc>
-          <Desc>
-            <b>
-              <Trans i18nKey="complete.modal.potPubkeys">
-                Powers of Tau Pubkeys:
-              </Trans>
-            </b>
-          </Desc>
-          <BlockieRow>
-            <BlockiesIdenticon
-              onClick={ () => {
-                setSelectedSignatureItem(contributions[0]['potPubkey'])
-                setSelectedIndex(0)
-              } }
-              clickable={true}
-              tooltipPlace={"bottom"}
-              opts={{
-                seed: contributions ? contributions[0]['potPubkey'] : null,
-                size: 8,
-                scale: 5
-              }}
-            />
-            <BlockiesIdenticon
-              onClick={ () => {
-                setSelectedSignatureItem(contributions[1]['potPubkey'])
-                setSelectedIndex(1)
-              } }
-              clickable={true}
-              tooltipPlace={"bottom"}
-              opts={{
-                seed: contributions ? contributions[1]['potPubkey'] : null,
-                size: 8,
-                scale: 5
-              }}
-            />
-            <BlockiesIdenticon
-              onClick={ () => {
-                setSelectedSignatureItem(contributions[2]['potPubkey'])
-                setSelectedIndex(2)
-              } }
-              clickable={true}
-              tooltipPlace={"bottom"}
-              opts={{
-                seed: contributions ? contributions[2]['potPubkey'] : null,
-                size: 8,
-                scale: 5
-              }}
-            />
-            <BlockiesIdenticon
-              onClick={ () => {
-                setSelectedSignatureItem(contributions[3]['potPubkey'])
-                setSelectedIndex(3)
-              } }
-              clickable={true}
-              tooltipPlace={"bottom"}
-              opts={{
-                seed: contributions ? contributions[3]['potPubkey'] : null,
-                size: 8,
-                scale: 5
-              }}
-            />
-          </BlockieRow>
-        </RightSection>
-        <LeftSection>
-          <Title>
-            <Trans i18nKey="complete.modal.acknowledgment">
-              SEQUENCER ACKNOWLEDGEMENT
+          </Link>
+        </Title>
+        <SubTitle>
+          <Trans i18nKey="complete.modal.timestamp">
+            Contribution completed at:
+          </Trans>
+        </SubTitle>
+        <Desc>
+          { now }
+        </Desc>
+        <SubTitle>
+          <Trans i18nKey="complete.modal.identity">
+            Participant ID:
+          </Trans>
+        </SubTitle>
+        <Desc>
+          { identity.replace('eth|','') }
+        </Desc>
+        <SubTitle>
+          <Trans i18nKey="complete.modal.potPubkeys">
+            Powers of Tau Pubkeys:
+          </Trans>
+        </SubTitle>
+        <ol style={{ paddingInlineStart: '20px', paddingLeft: '0px' }}>
+          { contributions ?
+            contributions.map((transcript: any, index: number) => (
+              <div style={{ display: 'flex', paddingBottom: '3px' }} key={transcript.potPubkey + index}>
+                <BlockiesIdenticon
+                  onClick={ () => {
+                    setSelectedSignatureItem(transcript.potPubkey)
+                    setSelectedIndex(0)
+                  } }
+                  clickable={true}
+                  tooltipPlace={"right"}
+                  opts={{
+                    seed: transcript.potPubkey,
+                    size: 8,
+                    scale: 5
+                  }}
+                />
+                <Desc><Bold>{`(2^${powers[index]}): `}</Bold>{transcript.potPubkey}</Desc>
+              </div>
+            ))
+            :
+            ''
+          }
+        </ol>
+        <SubTitle>
+          <Trans i18nKey="record.transcriptModal.bls">
+            BLS Signatures:
+          </Trans>
+        </SubTitle>
+        <ol style={{ paddingInlineStart: '20px', paddingBottom: '10px' }}>
+        { contributions ?
+          contributions.map((transcript: any, index: number) => (
+            <li key={transcript.potPubkey + index}><Desc>{transcript.blsSignature}</Desc></li>
+          ))
+          :
+          ''
+        }
+        </ol>
+        {ecdsaSignature ?
+          <>
+          <SubTitle>
+            <Trans i18nKey="record.transcriptModal.ecdsa">
+              ECDSA Signature (optional):
             </Trans>
-          </Title>
-          <Desc>
-            <b>
-              <Trans i18nKey="complete.modal.receipt">
-                Contribution receipt:
-              </Trans>
-            </b>
-          </Desc>
-          <ol>
-            <li><Desc style={{marginBottom: '6px'}}>{witnesses[0]}</Desc></li>
-            <li><Desc style={{marginBottom: '6px'}}>{witnesses[1]}</Desc></li>
-            <li><Desc style={{marginBottom: '6px'}}>{witnesses[2]}</Desc></li>
-            <li><Desc style={{marginBottom: '6px'}}>{witnesses[3]}</Desc></li>
-          </ol>
-        </LeftSection>
-      </TopSection>
+          </SubTitle>
+          <Desc>{ecdsaSignature}</Desc>
+          </>
+          :
+          null
+        }
+      </Section>
+      <Section>
+        <Title>
+          <Trans i18nKey="complete.modal.acknowledgment">
+            SEQUENCER ACKNOWLEDGEMENT
+          </Trans>
+        </Title>
+        <Desc>
+          <b>
+            <Trans i18nKey="complete.modal.receipt">
+              Contribution receipt:
+            </Trans>
+          </b>
+        </Desc>
+        <ol>
+          <li><Desc style={{marginBottom: '6px'}}>{witnesses[0]}</Desc></li>
+          <li><Desc style={{marginBottom: '6px'}}>{witnesses[1]}</Desc></li>
+          <li><Desc style={{marginBottom: '6px'}}>{witnesses[2]}</Desc></li>
+          <li><Desc style={{marginBottom: '6px'}}>{witnesses[3]}</Desc></li>
+        </ol>
+      </Section>
       <Desc style={{ textAlign: 'center'}}>
         <b><Trans i18nKey="complete.modal.signedBy">Signed by </Trans></b>
         { ' ' + data?.sequencer_address }
@@ -277,18 +274,9 @@ const Link = styled(ExternalLink)`
   margin-left: 9px;
 `
 
-const BlockieRow = styled.div`
-  display: flex;
-  gap: 7px;
-`
-
-const TopSection = styled.div`
-  display: flex;
-  justify-content: space-between;
-`
-const RightSection = styled.div``
-const LeftSection = styled.div`
-  width: 60%;
+const Section = styled.div`
+  width: 100%;
+  margin-bottom: 40px;
 `
 
 const BottomSection = styled.div`
@@ -297,7 +285,6 @@ const BottomSection = styled.div`
 `
 
 const DescIntegrity = styled(Desc)`
-  cursor: pointer;
   text-align: center;
   margin-bottom: 45px;
 `
