@@ -3,14 +3,17 @@
 # Build WASM
 docker run -it --rm \
     -v "${PWD}/public/wasm/:/root/wasm/" \
+    --entrypoint ./build.sh \
     glamperd/wasm-pack-wrapper
 
 # Build frontend
 docker run -it --rm \
-    -v "${PWD}:/" \
+    -v "${PWD}:/work" \
+    -w /work \
+    --entrypoint /build.sh \
     kzg-ceremony-frontend 
 
-# Add to IPFS
+# Start IPFS node
 docker run -it --rm \
     -v "${PWD}/build:/export" \
     -v "${PWD}/ipfs:/data/ipfs" \

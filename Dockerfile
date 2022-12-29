@@ -1,10 +1,11 @@
 # Copy WASM code
-FROM wasm-pack-wrapper as wrapper
+FROM glamperd/wasm-pack-wrapper as wrapper
 
 FROM node:19-bullseye
 
-COPY . .
+COPY --from=wrapper /root/wasm/pkg/ ./work/public/wasm/pkg/
 
-COPY --from=wrapper /root/wasm/pkg/ ./public/wasm/pkg/
+RUN echo "#!/bin/bash\nnpm run build" > build.sh
+RUN chmod +x build.sh
 
-CMD [ "npm", "run", "build"]
+ENTRYPOINT [ "./build.sh"]
