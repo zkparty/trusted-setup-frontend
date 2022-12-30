@@ -8,7 +8,6 @@ import { PrimaryButton } from '../Button'
 import ExternalLink from '../ExternalLink'
 import BlockiesIdenticon from '../Blockies'
 import { useEffect, useState } from 'react'
-import SignatureModal from './SignatureModal'
 import { API_ROOT, FONT_SIZE } from '../../constants'
 import { Trans, useTranslation } from 'react-i18next'
 import {Title, Desc, SubTitle } from './TranscriptModal'
@@ -29,14 +28,12 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
   const [checks, setChecks] = useState<string>('')
   const [identity, setIdentity] = useState<string>('')
   const [witnesses, setWitnesses] = useState<string[]>(['','','',''])
-  const [selectedIndex, setSelectedIndex] = useState<number|null>(null)
-  const [selectedSignatureItem, setSelectedSignatureItem] = useState<string|null>(null)
   const [contributions, setContributions] = useState<any>([])
   const [ecdsaSignature, setEcdsaSignature] = useState<any>(null)
   const [checksColor, setChecksColor] = useState<string>('')
   useEffect(() => {
-    if (open)  document.body.style.overflowY = 'hidden';
-    else  document.body.style.overflowY = 'unset';
+    if (open)  document.body.style.overflowY = 'hidden'
+    else  document.body.style.overflowY = 'unset'
 
     if (!signature || !contribution || !receipt ){
       return;
@@ -159,11 +156,6 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
             contributions.map((transcript: any, index: number) => (
               <div style={{ display: 'flex', paddingBottom: '3px' }} key={transcript.potPubkey + index}>
                 <BlockiesIdenticon
-                  onClick={ () => {
-                    setSelectedSignatureItem(transcript.potPubkey)
-                    setSelectedIndex(0)
-                  } }
-                  clickable={true}
                   tooltipPlace={"right"}
                   opts={{
                     seed: transcript.potPubkey,
@@ -257,11 +249,6 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
         </PrimaryButton>
       </BottomSection>
     </Modal>
-    <SignatureModal
-      index={selectedIndex}
-      signature={selectedSignatureItem}
-      onDeselect={() => setSelectedSignatureItem(null)}
-    />
     </>
   )
 }

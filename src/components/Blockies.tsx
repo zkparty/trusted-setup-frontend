@@ -51,10 +51,10 @@ const BlockiesIdenticon = ({
         onClick={onClick}
         clickable={clickable}
         data-tip={"Blockie tooltip content in div below"}
-        data-for={"blockiePoT"}
+        data-for={"blockiePoT" + seed}
       />
       <ReactTooltip
-        id="blockiePoT"
+        id={"blockiePoT" + seed}
         place={tooltipPlace}
         backgroundColor="black"
         effect="solid"
