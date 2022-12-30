@@ -59,7 +59,7 @@ const BlockiesIdenticon = ({
         overridePosition={(
           { left, top },
           _currentEvent, _currentTarget, _node) => {
-            ReactTooltip.rebuild();
+            ReactTooltip.rebuild()
             return { top, left }
           }
         }

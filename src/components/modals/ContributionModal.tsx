@@ -231,7 +231,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
         overridePosition={(
           { left, top },
           _currentEvent, _currentTarget, _node) => {
-            ReactTooltip.rebuild();
+            ReactTooltip.rebuild()
             return { top, left }
           }
         }
