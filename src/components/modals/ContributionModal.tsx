@@ -111,15 +111,14 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
           width: 'clamp(40%, 45%, 60%)',
           inset: '15% 0 0 0',
           marginInline: 'auto',
-          paddingTop: '20px',
-
+          paddingBlock: '20px',
           paddingInline: '5%',
           background: theme.surface,
           boxShadow: '5px 10px 8px 10px #b4b2b2',
         }
       }}
     >
-      <Section>
+
         <Title>
           <Trans i18nKey="complete.modal.keys">
             CONTRIBUTION DETAILS
@@ -196,8 +195,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
           :
           null
         }
-      </Section>
-      <Section>
+        <br/>
         <Title>
           <Trans i18nKey="complete.modal.acknowledgment">
             SEQUENCER ACKNOWLEDGEMENT
@@ -214,7 +212,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
           <li><Desc style={{marginBottom: '6px'}}>{witnesses[2]}</Desc></li>
           <li><Desc style={{marginBottom: '6px'}}>{witnesses[3]}</Desc></li>
         </ol>
-      </Section>
+
       <Desc style={{ textAlign: 'center'}}>
         <b><Trans i18nKey="complete.modal.signedBy">Signed by </Trans></b>
         { ' ' + data?.sequencer_address }

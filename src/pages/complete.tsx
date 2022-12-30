@@ -124,9 +124,9 @@ const CompletePage = () => {
 const TannedBackground = styled.div`
   top: 0px;
   z-index: -3;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-  position: fixed;
+  position: absolute;
   background: ${({ theme }) => theme.surface };
 `
 
