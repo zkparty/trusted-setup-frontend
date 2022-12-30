@@ -155,7 +155,6 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
             contributions.map((transcript: any, index: number) => (
               <div style={{ display: 'flex', paddingBottom: '3px' }} key={transcript.potPubkey + index}>
                 <BlockiesIdenticon
-                  tooltipPlace={"right"}
                   opts={{
                     seed: transcript.potPubkey,
                     size: 8,
