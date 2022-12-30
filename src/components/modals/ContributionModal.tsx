@@ -264,11 +264,6 @@ const Link = styled(ExternalLink)`
   margin-left: 9px;
 `
 
-const Section = styled.div`
-  width: 100%;
-  margin-bottom: 40px;
-`
-
 const BottomSection = styled.div`
   display: flex;
   justify-content: space-around;
