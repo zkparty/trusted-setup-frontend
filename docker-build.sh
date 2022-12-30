@@ -4,14 +4,14 @@
 docker run -it --rm \
     -v "${PWD}/public/wasm/:/root/wasm/" \
     --entrypoint ./build.sh \
-    glamperd/wasm-pack-wrapper
+    zkparty/wasm-pack-wrapper
 
 # Build frontend
 docker run -it --rm \
     -v "${PWD}:/work" \
     -w /work \
     --entrypoint /build.sh \
-    kzg-ceremony-frontend 
+    zkparty/kzg-ceremony-frontend 
 
 # Start IPFS node
 docker run -d --rm \

@@ -70,6 +70,19 @@ This will create the `build` folder and add the site content to it.
 
 ### Add to IPFS
 
+#### Build and add using Docker
+
+* Build the WASM wrapper Docker image, or `docker pull zkparty/wasm-pack-wrapper`
+* Build the Docker image for this project, or `docker pull zkparty/kzg-ceremony-frontend`
+* Build the entire site, and run an IPFS node: `./docker-build.sh` 
+* Add the site to IPFS: `docker exec ipfs-host ipfs add -r /export`
+* Run the ceremony from the IPFS site:
+  * Note the hash generated for `/export` in the previous step
+  * In your browser, navigate to `http://localhost:8080/ipfs/<hash>`
+
+
+#### Using a local IPFS node
+
 Choose an IPFS node, or install one locally. See [here](https://docs.ipfs.tech/install/ipfs-desktop/) to install a node.
 
 The site needs to be added to IPFS as a folder. The command to this in ipfs cli is: ```ipfs add -r <your path>/trusted-setup-frontend/build```
