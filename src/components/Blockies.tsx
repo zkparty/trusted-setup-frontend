@@ -56,6 +56,13 @@ const BlockiesIdenticon = ({
       <ReactTooltip
         id={"blockiePoT" + seed}
         place={tooltipPlace}
+        overridePosition={(
+          { left, top },
+          _currentEvent, _currentTarget, _node) => {
+            ReactTooltip.rebuild();
+            return { top, left }
+          }
+        }
         backgroundColor="black"
         effect="solid"
         padding="12px"
