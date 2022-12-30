@@ -112,8 +112,8 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
           inset: '15% 0 0 0',
           marginInline: 'auto',
           paddingTop: '20px',
-          paddingBottom: '70px',
-          paddingInline: '6%',
+
+          paddingInline: '5%',
           background: theme.surface,
           boxShadow: '5px 10px 8px 10px #b4b2b2',
         }
@@ -203,14 +203,12 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
             SEQUENCER ACKNOWLEDGEMENT
           </Trans>
         </Title>
-        <Desc>
-          <b>
-            <Trans i18nKey="complete.modal.receipt">
-              Contribution receipt:
-            </Trans>
-          </b>
-        </Desc>
-        <ol>
+        <SubTitle>
+          <Trans i18nKey="complete.modal.receipt">
+            Contribution receipt:
+          </Trans>
+        </SubTitle>
+        <ol style={{ paddingInlineStart: '20px' }}>
           <li><Desc style={{marginBottom: '6px'}}>{witnesses[0]}</Desc></li>
           <li><Desc style={{marginBottom: '6px'}}>{witnesses[1]}</Desc></li>
           <li><Desc style={{marginBottom: '6px'}}>{witnesses[2]}</Desc></li>
@@ -231,8 +229,15 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
         </span>
       </DescIntegrity>
       <ReactTooltip
-        id="integrityChecks"
-        place="bottom"
+        id={"integrityChecks"}
+        place={"bottom"}
+        overridePosition={(
+          { left, top },
+          _currentEvent, _currentTarget, _node) => {
+            ReactTooltip.rebuild();
+            return { top, left }
+          }
+        }
         backgroundColor="black"
         effect="solid"
         padding="12px"
