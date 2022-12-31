@@ -24,6 +24,7 @@
     "husky": "^8.0.1",
     "i18next": "^21.10.0",
     "lint-staged": "^13.0.3",
+    "node-fetch": "^3.3.0",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
