@@ -176,6 +176,12 @@
       "description": "<0>Too many summoners at this time, please come back later. Close this window and try again in a moment to check if there is a slot available in the lobby.</0>",
       "title": "Too much <br/> magic"
     },
+    "otherResources": {
+      "ipfs": "IPFS",
+      "hosted": "Hosted Interface",
+      "otherClients": "Other Clients",
+      "writeYourOwn": "Write Your Own!"
+    },
     "record": {
       "headers": "<0>Participant ID</0><1>Signatures</1>",
       "loading": "Loading transcript...",

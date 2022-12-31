@@ -14,6 +14,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import LandingBg from '../assets/landing-boarder.png'
 import { useCallback, useRef, useEffect } from 'react'
 import LatestRecords from '../components/landing/LatestRecords'
+import OtherResources from '../components/landing/OtherResources'
 import { Description, PageTitle } from '../components/Text'
 import { isMobile } from '../utils'
 
@@ -72,6 +73,7 @@ const LandingPage = () => {
         <PrimaryButton onClick={onClickGetStart} disabled={isMobile()} >
           {isMobile() ? <Trans i18nKey="landing.button-mobile">Proceed on desktop</Trans> : <Trans i18nKey="landing.button">Begin</Trans>}
         </PrimaryButton>
+        <OtherResources/>
         <Link onClick={onLearnMoreClick}>
           <Footnote>
             {isMobile() ? <Trans i18nKey="landing.learn-more-mobile">↓ learn more below ↓</Trans> : <Trans i18nKey="landing.learn-more">↓ or learn more below ↓</Trans>}
