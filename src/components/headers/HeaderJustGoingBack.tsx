@@ -1,10 +1,10 @@
-import ROUTES from '../routes'
+import ROUTES from '../../routes'
 import styled from 'styled-components'
-import { textSerif } from '../style/utils'
+import { textSerif } from '../../style/utils'
 import { useNavigate } from 'react-router-dom'
-import LeftArrow from '../assets/left-arrow.svg'
-import LanguageSelector from './LanguageSelector'
-import { FONT_SIZE, ENVIRONMENT } from '../constants'
+import LeftArrow from '../../assets/left-arrow.svg'
+import LanguageSelector from '../LanguageSelector'
+import { FONT_SIZE, ENVIRONMENT } from '../../constants'
 import { Trans, useTranslation } from 'react-i18next'
 
 const HeaderJustGoingBack = () => {

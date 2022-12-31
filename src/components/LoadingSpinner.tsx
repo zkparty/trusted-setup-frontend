@@ -26,7 +26,7 @@ const SpinnerContainer = styled.div`
     display: grid;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: 80px;
 `;
 
 export default LoadingSpinner;

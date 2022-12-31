@@ -1,18 +1,20 @@
 import ROUTES from '../routes'
 import styled from 'styled-components'
-import FaqPage from '../components/Faq'
-import Header from '../components/Header'
+import FaqPage from '../components/landing/Faq'
+import Header from '../components/headers/Header'
 import Footer from '../components/Footer'
 import { textSerif } from '../style/utils'
 import { CIRCLE_SIZE } from '../constants'
 import { useAuthStore } from '../store/auth'
 import { useNavigate } from 'react-router-dom'
 import { TextSection } from '../components/Layout'
-import Explanation from '../components/Explanation'
+import Explanation from '../components/landing/Explanation'
 import { PrimaryButton } from '../components/Button'
 import { Trans, useTranslation } from 'react-i18next'
 import LandingBg from '../assets/landing-boarder.png'
 import { useCallback, useRef, useEffect } from 'react'
+import LatestRecords from '../components/landing/LatestRecords'
+import OtherResources from '../components/landing/OtherResources'
 import { Description, PageTitle } from '../components/Text'
 import { isMobile } from '../utils'
 
@@ -54,7 +56,7 @@ const LandingPage = () => {
             SUMMONING <br /> GUIDE
           </Trans>
         </PageTitle>
-        <TextSection style={{ width: '48ch' }}>
+        <TextSection style={{ width: '55ch' }}>
           <Trans i18nKey="landing.description">
             <Description>
               Whispers from the shadows tell of a powerful spirit Dankshard, who
@@ -71,6 +73,7 @@ const LandingPage = () => {
         <PrimaryButton onClick={onClickGetStart} disabled={isMobile()} >
           {isMobile() ? <Trans i18nKey="landing.button-mobile">Proceed on desktop</Trans> : <Trans i18nKey="landing.button">Begin</Trans>}
         </PrimaryButton>
+        <OtherResources/>
         <Link onClick={onLearnMoreClick}>
           <Footnote>
             {isMobile() ? <Trans i18nKey="landing.learn-more-mobile">↓ learn more below ↓</Trans> : <Trans i18nKey="landing.learn-more">↓ or learn more below ↓</Trans>}
@@ -78,6 +81,7 @@ const LandingPage = () => {
         </Link>
       </TopSection>
       <Explanation refFromLanding={ref} />
+      <LatestRecords />
       <FaqPage />
       <Footer />
     </>

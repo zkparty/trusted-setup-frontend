@@ -48,7 +48,7 @@ export default function useBackgroundVisibility(): Visibilities {
   if (location.pathname === ROUTES.ENTROPY_INPUT)
     return {
       bg: 'white',
-      dark: 'true',
+      dark: 'hidden',
       inner: 'hidden',
       outer: 'hidden',
       snake: 'progress',

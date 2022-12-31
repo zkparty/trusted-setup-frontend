@@ -11,7 +11,7 @@ import { PrimaryButton } from '../components/Button'
 import { isSuccessRes, processIdentity } from '../utils'
 import ROUTES from '../routes'
 import api from '../api'
-import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
+import HeaderJustGoingBack from '../components/headers/HeaderJustGoingBack'
 import { Trans, useTranslation } from 'react-i18next'
 import {
   SingleContainer as Container,

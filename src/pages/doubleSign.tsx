@@ -25,7 +25,7 @@ import ErrorMessage from '../components/Error'
 import { ErrorRes, RequestLinkRes } from '../types'
 import { Trans, useTranslation } from 'react-i18next'
 import LoadingSpinner from '../components/LoadingSpinner'
-import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
+import HeaderJustGoingBack from '../components/headers/HeaderJustGoingBack'
 import { TypedDataDomain, TypedDataField } from '@ethersproject/abstract-signer';
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import CoinbaseWalletSDK from '@coinbase/wallet-sdk'
@@ -203,7 +203,14 @@ const DoubleSignPage = () => {
               </TextSection>
               <ButtonSection>
                 {isLoading ?
-                  <LoadingSpinner></LoadingSpinner>
+                  <>
+                    <CheckWalletDesc>
+                      <Trans i18nKey="doubleSign.checkWallet">
+                        Check your wallet to sign the contribution
+                      </Trans>
+                    </CheckWalletDesc>
+                    <LoadingSpinner></LoadingSpinner>
+                  </>
                   :
                   <PrimaryButton onClick={handleClickSign} disabled={isLoading}>
                     <Trans i18nKey="doubleSign.button">
@@ -219,6 +226,11 @@ const DoubleSignPage = () => {
     </>
   )
 }
+
+const CheckWalletDesc = styled(Description)`
+  margin-bottom: 0px;
+  font-weight: 700;
+`
 
 const ButtonSection = styled(SingleButtonSection)`
   margin-top: 12px;

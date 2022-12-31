@@ -1,9 +1,9 @@
 import FaqItem from './FaqItem'
-import { PageTitle } from './Text'
+import { PageTitle } from '../Text'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
-import ExternalLink from './ExternalLink'
-import { START_DATE, END_DATE } from '../constants'
+import ExternalLink from '../ExternalLink'
+import { START_DATE, END_DATE } from '../../constants'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const [from, to] = [START_DATE, END_DATE].map((date: string) =>
@@ -466,7 +466,6 @@ const FaqSection = styled.section`
   width: 55ch;
   max-width: 100%;
   margin: 0 auto;
-  line-height: 140%;
 `
 
 export default FaqPage
