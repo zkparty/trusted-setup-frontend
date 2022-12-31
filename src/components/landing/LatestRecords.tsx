@@ -1,12 +1,12 @@
-import ROUTES from '../routes'
+import ROUTES from '../../routes'
 import styled from 'styled-components'
-import useRecord from '../hooks/useRecord'
+import useRecord from '../../hooks/useRecord'
 import { useState, useEffect } from 'react'
-import { Record, Transcript } from '../types'
+import { Record, Transcript } from '../../types'
 import { useNavigate } from 'react-router-dom'
-import { PageTitle } from '../components/Text'
-import RecordTable from '../components/RecordTable'
-import { PrimaryButton } from '../components/Button'
+import { PageTitle } from '../Text'
+import RecordTable from '../RecordTable'
+import { PrimaryButton } from '../Button'
 import { Trans, useTranslation } from 'react-i18next'
 
 const LatestRecords = () => {

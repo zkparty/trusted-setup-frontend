@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { useState } from 'react'
-import { BREAKPOINT, FONT_SIZE } from '../constants'
-import { textSerif } from '../style/utils'
+import { BREAKPOINT, FONT_SIZE } from '../../constants'
+import { textSerif } from '../../style/utils'
 
 type Props = {
   title: string | React.ReactNode | JSX.Element

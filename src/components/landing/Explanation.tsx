@@ -1,9 +1,9 @@
-import { isMobile } from '../utils'
+import { isMobile } from '../../utils'
 import styled from 'styled-components'
-import FlowerAnimation from './FlowerAnimation'
-import { TextSection } from '../components/Layout'
+import FlowerAnimation from '../FlowerAnimation'
+import { TextSection } from '../Layout'
 import { Trans, useTranslation } from 'react-i18next'
-import { Description, PageTitle } from '../components/Text'
+import { Description, PageTitle } from '../Text'
 
 const Explanation = ({ refFromLanding }: any) => {
   useTranslation()
