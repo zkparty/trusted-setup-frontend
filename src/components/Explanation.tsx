@@ -70,7 +70,7 @@ const SecondSection = styled.section`
 `
 
 const SecondTextSection = styled(TextSection)`
-  width: 48ch;
+  width: 55ch;
 `
 
 export default Explanation

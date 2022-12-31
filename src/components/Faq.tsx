@@ -466,7 +466,6 @@ const FaqSection = styled.section`
   width: 55ch;
   max-width: 100%;
   margin: 0 auto;
-  line-height: 140%;
 `
 
 export default FaqPage
