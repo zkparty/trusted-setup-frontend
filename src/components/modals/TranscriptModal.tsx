@@ -2,6 +2,7 @@ import Modal from 'react-modal'
 import { Record } from '../../types'
 import theme from '../../style/theme'
 import styled from 'styled-components'
+import { isMobile } from '../../utils'
 import { FONT_SIZE } from '../../constants'
 import { Bold, Description } from '../Text'
 import { textSerif } from '../../style/utils'
@@ -47,7 +48,7 @@ const TranscriptModal = ({ record, onDeselect, onChange }: Props) => {
           cursor: 'auto',
           border: 'none',
           blockSize: 'fit-content',
-          width: 'clamp(40%, 40%, 60%)',
+          width: isMobile() ? '90%' : '40%',
           inset: '15% 0 0 0',
           marginInline: 'auto',
           paddingBlock: '20px',
