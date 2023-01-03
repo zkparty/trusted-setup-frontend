@@ -137,7 +137,7 @@
       "description": "<0>Proto-danksharding (aka EIP-4844) is an upcoming upgrade to the Ethereum protocol that enables massive scalability in combination with Layer 2s. In order to make this happen, a Ceremony is needed to generate a shared secret. This guide will walk you through contributing yourself.</0><1>Help contribute to Ethereum’s security by adding your randomness to the KZG ceremony.</1>",
       "learn-more": "↓ or learn more below ↓",
       "learn-more-mobile": "↓ learn more below ↓",
-      "title": "SUMMONING <br/> GUIDE"
+      "title": "SUMMONING GUIDE"
     },
     "language": {
       "ar": "Arabic",

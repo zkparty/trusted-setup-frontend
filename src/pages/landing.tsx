@@ -53,7 +53,7 @@ const LandingPage = () => {
         <BgColor />
         <PageTitle>
           <Trans i18nKey="landing.title">
-            SUMMONING <br /> GUIDE
+            SUMMONING GUIDE
           </Trans>
         </PageTitle>
         <TextSection style={{ width: '55ch' }}>
