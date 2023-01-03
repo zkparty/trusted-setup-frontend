@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { isMobile } from '../../utils'
 import ExternalLink from '../ExternalLink'
 import { FONT_SIZE } from '../../constants'
 import Shield from '../../assets/shield.svg'
@@ -9,8 +10,9 @@ import ClosedHugFlower from '../../assets/closed-hug-flower.svg'
 
 const OtherResources = () => {
     useTranslation()
+    const mobile = isMobile()
     return (
-    <Row>
+    <Row isMobile={mobile}>
         <Col initialCol={true}>
             <Link href="https://ceremony.ethereum.org">
                 <Trans i18nKey="otherResources.ipfs">
@@ -51,11 +53,14 @@ const OtherResources = () => {
     )
 }
 
-const Row = styled.div`
+const Row = styled.div<{isMobile: boolean}>`
     display: flex;
     margin-block: 30px;
-
-    width: 590px;
+    ${({ isMobile }) => isMobile ?
+        `overflow-x: scroll;
+         width: 100%;`
+        : 'width: 590px;'
+    }
 `
 const Col = styled.div<{initialCol?: boolean}>`
     flex: 3;
@@ -64,6 +69,7 @@ const Col = styled.div<{initialCol?: boolean}>`
     initialCol ? 'double 4px ' + theme.loader : 'none'};
     text-align: center;
     padding-block: 10px;
+    padding-inline: 5px;
 
     :hover:not([disabled]) {
         box-shadow: 1px 2px 6px 6px #b4b2b2;

@@ -177,7 +177,7 @@
       "title": "Too much <br/> magic"
     },
     "otherResources": {
-      "ipfs": "IPFS",
+      "ipfs": "IPFS Interface",
       "hosted": "Hosted Interface",
       "otherClients": "Other Clients",
       "writeYourOwn": "Write Your Own!"
