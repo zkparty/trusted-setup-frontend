@@ -1,16 +1,19 @@
 import FaqItem from './FaqItem'
 import { PageTitle } from '../Text'
-import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import ExternalLink from '../ExternalLink'
+import { Trans, useTranslation } from 'react-i18next'
 import { START_DATE, END_DATE } from '../../constants'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const [from, to] = [START_DATE, END_DATE].map((date: string) =>
   new Date(date).toLocaleDateString()
 )
+// FAQ section component
+const FaqPage = () => {
+  useTranslation()
 
-// FAQ question array
+  // FAQ question array
 const faqQuestions = [
   {
     title: (
@@ -450,15 +453,16 @@ const faqQuestions = [
     )
   }
 ]
-// FAQ section component
-const FaqPage = () => (
-  <FaqSection>
-    <PageTitle id="faq">FAQ</PageTitle>
-    {faqQuestions.map(({ title, content }, index) => (
-      <FaqItem key={index} title={title} content={content} />
-    ))}
-  </FaqSection>
-)
+
+  return (
+    <FaqSection>
+      <PageTitle id="faq">FAQ</PageTitle>
+      {faqQuestions.map(({ title, content }, index) => (
+        <FaqItem key={index} title={title} content={content} />
+      ))}
+    </FaqSection>
+  )
+}
 
 // Styled components
 const FaqSection = styled.section`

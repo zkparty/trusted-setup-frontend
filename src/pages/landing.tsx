@@ -47,7 +47,7 @@ const LandingPage = () => {
       <Header />
       <TopSection>
         <BgColor />
-        <PageTitle>
+        <PageTitle style={{ marginTop: '30px' }}>
           <Trans i18nKey="landing.title">
             SUMMONING GUIDE
           </Trans>
