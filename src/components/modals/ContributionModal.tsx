@@ -1,6 +1,7 @@
 import { Bold } from '../Text'
 import { utils } from 'ethers'
 import Modal from 'react-modal'
+import ROUTES from '../../routes'
 import theme from '../../style/theme'
 import styled from 'styled-components'
 import { isMobile } from '../../utils'
@@ -9,7 +10,7 @@ import { PrimaryButton } from '../Button'
 import ExternalLink from '../ExternalLink'
 import BlockiesIdenticon from '../Blockies'
 import { useEffect, useState } from 'react'
-import { API_ROOT, FONT_SIZE } from '../../constants'
+import { FONT_SIZE } from '../../constants'
 import { Trans, useTranslation } from 'react-i18next'
 import {Title, Desc, SubTitle } from './TranscriptModal'
 import useSequencerStatus from '../../hooks/useSequencerStatus'
@@ -124,7 +125,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
           <Trans i18nKey="complete.modal.keys">
             CONTRIBUTION DETAILS
           </Trans>
-          <Link href={`${API_ROOT}/info/current_state`}>
+          <Link href={`/#${ROUTES.RECORD}`}>
             <Trans i18nKey="complete.modal.transcript">
               full transcript
             </Trans>
