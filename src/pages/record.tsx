@@ -47,6 +47,13 @@ const RecordPage = () => {
   }
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }, [])
+
+  useEffect(() => {
     let active = true
     const formatDataFromRecord = async () => {
       if (!data) { return }
