@@ -28,7 +28,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { MIN_MOUSE_ENTROPY_SAMPLES, FONT_SIZE } from '../constants'
 import 'text-security'
 import LoadingSpinner from '../components/LoadingSpinner'
-import AnimatedCursor from '../components/AnimatedCursor'
 
 type Player = {
   play: () => void
@@ -122,9 +121,8 @@ const EntropyInputPage = () => {
   return (
     <>
       <HeaderJustGoingBack />
-      <Over style={{ cursor: 'none' }}>
+      <Over>
         <Container onMouseMove={handleCaptureMouseEntropy}>
-          <AnimatedCursor/>
           <SnakeProgress onSetPlayer={setPlayer} />
           <Wrap style={{ cursor: 'auto' }}>
             <PageTitle>
