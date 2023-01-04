@@ -80,4 +80,10 @@ const BgContainer = styled.div`
   overflow: hidden;
 `
 
+export const BgColoredContainer = styled.div`
+  background-color: ${({ theme }) => theme.surface };
+  position: absolute;
+  width: 100%;
+`
+
 export default Background

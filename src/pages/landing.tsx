@@ -1,20 +1,21 @@
+import { isMobile } from '../utils'
 import styled from 'styled-components'
-import FaqPage from '../components/landing/Faq'
-import Header from '../components/headers/Header'
 import Footer from '../components/Footer'
+import { useRef, useEffect } from 'react'
 import { textSerif } from '../style/utils'
 import { CIRCLE_SIZE } from '../constants'
 import { useAuthStore } from '../store/auth'
 import { useNavigate } from 'react-router-dom'
+import FaqPage from '../components/landing/Faq'
+import Header from '../components/headers/Header'
 import { TextSection } from '../components/Layout'
-import Explanation from '../components/landing/Explanation'
 import { Trans, useTranslation } from 'react-i18next'
 import LandingBg from '../assets/landing-boarder.png'
-import { useRef, useEffect } from 'react'
+import { Description, PageTitle } from '../components/Text'
+import Explanation from '../components/landing/Explanation'
+import { BgColoredContainer } from '../components/Background'
 import LatestRecords from '../components/landing/LatestRecords'
 import OtherResources from '../components/landing/OtherResources'
-import { Description, PageTitle } from '../components/Text'
-import { isMobile } from '../utils'
 
 const LandingPage = () => {
   useTranslation()
@@ -42,7 +43,7 @@ const LandingPage = () => {
   }
 
   return (
-    <>
+    <BgColoredContainer>
       <Header />
       <TopSection>
         <BgColor />
@@ -76,7 +77,7 @@ const LandingPage = () => {
       <LatestRecords />
       <FaqPage />
       <Footer />
-    </>
+    </BgColoredContainer>
   )
 }
 

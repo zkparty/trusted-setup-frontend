@@ -17,6 +17,7 @@ import SearchIcon from '../assets/search.svg'
 // Hook imports
 import useRecord from '../hooks/useRecord'
 import useSequencerStatus from '../hooks/useSequencerStatus'
+import { BgColoredContainer } from '../components/Background'
 
 
 // RecordPage component
@@ -131,7 +132,7 @@ const RecordPage = () => {
   }
 
   return (
-    <BgContainer>
+    <BgColoredContainer>
       <Header />
       <Container>
         <PageTitle>
@@ -160,15 +161,9 @@ const RecordPage = () => {
         <Pagination page={page} setPage={setPage} totalPages={totalPages} />
       </Container>
       <Footer />
-    </BgContainer>
+    </BgColoredContainer>
   )
 }
-
-const BgContainer = styled.div`
-  background-color: ${({ theme }) => theme.surface };
-  position: absolute;
-  width: 100%;
-`
 
 const Container = styled.div`
   display: flex;
