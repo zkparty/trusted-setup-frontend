@@ -10,8 +10,8 @@ const PageTitle = styled.h1`
   font-size: ${FONT_SIZE.XXL};
   ${textSerif}
   font-weight: 700;
-  margin-top: 40px;
-  margin-bottom: 24px;
+  margin-top: 0px;
+  margin-bottom: 15px;
 `
 
 const SectionTitle = styled.h2`

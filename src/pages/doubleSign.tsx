@@ -233,7 +233,7 @@ const CheckWalletDesc = styled(Description)`
 `
 
 const ButtonSection = styled(SingleButtonSection)`
-  margin-top: 12px;
+  margin-top: 5px;
   height: auto;
 `
 

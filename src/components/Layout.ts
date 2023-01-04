@@ -40,6 +40,7 @@ export const SingleWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `
 
 export const ColorWrap = styled(SingleWrap)`

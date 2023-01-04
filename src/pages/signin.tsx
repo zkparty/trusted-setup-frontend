@@ -115,8 +115,8 @@ const ButtonIcon = styled.img`
 `
 
 export const ButtonSection = styled(SingleButtonSection)`
-  height: 120px;
-  margin-top: 12px;
+  max-height: 100px;
+  margin-top: 10px;
 `
 
 export default SigninPage
