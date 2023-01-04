@@ -21,7 +21,7 @@ self.addEventListener("install", function () {
 
     // Brave requires to use the url string rather than the whole object
     let request = event.request;
-    if (url.includes('session_id')){
+    if (url.includes('session_id') || url.includes("code")){
       request = event.request.url;
     }
 

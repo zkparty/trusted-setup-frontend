@@ -24,7 +24,8 @@ function App() {
   const params = new URLSearchParams(location.search)
   const sessionId = params.get('session_id')
   const message = params.get('message')
-  const isRedirect = (sessionId !== null || message !== null)
+  const code = params.get("code")
+  const isRedirect = (sessionId !== null || message !== null || code !== null)
 
   /* Considerations for the IPFS build:
     - IPFS gateways comsider anything after the / a path to a folder. So our preferred method
