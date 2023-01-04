@@ -1,4 +1,3 @@
-import ROUTES from '../routes'
 import styled from 'styled-components'
 import FaqPage from '../components/landing/Faq'
 import Header from '../components/headers/Header'
@@ -9,10 +8,9 @@ import { useAuthStore } from '../store/auth'
 import { useNavigate } from 'react-router-dom'
 import { TextSection } from '../components/Layout'
 import Explanation from '../components/landing/Explanation'
-import { PrimaryButton } from '../components/Button'
 import { Trans, useTranslation } from 'react-i18next'
 import LandingBg from '../assets/landing-boarder.png'
-import { useCallback, useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import LatestRecords from '../components/landing/LatestRecords'
 import OtherResources from '../components/landing/OtherResources'
 import { Description, PageTitle } from '../components/Text'
@@ -23,9 +21,6 @@ const LandingPage = () => {
   const ref = useRef<null | HTMLElement>(null)
   const navigate = useNavigate()
   const { signout } = useAuthStore()
-  const onClickGetStart = useCallback(() => {
-    navigate(ROUTES.ENTROPY_INPUT)
-  }, [navigate])
 
   useEffect(() => {
     (async () => {
