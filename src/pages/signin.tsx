@@ -106,7 +106,7 @@ const ButtonWithLinkOut = styled(SecondaryButton)`
   ::after {
     content: "↗";
     padding-left: 5px;
-    font-size: 1em;
+    font-size: 0.875em;
   }
 `
 
