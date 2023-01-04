@@ -87,11 +87,11 @@ const SigninPage = () => {
                   <ButtonIcon src={EthImg} alt="ETH icon" />
                 </Trans>
               </PrimaryButton>
-              <SecondaryButton onClick={onSigninGithub} style={{ width: '280px' }} disabled={isLoading}>
+              <ButtonWithLinkOut onClick={onSigninGithub} style={{ width: '280px' }} disabled={isLoading}>
                 <Trans i18nKey="signin.unlockWithGithub">
                   or unlock with Github
                 </Trans>
-              </SecondaryButton>
+              </ButtonWithLinkOut>
               </>
             }
           </ButtonSection>
@@ -101,6 +101,14 @@ const SigninPage = () => {
     </>
   )
 }
+
+const ButtonWithLinkOut = styled(SecondaryButton)`
+  ::after {
+    content: "↗";
+    padding-left: 5px;
+    font-size: 1em;
+  }
+`
 
 const ButtonIcon = styled.img`
   margin-inline-start: 16px;
