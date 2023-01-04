@@ -70,9 +70,6 @@ const LandingPage = () => {
             </Description>
           </Trans>
         </TextSection>
-        <PrimaryButton onClick={onClickGetStart} disabled={isMobile()} >
-          {isMobile() ? <Trans i18nKey="landing.button-mobile">Proceed on desktop</Trans> : <Trans i18nKey="landing.button">Begin</Trans>}
-        </PrimaryButton>
         <OtherResources/>
         <Link onClick={onLearnMoreClick}>
           <Footnote>
