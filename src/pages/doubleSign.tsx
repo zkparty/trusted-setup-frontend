@@ -197,7 +197,8 @@ const DoubleSignPage = () => {
                 <Trans i18nKey="doubleSign.description">
                   <Description>
                     This signature binds each Summoner’s entropy contribution to
-                    their Ethereum address.
+                    their Ethereum address. After it, you would be redirected to a
+                    "Sign With Ethereum" page to sign in again into the sequencer lobby.
                   </Description>
                 </Trans>
               </TextSection>
