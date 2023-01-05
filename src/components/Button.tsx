@@ -61,7 +61,7 @@ const PrimaryButtonWrapper = styled.div<{ disabled?: boolean }>`
   transition: all 0.2s ease;
 
   :hover:not([disabled]) {
-    filter: drop-shadow(0px 10px 12px #00000026);
+    filter: drop-shadow(2px 6px 6px #b4b2b2);
   }
 `
 
