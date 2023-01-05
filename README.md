@@ -75,11 +75,12 @@ This will create the `build` folder and add the site content to it.
 * Build the WASM wrapper Docker image, or `docker pull zkparty/wasm-pack-wrapper`
 * Build the Docker image for this project, or `docker pull zkparty/kzg-ceremony-frontend`
 * Build the entire site, and run an IPFS node: `./docker-build.sh` 
+* Wait for the IPFS node to complete its startup. Watch the container's logs: `docker logs <container name>`
 * Add the site to IPFS: `docker exec ipfs-host ipfs add -r /export`
 * Run the ceremony from the IPFS site:
   * Note the hash generated for `/export` in the previous step
   * In your browser, navigate to `http://localhost:8080/ipfs/<hash>`
-
+* Stop the container once you're finished: `docker stop ipfs-host`
 
 #### Using a local IPFS node
 
