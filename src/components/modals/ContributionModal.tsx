@@ -1,11 +1,11 @@
 import { Bold } from '../Text'
 import { utils } from 'ethers'
 import Modal from 'react-modal'
+import ToolTip from '../Tooltip'
 import ROUTES from '../../routes'
 import theme from '../../style/theme'
 import styled from 'styled-components'
 import { isMobile } from '../../utils'
-import ReactTooltip from 'react-tooltip'
 import { PrimaryButton } from '../Button'
 import ExternalLink from '../ExternalLink'
 import BlockiesIdenticon from '../Blockies'
@@ -225,33 +225,14 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
         <b><Trans i18nKey="complete.modal.signedBy">Signed by </Trans></b>
         { ' ' + data?.sequencer_address }
       </Desc>
-      <DescIntegrity
-        data-for={"integrityChecks"}
-        data-tip={"Integrity checks tooltip content in div below"}
-      >
-        <b><Trans i18nKey="complete.modal.integrityChecks">Integrity checks </Trans></b>
-        <span style={{ color: checksColor }}>
-          {checks}
-        </span>
-      </DescIntegrity>
-      <ReactTooltip
-        id={"integrityChecks"}
-        place={"bottom"}
-        overridePosition={(
-          { left, top },
-          _currentEvent, _currentTarget, _node) => {
-            ReactTooltip.rebuild()
-            return { top, left }
-          }
-        }
-        backgroundColor="black"
-        effect="solid"
-        padding="12px"
-      >
-        <div style={{ width: '40ch', wordBreak: 'break-word' }}>
-          { t("complete.modal.checks.tooltip") }
-        </div>
-      </ReactTooltip>
+      <ToolTip explanation={t("complete.modal.checks.tooltip")}>
+        <DescIntegrity>
+          <b><Trans i18nKey="complete.modal.integrityChecks">Integrity checks </Trans></b>
+          <span style={{ color: checksColor }}>
+            {checks}
+          </span>
+        </DescIntegrity>
+      </ToolTip>
     </Modal>
     </>
   )
