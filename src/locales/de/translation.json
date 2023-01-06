@@ -118,7 +118,7 @@
     },
     "footer": {
       "audit": "Rechnungsprüfung",
-      "copyright": "Erstellt vom F&E-Team der Ethereum Foundation. 2022",
+      "copyright": "Erstellt von der Ethereum-Community - 2022",
       "documentation": "Dokumentation",
       "faq": "FAQ"
     },
@@ -141,6 +141,7 @@
       "de": "Deutsch",
       "es": "Spanisch",
       "en": "Englisch",
+      "sim_en": "Vereinfachtes Englisch",
       "fr": "Französisch",
       "hi": "Hindi",
       "id": "Indonesisch",

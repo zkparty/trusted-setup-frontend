@@ -5,9 +5,9 @@ import type { ErrorRes, ContributeRes, TryContributeRes, RequestLinkRes, Sequenc
 
 class APIClient {
   async getRequestLink(): Promise<RequestLinkRes | ErrorRes> {
-    const path = window.location.href.replace(/#?\/signin/, '');
+    const origin = window.location.origin + window.location.pathname;
     const res = await fetch(
-      `${API_ROOT}/auth/request_link?redirect_to=${encodeURIComponent(path)}`,
+      `${API_ROOT}/auth/request_link?redirect_to=${encodeURIComponent(origin)}`,
       {
         mode: 'cors'
       }
@@ -63,13 +63,14 @@ class APIClient {
     identity: string,
     signature: string | null
   ): Promise<ErrorRes | ContributeRes> {
-    const contribution  = await wasm.contribute(preContribution, entropy, identity)
+    let contribution  = await wasm.contribute(preContribution, entropy, identity)
     useEntropyStore.persist.clearStorage()
     let contributionObj = null
     if (signature) {
       contributionObj = JSON.parse(contribution!)
       contributionObj.ecdsaSignature = signature
       contributionObj = JSON.stringify(contributionObj)
+      contribution = contributionObj
     }
 
     const res = await fetch(`${API_ROOT}/contribute`, {
@@ -78,7 +79,7 @@ class APIClient {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${session_id}`
       },
-      body: contributionObj || contribution
+      body: contribution
     })
     return {
       ...(await res.json()),

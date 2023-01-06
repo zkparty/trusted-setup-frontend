@@ -7,10 +7,10 @@ import { ColorWrap } from '../components/Layout'
 
 import PizzaInner from '../assets/crust.svg'
 import PizzaOuter from '../assets/fig.svg'
-import BgImg from '../assets/img-graphic-base.svg'
-import BgImgColor from '../assets/img-base-color.svg'
-import BgImgNoPiz from '../assets/img-base-no-piz.svg'
-import BgImgPulse from '../assets/img-graphic-pulse.svg'
+import BgImg from '../assets/img-graphic-base-xl.svg'
+import BgImgColor from '../assets/img-base-color-xl.svg'
+import BgImgNoPiz from '../assets/img-base-no-piz-xl.svg'
+import BgImgPulse from '../assets/img-graphic-pulse-xl.svg'
 import InnerWhite from '../assets/inner-white.svg'
 import InnerColor from '../assets/inner-color.svg'
 import SnakeWhite from '../assets/snake-white.svg'
@@ -78,6 +78,12 @@ const BgContainer = styled.div`
   width: 100vw;
   position: absolute;
   overflow: hidden;
+`
+
+export const BgColoredContainer = styled.div`
+  background-color: ${({ theme }) => theme.surface };
+  position: absolute;
+  width: 100%;
 `
 
 export default Background

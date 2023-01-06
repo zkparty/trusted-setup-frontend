@@ -118,7 +118,7 @@
     },
     "footer": {
       "audit": "Rapport d'audit",
-      "copyright": "Construit par la Fondation Ethereum, équipe de R&D. 2022",
+      "copyright": "Construit par la communauté Ethereum 2022",
       "documentation": "Documentation",
       "faq": "FAQ"
     },
@@ -141,6 +141,7 @@
       "de": "Allemand",
       "es": "Espagnol",
       "en": "Anglais",
+      "sim_en": "Anglais simplifié",
       "fr": "Français",
       "hi": "Hindi",
       "id": "Indonésien",

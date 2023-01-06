@@ -16,7 +16,7 @@ import { useAuthStore } from '../store/auth'
 import { useNavigate } from 'react-router-dom'
 import { ErrorRes, RequestLinkRes } from '../types'
 import { Trans, useTranslation } from 'react-i18next'
-import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
+import HeaderJustGoingBack from '../components/headers/HeaderJustGoingBack'
 import api from '../api'
 import LoadingSpinner from '../components/LoadingSpinner'
 
@@ -27,22 +27,9 @@ const SigninPage = () => {
   const [showError, setShowError] = useState(error)
   const [isLoading, setIsLoading] = useState(false)
 
-  const onSigninSIE = async () => {
+  const onSigninSIWE = async () => {
     setIsLoading(true)
-    const requestLinks = await api.getRequestLink()
-    const code = (requestLinks as ErrorRes).code
-    switch (code) {
-      case undefined:
-        window.location.replace((requestLinks as RequestLinkRes).eth_auth_url)
-        break
-      case 'AuthErrorPayload::LobbyIsFull':
-        navigate(ROUTES.LOBBY_FULL)
-        return
-      default:
-        setShowError(JSON.stringify(requestLinks))
-        break
-    }
-    setIsLoading(false)
+    navigate(ROUTES.DOUBLE_SIGN)
   }
 
   const onSigninGithub = async () => {
@@ -94,17 +81,17 @@ const SigninPage = () => {
               <LoadingSpinner></LoadingSpinner>
               :
               <>
-              <PrimaryButton onClick={onSigninSIE} style={{ width: '300px' }} disabled={isLoading}>
+              <PrimaryButton onClick={onSigninSIWE} style={{ width: '300px' }} disabled={isLoading}>
                 <Trans i18nKey="signin.unlockWithEthereum">
                   Unlock with Ethereum{' '}
                   <ButtonIcon src={EthImg} alt="ETH icon" />
                 </Trans>
               </PrimaryButton>
-              <SecondaryButton onClick={onSigninGithub} style={{ width: '280px' }} disabled={isLoading}>
+              <ButtonWithLinkOut onClick={onSigninGithub} style={{ width: '280px' }} disabled={isLoading}>
                 <Trans i18nKey="signin.unlockWithGithub">
                   or unlock with Github
                 </Trans>
-              </SecondaryButton>
+              </ButtonWithLinkOut>
               </>
             }
           </ButtonSection>
@@ -115,13 +102,21 @@ const SigninPage = () => {
   )
 }
 
+const ButtonWithLinkOut = styled(SecondaryButton)`
+  ::after {
+    content: "↗";
+    padding-left: 5px;
+    font-size: 0.875em;
+  }
+`
+
 const ButtonIcon = styled.img`
   margin-inline-start: 16px;
 `
 
 export const ButtonSection = styled(SingleButtonSection)`
-  height: 120px;
-  margin-top: 12px;
+  max-height: 100px;
+  margin-top: 10px;
 `
 
 export default SigninPage

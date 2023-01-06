@@ -1,11 +1,11 @@
 // Library imports
 import { Trans, useTranslation } from 'react-i18next'
 import { useState, useMemo, useEffect } from 'react'
-import { providers } from "ethers";
+import { providers } from 'ethers'
 import styled from 'styled-components'
 // Component imports
 import Footer from '../components/Footer'
-import Header from '../components/Header'
+import Header from '../components/headers/Header'
 import Pagination from '../components/Pagination'
 import RecordTable from '../components/RecordTable'
 import { PageTitle } from '../components/Text'
@@ -17,6 +17,7 @@ import SearchIcon from '../assets/search.svg'
 // Hook imports
 import useRecord from '../hooks/useRecord'
 import useSequencerStatus from '../hooks/useSequencerStatus'
+import { BgColoredContainer } from '../components/Background'
 
 
 // RecordPage component
@@ -44,6 +45,13 @@ const RecordPage = () => {
     string = string.toLowerCase()
     return string.includes( queryLowercase )
   }
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }, [])
 
   useEffect(() => {
     let active = true
@@ -119,8 +127,19 @@ const RecordPage = () => {
     setPage(1)
   }
 
+  const reOrderFormattedData = () => {
+    setIsLoading(true);
+    const records: Record[] = [];
+    for (let i = formattedData.length-1, ni = 0; i >= ni; i--) {
+      const record = formattedData[i];
+      records.push(record)
+    }
+    setFormattedData( records )
+    setIsLoading(false);
+  }
+
   return (
-    <>
+    <BgColoredContainer>
       <Header />
       <Container>
         <PageTitle>
@@ -138,17 +157,18 @@ const RecordPage = () => {
           <StatsTitle>
             <Trans i18nKey="record.stats.address">Sequencer address:</Trans>
           </StatsTitle>
-          <StatsText> {stats?.sequencer_address}</StatsText>
+          <StatsText style={{ marginRight: '0px' }}> {stats?.sequencer_address}</StatsText>
         </StatsContainer>
         <SearchInput placeholder={t('record.searchBar')} onChange={handleInput} />
         <RecordTable
           data={pageData}
           isLoading={isLoading}
+          reOrderFormattedData={reOrderFormattedData}
         />
         <Pagination page={page} setPage={setPage} totalPages={totalPages} />
       </Container>
       <Footer />
-    </>
+    </BgColoredContainer>
   )
 }
 
@@ -157,7 +177,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   color: ${({ theme }) => theme.text};
-  width: 90ch;
+  width: 100ch;
   max-width: 100%;
   margin: 8rem auto;
   padding-inline: 5vw;
@@ -183,6 +203,7 @@ const StatsContainer = styled.div`
   width: 100%;
   display: flex;
   font-size: ${FONT_SIZE.S};
+  padding-inline: 5px;
   margin-bottom: 20px;
   justify-content: space-between;
 
@@ -195,11 +216,13 @@ const StatsContainer = styled.div`
 `
 const StatsTitle = styled.p`
   margin: 0px;
+  margin-right: 2px;
   font-weight: 800;
 `
 
 const StatsText = styled.p`
   margin: 0px;
+  margin-right: 2px;
   margin-bottom: 7px;
 `
 

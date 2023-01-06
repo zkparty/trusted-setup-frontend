@@ -4,8 +4,6 @@ import styled from 'styled-components'
 import {
   useContributionStore,
   useEntropyStore,
-  EntropyStore,
-  Store,
 } from '../store/contribute'
 import { useAuthStore } from '../store/auth'
 import { Description, PageTitle } from '../components/Text'
@@ -13,7 +11,7 @@ import { PrimaryButton } from '../components/Button'
 import { isSuccessRes, processIdentity } from '../utils'
 import ROUTES from '../routes'
 import api from '../api'
-import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
+import HeaderJustGoingBack from '../components/headers/HeaderJustGoingBack'
 import { Trans, useTranslation } from 'react-i18next'
 import {
   SingleContainer as Container,
@@ -28,22 +26,13 @@ type Steps = 'contributing' | 'completed' | 'error'
 
 const ContributingPage = () => {
   const { sessionId, provider, nickname } = useAuthStore()
-  const entropy = useEntropyStore(
-    (state: EntropyStore) => state.entropy
-  )
+  const { entropy, ECDSASignature } = useEntropyStore()
   const {
-    ECDSASignature,
     contribution,
     updateReceipt,
     updateNewContribution,
     updateSequencerSignature,
-  } = useContributionStore((state: Store) => ({
-    ECDSASignature: state.ECDSASignature,
-    contribution: state.contribution,
-    updateReceipt: state.updateReceipt,
-    updateNewContribution: state.updateNewContribution,
-    updateSequencerSignature: state.updateSequencerSignature,
-  }))
+  } = useContributionStore()
 
   const [step, setStep] = useState<Steps>('contributing')
   const [error, setError] = useState<null | string>(null)

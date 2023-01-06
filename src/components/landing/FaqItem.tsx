@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { useState } from 'react'
-import { BREAKPOINT, FONT_SIZE } from '../constants'
-import { textSerif } from '../style/utils'
+import { BREAKPOINT, FONT_SIZE } from '../../constants'
 
 type Props = {
   title: string | React.ReactNode | JSX.Element
@@ -22,18 +21,20 @@ const FaqItem = ({ title, content }: Props) => {
 }
 
 const Container = styled.div`
-  border-bottom: solid 1px ${({ theme }) => theme.primary};
+  border-bottom: solid 1px ${({ theme }) => theme.text};
   transition: background-color 0.1s linear;
-  padding: 1rem 2rem;
-  :hover {
-    background-color: #d6d6d6;
+  padding: 0.6rem 2rem;
+  :hover:not([disabled]) {
+    box-shadow: 1px 2px 6px 6px #b4b2b2;
+    border-bottom: none;
+    border-right: none;
+    border-left: none;
   }
 `
 
 const Title = styled.p<{ open: boolean }>`
-  font-size: ${FONT_SIZE.XXL};
+  font-size: ${FONT_SIZE.M};
   font-weight: 600;
-  ${textSerif}
   display: flex;
   justify-content: space-between;
   gap: 1rem;
@@ -51,6 +52,7 @@ const Title = styled.p<{ open: boolean }>`
 `
 
 const Content = styled.div`
+  font-size: ${FONT_SIZE.SM};
   ol, li {
     margin-block-end: 0.5rem;
   }

@@ -118,7 +118,7 @@
     },
     "footer": {
       "audit": "Relatório da auditoria",
-      "copyright": "Compilado pela Ethereum Foundation, equipe de P&D. 2022",
+      "copyright": "Construído pela Comunidade Ethereum - 2022",
       "documentation": "Documentação",
       "faq": "Perguntas frequentes"
     },
@@ -141,6 +141,7 @@
       "de": "Alemão",
       "es": "Espanhol",
       "en": "Inglês",
+      "sim_en": "Inglês Simplificado",
       "fr": "Francês",
       "hi": "Hindu",
       "id": "Indonésio",

@@ -1,6 +1,8 @@
 import Modal from 'react-modal'
 import { Record } from '../../types'
+import theme from '../../style/theme'
 import styled from 'styled-components'
+import { isMobile } from '../../utils'
 import { FONT_SIZE } from '../../constants'
 import { Bold, Description } from '../Text'
 import { textSerif } from '../../style/utils'
@@ -46,18 +48,19 @@ const TranscriptModal = ({ record, onDeselect, onChange }: Props) => {
           cursor: 'auto',
           border: 'none',
           blockSize: 'fit-content',
-          width: 'clamp(90%, 75%, 70%)',
+          width: isMobile() ? '90%' : '40%',
           inset: '15% 0 0 0',
           marginInline: 'auto',
           paddingBlock: '20px',
           paddingInline: '5%',
+          background: theme.surface,
           boxShadow: '5px 10px 8px 10px #b4b2b2',
         }
       }}
     >
       <Title>
         <Trans i18nKey="record.transcriptModal.title">
-          Contribution details
+          CONTRIBUTION DETAILS
         </Trans>
       </Title>
 
@@ -84,7 +87,7 @@ const TranscriptModal = ({ record, onDeselect, onChange }: Props) => {
       </SubTitle>
       <ol style={{ paddingInlineStart: '20px', paddingLeft: '0px' }}>
         {record?.transcripts.map((transcript, index) => (
-          <div style={{ display: 'flex', paddingBottom: '3px' }} key={transcript.potPubkeys}>
+          <div style={{ display: 'flex', paddingBottom: '3px' }} key={transcript.potPubkeys + index}>
             <BlockiesIdenticon
               opts={{
                 seed: transcript.potPubkeys,
@@ -96,17 +99,33 @@ const TranscriptModal = ({ record, onDeselect, onChange }: Props) => {
           </div>
         ))}
       </ol>
-
-      <SubTitle>
-        <Trans i18nKey="record.transcriptModal.bls">
-          BLS Signatures:
-        </Trans>
-      </SubTitle>
-      <ol style={{ paddingInlineStart: '20px' }}>
-      {record?.transcripts.map((transcript) => (
-         <li key={transcript.potPubkeys}><Desc>{transcript.blsSignature}</Desc></li>
-      ))}
-      </ol>
+      {record?.position === 0 ?
+        <>
+          <SubTitle>
+            <Trans i18nKey="record.transcriptModal.zero.title">
+              What is this is contribution?
+            </Trans>
+          </SubTitle>
+          <Desc>
+            <Trans i18nKey="record.transcriptModal.zero.description">
+            The genesis contribution helps out as an starting point for the coming ones. It does not contain a participant ID, BLS signatures or ECDSA signatures.
+            </Trans>
+          </Desc>
+        </>
+        :
+        <>
+          <SubTitle>
+            <Trans i18nKey="record.transcriptModal.bls">
+              BLS Signatures:
+            </Trans>
+          </SubTitle>
+          <ol style={{ paddingInlineStart: '20px' }}>
+          {record?.transcripts.map((transcript, index) => (
+            <li key={transcript.potPubkeys + index}><Desc>{transcript.blsSignature}</Desc></li>
+          ))}
+          </ol>
+        </>
+      }
       {record?.participantEcdsaSignature ?
         <>
         <SubTitle>

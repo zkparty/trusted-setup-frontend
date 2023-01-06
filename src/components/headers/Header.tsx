@@ -1,19 +1,21 @@
 // Import libraries
 import { Trans, useTranslation } from 'react-i18next'
-import { textSerif } from '../style/utils'
+import { textSerif } from '../../style/utils'
 import styled from 'styled-components'
 // Import components
-import Logo from './Logo'
-import LanguageSelector from './LanguageSelector'
+import Logo from '../Logo'
+import LanguageSelector from '../LanguageSelector'
 // Import image assets
-import { ReactComponent as Star } from '../assets/star.svg'
+import { ReactComponent as Star } from '../../assets/star.svg'
 // Import constants
-import { FONT_SIZE, BREAKPOINT, ENVIRONMENT } from '../constants'
+import { FONT_SIZE, BREAKPOINT, ENVIRONMENT, COMPUTE_DEADLINE } from '../../constants'
 // Import hooks
-import useSequencerStatus from '../hooks/useSequencerStatus'
+import useSequencerStatus from '../../hooks/useSequencerStatus'
 import { useNavigate } from 'react-router-dom'
-import { useAuthStore } from '../store/auth'
-import ROUTES from '../routes'
+import { useAuthStore } from '../../store/auth'
+import { isMobile } from '../../utils'
+import ROUTES from '../../routes'
+import { Bold } from '../Text'
 
 const Header = () => {
 
@@ -25,8 +27,8 @@ const Header = () => {
   const indicatorColor = isonline ? "#61cc61" : "red"
   return (
     <Container>
-      <LeftSection onClick={() => navigate(ROUTES.ROOT)}>
-        <Logo />
+      <LeftSection>
+        <Logo onClick={() => navigate(ROUTES.ROOT)} />
         <Border />
         <Indicator aria-label="sequencer status" isonline={isonline.toString()} color={indicatorColor} />
         <SequencerStatus>
@@ -41,9 +43,24 @@ const Header = () => {
             )}
           </Status>
         </SequencerStatus>
+        <Border  />
+        <SequencerStatus style={{ fontSize: FONT_SIZE.XXS }}>
+          <span style={{ paddingBottom: '2px' }}>
+            <Bold>{data?.num_contributions} {' '}</Bold>
+            <Trans i18nKey="header.totalContributions">total contributions</Trans>
+          </span>
+          <span style={{ paddingBottom: '2px' }}>
+            <Bold>{data?.lobby_size} {' '}</Bold>
+            <Trans i18nKey="header.participantsInLobby">participants in lobby</Trans>
+          </span>
+          <span>
+            <Bold>{ ((data?.lobby_size! * COMPUTE_DEADLINE) / 60).toFixed(0) } {' '}</Bold>
+            <Trans i18nKey="header.waitTime">min estimated wait time</Trans>
+          </span>
+        </SequencerStatus>
       </LeftSection>
       { ENVIRONMENT === 'testnet' ?
-        <CenterSection>
+        <CenterSection isMobile={isMobile()}>
           <Trans i18nKey="header.ceremony">TEST CEREMONY</Trans>
         </CenterSection>
         :
@@ -76,17 +93,16 @@ const LeftSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
 `
 
-const CenterSection = styled.div`
+const CenterSection = styled.div<{ isMobile: boolean }>`
   display: flex;
   color: #3e70bc;
   align-items: start;
-  font-size: ${FONT_SIZE.XXL};
+  font-size: ${({isMobile}) => isMobile ? FONT_SIZE.S : FONT_SIZE.XXL};
+  letter-spacing: ${({isMobile}) => isMobile ? '0.5px' : '2px'};
   ${textSerif}
   font-weight: 800;
-  letter-spacing: 2px;
 `
 
 const Border = styled.span`

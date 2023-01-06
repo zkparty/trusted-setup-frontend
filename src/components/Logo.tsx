@@ -6,11 +6,12 @@ import { BREAKPOINT, FONT_SIZE } from '../constants'
 type Props = {
   withVersion?: boolean
   centerOnMobile?: boolean
+  onClick: () => void
 }
 
-const Logo = ({ withVersion, centerOnMobile }: Props) => {
+const Logo = ({ withVersion, centerOnMobile, onClick }: Props) => {
   return (
-    <LogoSection centerOnMobile={centerOnMobile}>
+    <LogoSection centerOnMobile={centerOnMobile} onClick={onClick}>
       <img src={LogoImg} alt="Logo" />
       <LogoTextGroup>
         <LogoTextMain>KZG</LogoTextMain>
@@ -24,6 +25,7 @@ const Logo = ({ withVersion, centerOnMobile }: Props) => {
 const LogoSection = styled.div<{ centerOnMobile?: boolean }>`
   display: flex;
   align-items: center;
+  cursor: pointer;
   gap: 0.5rem;
   ${({ centerOnMobile }) => centerOnMobile && `
     @media (max-width: ${BREAKPOINT.M}) {
@@ -45,6 +47,7 @@ const LogoTextMain = styled.span`
   font-weight: 600;
   ${textSerif};
   line-height: 14px;
+  user-select: none;
 `
 
 const LogoTextSub = styled.span`

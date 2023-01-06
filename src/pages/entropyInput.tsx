@@ -2,14 +2,14 @@ import {
   useState,
   MouseEventHandler,
   useEffect,
-  forwardRef,
   ChangeEventHandler
 } from 'react'
+import wasm from '../wasm'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { PrimaryButton } from '../components/Button'
 import { Description, PageTitle, Bold } from '../components/Text'
-import { useEntropyStore, EntropyStore } from '../store/contribute'
+import { useEntropyStore } from '../store/contribute'
 import {
   SingleContainer as Container,
   SingleWrap as Wrap,
@@ -19,7 +19,7 @@ import {
 } from '../components/Layout'
 import ROUTES from '../routes'
 import SnakeProgress from '../components/SnakeProgress'
-import HeaderJustGoingBack from '../components/HeaderJustGoingBack'
+import HeaderJustGoingBack from '../components/headers/HeaderJustGoingBack'
 import { CURVE } from '@noble/bls12-381'
 import { hkdf } from '@noble/hashes/hkdf'
 import { sha256 } from '@noble/hashes/sha256'
@@ -28,7 +28,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { MIN_MOUSE_ENTROPY_SAMPLES, FONT_SIZE } from '../constants'
 import 'text-security'
 import LoadingSpinner from '../components/LoadingSpinner'
-import AnimatedCursor from '../components/AnimatedCursor'
 
 type Player = {
   play: () => void
@@ -36,7 +35,7 @@ type Player = {
   seek: (percent: number) => void
 }
 
-const EntropyInputPage = forwardRef((_, bgRef: any) => {
+const EntropyInputPage = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
@@ -48,13 +47,11 @@ const EntropyInputPage = forwardRef((_, bgRef: any) => {
   const [percentage, setPercentage] = useState(0)
   const [player, setPlayer] = useState<Player | null>(null)
 
-  const updateEntropy = useEntropyStore(
-    (state: EntropyStore) => state.updateEntropy
-  )
-  const handleSubmit = () => {
+  const { updateEntropy, updatePotPubkeys } = useEntropyStore()
+  const handleSubmit = async () => {
     if (percentage !== 100) return
     setIsLoading(true)
-    processGeneratedEntropy()
+    await processGeneratedEntropy()
     navigate(ROUTES.SIGNIN)
   }
 
@@ -104,7 +101,10 @@ const EntropyInputPage = forwardRef((_, bgRef: any) => {
     const expandedEntropyInt = BigInt('0x' + hex96)
     const secretInt = expandedEntropyInt % CURVE.r
     const secretHex = secretInt.toString(16).padStart(64, '0')
+    const potPubkeys = await wasm.getPotPubkeys(secretHex)
+
     updateEntropy(secretHex)
+    updatePotPubkeys(potPubkeys)
   }
 
   useEffect(() => {
@@ -121,9 +121,8 @@ const EntropyInputPage = forwardRef((_, bgRef: any) => {
   return (
     <>
       <HeaderJustGoingBack />
-      <Over style={{ cursor: 'none' }}>
+      <Over>
         <Container onMouseMove={handleCaptureMouseEntropy}>
-          <AnimatedCursor ref={bgRef}/>
           <SnakeProgress onSetPlayer={setPlayer} />
           <Wrap style={{ cursor: 'auto' }}>
             <PageTitle>
@@ -174,7 +173,7 @@ const EntropyInputPage = forwardRef((_, bgRef: any) => {
       </Over>
     </>
   )
-})
+}
 
 const SubDesc = styled(Description)`
   margin: 0 0 15px;

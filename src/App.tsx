@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import {
   HomePage,
@@ -12,7 +11,6 @@ import {
   CompletePage,
   RecordPage,
   SigninRedirectPage,
-  FaqPage
 } from './pages'
 import RequireAuth from './components/helper/RequireAuth'
 import usePreloadAllImages from './hooks/usePreloadAllImages'
@@ -22,12 +20,12 @@ import GlobalStyle from './style/global'
 function App() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const loaded = usePreloadAllImages()
-  const bgRef = useRef()
   const location = window.location
   const params = new URLSearchParams(location.search)
   const sessionId = params.get('session_id')
   const message = params.get('message')
-  const isRedirect = (sessionId !== null || message !== null)
+  const code = params.get("code")
+  const isRedirect = (sessionId !== null || message !== null || code !== null)
 
   /* Considerations for the IPFS build:
     - IPFS gateways comsider anything after the / a path to a folder. So our preferred method
@@ -48,23 +46,16 @@ function App() {
       <HashRouter>
         <GlobalStyle />
         <Routes>
-          <Route path={ROUTES.ROOT} element={<HomePage ref={bgRef}/>}>
+          <Route path={ROUTES.ROOT} element={<HomePage/>}>
               <Route path={ROUTES.ROOT} element={
                   isRedirect ?
                     <SigninRedirectPage search={location.search} />
                   :
                     <LandingPage />
                }/>
-            <Route path={ROUTES.ENTROPY_INPUT} element={<EntropyInputPage ref={bgRef} />}/>
+            <Route path={ROUTES.ENTROPY_INPUT} element={<EntropyInputPage/>} />
             <Route path={ROUTES.SIGNIN} element={<SigninPage />} />
-            <Route
-              path={ROUTES.DOUBLE_SIGN}
-              element={
-                <RequireAuth>
-                  <DoubleSignPage />
-                </RequireAuth>
-              }
-            />
+            <Route path={ROUTES.DOUBLE_SIGN} element={<DoubleSignPage />} />
             <Route path={ROUTES.LOBBY_FULL} element={<LobbyFullPage />} />
             <Route
               path={ROUTES.LOBBY}
@@ -91,9 +82,7 @@ function App() {
               }
             />
           </Route>
-          <Route path={ROUTES.FAQ} element={<FaqPage />} />
           <Route path={ROUTES.RECORD} element={<RecordPage />} />
-          <Route path={ROUTES.REDIRECT} element={<SigninRedirectPage search={location.search} />} />
         </Routes>
       </HashRouter>
     </>

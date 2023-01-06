@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { CIRCLE_SIZE } from '../constants'
+import { CIRCLE_SIZE, FONT_SIZE } from '../constants'
 
 // Single section page
 export const SingleContainer = styled.div`
@@ -40,6 +40,7 @@ export const SingleWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `
 
 export const ColorWrap = styled(SingleWrap)`
@@ -64,6 +65,7 @@ export const SingleButtonSection = styled.div`
 
 export const TextSection = styled.div`
   width: 36ch;
+  font-size: ${FONT_SIZE.SM};
   max-width: 100%;
 `
 

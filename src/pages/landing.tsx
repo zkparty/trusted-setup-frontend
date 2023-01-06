@@ -1,30 +1,40 @@
-import ROUTES from '../routes'
+import { isMobile } from '../utils'
 import styled from 'styled-components'
-import Header from '../components/Header'
 import Footer from '../components/Footer'
+import { useRef, useEffect } from 'react'
 import { textSerif } from '../style/utils'
+import { CIRCLE_SIZE } from '../constants'
 import { useAuthStore } from '../store/auth'
 import { useNavigate } from 'react-router-dom'
+import FaqPage from '../components/landing/Faq'
+import Header from '../components/headers/Header'
 import { TextSection } from '../components/Layout'
-import Explanation from '../components/Explanation'
-import { PrimaryButton } from '../components/Button'
 import { Trans, useTranslation } from 'react-i18next'
 import LandingBg from '../assets/landing-boarder.png'
-import { useCallback, useRef, useEffect } from 'react'
 import { Description, PageTitle } from '../components/Text'
-import { isMobile } from '../utils'
+import Explanation from '../components/landing/Explanation'
+import { BgColoredContainer } from '../components/Background'
+import LatestRecords from '../components/landing/LatestRecords'
+import OtherResources from '../components/landing/OtherResources'
 
 const LandingPage = () => {
   useTranslation()
   const ref = useRef<null | HTMLElement>(null)
   const navigate = useNavigate()
   const { signout } = useAuthStore()
-  const onClickGetStart = useCallback(() => {
-    navigate(ROUTES.ENTROPY_INPUT)
-  }, [navigate])
 
   useEffect(() => {
-    signout()
+    (async () => {
+      signout()
+      await navigator.serviceWorker.ready
+      // eslint-disable-next-line no-restricted-globals
+      if (!self.crossOriginIsolated) {
+        console.log('refreshing...')
+        navigate(0)
+      } else {
+        console.log(`${window.crossOriginIsolated ? "" : "not"} x-origin isolated`)
+      }
+    })();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -33,16 +43,16 @@ const LandingPage = () => {
   }
 
   return (
-    <>
+    <BgColoredContainer>
       <Header />
       <TopSection>
         <BgColor />
         <PageTitle>
           <Trans i18nKey="landing.title">
-            SUMMONING <br /> GUIDE
+            SUMMONING GUIDE
           </Trans>
         </PageTitle>
-        <TextSection>
+        <TextSection style={{ width: '55ch' }}>
           <Trans i18nKey="landing.description">
             <Description>
               Whispers from the shadows tell of a powerful spirit Dankshard, who
@@ -56,9 +66,7 @@ const LandingPage = () => {
             </Description>
           </Trans>
         </TextSection>
-        <PrimaryButton onClick={onClickGetStart} disabled={isMobile()} >
-          {isMobile() ? <Trans i18nKey="landing.button-mobile">Proceed on desktop</Trans> : <Trans i18nKey="landing.button">Begin</Trans>}
-        </PrimaryButton>
+        <OtherResources/>
         <Link onClick={onLearnMoreClick}>
           <Footnote>
             {isMobile() ? <Trans i18nKey="landing.learn-more-mobile">↓ learn more below ↓</Trans> : <Trans i18nKey="landing.learn-more">↓ or learn more below ↓</Trans>}
@@ -66,8 +74,10 @@ const LandingPage = () => {
         </Link>
       </TopSection>
       <Explanation refFromLanding={ref} />
+      <LatestRecords />
+      <FaqPage />
       <Footer />
-    </>
+    </BgColoredContainer>
   )
 }
 
@@ -91,14 +101,14 @@ const TopSection = styled(Section)`
 
 const BgColor = styled.div`
   background-color: ${({ theme }) => theme.surface};
-  height: 500px;
-  width: 500px;
+  height: ${CIRCLE_SIZE}px;
+  width: ${CIRCLE_SIZE}px;
   max-width: 100%;
   border-radius: 50%;
   box-shadow: 0 0 200px 120px ${({ theme }) => theme.surface};
   position: absolute;
   z-index: -1;
-  top: 240px;
+  margin-top: -30px;
 `
 
 const Footnote = styled.p`
