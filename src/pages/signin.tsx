@@ -67,11 +67,11 @@ const SigninPage = () => {
                 <Description>
                   The Ceremony requires souls of pure intent. Summoners show
                   their integrity by unlocking with an address that has at least
-                  three sent transactions.
+                  three sent transactions. Each address can only be used once.
                 </Description>
                 <Description>
-                  It does not send any funds or permit any contracts. This
-                  method also allows us to deliver a POAP after the Ceremony.
+                  Choosing Ethereum does not send any funds or permit any contracts.
+                  This method also permits a POAP to be delivered after the Ceremony.
                 </Description>
               </Trans>
             </TextSection>

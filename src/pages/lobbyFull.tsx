@@ -32,9 +32,8 @@ const LobbyFullPage = () => {
               <TextSection>
                 <Trans i18nKey="lobbyFull.description">
                   <Description>
-                  Too many summoners at this time, please come back later.
-                  Close this window and try again later today to check
-                  if there is a slot available in the lobby.
+                    There are too many summoners at this time, please come back
+                    in a few hours!
                   </Description>
                 </Trans>
               </TextSection>
