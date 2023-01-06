@@ -253,7 +253,7 @@ const faqQuestions = [
         <p>
           You don&#39;t have to trust the Sequencer to produce a biased or
           invalid final output. The{' '}
-          <ExternalLink href="https://sequencer.ethereum.org/info/current_state">
+          <ExternalLink href="https://seq.ceremony.ethereum.org/info/current_state">
             transcript
           </ExternalLink>{' '}
           provides a verifiable record of all randomness contributions that you
