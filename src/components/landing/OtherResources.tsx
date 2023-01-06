@@ -79,7 +79,7 @@ const OtherResources = () => {
 
 const Row = styled.div<{isMobile: boolean}>`
     display: flex;
-    margin-block: 30px;
+    margin-block: 20px;
     ${({ isMobile }) => isMobile ?
         `overflow-x: scroll;
          width: 100%;`
@@ -91,15 +91,15 @@ const Col = styled.button<{initialCol?: boolean}>`
     border: double 4px ${({ theme }) => theme.loader};
     border-left: ${({ theme, initialCol }) =>
     initialCol ? 'double 4px ' + theme.loader : 'none'};
-    background: transparent;
+    background: white;
     cursor: pointer;
     text-align: center;
-    padding-block: 10px;
-    padding-inline: 5px;
+    padding-block: 7px;
+    padding-inline: 3px;
 
     :hover:not([disabled]) {
         box-shadow: 1px 2px 6px 6px #b4b2b2;
-        background: ${({ theme }) => theme.primary}
+        background: ${({ theme }) => theme.surface}
     }
 `
 

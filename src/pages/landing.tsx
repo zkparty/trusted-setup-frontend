@@ -71,11 +71,6 @@ const LandingPage = () => {
           </Trans>
         </TextSection>
         <OtherResources/>
-        <Link onClick={onLearnMoreClick}>
-          <Footnote>
-            {isMobile() ? <Trans i18nKey="landing.learn-more-mobile">↓ learn more below ↓</Trans> : <Trans i18nKey="landing.learn-more">↓ or learn more below ↓</Trans>}
-          </Footnote>
-        </Link>
       </TopSection>
       <Explanation refFromLanding={ref} />
       <LatestRecords />

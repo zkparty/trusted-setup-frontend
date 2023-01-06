@@ -78,7 +78,7 @@ const Header = () => {
 
 const Container = styled.header`
   background-color: ${({ theme }) => theme.surface2};
-  height: 80px;
+  height: 73px;
   display: flex;
   align-items: center;
   justify-content: space-between;
