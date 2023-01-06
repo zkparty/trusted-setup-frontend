@@ -2,7 +2,7 @@ import ROUTES from '../routes'
 import { useState } from 'react'
 import styled from 'styled-components'
 import ErrorMessage from '../components/Error'
-import { PrimaryButton, SecondaryButton } from '../components/Button'
+import { PrimaryButton, ButtonWithLinkOut } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
@@ -102,13 +102,6 @@ const SigninPage = () => {
   )
 }
 
-const ButtonWithLinkOut = styled(SecondaryButton)`
-  ::after {
-    content: "↗";
-    padding-left: 5px;
-    font-size: 0.875em;
-  }
-`
 
 const ButtonIcon = styled.img`
   margin-inline-start: 16px;

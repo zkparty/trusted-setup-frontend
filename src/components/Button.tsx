@@ -114,10 +114,19 @@ const SecondaryButton = styled.button`
   ${textSerif}
 `
 
+const ButtonWithLinkOut = styled(SecondaryButton)`
+  ::after {
+    content: "↗";
+    padding-left: 5px;
+    font-size: 0.875em;
+  }
+`
+
 export {
   PrimaryButton,
   PrimaryButtonLarge,
   BorderedButton,
   BorderedButtonLarge,
   SecondaryButton,
+  ButtonWithLinkOut
 }

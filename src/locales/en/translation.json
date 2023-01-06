@@ -2,6 +2,7 @@
   "translation": {
     "complete": {
       "button": "View your contribution",
+      "gobackhome": "Go back home",
       "description": "<0>Success! Echoes of you are permanently fused with the others in this Summoning Ceremony.</0>",
       "modal": {
         "acknowledgment": "SEQUENCER ACKNOWLEDGEMENT",

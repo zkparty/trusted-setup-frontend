@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ErrorMessage from '../components/Error'
 import { Trans, useTranslation } from 'react-i18next'
-import { PrimaryButtonLarge } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import { useContributionStore, Store } from '../store/contribute'
+import { ButtonWithLinkOut, PrimaryButtonLarge } from '../components/Button'
 import HeaderJustGoingBack from '../components/headers/HeaderJustGoingBack'
 import ContributionModal from '../components/modals/ContributionModal'
 import wasm from '../wasm'
@@ -48,6 +48,10 @@ const CompletePage = () => {
 
   const handleClickViewContribution = async () => {
     setIsModalOpen(true);
+  }
+
+  const handleClickGoToHome = () => {
+    navigate(ROUTES.ROOT)
   }
 
   useEffect(() => {
@@ -104,6 +108,11 @@ const CompletePage = () => {
                     View your contribution
                   </Trans>
                 </PrimaryButtonLarge>
+                <ButtonWithLinkOut onClick={handleClickGoToHome} style={{ width: '280px', marginTop: '5px' }}>
+                <Trans i18nKey="complete.gobackhome">
+                  Go back home
+                </Trans>
+              </ButtonWithLinkOut>
               </ButtonSection>
             </InnerWrap>
           </Wrap>
@@ -131,8 +140,9 @@ const TannedBackground = styled.div`
 `
 
 export const ButtonSection = styled(SingleButtonSection)`
-  margin-top: 12px;
+  margin-top: 15px;
   height: 120px;
+  gap: 10px;
 `
 
 export default CompletePage
