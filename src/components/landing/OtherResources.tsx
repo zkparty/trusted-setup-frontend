@@ -64,7 +64,7 @@ const OtherResources = () => {
             </Link>
             <img src={OpenHugFlower} alt="open hug flower icon"/>
         </Col>
-        <Col onClick={onClickWriteYourOwn}>
+        <Col onClick={onClickWriteYourOwn} finalCol={true}>
             <Link>
                 <Trans i18nKey="otherResources.writeYourOwn">
                     Write your Own!
@@ -86,11 +86,24 @@ const Row = styled.div<{isMobile: boolean}>`
         : 'width: 590px;'
     }
 `
-const Col = styled.button<{initialCol?: boolean}>`
+const Col = styled.button<{initialCol?: boolean, finalCol?: boolean}>`
     flex: 3;
-    border: double 4px ${({ theme }) => theme.loader};
-    border-left: ${({ theme, initialCol }) =>
-    initialCol ? 'double 4px ' + theme.loader : 'none'};
+    border: solid 1px ${({ theme }) => theme.loader};
+    border-top: solid 2px ${({ theme }) => theme.loader};
+    border-bottom: solid 2px ${({ theme }) => theme.loader};
+    ${({ theme, initialCol }) =>
+        initialCol ?
+        'border-left: solid 2px' + theme.loader + ';'
+        :
+        ''
+    }
+    ${({ theme, finalCol }) =>
+        finalCol ?
+        'border-right: solid 2px' + theme.loader + ';'
+        :
+        ''
+    }
+
     background: white;
     cursor: pointer;
     text-align: center;
@@ -98,6 +111,7 @@ const Col = styled.button<{initialCol?: boolean}>`
     padding-inline: 3px;
 
     :hover:not([disabled]) {
+        z-index: 1;
         box-shadow: 1px 2px 6px 6px #b4b2b2;
         background: ${({ theme }) => theme.surface}
     }
