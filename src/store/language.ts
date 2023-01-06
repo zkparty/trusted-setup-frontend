@@ -1,5 +1,5 @@
 import create from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
 
 export type Store = {
   selectedLanguage: string | null
@@ -13,6 +13,6 @@ export const useLanguageStore = create<Store>()(
     }),
     {
       name: 'kzg-language',
-      getStorage: () => sessionStorage,
+      storage: createJSONStorage(() => sessionStorage),
   })
 )

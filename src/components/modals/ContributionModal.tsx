@@ -113,7 +113,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
           width: isMobile() ? '90%' : '40%',
           inset: '15% 0 0 0',
           marginInline: 'auto',
-          paddingBlock: '20px',
+          paddingBlock: '40px',
           paddingInline: '5%',
           background: theme.surface,
           boxShadow: '5px 10px 8px 10px #b4b2b2',
@@ -202,6 +202,13 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
             SEQUENCER ACKNOWLEDGEMENT
           </Trans>
         </Title>
+        <BottomSection>
+          <PrimaryButton onClick={handleClickDownloadReceipt} style={{ width: '300px' }}>
+            <Trans i18nKey="complete.modal.downloadReceipt">
+              Download Receipt
+            </Trans>
+          </PrimaryButton>
+        </BottomSection>
         <SubTitle>
           <Trans i18nKey="complete.modal.receipt">
             Contribution receipt:
@@ -245,13 +252,6 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
           { t("complete.modal.checks.tooltip") }
         </div>
       </ReactTooltip>
-      <BottomSection>
-        <PrimaryButton onClick={handleClickDownloadReceipt} style={{ width: '300px' }}>
-          <Trans i18nKey="complete.modal.downloadReceipt">
-            Download Receipt
-          </Trans>
-        </PrimaryButton>
-      </BottomSection>
     </Modal>
     </>
   )
@@ -267,6 +267,7 @@ const Link = styled(ExternalLink)`
 
 const BottomSection = styled.div`
   display: flex;
+  margin-bottom: 19px;
   justify-content: space-around;
 `
 

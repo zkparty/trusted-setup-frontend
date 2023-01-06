@@ -15,7 +15,7 @@ const OtherResources = () => {
     const mobile = isMobile()
 
     const onClickIPFSInterface = () => {
-        window.location.replace("https://github.com/ethereum/kzg-ceremony/blob/main/README.md#ipfs-hosted-versions")
+        window.open("https://github.com/ethereum/kzg-ceremony#ipfs-hosted-versions")
     }
 
     const onClickHostedInterface = () => {
@@ -23,11 +23,11 @@ const OtherResources = () => {
     }
 
     const onClickOtherClients = () => {
-        window.location.replace("https://github.com/ethereum/kzg-ceremony#client-implementations")
+        window.open("https://github.com/ethereum/kzg-ceremony#client-implementations")
     }
 
     const onClickWriteYourOwn = () => {
-        window.location.replace("https://blog.ethereum.org/2022/12/15/kzg-ceremony-grants-round")
+        window.open("https://blog.ethereum.org/2022/12/15/kzg-ceremony-grants-round")
     }
 
 
@@ -64,7 +64,7 @@ const OtherResources = () => {
             </Link>
             <img src={OpenHugFlower} alt="open hug flower icon"/>
         </Col>
-        <Col onClick={onClickWriteYourOwn}>
+        <Col onClick={onClickWriteYourOwn} finalCol={true}>
             <Link>
                 <Trans i18nKey="otherResources.writeYourOwn">
                     Write your Own!
@@ -79,27 +79,41 @@ const OtherResources = () => {
 
 const Row = styled.div<{isMobile: boolean}>`
     display: flex;
-    margin-block: 30px;
+    margin-block: 20px;
     ${({ isMobile }) => isMobile ?
         `overflow-x: scroll;
          width: 100%;`
         : 'width: 590px;'
     }
 `
-const Col = styled.button<{initialCol?: boolean}>`
+const Col = styled.button<{initialCol?: boolean, finalCol?: boolean}>`
     flex: 3;
-    border: double 4px ${({ theme }) => theme.loader};
-    border-left: ${({ theme, initialCol }) =>
-    initialCol ? 'double 4px ' + theme.loader : 'none'};
-    background: transparent;
+    border: solid 1px ${({ theme }) => theme.loader};
+    border-top: solid 2px ${({ theme }) => theme.loader};
+    border-bottom: solid 2px ${({ theme }) => theme.loader};
+    ${({ theme, initialCol }) =>
+        initialCol ?
+        'border-left: solid 2px' + theme.loader + ';'
+        :
+        ''
+    }
+    ${({ theme, finalCol }) =>
+        finalCol ?
+        'border-right: solid 2px' + theme.loader + ';'
+        :
+        ''
+    }
+
+    background: white;
     cursor: pointer;
     text-align: center;
-    padding-block: 10px;
-    padding-inline: 5px;
+    padding-block: 7px;
+    padding-inline: 3px;
 
     :hover:not([disabled]) {
+        z-index: 1;
         box-shadow: 1px 2px 6px 6px #b4b2b2;
-        background: ${({ theme }) => theme.primary}
+        background: ${({ theme }) => theme.surface}
     }
 `
 

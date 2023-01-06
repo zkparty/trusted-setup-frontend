@@ -154,6 +154,7 @@ const DoubleSignPage = () => {
     // save signature for later
     updateECDSASigner(signingAddress)
     updateECDSASignature(signature)
+    await onSigninSIWE()
   }
 
   const onSigninSIWE = async () => {
@@ -177,7 +178,6 @@ const DoubleSignPage = () => {
     setError(null)
     setIsLoading(true)
     await signPotPubkeysWithECDSA()
-    await onSigninSIWE()
   }
 
   return (
@@ -197,7 +197,9 @@ const DoubleSignPage = () => {
                 <Trans i18nKey="doubleSign.description">
                   <Description>
                     This signature binds each Summoner’s entropy contribution to
-                    their Ethereum address.
+                    their Ethereum address. After signing you will be redirected
+                    to a "Sign-in With Ethereum" page to sign in again into the
+                    sequencer lobby.
                   </Description>
                 </Trans>
               </TextSection>

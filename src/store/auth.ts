@@ -1,5 +1,5 @@
 import create from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
 
 export type OAuthProvider = 'github' | 'eth'
 
@@ -51,7 +51,7 @@ export const useAuthStore = create<Store>()(
     }),
     {
       name: 'kzg-temporary-session',
-      getStorage: () => sessionStorage,
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 )
