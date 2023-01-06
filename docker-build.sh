@@ -10,8 +10,8 @@ docker run -it --rm \
 docker run -it --rm \
     -v "${PWD}:/work" \
     -w /work \
-    --entrypoint /build.sh \
-    zkparty/kzg-ceremony-frontend 
+    --entrypoint ./build.sh \
+    node:19-bullseye 
 
 # Start IPFS node
 docker run -d --rm \
