@@ -3,15 +3,16 @@ import styled from 'styled-components'
 import Footer from '../components/Footer'
 import { useRef, useEffect } from 'react'
 import { textSerif } from '../style/utils'
-import { CIRCLE_SIZE } from '../constants'
 import { useAuthStore } from '../store/auth'
 import { useNavigate } from 'react-router-dom'
 import FaqPage from '../components/landing/Faq'
+import useCountdown from '../hooks/useCountdown'
 import Header from '../components/headers/Header'
 import { TextSection } from '../components/Layout'
 import { Trans, useTranslation } from 'react-i18next'
 import LandingBg from '../assets/landing-boarder.png'
-import { Description, PageTitle } from '../components/Text'
+import { CIRCLE_SIZE, START_DATE } from '../constants'
+import { Description, ItalicSubTitle, PageTitle } from '../components/Text'
 import Explanation from '../components/landing/Explanation'
 import { BgColoredContainer } from '../components/Background'
 import LatestRecords from '../components/landing/LatestRecords'
@@ -22,6 +23,7 @@ const LandingPage = () => {
   const ref = useRef<null | HTMLElement>(null)
   const navigate = useNavigate()
   const { signout } = useAuthStore()
+  const [days, hours, minutes, seconds] = useCountdown(START_DATE)
 
   useEffect(() => {
     (async () => {
@@ -52,6 +54,9 @@ const LandingPage = () => {
             SUMMONING GUIDES
           </Trans>
         </PageTitle>
+        <ItalicSubTitle>
+          {days+' : '+hours+' : '+minutes+' : '+seconds}
+        </ItalicSubTitle>
         <TextSection style={{ width: '55ch' }}>
           <Trans i18nKey="landing.description">
             <Description>

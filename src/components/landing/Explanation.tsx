@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import FlowerAnimation from '../FlowerAnimation'
 import { TextSection } from '../Layout'
 import { Trans, useTranslation } from 'react-i18next'
-import { Description, PageTitle } from '../Text'
+import { Description, ItalicSubTitle, PageTitle } from '../Text'
 
 const Explanation = ({ refFromLanding }: any) => {
   useTranslation()
@@ -15,6 +15,11 @@ const Explanation = ({ refFromLanding }: any) => {
           PROTO-DANKSHARDING <br /> AND THE CEREMONY
         </Trans>
       </PageTitle>
+      <ItalicSubTitle style={{ marginBottom: '50px' }}>
+        <Trans i18nKey="explanation.subtitle">
+          what are these?
+        </Trans>
+      </ItalicSubTitle>
       <Container>
       <FlowerAnimation></FlowerAnimation>
       <SecondTextSection>

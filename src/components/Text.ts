@@ -24,6 +24,14 @@ const SectionTitle = styled.h2`
   overflow-wrap: break-word;
 `
 
+const ItalicSubTitle = styled.h3`
+  font-size ${FONT_SIZE.L};
+  font-style: italic;
+  font-weight: 100;
+  text-align: center;
+  margin-top: 4px;
+`
+
 const Description = styled.p`
   font-weight: 400;
   font-size: ${FONT_SIZE.SM};
@@ -49,4 +57,4 @@ const Bold = styled.span`
 font-weight: 700;
 `
 
-export { PageTitle, SectionTitle, Description, LinkText, Bold }
+export { PageTitle, SectionTitle, ItalicSubTitle, Description, LinkText, Bold }
