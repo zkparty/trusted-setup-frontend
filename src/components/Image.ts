@@ -59,5 +59,6 @@ export const BgPulse = styled(Bg)`
   opacity: ${({ visible }) => (visible ? 1 : 0)};
   animation: ${p} 10s ease-in-out infinite;
   height: auto;
+  z-index: 0;
   width: ${CIRCLE_SIZE + 1313}px;
 `
