@@ -73,32 +73,46 @@ This will create the `build` folder and add the site content to it.
 #### Build and add using Docker
 
 * Build the WASM wrapper Docker image, or `docker pull zkparty/wasm-pack-wrapper`
-* Build the Docker image for this project, or `docker pull zkparty/kzg-ceremony-frontend`
+* Pull a Docker image for node.js: `docker pull node:19-bullseye`
 * Build the entire site, and run an IPFS node: `./docker-build.sh` 
-* Wait for the IPFS node to complete its startup. Watch the container's logs: `docker logs <container name>`
+* Wait for the IPFS node to complete its startup. Watch the container's logs: `docker logs ipfs-host`
 * Add the site to IPFS: `docker exec ipfs-host ipfs add -r /export`
 * Run the ceremony from the IPFS site:
   * Note the hash generated for `/export` in the previous step
   * In your browser, navigate to `http://localhost:8080/ipfs/<hash>`
 * Stop the container once you're finished: `docker stop ipfs-host`
 
-#### Using a local IPFS node
-
-Choose an IPFS node, or install one locally. See [here](https://docs.ipfs.tech/install/ipfs-desktop/) to install a node.
-
-The site needs to be added to IPFS as a folder. The command to this in ipfs cli is: ```ipfs add -r <your path>/trusted-setup-frontend/build```
-
-This will result in a series of log messages reporting the CID of each object in the folder. The CID of the build folder itself is the important one for our purposes.
+This will result in a series of log messages reporting the CID of each object in the folder. The CID of the `export` folder itself is the important one for our purposes.
 
 ```
 ...
-added QmV7zRBYTYf8wmQQzXfnfRFTyYBUByJGaLB37VuHjsj6Y6 build/wasm/pkg
-added QmZTdJheNur4R2esdej5w1gktGS5aLHYHtLsChMjACmzuk build/wasm
-added QmbTGA1mPf3nb5RRWehvrHn7cz3jwVQdj91r3c6eHmdx4k build
+added QmV7zRBYTYf8wmQQzXfnfRFTyYBUByJGaLB37VuHjsj6Y6 export/wasm/pkg
+added QmZTdJheNur4R2esdej5w1gktGS5aLHYHtLsChMjACmzuk export/wasm
+added QmbTGA1mPf3nb5RRWehvrHn7cz3jwVQdj91r3c6eHmdx4k export
 13.80 MiB / 13.80 MiB [=======================================================================================] 100.00%
 ```
 
-The build as at the release time has this CID: `QmSCqoKMuRdoT8d8tXoq8wuNJBDHsuz2xWm6PKhfzgskKP`
+The latest build has this CID: `QmevfvaP3nR5iMncWKa55B2f5mUgTAw9oDjFovD3XNrJTV`
 
-or, in base32: `bafybeibzn2r7w3cyxu6bwjamr6vfc7qrslcpdlpeens6j5pjzvqeqjugsy`
+or, in base32: `bafybe????<tbd>`
+
+The site can be added to pinning services by uploading the `build` folder.
+
+## Building from the Audited commit
+
+An audit of the code was conducted by Sigma Prime. The audit report notes the commit hash at which the audit was restested following implementation of the audit recommendations. 
+
+To build the site at that commit:
+
+* Checkout the `wrapper-small-pot` repo at tag `sigp-audit`. Build the WASM code as per above.
+* Checkout this repo at tag `frontend-audit`. 
+* Set environment variables for running live. The `.env` file should contain these entries:
+```
+REACT_APP_API_ROOT=https://seq.ceremony.ethereum.org
+REACT_APP_ENVIRONMENT=prod
+``` 
+* Build the site (see above).
+
+The IPFS CID for the audited code is `QmevfvaP3nR5iMncWKa55B2f5mUgTAw9oDjFovD3XNrJTV`
+
 
