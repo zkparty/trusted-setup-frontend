@@ -154,6 +154,7 @@ const DoubleSignPage = () => {
     // save signature for later
     updateECDSASigner(signingAddress)
     updateECDSASignature(signature)
+    await onSigninSIWE()
   }
 
   const onSigninSIWE = async () => {
@@ -177,7 +178,6 @@ const DoubleSignPage = () => {
     setError(null)
     setIsLoading(true)
     await signPotPubkeysWithECDSA()
-    await onSigninSIWE()
   }
 
   return (
