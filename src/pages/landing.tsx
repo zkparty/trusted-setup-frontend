@@ -9,7 +9,7 @@ import Header from '../components/headers/Header'
 import { TextSection } from '../components/Layout'
 import { Trans, useTranslation } from 'react-i18next'
 import LandingBg from '../assets/landing-boarder.png'
-import { CIRCLE_SIZE, START_DATE } from '../constants'
+import { CIRCLE_SIZE, START_DATE, ENVIRONMENT } from '../constants'
 import { Description, ItalicSubTitle, PageTitle } from '../components/Text'
 import Explanation from '../components/landing/Explanation'
 import { BgColoredContainer } from '../components/Background'
@@ -49,9 +49,13 @@ const LandingPage = () => {
             SUMMONING GUIDES
           </Trans>
         </PageTitle>
-        <ItalicSubTitle>
-          {days+' : '+hours+' : '+minutes+' : '+seconds}
-        </ItalicSubTitle>
+        { ENVIRONMENT === 'testnet' ?
+          ''
+          :
+          <ItalicSubTitle>
+            {days+' : '+hours+' : '+minutes+' : '+seconds}
+          </ItalicSubTitle>
+        }
         <TextSection style={{ width: '55ch' }}>
           <Trans i18nKey="landing.description">
             <Description>

@@ -3,12 +3,7 @@ import { PageTitle } from '../Text'
 import styled from 'styled-components'
 import ExternalLink from '../ExternalLink'
 import { Trans, useTranslation } from 'react-i18next'
-import { START_DATE, END_DATE } from '../../constants'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const [from, to] = [START_DATE, END_DATE].map((date: string) =>
-  new Date(date).toLocaleDateString()
-)
 // FAQ section component
 const FaqPage = () => {
   useTranslation()

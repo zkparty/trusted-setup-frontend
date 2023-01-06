@@ -13,8 +13,8 @@ const getReturnValues = (countDown: number) => {
     return [days, hours, minutes, seconds];
 }
 
-export default function useCountdown(targetDate: string) {
-    const countDownDate = new Date(targetDate).getTime()
+export default function useCountdown(targetDate: number) {
+    const countDownDate = new Date(targetDate * 1000).getTime()
 
     const [countDown, setCountDown] = useState<number>(
         countDownDate - new Date().getTime()
