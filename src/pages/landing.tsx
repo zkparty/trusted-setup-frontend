@@ -49,7 +49,7 @@ const LandingPage = () => {
         <BgColor />
         <PageTitle style={{ marginTop: '30px' }}>
           <Trans i18nKey="landing.title">
-            SUMMONING GUIDE
+            SUMMONING GUIDES
           </Trans>
         </PageTitle>
         <TextSection style={{ width: '55ch' }}>
@@ -57,12 +57,11 @@ const LandingPage = () => {
             <Description>
               Whispers from the shadows tell of a powerful spirit Dankshard, who
               will open the next chapter of Ethereum scalability. To summon its
-              powers, a Ceremony needs your contribution. This illuminated guide
-              will lead you through the movements necessary to complete the
-              ritual.
+              powers, a Ceremony needs your contribution.
             </Description>
             <Description>
               Magic math awaits - are you ready to add your color to the story?
+              Choose one of the four paths below to begin the ritual:
             </Description>
           </Trans>
         </TextSection>

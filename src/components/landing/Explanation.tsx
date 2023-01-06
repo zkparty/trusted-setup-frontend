@@ -20,31 +20,34 @@ const Explanation = ({ refFromLanding }: any) => {
       <SecondTextSection>
         <Trans i18nKey="explanation.description">
           <Description>
-            This Trusted Setup is a multi-party ceremony designed to generate a
-            secure SRS (structured reference string) to be used in the
-            proto-danksharding protocol. OK, let's slow down and talk about
-            those terms in more detail.
+            This ceremony, also known as a "Trusted Setup", will generate a
+            structured reference string (SRS) which will secure Ethereum's
+            scaling roadmap, known as (proto)-danksharding.
+            OK, let's slow down and talk about those terms in more detail.
           </Description>
           <Description>
             Proto-danksharding (aka EIP-4844) is a planned change to the
-            Ethereum protocol which allows transaction data from rollups (Layer
-            2s) to be succinctly represented on the Layer 1 (mainnet). The
-            benefits are lower transaction fees on the L2, greater scalability
-            and more accessibility to more people!
+            Ethereum protocol which introduces ephemeral data storage.
+            Because the data does not need to be stored by the network forever,
+            it is cheaper to use than on-chain storage (i.e. CALLDATA).
+            Rollups (a.k.a. Layer 2s) can therefore use this storage to post
+            transaction data or proofs back to Layer 1 (mainnet),
+            and massively reduce the cost for their users. The benefits are
+            lower transaction fees on the L2, greater scalability and
+            more accessibility to more people!
           </Description>
           <Description>
-            The Trusted Setup is a preparatory step required for certain
-            cryptographic schemes such as the KZG polynomial commitment scheme
-            to be used in proto-danksharding. In our case, the trust assumption
-            is that one contributor needs to successfully conceal their secret
-            for the result to be secure.
+            Proto-danksharding requires the introduction of a new cryptographic
+            scheme: KZG Commitments. For these to be used securely, a secure SRS
+            is needed. An SRS is secure as long as one participant in the
+            ceremony successfully conceals their secret.
           </Description>
           <Description>
             It's a multi-party ceremony: Contributors each create a secret and
             run a computation to mix it with previous contributions and generate
             a result that can be made public and passed to the next contributor.
             We need to guard against attempts to control the ceremony, so you'll
-            need an Ethereum or GitHub account with an established history.
+            need an Ethereum or GitHub account with an established history to participate.
           </Description>
         </Trans>
       </SecondTextSection>
