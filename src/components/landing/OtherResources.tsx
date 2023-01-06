@@ -15,7 +15,7 @@ const OtherResources = () => {
     const mobile = isMobile()
 
     const onClickIPFSInterface = () => {
-        window.location.replace("https://github.com/ethereum/kzg-ceremony/blob/main/README.md#ipfs-hosted-versions")
+        window.open("https://github.com/ethereum/kzg-ceremony#ipfs-hosted-versions")
     }
 
     const onClickHostedInterface = () => {
@@ -23,11 +23,11 @@ const OtherResources = () => {
     }
 
     const onClickOtherClients = () => {
-        window.location.replace("https://github.com/ethereum/kzg-ceremony#client-implementations")
+        window.open("https://github.com/ethereum/kzg-ceremony#client-implementations")
     }
 
     const onClickWriteYourOwn = () => {
-        window.location.replace("https://blog.ethereum.org/2022/12/15/kzg-ceremony-grants-round")
+        window.open("https://blog.ethereum.org/2022/12/15/kzg-ceremony-grants-round")
     }
 
 

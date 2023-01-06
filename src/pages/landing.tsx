@@ -1,8 +1,6 @@
-import { isMobile } from '../utils'
 import styled from 'styled-components'
 import Footer from '../components/Footer'
 import { useRef, useEffect } from 'react'
-import { textSerif } from '../style/utils'
 import { useAuthStore } from '../store/auth'
 import { useNavigate } from 'react-router-dom'
 import FaqPage from '../components/landing/Faq'
@@ -40,9 +38,6 @@ const LandingPage = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const onLearnMoreClick = () => {
-    ref.current?.scrollIntoView({behavior: 'smooth'})
-  }
 
   return (
     <BgColoredContainer>
@@ -108,15 +103,6 @@ const BgColor = styled.div`
   position: absolute;
   z-index: -1;
   margin-top: -30px;
-`
-
-const Footnote = styled.p`
-  font-style: italic;
-  ${textSerif}
-`
-
-const Link = styled.a`
-  cursor: pointer;
 `
 
 export default LandingPage
