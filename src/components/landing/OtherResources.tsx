@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { isMobile } from '../../utils'
 import { FONT_SIZE } from '../../constants'
 import Shield from '../../assets/shield.svg'
-import { useNavigate } from 'react-router-dom'
 import { Trans, useTranslation } from 'react-i18next'
 import OpenFlower from '../../assets/open-flower.svg'
 import OpenHugFlower from '../../assets/open-hug-flower.svg'
@@ -11,7 +10,6 @@ import ClosedHugFlower from '../../assets/closed-hug-flower.svg'
 
 const OtherResources = () => {
     useTranslation()
-    const navigate = useNavigate()
     const mobile = isMobile()
 
     const onClickIPFSInterface = () => {
@@ -19,7 +17,7 @@ const OtherResources = () => {
     }
 
     const onClickHostedInterface = () => {
-        navigate(ROUTES.ENTROPY_INPUT)
+        window.open(window.location.origin + '/#' + ROUTES.ENTROPY_INPUT)
     }
 
     const onClickOtherClients = () => {

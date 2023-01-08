@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import useRecord from '../../hooks/useRecord'
 import { useState, useEffect } from 'react'
 import { Record, Transcript } from '../../types'
-import { useNavigate } from 'react-router-dom'
 import { PageTitle } from '../Text'
 import RecordTable from '../RecordTable'
 import { PrimaryButton } from '../Button'
@@ -11,7 +10,6 @@ import { Trans, useTranslation } from 'react-i18next'
 
 const LatestRecords = () => {
     useTranslation()
-    const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(true)
     const [formattedData, setFormattedData] = useState<Record[]>([])
     // load data from API
@@ -19,7 +17,7 @@ const LatestRecords = () => {
 
 
     const onClickViewContributions = () => {
-      navigate(ROUTES.RECORD)
+      window.open(window.location.origin + '/#' + ROUTES.RECORD)
     }
 
     useEffect(() => {
