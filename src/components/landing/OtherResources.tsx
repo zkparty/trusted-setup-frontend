@@ -31,7 +31,7 @@ const OtherResources = () => {
 
     return (
     <Row isMobile={mobile}>
-        <Col initialCol={true} disabled={mobile} onClick={onClickIPFSInterface}>
+        <Col disabled={mobile} onClick={onClickIPFSInterface}>
         <InternalCol>
             <Link>
                 { mobile ?
@@ -99,26 +99,21 @@ const InternalCol = styled.div`
 
 
     :hover:not([disabled]) {
-        border: solid 2px ${({ theme }) => theme.loader};
+        border: solid 1px ${({ theme }) => theme.loader};
     }
 `
 
-const Col = styled.button<{initialCol?: boolean, finalCol?: boolean}>`
+const Col = styled.button<{finalCol?: boolean}>`
     flex: 3;
     width: 100%;
     height: 100%;
-    border: solid 1px ${({ theme }) => theme.loader};
-    border-top: solid 2px ${({ theme }) => theme.loader};
-    border-bottom: solid 2px ${({ theme }) => theme.loader};
-    ${({ theme, initialCol }) =>
-        initialCol ?
-        'border-left: solid 2px' + theme.loader + ';'
-        :
-        ''
-    }
+    border: none;
+    border-left: solid 1px ${({ theme }) => theme.loader};
+    border-top: solid 1px ${({ theme }) => theme.loader};
+    border-bottom: solid 1px ${({ theme }) => theme.loader};
     ${({ theme, finalCol }) =>
         finalCol ?
-        'border-right: solid 2px' + theme.loader + ';'
+        'border-right: solid 1px' + theme.loader + ';'
         :
         ''
     }
@@ -130,8 +125,9 @@ const Col = styled.button<{initialCol?: boolean, finalCol?: boolean}>`
 
     :hover:not([disabled]) {
         z-index: 1;
-        padding: 3px; /* -2px added from the border in InternalCol */
+        padding: 4px; /* -1px added from the border in InternalCol */
         box-shadow: 1px 2px 6px 6px #b4b2b2;
+        border-right: solid 1px ${({ theme }) => theme.loader};
         background: ${({ theme }) => theme.surface}
     }
 `
