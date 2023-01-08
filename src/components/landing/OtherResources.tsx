@@ -32,6 +32,7 @@ const OtherResources = () => {
     return (
     <Row isMobile={mobile}>
         <Col initialCol={true} disabled={mobile} onClick={onClickIPFSInterface}>
+        <InternalCol>
             <Link>
                 { mobile ?
                     <Trans i18nKey="landing.button-mobile">Proceed on desktop</Trans>
@@ -41,8 +42,10 @@ const OtherResources = () => {
                 { " " }
             </Link>
             <img src={ClosedHugFlower} alt="closed hug flower icon"/>
+        </InternalCol>
         </Col>
         <Col disabled={mobile} onClick={onClickHostedInterface}>
+        <InternalCol>
             <Link>
                 { mobile ?
                     <Trans i18nKey="landing.button-mobile">Proceed on desktop</Trans>
@@ -52,8 +55,10 @@ const OtherResources = () => {
                 { " " }
             </Link>
             <img src={OpenFlower} alt="open flower icon"/>
+        </InternalCol>
         </Col>
         <Col onClick={onClickOtherClients}>
+        <InternalCol>
             <Link>
                 <Trans i18nKey="otherResources.otherClients">
                     Other Clients
@@ -61,8 +66,10 @@ const OtherResources = () => {
                 { " " }
             </Link>
             <img src={OpenHugFlower} alt="open hug flower icon"/>
+        </InternalCol>
         </Col>
         <Col onClick={onClickWriteYourOwn} finalCol={true}>
+        <InternalCol>
             <Link>
                 <Trans i18nKey="otherResources.writeYourOwn">
                     Write your Own!
@@ -70,6 +77,7 @@ const OtherResources = () => {
                 { " " }
             </Link>
             <img src={Shield} alt="shield icon"/>
+        </InternalCol>
         </Col>
     </Row>
     )
@@ -77,15 +85,28 @@ const OtherResources = () => {
 
 const Row = styled.div<{isMobile: boolean}>`
     display: flex;
-    margin-block: 20px;
+    margin-block: 50px;
     ${({ isMobile }) => isMobile ?
         `overflow-x: scroll;
          width: 100%;`
-        : 'width: 590px;'
+        : 'width: 100%;'
     }
 `
+
+const InternalCol = styled.div`
+    margin: 7px;
+    padding-block: 10px;
+
+
+    :hover:not([disabled]) {
+        border: solid 2px ${({ theme }) => theme.loader};
+    }
+`
+
 const Col = styled.button<{initialCol?: boolean, finalCol?: boolean}>`
     flex: 3;
+    width: 100%;
+    height: 100%;
     border: solid 1px ${({ theme }) => theme.loader};
     border-top: solid 2px ${({ theme }) => theme.loader};
     border-bottom: solid 2px ${({ theme }) => theme.loader};
@@ -105,11 +126,11 @@ const Col = styled.button<{initialCol?: boolean, finalCol?: boolean}>`
     background: white;
     cursor: pointer;
     text-align: center;
-    padding-block: 7px;
-    padding-inline: 3px;
+    padding: 5px;
 
     :hover:not([disabled]) {
         z-index: 1;
+        padding: 3px; /* -2px added from the border in InternalCol */
         box-shadow: 1px 2px 6px 6px #b4b2b2;
         background: ${({ theme }) => theme.surface}
     }
