@@ -24,51 +24,11 @@ To start this app execute the following steps:
 
 Note: If the Rust code is updated, copy the `/wasm` directory from the [wrapper library](https://github.com/zkparty/wrapper-small-pot) in the `public/` directory. Most of the times the `wasm-worker.js` text will not change.
 
-
 ## Build for IPFS
 
-A build for IPFS should result in the same CID as others who have built from the same source. However, it is necessary
-to use a compatible environment and tool set to ensure that differences aren't introduced.
+A build for IPFS should result in the same CID as others who have built from the same source. However, it is necessary to use a compatible environment and tool set to ensure that differences aren't introduced. Docker images are available to provide the required environment. 
 
-The following environment was used to build the IPFS release:
-
-| Component | Version |
-| -------- | ----------- |
-| OS | Ubuntu 22.04 |
-| node.js | v18.12.1 |
-| Package manager | npm v9.1.2 |
-| rustc | 1.65.0 (897e37553 2022-11-02) |
-| cargo | 1.65.0 (897e37553 2022-11-02) |
-| wasm-pack | 0.10.3 |
-
-
-### Clone this repo
-
-`git clone -b ipfs-release https://github.com/zkparty/trusted-setup-frontend.git`
-
-### Install dependencies
-
-`cd trusted-setup-frontend`
-
-`npm install`
-
-### Build the computation code
-The computation code is written in Rust and compiled to WASM. The compiled WASM package is available in this repo for convenience, but a thorough build for IPFS will involve rebuilding that package.
-
-Clone the repo at
-https://github.com/zkparty/wrapper-small-pot
-
-Follow the instructions there to build the code as a wasm package.
-
-Copy the `wrapper-small-pot/wasm` folder to `trusted-setup-frontend/wasm`
-
-### Build the front-end
-
-`npm run build`
-
-This will create the `build` folder and add the site content to it.
-
-### Add to IPFS
+The computation code is written in Rust and compiled to WASM. The compiled WASM package is available, for convenience, in the `public/wasm` folder, but a thorough build for IPFS will involve rebuilding that package. The code can be found [here](https://github.com/zkparty/wrapper-small-pot). The `zkparty/wasm-pack-wrapper` docker image includes the code as well as the environment for compiling to WASM.
 
 #### Build and add using Docker
 
