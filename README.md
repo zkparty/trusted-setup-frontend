@@ -115,4 +115,6 @@ REACT_APP_ENVIRONMENT=prod
 
 The IPFS CID for the audited code is `QmevfvaP3nR5iMncWKa55B2f5mUgTAw9oDjFovD3XNrJTV`
 
+Access it [here](https://ceremony-ipfs.efprivacyscaling.org/ipfs/QmevfvaP3nR5iMncWKa55B2f5mUgTAw9oDjFovD3XNrJTV), or at other IPFS gateways.
+
 
