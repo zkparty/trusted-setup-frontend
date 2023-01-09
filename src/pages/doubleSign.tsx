@@ -196,10 +196,10 @@ const DoubleSignPage = () => {
                 {error && <ErrorMessage>{error}</ErrorMessage>}
                 <Trans i18nKey="doubleSign.description">
                   <Description>
-                    This signature binds each Summoner’s entropy contribution to
-                    their Ethereum address. After signing you will be redirected
-                    to a "Sign-in With Ethereum" page to sign in again into the
-                    sequencer lobby.
+                    Signing below will bind each Summoner’s entropy contribution to
+                    their Ethereum address. Participants will be redirected to a
+                    "Sign-in with Ethereum" page, and then back to this interface to
+                    complete the final steps of the process.
                   </Description>
                 </Trans>
               </TextSection>

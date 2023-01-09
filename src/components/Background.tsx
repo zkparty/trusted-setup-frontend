@@ -33,7 +33,7 @@ const Background = forwardRef(({ children }: Props, bgRef: any) => {
         {(bg === 'animate' || bg === 'white-no-pizza-animate') && (
           <BgPulse src={BgImgPulse} visible={(bg === 'animate' || bg === 'white-no-pizza-animate')} style={{display: getDisplay(bg)}} />
         )}
-        <Bg src={BgImgNoPiz} visible={bg === 'white-no-pizza-animate'} style={{display: getDisplay(bg)}} />
+        <Bg src={BgImgNoPiz} visible={bg === 'white-no-pizza-animate'} style={{width: (CIRCLE_SIZE+1315)+'px', display: getDisplay(bg)}} />
         <Bg src={BgImgColor} visible={bg === 'color'} style={{display: getDisplay(bg)}} />
         <PizzaImg
           src={PizzaInner}
