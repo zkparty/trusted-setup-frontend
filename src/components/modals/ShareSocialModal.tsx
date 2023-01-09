@@ -27,6 +27,16 @@ const ShareSocialModal = ({ open, identity, onDeselect }: Props) => {
         window.open(link, '_blank');
     }
 
+    const handleClickShareLenster = () => {
+        let post = t('complete.modal.post', {identity})
+        if ( ENVIRONMENT === 'testnet' ){
+        post = '**TEST**: ' + post
+        }
+        const encoded = encodeURIComponent( post )
+        const link = `https://lenster.xyz/?text=${encoded}`
+        window.open(link, '_blank');
+    }
+
     return(
         <Modal
             isOpen={open}
@@ -70,6 +80,11 @@ const ShareSocialModal = ({ open, identity, onDeselect }: Props) => {
                 <PrimaryButton>
                     <Trans i18nKey="complete.shareLens">
                         Share on Lens
+                    </Trans>
+                </PrimaryButton>
+                <PrimaryButton onClick={handleClickShareLenster} style={{ width: '300px' }}>
+                    <Trans i18nKey="complete.modal.shareLenster">
+                        Share on Lenster
                     </Trans>
                 </PrimaryButton>
             </ButtonSection>
