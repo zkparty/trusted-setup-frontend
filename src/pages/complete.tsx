@@ -1,6 +1,5 @@
 import ROUTES from '../routes'
 import styled from 'styled-components'
-import { ENVIRONMENT } from '../constants'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ErrorMessage from '../components/Error'
@@ -19,12 +18,15 @@ import {
   InnerWrap,
   Over,
 } from '../components/Layout'
+import ShareSocialModal from '../components/modals/ShareSocialModal'
 
 const CompletePage = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [error, setError] = useState<null | string>(null)
+  const [identity, setIdentity] = useState<string>("")
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isSocialModalOpen, setIsSocialModalOpen] = useState(false)
   const { receipt, contribution, newContribution, sequencerSignature } = useContributionStore(
     (state: Store) => ({
       receipt: state.receipt,
@@ -34,20 +36,13 @@ const CompletePage = () => {
     })
   )
 
-  const handleClickShareTwitter = () => {
-    const receiptObj = JSON.parse(receipt!)
-    const { identity } = receiptObj
-    let tweet = t('complete.modal.tweet', {identity})
-    if ( ENVIRONMENT === 'testnet' ){
-      tweet = '**TEST**: ' + tweet
-    }
-    const encoded = encodeURIComponent( tweet )
-    const link = `https://twitter.com/intent/tweet?text=${encoded}`
-    window.open(link, '_blank');
+
+  const handleClickShareSocial = () => {
+    setIsSocialModalOpen(true)
   }
 
   const handleClickViewContribution = async () => {
-    setIsModalOpen(true);
+    setIsModalOpen(true)
   }
 
   const handleClickGoToHome = () => {
@@ -73,6 +68,12 @@ const CompletePage = () => {
     })()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    if (!receipt) return
+    const { identity } = JSON.parse(receipt!)
+    setIdentity(identity)
+  }, [receipt])
 
   return (
     <>
@@ -104,9 +105,9 @@ const CompletePage = () => {
               </TextSection>
 
               <ButtonSection>
-                <PrimaryButton onClick={handleClickShareTwitter} style={{ width: '230px' }}>
-                  <Trans i18nKey="complete.shareTwitter">
-                    Share on Twitter
+                <PrimaryButton onClick={handleClickShareSocial} style={{ width: '230px' }}>
+                  <Trans i18nKey="complete.share">
+                    Share on Social
                   </Trans>
                 </PrimaryButton>
                 <PrimaryButton onClick={handleClickViewContribution}>
@@ -128,6 +129,11 @@ const CompletePage = () => {
             receipt={receipt}
             open={isModalOpen}
             onDeselect={() => setIsModalOpen(false)}
+          />
+          <ShareSocialModal
+            open={isSocialModalOpen}
+            identity={identity}
+            onDeselect={() => setIsSocialModalOpen(false)}
           />
         </Container>
         <TannedBackground/>

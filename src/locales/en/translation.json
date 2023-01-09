@@ -21,10 +21,15 @@
         "timestamp": "Contribution completed at:",
         "identity": "Participant ID:",
         "potPubkeys": "Powers of Tau Pubkeys:",
-        "transcript": "full transcript",
-        "tweet": "I just contributed to the test KZG Ceremony to scale Ethereum using {{identity}}"
+        "transcript": "full transcript"
       },
-      "shareTwitter": "Share on Twitter",
+      "share": "Share on Social",
+      "shareModal": {
+        "title": "SHARE ON SOCIAL",
+        "shareTwitter": "Share on Twitter",
+        "shareLenster": "Share on Lenster",
+        "tweet": "I just contributed to the KZG Ceremony to scale Ethereum using {{identity}} at ceremony.ethereum.org"
+      },
       "title": "Dankshard <br/> draws near"
     },
     "contributing": {
