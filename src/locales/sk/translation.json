@@ -3,7 +3,7 @@
       "complete": {
         "button": "Zobraziť svoj príspevok",
         "gobackhome": "Späť na hlavnú stránku",
-        "description": "<0>Úspech! Ozveny tvojho príspevku sa natrvalo spojili s ostatnými pri tejto ceremónii vyvolávania.</0>",
+        "description": "<0>Úspech! Ozveny tvojho príspevku sa natrvalo spojili s ostatnými pri tejto ceremónii KZG vyvolávania. Najlepšiu dôveryhodnosť ceremónie dosiahneme pri širokej účasti komunity - nezabudnite ju zdieľať s ostatnými.</0><1>Konečný výstup tejto ceremónie bude použitý v budúcej aktualizácii Etherea na umožnenie Dankshardingu.</1>",
         "modal": {
           "acknowledgment": "POTVRDENIE SEKVENCERU",
           "checks": {
@@ -21,10 +21,15 @@
           "timestamp": "Príspevok dokončený v:",
           "identity": "ID účastníka:",
           "potPubkeys": "Verejné klúče Powers of Tau:",
-          "transcript": "Celý prepis",
-          "tweet": "Práve som prispel do KZG ceremónie pre škálovanie Etherea použitím {{identity}}"
+          "transcript": "Celý prepis"
         },
-        "shareTwitter": "Zdieľať na Twitteri",
+        "share": "Zdieľať na sociálnych médiach",
+        "shareModal": {
+          "title": "ZDIELAŤ",
+          "shareTwitter": "Zdieľať na Twitteri",
+          "shareLenster": "Zdieľať na Lensteri",
+          "tweet": "Práve som prispel do KZG ceremónie Etherea použitím {{identity}} na ceremony.ethereum.org"
+        },
         "title": "Dankshard <br/> sa blíži"
       },
       "contributing": {
