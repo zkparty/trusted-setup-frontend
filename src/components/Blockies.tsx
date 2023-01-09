@@ -1,9 +1,9 @@
+import ToolTip from './Tooltip'
 import styled from 'styled-components'
-import { useTranslation } from 'react-i18next'
+import { stringToColor } from '../utils'
 import { useEffect, useRef } from 'react'
 import blockies from 'blockies-identicon'
-import { stringToColor } from '../utils'
-import ReactTooltip, {Place} from 'react-tooltip'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   opts: {
@@ -13,14 +13,12 @@ type Props = {
   }
   onClick?: () => void
   clickable?: boolean
-  tooltipPlace?: Place
 }
 
 const BlockiesIdenticon = ({
   opts: { seed = 'foo', size = 15, scale = 3 },
   onClick,
   clickable = false,
-  tooltipPlace = "right"
 }: Props) => {
   const { t } = useTranslation();
   const canvasRef = useRef<HTMLCanvasElement>(null!)
@@ -46,31 +44,13 @@ const BlockiesIdenticon = ({
 
   return (
     <>
+    <ToolTip explanation={t("record.transcriptModal.potPubkeyTooltip")}>
       <Canvas
         ref={canvasRef}
         onClick={onClick}
         clickable={clickable}
-        data-tip={"Blockie tooltip content in div below"}
-        data-for={"blockiePoT" + seed}
       />
-      <ReactTooltip
-        id={"blockiePoT" + seed}
-        place={tooltipPlace}
-        overridePosition={(
-          { left, top },
-          _currentEvent, _currentTarget, _node) => {
-            ReactTooltip.rebuild()
-            return { top, left }
-          }
-        }
-        backgroundColor="black"
-        effect="solid"
-        padding="12px"
-      >
-      <div style={{ width: "40ch", wordBreak: "break-word" }}>
-        {t("record.transcriptModal.potPubkeyTooltip")}
-      </div>
-      </ReactTooltip>
+    </ToolTip>
     </>
   )
 }

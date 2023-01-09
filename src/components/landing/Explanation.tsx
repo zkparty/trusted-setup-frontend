@@ -23,7 +23,6 @@ const Explanation = ({ refFromLanding }: any) => {
             This ceremony, also known as a "Trusted Setup", will generate a
             structured reference string (SRS) which will secure Ethereum's
             scaling roadmap, known as (proto)-danksharding.
-            OK, let's slow down and talk about those terms in more detail.
           </Description>
           <Description>
             Proto-danksharding (aka EIP-4844) is a planned change to the
@@ -31,23 +30,24 @@ const Explanation = ({ refFromLanding }: any) => {
             Because the data does not need to be stored by the network forever,
             it is cheaper to use than on-chain storage (i.e. CALLDATA).
             Rollups (a.k.a. Layer 2s) can therefore use this storage to post
-            transaction data or proofs back to Layer 1 (mainnet),
-            and massively reduce the cost for their users. The benefits are
-            lower transaction fees on the L2, greater scalability and
+            transaction data or proofs back to Layer 1 (mainnet). The benefits
+            are lower transaction fees on the L2, greater scalability and
             more accessibility to more people!
           </Description>
           <Description>
-            Proto-danksharding requires the introduction of a new cryptographic
+            Proto-danksharding requires a new cryptographic
             scheme: KZG Commitments. For these to be used securely, a secure SRS
             is needed. An SRS is secure as long as one participant in the
             ceremony successfully conceals their secret.
           </Description>
           <Description>
-            It's a multi-party ceremony: Contributors each create a secret and
-            run a computation to mix it with previous contributions and generate
-            a result that can be made public and passed to the next contributor.
-            We need to guard against attempts to control the ceremony, so you'll
-            need an Ethereum or GitHub account with an established history to participate.
+            It's a multi-party ceremony:  each contributor creates a secret
+            and runs a computation to mix it with previous contributions.
+            Then, the output is made public and passed to the next contributor.
+            To guard against attempts to corrupt the ceremony, participants need
+            an Ethereum address or GitHub account with an established history to
+            participate. The final output of the Ceremony will be included in a
+            future upgrade to help scale the Ethereum network.
           </Description>
         </Trans>
       </SecondTextSection>

@@ -9,7 +9,7 @@ import Header from '../components/headers/Header'
 import { TextSection } from '../components/Layout'
 import { Trans, useTranslation } from 'react-i18next'
 import LandingBg from '../assets/landing-boarder.png'
-import { CIRCLE_SIZE, START_DATE, ENVIRONMENT } from '../constants'
+import { CIRCLE_SIZE, END_DATE, ENVIRONMENT } from '../constants'
 import { Description, ItalicSubTitle, PageTitle } from '../components/Text'
 import Explanation from '../components/landing/Explanation'
 import { BgColoredContainer } from '../components/Background'
@@ -21,7 +21,7 @@ const LandingPage = () => {
   const ref = useRef<null | HTMLElement>(null)
   const navigate = useNavigate()
   const { signout } = useAuthStore()
-  const [days, hours, minutes, seconds] = useCountdown(START_DATE)
+  const [days, hours, minutes, seconds] = useCountdown(END_DATE)
 
   useEffect(() => {
     (async () => {
@@ -61,11 +61,11 @@ const LandingPage = () => {
             <Description>
               Whispers from the shadows tell of a powerful spirit Dankshard, who
               will open the next chapter of Ethereum scalability. To summon its
-              powers, a Ceremony needs your contribution.
+              powers, this Ceremony needs your contribution.
             </Description>
             <Description>
               Magic math awaits - are you ready to add your color to the story?
-              Choose one of the four paths below to begin the ritual:
+              Choose one of the paths below to begin the ritual:
             </Description>
           </Trans>
         </TextSection>

@@ -106,9 +106,6 @@ const LobbyPage = () => {
                     Sequencer. Please leave this guide open in the background
                     and we will add your contribution to the others soon.
                   </Description>
-                  <Description>
-                    Please leave this guide open and awake.
-                  </Description>
                 </Trans>
               </TextSection>
             </InnerWrap>

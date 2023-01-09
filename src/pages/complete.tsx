@@ -1,13 +1,12 @@
 import ROUTES from '../routes'
 import styled from 'styled-components'
-import { ENVIRONMENT } from '../constants'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ErrorMessage from '../components/Error'
 import { Trans, useTranslation } from 'react-i18next'
 import { Description, PageTitle } from '../components/Text'
 import { useContributionStore, Store } from '../store/contribute'
-import { ButtonWithLinkOut, PrimaryButtonLarge } from '../components/Button'
+import { ButtonWithLinkOut, PrimaryButton } from '../components/Button'
 import HeaderJustGoingBack from '../components/headers/HeaderJustGoingBack'
 import ContributionModal from '../components/modals/ContributionModal'
 import wasm from '../wasm'
@@ -19,12 +18,15 @@ import {
   InnerWrap,
   Over,
 } from '../components/Layout'
+import ShareSocialModal from '../components/modals/ShareSocialModal'
 
 const CompletePage = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [error, setError] = useState<null | string>(null)
+  const [identity, setIdentity] = useState<string>("")
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isSocialModalOpen, setIsSocialModalOpen] = useState(false)
   const { receipt, contribution, newContribution, sequencerSignature } = useContributionStore(
     (state: Store) => ({
       receipt: state.receipt,
@@ -34,20 +36,13 @@ const CompletePage = () => {
     })
   )
 
-  const handleClickShareTwitter = () => {
-    const receiptObj = JSON.parse(receipt!)
-    const { identity } = receiptObj
-    let tweet = t('complete.modal.tweet', {identity})
-    if ( ENVIRONMENT === 'testnet' ){
-      tweet = '**TEST**: ' + tweet
-    }
-    const encoded = encodeURIComponent( tweet )
-    const link = `https://twitter.com/intent/tweet?text=${encoded}`
-    window.open(link, '_blank');
+
+  const handleClickShareSocial = () => {
+    setIsSocialModalOpen(true)
   }
 
   const handleClickViewContribution = async () => {
-    setIsModalOpen(true);
+    setIsModalOpen(true)
   }
 
   const handleClickGoToHome = () => {
@@ -74,6 +69,12 @@ const CompletePage = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    if (!receipt) return
+    const { identity } = JSON.parse(receipt!)
+    setIdentity(identity)
+  }, [receipt])
+
   return (
     <>
       <HeaderJustGoingBack />
@@ -92,22 +93,28 @@ const CompletePage = () => {
                 <Trans i18nKey="complete.description">
                   <Description>
                     Success! Echoes of you are permanently fused with the others
-                    in this Summoning Ceremony.
+                    in this Summoning Ceremony. Ceremony credibility is highest
+                    with broad community participation - make sure to share this
+                    with others.
+                  </Description>
+                  <Description>
+                    The final output of this Ceremony will be used in a future
+                    Ethereum upgrade to enable Danksharding.
                   </Description>
                 </Trans>
               </TextSection>
 
               <ButtonSection>
-                <PrimaryButtonLarge onClick={handleClickShareTwitter} style={{ width: '300px' }}>
-                  <Trans i18nKey="complete.shareTwitter">
-                    Share on Twitter
+                <PrimaryButton onClick={handleClickShareSocial} style={{ width: '230px' }}>
+                  <Trans i18nKey="complete.share">
+                    Share on Social
                   </Trans>
-                </PrimaryButtonLarge>
-                <PrimaryButtonLarge onClick={handleClickViewContribution}>
+                </PrimaryButton>
+                <PrimaryButton onClick={handleClickViewContribution}>
                   <Trans i18nKey="complete.button">
                     View your contribution
                   </Trans>
-                </PrimaryButtonLarge>
+                </PrimaryButton>
                 <ButtonWithLinkOut onClick={handleClickGoToHome} style={{ width: '280px', marginTop: '5px' }}>
                 <Trans i18nKey="complete.gobackhome">
                   Go back home
@@ -122,6 +129,11 @@ const CompletePage = () => {
             receipt={receipt}
             open={isModalOpen}
             onDeselect={() => setIsModalOpen(false)}
+          />
+          <ShareSocialModal
+            open={isSocialModalOpen}
+            identity={identity}
+            onDeselect={() => setIsSocialModalOpen(false)}
           />
         </Container>
         <TannedBackground/>
