@@ -1,5 +1,6 @@
 import Modal from 'react-modal'
 import theme from '../../style/theme'
+import { isMobile } from '../../utils'
 import styled from 'styled-components'
 import { PrimaryButton } from '../Button'
 import { Title } from './TranscriptModal'
@@ -18,7 +19,7 @@ const ShareSocialModal = ({ open, identity, onDeselect }: Props) => {
     const {t} = useTranslation()
 
     const handleClickShareTwitter = () => {
-        let tweet = t('complete.modal.tweet', {identity})
+        let tweet = t('complete.shareModal.tweet', {identity})
         if ( ENVIRONMENT === 'testnet' ){
             tweet = '**TEST**: ' + tweet
         }
@@ -28,7 +29,7 @@ const ShareSocialModal = ({ open, identity, onDeselect }: Props) => {
     }
 
     const handleClickShareLenster = () => {
-        let post = t('complete.modal.post', {identity})
+        let post = t('complete.shareModal.tweet', {identity})
         if ( ENVIRONMENT === 'testnet' ){
         post = '**TEST**: ' + post
         }
@@ -51,8 +52,8 @@ const ShareSocialModal = ({ open, identity, onDeselect }: Props) => {
                 },
                 content: {
                     border: 'none',
-                    width: '400px',
-                    height: '400px',
+                    width: isMobile() ? '90%' : '40%',
+                    height: '350px',
                     marginBlock: 'auto',
                     marginInline: 'auto',
 
@@ -67,23 +68,18 @@ const ShareSocialModal = ({ open, identity, onDeselect }: Props) => {
             }}
         >
             <Title>
-                <Trans i18nKey="complete.socialTitle">
-                    Share on Social
+                <Trans i18nKey="complete.shareModal.title">
+                    SHARE ON SOCIAL
                 </Trans>
             </Title>
             <ButtonSection onClick={handleClickShareTwitter}>
                 <PrimaryButton>
-                    <Trans i18nKey="complete.shareTwitter">
+                    <Trans i18nKey="complete.shareModal.shareTwitter">
                         Share on Twitter
                     </Trans>
                 </PrimaryButton>
-                <PrimaryButton>
-                    <Trans i18nKey="complete.shareLens">
-                        Share on Lens
-                    </Trans>
-                </PrimaryButton>
-                <PrimaryButton onClick={handleClickShareLenster} style={{ width: '300px' }}>
-                    <Trans i18nKey="complete.modal.shareLenster">
+                <PrimaryButton onClick={handleClickShareLenster}>
+                    <Trans i18nKey="complete.shareModal.shareLenster">
                         Share on Lenster
                     </Trans>
                 </PrimaryButton>

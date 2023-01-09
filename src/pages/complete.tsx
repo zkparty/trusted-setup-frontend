@@ -51,7 +51,7 @@ const CompletePage = () => {
 
   useEffect(() => {
     (async () => {
-      if (!contribution || !newContribution || !receipt){
+      if (!contribution || !newContribution){
         navigate(ROUTES.ROOT)
         return
       }
@@ -65,11 +65,15 @@ const CompletePage = () => {
       if (!checks.checkNewContribution){
         setError( t('error.newSubgroupChecksFailed'))
       }
-      const { identity } = JSON.parse(receipt!)
-      setIdentity(identity)
     })()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    if (!receipt) return
+    const { identity } = JSON.parse(receipt!)
+    setIdentity(identity)
+  }, [receipt])
 
   return (
     <>
