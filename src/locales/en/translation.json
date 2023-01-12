@@ -26,8 +26,8 @@
       "share": "Share on Social",
       "shareModal": {
         "title": "SHARE ON SOCIAL",
-        "shareTwitter": "Share on Twitter",
-        "shareLenster": "Share on Lenster",
+        "shareTwitter": "Twitter",
+        "shareLenster": "Lenster",
         "tweet": "I just contributed to the KZG Ceremony to scale Ethereum using {{identity}} at ceremony.ethereum.org"
       },
       "title": "Dankshard <br/> draws near"
