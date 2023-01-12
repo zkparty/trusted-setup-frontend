@@ -82,7 +82,7 @@ const SecondSection = styled.section`
 
   border: min(4vw,5rem) solid;
   border-image-source: url(${ExplanationBorder});
-  border-image-slice: 55;
+  border-image-slice: 60;
   border-image-repeat: round;
 
   box-sizing: border-box;

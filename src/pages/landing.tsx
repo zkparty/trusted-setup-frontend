@@ -1,3 +1,5 @@
+import ROUTES from '../routes'
+import { isMobile } from '../utils'
 import styled from 'styled-components'
 import Footer from '../components/Footer'
 import { useRef, useEffect } from 'react'
@@ -8,13 +10,14 @@ import useCountdown from '../hooks/useCountdown'
 import Header from '../components/headers/Header'
 import { TextSection } from '../components/Layout'
 import { Trans, useTranslation } from 'react-i18next'
-import LandingBorder from '../assets/landing-border.svg'
 import { CIRCLE_SIZE, END_DATE, ENVIRONMENT } from '../constants'
 import { Description, ItalicSubTitle, PageTitle } from '../components/Text'
 import Explanation from '../components/landing/Explanation'
 import { BgColoredContainer } from '../components/Background'
 import LatestRecords from '../components/landing/LatestRecords'
 import OtherResources from '../components/landing/OtherResources'
+import { PrimaryButton } from '../components/Button'
+import LatestContributionsBorder from '../assets/latest-contributions-border.svg'
 
 const LandingPage = () => {
   useTranslation()
@@ -38,11 +41,15 @@ const LandingPage = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const onClickBegin = () => {
+    window.open(window.location.origin + '/#' + ROUTES.ENTROPY_INPUT)
+}
 
   return (
     <BgColoredContainer>
       <Header />
       <TopSection>
+        <WhiteBackground>
         <BgColor />
         <PageTitle style={{ marginTop: '30px' }}>
           <Trans i18nKey="landing.title">
@@ -66,11 +73,18 @@ const LandingPage = () => {
             </Description>
             <Description>
               Magic math awaits - are you ready to add your color to the story?
-              Choose one of the paths below to begin the ritual:
             </Description>
           </Trans>
         </TextSection>
+        <PrimaryButton onClick={onClickBegin} disabled={isMobile()}>
+          { isMobile() ?
+            <Trans i18nKey="landing.button-mobile">Proceed on desktop</Trans>
+            :
+            <Trans i18nKey="otherResources.button">Begin</Trans>
+          }
+        </PrimaryButton>
         <OtherResources/>
+        </WhiteBackground>
       </TopSection>
       <Explanation refFromLanding={ref} />
       <LatestRecords />
@@ -88,11 +102,12 @@ const Section = styled.section`
 `
 
 const TopSection = styled(Section)`
-  border: min(10vw, 6rem) solid;
-  border-image-source: url(${LandingBorder});
+  border: min(12vw, 8rem) solid;
+  border-image-source: url(${LatestContributionsBorder});
   border-image-slice: 150;
   border-image-repeat: round;
   margin: 6rem auto;
+  padding: 0px;
   box-sizing: border-box;
   width: 100%;
   max-width: 100ch;
@@ -108,6 +123,16 @@ const BgColor = styled.div`
   position: absolute;
   z-index: -1;
   margin-top: -30px;
+`
+
+const WhiteBackground = styled.div`
+  background: white;
+  width: 100%;
+  padding-block: 5vh;
+  padding-inline: 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 export default LandingPage
