@@ -23,3 +23,7 @@ After computing your contribution, the sequencer would send a receipt with impor
 1. **Receipt signature address is equal to sequencer address:** to prove that the receipt was sent by the official sequencer, a participant can recover the public address from the signature and compare it with the official public address.
 
 2. **Check that witnesses are equal to PoT Pubkeys:** the receipt sends back the PoT Pubkeys as "witnesses". A participant can check that each witness is equal to one PoT Pubkey.
+
+
+# More info
+If you are interested on learning more about the KZG Ceremony checkout this repository [https://github.com/ethereum/kzg-ceremony]().
