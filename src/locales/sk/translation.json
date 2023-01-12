@@ -1,0 +1,260 @@
+{
+    "translation": {
+      "complete": {
+        "button": "Zobraziť svoj príspevok",
+        "gobackhome": "Späť na hlavnú stránku",
+        "description": "<0>Úspech! Ozveny tvojho príspevku sa natrvalo spojili s ostatnými pri tejto ceremónii KZG vyvolávania. Najlepšiu dôveryhodnosť ceremónie dosiahneme pri širokej účasti komunity - nezabudnite ju zdieľať s ostatnými.</0><1>Konečný výstup tejto ceremónie bude použitý v budúcej aktualizácii Etherea na umožnenie Dankshardingu.</1>",
+        "modal": {
+          "acknowledgment": "POTVRDENIE SEKVENCERU",
+          "checks": {
+            "failedComputeSignature": "Podpis nebol správne spracovaný",
+            "failedSignature": "Podpis sekvencera neobsahuje jeho adresu",
+            "failedWitness": "Svedok nesedí s verejným klúčom Powers of Tau",
+            "tooltip": "Kontroly integrity pozostávajú z vykonania kontrol podskupín v predchádzajúcich a následných údajoch o príspevku, porovnania atribútov svedka potvrdenia s vašim verejným kľúčom Powers of Tau a overenia podpisu sekvencera v potvrdení.",
+            "success": "Prešlo"
+          },
+          "integrityChecks": "Kontroly integrity ",
+          "keys": "DETAILY PRÍSPEVKU",
+          "receipt": "Potvrdenie príspevku:",
+          "downloadReceipt": "Stiahni Potvrdenie",
+          "signedBy": "Podpísané ",
+          "timestamp": "Príspevok dokončený v:",
+          "identity": "ID účastníka:",
+          "potPubkeys": "Verejné klúče Powers of Tau:",
+          "transcript": "Celý prepis"
+        },
+        "share": "Zdieľať na sociálnych médiach",
+        "shareModal": {
+          "title": "ZDIELAŤ",
+          "shareTwitter": "Zdieľať na Twitteri",
+          "shareLenster": "Zdieľať na Lensteri",
+          "tweet": "Práve som prispel do KZG ceremónie Etherea použitím {{identity}} na ceremony.ethereum.org"
+        },
+        "title": "Dankshard <br/> sa blíži"
+      },
+      "contributing": {
+        "button": "Pozrieť si svoj príspevok",
+        "description": {
+          "completed": "<0>Práve ste úspešne dokončili príspevok. Nezabudnite sa vrátiť na záver ceremóniu a zdieľať ju ďalej.</0>",
+          "contributing": "<0>Teraz sú ti zverené Sily Tau. Tvoje Tajomstvo, Pečať a Vzorka sa spájajú s tými, ktoré prišli pred tebou.</0><1>Rituál nemožno urýchliť - čas mu venovaný vytvára nadčasové artefakty.</1>",
+          "error": "Nastala chyba {{error}}. Obnov stránku a skús znova"
+        },
+        "title": {
+          "completed": "Príspevok<br/>Dokončený",
+          "contributing": "Bol si<br/>vyvolaný<br/>Now",
+          "error": "Niečo<br/>Sa<br/>Pokazilo"
+        }
+      },
+      "doubleSign": {
+        "button": "Podpísať",
+        "checkWallet": "Skontroluj svoju peňaženku a podpíš príspevok",
+        "description": "<0>Tento podpis viaže príspevok entropie každého Vyvolávateľa na jeho adresu v Ethereu. Po podpise budete presmerovaní na stránku \"Prihlásenie pomocou Etherea\", aby ste sa mohli znova prihlásiť do sekvencera.</0>",
+        "title": "Naviaž svoj <br/> Príspevok"
+      },
+      "entropyInput": {
+        "button": "Poslať",
+        "placeholder": "Tajomstvo",
+        "description": "<0>Ceremónia vyžaduje náhodu od každého Vyvolávateľa.</0><1><0>Tajomstvo:</0> Kúsok z vás v textovej forme s pridanými náhodnými znakmi, predstava budúcnosti alebo meno niekoho vami drahého.</1><2><0>Pečať:</0>Sledujte niektoré prvky sprievodcu pomocou kurzora – rozhranie zachytí vašu jedinečnú cestu.</2><3><0>Vzorka:</0>Váš prehliadač vygeneruje svoju vlastnú náhodnosť na pozadí.</3>",
+        "title": "Vstup <br/> Entropie"
+      },
+      "explanation": {
+        "description": "<0>Táto ceremónia, známa tiež ako \"Trusted Setup\", je výpočetný proces medzi viacerými stranamy určený na generovanie bezpečného SRS (štruktúrovaný referenčný reťazec), ktorý sa má použiť v protokole proto-danksharding. Dobre, spomalme a porozprávajme sa o týchto pojmoch podrobnejšie.</0><1>Proto-danksharding (alias EIP-4844) je plánovaná zmena protokolu Etherea, ktorá umožňuje, aby boli údaje o transakciách z rollupov (druhých vrstiev) stručne a dočasne reprezentované na vrstve 1 (mainnet). Výhodami sú nižšie poplatky za transakcie na L2, väčšia škálovateľnosť a tým pádom dostupnosť pre viac ľudí!</1><2>Dôveryhodné nastavenie (trusted setup) je prípravný krok potrebný na to, aby sa v proto-dankshardingu mohli používať určité kryptografické schémy, ako napríklad schéma pre vytváranie dôkazov KZG. V našom prípade je predpokladom dôveryhodnosti to, že aspoň jeden prispievateľov úspešne utají svoj príspevok, aby bol výsledok bezpečný.</2><3>Je to ceremónia viacerých strán (multi-party computation): Každý z prispievateľov vytvorí tajomstvo a urobí kalkuláciu, aby ho zmiešal s predchádzajúcimi príspevkami a vytvoril výsledok, ktorý môže byť zverejnený a odovzdaný ďalšiemu prispievateľovi ako štafeta. Musíme sa chrániť pred pokusmi o útok na ceremóniu, takže budete potrebovať Ethereum peňaženku alebo GitHub účet s existujúciou históriou.</3>",
+        "title": "PROTO-DANKSHARDING <br/> A CEREMÓNIA",
+        "subtitle": "čo to znamená?"
+      },
+      "faq": {
+        "q1": {
+          "content": "<0>Komunita Etherea sa škáluje na globálnu dostupnosť prostredníctvom druhých vrstiev, <2>Layer-2s (L2s)</2>. L2s zvyšujú celkový priestor blokov, ktorý je k dispozícii používateľom, pričom si stále zachovávajú bezpečnosť, ktorú ponúka vrstva 1 (L1) Etherea.</0><1>L2s potrebujú zverejňovať množstvo údajov na Ethereu a sieť za to v súčasnosti účtuje vysoké poplatky. Na vyriešenie tohto problému Ethereum vytvorí novú dátovú vrstvu, ktorá sa taktiež označuje ako <1>sharding</1>. Tá poskytuje používateľom L2 záruky, ktoré sa nazývajú \"dostupnosť dát\". L1 drží dáta len na obmedzený čas, čo znamená, že môžeme škálovať blockchain bez toho, aby sme obetovali decentralizáciu pre menších prevádzkovateľov uzlov L1.</1><2>Súčasný vedúci návrh na tento účel sa nazýva Danksharding. Zavedenie tohto systému prebehne v niekoľkých krokoch, pričom prvým z nich je <2>EIP-4844</2>, známy aj ako ProtoDanksharding. </2>",
+          "title": "Čo je EIP-4844, alias Proto-Danksharding, a ako súvisí so škálovaním Etherea"
+        },
+        "q10": {
+          "content": "<p>Ceremónia má predpoklad dôveryhodnosti \"1 z N\", čo znamená, že stačí, ak len jeden účastník celej ceremónie neodhalí svoj tajný vstup a všetko bude bezpečné.</p><p>V praxi by to znamenalo, že každý účastník by musel rozobrať softvér, ktorý používa na prispievanie, prinútiť tento softvér, aby mu poskytol tajomstvo, a potom sa dohodnúť s každým ďalším účastníkom na rekonštrukcii konečného tajomstva.</p><p>Reálnejším spôsobom zlyhania je bežná chyba, ktorá môže spôsobiť únik náhody, z ktorej je tajomstvo vyvorené. Kvôli tomu bola táto stránka auditovaná a existujú alternatívne implementácie softvéru na prispievanie, ktoré sú postavené na iných softvérových nástrojoch.</p><p>Tisíce účastníkov budú používať rôzne softvéry na rôznych operačných systémoch, aby sa predišlo jediným bodom zlyhania u ľudí aj hardvéru/softvéru.</p>",
+          "title": "Čo sa musí stať, aby sa bezpečnosť ceremónie rozbila?"
+        },
+        "q11": {
+          "content": "<p>Ak by sa tajomstvo nejakým spôsobom uniklo z ceremónie Mocností Tau, útočník by mohol vzniesť ľubovoľné tvrdenia o pravosti údajov v EIP-4844. Tým by sa úplne rozbili všetky služby a aplikácie závislé od údajov blobu EIP-4844.</p>",
+          "title": "Aké útoky by boli možné v takej situácii?"
+        },
+        "q12": {
+          "content": "<p>V závislosti od toho, koľko ďalších používateľov sa snaží prispieť v rovnakom čase, môžete chvíľu čakať, kým na vás príde rad. Keď na vás príde rad, dokončenie príspevku by malo trvať len menej ako 3 minúty so štandardným notebookom a pripojením na internet.</p>",
+          "title": "Koľko času zaberie prispievanie?"
+        },
+        "q13": {
+          "content": "<p>Aby sa obmedzili tzv. Sybil útoky na ceremóniu, Sekvencer musí overiť, že ste (do určitej miery) jedinečný človek, inak by jedna osoba mohla odoslať mnoho rôznych príspevkov, čím by zabránila ostatným dostať sa na rad.</p><1><0>Podpísať pomocou Etherea - Toto je uprednostňovaná možnosť, pretože by ju už mali mať všetci členovia komunity Etherea a umožňuje podpisy na neskoršie overenie príspevku. Od každej adresy sa vyžaduje, aby odoslala aspoň 3 transakcie, aby sa zabránilo otáčaniu nových účtov len kvôli tejto ceremónii.</0><1>Prihlásenie pomocou GitHub - Táto možnosť sa ponúka ako alternatíva pre tých, ktorí sú komunite vzdialenejší, ale napriek tomu by sa radi zapojili.</1></1>",
+          "title": "Prečo sa musím príhlasiť Ethereum účtom alebo Githubom?"
+        },
+        "q14": {
+          "content": "<p>When this ceremony is over, you should review the ceremony transcript (which will be hosted on this site as well as being widely available on the internet). This transcript will contain all the necessary data to verify who participated.</p><p>If you used your Ethereum address to sign-in, then there will be cryptographic proof that you participated via a signed message from your account.</p>",
+          "title": "Ako viem overiť, že sa môj príspevok dostal do ceremónie?"
+        },
+        "q15": {
+          "content": "<p>Po skončení tejto ceremónie by ste si mali prečítať zápis z ceremónie (ktorý bude umiestnený na tejto stránke, ako aj široko dostupný na internete). Tento prepis bude obsahovať všetky potrebné údaje na overenie toho, kto sa zúčastnil.</p><p>Ak ste na prihlásenie použili svoju adresu Ethereum, bude k dispozícii kryptografický dôkaz, že ste sa zúčastnili prostredníctvom podpísanej správy z vášho účtu.</p>",
+          "title": "How can I verify the final Ceremony output?"
+        },
+        "q16": {
+          "content": "<p>Napriek tomu, že výpočtový výkon niektorých mobilných zariadení dostatočný na účasť v ceremónii, mnohé mobilné prehliadače nezvládajú dobre WASM, blokujú obrazovku a inak znižujú takt procesora skôr, ako by sa výpočet dokončil, a vo všeobecnosti existujú veľké rozdiely medzi mobilnými zariadeniami, takže je ťažké ich zohľadniť.</p>",
+          "title": "Prečo neviem prispieť z mobilu??"
+        },
+        "q2": {
+          "content": "<0>Ceremónie používajú tajné vstupy na vytvorenie výstupu spôsobom, ktorý znemožňuje spätné inžinierstvo a odhalenie pôvodných tajomstiev. </0><p>Tu je veľmi stručné zhrnutie ich fungovania: </p><2><0>Účastník 1 si vyberie náhodné číslo (napr. 5.) a potom na ňom spustí výpočet.</0><1>Výstup z tohto výpočtu sa odovzdá účastníkovi 2, ktorý zopakuje krok 1 s vlastným tajným vstupom (napr. 3) a zmieša ho s výstupom od 1. účastníka (napr. 5x3=15).</1><2>Toto sa opakuje, kým nie je dostatočný počet účastníkov, a vtedy sa posledný výstup v sekvencii stane konečným výstupom.</2></2><p>Ceremónie sa nazývajú aj \"dôveryhodné nastavenia,\" najznámejšie ich používa napríklad Zcash na pre funkcie ochrany súkromia. Môže sa však použiť aj na pridanie mechanizmov škálovateľnosti, ako to robí Ethereum.</p><4><0>Carl Beekhuizen v prednáške z Devcon</0> popisuje túto ceremóniu jednoducho aj viac do hĺbky a vysvetľuje ako táto ceremónia funguje. Môžete taktiež preskúmať <4>špecifikácie ceremónie</4>, aby ste skutočne prenikli do detailov a prípadne si napísali vlastnú implementáciu.</4>",
+          "title": "Čo je Vyvolávacia Ceremónia?"
+        },
+        "q3": {
+          "content": "<p>(Proto)-Danksharding vyžaduje schému pre vytváranie dôkazov o uložených dátach, ktorá sa dá rýchlo dokázať a overiť (aj vo vnútri SNARKS pre L2 založené na SNARK) a zároveň má malú veľkosť dôkazu. Schéma dôkazov spôsobom polynómu, ktorá najlepšie spĺňa tieto kritériá je KZG.</p><p>Schéma KZG vytvára dôkaz polynómom a jeho vyhodnotením pri tajnej hodnote (konkrétne v bode eliptickej krivky). Zmyslom tejto ceremónie je skonštruovať túto tajnú hodnotu tak, aby žiadna osoba nepoznala toto tajomstvo, a to tak, aby si ľudia mohli byť istý, že ho nikto nepozná ani za mnoho rokov.</p>",
+          "title": "Prečo (Proto)-Danksharding potrebuje ceremóniu?"
+        },
+        "q4": {
+          "content": "<p>Priamo na tejto stránke sa môžete prihlásiť pomocou svojej Ethereum adresy alebo účtu Github a zapojiť sa, malo by vám to zabrať menej ako 5 minút.</p><1>Ak by ste chceli alternatívu k tomuto rozhraniu, k dispozícii je niekoľko ďalších CLI a webových stránok. Po uplynutí tohto obdobia verejného prispievania budeme prijímať špeciálne príspevky od na mieru <2>vyrobených implementácií</2> alebo jedinečného generovania náhodnosti. Na obidve tieto možnosti je k dispozícii financovanie, viac informácií bude zverejnených v nasledujúcich týždňoch.</1>.",
+          "title": "Ako môžem prispieť do ceremónie?"
+        },
+        "q5": {
+          "content": "<0>Skratka KZG vychádza z Kate, Zaverucha a Goldberg. Ide o priezviská autorov článku <2>\"Constant-Size Commitments to Polynomials and Their Applications\"</2>, v ktorom je načrtnutý základný kryptografický mechanizmus, ktorý plánuje využívať EIP-4844.</0><1> Ak sa chcete ponoriť do KZG kryptografie, <2>dobrým východiskovým bodom je príspevok na blogu Dankrada Feista</2>.</1>",
+          "title": "Čo znamená KZG?"
+        },
+        "q6": {
+          "content": "<p>Toto rozhranie vás prevedie nasledujúcimi krokmi:</p><1><0>Zadáte náhodné vstupy z troch rôznych zdrojov.</0><1>Prihlásite sa pomocou Etherea alebo Githubu, aby sa zabránilo spamu.</1><2>Pripojíte sa na sekvencer so žiadosťou prispieť. Keď na vás príde rad, Sequencer vám pošle dáta \"Powers of Tau\".</2><3>Váš počítač zamieša vaše náhodné údaje do Powers of Tau a po dokončení ich pošle späť do sekvencera. </3><4>Sekvencer overí, či váš počítač urobil všetko správne, a odovzdá Powers of Tau ďalšiemu účastníkovi.</4></1><p>Po skončení obradu by ste sa mali vrátiť a overiť, či bol váš príspevok skutočne zahrnutý do záverečného zápisu.</p>",
+          "title": "Čo sa deje počas ceremónie?"
+        },
+        "q7": {
+          "content": "<p>Názov \"Powers of Tau\", respektíve Mocniny Tau, pochádza z kryptografickej literatúry o dôveryhodných nastaveniach a SRS.</p><p>\"Tau\" pochádza z gréckeho písmena τ, ktoré je skratkou pre \"tajomstvo\" uvedené v tejto dokumentácii.</p><2>\"Powers\" odkazujú na skutočnosť, že potrebujeme nielen tajomstvo, ale aj postupné mocniny tajomstva. (t. j. [1, τ, τ<1>2</1>, τ<3>3</3>,..., τ<5>2<1>12-1</1></5>])</2><p>Stojí za zmienku, že mocniny Tau nie sú obyčajné čísla, ale sú zakódované ako body eliptickej krivky, ktorá \"šifruje\", a teda skrýva.</p>",
+          "title": "Čo sú Powers of Tau?"
+        },
+        "q8": {
+          "content": "<p>Sekvencer je server, ktorý hostí Ethereum Foundation a ktorý koordinuje príspievanie do ceremónie. Sleduje, kto sa snaží prispieť, pošle im potrebné údaje a overuje každý príspevok pred odoslaním údajov ďalšiemu účastníkovi.</p><1> Nemusíte veriť, že sekvencer vytvorí neobjektívny alebo neplatný konečný výstup. <2>Prepis</2> poskytuje overiteľný záznam všetkých príspevkov náhody, ktorý si môžete sami overiť.</1>",
+          "title": "Čo je sekvencer a na čo slúži"
+        },
+        "q9": {
+          "content": "<0>Použitie čohokoľvek iného ako KZG (napr. IPA alebo SHA256) by značne skomplikovalo plány implementácie shardingu. Viac informácií sa dozviete z Vitalikovho <2>Proto-Danksharding FAQ</2>.</0>",
+          "title": "Nedala by sa použiť iná kryptografia, ktorá \"trusted setup\" be used?"
+        }
+      },
+      "footer": {
+        "audit": "Audit report",
+        "copyright": "Vytvorila Ethereum komunita - 2022",
+        "documentation": "Dokumentácia",
+        "faq": "FAQ"
+      },
+      "header": {
+        "offline": "Offline",
+        "online": "Online",
+        "title": "Testovacia ceremónia",
+        "sequencer": "Sekvencer",
+        "totalContributions": "všetky príspevky",
+        "participantsInLobby": "čakajúci používatelia",
+        "waitTime": "odhadovaný čas čakania"
+      },
+      "landing": {
+        "button": "Začať",
+        "button-mobile": "Pokračujte na počítači",
+        "description": "<0>Šepoty z temnôt hovoria o mocnom duchovi Dankshardovi, ktorý otvorí ďalšiu kapitolu škálovateľnosti Etherea. Na vyvolanie jeho sily potrebuje Ceremónia váš príspevok. Tento sprievodca vás prevedie krokmi potrebnými na dokončenie rituálu.</0><1>Kúzla matematiky na vás čakajú - ste pripravení pridať sa do príbehu? Vyber si jednu zo štyroch ciest pre začatie rituálu:</1>",
+        "learn-more": "↓ alebo zistic viac ni63ie ↓",
+        "learn-more-mobile": "↓ zistiv viac nižšie ↓",
+        "title": "SPRIEVODCI VYVOLÁVANIA"
+      },
+      "language": {
+        "ar": "Arabic",
+        "bn": "Bengali",
+        "de": "German",
+        "es": "Spanish",
+        "en": "English",
+        "fr": "French",
+        "hi": "Hindi",
+        "id": "Indonesian",
+        "it": "Italian",
+        "ja": "Japanese",
+        "ko": "Korean",
+        "pt": "Portuguese",
+        "ru": "Russian",
+        "sk": "Slovak",
+        "sw": "Swahili",
+        "tr": "Turkish",
+        "zh": "Chinese"
+      },
+      "latestRecords": {
+        "title": "POSLEDNÉ PRÍSPEVKY",
+        "button": "Pozrieť si všetky príspevky"
+      },
+      "lobby": {
+        "description": "<0>Váš príspevok je pripravený na prijatie sekvencerom. Prosím, nechajte túto stránku otvorenú na pozadí a my čoskoro pridáme váš príspevok k ostatným.</0><1>Prosím, nechajte tohto sprievodcu otvoreného a bdelého.</1>",
+        "lobby_size": "čakajúci používatelia",
+        "title": "Čakám na <br/> možnosť prispieť"
+      },
+      "lobbyFull": {
+        "button": "Návrat domov",
+        "description": "<0>V tejto chvíli snaží o vyvolanie veľa používateľov. Vráťte sa, prosím, neskôr. Zatvorte toto okno a skúste to o pár hodín a skontrolujte, či existuje voľné miesto pre prispievateľa.</0>",
+        "title": "Príliš veľa <br/> mágie"
+      },
+      "otherResources": {
+        "ipfs": "IPFS Rozhranie",
+        "hosted": "Hostované Rozhranie",
+        "otherClients": "Iné Klienty",
+        "writeYourOwn": "Vytvor Svoj Vlastný!"
+      },
+      "record": {
+        "headers": "<0>Účastník ID</0><1>Podpisy</1>",
+        "loading": "Načítavam prepis...",
+        "searchBar": "Hladať adresu, ENS, github meno, #1, ...",
+        "button": "Pozrieť",
+        "title": "Prepis Príspevkov",
+        "stats": {
+          "lobby": "Veľkosť lobby:",
+          "contributions": "Príspevkov:",
+          "address": "Adresa sekvencera:"
+        },
+        "transcriptModal": {
+          "title": "DETAILY PRÍSPEVKU",
+          "id": "ID Používateľa:",
+          "potpubkeys": "Powers of Tau verejné klúče:",
+          "bls": "BLS Podpisy:",
+          "ecdsa": "ECDSA Podpisy (voliteľné):",
+          "potPubkeyTooltip": "Tvoje verejné klúče Mocnín Tau sú tvojím unikátnym otlačkom zabezpečujúcim Ethereum. Boli vytvorené tvojou náhodou.",
+          "zero": {
+            "title": "Čo je tento príspevok?",
+            "description": "Nultý príspevok slúži ako východisko pre ďalšie príspevky. Neobsahuje podpisy BLS ani podpisy ECDSA."
+          }
+        },
+        "signatureModal": {
+          "title": "Powers of Tau Pubkey:"
+        }
+      },
+      "signin": {
+        "description": "<0>Ceremónia vyžaduje dušu s čistým úmyslom. Kto sa chce zapojiť, musí preukázať svoju bezúhonnosť odomknutím s adresou, ktorá má aspoň tri odoslané transakcie.</0><1>Neodosiela žiadne prostriedky ani nepovoľuje žiadne zmluvy. Táto metóda tiež umožňuje doručiť POAP po Ceremónii.</1>",
+        "title": "OTVORIŤ <br/> CESTU",
+        "unlockWithEthereum": "Odomknúť pomocou Etherea <2></2>",
+        "unlockWithGithub": "alebo pomocou Githubu"
+      },
+      "error": {
+        "notSameWallet": "Musíte použiť rovnakú peňaženku ako pri predchádzajucom podpise",
+        "incorrectChainId": "Pripojte vašu peňaženku na Ethereum Mainnet",
+        "pastSubgroupChecksFailed": "Kontrola podskupiny v prijatom príspevku zlyhala. Prosím, urýchlene to nahláste.",
+        "newSubgroupChecksFailed": "Kontrola podskupiny vo vašom výpočte zlyhala. Skontrolujte prosím svoje nastavenie a skúste to znova",
+        "tryContributeError": {
+          "rateLimited": "Volanie sekvencera prišlo príliš skoro. Nahláste problém v Github repozitáre.",
+          "unknownSessionId": "Neznámy používateľ. Prosím, prihláste sa znova s iným účtom",
+          "anotherContributionInProgress": "Momentálne sa počíta ďalší príspevok. Prosím, počkajte, kým na vás príde rad s príspevkom.",
+          "unknownError": "Nastal neznámy error: {{error}} . kód: {{code}}"
+        },
+        "authErrorPayload": {
+          "userAlreadyContributed": "Táto peňaženka už prispela na do ceremónie",
+          "invalidAuthCode": "Webová aplikácia používa nesprávny autentifikačný kód. Nahláste problém v Github repozitáre.",
+          "fetchUserDataError": "Sekvencer nedokázal získať dáta o používateľovi z autorizačnej služby. Nahláste problém v Github repozitáre.",
+          "couldNotExtractUserData": "Sekvencer nemohol extraktovať dáta o používateľovi z autorizačnej služby. Nahláste problém v Github repozitáre.",
+          "userCreatedAfterDeadline": "Vaša peňaženka nesplňuje podmienky pre účasť v ceremónii.",
+          "customError": "Nastal neznámy error: {{error}}"
+        },
+        "contributeError": {
+          "notUsersTurn": "Nie ste na rade s prispením do ceremónie!",
+          "invalidContribution": {
+            "unexpectedNumContributions": "Bol odoslaný neočakávaný počet príspevkov"
+          },
+          "signature": {
+            "signatureCreation": "Nastala chyba pri vytváraní podpísaného potvrdenia",
+            "invalidToken": "Token nie je validné hexadecimálne číslo",
+            "invalidSignature": "Sekvencer nedokázal spracovať podpis"
+          },
+          "customError": "Nastal neznámy error: {{error}}"
+        }
+      }
+    }
+  }
+  

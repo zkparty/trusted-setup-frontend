@@ -1,5 +1,5 @@
 import create from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
 
 export type Store = {
   receipt: string | null
@@ -48,6 +48,6 @@ export const useEntropyStore = create<EntropyStore>()(
     }),
     {
       name: 'kzg-temporary-entropy',
-      getStorage: () => sessionStorage,
+      storage: createJSONStorage(() => sessionStorage),
   })
 )

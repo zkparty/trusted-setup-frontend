@@ -30,10 +30,10 @@ const Background = forwardRef(({ children }: Props, bgRef: any) => {
     <Container ref={bgRef} dark={dark}>
       <BgContainer style={{ display: displayContainer }}>
         <Bg src={BgImg} visible={bg === 'white' || bg === 'animate'} style={{display: getDisplay(bg)}} />
-        {bg === 'animate' && (
-          <BgPulse src={BgImgPulse} visible={bg === 'animate'} style={{display: getDisplay(bg)}} />
+        {(bg === 'animate' || bg === 'white-no-pizza-animate') && (
+          <BgPulse src={BgImgPulse} visible={(bg === 'animate' || bg === 'white-no-pizza-animate')} style={{display: getDisplay(bg)}} />
         )}
-        <Bg src={BgImgNoPiz} visible={bg === 'white-no-pizza'} style={{display: getDisplay(bg)}} />
+        <Bg src={BgImgNoPiz} visible={bg === 'white-no-pizza-animate'} style={{width: (CIRCLE_SIZE+1315)+'px', display: getDisplay(bg)}} />
         <Bg src={BgImgColor} visible={bg === 'color'} style={{display: getDisplay(bg)}} />
         <PizzaImg
           src={PizzaInner}
@@ -78,6 +78,12 @@ const BgContainer = styled.div`
   width: 100vw;
   position: absolute;
   overflow: hidden;
+`
+
+export const BgColoredContainer = styled.div`
+  background-color: ${({ theme }) => theme.surface };
+  position: absolute;
+  width: 100%;
 `
 
 export default Background

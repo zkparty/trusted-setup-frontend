@@ -2,7 +2,8 @@
   "translation": {
     "complete": {
       "button": "View your contribution",
-      "description": "<0>Success! Echoes of you are permanently fused with the others in this Summoning Ceremony.</0>",
+      "gobackhome": "Go back home",
+      "description": "<0>Success! Echoes of you are permanently fused with the others in this Summoning Ceremony. Ceremony credibility is highest with broad community participation - make sure to share this with others.</0><1>The final output of this Ceremony will be used in a future Ethereum upgrade to enable Danksharding.</1>",
       "modal": {
         "acknowledgment": "SEQUENCER ACKNOWLEDGEMENT",
         "checks": {
@@ -20,10 +21,15 @@
         "timestamp": "Contribution completed at:",
         "identity": "Participant ID:",
         "potPubkeys": "Powers of Tau Pubkeys:",
-        "transcript": "full transcript",
-        "tweet": "I just contributed to the test KZG Ceremony to scale Ethereum using {{identity}}"
+        "transcript": "full transcript"
       },
-      "shareTwitter": "Share on Twitter",
+      "share": "Share on Social",
+      "shareModal": {
+        "title": "SHARE ON SOCIAL",
+        "shareTwitter": "Twitter",
+        "shareLenster": "Lenster",
+        "tweet": "I just contributed to the KZG Ceremony to scale Ethereum using {{identity}} at ceremony.ethereum.org"
+      },
       "title": "Dankshard <br/> draws near"
     },
     "contributing": {
@@ -42,7 +48,7 @@
     "doubleSign": {
       "button": "Sign",
       "checkWallet": "Check your wallet to sign the contribution",
-      "description": "<0>This signature binds each Summoner’s entropy contribution to their Ethereum address.</0>",
+      "description": "<0>Signing below will bind each Summoner’s entropy contribution to their Ethereum address. Participants will then be redirected to a \"Sign-in with Ethereum\" page, and then back to this interface to complete the final steps of the process.</0>",
       "title": "Bind your <br/> Contribution"
     },
     "entropyInput": {
@@ -52,8 +58,9 @@
       "title": "Entropy <br/> Entry"
     },
     "explanation": {
-      "description": "<0>This Trusted Setup is a multi-party ceremony designed to generate a secure SRS (structured reference string) to be used in the proto-danksharding protocol. OK, let's slow down and talk about those terms in more detail.</0><1>Proto-danksharding (aka EIP-4844) is a planned change to the Ethereum protocol which allows transaction data from rollups (Layer 2s) to be succinctly represented on the Layer 1 (mainnet). The benefits are lower transaction fees on the L2, greater scalability and more accessibility to more people!</1><2>The Trusted Setup is a preparatory step required for certain cryptographic schemes such as the KZG polynomial commitment scheme to be used in proto-danksharding. In our case, the trust assumption is that one contributor needs to successfully conceal their secret for the result to be secure.</2><3>It's a multi-party ceremony: Contributors each create a secret and run a computation to mix it with previous contributions and generate a result that can be made public and passed to the next contributor. We need to guard against attempts to control the ceremony, so you'll need an Ethereum or GitHub account with an established history.</3>",
-      "title": "PROTO-DANKSHARDING <br/> AND THE CEREMONY"
+      "description": "<0>Proto-danksharding (aka EIP-4844) is a planned change to the Ethereum protocol which introduces ephemeral data storage. Because the data does not need to be stored by the network forever, it will be cheaper to use than on-chain storage (i.e. CALLDATA). Rollups (Layer 2s) can use this storage to post transaction data or proofs back to Layer 1 (mainnet). The benefits are lower transaction fees on the L2, greater scalability and more accessibility to more people!</0><1>Proto-danksharding requires a new cryptographic scheme: KZG Commitments. This ceremony, sometimes called a \"Trusted Setup\", will generate a structured reference string (SRS) which is needed for the commitments to work. An SRS is secure as long as one participant in the ceremony successfully conceals their secret.</1><2>It's a multi-party ceremony: each contributor creates a secret and runs a computation to mix it with previous contributions. Then, the output is made public and passed to the next contributor. To guard against attempts to corrupt the ceremony, participants need an Ethereum address or GitHub account with an established history to participate. The final output of the Ceremony will be included in a future upgrade to help scale the Ethereum network</2>",
+      "title": "PROTO-DANKSHARDING <br/> AND THE CEREMONY",
+      "subtitle": "what are these?"
     },
     "faq": {
       "q1": {
@@ -123,7 +130,8 @@
     },
     "footer": {
       "audit": "Audit report",
-      "copyright": "Build by the Ethereum Community - 2022",
+      "auditedIPFS": "Audited IPFS version",
+      "copyright": "Built by the Ethereum Community - 2022",
       "documentation": "Documentation",
       "faq": "FAQ"
     },
@@ -139,10 +147,10 @@
     "landing": {
       "button": "Begin",
       "button-mobile": "Proceed on desktop",
-      "description": "<0>Whispers from the shadows tell of a powerful spirit Dankshard, who will open the next chapter of Ethereum scalability. To summon its powers, a Ceremony needs your contribution. This illuminated guide will lead you through the movements necessary to complete the ritual.</0><1>Magic math awaits - are you ready to add your color to the story?</1>",
+      "description": "<0>Whispers from the shadows tell of a powerful spirit Dankshard, who will open the next chapter of Ethereum scalability. To summon its powers, this Ceremony needs your contribution.</0><1>Magic math awaits - are you ready to add your color to the story? Choose one of the paths below to begin the ritual:</1>",
       "learn-more": "↓ or learn more below ↓",
       "learn-more-mobile": "↓ learn more below ↓",
-      "title": "SUMMONING <br/> GUIDE"
+      "title": "SUMMONING GUIDES"
     },
     "language": {
       "ar": "Arabic",
@@ -158,6 +166,7 @@
       "ko": "Korean",
       "pt": "Portuguese",
       "ru": "Russian",
+      "sk": "Slovak",
       "sw": "Swahili",
       "tr": "Turkish",
       "zh": "Chinese"
@@ -167,20 +176,21 @@
       "button": "View all contributions"
     },
     "lobby": {
-      "description": "<0>Your contribution is ready to be accepted by the Sequencer. Please leave this guide open in the background and we will add your contribution to the others soon.</0><1>Please leave this guide open and awake.</1>",
+      "description": "<0>Your contribution is ready to be accepted by the Sequencer. Please leave this guide open in the background and we will add your contribution to the others soon.</0>",
       "lobby_size": "participants in the lobby",
       "title": "Waiting to be <br/> submitted"
     },
     "lobbyFull": {
       "button": "Return to home",
-      "description": "<0>Too many summoners at this time, please come back later. Close this window and try again in a moment to check if there is a slot available in the lobby.</0>",
+      "description": "<0>There are too many summoners at this time, please come back in a few hours!</0>",
       "title": "Too much <br/> magic"
     },
     "otherResources": {
-      "ipfs": "IPFS",
+      "ipfs": "IPFS Interface",
       "hosted": "Hosted Interface",
       "otherClients": "Other Clients",
-      "writeYourOwn": "Write Your Own!"
+      "writeYourOwn": "Write Your Own!",
+      "recommended": "(Recommended)"
     },
     "record": {
       "headers": "<0>Participant ID</0><1>Signatures</1>",
@@ -210,7 +220,7 @@
       }
     },
     "signin": {
-      "description": "<0>The Ceremony requires souls of pure intent. Summoners show their integrity by unlocking with an address that has at least three sent transactions.</0><1>It does not send any funds or permit any contracts. This method also allows us to deliver a POAP after the Ceremony.</1>",
+      "description": "<0>The Ceremony requires souls of pure intent. Summoners show their integrity by unlocking with an address that has at least three sent transactions. Each address can only be used once.</0><1>Choosing Ethereum does not send any funds or permit any contracts. This method also permits a POAP to be delivered after the Ceremony.</1>",
       "title": "OPEN <br/> THE WAY",
       "unlockWithEthereum": "Unlock with Ethereum <2></2>",
       "unlockWithGithub": "or unlock with Github"

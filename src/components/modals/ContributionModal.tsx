@@ -1,14 +1,16 @@
 import { Bold } from '../Text'
 import { utils } from 'ethers'
 import Modal from 'react-modal'
+import ToolTip from '../Tooltip'
+import ROUTES from '../../routes'
 import theme from '../../style/theme'
 import styled from 'styled-components'
-import ReactTooltip from 'react-tooltip'
+import { isMobile } from '../../utils'
 import { PrimaryButton } from '../Button'
 import ExternalLink from '../ExternalLink'
 import BlockiesIdenticon from '../Blockies'
 import { useEffect, useState } from 'react'
-import { API_ROOT, FONT_SIZE } from '../../constants'
+import { FONT_SIZE } from '../../constants'
 import { Trans, useTranslation } from 'react-i18next'
 import {Title, Desc, SubTitle } from './TranscriptModal'
 import useSequencerStatus from '../../hooks/useSequencerStatus'
@@ -112,10 +114,10 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
           cursor: 'auto',
           border: 'none',
           blockSize: 'fit-content',
-          width: 'clamp(40%, 45%, 60%)',
+          width: isMobile() ? '90%' : '40%',
           inset: '15% 0 0 0',
           marginInline: 'auto',
-          paddingBlock: '20px',
+          paddingBlock: '40px',
           paddingInline: '5%',
           background: theme.surface,
           boxShadow: '5px 10px 8px 10px #b4b2b2',
@@ -127,7 +129,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
           <Trans i18nKey="complete.modal.keys">
             CONTRIBUTION DETAILS
           </Trans>
-          <Link href={`${API_ROOT}/info/current_state`}>
+          <Link href={`/#${ROUTES.RECORD}`}>
             <Trans i18nKey="complete.modal.transcript">
               full transcript
             </Trans>
@@ -204,6 +206,13 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
             SEQUENCER ACKNOWLEDGEMENT
           </Trans>
         </Title>
+        <BottomSection>
+          <PrimaryButton onClick={handleClickDownloadReceipt} style={{ width: '300px' }}>
+            <Trans i18nKey="complete.modal.downloadReceipt">
+              Download Receipt
+            </Trans>
+          </PrimaryButton>
+        </BottomSection>
         <SubTitle>
           <Trans i18nKey="complete.modal.receipt">
             Contribution receipt:
@@ -220,40 +229,14 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
         <b><Trans i18nKey="complete.modal.signedBy">Signed by </Trans></b>
         { ' ' + data?.sequencer_address }
       </Desc>
-      <DescIntegrity
-        data-for={"integrityChecks"}
-        data-tip={"Integrity checks tooltip content in div below"}
-      >
-        <b><Trans i18nKey="complete.modal.integrityChecks">Integrity checks </Trans></b>
-        <span style={{ color: checksColor }}>
-          {checks}
-        </span>
-      </DescIntegrity>
-      <ReactTooltip
-        id={"integrityChecks"}
-        place={"bottom"}
-        overridePosition={(
-          { left, top },
-          _currentEvent, _currentTarget, _node) => {
-            ReactTooltip.rebuild()
-            return { top, left }
-          }
-        }
-        backgroundColor="black"
-        effect="solid"
-        padding="12px"
-      >
-        <div style={{ width: '40ch', wordBreak: 'break-word' }}>
-          { t("complete.modal.checks.tooltip") }
-        </div>
-      </ReactTooltip>
-      <BottomSection>
-        <PrimaryButton onClick={handleClickDownloadReceipt} style={{ width: '300px' }}>
-          <Trans i18nKey="complete.modal.downloadReceipt">
-            Download Receipt
-          </Trans>
-        </PrimaryButton>
-      </BottomSection>
+      <ToolTip explanation={t("complete.modal.checks.tooltip")}>
+        <DescIntegrity>
+          <b><Trans i18nKey="complete.modal.integrityChecks">Integrity checks </Trans></b>
+          <span style={{ color: checksColor }}>
+            {checks}
+          </span>
+        </DescIntegrity>
+      </ToolTip>
     </Modal>
     </>
   )
@@ -269,6 +252,7 @@ const Link = styled(ExternalLink)`
 
 const BottomSection = styled.div`
   display: flex;
+  margin-bottom: 19px;
   justify-content: space-around;
 `
 

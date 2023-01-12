@@ -154,6 +154,7 @@ const DoubleSignPage = () => {
     // save signature for later
     updateECDSASigner(signingAddress)
     updateECDSASignature(signature)
+    await onSigninSIWE()
   }
 
   const onSigninSIWE = async () => {
@@ -177,7 +178,6 @@ const DoubleSignPage = () => {
     setError(null)
     setIsLoading(true)
     await signPotPubkeysWithECDSA()
-    await onSigninSIWE()
   }
 
   return (
@@ -196,8 +196,10 @@ const DoubleSignPage = () => {
                 {error && <ErrorMessage>{error}</ErrorMessage>}
                 <Trans i18nKey="doubleSign.description">
                   <Description>
-                    This signature binds each Summoner’s entropy contribution to
-                    their Ethereum address.
+                    Signing below will bind each Summoner’s entropy contribution to
+                    their Ethereum address. Participants will be redirected to a
+                    "Sign-in with Ethereum" page, and then back to this interface to
+                    complete the final steps of the process.
                   </Description>
                 </Trans>
               </TextSection>
@@ -233,7 +235,7 @@ const CheckWalletDesc = styled(Description)`
 `
 
 const ButtonSection = styled(SingleButtonSection)`
-  margin-top: 12px;
+  margin-top: 5px;
   height: auto;
 `
 

@@ -10,6 +10,7 @@
 
 # production
 /build
+/ipfs
 
 # misc
 .DS_Store

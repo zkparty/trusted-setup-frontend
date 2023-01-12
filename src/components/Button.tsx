@@ -61,7 +61,7 @@ const PrimaryButtonWrapper = styled.div<{ disabled?: boolean }>`
   transition: all 0.2s ease;
 
   :hover:not([disabled]) {
-    filter: drop-shadow(0px 10px 12px #00000026);
+    filter: drop-shadow(2px 6px 6px #b4b2b2);
   }
 `
 
@@ -114,10 +114,19 @@ const SecondaryButton = styled.button`
   ${textSerif}
 `
 
+const ButtonWithLinkOut = styled(SecondaryButton)`
+  ::after {
+    content: "↗";
+    padding-left: 5px;
+    font-size: 0.875em;
+  }
+`
+
 export {
   PrimaryButton,
   PrimaryButtonLarge,
   BorderedButton,
   BorderedButtonLarge,
   SecondaryButton,
+  ButtonWithLinkOut
 }

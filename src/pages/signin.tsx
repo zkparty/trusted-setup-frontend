@@ -2,7 +2,7 @@ import ROUTES from '../routes'
 import { useState } from 'react'
 import styled from 'styled-components'
 import ErrorMessage from '../components/Error'
-import { PrimaryButton, SecondaryButton } from '../components/Button'
+import { PrimaryButton, ButtonWithLinkOut } from '../components/Button'
 import { Description, PageTitle } from '../components/Text'
 import {
   SingleContainer as Container,
@@ -67,11 +67,11 @@ const SigninPage = () => {
                 <Description>
                   The Ceremony requires souls of pure intent. Summoners show
                   their integrity by unlocking with an address that has at least
-                  three sent transactions.
+                  three sent transactions. Each address can only be used once.
                 </Description>
                 <Description>
-                  It does not send any funds or permit any contracts. This
-                  method also allows us to deliver a POAP after the Ceremony.
+                  Choosing Ethereum does not send any funds or permit any contracts.
+                  This method also permits a POAP to be delivered after the Ceremony.
                 </Description>
               </Trans>
             </TextSection>
@@ -87,11 +87,11 @@ const SigninPage = () => {
                   <ButtonIcon src={EthImg} alt="ETH icon" />
                 </Trans>
               </PrimaryButton>
-              <SecondaryButton onClick={onSigninGithub} style={{ width: '280px' }} disabled={isLoading}>
+              <ButtonWithLinkOut onClick={onSigninGithub} style={{ width: '280px' }} disabled={isLoading}>
                 <Trans i18nKey="signin.unlockWithGithub">
                   or unlock with Github
                 </Trans>
-              </SecondaryButton>
+              </ButtonWithLinkOut>
               </>
             }
           </ButtonSection>
@@ -102,13 +102,14 @@ const SigninPage = () => {
   )
 }
 
+
 const ButtonIcon = styled.img`
   margin-inline-start: 16px;
 `
 
 export const ButtonSection = styled(SingleButtonSection)`
-  height: 120px;
-  margin-top: 12px;
+  max-height: 100px;
+  margin-top: 10px;
 `
 
 export default SigninPage

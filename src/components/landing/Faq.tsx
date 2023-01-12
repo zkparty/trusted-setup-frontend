@@ -1,16 +1,14 @@
 import FaqItem from './FaqItem'
 import { PageTitle } from '../Text'
-import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import ExternalLink from '../ExternalLink'
-import { START_DATE, END_DATE } from '../../constants'
+import { Trans, useTranslation } from 'react-i18next'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const [from, to] = [START_DATE, END_DATE].map((date: string) =>
-  new Date(date).toLocaleDateString()
-)
+// FAQ section component
+const FaqPage = () => {
+  useTranslation()
 
-// FAQ question array
+  // FAQ question array
 const faqQuestions = [
   {
     title: (
@@ -255,7 +253,7 @@ const faqQuestions = [
         <p>
           You don&#39;t have to trust the Sequencer to produce a biased or
           invalid final output. The{' '}
-          <ExternalLink href="https://sequencer.ethereum.org/info/current_state">
+          <ExternalLink href="https://seq.ceremony.ethereum.org/info/current_state">
             transcript
           </ExternalLink>{' '}
           provides a verifiable record of all randomness contributions that you
@@ -450,15 +448,16 @@ const faqQuestions = [
     )
   }
 ]
-// FAQ section component
-const FaqPage = () => (
-  <FaqSection>
-    <PageTitle id="faq">FAQ</PageTitle>
-    {faqQuestions.map(({ title, content }, index) => (
-      <FaqItem key={index} title={title} content={content} />
-    ))}
-  </FaqSection>
-)
+
+  return (
+    <FaqSection>
+      <PageTitle id="faq">FAQ</PageTitle>
+      {faqQuestions.map(({ title, content }, index) => (
+        <FaqItem key={index} title={title} content={content} />
+      ))}
+    </FaqSection>
+  )
+}
 
 // Styled components
 const FaqSection = styled.section`

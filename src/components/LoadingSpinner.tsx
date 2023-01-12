@@ -1,8 +1,12 @@
-import styled, { keyframes } from "styled-components";
+import styled, { CSSProperties, keyframes } from "styled-components";
 
-const LoadingSpinner = () => {
+type Props = {
+    style?: CSSProperties
+}
+
+const LoadingSpinner = ({style = {}}: Props) => {
     return (
-        <SpinnerContainer>
+        <SpinnerContainer style={style}>
             <SpinnerLoading></SpinnerLoading>
         </SpinnerContainer>
     );

@@ -3,23 +3,26 @@ import styled from 'styled-components'
 import useRecord from '../../hooks/useRecord'
 import { useState, useEffect } from 'react'
 import { Record, Transcript } from '../../types'
-import { useNavigate } from 'react-router-dom'
 import { PageTitle } from '../Text'
 import RecordTable from '../RecordTable'
 import { PrimaryButton } from '../Button'
 import { Trans, useTranslation } from 'react-i18next'
+import LatestContributionsBorder from '../../assets/latest-contributions-border.svg'
+import { providers, utils } from 'ethers'
+import { INFURA_ID } from '../../constants'
 
 const LatestRecords = () => {
     useTranslation()
-    const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(true)
     const [formattedData, setFormattedData] = useState<Record[]>([])
     // load data from API
     const { data } = useRecord()
 
+    // used to lookup addresses on ens
+    const provider = new providers.InfuraProvider('homestead', INFURA_ID)
 
     const onClickViewContributions = () => {
-      navigate(ROUTES.RECORD)
+      window.open(window.location.origin + '/#' + ROUTES.RECORD)
     }
 
     useEffect(() => {
@@ -57,8 +60,19 @@ const LatestRecords = () => {
             }
             records.push(record)
           }
+          
+          const recordsWithNames = await Promise.all(records.map(async (record) => {
+            try {
+              if (!record.participantId || !utils.isAddress(record.participantId)) return record
+              return { ...record, participantName: await provider.lookupAddress(record.participantId) }
+            } catch(err) {
+              console.error(`Failed to query ENS name for ${record.participantId}`, err)
+              return record
+            }
+          }));
+
           if (!active) { return }
-          setFormattedData( records )
+          setFormattedData(recordsWithNames)
           setIsLoading(false)
         }
         formatDataFromRecord();
@@ -67,6 +81,7 @@ const LatestRecords = () => {
 
       return (
         <Container>
+          <WhiteBackground>
           <PageTitle>
             <Trans i18nKey="latestRecords.title">
               LATEST CONTRIBUTIONS
@@ -83,6 +98,7 @@ const LatestRecords = () => {
               <Trans i18nKey="latestRecords.button">View all contributions</Trans>
             </PrimaryButton>
           </ButtonSection>
+          </WhiteBackground>
         </Container>
     )
 }
@@ -91,15 +107,29 @@ export default LatestRecords
 
 
 const Container = styled.div`
+  width: 80ch;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+
+  border: min(12vw, 7rem) solid;
+  border-image-source: url(${LatestContributionsBorder});
+  border-image-slice: 160;
+  border-image-repeat: round;
+
+  box-sizing: border-box;
+`
+
+const WhiteBackground = styled.div`
+  background: white;
+  width: 100%;
+  padding-block: 5vh;
+  padding-inline: 5vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 70ch;
-  max-width: 100%;
-  margin: 0 auto;
-  padding-inline: 5vw;
 `
 
 const ButtonSection = styled.div`
-  margin-block: 40px;
+  margin-top: 30px;
 `

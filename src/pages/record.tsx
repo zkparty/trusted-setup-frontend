@@ -17,6 +17,7 @@ import SearchIcon from '../assets/search.svg'
 // Hook imports
 import useRecord from '../hooks/useRecord'
 import useSequencerStatus from '../hooks/useSequencerStatus'
+import { BgColoredContainer } from '../components/Background'
 
 
 // RecordPage component
@@ -44,6 +45,13 @@ const RecordPage = () => {
     string = string.toLowerCase()
     return string.includes( queryLowercase )
   }
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }, [])
 
   useEffect(() => {
     let active = true
@@ -131,25 +139,31 @@ const RecordPage = () => {
   }
 
   return (
-    <BgContainer>
+    <BgColoredContainer>
       <Header />
       <Container>
         <PageTitle>
           <Trans i18nKey="record.title">Contributions Transcript</Trans>
         </PageTitle>
         <StatsContainer>
-          <StatsTitle>
-            <Trans i18nKey="record.stats.lobby">Lobby size:</Trans>
-          </StatsTitle>
-          <StatsText> {stats?.lobby_size}</StatsText>
-          <StatsTitle>
-            <Trans i18nKey="record.stats.contributions">Contributions:</Trans>
-          </StatsTitle>
-          <StatsText> {stats?.num_contributions}</StatsText>
-          <StatsTitle>
-            <Trans i18nKey="record.stats.address">Sequencer address:</Trans>
-          </StatsTitle>
-          <StatsText style={{ marginRight: '0px' }}> {stats?.sequencer_address}</StatsText>
+          <Stat>
+            <StatsTitle>
+              <Trans i18nKey="record.stats.lobby">Lobby size:</Trans>
+            </StatsTitle>
+            <StatsText> {stats?.lobby_size}</StatsText>
+          </Stat>
+          <Stat>
+            <StatsTitle>
+              <Trans i18nKey="record.stats.contributions">Contributions:</Trans>
+            </StatsTitle>
+            <StatsText> {stats?.num_contributions}</StatsText>
+          </Stat>
+          <Stat>
+            <StatsTitle>
+              <Trans i18nKey="record.stats.address">Sequencer address:</Trans>
+            </StatsTitle>
+            <StatsText style={{ marginRight: '0px' }}> {stats?.sequencer_address}</StatsText>
+          </Stat>
         </StatsContainer>
         <SearchInput placeholder={t('record.searchBar')} onChange={handleInput} />
         <RecordTable
@@ -160,15 +174,9 @@ const RecordPage = () => {
         <Pagination page={page} setPage={setPage} totalPages={totalPages} />
       </Container>
       <Footer />
-    </BgContainer>
+    </BgColoredContainer>
   )
 }
-
-const BgContainer = styled.div`
-  background-color: ${({ theme }) => theme.surface };
-  position: absolute;
-  width: 100%;
-`
 
 const Container = styled.div`
   display: flex;
@@ -198,30 +206,43 @@ const SearchInput = styled.input`
 `
 
 const StatsContainer = styled.div`
-  width: 100%;
   display: flex;
   font-size: ${FONT_SIZE.S};
-  padding-inline: 5px;
   margin-bottom: 20px;
   justify-content: space-between;
 
+  flex-direction: column;
+  align-items: start;
+  word-break: break-word;
+  width: 70%;
+
   @media (max-width: ${BREAKPOINT.M}) {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    word-break: break-word;
+    width: 100%;
   }
 `
+
+const Stat = styled.div`
+  display: flex;
+  margin-bottom: 7px;
+
+  @media (max-width: ${BREAKPOINT.M}) {
+    flex-direction: column;
+    align-items: start;
+  }
+`
+
 const StatsTitle = styled.p`
   margin: 0px;
-  margin-right: 2px;
+  margin-right: 4px;
   font-weight: 800;
+
+  @media (max-width: ${BREAKPOINT.M}) {
+    margin-bottom: 2px;
+  }
 `
 
 const StatsText = styled.p`
   margin: 0px;
-  margin-right: 2px;
-  margin-bottom: 7px;
 `
 
 export default RecordPage

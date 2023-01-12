@@ -10,8 +10,8 @@ const PageTitle = styled.h1`
   font-size: ${FONT_SIZE.XXL};
   ${textSerif}
   font-weight: 700;
-  margin-top: 40px;
-  margin-bottom: 24px;
+  margin-top: 0px;
+  margin-bottom: 15px;
 `
 
 const SectionTitle = styled.h2`
@@ -22,6 +22,14 @@ const SectionTitle = styled.h2`
   font-weight: 700;
   margin: 24px 0;
   overflow-wrap: break-word;
+`
+
+const ItalicSubTitle = styled.h3`
+  font-size ${FONT_SIZE.L};
+  font-style: italic;
+  font-weight: 100;
+  text-align: center;
+  margin-top: 4px;
 `
 
 const Description = styled.p`
@@ -49,4 +57,4 @@ const Bold = styled.span`
 font-weight: 700;
 `
 
-export { PageTitle, SectionTitle, Description, LinkText, Bold }
+export { PageTitle, SectionTitle, ItalicSubTitle, Description, LinkText, Bold }

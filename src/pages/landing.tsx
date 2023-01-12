@@ -1,31 +1,27 @@
-import ROUTES from '../routes'
 import styled from 'styled-components'
-import FaqPage from '../components/landing/Faq'
-import Header from '../components/headers/Header'
 import Footer from '../components/Footer'
-import { textSerif } from '../style/utils'
-import { CIRCLE_SIZE } from '../constants'
+import { useRef, useEffect } from 'react'
 import { useAuthStore } from '../store/auth'
 import { useNavigate } from 'react-router-dom'
+import FaqPage from '../components/landing/Faq'
+import useCountdown from '../hooks/useCountdown'
+import Header from '../components/headers/Header'
 import { TextSection } from '../components/Layout'
-import Explanation from '../components/landing/Explanation'
-import { PrimaryButton } from '../components/Button'
 import { Trans, useTranslation } from 'react-i18next'
-import LandingBg from '../assets/landing-boarder.png'
-import { useCallback, useRef, useEffect } from 'react'
+import LandingBorder from '../assets/landing-border.svg'
+import { CIRCLE_SIZE, END_DATE, ENVIRONMENT } from '../constants'
+import { Description, ItalicSubTitle, PageTitle } from '../components/Text'
+import Explanation from '../components/landing/Explanation'
+import { BgColoredContainer } from '../components/Background'
 import LatestRecords from '../components/landing/LatestRecords'
 import OtherResources from '../components/landing/OtherResources'
-import { Description, PageTitle } from '../components/Text'
-import { isMobile } from '../utils'
 
 const LandingPage = () => {
   useTranslation()
   const ref = useRef<null | HTMLElement>(null)
   const navigate = useNavigate()
   const { signout } = useAuthStore()
-  const onClickGetStart = useCallback(() => {
-    navigate(ROUTES.ENTROPY_INPUT)
-  }, [navigate])
+  const [days, hours, minutes, seconds] = useCountdown(END_DATE)
 
   useEffect(() => {
     (async () => {
@@ -42,49 +38,44 @@ const LandingPage = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const onLearnMoreClick = () => {
-    ref.current?.scrollIntoView({behavior: 'smooth'})
-  }
 
   return (
-    <>
+    <BgColoredContainer>
       <Header />
       <TopSection>
         <BgColor />
-        <PageTitle>
+        <PageTitle style={{ marginTop: '30px' }}>
           <Trans i18nKey="landing.title">
-            SUMMONING <br /> GUIDE
+            SUMMONING GUIDES
           </Trans>
         </PageTitle>
+        { ENVIRONMENT === 'testnet' ?
+          ''
+          :
+          <ItalicSubTitle>
+            {days+' : '+hours+' : '+minutes+' : '+seconds}
+          </ItalicSubTitle>
+        }
         <TextSection style={{ width: '55ch' }}>
           <Trans i18nKey="landing.description">
             <Description>
               Whispers from the shadows tell of a powerful spirit Dankshard, who
               will open the next chapter of Ethereum scalability. To summon its
-              powers, a Ceremony needs your contribution. This illuminated guide
-              will lead you through the movements necessary to complete the
-              ritual.
+              powers, this Ceremony needs your contribution.
             </Description>
             <Description>
               Magic math awaits - are you ready to add your color to the story?
+              Choose one of the paths below to begin the ritual:
             </Description>
           </Trans>
         </TextSection>
-        <PrimaryButton onClick={onClickGetStart} disabled={isMobile()} >
-          {isMobile() ? <Trans i18nKey="landing.button-mobile">Proceed on desktop</Trans> : <Trans i18nKey="landing.button">Begin</Trans>}
-        </PrimaryButton>
         <OtherResources/>
-        <Link onClick={onLearnMoreClick}>
-          <Footnote>
-            {isMobile() ? <Trans i18nKey="landing.learn-more-mobile">↓ learn more below ↓</Trans> : <Trans i18nKey="landing.learn-more">↓ or learn more below ↓</Trans>}
-          </Footnote>
-        </Link>
       </TopSection>
       <Explanation refFromLanding={ref} />
       <LatestRecords />
       <FaqPage />
       <Footer />
-    </>
+    </BgColoredContainer>
   )
 }
 
@@ -97,8 +88,8 @@ const Section = styled.section`
 
 const TopSection = styled(Section)`
   border: min(10vw, 6rem) solid;
-  border-image-source: url(${LandingBg});
-  border-image-slice: 230;
+  border-image-source: url(${LandingBorder});
+  border-image-slice: 150;
   border-image-repeat: round;
   margin: 6rem auto;
   box-sizing: border-box;
@@ -116,15 +107,6 @@ const BgColor = styled.div`
   position: absolute;
   z-index: -1;
   margin-top: -30px;
-`
-
-const Footnote = styled.p`
-  font-style: italic;
-  ${textSerif}
-`
-
-const Link = styled.a`
-  cursor: pointer;
 `
 
 export default LandingPage
