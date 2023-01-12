@@ -189,7 +189,8 @@
       "ipfs": "IPFS Interface",
       "hosted": "Hosted Interface",
       "otherClients": "Other Clients",
-      "writeYourOwn": "Write Your Own!"
+      "writeYourOwn": "Write Your Own!",
+      "recommended": "(Recommended)"
     },
     "record": {
       "headers": "<0>Participant ID</0><1>Signatures</1>",
