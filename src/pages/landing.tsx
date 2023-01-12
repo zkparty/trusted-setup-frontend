@@ -53,7 +53,8 @@ const LandingPage = () => {
           ''
           :
           <ItalicSubTitle>
-            {days+' : '+hours+' : '+minutes+' : '+seconds}
+            <Trans i18nKey="landing.period">General contribution period</Trans>
+            {' - '+days+' : '+hours+' : '+minutes+' : '+seconds}
           </ItalicSubTitle>
         }
         <TextSection style={{ width: '55ch' }}>
