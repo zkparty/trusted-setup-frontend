@@ -100,7 +100,7 @@
         "title": "What is a Summoning Ceremony?"
       },
       "q3": {
-        "content": "<p>(Proto)-Danksharding requires a commitment scheme for the underlying data that is fast to prove and verify (including inside SNARKS for SNARK-based L2s) while having a small commitment size. The polynomial commitment scheme that best meets the criteria is KZG commitments.</p><p>The KZG scheme commits to a polynomial by evaluating it at a secret value (specifically, a elliptic curve point). The point of this ceremony is to construct this secret value in a way that no single person knows what this secret is and to do so in a way where many people are convinced that no-one knows it even in many years time.</p>",
+        "content": "<p>(Proto)-Danksharding requires a commitment scheme for the underlying data that is fast to prove and verify (including inside SNARKS for SNARK-based L2s) while having a small commitment size. The polynomial commitment scheme that best meets the criteria for data availability sampling is KZG commitments.</p><p>The KZG scheme commits to a polynomial by evaluating it at a secret value (specifically, a elliptic curve point). The point of this ceremony is to construct this secret value in a way that no single person knows what this secret is and to do so in a way where many people are convinced that no-one knows it even in many years time.</p>",
         "title": "Why does (Proto)-Danksharding need a Ceremony?"
       },
       "q4": {
