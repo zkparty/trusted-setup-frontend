@@ -56,7 +56,7 @@ const RecordTable = ({
         <Row key={record.position} onClick={() => setSelectedTranscriptItem(record)}>
           <Col>{record.position}</Col>
           <Col flex={4} width="0">
-            <Address>{record.participantId}</Address>
+            <Address>{record.participantName ?? record.participantId}</Address>
           </Col>
           <Col center>
             {record.transcripts.map((transcript, i) => (

@@ -8,6 +8,8 @@ import RecordTable from '../RecordTable'
 import { PrimaryButton } from '../Button'
 import { Trans, useTranslation } from 'react-i18next'
 import LatestContributionsBorder from '../../assets/latest-contributions-border.svg'
+import { providers, utils } from 'ethers'
+import { INFURA_ID } from '../../constants'
 
 const LatestRecords = () => {
     useTranslation()
@@ -16,6 +18,8 @@ const LatestRecords = () => {
     // load data from API
     const { data } = useRecord()
 
+    // used to lookup addresses on ens
+    const provider = new providers.InfuraProvider('homestead', INFURA_ID)
 
     const onClickViewContributions = () => {
       window.open(window.location.origin + '/#' + ROUTES.RECORD)
@@ -56,8 +60,19 @@ const LatestRecords = () => {
             }
             records.push(record)
           }
+          
+          const recordsWithNames = await Promise.all(records.map(async (record) => {
+            try {
+              if (!record.participantId || !utils.isAddress(record.participantId)) return record
+              return { ...record, participantName: await provider.lookupAddress(record.participantId) }
+            } catch(err) {
+              console.error(`Failed to query ENS name for ${record.participantId}`, err)
+              return record
+            }
+          }));
+
           if (!active) { return }
-          setFormattedData( records )
+          setFormattedData(recordsWithNames)
           setIsLoading(false)
         }
         formatDataFromRecord();

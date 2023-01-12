@@ -47,6 +47,7 @@ export type SubTranscript = {
 export type Record = {
   position: number
   participantId: string | null
+  participantName?: string | null
   participantEcdsaSignature: string | null
   transcripts: TranscriptDetails[]
 }
