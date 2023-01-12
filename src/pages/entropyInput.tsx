@@ -38,7 +38,7 @@ type Player = {
 const EntropyInputPage = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [keyEntropy, setKeyEntropy] = useState('')
   const [mouseEntropy, setMouseEntropy] = useState('')
   const [lastMouseEntropyUpdate, setLastMouseEntropyUpdate] = useState(0)
