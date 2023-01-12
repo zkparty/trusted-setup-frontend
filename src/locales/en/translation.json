@@ -197,6 +197,7 @@
       "loading": "Loading transcript...",
       "searchBar": "Search address, ENS, github handle, #1, ...",
       "button": "View",
+      "download": "Download full transcript",
       "title": "Contributions Transcript",
       "stats": {
         "lobby": "Lobby size:",
