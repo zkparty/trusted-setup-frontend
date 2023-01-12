@@ -114,7 +114,7 @@ const InternalCol = styled.div`
 const Col = styled.button<{finalCol?: boolean, isMobile: boolean}>`
     flex: 3;
     width: 100%;
-    height: ${({ isMobile }) => isMobile ? '190px' : '180px'};
+    height: ${({ isMobile }) => isMobile ? '190px' : '190px'};
     border: none;
     border-left: solid 1px ${({ theme }) => theme.loader};
     border-top: solid 1px ${({ theme }) => theme.loader};
