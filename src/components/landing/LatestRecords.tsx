@@ -7,6 +7,7 @@ import { PageTitle } from '../Text'
 import RecordTable from '../RecordTable'
 import { PrimaryButton } from '../Button'
 import { Trans, useTranslation } from 'react-i18next'
+import LatestContributionsBorder from '../../assets/latest-contributions-border.svg'
 
 const LatestRecords = () => {
     useTranslation()
@@ -65,6 +66,7 @@ const LatestRecords = () => {
 
       return (
         <Container>
+          <WhiteBackground>
           <PageTitle>
             <Trans i18nKey="latestRecords.title">
               LATEST CONTRIBUTIONS
@@ -81,6 +83,7 @@ const LatestRecords = () => {
               <Trans i18nKey="latestRecords.button">View all contributions</Trans>
             </PrimaryButton>
           </ButtonSection>
+          </WhiteBackground>
         </Container>
     )
 }
@@ -89,15 +92,29 @@ export default LatestRecords
 
 
 const Container = styled.div`
+  width: 80ch;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+
+  border: min(12vw, 7rem) solid;
+  border-image-source: url(${LatestContributionsBorder});
+  border-image-slice: 160;
+  border-image-repeat: round;
+
+  box-sizing: border-box;
+`
+
+const WhiteBackground = styled.div`
+  background: white;
+  width: 100%;
+  padding-block: 5vh;
+  padding-inline: 5vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 70ch;
-  max-width: 100%;
-  margin: 0 auto;
-  padding-inline: 5vw;
 `
 
 const ButtonSection = styled.div`
-  margin-block: 40px;
+  margin-top: 30px;
 `

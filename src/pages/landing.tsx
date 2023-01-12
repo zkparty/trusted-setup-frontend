@@ -8,7 +8,7 @@ import useCountdown from '../hooks/useCountdown'
 import Header from '../components/headers/Header'
 import { TextSection } from '../components/Layout'
 import { Trans, useTranslation } from 'react-i18next'
-import LandingBg from '../assets/landing-boarder.png'
+import LandingBorder from '../assets/landing-border.svg'
 import { CIRCLE_SIZE, END_DATE, ENVIRONMENT } from '../constants'
 import { Description, ItalicSubTitle, PageTitle } from '../components/Text'
 import Explanation from '../components/landing/Explanation'
@@ -88,8 +88,8 @@ const Section = styled.section`
 
 const TopSection = styled(Section)`
   border: min(10vw, 6rem) solid;
-  border-image-source: url(${LandingBg});
-  border-image-slice: 230;
+  border-image-source: url(${LandingBorder});
+  border-image-slice: 150;
   border-image-repeat: round;
   margin: 6rem auto;
   box-sizing: border-box;
