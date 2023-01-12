@@ -130,6 +130,7 @@
     },
     "footer": {
       "audit": "Audit report",
+      "auditedIPFS": "Audited IPFS version",
       "copyright": "Built by the Ethereum Community - 2022",
       "documentation": "Documentation",
       "faq": "FAQ"
