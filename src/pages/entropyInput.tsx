@@ -38,7 +38,7 @@ type Player = {
 const EntropyInputPage = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const [keyEntropy, setKeyEntropy] = useState('')
   const [mouseEntropy, setMouseEntropy] = useState('')
   const [lastMouseEntropyUpdate, setLastMouseEntropyUpdate] = useState(0)
@@ -158,7 +158,7 @@ const EntropyInputPage = () => {
 
             <ButtonSection>
               {isLoading ?
-              <LoadingSpinner></LoadingSpinner>
+              <LoadingSpinner style={{ height: '48px' }}></LoadingSpinner>
               :
               <PrimaryButton
                 disabled={percentage !== 100 || keyEntropy === ''}
