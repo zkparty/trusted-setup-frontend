@@ -88,7 +88,7 @@
         "title": "How do I know my contribution was included?"
       },
       "q15": {
-        "content": "<p>After this ceremony is over it is important for the community to verify that the ceremony ran correctly, this is comprised of two components:</p><1><0>Verifying that either you or enough people you trust actually participated, by checking their identities appear in the transcript.</0><1>Verifying that the transcript was constructed correctly including all the witnesses (proofs of correct contribution) and that the Powers of Tau are indeed powers.</1></1>",
+        "content": "<p>After this ceremony is over it is important for the community to verify that the ceremony ran correctly, this is comprised of two components:</p><1><0>Verifying that either you or enough people you trust actually participated, by checking their identities appear in the transcript.</0><1>Verifying that the transcript was constructed correctly including all the witnesses (proofs of correct contribution) and that the Powers of Tau are indeed powers.</1><2>Downloading your receipt at the end of your contribution to check that it is signed by the sequencer address. Check out these <1> instructions</1>.</2></1>",
         "title": "How can I verify the final Ceremony output?"
       },
       "q16": {

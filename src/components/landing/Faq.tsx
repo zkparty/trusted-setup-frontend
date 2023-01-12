@@ -425,6 +425,11 @@ const faqQuestions = [
             all the witnesses (proofs of correct contribution) and that the
             Powers of Tau are indeed powers.
           </li>
+          <li>
+            Downloading your receipt at the end of your contribution to check
+            that it is signed by the sequencer address. Check out these
+            <ExternalLink href={'https://github.com/zkparty/trusted-setup-frontend/tree/main/validate_receipt'}> instructions</ExternalLink>.
+          </li>
         </ul>
       </Trans>
     )
