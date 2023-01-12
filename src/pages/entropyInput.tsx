@@ -158,7 +158,7 @@ const EntropyInputPage = () => {
 
             <ButtonSection>
               {isLoading ?
-              <LoadingSpinner></LoadingSpinner>
+              <LoadingSpinner style={{ height: '48px' }}></LoadingSpinner>
               :
               <PrimaryButton
                 disabled={percentage !== 100 || keyEntropy === ''}

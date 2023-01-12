@@ -26,8 +26,8 @@
       "share": "Share on Social",
       "shareModal": {
         "title": "SHARE ON SOCIAL",
-        "shareTwitter": "Share on Twitter",
-        "shareLenster": "Share on Lenster",
+        "shareTwitter": "Twitter",
+        "shareLenster": "Lenster",
         "tweet": "I just contributed to the KZG Ceremony to scale Ethereum using {{identity}} at ceremony.ethereum.org"
       },
       "title": "Dankshard <br/> draws near"
@@ -130,6 +130,7 @@
     },
     "footer": {
       "audit": "Audit report",
+      "auditedIPFS": "Audited IPFS version",
       "copyright": "Built by the Ethereum Community - 2022",
       "documentation": "Documentation",
       "faq": "FAQ"
@@ -188,7 +189,8 @@
       "ipfs": "IPFS Interface",
       "hosted": "Hosted Interface",
       "otherClients": "Other Clients",
-      "writeYourOwn": "Write Your Own!"
+      "writeYourOwn": "Write Your Own!",
+      "recommended": "(Recommended)"
     },
     "record": {
       "headers": "<0>Participant ID</0><1>Signatures</1>",

@@ -27,6 +27,11 @@ const Footer = () => {
               Documentation
             </Trans>
           </LinkItem>
+          <LinkItem href="#" target="_blank">
+            <Trans i18nKey="footer.auditedIPFS">
+              Audited IPFS version
+            </Trans>
+          </LinkItem>
           <LinkItem href="https://github.com/ethereum/kzg-ceremony/blob/main/KZG10-Ceremony-audit-report.pdf" target="_blank">
             <Trans i18nKey="footer.audit">
               Audit report

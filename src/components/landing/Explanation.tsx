@@ -1,22 +1,24 @@
 import { isMobile } from '../../utils'
 import styled from 'styled-components'
-import FlowerAnimation from '../FlowerAnimation'
 import { TextSection } from '../Layout'
 import { Trans, useTranslation } from 'react-i18next'
 import { Description, PageTitle } from '../Text'
+import ExplanationBorder from '../../assets/explanation-border.svg'
+
 
 const Explanation = ({ refFromLanding }: any) => {
   useTranslation()
 
   return (
     <SecondSection id="explanation" ref={refFromLanding}>
+      <WhiteBackground>
       <PageTitle>
         <Trans i18nKey="explanation.title">
           PROTO-DANKSHARDING <br /> AND THE CEREMONY
         </Trans>
       </PageTitle>
       <Container>
-      <FlowerAnimation></FlowerAnimation>
+
       <SecondTextSection>
         <Trans i18nKey="explanation.description">
           <Description>
@@ -48,8 +50,9 @@ const Explanation = ({ refFromLanding }: any) => {
           </Description>
         </Trans>
       </SecondTextSection>
-      <FlowerAnimation inverse={true}></FlowerAnimation>
+
       </Container>
+      </WhiteBackground>
     </SecondSection>
   )
 }
@@ -61,15 +64,32 @@ const Container = styled.div`
   width: 100%;
 `
 
-const SecondSection = styled.section`
-  padding: 0 24px 40px;
+const WhiteBackground = styled.div`
+  background: white;
+  width: 100%;
+  padding-block: 5vh;
+  padding-inline: 1vw;
   display: flex;
   flex-direction: column;
   align-items: center;
+`
+
+const SecondSection = styled.section`
+  width: 64ch;
   max-width: 100%;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+
+  border: min(4vw,5rem) solid;
+  border-image-source: url(${ExplanationBorder});
+  border-image-slice: 55;
+  border-image-repeat: round;
+
+  box-sizing: border-box;
 `
 
 const SecondTextSection = styled(TextSection)`
+  margin-top: 40px;
   width: 55ch;
 `
 

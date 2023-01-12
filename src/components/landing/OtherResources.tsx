@@ -7,6 +7,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import OpenFlower from '../../assets/open-flower.svg'
 import OpenHugFlower from '../../assets/open-hug-flower.svg'
 import ClosedHugFlower from '../../assets/closed-hug-flower.svg'
+import { Bold } from '../Text'
 
 const OtherResources = () => {
     useTranslation()
@@ -31,7 +32,7 @@ const OtherResources = () => {
 
     return (
     <Row isMobile={mobile}>
-        <Col disabled={mobile} onClick={onClickIPFSInterface}>
+        <Col disabled={mobile} onClick={onClickIPFSInterface} isMobile={mobile}>
         <InternalCol>
             <Link>
                 { mobile ?
@@ -44,7 +45,7 @@ const OtherResources = () => {
             <img src={ClosedHugFlower} alt="closed hug flower icon"/>
         </InternalCol>
         </Col>
-        <Col disabled={mobile} onClick={onClickHostedInterface}>
+        <Col disabled={mobile} onClick={onClickHostedInterface} isMobile={mobile}>
         <InternalCol>
             <Link>
                 { mobile ?
@@ -55,9 +56,16 @@ const OtherResources = () => {
                 { " " }
             </Link>
             <img src={OpenFlower} alt="open flower icon"/>
+            { mobile ?
+                ''
+                :
+                <Bold >
+                    <Trans i18nKey="otherResources.recommended">(Recommended)</Trans>
+                </Bold>
+            }
         </InternalCol>
         </Col>
-        <Col onClick={onClickOtherClients}>
+        <Col onClick={onClickOtherClients} isMobile={mobile}>
         <InternalCol>
             <Link>
                 <Trans i18nKey="otherResources.otherClients">
@@ -68,7 +76,7 @@ const OtherResources = () => {
             <img src={OpenHugFlower} alt="open hug flower icon"/>
         </InternalCol>
         </Col>
-        <Col onClick={onClickWriteYourOwn} finalCol={true}>
+        <Col onClick={onClickWriteYourOwn} finalCol={true} isMobile={mobile}>
         <InternalCol>
             <Link>
                 <Trans i18nKey="otherResources.writeYourOwn">
@@ -103,10 +111,10 @@ const InternalCol = styled.div`
     }
 `
 
-const Col = styled.button<{finalCol?: boolean}>`
+const Col = styled.button<{finalCol?: boolean, isMobile: boolean}>`
     flex: 3;
     width: 100%;
-    height: 100%;
+    height: ${({ isMobile }) => isMobile ? '190px' : '180px'};
     border: none;
     border-left: solid 1px ${({ theme }) => theme.loader};
     border-top: solid 1px ${({ theme }) => theme.loader};

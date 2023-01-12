@@ -52,8 +52,8 @@ const ShareSocialModal = ({ open, identity, onDeselect }: Props) => {
                 },
                 content: {
                     border: 'none',
-                    width: isMobile() ? '90%' : '40%',
-                    height: '350px',
+                    width: isMobile() ? '90%' : '350px',
+                    height: '240px',
                     marginBlock: 'auto',
                     marginInline: 'auto',
 
@@ -72,15 +72,15 @@ const ShareSocialModal = ({ open, identity, onDeselect }: Props) => {
                     SHARE ON SOCIAL
                 </Trans>
             </Title>
-            <ButtonSection onClick={handleClickShareTwitter}>
-                <PrimaryButton>
+            <ButtonSection>
+                <PrimaryButton onClick={handleClickShareTwitter}>
                     <Trans i18nKey="complete.shareModal.shareTwitter">
-                        Share on Twitter
+                        Twitter
                     </Trans>
                 </PrimaryButton>
                 <PrimaryButton onClick={handleClickShareLenster}>
                     <Trans i18nKey="complete.shareModal.shareLenster">
-                        Share on Lenster
+                        Lenster
                     </Trans>
                 </PrimaryButton>
             </ButtonSection>
