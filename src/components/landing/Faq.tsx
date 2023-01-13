@@ -108,7 +108,8 @@ const faqQuestions = [
           (Proto)-Danksharding requires a commitment scheme for the underlying
           data that is fast to prove and verify (including inside SNARKS for
           SNARK-based L2s) while having a small commitment size. The polynomial
-          commitment scheme that best meets the criteria is KZG commitments.
+          commitment scheme that best meets the criteria for data availability
+          sampling is KZG commitments.
         </p>
         <p>
           The KZG scheme commits to a polynomial by evaluating it at a secret
@@ -424,6 +425,11 @@ const faqQuestions = [
             Verifying that the transcript was constructed correctly including
             all the witnesses (proofs of correct contribution) and that the
             Powers of Tau are indeed powers.
+          </li>
+          <li>
+            Downloading your receipt at the end of your contribution to check
+            that it is signed by the sequencer address. Check out these
+            <ExternalLink href={'https://github.com/zkparty/trusted-setup-frontend/tree/main/validate_receipt'}> instructions</ExternalLink>.
           </li>
         </ul>
       </Trans>

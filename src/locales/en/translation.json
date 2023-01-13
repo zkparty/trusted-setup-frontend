@@ -88,7 +88,7 @@
         "title": "How do I know my contribution was included?"
       },
       "q15": {
-        "content": "<p>After this ceremony is over it is important for the community to verify that the ceremony ran correctly, this is comprised of two components:</p><1><0>Verifying that either you or enough people you trust actually participated, by checking their identities appear in the transcript.</0><1>Verifying that the transcript was constructed correctly including all the witnesses (proofs of correct contribution) and that the Powers of Tau are indeed powers.</1></1>",
+        "content": "<p>After this ceremony is over it is important for the community to verify that the ceremony ran correctly, this is comprised of two components:</p><1><0>Verifying that either you or enough people you trust actually participated, by checking their identities appear in the transcript.</0><1>Verifying that the transcript was constructed correctly including all the witnesses (proofs of correct contribution) and that the Powers of Tau are indeed powers.</1><2>Downloading your receipt at the end of your contribution to check that it is signed by the sequencer address. Check out these <1> instructions</1>.</2></1>",
         "title": "How can I verify the final Ceremony output?"
       },
       "q16": {
@@ -100,7 +100,7 @@
         "title": "What is a Summoning Ceremony?"
       },
       "q3": {
-        "content": "<p>(Proto)-Danksharding requires a commitment scheme for the underlying data that is fast to prove and verify (including inside SNARKS for SNARK-based L2s) while having a small commitment size. The polynomial commitment scheme that best meets the criteria is KZG commitments.</p><p>The KZG scheme commits to a polynomial by evaluating it at a secret value (specifically, a elliptic curve point). The point of this ceremony is to construct this secret value in a way that no single person knows what this secret is and to do so in a way where many people are convinced that no-one knows it even in many years time.</p>",
+        "content": "<p>(Proto)-Danksharding requires a commitment scheme for the underlying data that is fast to prove and verify (including inside SNARKS for SNARK-based L2s) while having a small commitment size. The polynomial commitment scheme that best meets the criteria for data availability sampling is KZG commitments.</p><p>The KZG scheme commits to a polynomial by evaluating it at a secret value (specifically, a elliptic curve point). The point of this ceremony is to construct this secret value in a way that no single person knows what this secret is and to do so in a way where many people are convinced that no-one knows it even in many years time.</p>",
         "title": "Why does (Proto)-Danksharding need a Ceremony?"
       },
       "q4": {
@@ -147,9 +147,10 @@
     "landing": {
       "button": "Begin",
       "button-mobile": "Proceed on desktop",
-      "description": "<0>Whispers from the shadows tell of a powerful spirit Dankshard, who will open the next chapter of Ethereum scalability. To summon its powers, this Ceremony needs your contribution.</0><1>Magic math awaits - are you ready to add your color to the story? Choose one of the paths below to begin the ritual:</1>",
+      "description": "<0>Whispers from the shadows tell of a powerful spirit Dankshard, who will open the next chapter of Ethereum scalability. To summon its powers, this Ceremony needs your contribution.</0><1>Magic math awaits - are you ready to add your color to the story?</1>",
       "learn-more": "↓ or learn more below ↓",
       "learn-more-mobile": "↓ learn more below ↓",
+      "period": "General contribution period",
       "title": "SUMMONING GUIDES"
     },
     "language": {
@@ -197,6 +198,7 @@
       "loading": "Loading transcript...",
       "searchBar": "Search address, ENS, github handle, #1, ...",
       "button": "View",
+      "download": "Download full transcript",
       "title": "Contributions Transcript",
       "stats": {
         "lobby": "Lobby size:",

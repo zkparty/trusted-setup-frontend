@@ -85,8 +85,12 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
   const powers = [12, 13, 14, 15]
 
   const handleClickDownloadReceipt = () => {
-    const encodedReceipt = encodeURIComponent(receipt!)
-    const jsonString = `data:text/json;chatset=utf-8,${encodedReceipt}`
+    const data = JSON.stringify({
+      receipt,
+      signature
+    })
+    const encodedData = encodeURIComponent(data)
+    const jsonString = `data:text/json;chatset=utf-8,${encodedData}`
     const link = document.createElement("a");
     link.href = jsonString;
     link.download = "data.json";

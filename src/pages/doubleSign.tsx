@@ -177,7 +177,12 @@ const DoubleSignPage = () => {
   const handleClickSign = async () => {
     setError(null)
     setIsLoading(true)
-    await signPotPubkeysWithECDSA()
+    try {
+      await signPotPubkeysWithECDSA()
+    } catch (error) {
+      console.log(error)
+      setIsLoading(false)
+    }
   }
 
   return (
