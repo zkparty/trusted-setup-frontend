@@ -11,7 +11,7 @@ const OtherResources = () => {
     const mobile = isMobile()
 
     const onClickIPFSInterface = () => {
-        window.open("https://audit.kzgceremony.eth")
+        window.open("https://latest.kzgceremony.eth")
     }
 
     const onClickOtherClients = () => {
