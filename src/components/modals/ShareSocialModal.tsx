@@ -19,8 +19,10 @@ const ShareSocialModal = ({ open, identity, onDeselect }: Props) => {
     const {t} = useTranslation()
 
     const handleClickShareTwitter = () => {
+        const prefix = identity.replace('eth|','').replace(/(.{7})..+/, "$1…")
+        const postfix = identity.substring(identity.length - 4, identity.length -1)
         let tweet = t('complete.shareModal.tweet', {
-            identity: identity.replace('eth|','').replace(/(.{7})..+/, "$1…")
+            identity: prefix + postfix
         })
         if ( ENVIRONMENT === 'testnet' ){
             tweet = '**TEST**: ' + tweet
@@ -31,8 +33,10 @@ const ShareSocialModal = ({ open, identity, onDeselect }: Props) => {
     }
 
     const handleClickShareLenster = () => {
+        const prefix = identity.replace('eth|','').replace(/(.{7})..+/, "$1…")
+        const postfix = identity.substring(identity.length - 4, identity.length -1)
         let post = t('complete.shareModal.tweet', {
-            identity: identity.replace('eth|','').replace(/(.{7})..+/, "$1…")
+            identity: prefix + postfix
         })
         if ( ENVIRONMENT === 'testnet' ){
         post = '**TEST**: ' + post
