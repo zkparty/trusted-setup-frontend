@@ -18,8 +18,7 @@ const LatestRecords = () => {
     // load data from API
     const { data } = useRecord()
 
-    // used to lookup addresses on ens
-    const provider = new providers.InfuraProvider('homestead', INFURA_ID)
+
 
     const onClickViewContributions = () => {
       window.open(window.location.origin + '/#' + ROUTES.RECORD)
@@ -60,7 +59,9 @@ const LatestRecords = () => {
             }
             records.push(record)
           }
-          
+
+          // used to lookup addresses on ens
+          const provider = new providers.InfuraProvider('homestead', INFURA_ID)
           const recordsWithNames = await Promise.all(records.map(async (record) => {
             try {
               if (!record.participantId || !utils.isAddress(record.participantId)) return record
