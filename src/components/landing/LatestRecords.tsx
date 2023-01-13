@@ -9,10 +9,10 @@ import { PrimaryButton } from '../Button'
 import { Trans, useTranslation } from 'react-i18next'
 import LatestContributionsBorder from '../../assets/latest-contributions-border.svg'
 import { providers, utils } from 'ethers'
-import { INFURA_ID } from '../../constants'
+import { INFURA_ID, LANG_QUERY_PARAM } from '../../constants'
 
 const LatestRecords = () => {
-    useTranslation()
+    const { i18n: { language } } = useTranslation()
     const [isLoading, setIsLoading] = useState(true)
     const [formattedData, setFormattedData] = useState<Record[]>([])
     // load data from API
@@ -22,7 +22,7 @@ const LatestRecords = () => {
     const provider = new providers.InfuraProvider('homestead', INFURA_ID)
 
     const onClickViewContributions = () => {
-      window.open(window.location.origin + '/#' + ROUTES.RECORD)
+      window.open( `${window.location.origin}/?${LANG_QUERY_PARAM}=${language}#${ROUTES.RECORD}`)
     }
 
     useEffect(() => {

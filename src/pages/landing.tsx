@@ -10,7 +10,7 @@ import useCountdown from '../hooks/useCountdown'
 import Header from '../components/headers/Header'
 import { TextSection } from '../components/Layout'
 import { Trans, useTranslation } from 'react-i18next'
-import { CIRCLE_SIZE, END_DATE, ENVIRONMENT } from '../constants'
+import { CIRCLE_SIZE, END_DATE, ENVIRONMENT, LANG_QUERY_PARAM } from '../constants'
 import { Description, ItalicSubTitle, PageTitle } from '../components/Text'
 import Explanation from '../components/landing/Explanation'
 import { BgColoredContainer } from '../components/Background'
@@ -20,7 +20,7 @@ import { PrimaryButton } from '../components/Button'
 import LatestContributionsBorder from '../assets/latest-contributions-border.svg'
 
 const LandingPage = () => {
-  useTranslation()
+  const { i18n: { language } } = useTranslation()
   const ref = useRef<null | HTMLElement>(null)
   const navigate = useNavigate()
   const { signout } = useAuthStore()
@@ -42,7 +42,7 @@ const LandingPage = () => {
   }, [])
 
   const onClickBegin = () => {
-    window.open(window.location.origin + '/#' + ROUTES.ENTROPY_INPUT)
+    window.open(`${window.location.origin}/?${LANG_QUERY_PARAM}=${language}#${ROUTES.ENTROPY_INPUT}`)
 }
 
   return (
