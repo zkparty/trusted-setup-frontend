@@ -19,11 +19,11 @@ import SearchIcon from '../assets/search.svg'
 // Hook imports
 import useRecord from '../hooks/useRecord'
 import useSequencerStatus from '../hooks/useSequencerStatus'
-import useLanguage from '../hooks/useLanguage'
+import useQueryParamLanguage from '../hooks/useQueryParamLanguage'
 
 // RecordPage component
 const RecordPage = () => {
-  useLanguage()
+  useQueryParamLanguage()
   const { t } = useTranslation()
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)

@@ -5,10 +5,10 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { useEntropyStore } from '../store/contribute'
 import { toParams, validateSigninParams } from '../utils'
-import useLanguage from '../hooks/useLanguage'
+import useQueryParamLanguage from '../hooks/useQueryParamLanguage'
 
 const SigninRedirect = (props: any) => {
-  useLanguage()
+  useQueryParamLanguage()
   const navigate = useNavigate()
   const { t } = useTranslation()
   const { ECDSASigner } = useEntropyStore()

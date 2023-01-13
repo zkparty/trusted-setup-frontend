@@ -19,10 +19,10 @@ import {
   Over,
 } from '../components/Layout'
 import ShareSocialModal from '../components/modals/ShareSocialModal'
-import useLanguage from '../hooks/useLanguage'
+import useQueryParamLanguage from '../hooks/useQueryParamLanguage'
 
 const CompletePage = () => {
-  useLanguage()
+  useQueryParamLanguage()
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [error, setError] = useState<null | string>(null)

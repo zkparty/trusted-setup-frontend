@@ -19,10 +19,10 @@ import HeaderJustGoingBack from '../components/headers/HeaderJustGoingBack'
 import useSequencerStatus from '../hooks/useSequencerStatus'
 import { Trans, useTranslation } from 'react-i18next'
 import { ErrorRes } from '../types'
-import useLanguage from '../hooks/useLanguage'
+import useQueryParamLanguage from '../hooks/useQueryParamLanguage'
 
 const LobbyPage = () => {
-  useLanguage()
+  useQueryParamLanguage()
   const { t } = useTranslation()
   const { error, setError } = useAuthStore()
   const [showError, setShowError] = useState(error)

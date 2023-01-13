@@ -34,10 +34,10 @@ import Torus from '@toruslabs/torus-embed'
 import Fortmatic from 'fortmatic'
 import Portis from '@portis/web3'
 import api from '../api'
-import useLanguage from '../hooks/useLanguage'
+import useQueryParamLanguage from '../hooks/useQueryParamLanguage'
 
 const DoubleSignPage = () => {
-  useLanguage()
+  useQueryParamLanguage()
   const [error, setError] = useState<null | string>(null)
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()

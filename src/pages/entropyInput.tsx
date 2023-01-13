@@ -28,7 +28,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { MIN_MOUSE_ENTROPY_SAMPLES, FONT_SIZE } from '../constants'
 import 'text-security'
 import LoadingSpinner from '../components/LoadingSpinner'
-import useLanguage from '../hooks/useLanguage'
+import useQueryParamLanguage from '../hooks/useQueryParamLanguage'
 
 type Player = {
   play: () => void
@@ -37,7 +37,7 @@ type Player = {
 }
 
 const EntropyInputPage = () => {
-  useLanguage()
+  useQueryParamLanguage()
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)

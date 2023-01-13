@@ -19,10 +19,10 @@ import { Trans, useTranslation } from 'react-i18next'
 import HeaderJustGoingBack from '../components/headers/HeaderJustGoingBack'
 import api from '../api'
 import LoadingSpinner from '../components/LoadingSpinner'
-import useLanguage from '../hooks/useLanguage'
+import useQueryParamLanguage from '../hooks/useQueryParamLanguage'
 
 const SigninPage = () => {
-  useLanguage()
+  useQueryParamLanguage()
   useTranslation()
   const navigate = useNavigate()
   const { error } = useAuthStore()

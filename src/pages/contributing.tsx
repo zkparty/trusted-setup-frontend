@@ -21,12 +21,12 @@ import {
   TextSection,
   InnerWrap
 } from '../components/Layout'
-import useLanguage from '../hooks/useLanguage'
+import useQueryParamLanguage from '../hooks/useQueryParamLanguage'
 
 type Steps = 'contributing' | 'completed' | 'error'
 
 const ContributingPage = () => {
-  useLanguage()
+  useQueryParamLanguage()
   const { sessionId, provider, nickname } = useAuthStore()
   const { entropy, ECDSASignature } = useEntropyStore()
   const {

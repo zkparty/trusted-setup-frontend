@@ -18,10 +18,10 @@ import LatestRecords from '../components/landing/LatestRecords'
 import OtherResources from '../components/landing/OtherResources'
 import { PrimaryButton } from '../components/Button'
 import LatestContributionsBorder from '../assets/latest-contributions-border.svg'
-import useLanguage from '../hooks/useLanguage'
+import useQueryParamLanguage from '../hooks/useQueryParamLanguage'
 
 const LandingPage = () => {
-  useLanguage()
+  useQueryParamLanguage()
   const { i18n: { language } } = useTranslation()
   const ref = useRef<null | HTMLElement>(null)
   const navigate = useNavigate()
