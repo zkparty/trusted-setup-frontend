@@ -1,6 +1,6 @@
 import TranslatorImg from '../assets/translator.svg'
 import { useLanguageStore } from '../store/language'
-import { BREAKPOINT, FONT_SIZE } from '../constants'
+import { BREAKPOINT, FONT_SIZE, LANG_QUERY_PARAM } from '../constants'
 import Select, { StylesConfig } from 'react-select'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
@@ -16,6 +16,10 @@ const LanguageSelector = () => {
   const handleChange = (event: any) => {
     i18n.changeLanguage(event.value)
     updateSelectedLanguage(event.value)
+
+    const searchParams = new URLSearchParams(window.location.search)
+    searchParams.set(LANG_QUERY_PARAM, event.value)
+    window.history.replaceState({}, '', `${window.location.pathname}?${searchParams.toString()}`)
   }
 
   const MAIN_COLOR = 'black'
@@ -28,7 +32,7 @@ const LanguageSelector = () => {
     return options
   }
 
-  const selectedLanguageToUse = selectedLanguage || 'en'
+  const selectedLanguageToUse = (new URLSearchParams(window.location.search)).get(LANG_QUERY_PARAM) ?? selectedLanguage ?? 'en'
 
   useEffect(() => {
     if (selectedLanguage){
