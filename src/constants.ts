@@ -48,7 +48,7 @@ const MIN_MOUSE_ENTROPY_SAMPLES =
   parseInt(process.env.REACT_APP_MIN_MOUSE_ENTROPY_SAMPLES as string) || 64
 
 const START_DATE =
-  parseInt(process.env.REACT_APP_START_DATE as string) || 1678713180
+  parseInt(process.env.REACT_APP_START_DATE as string) || 1673615580
 const END_DATE =
   parseInt(process.env.REACT_APP_END_DATE as string) || 1678713180
 
