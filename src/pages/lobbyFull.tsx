@@ -13,8 +13,10 @@ import {
   Over,
 } from '../components/Layout'
 import ROUTES from '../routes'
+import useLanguage from '../hooks/useLanguage'
 
 const LobbyFullPage = () => {
+  useLanguage()
   useTranslation()
   const navigate = useNavigate()
 

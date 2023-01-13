@@ -10,6 +10,7 @@ import Header from '../components/headers/Header'
 import Pagination from '../components/Pagination'
 import RecordTable from '../components/RecordTable'
 import ExternalLink from '../components/ExternalLink'
+import { BgColoredContainer } from '../components/Background'
 // Constant imports
 import { API_ROOT, BREAKPOINT, FONT_SIZE, INFURA_ID, PAGE_SIZE } from '../constants'
 import { Transcript, Record, SequencerStatus } from '../types'
@@ -18,11 +19,11 @@ import SearchIcon from '../assets/search.svg'
 // Hook imports
 import useRecord from '../hooks/useRecord'
 import useSequencerStatus from '../hooks/useSequencerStatus'
-import { BgColoredContainer } from '../components/Background'
-
+import useLanguage from '../hooks/useLanguage'
 
 // RecordPage component
 const RecordPage = () => {
+  useLanguage()
   const { t } = useTranslation()
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
