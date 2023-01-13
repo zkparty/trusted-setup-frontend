@@ -75,7 +75,18 @@ const RecordTable = ({
       <TranscriptModal
         record={selectedTranscriptItem}
         onDeselect={() => setSelectedTranscriptItem(null)}
-        onChange={(i: number) => setSelectedTranscriptItem(data[i])}
+        onChange={(i: number) => {
+          let item = data[i]
+          if (!item){
+            for (let j=0, nj=data.length; j < nj; j++) {
+              const element = data[j]
+              if (element.position === i){
+                item = element
+              }
+            }
+          }
+          setSelectedTranscriptItem(item)
+        }}
       />
     </Container>
   )
