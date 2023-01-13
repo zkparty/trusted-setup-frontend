@@ -43,7 +43,7 @@ const API_ROOT = process.env.REACT_APP_API_ROOT || 'http://127.0.0.1:3000'
 const COMPUTE_DEADLINE =
   parseInt(process.env.REACT_APP_COMPUTE_DEADLINE as string) || 180
 const LOBBY_CHECKIN_FREQUENCY =
-  parseInt(process.env.REACT_APP_LOBBY_CHECKIN_FREQUENCY as string) || 30000
+  parseInt(process.env.REACT_APP_LOBBY_CHECKIN_FREQUENCY as string) || 32000
 const MIN_MOUSE_ENTROPY_SAMPLES =
   parseInt(process.env.REACT_APP_MIN_MOUSE_ENTROPY_SAMPLES as string) || 64
 
