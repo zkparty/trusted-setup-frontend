@@ -233,7 +233,7 @@ const ContributionModal = ({ signature, contribution, receipt, open, onDeselect 
         <DescIntegrity>
           <b><Trans i18nKey="complete.modal.integrityChecks">Integrity checks </Trans></b>
           <span style={{ color: checksColor }}>
-            {checks}
+            {' '}{checks}
           </span>
         </DescIntegrity>
       </ToolTip>

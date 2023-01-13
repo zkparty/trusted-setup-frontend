@@ -11,7 +11,7 @@ const OtherResources = () => {
     const mobile = isMobile()
 
     const onClickIPFSInterface = () => {
-        window.open("https://github.com/ethereum/kzg-ceremony#ipfs-hosted-versions")
+        window.open("https://latest.kzgceremony.eth")
     }
 
     const onClickOtherClients = () => {

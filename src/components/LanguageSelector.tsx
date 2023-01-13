@@ -3,13 +3,17 @@ import { useLanguageStore } from '../store/language'
 import { BREAKPOINT, FONT_SIZE } from '../constants'
 import Select, { StylesConfig } from 'react-select'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import styled, { CSSProperties } from 'styled-components'
 import { locales } from '../locales'
 import { isMobile } from '../utils'
 import theme from '../style/theme'
 import { useEffect } from 'react'
 
-const LanguageSelector = () => {
+type Props = {
+  style?: CSSProperties
+}
+
+const LanguageSelector = ({ style = {} }: Props) => {
   const { i18n, t } = useTranslation()
   const { selectedLanguage, updateSelectedLanguage } = useLanguageStore()
 
@@ -82,7 +86,7 @@ const LanguageSelector = () => {
   }
 
   return (
-    <Container>
+    <Container style={style}>
       <img src={TranslatorImg} alt="translator logo"></img>
       <Select
         isSearchable={false}
