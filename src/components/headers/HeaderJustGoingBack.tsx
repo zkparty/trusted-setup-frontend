@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { textSerif } from '../../style/utils'
 import { FONT_SIZE, ENVIRONMENT } from '../../constants'
 import { Trans, useTranslation } from 'react-i18next'
+import LanguageSelector from '../LanguageSelector'
 
 const HeaderJustGoingBack = () => {
   useTranslation()
@@ -15,7 +16,8 @@ const HeaderJustGoingBack = () => {
       }
     </Container>
     :
-    ''
+    // This keeps the selected language between reloads
+    <LanguageSelector style={{ display: 'none'}}></LanguageSelector>
     }
     </>)
 }
