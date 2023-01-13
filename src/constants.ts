@@ -1,6 +1,6 @@
-const CIRCLE_SIZE = 490;
+const CIRCLE_SIZE = 490
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 20
 
 const FONT_SIZE = {
   XXS: '9px',
@@ -52,9 +52,15 @@ const START_DATE =
 const END_DATE =
   parseInt(process.env.REACT_APP_END_DATE as string) || 1678713180
 
-const INFURA_ID = process.env.REACT_APP_INFURA_ID || 'cd82571d19ab490e828dd0f86ec3cbf0'
-const PORTIS_ID = process.env.REACT_APP_PORTIS_ID || 'd6418a0a-18ae-4dfd-a206-3398012907ec'
-const FORTMATIC_KEY = process.env.REACT_APP_FORTMATIC_KEY || 'pk_live_AAE763E3E8AC097E'
+const INFURA_ID =
+  process.env.REACT_APP_INFURA_ID || 'cd82571d19ab490e828dd0f86ec3cbf0'
+const PORTIS_ID =
+  process.env.REACT_APP_PORTIS_ID || 'd6418a0a-18ae-4dfd-a206-3398012907ec'
+const FORTMATIC_KEY =
+  process.env.REACT_APP_FORTMATIC_KEY || 'pk_live_AAE763E3E8AC097E'
+
+const LANG_QUERY_PARAM = 'lang'
+const DEFAULT_LANG = 'en'
 
 export {
   FONT_SIZE,
@@ -74,4 +80,6 @@ export {
   PORTIS_ID,
   FORTMATIC_KEY,
   INFURA_ID,
+  LANG_QUERY_PARAM,
+  DEFAULT_LANG
 }
