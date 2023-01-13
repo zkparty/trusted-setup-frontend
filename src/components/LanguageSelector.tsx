@@ -13,13 +13,16 @@ const LanguageSelector = () => {
   const { i18n, t } = useTranslation()
   const { selectedLanguage, updateSelectedLanguage } = useLanguageStore()
 
+  const setLangQueryParam = (language: string) => {
+    const searchParams = new URLSearchParams(window.location.search)
+    searchParams.set(LANG_QUERY_PARAM, language)
+    window.history.replaceState({}, '', `${window.location.pathname}?${searchParams.toString()}`)
+  }
+
   const handleChange = (event: any) => {
     i18n.changeLanguage(event.value)
     updateSelectedLanguage(event.value)
-
-    const searchParams = new URLSearchParams(window.location.search)
-    searchParams.set(LANG_QUERY_PARAM, event.value)
-    window.history.replaceState({}, '', `${window.location.pathname}?${searchParams.toString()}`)
+    setLangQueryParam(event.value)
   }
 
   const MAIN_COLOR = 'black'
@@ -32,11 +35,13 @@ const LanguageSelector = () => {
     return options
   }
 
-  const selectedLanguageToUse = (new URLSearchParams(window.location.search)).get(LANG_QUERY_PARAM) ?? selectedLanguage ?? 'en'
+  const langParam = (new URLSearchParams(window.location.search)).get(LANG_QUERY_PARAM) ?? ''
+  const selectedLanguageToUse = Object.keys(locales).includes(langParam) ? langParam : selectedLanguage ?? 'en'
 
   useEffect(() => {
     if (selectedLanguage){
       i18n.changeLanguage(selectedLanguage)
+      setLangQueryParam(selectedLanguage)
     }
   }, [i18n, selectedLanguage])
 
