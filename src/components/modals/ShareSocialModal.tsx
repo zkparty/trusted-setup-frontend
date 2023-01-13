@@ -19,10 +19,17 @@ const ShareSocialModal = ({ open, identity, onDeselect }: Props) => {
     const {t} = useTranslation()
 
     const handleClickShareTwitter = () => {
-        const prefix = identity.replace('eth|','').replace(/(.{7})..+/, "$1…")
-        const postfix = identity.substring(identity.length - 4, identity.length -1)
+        let _identity = ''
+        if (identity.includes('git')){
+            _identity = identity
+        } else {
+            const prefix = identity.replace('eth|','').replace(/(.{5})..+/, "$1…")
+            const postfix = identity.substring(identity.length - 4, identity.length -1)
+            _identity = prefix + postfix
+        }
+
         let tweet = t('complete.shareModal.tweet', {
-            identity: prefix + postfix
+            identity: _identity
         })
         if ( ENVIRONMENT === 'testnet' ){
             tweet = '**TEST**: ' + tweet
@@ -33,10 +40,16 @@ const ShareSocialModal = ({ open, identity, onDeselect }: Props) => {
     }
 
     const handleClickShareLenster = () => {
-        const prefix = identity.replace('eth|','').replace(/(.{7})..+/, "$1…")
-        const postfix = identity.substring(identity.length - 4, identity.length -1)
+        let _identity = ''
+        if (identity.includes('git')){
+            _identity = identity
+        } else {
+            const prefix = identity.replace('eth|','').replace(/(.{7})..+/, "$1…")
+            const postfix = identity.substring(identity.length - 4, identity.length -1)
+            _identity = prefix + postfix
+        }
         let post = t('complete.shareModal.tweet', {
-            identity: prefix + postfix
+            identity: _identity
         })
         if ( ENVIRONMENT === 'testnet' ){
         post = '**TEST**: ' + post
