@@ -108,7 +108,8 @@ const faqQuestions = [
           (Proto)-Danksharding requires a commitment scheme for the underlying
           data that is fast to prove and verify (including inside SNARKS for
           SNARK-based L2s) while having a small commitment size. The polynomial
-          commitment scheme that best meets the criteria is KZG commitments.
+          commitment scheme that best meets the criteria for data availability
+          sampling is KZG commitments.
         </p>
         <p>
           The KZG scheme commits to a polynomial by evaluating it at a secret

@@ -1,13 +1,10 @@
-import ROUTES from '../../routes'
 import styled from 'styled-components'
 import { isMobile } from '../../utils'
 import { FONT_SIZE } from '../../constants'
 import Shield from '../../assets/shield.svg'
 import { Trans, useTranslation } from 'react-i18next'
-import OpenFlower from '../../assets/open-flower.svg'
 import OpenHugFlower from '../../assets/open-hug-flower.svg'
 import ClosedHugFlower from '../../assets/closed-hug-flower.svg'
-import { Bold } from '../Text'
 
 const OtherResources = () => {
     useTranslation()
@@ -15,10 +12,6 @@ const OtherResources = () => {
 
     const onClickIPFSInterface = () => {
         window.open("https://github.com/ethereum/kzg-ceremony#ipfs-hosted-versions")
-    }
-
-    const onClickHostedInterface = () => {
-        window.open(window.location.origin + '/#' + ROUTES.ENTROPY_INPUT)
     }
 
     const onClickOtherClients = () => {
@@ -32,7 +25,7 @@ const OtherResources = () => {
 
     return (
     <Row isMobile={mobile}>
-        <Col disabled={mobile} onClick={onClickIPFSInterface} isMobile={mobile}>
+        <Col disabled={mobile} onClick={onClickIPFSInterface}>
         <InternalCol>
             <Link>
                 { mobile ?
@@ -45,27 +38,7 @@ const OtherResources = () => {
             <img src={ClosedHugFlower} alt="closed hug flower icon"/>
         </InternalCol>
         </Col>
-        <Col disabled={mobile} onClick={onClickHostedInterface} isMobile={mobile}>
-        <InternalCol>
-            <Link>
-                { mobile ?
-                    <Trans i18nKey="landing.button-mobile">Proceed on desktop</Trans>
-                    :
-                    <Trans i18nKey="otherResources.hosted">Hosted Interface</Trans>
-                }
-                { " " }
-            </Link>
-            <img src={OpenFlower} alt="open flower icon"/>
-            { mobile ?
-                ''
-                :
-                <Bold >
-                    <Trans i18nKey="otherResources.recommended">(Recommended)</Trans>
-                </Bold>
-            }
-        </InternalCol>
-        </Col>
-        <Col onClick={onClickOtherClients} isMobile={mobile}>
+        <Col onClick={onClickOtherClients}>
         <InternalCol>
             <Link>
                 <Trans i18nKey="otherResources.otherClients">
@@ -76,7 +49,7 @@ const OtherResources = () => {
             <img src={OpenHugFlower} alt="open hug flower icon"/>
         </InternalCol>
         </Col>
-        <Col onClick={onClickWriteYourOwn} finalCol={true} isMobile={mobile}>
+        <Col onClick={onClickWriteYourOwn}>
         <InternalCol>
             <Link>
                 <Trans i18nKey="otherResources.writeYourOwn">
@@ -93,7 +66,8 @@ const OtherResources = () => {
 
 const Row = styled.div<{isMobile: boolean}>`
     display: flex;
-    margin-block: 50px;
+    margin-top: 20px;
+    margin-bottom: 10px;
     ${({ isMobile }) => isMobile ?
         `overflow-x: scroll;
          width: 100%;`
@@ -103,7 +77,8 @@ const Row = styled.div<{isMobile: boolean}>`
 
 const InternalCol = styled.div`
     margin: 7px;
-    padding-block: 10px;
+    padding-block: 5px;
+    height: auto;
 
 
     :hover:not([disabled]) {
@@ -111,22 +86,12 @@ const InternalCol = styled.div`
     }
 `
 
-const Col = styled.button<{finalCol?: boolean, isMobile: boolean}>`
-    flex: 3;
+const Col = styled.button`
+    flex: 4;
     width: 100%;
-    height: ${({ isMobile }) => isMobile ? '190px' : '180px'};
+    height: auto;
     border: none;
-    border-left: solid 1px ${({ theme }) => theme.loader};
-    border-top: solid 1px ${({ theme }) => theme.loader};
-    border-bottom: solid 1px ${({ theme }) => theme.loader};
-    ${({ theme, finalCol }) =>
-        finalCol ?
-        'border-right: solid 1px' + theme.loader + ';'
-        :
-        ''
-    }
-
-    background: white;
+    background: transparent;
     cursor: pointer;
     text-align: center;
     padding: 5px;
@@ -135,7 +100,6 @@ const Col = styled.button<{finalCol?: boolean, isMobile: boolean}>`
         z-index: 1;
         padding: 4px; /* -1px added from the border in InternalCol */
         box-shadow: 1px 2px 6px 6px #b4b2b2;
-        border-right: solid 1px ${({ theme }) => theme.loader};
         background: ${({ theme }) => theme.surface}
     }
 `

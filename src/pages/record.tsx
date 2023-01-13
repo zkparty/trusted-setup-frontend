@@ -5,12 +5,13 @@ import { providers } from 'ethers'
 import styled from 'styled-components'
 // Component imports
 import Footer from '../components/Footer'
+import { PageTitle } from '../components/Text'
 import Header from '../components/headers/Header'
 import Pagination from '../components/Pagination'
 import RecordTable from '../components/RecordTable'
-import { PageTitle } from '../components/Text'
+import ExternalLink from '../components/ExternalLink'
 // Constant imports
-import { BREAKPOINT, FONT_SIZE, INFURA_ID, PAGE_SIZE } from '../constants'
+import { API_ROOT, BREAKPOINT, FONT_SIZE, INFURA_ID, PAGE_SIZE } from '../constants'
 import { Transcript, Record, SequencerStatus } from '../types'
 // Asset imports
 import SearchIcon from '../assets/search.svg'
@@ -164,6 +165,11 @@ const RecordPage = () => {
             </StatsTitle>
             <StatsText style={{ marginRight: '0px' }}> {stats?.sequencer_address}</StatsText>
           </Stat>
+          <Link href={`${API_ROOT}/info/current_state`}>
+            <Trans i18nKey="record.download">
+              Download full transcript
+            </Trans>
+          </Link>
         </StatsContainer>
         <SearchInput placeholder={t('record.searchBar')} onChange={handleInput} />
         <RecordTable
@@ -243,6 +249,13 @@ const StatsTitle = styled.p`
 
 const StatsText = styled.p`
   margin: 0px;
+`
+
+const Link = styled(ExternalLink)`
+  width: 100%;
+  text-align: start;
+  margin-top: 20px;
+  font-size: ${FONT_SIZE.M};
 `
 
 export default RecordPage
