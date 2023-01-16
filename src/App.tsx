@@ -29,11 +29,12 @@ function App() {
   const code = params.get("code")
   const isRedirect = (sessionId !== null || message !== null || code !== null)
 
-  // Handle RTL text direction for Arabic language
+  // Handle RTL text direction for Arabic language and update the lang attribute
   const { i18n: { language } } = useTranslation()
   useEffect(() => {
     const dir = language === 'ar' ? 'rtl' : 'ltr'
     document.getElementsByTagName('html')[0].setAttribute("dir", dir);
+    document.getElementsByTagName('html')[0].setAttribute("lang", language.slice(-2));
   }, [language])
 
   /* Considerations for the IPFS build:
