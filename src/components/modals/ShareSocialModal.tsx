@@ -24,7 +24,7 @@ const ShareSocialModal = ({ open, identity, onDeselect }: Props) => {
             _identity = identity
         } else {
             const prefix = identity.replace('eth|','').replace(/(.{5})..+/, "$1…")
-            const postfix = identity.substring(identity.length - 4, identity.length -1)
+            const postfix = identity.substring(identity.length - 4, identity.length)
             _identity = prefix + postfix
         }
 
@@ -45,7 +45,7 @@ const ShareSocialModal = ({ open, identity, onDeselect }: Props) => {
             _identity = identity
         } else {
             const prefix = identity.replace('eth|','').replace(/(.{7})..+/, "$1…")
-            const postfix = identity.substring(identity.length - 4, identity.length -1)
+            const postfix = identity.substring(identity.length - 4, identity.length)
             _identity = prefix + postfix
         }
         let post = t('complete.shareModal.tweet', {
