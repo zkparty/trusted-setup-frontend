@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect } from 'react'
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import {
   HomePage,
@@ -31,8 +31,10 @@ function App() {
 
   // Handle RTL text direction for Arabic language
   const { i18n: { language } } = useTranslation()
-  const dir = useMemo(() => language === 'ar' ? 'rtl' : 'ltr', [language])
-  document.getElementsByTagName('html')[0].setAttribute("dir", dir);
+  useEffect(() => {
+    const dir = language === 'ar' ? 'rtl' : 'ltr'
+    document.getElementsByTagName('html')[0].setAttribute("dir", dir);
+  }, [language])
 
   /* Considerations for the IPFS build:
     - IPFS gateways comsider anything after the / a path to a folder. So our preferred method
