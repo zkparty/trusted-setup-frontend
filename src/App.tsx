@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import {
   HomePage,
@@ -16,6 +17,7 @@ import RequireAuth from './components/helper/RequireAuth'
 import usePreloadAllImages from './hooks/usePreloadAllImages'
 import ROUTES from './routes'
 import GlobalStyle from './style/global'
+import { useTranslation } from 'react-i18next'
 
 function App() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -26,6 +28,11 @@ function App() {
   const message = params.get('message')
   const code = params.get("code")
   const isRedirect = (sessionId !== null || message !== null || code !== null)
+
+  // Handle RTL text direction for Arabic language
+  const { i18n: { language } } = useTranslation()
+  const dir = useMemo(() => language === 'ar' ? 'rtl' : 'ltr', [language])
+  document.getElementsByTagName('html')[0].setAttribute("dir", dir);
 
   /* Considerations for the IPFS build:
     - IPFS gateways comsider anything after the / a path to a folder. So our preferred method
