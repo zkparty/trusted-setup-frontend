@@ -2,29 +2,40 @@
   "translation": {
     "complete": {
       "button": "Ihren Beitrag anzeigen",
-      "description": "<0>Erfolg! Ihre Echos wurden unwiderruflich mit den anderen dieser Beschwörungszeremonie verschmolzen.</0>",
+      "gobackhome": "Zurück zur Startseite",
+      "description": "<0>Erfolg! Ihre Echos wurden unwiderruflich mit den anderen in dieser Beschwörungszeremonie verschmolzen. Die Glaubwürdigkeit der Zeremonie ist am höchsten, wenn viele Mitglieder der Community daran teilnehmen – teilen Sie dies unbedingt mit anderen.</0><1>Die endgültige Ausgabe dieser Zeremonie wird in einem zukünftigen Ethereum-Upgrade verwendet, um Danksharding zu ermöglichen.</1>",
       "modal": {
         "acknowledgment": "SEQUENCER-ANERKENNUNG",
         "checks": {
           "failedComputeSignature": "Signatur wurde nicht korrekt verarbeitet",
           "failedSignature": "Sequencer-Signatur enthält keine Sequencer-Adresse",
-          "failedWitness": "Zeuge stimmt nicht mit PoT-Pubkeys überein",
+          "failedWitness": "Zeuge stimmt nicht mit Pubkey für Potenzen von Tau überein",
+          "tooltip": "Bei Integritätsüberprüfungen werden Untergruppenüberprüfungen in den Daten vor und nach dem Beitrag durchgeführt, wobei Belegzeugenattribute mit Ihren Pubkeys für die Potenzen von Tau verglichen und die Sequencer-Signatur im Beleg validiert wird.",
           "success": "Bestanden"
         },
         "integrityChecks": "Integritätsprüfungen ",
-        "keys": "MEINE SCHLÜSSEL",
+        "keys": "BEITRAGSDETAILS",
         "receipt": "Beitragsbeleg:",
-        "shareTwitter": "Auf Twitter teilen",
+        "downloadReceipt": "Beleg herunterladen",
         "signedBy": "Signiert von ",
         "timestamp": "Beitrag abgeschlossen am:",
-        "tweet": "Ich habe gerade mit {{identity}} einen Beitrag zur KZG-Zeremonie und zur Skalierung von Ethereum geleistet. Gehe auf https://ceremony.ethereum.org und tu es mir gleich @ethereum #KZGCeremony"
+        "identity": "Teilnehmer-ID:",
+        "potPubkeys": "Pubkeys für die Potenzen von Tau:",
+        "transcript": "Vollständiges Transkript"
+      },
+      "share": "Auf sozialen Netzwerken teilen",
+      "shareModal": {
+        "title": "AUF SOZIALEN NETZWERKEN TEILEN",
+        "shareTwitter": "Auf Twitter teilen",
+        "shareLenster": "Auf Lenster teilen",
+        "tweet": "Ich habe gerade zur KZG-Zeremonie beigetragen, um Ethereum mit {{identity}} auf ceremony.ethereum.org zu skalieren"
       },
       "title": "Dankshard <br/> naht"
     },
     "contributing": {
       "button": "Meinen Beitrag anzeigen",
       "description": {
-        "completed": "<0>Sie haben erfolgreich einen Beitrag geleistet. Vergessen sie nicht, am Ende der Beschwörung zurückzukehren und die frohe Kunde zu verbreiten.</0>",
+        "completed": "<0>Sie haben erfolgreich einen Beitrag geleistet. Vergessen Sie nicht, am Ende der Beschwörung zurückzukehren und die frohe Kunde zu verbreiten.</0>",
         "contributing": "<0>Ihnen wurden nun die Potenzen von Tau anvertraut. Ihr Geheimnis, Ihr Siegel und Ihr Muster werden nun mit jenen verschmolzen, die zuvor kamen.</0><1>Rituale dauern ihre Zeit – mit der hier dargebotenen Zeit werden zeitlose Artefakte erschaffen.</1>",
         "error": "Ein Fehler ist aufgetreten: {{error}} Laden Sie die Seite neu und versuchen Sie es erneut"
       },
@@ -36,7 +47,8 @@
     },
     "doubleSign": {
       "button": "Signieren",
-      "description": "<0>Ihre Signatur bindet die beigetragene Entropie aller Beschwörer an ihre jeweilige Ethereum-Adresse.</0>",
+      "checkWallet": "Überprüfen Sie Ihre Wallet, um den Beitrag zu unterzeichnen",
+      "description": "<0>Durch die Unterzeichnung unten wird die beigetragene Entropie jedes Beschwörers an seine Ethereum-Adresse gebunden. Die Teilnehmer werden dann auf eine Seite zur Anmeldung bei Ethereum weitergeleitet und kehren anschließend hierher zurück, um die letzten Schritte des Prozesses abzuschließen.</0>",
       "title": "Verbinden Sie Ihren <br/> Beitrag"
     },
     "entropyInput": {
@@ -46,9 +58,9 @@
       "title": "Entropie <br/> Eintrag"
     },
     "explanation": {
-      "button": "Beiträge anzeigen",
-      "description": "<0>Dieses vertrauenswürdige Setup ist eine Zeremonie mit mehreren Teilnehmern zur Erstellung eines sicheren SRS (Structured Reference String) zur Verwendung im Proto-Danksharding-Protokoll. Nehmen wir uns einen Moment, um genauer auf diese Begriff einzugehen.</0><1>Proto-Danksharding (auch als EIP-4844 bekannt) ist eine geplante Änderung des Ethereum-Protokolls, durch die Transaktionsdaten von Rollups (Layer 2s) in Layer 1 (Hauptnetz) prägnant repräsentiert werden können. Zu den resultierenden Vorteilen gehören niedrigere Transaktionsgebühren auf L2, höhere Skalierbarkeit und bessere Zugänglichkeit für mehr Nutzer!</1><2>Das vertrauenswürdige Setup ist ein Vorbereitungsschritt für bestimmte kryptografische Schemata wie das polynomische Beitragsschema für KZG, welches für Proto-Danksharding verwendet werden soll. In diesem Fall besteht die Vertrauensannahme darin, dass lediglich ein Mitwirkender sein Geheimnis erfolgreich verbergen muss, damit das Ergebnis sicher ist.</2><3>Es ist eine Zeremonie mit mehreren Teilnehmern: Jeder Mitwirkende erstellt ein Geheimnis und führt eine Berechnung durch, die mit vorherigen Beiträgen vermischt wird, um ein Ergebnis zu generieren, das öffentlich gemacht und an den nächsten Mitwirkenden weitergegeben werden kann. Wir müssen dafür sorgen, dass die Zeremonie nicht von außen kontrolliert werden kann, also benötigen Sie ein Ethereum- oder GitHub-Konto mit einem bestehenden Verlauf.</3>",
-      "title": "PROTO-DANKSHARDING <br/> UND DIE ZEREMONIE"
+      "description": "<0>Proto-Danksharding (auch als EIP-4844 bekannt) ist eine geplante Änderung des Ethereum-Protokolls, das eine ephemere Datenspeicherung einführt. Da die Daten nicht für immer im Netzwerk gespeichert werden müssen, ist Proto-Danksharding günstiger als On-Chain-Speicher (d.h. CALLDATA). Rollups (Layer 2s) können diesen Speicher verwenden, um Transaktionsdaten oder Beweise zurück zu Layer 1 (Hauptnetz) zu posten. Die Vorteile sind niedrigere Transaktionsgebühren auf L2, größere Skalierbarkeit und bessere Zugänglichkeit für mehr Personen!</0><1>Proto-Danksharding erfordert ein neues kryptographisches Schema: KZG-Beiträge. Diese Zeremonie, manchmal als „Vertrauenswürdiges Setup“ bezeichnet, erzeugt einen Structured Reference String (SRS), der für die Beiträge benötigt wird. Ein SRS ist so lange sicher, wie ein Teilnehmer der Zeremonie erfolgreich sein Geheimnis verbirgt.</1><2>Es ist eine Zeremonie mit mehreren Teilnehmern: Jeder Mitwirkende erstellt ein Geheimnis und führt eine Berechnung durch, um es mit vorherigen Beiträgen zu mischen. Dann wird die Ausgabe veröffentlicht und an den nächsten Mitwirkenden weitergegeben. Um sich vor Versuchen zu schützen, die Zeremonie zu manipulieren, benötigen die Teilnehmer eine Ethereum-Adresse oder ein GitHub-Konto mit einem bestehenden Verlauf. Die endgültige Ausgabe der Zeremonie wird in einem zukünftigen Upgrade verwendet, um das Ethereum-Netzwerk zu skalieren.</2>",
+      "title": "PROTO-DANKSHARDING <br/> UND DIE ZEREMONIE",
+      "subtitle": "Was ist das?"
     },
     "faq": {
       "q1": {
@@ -68,7 +80,7 @@
         "title": "Wie lange dauert es, einen Beitrag zu leisten?"
       },
       "q13": {
-        "content": "<0>Um Sybil-Angriffe auf die Zeremonie zu vermeiden, muss der Sequencer überprüfen, dass Sie ein (halbwegs) einzigartiger Mensch sind, sonst könnte eine Person viele verschiedene Beiträge leisten und so andere davon abhalten, einen Beitrag zu leisten.</p><1><p>Mit Ethereum anmelden – Dies ist die bevorzugte Option, da sie für alle Mitglieder der Ethereum-Community bereits eingerichtet sein sollte und diese Option Signaturen zur späteren Überprüfung des Transkripts ermöglicht. Jedes Konto muss mindestens 3 Transaktionen versendet haben, um zu verhindern, dass nur für diese Zeremonie neue Konten eingerichtet werden.</0><1>Mit GitHub anmelden – Diese Option dient als Alternative für diejenigen, die abseits der Community stehen, aber trotzdem gerne mitwirken möchten.</1></1>",
+        "content": "<p>Um Sybil-Angriffe auf die Zeremonie zu vermeiden, muss der Sequencer überprüfen, dass Sie ein (halbwegs) einzigartiger Mensch sind, sonst könnte eine Person viele verschiedene Beiträge leisten und so andere davon abhalten, einen Beitrag zu leisten.</p><1><0>Mit Ethereum anmelden – Dies ist die bevorzugte Option, da sie für alle Mitglieder der Ethereum-Community bereits eingerichtet sein sollte und diese Option Signaturen zur späteren Überprüfung des Beitrags ermöglicht. Jedes Konto muss mindestens 3 Transaktionen versendet haben, um zu verhindern, dass nur für diese Zeremonie neue Konten eingerichtet werden.</0><1>Mit GitHub anmelden – Diese Option dient als Alternative für diejenigen, die abseits der Community stehen, aber trotzdem gerne mitwirken möchten.</1></1>",
         "title": "Warum muss ich mich mit Ethereum oder GitHub anmelden?"
       },
       "q14": {
@@ -118,22 +130,26 @@
     },
     "footer": {
       "audit": "Rechnungsprüfung",
-      "copyright": "Erstellt von der Ethereum-Community - 2022",
+      "copyright": "Erstellt von der Ethereum-Community – 2022",
       "documentation": "Dokumentation",
       "faq": "FAQ"
     },
     "header": {
       "offline": "Offline",
       "online": "Online",
-      "sequencer": "Sequencer"
+      "title": "Testzeremonie",
+      "sequencer": "Sequencer",
+      "totalContributions": "Gesamte Beiträge",
+      "participantsInLobby": "Teilnehmer in der Lobby",
+      "waitTime": "Voraussichtliche Mindestwartezeit"
     },
     "landing": {
       "button": "Start",
       "button-mobile": "Auf Desktop fortfahren",
-      "description": "<0>Die Schatten munkeln von einem mächtigen Geist namens Dankshard, der das nächste Kapitel der Skalierbarkeit von Ethereum einläuten wird. Um seine Macht zu beschwören, benötigen wir Ihren Beitrag für eine Zeremonie. Dieser bebilderte Leitfaden wird Sie durch die Schritte führen, die zum Abschluss des Rituals erforderlich sind.</0><1>Vor uns liegt die Magie der Mathematik. Sind Sie bereit, Teil dieser Legende zu werden?</1>",
+      "description": "<0>Die Schatten munkeln von einem mächtigen Geist namens Dankshard, der das nächste Kapitel der Skalierbarkeit von Ethereum einläuten wird. Um seine Macht zu beschwören, benötigen wir Ihren Beitrag für diese Zeremonie.</0><1>Vor uns liegt die Magie der Mathematik. Sind Sie bereit, Teil dieser Legende zu werden? Wählen Sie einen der folgenden Pfade, um das Ritual zu beginnen:</1>",
       "learn-more": "↓ oder unten mehr erfahren ↓",
       "learn-more-mobile": "↓ Unten mehr erfahren ↓",
-      "title": "BESCHWÖRUNGS-<br/>LEITFADEN"
+      "title": "BESCHWÖRUNGS-LEITFÄDEN"
     },
     "language": {
       "ar": "Arabisch",
@@ -141,7 +157,6 @@
       "de": "Deutsch",
       "es": "Spanisch",
       "en": "Englisch",
-      "sim_en": "Vereinfachtes Englisch",
       "fr": "Französisch",
       "hi": "Hindi",
       "id": "Indonesisch",
@@ -150,54 +165,72 @@
       "ko": "Koreanisch",
       "pt": "Portugiesisch",
       "ru": "Russisch",
+      "sk": "Slovakisch",
       "sw": "Swahili",
       "tr": "Türkisch",
       "zh": "Chinesisch"
     },
+    "latestRecords": {
+      "title": "NEUESTE BEITRÄGE",
+      "button": "Alle Beiträge anzeigen"
+    },
     "lobby": {
-      "description": "<0>Ihr Beitrag ist bereit, vom Sequencer akzeptiert werden. Bitte lassen Sie diesen Leitfaden im Hintergrund geöffnet, wir werden Ihren Beitrag bald zu den anderen hinzufügen.</0><1>Bitte lassen Sie diesen Leitfaden geöffnet und aktiv.</1>",
+      "description": "<0>Ihr Beitrag ist bereit, vom Sequencer akzeptiert werden. Bitte lassen Sie diesen Leitfaden im Hintergrund geöffnet, wir werden Ihren Beitrag bald zu den anderen hinzufügen.</0>",
+      "lobby_size": "Teilnehmer in der Lobby",
       "title": "Warte auf <br/> Übermittlung"
     },
     "lobbyFull": {
       "button": "Zurück zur Startseite",
-      "description": "<0>Aktuell sind zu viele Beschwörer vorhanden, versuchen Sie es später erneut. Schließen Sie dieses Fenster und versuchen Sie es in Kürze noch einmal, um zu überprüfen, ob ein Platz in der Lobby verfügbar ist.</0>",
+      "description": "<0>Aktuell sind zu viele Beschwörer vorhanden. Versuchen Sie in einigen Stunden erneut!</0>",
       "title": "Zu viel <br/> Magie"
     },
+    "otherResources": {
+      "ipfs": "IPFS-Oberfläche",
+      "hosted": "Gehostete Oberfläche",
+      "otherClients": "Andere Clients",
+      "writeYourOwn": "Schreiben Sie eine eigene!"
+    },
     "record": {
-      "headers": "<0>Seq. #</0><1>Identifikator-Spezifikation</1><2>Signaturen</2><3>Details</3>",
-      "loading": "Datensätze werden geladen...",
+      "headers": "<0>Teilnehmer-ID</0><1>Signaturen</1>",
+      "loading": "Transkipt wird geladen...",
       "searchBar": "Suchadresse, ENS, Github-Handle, #1, ...",
       "button": "Anzeigen",
-      "title": "Datensatz",
+      "title": "Beitragstranskript",
       "stats": {
         "lobby": "Lobbygröße:",
         "contributions": "Beiträge:",
         "address": "Sequencer-Adresse:"
       },
       "transcriptModal": {
-        "title": "Beitragsdetails",
+        "title": "BEITRAGSDETAILS",
         "id": "Teilnehmer-ID:",
-        "potpubkeys": "PoT-Pubkeys:",
+        "potpubkeys": "Pubkeys für die Potenzen von Tau:",
         "bls": "BLS-Signaturen:",
-        "ecdsa": "ECDSA-Signatur (optional):"
+        "ecdsa": "ECDSA-Signatur (optional):",
+        "potPubkeyTooltip": "Ihr Pubkey für die Potenzen von Tau ist Ihr einzigartiger Sicherheitsfingerabdruck in Ethereum. Er wurde durch Ihr Geheimnis erzeugt.",
+        "zero": {
+          "title": "Was ist dieser Beitrag?",
+          "description": "Der Genesisbeitrag ist ein Ausgangspunkt für die kommenden und enthält keine BLS- oder ECDSA-Signaturen."
+        }
       },
       "signatureModal": {
-        "title": "Pot-Pubkey:"
+        "title": "Pubkey für die Potenzen von Tau:"
       }
     },
     "signin": {
-      "description": "<0>Für die Zeremonie sind Seelen reinen Willens erforderlich. Beschwörer erhalten Zugang, wenn sie ihre Integrität mithilfe einer Adresse unter Beweis stellen, die mindestens drei Transaktionen gesendet hat.</0><1>Es werden keine Gelder oder gesendet und keine Verträge zugelassen. Diese Methode erlaubt es uns zudem, nach der Zeremonie einen POAP zu liefern.</1>",
+      "description": "<0>Für die Zeremonie sind Seelen reinen Willens erforderlich. Beschwörer erhalten Zugang, wenn sie ihre Integrität mithilfe einer Adresse unter Beweis stellen, die mindestens drei Transaktionen gesendet hat. Jede Adresse darf nur einmal verwendet werden.</0><1>Durch die Auswahl von Ethereum werden keine Gelder gesendet und keine Verträge zugelassen. Diese Methode erlaubt es zudem, nach der Zeremonie einen POAP zu liefern.</1>",
       "title": "ZUGANG <br/> ERHALTEN",
       "unlockWithEthereum": "Mit Ethereum Zugang erhalten<2></2>",
       "unlockWithGithub": "oder mit Github Zugang erhalten"
     },
     "error": {
-      "notSameWallet": "Verwenden Sie die gleiche Wallet, die Sie bei der Anmeldung mit Ethereum verwendet haben",
+      "notSameWallet": "Verwenden Sie die gleiche Wallet, die Sie zur Bindung Ihres Beitrags verwendet haben",
+      "incorrectChainId": "Wählen Sie das Ethereum-Hauptnetzwerk in Ihrer Signatur-Wallet",
       "pastSubgroupChecksFailed": "Untergruppenüberprüfung für den von Ihnen erhaltenen Beitrag ist fehlgeschlagen. Melden Sie dies umgehend",
       "newSubgroupChecksFailed": "Untergruppenüberprüfung für Ihren berechneten Beitrag ist fehlgeschlagen. Überprüfen Sie Ihr Setup und versuchen Sie es erneut",
       "tryContributeError": {
-        "rateLimited": "Ihr Aufruf an den Sequencer kam zu früh. Denken Sie daran, dass zwischen Aufrufen ein bestimmtes Zeitintervall zu beachten ist",
-        "unknownSessionId": "Möglicherweise haben Sie in der Lobby mehr Zeit verbracht als erwartet. Laden Sie die Seite neu und melden Sie sich erneut mit einem anderen Konto an",
+        "rateLimited": "Ihr Aufruf an den Sequencer kam zu früh. Melden Sie ein Problem in Github",
+        "unknownSessionId": "Unbekannter Benutzer. Melden Sie sich erneut mit einem anderen Konto an",
         "anotherContributionInProgress": "Im Moment wird ein anderer Beitrag berechnet. Warten Sie, bis Sie an der Reihe sind, einen Beitrag zu leisten",
         "unknownError": "Ein unbekannter Fehler ist aufgetreten: {{error}} . Code: {{code}}"
       },

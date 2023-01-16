@@ -1,57 +1,66 @@
 {
   "translation": {
     "complete": {
-      "button": "Vea su contribución",
-      "description": "<0>¡Éxito! Una parte de usted se fusionó permanentemente con los demás en esta Ceremonia de Invocación.</0><1><0>Recuerde:</0>Esta es una Ceremonia en la red de prueba - asegúrese de regresar para la invocación completa de Dankshard.</1>",
+      "button": "Ver su contribución",
+      "gobackhome": "Volver a la página de inicio",
+      "description": "<0>¡Hecho! Sus ecos resuenan permanentemente con los ecos de los demás en esta Ceremonia de invocación. La ceremonia goza de mayor credibilidad con amplia participación de la comunidad. Asegúrese de compartirla con los demás. </0><1>El resultado concluyente de esta ceremonia se utilizará en una futura actualización de Ethereum para habilitar Danksharding.</1>",
       "modal": {
-        "acknowledgment": "RECONOCIMIENTO DEL SEQUENCIADOR",
+        "acknowledgment": "RECONOCIMIENTO DEL SECUENCIADOR",
         "checks": {
-          "failedComputeSignature": "No se pudo procesar la firma",
-          "failedSignature": "Firma del sequenciador no contiene wallet del sequenciador",
-          "failedWitness": "Testigo no es igual a llave pública Powers of Tau",
-          "success": "Aprobadas"
+          "failedComputeSignature": "La firma no se ha procesado correctamente",
+          "failedSignature": "La firma de secuenciador no contiene una dirección.",
+          "failedWitness": "El testigo no coincide con los pubkeys de Powers of Tau",
+          "tooltip": "Las comprobaciones de integridad consisten en verificar los subgrupos en los datos anteriores y publicar los datos de contribución, comparando los atributos del testigo de recibo con sus pubkeys de Powers of Tau y validando la firma del secuenciador en el recibo.",
+          "success": "Aprobado"
         },
-        "downloadReceipt": "Descargar Recibo",
-        "identity": "Identidad del participante:",
-        "integrityChecks": "Pruebas de integridad",
-        "keys": "MIS LLAVES",
+        "integrityChecks": "Comprobaciones de integridad ",
+        "keys": "DETALLES DE LA CONTRIBUCIÓN",
         "receipt": "Recibo de la contribución:",
-        "shareTwitter": "Compartir en Twitter",
-        "potPubkeys": "Llaves públicas Powers of Tau",
+        "downloadReceipt": "Descargar recibo",
         "signedBy": "Firmado por",
-        "timestamp": "Contribución completada el:",
-        "tweet": "Acabo de contribuir a la ceremonia KZG de prueba para escalar Ethereum usando {{identity}}"
+        "timestamp": "Contribución completada en:",
+        "identity": "ID del participante:",
+        "potPubkeys": "Pubkeys de Poderes de Tau:",
+        "transcript": "transcripción completa"
+      },
+      "share": "Compartir en redes sociales",
+      "shareModal": {
+        "title": "COMPARTIR EN REDES SOCIALES",
+        "shareTwitter": "Compartir en Twitter",
+        "shareLenster": "Compartir en Lenster",
+        "tweet": "Acabo de contribuir a la Ceremonia KZG para escalar Ethereum usando {{identity}} en ceremony.ethereum.org"
       },
       "title": "Dankshard <br/> está cerca"
     },
     "contributing": {
-      "button": "Vea su contribución",
+      "button": "Ver mi contribución",
       "description": {
-        "completed": "<0>Ha completado exitosamente la contribución. No olvide de regresar al final de la ceremonia para compartir la noticia.</0>",
-        "contributing": "<0>Le han confiado los Poderes de Tau. Su Secreto, Sello y Muestra serán fusionados con los que vinieron anteriormente.</0><1>Los rituales no deben ser apresurados - el tiempo invertido crea artefactos eternos.</1>",
-        "error": "Hubo un error {{error}}. Recarga e intenta de nuevo"
+        "completed": "<0>Acaba de completar con éxito la contribución. No olvide regresar para ver el final de invocación y difundir las palabras.</0>",
+        "contributing": "<0>Ahora se le han confiado los Poderes de Tau. Su secreto, símbolo y muestra se están fusionando con los que vinieron antes.</0><1>Los rituales no se pueden acelerar: el tiempo concedido crea artefactos intemporales.</1>",
+        "error": "Se ha producido un error {{error}}. Recargue y vuelva a intentarlo."
       },
       "title": {
-        "completed": "Contribución <br /> Completada",
-        "contributing": "Ha sido <br /> elegido <br /> ahora",
-        "error": "Algo <br /> Salió <br /> mal"
+        "completed": "Contribución<br/>completa",
+        "contributing": "Ha sido<br/>invocado a<br/>ahora",
+        "error": "Algo<br/>ha salido<br/>mal"
       }
     },
     "doubleSign": {
-      "button": "Firmar",
-      "description": "<0>Esta firma vincula la contribución entrópica de cada Invocador a su dirección de Ethereum.</0>",
-      "title": "Vincule su <br /> Contribución"
+      "button": "Firme",
+      "checkWallet": "Compruebe su cartera para firmar la contribución",
+      "description": "<0>Firmar abajo vinculará la contribución entrópica de cada invocador a su dirección de Ethereum. Una vez firmada, los participantes serán redirigidos a la página «Iniciar sesión con Ethereum» y luego regresarán a esta interfaz para completar los pasos finales del proceso.</0>",
+      "title": "Vincule su contribución a <br/>"
     },
     "entropyInput": {
       "button": "Enviar",
       "placeholder": "Secreto",
-      "description": "<0>La Ceremonia requiere tres entradas aleatorias de cada Invocador.</0><1><0>Secreto:</0> Una parte de usted en forma de texto, caracteres añadidos al azar. Pueden serunas palabras para el futuro, o el nombre de un ser querido.</1><2><0>Sello:</0> Recorra algunos elementos de la guía con el cursor - la interface capturará tu recorrido único.</2><3><0>Muestra:</0> Su navegador generara su propia aleatoriedad en segundo plano.</3>",
-      "title": "Ingresar <br /> Entropía"
+      "description": "<0>La Ceremonia requiere tres entradas aleatorias de cada invocador.</0><1><0>Secreto:</0> Una pieza suya en forma de texto, con caracteres aleatorios añadidos. Una esperanza para el futuro o el nombre de alguien querido.</1><2><0>Símbolo:</0> Trace algunos elementos de la guía con su cursor, la interfaz capturará su ruta única. </2><3><0>Muestra:</0> Su navegador generará su propia aleatoriedad en segundo plano.</3>",
+      "title": "Entropía <br/> Entrada"
     },
     "explanation": {
-      "button": "Ver contribuciones",
-      "description": "<0>Esta configuración de confianza es una Ceremonia multi-party diseñada para generar una SRS segura (structured reference string ó cadena de referencia estructurada) que se utilizará en el protocolo proto-danksharding. OK, vamos a ir más despacio y a hablar de estos términos con más detalle.</0><1>Proto-danksharding (también conocido como EIP-4844) es un cambio previsto en el protocolo de Ethereum que permite que los datos de las transacciones de los rollups (Layer 2) sean sucintamente representados en la Layer 1 (mainnet). Los beneficios son fees de transacción más bajos en la L2, mayor escalabilidad y ¡más accesibilidad a más personas!</1><2>La configuración de confianza es un paso preparatorio necesario para ciertos esquemas criptográficos como el esquema de compromiso polinomial KZG, que será utilizado en el proto-danksharding. En nuestro caso, el sujeto de confianza es un contribuyente que necesita ocultar con éxito su secreto para para que el resultado sea seguro.</2><3>En una Ceremonia multi-party: cada uno de los contribuyentes crea un secreto y ejecuta un cálculo para mezclarlo con las contribuciones anteriores y generar un resultado que se puede hacer público y pasar al siguiente contribuyente. Necesitamos protegernos contra los intentos de sabotear la ceremonia, por lo que necesitarás una cuenta de Ethereum o GitHub con un historial establecido.</3>",
-      "title": "PROTO-DANKSHARDING <br /> Y LA CEREMONIA"
+      "description": "<0>Proto-danksharding (también denominado EIP-4844) es un cambio previsto en el protocolo Ethereum que introduce el almacenamiento efímero de datos. Debido a que los datos no necesitan que la red los almacene para siempre, será más barato de usar que el almacenamiento en cadena (es decir, CALLDATA). Las acumulaciones (capa 2) pueden usar este almacenamiento para publicar datos de transacciones o pruebas de vuelta a la capa 1 (red principal). Los beneficios que se obtienen son: tarifas de transacción más bajas en la L2, una mayor escalabilidad y más accesibilidad a más personas.</0><1>Proto-danksharding requiere un nuevo esquema criptográfico: KZG Commitments. Esta ceremonia, a veces llamada «Configuración de confianza», generará una cadena de referencia estructurada (SRS) que es necesaria para que los compromisos funcionen. Una SRS está segura siempre y cuando un participante en la ceremonia logre esconder su secreto. </1><2>Es una ceremonia de múltiples participantes: cada colaborador crea un secreto y ejecuta un cálculo para mezclarlo con contribuciones anteriores. Luego, se publican los resultados y se pasa al siguiente colaborador. Para evitar los intentos de corromper la ceremonia, los participantes necesitan una dirección de Ethereum o una cuenta de GitHub con una historia establecida para participar. El resultado final de la ceremonia se incluirá en una actualización futura para ayudar a escalar la red Ethereum</2>",
+      "title": "PROTO-DANKSHARDING <br/> Y LA CEREMONIA",
+      "subtitle": "¿Cuáles son?"
     },
     "faq": {
       "q1": {
@@ -71,7 +80,7 @@
         "title": "¿Cuánto tiempo se tarda en contribuir?"
       },
       "q13": {
-        "content": "<p>Para reducir los ataques Sybil contra la Ceremonía, el secuenciador necesita verificar su condición de humano único, de lo contrario una persona podría presentar muchas contribuciones diferentes que impiden que otros tengan su turno para contribuir.</p><1><0>Iniciar sesión en Ethereum: Esta es la opción preferida, ya que es algo que todos los miembros de la comunidad Ethereum deberían tener y que permite firmas para la verificación posterior de la transcripción. Se requiere de cada cuenta que haya enviado al menos 3 transacciones para evitar abrir nuevas cuentas solo para esta ceremonia. </0><1>Iniciar sesión con GitHub: Esta opción se ofrece como una alternativa para aquellos que están más lejos de la comunidad pero a quienes les gustaría participar. </1></1>",
+        "content": "<p>Para reducir los ataques Sybil contra la ceremonía, el secuenciador debe verificar su condición de humano único, de lo contrario una persona podría presentar muchas contribuciones diferentes que impiden que otros tengan su turno para contribuir.</p><1><0>Iniciar sesión en Ethereum: Esta es la opción preferida, ya que es algo que todos los miembros de la comunidad Ethereum deberían tener y que permite firmas para la verificación posterior de la transcripción. Se requiere de cada cuenta que haya enviado al menos 3 transacciones para evitar abrir nuevas cuentas solo para esta ceremonia. </0><1>Iniciar sesión con GitHub: Esta opción se ofrece como una alternativa para aquellos que están más lejos de la comunidad pero a quienes les gustaría participar. </1></1>",
         "title": "¿Por qué necesito iniciar sesión con Ethereum o GitHub?"
       },
       "q14": {
@@ -121,23 +130,26 @@
     },
     "footer": {
       "audit": "Informe de auditoría",
-      "copyright": "Elaborado por la comunidad Ethereum - 2022",
+      "copyright": "Elaborado por la Comunidad Ethereum - 2022",
       "documentation": "Documentación",
       "faq": "Preguntas frecuentes"
     },
     "header": {
-      "offline": "Offline",
-      "online": "Online",
-      "title": "Ceremonia de Test",
-      "sequencer": "Sequenciador"
+      "offline": "Sin conexión",
+      "online": "Conectado",
+      "title": "Ceremonia de prueba",
+      "sequencer": "Secuenciador",
+      "totalContributions": "total de contribuciones",
+      "participantsInLobby": "participantes en el lobby",
+      "waitTime": "tiempo de espera mínimo estimado"
     },
     "landing": {
-      "button": "Comenzar",
+      "button": "Empezar",
       "button-mobile": "Continuar en el escritorio",
-      "description": "<0>Los susurros provenientes de las sombras hablan del poderoso espiritu Dankshard, que abrirá las puertas del próximo capítulo de la escalabilidad de Ethereum. Para invocar sus poderes, una Ceremonia necesita de su contribución. Esta guía iluminada te conducirá a través de los movimientos para completar el ritual.</0><1>La magia de las matemáticas te esperan: ¿está preparado para ser parte de esta historia?</1>",
-      "learn-more": "↓ o infórmese a continuación ↓",
+      "description": "<0>Los susurros de las sombras hablan de un espíritu poderoso Dankshard, que abrirá el siguiente capítulo de escalabilidad de Ethereum. Para invocar sus poderes, esta Ceremonia necesita su contribución. </0><1>La matemática mágica le espera: ¿Está listo para darle un toque de color a la historia? Elija una de las siguientes rutas para comenzar el ritual:</1>",
+      "learn-more": "↓ o más información a continuación ↓",
       "learn-more-mobile": "↓ más información a continuación ↓",
-      "title": "GUÍA DE <br/> INVOCACIÓN"
+      "title": "GUÍA PARA LA INVOCACIÓN"
     },
     "language": {
       "ar": "Árabe",
@@ -145,7 +157,6 @@
       "de": "Alemán",
       "es": "Español",
       "en": "Inglés",
-      "sim_en": "Inglés Simple",
       "fr": "Francés",
       "hi": "Hindi",
       "id": "Indonesio",
@@ -154,80 +165,95 @@
       "ko": "Coreano",
       "pt": "Portugués",
       "ru": "Ruso",
+      "sk": "Eslovaco",
       "sw": "Suajili",
       "tr": "Turco",
       "zh": "Chino"
     },
+    "latestRecords": {
+      "title": "ÚLTIMAS CONTRIBUCIONES",
+      "button": "Ver todas las contribuciones"
+    },
     "lobby": {
-      "title": "A la espera de ser <br /> Enviada",
+      "description": "<0>Su contribución está lista para que el secuenciador la acepte. Por favor, deje esta guía abierta en segundo plano y pronto añadiremos su contribución a los demás.</0>",
       "lobby_size": "participantes en el lobby",
-      "description": "<0>Su contribución está lista para ser aceptada por el secuenciador. Por favor, deje esta guía abierta y añadiremos su contribución a las otras en breve.</0><1>Deje esta guía abierta y esté atento.</1>"
+      "title": "Esperando para ser <br/> enviado"
     },
     "lobbyFull": {
-      "button": "Volver a Inicio",
-      "description": "<0>Por favor, deje esta guía abierta - su contribución se verá en breve.</0><1>Muchos otros están junto a usted en esta Ceremonia - su paciencia será recompensada.</1>",
-      "title": "La suma de las partes."
+      "button": "Volver al inicio",
+      "description": "<0>Hay demasiados invocadores en este momento, ¡por favor vuelva en unas horas!</0>",
+      "title": "Demasiada magia <br/>"
+    },
+    "otherResources": {
+      "ipfs": "Interfaz IPFS",
+      "hosted": "Interfaz hospedada",
+      "otherClients": "Otros clientes",
+      "writeYourOwn": "¡Escriba su propio!"
     },
     "record": {
-      "headers": "<0>#</0><1>Identificador</1><2>Firmas</2>",
-      "loading": "Cargando manuscrito...",
-      "searchBar": "Buscar wallet, ENS, usuario de github, #1, ...",
+      "headers": "<0>ID de participante</0><1>Firmas</1>",
+      "loading": "Cargando la transcripción...",
+      "searchBar": "Buscar dirección, ENS, GitHub, #1, ...",
       "button": "Ver",
-      "title": "Manuscrito de Contribuciones",
+      "title": "Transcripción de las contribuciones",
       "stats": {
-        "lobby": "Lobby:",
+        "lobby": "Tamaño del lobby:",
         "contributions": "Contribuciones:",
-        "address": "Wallet sequenciador:"
+        "address": "Dirección del secuenciador:"
       },
       "transcriptModal": {
-        "title": "Detalle de la contribución",
+        "title": "DETALLES DE LA CONTRIBUCIÓN",
         "id": "ID del participante:",
-        "potpubkeys": "Llaves públicas Powers of Tau:",
+        "potpubkeys": "Pubkeys de Poderes de Tau:",
         "bls": "Firmas BLS:",
         "ecdsa": "Firma ECDSA (opcional):",
-        "potPubkeyTooltip": "Tu llave pública Powers of Tau representa tu huella única asegurando Ethereum. Fue generada por tu secreto."
+        "potPubkeyTooltip": "Su pubkey de Poderes de Tau representa su huella dactilar única asegurando Ethereum. La ha creado su secreto.",
+        "zero": {
+          "title": "¿Cuál es esta contribución?",
+          "description": "La contribución a la génesis ayuda como punto de partida para las próximas. No contiene firmas BLS ni firmas ECDSA."
+        }
       },
       "signatureModal": {
-        "title": "Llave pública Powers of Tau:"
+        "title": "Pubkey de Poderes de Tau:"
       }
     },
     "signin": {
-      "description": "<0>La Ceremonia requiere almas de intenciones puras. Los invocadores demuestran su integridad al desbloquear una dirección que tenga al menos tres transacciones enviadas.</0><1>Esto no envía fondos ni aprueba ningún contrato. Este método nos permite entregar un POAP después de la Ceremonia.</1>",
-      "title": "ABRIR <br /> EL CAMINO",
+      "description": "<0>La Ceremonia requiere almas de intención pura. Los invocadores muestran su integridad desbloqueando con una dirección que tiene al menos tres transacciones enviadas.</0><1>Elegir Ehtereum no envía ningún fondo ni permite ningún contrato. Este método también nos permite entregar un POAP después de la Ceremonia.</1>",
+      "title": "ABRIR <br/> EL CAMINO",
       "unlockWithEthereum": "Desbloquear con Ethereum <2></2>",
-      "unlockWithGithub": "ó desbloquear con Github"
+      "unlockWithGithub": "o desbloquear con Github"
     },
-    "error":{
-      "notSameWallet": "Utiliza la misma wallet que utilizaste para iniciar sesión con Ethereum",
-      "pastSubgroupChecksFailed": "El control de subgrupos falló en la contribución que recibiste. Por favor reportelo inmediatamente",
-      "newSubgroupChecksFailed": "El control de subgrupos falló en la contribución que computó. Por favor revise su configuración e intente de nuevo",
+    "error": {
+      "notSameWallet": "Utilice la misma cartera que utilizó para vincular su contribución.",
+      "incorrectChainId": "Seleccione la red principal de Ethereum en su cartera de firmas.",
+      "pastSubgroupChecksFailed": "La comprobación de subgrupos falló en la contribución que recibió. Por favor informe al respecto inmediatamente.",
+      "newSubgroupChecksFailed": "La comprobación de subgrupos falló en su contribución computada. Por favor compruebe su configuración e inténtelo de nuevo.",
       "tryContributeError": {
-        "rateLimited": "La llamada al sequenciador se realizó muy temprano. Publica el bug en Github",
-        "unknownSessionId": "Usuario no conocido. Por favor inicia nuevamente con una cuenta diferente",
-        "anotherContributionInProgress": "Existe otra contribución siendo computada. Por favor espere su turno para contribuir",
-        "unknownError": "Ocurrió un error desconocido: {{error}} . código: {{code}}"
+        "rateLimited": "La llamada al secuenciador se ha producido demasiado pronto. Qbrir una incidencia en Github",
+        "unknownSessionId": "Usuario desconocido. Por favor, inicie sesión de nuevo con una cuenta diferente.",
+        "anotherContributionInProgress": "Se está calculando otra contribución en este momento. Por favor, espere a su turno para contribuir.",
+        "unknownError": "Se ha producido un error desconocido: {{error}}. código: {{code}}"
       },
       "authErrorPayload": {
-        "userAlreadyContributed": "Esta wallet ya ha contribuido a esta ceremonia",
-        "invalidAuthCode": "La aplicación web está utilizando un código de autorización inválido. Por favor reportelo en Github",
-        "fetchUserDataError": "El sequenciador no pudo conseguir los datos de usuario del servidor de autorización. Por favor reportelo en Github",
-        "couldNotExtractUserData": "El sequenciador no pudo extraer los datos de usuario del servidor de autorización. Por favor reportelo en Github",
-        "userCreatedAfterDeadline": "Su wallet no tiene la cantidad mínima de transacciones requeridas para pasar nuestro método antisybil. Utilice otra wallet",
-        "customError": "Ocurrió un error desconocido: {{error}}"
+        "userAlreadyContributed": "Esta cartera ya ha contribuido a la Ceremonia.",
+        "invalidAuthCode": "La aplicación web está utilizando un código de autorización no válido. Por favor informe de ello en Github.",
+        "fetchUserDataError": "El secuenciador no ha podido obtener datos de usuario del servicio de autorización. Por favor, inform de ello en Github.",
+        "couldNotExtractUserData": "El secuenciador no ha podido extraer datos de usuario del servicio de autorización. Por favor, informe de ello en Github.",
+        "userCreatedAfterDeadline": "Su cartera no tiene la cantidad mínima de transacciones para pasar nuestras pruebas antiSybil.",
+        "customError": "Se ha producido un error desconocido: {{error}}"
       },
       "contributeError": {
-        "notUsersTurn": "No es su turno de subir la contribución",
+        "notUsersTurn": "No es su turno de subir su contribución.",
         "invalidContribution": {
-          "unexpectedNumContributions": "Se ha enviado un número inesperado de contribuciones"
+          "unexpectedNumContributions": "Se ha enviado un número inesperado de contribuciones."
         },
         "signature": {
-          "signatureCreation": "Hubo un problema creando el recibo firmado",
-          "invalidToken": "La firma no tiene un formato hexadecimal correcto",
-          "invalidSignature": "El sequenciador no pudo validar la firma"
+          "signatureCreation": "Ha habido un problema al crear el recibo firmado.",
+          "invalidToken": "La firma no es una cadena hex válida.",
+          "invalidSignature": "El secuenciador no ha podido procesar la firma."
         },
-        "customError": "Ocurrió un error desconocido: {{error}}"
-      },
-      "incorrectChainId": "Selecciona la red Ethereum Mainnet en la wallet que firma"
+        "customError": "Se ha producido un error desconocido: {{error}}"
+      }
     }
   }
 }
