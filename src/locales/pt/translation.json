@@ -2,29 +2,40 @@
   "translation": {
     "complete": {
       "button": "Ver sua contribuição",
-      "description": "<0>Muito bem! Suas contribuições foram fusionadas de modo permanente com as outras nesta Cerimônia de Invocação.</0>",
+      "gobackhome": "Voltar para a Página Inicial",
+      "description": "<0>Sucesso! Seus ecos são permanentemente fundidos com os outros nesta Cerimônia de Invocação. A credibilidade da Cerimônia é máxima graças à ampla participação da comunidade - certifique-se de compartilhar isso com os outros. </0><1>O resultado dessa Cerimônia será utilizado em uma futura atualização da Ethereum para habilitar o Danksharding.</1>",
       "modal": {
         "acknowledgment": "CONFIRMAÇÃO DO SEQUENCIADOR",
         "checks": {
           "failedComputeSignature": "A assinatura não foi processada corretamente",
           "failedSignature": "A assinatura do sequenciador não contém o endereço do sequenciador",
-          "failedWitness": "A testemunha não coincide com as chaves públicas PoT",
+          "failedWitness": "A testemunha não coincide com a chave pública do Tau",
+          "tooltip": "As verificações de integridade consistem em realizar as verificações de subgrupo nos dados de contribuição anteriores e posteriores, comparando os atributos da testemunha de recibo com seus poderes de chaves públicas do Tau e validando a assinatura de sequenciador no recibo.",
           "success": "Aprovado"
         },
         "integrityChecks": "Verificações de integridade ",
-        "keys": "MINHAS CHAVES",
+        "keys": "DETALHES DE CONTRIBUIÇÃO",
         "receipt": "Recibo de contribuição:",
-        "shareTwitter": "Compartilhar no Twitter",
+        "downloadReceipt": "Baixar Recibo",
         "signedBy": "Assinado por ",
         "timestamp": "Contribuição concluída em:",
-        "tweet": "Acabei de contribuir para a Cerimônia KZG para escalar o Ethereum usando {{identity}}. Você também pode fazer isso em https://ceremony.ethereum.org @ethereum #KZGCeremony"
+        "identity": "ID do participante:",
+        "potPubkeys": "Chaves públicas dos Poderes do Tau:",
+        "transcript": "transcrição completa"
+      },
+      "share": "Compartilhas nas mídias sociais",
+      "shareModal": {
+        "title": "COMPARTILHAR NAS MÍDIAS SOCIAIS",
+        "shareTwitter": "Compartilhar no Twitter",
+        "shareLenster": "Compartilhar no Twitter",
+        "tweet": "Acabei de contribuir para a Cerimônia KZG para escala Ethereum usando {{identity}} em ceremony.ethereum.org"
       },
       "title": "Dankshard <br/> está próximo"
     },
     "contributing": {
       "button": "Ver minha contribuição",
       "description": {
-        "completed": "<0>Você concluiu a contribuição com sucesso. Não se esqueça de retornar para ver o final da invocação e disseminar as palavras.</0>",
+        "completed": "<0>Você concluiu a contribuição com sucesso. Não se esqueça de retornar para ver o final da invocação e espalhar a palavra.</0>",
         "contributing": "<0>Agora, você foi confiado aos Poderes do Tau. Seu Segredo, Emblema e Amostra estão sendo fundidos com aqueles que vieram antes de você.</0><1>Rituais não podem ser apressados – o tempo dado aqui cria artefatos atemporais.</1>",
         "error": "Ocorreu um erro {{error}}. Recarregue e tente novamente"
       },
@@ -36,7 +47,8 @@
     },
     "doubleSign": {
       "button": "Assinar",
-      "description": "<0>Esta assinatura vincula a contribuição entrópica de cada invocador ao seu respectivo endereço Ethereum.</0>",
+      "checkWallet": "Verifique sua carteira para assinar a contribuição",
+      "description": "<0>A assinatura abaixo vinculará a contribuição entrópica de cada Invocador para o seu endereço Ethereum. Os participantes serão redirecionados para uma página \"Entrar com Ethereum\" e, em seguida, de volta para esta interface para completar os passos finais do processo.</0>",
       "title": "Vincule sua <br/> contribuição"
     },
     "entropyInput": {
@@ -46,9 +58,9 @@
       "title": "Entrada <br/> Entropia"
     },
     "explanation": {
-      "button": "Ver contribuições",
-      "description": "<0>Essa Configuração de Confiança é uma cerimônia de várias partes projetada para gerar uma SRS segura (cadeia de caracteres de referência estruturada) a ser usada no protocolo proto-danksharing. Certo, vamos mais devagar e falar sobre esses termos em mais detalhes.</0><1>Proto-danksharding (também conhecido como EIP-4844) é uma mudança planejada no protocolo Ethereum, que permite que os dados de transações de valor acumulado (Camada 2s) sejam sucintamente representados na camada 1 (rede principal). Os benefícios são taxas de transação mais baixas no L2, maior escalabilidade e mais acessibilidade para mais pessoas!</1><2>A Configuração de Confiança é um passo preparatório necessário para certos esquemas criptográficos, como o esquema de compromisso polinomial KZG para ser usado em proto-danksharding. No nosso caso, a hipótese de confiança é que um contribuinte tenha de esconder com êxito o seu segredo para que o resultado seja seguro.</2><3>É uma cerimônia de várias partes: cada contribuidor cria um segredo e executa um cálculo para misturá-lo com contribuições anteriores e gerar um resultado que pode ser tornado público e passado para o próximo contribuinte. Precisamos nos proteger contra tentativas de controlar a cerimônia, então você precisará de uma conta Ethereum ou GitHub com um histórico estabelecido.</3>",
-      "title": "PROTO-DANKSHARDING <br/> E A CERIMÔNIA"
+      "description": "<0>Proto-danksharding (também conhecido como EIP-4844) é uma mudança planejada no protocolo Ethereum que introduz o armazenamento de dados efêmeros. Como os dados não precisam ser armazenados pela rede para sempre, ele será mais barato de usar do que o armazenamento em cadeia (ou seja, CALLDATA). Os Rollups (Camada 2s) podem usar esse armazenamento para postar dados de transações ou provas de volta na Camada 1 (rede principal). Os benefícios são taxas de transação mais baixas na L2, maior escalabilidade e mais acessibilidade a mais pessoas!</0><1>O proto-danksharding requer um novo esquema criptográfico: os Compromissos KZG. Essa cerimônia, algumas vezes chamada de \"Configuração de Confiança\", irá gerar uma cadeia de caracteres de referência estruturada (SRS) necessária para os compromissos de funcionamento. Um SRS é seguro enquanto um participante da cerimônia esconde seu segredo com sucesso.<1><2>Trata-se de uma cerimônia de várias partes: cada colaborador cria um segredo e executa um cálculo para misturá-lo com contribuições anteriores. Em seguida, o resultado é tornado público e passado para o próximo contribuidor. Para se proteger das tentativas de corrompimento da cerimônia, os participantes precisam de um endereço Ethereum ou uma conta no GitHub com um histórico estabelecido para participar. O resultado da Cerimônia será incluído em uma atualização futura para ajudar a dimensionar a rede Ethereum</2>",
+      "title": "PROTO-DANKSHARDING <br/> E A CERIMÔNIA",
+      "subtitle": "o que é isso?"
     },
     "faq": {
       "q1": {
@@ -68,7 +80,7 @@
         "title": "Quanto tempo leva para contribuir?"
       },
       "q13": {
-        "content": "<p>A fim de reduzir os ataques Sybil contra a Cerimônia, o Sequenciador precisa verificar se você é um ser humano único (de alguma forma), caso contrário, uma pessoa pode enviar muitas contribuições diferentes, impedindo que outros obtenham a oportunidade de contribuir.</p><1><0>Entrar com o Ethereum – essa é a escolha preferida, já que é algo que todos os membros da comunidade Ethereum já devem ter e permite assinaturas para verificação posterior da transcrição. Cada conta deverá enviar pelo menos 3 transações para evitar a criação de novas contas apenas para essa cerimônia.</0><1>Entrar com o GitHub – esta opção é oferecida como uma alternativa para aqueles que estão mais distantes da comunidade mas que ainda gostariam de participar.</1></1>",
+        "content": "<p>A fim de reduzir os ataques Sybil contra a Cerimônia, o Sequenciador precisa verificar se você é um ser humano único (de alguma forma), caso contrário, uma pessoa pode enviar muitas contribuições diferentes, impedindo que outros tenham a oportunidade de contribuir.</p><1><0>Entrar com o Ethereum – essa é a escolha preferida, já que é algo que todos os membros da comunidade Ethereum já devem ter e permite assinaturas para verificação posterior da transcrição. Cada conta deverá enviar pelo menos 3 transações para evitar a criação de novas contas apenas para essa cerimônia.</0><1>Entrar com o GitHub – esta opção é oferecida como uma alternativa para aqueles que estão mais distantes da comunidade, mas que ainda gostariam de participar.</1></1>",
         "title": "Por que preciso entrar com o Ethereum ou o GitHub?"
       },
       "q14": {
@@ -118,22 +130,26 @@
     },
     "footer": {
       "audit": "Relatório da auditoria",
-      "copyright": "Construído pela Comunidade Ethereum - 2022",
+      "copyright": "Criado pela comunidade Ethereum – 2022",
       "documentation": "Documentação",
       "faq": "Perguntas frequentes"
     },
     "header": {
       "offline": "Offline",
       "online": "Online",
-      "sequencer": "Sequenciador"
+      "title": "Cerimônia de Teste",
+      "sequencer": "Sequenciador",
+      "totalContributions": "contribuições totais",
+      "participantsInLobby": "participantes na sala",
+      "waitTime": "tempo mínimo estimado de espera"
     },
     "landing": {
       "button": "Iniciar",
       "button-mobile": "Continuar no computador",
-      "description": "<0>Sussurros vindos das sombras falam de um poderoso espírito Dankshard, que abrirá o próximo capítulo de escalabilidade do Ethereum. Para invocar os seus poderes, uma Cerimônia precisa de sua contribuição. Este guia iluminado guiará você pelos gestos necessários para concluir o ritual.</0><1>A matemática mágica aguarda – você está pronto para adicionar sua cor à história?</1>",
+      "description": "<0>Sussurros vindos das sombras falam de um poderoso espírito Dankshard, que abrirá o próximo capítulo de escalabilidade do Ethereum. Para invocar os seus poderes, essa Cerimônia precisa de sua contribuição.</0><1>A matemática mágica aguarda – você está pronto para dar seu toque pessoal à história? Escolha um dos caminhos abaixo para iniciar o ritual:</1>",
       "learn-more": "↓ ou saiba mais abaixo ↓",
       "learn-more-mobile": "↓ saiba mais abaixo ↓",
-      "title": "GUIA DE <br/> INVOCAÇÃO"
+      "title": "GUIAS DE INVOCAÇÃO"
     },
     "language": {
       "ar": "Árabe",
@@ -141,7 +157,6 @@
       "de": "Alemão",
       "es": "Espanhol",
       "en": "Inglês",
-      "sim_en": "Inglês Simplificado",
       "fr": "Francês",
       "hi": "Hindu",
       "id": "Indonésio",
@@ -150,54 +165,72 @@
       "ko": "Coreano",
       "pt": "Português",
       "ru": "Russo",
+      "sk": "Eslovaco",
       "sw": "Suaíli",
       "tr": "Turco",
       "zh": "Chinês"
     },
+    "latestRecords": {
+      "title": "ÚLTIMAS CONTRIBUIÇÕES",
+      "button": "Ver todas as contribuições"
+    },
     "lobby": {
-      "description": "<0>Sua contribuição está pronta para ser aceita pelo Sequenciador. Deixe este guia em segundo plano e nós adicionaremos sua contribuição aos outros em breve.</0><1>Deixe este guia em aberto e ativo.</1>",
+      "description": "<0>Sua contribuição está pronta para ser aceita pelo Sequenciador. Deixe este guia em segundo plano e nós adicionaremos sua contribuição aos outros em breve.</0>",
+      "lobby_size": "participantes na sala",
       "title": "Aguardando para ser <br/> enviado"
     },
     "lobbyFull": {
       "button": "Retornar à página inicial",
-      "description": "<0>Há muitos invocadores no momento, volte mais tarde. Feche esta janela e tente novamente daqui a pouco para verificar se há um espaço disponível na sala de espera.</0>",
+      "description": "<0>Há muitos invocadores no momento, volte em algumas horas!</0>",
       "title": "Mágica <br/> em excesso"
     },
+    "otherResources": {
+      "ipfs": "Interface IPFS",
+      "hosted": "Interface hospedada",
+      "otherClients": "Outros clientes",
+      "writeYourOwn": "Escreva o seu próprio!"
+    },
     "record": {
-      "headers": "<0>Seq. #</0><1>Especificação do identificador</1><2>Assinaturas</2><3>Detalhes</3>",
-      "loading": "Carregando registros...",
+      "headers": "<0>ID dos participantes</0><1>Assinaturas</1>",
+      "loading": "Carregando transcrição...",
       "searchBar": "Pesquisar endereço, ENS, identificador do Github, #1, ...",
       "button": "Visualizar",
-      "title": "Registro",
+      "title": "Transcrição de Contribuições",
       "stats": {
         "lobby": "Tamanho da sala de espera:",
         "contributions": "Contribuições:",
         "address": "Endereço do Sequenciador:"
       },
       "transcriptModal": {
-        "title": "Detalhes da contribuição",
+        "title": "DETALHES DE CONTRIBUIÇÃO",
         "id": "ID do participante:",
-        "potpubkeys": "Chaves públicas PoT:",
+        "potpubkeys": "Chaves públicas dos Poderes do Tau:",
         "bls": "Assinaturas BLS:",
-        "ecdsa": "Assinatura ECDSA (opcional):"
+        "ecdsa": "Assinatura ECDSA (opcional):",
+        "potPubkeyTooltip": "Suas Chaves Públicas dos Poderes do Tau Pubkey representam a sua impressão digital exclusiva que protege o Ethereum. Ela foi gerada pelo seu segredo.",
+        "zero": {
+          "title": "Qual é essa contribuição?",
+          "description": "A contribuição da gênesis ajuda como ponto de partida para as que estão por vir. Ela não contém assinaturas BLS ou assinaturas ECDSA."
+        }
       },
       "signatureModal": {
-        "title": "Chave pública PoT:"
+        "title": "Chave pública dos Poderes do Tau:"
       }
     },
     "signin": {
-      "description": "<0>A Cerimônia requer almas de intenções puras. Invocadores mostram sua integridade desbloqueando um endereço que tenha pelo menos três transações enviadas.</0><1>Ele não envia fundos ou permite quaisquer contratos. Esse método também nos permite entregar um POAP após a Cerimônia.</1>",
+      "description": "<0>A Cerimônia requer almas de intenções puras. Invocadores mostram sua integridade desbloqueando com um endereço que tenha pelo menos três transações enviadas. Cada endereço somente pode ser usado uma vez.</0><1>Escolher o Ethereum não envia fundos ou permite quaisquer contratos. Esse método também permite entregar um POAP após a Cerimônia.</1>",
       "title": "ABRIR <br/> O CAMINHO",
       "unlockWithEthereum": "Desbloquear com o Ethereum <2></2>",
       "unlockWithGithub": "ou desbloquear com o Github"
     },
     "error": {
-      "notSameWallet": "Use a mesma carteira que você usou para entrar com o Ethereum",
+      "notSameWallet": "Use a mesma carteira que você usou para vincular sua contribuição",
+      "incorrectChainId": "Selecione a rede principal do Ethereum na sua carteira de assinatura",
       "pastSubgroupChecksFailed": "A verificação do subgrupo falhou na contribuição recebida. Reporte o problema imediatamente",
       "newSubgroupChecksFailed": "A verificação de subgrupo falhou na sua contribuição calculada. Verifique sua configuração e tente novamente",
       "tryContributeError": {
-        "rateLimited": "Sua chamada para o sequenciador chegou cedo demais. Lembre-se de que há um intervalo de tempo específico entre chamadas",
-        "unknownSessionId": "Talvez você tenha ficado na sala de espera mais tempo que o esperado. Recarregue e entre novamente com uma conta diferente",
+        "rateLimited": "A chamada para o sequenciador chegou cedo demais. Envie uma questão no Github",
+        "unknownSessionId": "Usuário desconhecido. Faça login novamente com uma conta diferente",
         "anotherContributionInProgress": "Há uma outra contribuição sendo calculada no momento. Aguarde a sua vez de contribuir",
         "unknownError": "Ocorreu um erro desconhecido: {{error}} . código: {{code}}"
       },

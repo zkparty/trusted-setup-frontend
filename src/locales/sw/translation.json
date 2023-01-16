@@ -2,22 +2,33 @@
   "translation": {
     "complete": {
       "button": "Angalia mchango wako",
-      "description": "<0>Umefaulu! Mwangwi zako zinawekwa pamoja na zingine milele katika Karamu ya Wito.</0>",
+      "gobackhome": "Rudi mwanzo",
+      "description": "<0>Umefaulu! Miangwi yako inawekwa kabisa pamoja na mingine katika Summoning Ceremony hii. Uaminifu wa Ceremony ni wa juu na wenye ushiriki mpana wa jamii - hakikisha kuwa umeshiriki hii na wengine.</0><1>Matokeo ya mwisho ya Ceremony hii yatatumiwa katika toleo jipya la Ethereum la siku zijazo ili kuwezesha Danksharding.</1>",
       "modal": {
         "acknowledgment": "UTHIBITISHAJI WA SIKWENSA",
         "checks": {
           "failedComputeSignature": "Sahihi haikuchakatwa vizuri",
           "failedSignature": "Sahihi ya sikwensa haina anwani ya rekoda",
           "failedWitness": "Shahidi hailingani na funguo za umma za PoT",
+          "tooltip": "Uchunguzi wa uadilifu unajumuisha kufanya chunguzi za kikundi kidogo katika data ya michango ya awali na ya baadaye, kulinganisha sifa za ushahidi wa risizi na Funguo za Umma za Powers of Tau na kuthibitisha sahihi ya sikwenza katika risiti.",
           "success": "Imepita"
         },
         "integrityChecks": "Uchunguzi wa uadilifu ",
-        "keys": "FUNGUO ZANGU",
+        "keys": "MAELEZO YA MICHANGO",
         "receipt": "Risiti ya mchango:",
-        "shareTwitter": "Shiriki kwenye Twitter",
+        "downloadReceipt": "Pakua Risiti",
         "signedBy": "Imetiwa sahihi na ",
         "timestamp": "Mchango ulikamilishwa saa:",
-        "tweet": "Nilitoa mchango kwenye KZG Ceremony ili kufahamu Ethereum kwa kutumia {{identity}}. Unaweza kufanya pia kupitia https://ceremony.ethereum.org @ethereum #KZGCeremony"
+        "identity": "Kitambulisho cha Mshiriki:",
+        "potPubkeys": "Fungo za Umma za Powers of Tau:",
+        "transcript": "hati kamili"
+      },
+      "share": "Shiriki kwenye Mitandao ya Jamii",
+      "shareModal": {
+        "title": "SHIRIKI KWENYE MITANDAO YA JAMII",
+        "shareTwitter": "Shiriki kwenye Twitter",
+        "shareLenster": "Shiriki kwenye Twitter",
+        "tweet": "Nimechangia tu kwenye KZG Ceremony ili kuboresha Ethereum kwa kutumia {{identity}} kwenye ceremony.ethereum.org"
       },
       "title": "Dankshard <br/> inasongea karibu"
     },
@@ -36,7 +47,8 @@
     },
     "doubleSign": {
       "button": "Tia saini",
-      "description": "<0>Saini hii inaunganisha kila mchango wa entropi wa Mwitaji kwenye anwani yake ya Ethereum.</0>",
+      "checkWallet": "Angalia pochi yako ili utie sahihi mcnango",
+      "description": "<0>Kutia sahihi hapa chini kunabana kila mchango wa entropi ya Summoner kwenye anwani yake ya Ethereum. Kisha washiriki wataelekezwa upya kwenye ukurasa wa \"Ingia ukitumia Ethereum\" na kisha kurudi kwenye kiolesura hiki kukamilisha hatua za mwisho za mchakato.</0>",
       "title": "Bana Mchango <br/> wako"
     },
     "entropyInput": {
@@ -46,9 +58,9 @@
       "title": "Ingizo la <br/> Entropi"
     },
     "explanation": {
-      "button": "Angalia michango",
-      "description": "<0>Mpangilio huu wa Kuaminika ni karamu ya wahusika wengi iliyoundwa ili kuzalisha SRS salama (mtungo ulioundwa wa rejeo) ili kutumiwa katika itifaki ya proto-danksharding. Sawa, hebu tutulie na tuzungumzie maneno hayo kwa kina zaidi.</0><1>Proto-danksharding (aka EIP-4844) ni mabadiliko yaliyopangwa kwenye itifaki ya Ethereum inayoruhusu data ya muamala kutoka kwenye mikusanyiko (Tabaka 2s) ili kuwakilishwa waziwazi kwenye Tabaka la 1 (mtandao mkuu). Manufaa ni ada za chini za muamala kwenye L2, uwezo mkubwa wa kubadilika na ufikiaji zaidi kwa watu wengi!</1><2>Usanidi Aminifu ni hatua ya maandalizi inayohitajika kwa mifumo fulani ya kriptografia kama vile mfumo wa ahadi mbalimbali ya KZG wa kutumiwa katika proto-danksharding. Kwa upande wetu, dhana ya uaminifu ni ile ambayo mchangiaji anahitaji ili kuficha siri yake kwa ufanisi ili matokeo yawe salama.</2><3>Ni karamu ya wahusika wengi: Kila mchangiaji anaunda siri na kufanya ukokotoaji ili kuichanganya na michango ya awali na kuzalisha matokeo yanayoweza kuwekwa hadharani na kupitishwa kwa mchangiaji anayefuata. Tunahitaji kulinda dhidi ya majaribio ya kudhibiti karamu, hivyo utahitaji akaunti ya Ethereum au GitHub iliyo na historia nzuri.</3>",
-      "title": "PROTO-DANKSHARDING <br/> NA KARAMU"
+      "description": "<0>Proto-danksharding (aka EIP-4844) ni mabadiliko yaliyopangwa kwenye itifaki ya Ethereum inayoanzisha hifadhi ya data ya ephemeral. Kwa sababu data haihitaji kuhifadhiwa na mtandao milele, itakuwa nafuu kutumia kuliko hifadhi ya kwenye mnyororo (yaani CALLDATA). Viunganishaji (Tabaka la 2) vinaweza kutumia hifadhi hii kuchapisha data ya miamala au ithibati kwenye Tabaka la 1 (mtandao mkuu). Faida ni ada za chini za miamala kwenye L2, kipimo cha juu na ufikiaji zaidi kwa watu!</0><1>Proto-danksharding inahitaji mfumo mpya wa kriptografia: Ahadi za KZG. Karamu hii wakati mwingine huitwa \"Mpangilio wa Kuaminika\", itazalisha mtungo wa rejeo wenye muundo (SRS) unaohitajika ili ahadi ziweze kufanya kazi. SRS ni salama mradi tu mshiriki mmoja katika karamu anaficha siri kwa ufanisi.</1><2>Ni karamu ya wahusika wengi: kila mchangiaji anaunda siri na kufanya ukokotoaji ili kuichanganya na michango ya awali. Kisha, matokeo yanawekwa hadharani na kuelekezwa kwa mchangiaji anayefuata. Ili kulinda dhidi ya majaribio ya kuvuruga karamu, washiriki wanahitaji anwani ya Ethereum au akaunti ya GitHub yenye historia ili kushiriki. Matokeo ya mwisho ya Ceremony yatajumuishwa katika toleo jipya la siku zijazo ili kusaidia kuboresha mtandao wa Ethereum</2>",
+      "title": "PROTO-DANKSHARDING <br/> NA KARAMU",
+      "subtitle": "hivi ni vitu gani?"
     },
     "faq": {
       "q1": {
@@ -68,7 +80,7 @@
         "title": "Je, inachukua muda gani kutoa mchango?"
       },
       "q13": {
-        "content": "<p>Ili kupunguza mashambulizi ya Sybil dhidi ya Karamu, Sikwensa inahitaji kuthibitisha kuwa wewe ni binadamu wa kipekee (kiasi fulani) la sivyo mtu mmoja anaweza kuwasilisha michango mingi tofauti itakayozuia wengine kupata zamu ya kutoa michango.</p><1><0>Ingia katika akaunti ukitumia Ethereum - Hili ni chaguo bora kwa kuwa ni kitu ambacho wanajumuia wote wa Ethereum wanapaswa kuwa nacho na huruhusu saini za uthibitishaji wa baadaye wa hati. Kila akaunti inahitajika kuwa imetuma angalau miamala 3 ili kuzuia kufungua akaunti mpya kwa ajili tu ya karamu hii.</0><1>Ingia katika akaunti ukitumia GitHub - Chaguo hili linatolewa kama njia mbadala kwa wale ambao wako mbali zaidi na jumuia lakini bado wangependa kushiriki.</1></1>",
+        "content": "<p>Ili kupunguza mashambulizi ya Sybil dhidi ya Karamu, Sikwensa inahitaji kuthibitisha kuwa wewe ni binadamu wa kipekee (kiasi fulani) la sivyo mtu mmoja anaweza kuwasilisha michango mingi tofauti itakayozuia wengine kupata zamu ya kutoa michango.</p><1><0>Ingia katika akaunti ukitumia Ethereum - Hili ni chaguo bora kwa kuwa ni kitu ambacho wanajumuia wote wa Ethereum wanapaswa kuwa nacho na huruhusu saini za uthibitishaji wa baadaye wa mchango. Kila akaunti inahitajika kuwa imetuma angalau miamala 3 ili kuzuia kufungua akaunti mpya kwa ajili tu ya karamu hii.</0><1>Ingia katika akaunti ukitumia GitHub - Chaguo hili linatolewa kama njia mbadala kwa wale ambao wako mbali zaidi na jumuia lakini bado wangependa kushiriki.</1></1>",
         "title": "Je, kwa nini ninahitaji kuingia katika akaunti kwa kutumia Ethereum au GitHub?"
       },
       "q14": {
@@ -118,22 +130,26 @@
     },
     "footer": {
       "audit": "Ripoti ya ukaguzi",
-      "copyright": "Imeundwa na Jumuiya ya Ethereum - 2022",
+      "copyright": "Imeundwa na Jumuia ya Ethereum - 2022",
       "documentation": "Nyaraka",
       "faq": "Maswali Yanayoulizwa Sana"
     },
     "header": {
       "offline": "Nje ya mtandao",
       "online": "Mtandaoni",
-      "sequencer": "Sikwensa"
+      "title": "Karamu ya Jaribio",
+      "sequencer": "Sikwensa",
+      "totalContributions": "michango ya jumla",
+      "participantsInLobby": "washiriki katika ukumbi",
+      "waitTime": "muda wa kusubiri wa chini zaidi uliokadiriwa"
     },
     "landing": {
       "button": "Anza",
       "button-mobile": "Endelea kwenye eneo kazi",
-      "description": "<0>Tetezi inasimulia roho mwenye nguvu Dankshard, atakayefungua sura inayofuata ya uboreshaji wa Ethereum. Ili kuzikusanya nguvu zake, Karamu inahitaji mchango wako. Mwongozo huu utakuongoza katika hatua muhimu za kukamilisha shughuli yenyewe.</0><1>Hisabati ya ubunifu inasubiri - uko tayari kuongeza ubunifu wako kwenye hadithi?</1>",
+      "description": "<0>Tetezi inasimulia roho mwenye nguvu Dankshard, atakayefungua sura inayofuata ya uboreshaji wa Ethereum. Ili kuzikusanya nguvu zake, Karamu inahitaji mchango wako.</0><1> Hisabati ya ubunifu inasubiri - uko tayari kuongeza rangi yako kwenye hadithi? Chagua moja ya njia zilizo hapa chini ili uanze utaratibu:</1>",
       "learn-more": "↓ au pata maelezo zaidi hapa chini ↓",
       "learn-more-mobile": "↓ pata maelezo zaidi hapa chini ↓",
-      "title": "MWONGOZO WA KUITA <br/>"
+      "title": "MWONGOZO WA KUITA"
     },
     "language": {
       "ar": "Kiarabu",
@@ -141,7 +157,6 @@
       "de": "Kijerumani",
       "es": "Kihispania",
       "en": "Kiingereza",
-      "sim_en": "Kiingereza Kilichorahisishwa",
       "fr": "Kifaransa",
       "hi": "Kihindi",
       "id": "Kiindonesia",
@@ -150,54 +165,72 @@
       "ko": "Kikorea",
       "pt": "Kireno",
       "ru": "Kirusi",
+      "sk": "Kislovaki",
       "sw": "Kiswahili",
       "tr": "Kituruki",
       "zh": "Kichina"
     },
+    "latestRecords": {
+      "title": "MICHANGO YA HIVI PUNDE",
+      "button": "Angalia mIchango yote"
+    },
     "lobby": {
-      "description": "<0>Mchango wako uko tayari kukubaliwa na Sikwensa. Tafadhali uache mwongozo huu wazi kwenye usuli na tutaongeza mchango wako kwa wengine hivi karibuni.</0><1>Tafadhali uache mwongozo huu wazi na ukifanya kazi.</1>",
+      "description": "<0>Mchango wako uko tayari kukubaliwa na Sikwensa. Tafadhali uache mwongozo huu wazi kwenye usuli na tutaongeza mchango wako kwa wengine hivi karibuni.</0>",
+      "lobby_size": "washiriki katika ukumbi",
       "title": "Inasubiri <br/> kuwasilishwa"
     },
     "lobbyFull": {
       "button": "Rudi nyumbani",
-      "description": "<0>Waitaji wengi sana wakati hii, tafadhali rudi baadaye. Funga dirisha hili na ujaribu tena baada ya muda kidogo ili uangalie ikiwa kuna nafasi katika ukumbi.</0>",
+      "description": "<0>Kuna samona nyingi sana wakati huu, tafadhali rudi baada ya saa chache!</0>",
       "title": "Ubunifu mwingi <br/> sana"
     },
+    "otherResources": {
+      "ipfs": "Kiolesura cha IPFS",
+      "hosted": "Kiolesura cha Hosted",
+      "otherClients": "Wateja Wengine",
+      "writeYourOwn": "Andika Yako!"
+    },
     "record": {
-      "headers": "<0>Rek. #</0><1>Maelezo ya kitambulishi</1><2>Saini</2><3>Maelezo</3>",
-      "loading": "Inapakia rekodi...",
+      "headers": "<0>Kitambulisho cha Mshiriki</0><1>Sahihi</1>",
+      "loading": "Inapakia hati...",
       "searchBar": "Tafuta anwani, ENS, kishikizi cha github, #1, ...",
       "button": "Angalia",
-      "title": "Rekodi",
+      "title": "Hati ya Michango",
       "stats": {
         "lobby": "Ukubwa wa ukumbi:",
         "contributions": "Michango:",
         "address": "Anwani ya Sequencer:"
       },
       "transcriptModal": {
-        "title": "Maelezo ya mchango",
+        "title": "MAELEZO YA MICHANGO",
         "id": "Kitambulisho cha mshiriki:",
-        "potpubkeys": "Funguo za Umma za Pot:",
+        "potpubkeys": "Funguo za Umma za Powers of Tau:",
         "bls": "Saini za BLS:",
-        "ecdsa": "Saini ya ECDSA (si lazima):"
+        "ecdsa": "Saini ya ECDSA (si lazima):",
+        "potPubkeyTooltip": "Ufunguo wako wa umma wa Powers of Tau unawakilisha alama yako ya kidole ya kipekee inayolinda Ethereum. Ilizalishwa na siri yako.",
+        "zero": {
+          "title": "Mchango huu ni gani?",
+          "description": "Mwanzo wa mchango husaidia kama mahali pa kuanzia kwa wanaokuja. Hauna sahihi za BLS wala sahihi za ECDSA."
+        }
       },
       "signatureModal": {
-        "title": "Ufunguo wa Umma za PoT:"
+        "title": "Funguo za Umma za Powers of Tau:"
       }
     },
     "signin": {
-      "description": "<0>Karamu inahitaji roho za nia safi. Waitaji wanaonyesha uadilifu wao kwa kufungua kwa kutumia anwani iliyo na angalau miamala mitatu iliyotumwa.</0><1>Haitumi fedha zozote wala kuruhusu kandarasi zozote. Mbinu hii pia huturuhusu kutoa POAP baada ya Karamu.</1>",
+      "description": "<0>Karamu inahitaji roho za nia safi. Samona huonyesha uadilifu wao kwa kufungua kwa kutumia anwani iliyo na angalau miamala mitatu iliyotumwa. Kila anwani inaweza kutumika mara moja pekee.</0><1>Kuchagua Ethereum hakutumi fedha zozote wala kuruhusu mikataba yoyote. Mbinu hii pia huruhusu POAP kutolewa baada ya Karamu.</1>",
       "title": "FUNGUA <br/> NJIA",
       "unlockWithEthereum": "Fungua ukitumia Ethereum <2></2>",
       "unlockWithGithub": "au ufungue ukitumia Github"
     },
     "error": {
-      "notSameWallet": "Tumia pochi ileile uliyotumia kuingia kwa Ethereum",
+      "notSameWallet": "Tumia pochi ileile uliyotumia kubana mchango wako",
+      "incorrectChainId": "Chagua Mtandao Mkuu wa Ethereum katika pochi yako ya kutia sahihi",
       "pastSubgroupChecksFailed": "Ukaguzi wa kikundi kidogo haukufaulu katika mchango uliopokea. Tafadhali uripoti mara moja",
       "newSubgroupChecksFailed": "Ukaguzi wa kundi ndogo haukufaulu katika mchango uliokokotoa. Tafadhali kagua mipangilio yako na ujaribu tena",
       "tryContributeError": {
-        "rateLimited": "Simu uliyopiga kwa sikwensa ilikuja mapema sana. Kumbuka kwamba kuna wakati mahususi baina ya simu",
-        "unknownSessionId": "Huenda umechukua muda zaidi kuliko ilivyotarajiwa katika ukumbi. Tafadhali pakia tena na uingie tena ukitumia akaunti tofauti",
+        "rateLimited": "Simu kwa sikwensa ilikuja mapema sana. Wasilisha tatizo katika Github",
+        "unknownSessionId": "Mtumiaji hajulikani. Tafadhali ingia tena ukitumia akaunti tofauti",
         "anotherContributionInProgress": "Kuna mchango mwingine unaochakatwa kwa sasa. Tafadhali subiri zamu yako ili utoe mchango",
         "unknownError": "Kumekuwa na hitilafu isiyojulikana: {{error}} . msimbo: {{code}}"
       },

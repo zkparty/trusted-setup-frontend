@@ -2,22 +2,33 @@
   "translation": {
     "complete": {
       "button": "Lihat kontribusi Anda",
-      "description": "<0>Berhasil! Gema Anda menyatu secara permanen dengan yang lain dalam Upacara Pemanggilan ini.</0>",
+      "gobackhome": "Kembali ke beranda",
+      "description": "<0>Berhasil! Gema dari kalian menyatu secara permanen dengan yang lain dalam Upacara Pemanggilan ini. Kredibilitas upacara tertinggi dengan partisipasi komunitas luas - pastikan membagikannya kepada yang lain.</0><1>Output akhir Upacara ini akan digunakan dalam peningkatan Ethereum di masa yang akan datang untuk mengaktifkan Danksharding.</1>",
       "modal": {
         "acknowledgment": "PENGAKUAN SEQUENCER",
         "checks": {
           "failedComputeSignature": "Tanda tangan tidak diproses dengan benar",
           "failedSignature": "Tanda tangan sequencer tidak berisi alamat sequencer",
-          "failedWitness": "Saksi tidak cocok dengan kunci publik PoT",
+          "failedWitness": "Saksi tidak cocok dengan kunci publik Powers of Tau",
+          "tooltip": "Pemeriksaan integritas terdiri dari melakukan pemeriksaan subgrup dalam data kontribusi sebelumnya dan sesudahnya, membandingkan atribut saksi tanda terima dengan Kunci publik Powers of Tau, dan memvalidasi tanda tangan sequencer dalam tanda terima.",
           "success": "Lulus"
         },
         "integrityChecks": "Pemeriksaan integritas ",
-        "keys": "KUNCI SAYA",
+        "keys": "DETAIL KONTRIBUSI",
         "receipt": "Tanda terima kontribusi:",
-        "shareTwitter": "Bagikan di Twitter",
+        "downloadReceipt": "Unduh Tanda Terima",
         "signedBy": "Ditandatangani oleh ",
         "timestamp": "Kontribusi selesai pada:",
-        "tweet": "Saya baru saja berkontribusi pada Upacara KZG untuk menskalakan Ethereum menggunakan {{identity}}. Anda juga dapat melakukannya di https://ceremony.ethereum.org @ethereum #KZGCeremony"
+        "identity": "ID Peserta:",
+        "potPubkeys": "Kunci publik Powers of Tau:",
+        "transcript": "transkrip lengkap"
+      },
+      "share": "Bagikan di Sosial",
+      "shareModal": {
+        "title": "BAGIKAN DI SOSIAL",
+        "shareTwitter": "Bagikan di Twitter",
+        "shareLenster": "Bagikan di Lenster",
+        "tweet": "Saya baru saja berkontribusi pada Upacara KZG untuk menskalakan Ethereum menggunakan {{identity}} di ceremony.ethereum.org"
       },
       "title": "Dankshard <br/> semakin mendekat"
     },
@@ -36,19 +47,20 @@
     },
     "doubleSign": {
       "button": "Tanda tangani",
-      "description": "<0>Tanda tangan ini mengikat setiap kontribusi entropi Pemanggil ke alamat Ethereum mereka.</0>",
+      "checkWallet": "Periksa dompet Anda untuk menandatangani kontribusi",
+      "description": "<0>Menandatangani di bawah ini akan mengikat setiap kontribusi entropi Pemanggil ke alamat Ethereum mereka. Peserta kemudian akan diarahkan kembali ke halaman \"Masuk dengan Ethereum\", lalu kembali ke antarmuka ini untuk menyelesaikan langkah akhir proses tersebut.</0>",
       "title": "Ikat <br/> Kontribusi Anda"
     },
     "entropyInput": {
       "button": "Kirim",
-      "placeholder": "Secret",
+      "placeholder": "Rahasia",
       "description": "<0>Upacara memerlukan tiga input acak dari setiap Pemanggil.</0><1><0>Secret:</0> Potongan diri Anda dalam bentuk teks, dengan karakter acak ditambahkan. Harapan untuk masa depan, atau nama seseorang yang disayangi.</1><2><0>Sigil:</0> Lacak beberapa elemen panduan dengan kursor Anda - antarmuka ini akan menangkap jalur unik Anda.</2><3><0>Sampel:</0> Browser Anda akan menghasilkan keacakan sendiri di latar belakang.</3>",
       "title": "Entropi <br/> Entri"
     },
     "explanation": {
-      "button": "Lihat kontribusi",
-      "description": "<0>Pengaturan Tepercaya ini adalah upacara yang diikuti beberapa pihak yang dirancang untuk menghasilkan SRS (string referensi terstruktur) aman untuk digunakan dalam protokol proto-danksharding. Baiklah, mari kita perlambat dan bahas tentang istilah-istilah tersebut dengan lebih rinci.</0><1>Proto-danksharding (alias EIP-4844) adalah perubahan yang direncanakan pada protokol Ethereum yang memungkinkan data transaksi dari rollup (Lapisan 2s) diwakili secara ringkas pada Lapisan 1 (jaringan utama). Keuntungannya adalah biaya transaksi yang lebih rendah pada L2, skalabilitas yang lebih besar, dan aksesibilitas yang lebih banyak ke lebih banyak orang!</1><2>Pengaturan Tepercaya adalah langkah persiapan yang diperlukan untuk skema kriptografi tertentu seperti skema komitmen polinomial KZG yang akan digunakan dalam proto-danksharding. Pada kasus kita, asumsi kepercayaannya adalah yang diperlukan kontributor agar berhasil menyembunyikan secret mereka agar hasilnya aman.</2><3>Ini adalah upacara yang diikuti beberapa pihak: Masing-masing kontributor membuat secret dan menjalankan perhitungan untuk menggabungkannya dengan kontribusi sebelumnya dan menghasilkan hasil yang dapat dipublikasikan dan diteruskan ke kontributor berikutnya. Kita perlu waspada terhadap upaya untuk mengontrol upacara, jadi Anda memerlukan akun Ethereum atau GitHub dengan riwayat yang sudah mapan.</3>",
-      "title": "PROTO-DANKSHARDING <br/> DAN UPACARA"
+      "description": "<0>Proto-danksharding (alias EIP-4844) adalah perubahan yang direncanakan pada protokol Ethereum yang memperkenalkan penyimpanan data sementara. Karena data tidak perlu disimpan selamanya oleh jaringan, maka ini akan lebih murah digunakan daripada penyimpanan di dalam rantai (yaitu CALLDATA). Rollup (Lapisan 2) dapat menggunakan penyimpanan ini untuk memposting data atau bukti transaksi kembali ke Lapisan 1 (jaringan utama). Keuntungannya adalah biaya transaksi yang lebih rendah pada L2, skalabilitas yang lebih besar, dan aksesibilitas yang lebih besar ke lebih banyak orang!</0><1>Proto-danksharding memerlukan skema kriptografi baru: Komitmen KZG. Upacara ini, terkadang disebut \"Pengaturan Tepercaya\", akan menghasilkan string referensi terstruktur (SRS) yang diperlukan agar komitmen berfungsi. SRS aman selama salah satu peserta berhasil menyembunyikan rahasianya.</1><2>Ini adalah upacara yang diikuti banyak pihak: setiap kontributor membuat rahasia dan menjalankan perhitungan untuk menggabungkannya dengan kontribusi sebelumnya. Kemudian, outputnya dipublikasikan dan diteruskan ke kontributor berikutnya. Untuk mencegah upaya merusak upacara, peserta membutuhkan alamat Ethereum atau akun GitHub dengan riwayat yang sudah mapan untuk berpartisipasi. Output akhir Upacara akan disertakan dalam peningkatan di masa yang akan datang untuk membantu menskalakan jaringan Ethereum</2>",
+      "title": "PROTO-DANKSHARDING <br/> DAN UPACARA",
+      "subtitle": "apa ini?"
     },
     "faq": {
       "q1": {
@@ -68,7 +80,7 @@
         "title": "Berapa lama waktu yang dibutuhkan untuk berkontribusi?"
       },
       "q13": {
-        "content": "<p>Untuk mengurangi serangan Sybil terhadap Upacara, Sequencer perlu memverifikasi bahwa Anda adalah manusia yang unik (agak unik), jika tidak, satu orang dapat mengirimkan beberapa kontribusi berbeda yang menghalangi orang lain mendapat giliran untuk berkontribusi.</p><1><0>Masuk dengan Ethereum - Ini adalah pilihan yang lebih disukai karena merupakan sesuatu yang harus dimiliki oleh semua anggota komunitas Ethereum dan memungkinkan tanda tangan untuk verifikasi transkrip di kemudian hari. Setiap akun diwajibkan mengirim minimal 3 transaksi untuk mencegah penambahan akun baru hanya untuk upacara ini.</0><1>Masuk dengan GitHub - Opsi ini ditawarkan sebagai alternatif bagi mereka yang lebih jauh dari komunitas tetapi masih ingin berpartisipasi.</1></1>",
+        "content": "<p>Untuk mengurangi serangan Sybil terhadap Upacara, Sequencer perlu memverifikasi bahwa Anda adalah manusia yang unik (agak unik), jika tidak, satu orang dapat mengirimkan beberapa kontribusi berbeda yang menghalangi orang lain mendapat giliran untuk berkontribusi.</p><1><0>Masuk dengan Ethereum - Ini adalah pilihan yang lebih disukai karena merupakan sesuatu yang harus dimiliki oleh semua anggota komunitas Ethereum dan memungkinkan tanda tangan untuk verifikasi kontribusi di kemudian hari. Setiap akun diwajibkan mengirim minimal 3 transaksi untuk mencegah penambahan akun baru hanya untuk upacara ini.</0><1>Masuk dengan GitHub - Opsi ini ditawarkan sebagai alternatif bagi mereka yang lebih jauh dari komunitas tetapi masih ingin berpartisipasi.</1></1>",
         "title": "Mengapa saya harus masuk dengan Ethereum atau GitHub?"
       },
       "q14": {
@@ -118,22 +130,26 @@
     },
     "footer": {
       "audit": "Laporan audit",
-      "copyright": "Dibuat oleh Komunitas Ethereum 2022",
+      "copyright": "Dibuat oleh Komunitas Ethereum - 2022",
       "documentation": "Dokumentasi",
       "faq": "PERTANYAAN YANG SERING DITANYAKAN"
     },
     "header": {
       "offline": "Offline",
       "online": "Online",
-      "sequencer": "Sequencer"
+      "title": "Upacara Pengujian",
+      "sequencer": "Sequencer",
+      "totalContributions": "kontribusi total",
+      "participantsInLobby": "peserta di lobi",
+      "waitTime": "perkiraan waktu tunggu min"
     },
     "landing": {
       "button": "Mulai",
       "button-mobile": "Lanjutkan di desktop",
-      "description": "<0>Bisikan dari bayangan memberi tahu tentang semangat Dankshard, yang akan membuka bab berikutnya tentang skalabilitas Ethereum. Untuk memanggil kuasanya, Upacara memerlukan kontribusi Anda. Panduan yang menerangi ini akan memandu Anda dalam gerakan yang diperlukan untuk menyelesaikan ritual.</0><1>Matematika ajaib sudah menunggu - siap menambahkan warna Anda ke dalam cerita?</1>",
+      "description": "<0>Bisikan dari bayangan memberi tahu tentang semangat Dankshard, yang akan membuka bab berikutnya tentang skalabilitas Ethereum. Untuk memanggil kuasanya, Upacara ini memerlukan kontribusi Anda.</0><1>Matematika yang ajaib sudah menunggu - siap menambahkan warna Anda ke dalam cerita? Pilih salah satu jalur di bawah ini untuk memulai ritual:</1>",
       "learn-more": "↓ atau pelajari selengkapnya di bawah ini ↓",
       "learn-more-mobile": "↓ pelajari selengkapnya di bawah ini ↓",
-      "title": "PANDUAN <br/> PEMANGGILAN"
+      "title": "PANDUAN PEMANGGILAN"
     },
     "language": {
       "ar": "Bahasa Arab",
@@ -141,7 +157,6 @@
       "de": "Bahasa Jerman",
       "es": "Bahasa Spanyol",
       "en": "Bahasa Inggris",
-      "sim_en": "Bahasa Inggris yang disederhanakan",
       "fr": "Bahasa Prancis",
       "hi": "Bahasa Hindi",
       "id": "Bahasa Indonesia",
@@ -150,54 +165,72 @@
       "ko": "Bahasa Korea",
       "pt": "Bahasa Portugis",
       "ru": "Bahasa Rusia",
+      "sk": "Bahasa Slowakia",
       "sw": "Bahasa Swahili",
       "tr": "Bahasa Turki",
       "zh": "Bahasa Mandarin"
     },
+    "latestRecords": {
+      "title": "KONTRIBUSI TERBARU",
+      "button": "Lihat semua kontribusi"
+    },
     "lobby": {
-      "description": "<0>Kontribusi Anda siap untuk diterima oleh Sequencer. Biarkan panduan ini terbuka di latar belakang dan kami akan segera menambahkan kontribusi Anda ke yang lain.</0><1>Biarkan panduan ini terbuka dan aktif.</1>",
+      "description": "<0>Kontribusi Anda siap untuk diterima oleh Sequencer. Biarkan panduan ini terbuka di latar belakang dan kami akan segera menambahkan kontribusi Anda ke yang lain.</0>",
+      "lobby_size": "peserta di lobi",
       "title": "Menunggu untuk <br/> dikirimkan"
     },
     "lobbyFull": {
       "button": "Kembali ke beranda",
-      "description": "<0>Terlalu banyak pemanggil untuk saat ini, kembali lagi nanti. Tutup jendela ini dan coba lagi dalam beberapa saat untuk memeriksa apakah ada ruang yang tersedia di lobi.</0>",
+      "description": "<0>Ada terlalu banyak pemanggil pada saat ini, harap kembali lagi dalam beberapa jam!</0>",
       "title": "Terlalu banyak <br/> keajaiban"
     },
+    "otherResources": {
+      "ipfs": "Antarmuka IPFS",
+      "hosted": "Antarmuka yang Dihosting",
+      "otherClients": "Klien Lainnya",
+      "writeYourOwn": "Tulis Milik Anda Sendiri!"
+    },
     "record": {
-      "headers": "<0>Seq. #</0><1>Spesifikasi pengenal</1><2>Tanda tangan</2><3>Detail</3>",
-      "loading": "Memuat catatan...",
+      "headers": "<0>ID Peserta</0><1>Tanda Tangan</1>",
+      "loading": "Memuat transkrip...",
       "searchBar": "Cari alamat, ENS, handel github, #1, ...",
       "button": "Lihat",
-      "title": "Catat",
+      "title": "Transkrip Kontribusi",
       "stats": {
         "lobby": "Ukuran lobi:",
         "contributions": "Kontribusi:",
         "address": "Alamat sequencer:"
       },
       "transcriptModal": {
-        "title": "Detail kontribusi",
+        "title": "DETAIL KONTRIBUSI",
         "id": "ID Peserta:",
-        "potpubkeys": "Kunci Publik Pot:",
+        "potpubkeys": "Kunci publik Powers of Tau:",
         "bls": "Tanda Tangan BLS:",
-        "ecdsa": "Tanda Tangan ECDSA (opsional):"
+        "ecdsa": "Tanda Tangan ECDSA (opsional):",
+        "potPubkeyTooltip": "Kunci publik Powers of Tau mewakili sidik jari unik Anda yang mengamankan Ethereum. Kunci publik ini dihasilkan oleh rahasia Anda.",
+        "zero": {
+          "title": "Apa kontribusi ini?",
+          "description": "Kontribusi genesis membantu sebagai titik awal untuk yang akan datang. Ini tidak berisi tanda tangan BLS atau tanda tangan ECDSA."
+        }
       },
       "signatureModal": {
-        "title": "Kunci Publik PoT:"
+        "title": "Kunci publik Powers of Tau:"
       }
     },
     "signin": {
-      "description": "<0>Upacara memerlukan jiwa dengan niat murni. Pemanggil menunjukkan integritas mereka dengan membuka alamat yang memiliki minimal tiga transaksi terkirim.</0><1>Tindakan ini tidak mengirimkan dana apa pun atau mengizinkan kontrak apa pun. Metode ini juga memungkinkan kami mengirimkan POAP setelah Upacara.</1>",
+      "description": "<0>Upacara memerlukan jiwa dengan niat murni. Pemanggil menunjukkan integritas mereka dengan membuka alamat yang memiliki minimal tiga transaksi terkirim. Setiap alamat hanya dapat digunakan sekali.</0><1>Memilih Ethereum tidak mengirim dana apa pun atau mengizinkan kotak apa pun. Metode ini juga mengizinkan POAP dikirimkan setelah Upacara.</1>",
       "title": "BUKA <br/> JALANNYA",
       "unlockWithEthereum": "Buka dengan Ethereum <2></2>",
       "unlockWithGithub": "atau buka dengan Github"
     },
     "error": {
-      "notSameWallet": "Gunakan dompet yang sama seperti yang digunakan untuk masuk dengan Ethereum",
+      "notSameWallet": "Gunakan dompet yang sama seperti yang digunakan untuk mengikat kontribusi Anda",
+      "incorrectChainId": "Pilih Jaringan Utama Ethereum dalam dompet penandatanganan Anda",
       "pastSubgroupChecksFailed": "Pemeriksaan subgrup gagal dalam kontribusi yang Anda terima. Segera laporkan",
       "newSubgroupChecksFailed": "Pemeriksaan subgrup gagal dalam kontribusi yang dihitung. Periksa pengaturan Anda dan coba lagi",
       "tryContributeError": {
-        "rateLimited": "Pemanggilan Anda ke sequencer datang terlalu dini. Ingatlah bahwa ada interval waktu tertentu antar panggilan",
-        "unknownSessionId": "Anda mungkin menghabiskan lebih banyak waktu dari yang diharapkan di lobi. Muat ulang dan masuk kembali dengan akun lain",
+        "rateLimited": "Panggilan kepada sequencer datang terlalu dini. Sampaikan masalah di Github",
+        "unknownSessionId": "Pengguna tidak dikenal. Harap masuk kembali dengan akun lain",
         "anotherContributionInProgress": "Ada kontribusi lain yang sedang dihitung untuk saat ini. Harap tunggu giliran Anda untuk berkontribusi",
         "unknownError": "Terjadi kesalahan yang tidak diketahui: {{error}} . kode: {{code}}"
       },
