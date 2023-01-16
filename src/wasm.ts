@@ -61,4 +61,5 @@ class Wasm {
   }
 }
 
-export default new Wasm()
+const wasm = new Wasm()
+export default wasm
