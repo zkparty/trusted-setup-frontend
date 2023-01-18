@@ -18,6 +18,7 @@ import { useAuthStore } from '../store/auth'
 import HeaderJustGoingBack from '../components/headers/HeaderJustGoingBack'
 import useSequencerStatus from '../hooks/useSequencerStatus'
 import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import { ErrorRes } from '../types'
 
 const LobbyPage = () => {
@@ -94,10 +95,22 @@ const LobbyPage = () => {
               </PageTitle>
               <TextSection>
                 {showError && <ErrorMessage>{showError}</ErrorMessage>}
-                <Description>
+                <Desc>
+                  <Bold>{45} </Bold>
+                  <Trans i18nKey="lobby.average">
+                    average contribution (s)
+                  </Trans>
+                </Desc>
+                <Desc>
                   <Bold>{data?.lobby_size} </Bold>
-                  <Trans i18nKey="looby.lobby_size">
-                    participants in the lobby.
+                  <Trans i18nKey="lobby.lobby_size">
+                    participants in the lobby
+                  </Trans>
+                </Desc>
+                <Description>
+                  <Bold>{"1.6%"} </Bold>
+                  <Trans i18nKey="lobby.chances">
+                    chances of contributing in the next hour
                   </Trans>
                 </Description>
                 <Trans i18nKey="lobby.description">
@@ -115,5 +128,9 @@ const LobbyPage = () => {
     </>
   )
 }
+
+const Desc = styled(Description)`
+  margin-bottom: 5px;
+`
 
 export default LobbyPage
