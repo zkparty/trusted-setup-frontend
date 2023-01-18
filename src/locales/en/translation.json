@@ -10,7 +10,7 @@
           "failedComputeSignature": "Signature was not processed correctly",
           "failedSignature": "Sequencer signature does not contain sequencer address",
           "failedWitness": "Witness does not match Powers of Tau pubkey",
-          "tooltip": "The integrity checks consist of performing the subgroup checks in the previous and post contribution data, comparing the receipt witness attributes with your Powers of Tau Pubkeys and validating the sequencer signature in the receipt.",
+          "tooltip": "Integrity checks perform subgroup checks in the previous and post contribution data, compare the receipt witness attributes with your Powers of Tau Pubkeys, and validate the sequencer signature in the receipt.",
           "success": "Passed"
         },
         "integrityChecks": "Integrity checks ",
@@ -58,25 +58,25 @@
       "title": "Entropy <br/> Entry"
     },
     "explanation": {
-      "description": "<0>Proto-danksharding (aka EIP-4844) is a planned change to the Ethereum protocol which introduces ephemeral data storage. Because the data does not need to be stored by the network forever, it will be cheaper to use than on-chain storage (i.e. CALLDATA). Rollups (Layer 2s) can use this storage to post transaction data or proofs back to Layer 1 (mainnet). The benefits are lower transaction fees on the L2, greater scalability and more accessibility to more people!</0><1>Proto-danksharding requires a new cryptographic scheme: KZG Commitments. This ceremony, sometimes called a \"Trusted Setup\", will generate a structured reference string (SRS) which is needed for the commitments to work. An SRS is secure as long as one participant in the ceremony successfully conceals their secret.</1><2>It's a multi-party ceremony: each contributor creates a secret and runs a computation to mix it with previous contributions. Then, the output is made public and passed to the next contributor. To guard against attempts to corrupt the ceremony, participants need an Ethereum address or GitHub account with an established history to participate. The final output of the Ceremony will be included in a future upgrade to help scale the Ethereum network</2>",
+      "description": "<0>Proto-danksharding (aka EIP-4844) is a planned change to the Ethereum protocol which introduces ephemeral data storage. Because the data does not need to be stored by the network forever, it will be cheaper to use than on-chain storage (i.e. CALLDATA). Rollups (Layer 2s) can use this storage to post transaction data or proofs back to Layer 1 (mainnet). The benefits are lower transaction fees on the L2, greater scalability and more accessibility to more people!</0><1>Proto-danksharding requires a new cryptographic scheme: KZG Commitments. This ceremony, sometimes called a \"Trusted Setup\", will generate a structured reference string (SRS) which is needed for the commitments to work. An SRS is secure as long as at least one participant in the ceremony successfully conceals their secret.</1><2>This is a multi-party ceremony: each contributor creates a secret and runs a computation to mix in with previous contributions. Then, the output is made public and passed to the next contributor. To guard against attempts to corrupt the ceremony, participants need an Ethereum address or GitHub account with an established history to participate. The final output of the Ceremony will be included in a future upgrade to help scale the Ethereum network.</2>",
       "title": "PROTO-DANKSHARDING <br/> AND THE CEREMONY",
       "subtitle": "what are these?"
     },
     "faq": {
       "q1": {
-        "content": "<0>The Ethereum community is scaling to global accessibility through <2>Layer-2s (L2s)</2>. L2s increase the total block space available to users while still maintaining the security offered by the Ethereum Layer 1 (L1).</0><1>L2s need to publish a lot of data on Ethereum, and the network currently charges high fees for doing so. To fix this, Ethereum will create a new data layer, often referred to as <1>sharding</1>. This provides what is called \"data availability\" guarantees to L2 users. The L1 only holds the data for a limited time, which means we can scale the chain without sacrificing decentralization for smaller L1 node operators.</1><2>The current leading design for this is called Danksharding. The rollout for this will happen in several steps, with the first one being <2>EIP-4844</2>, also known as ProtoDanksharding. </2>",
-        "title": "What is EIP-4844, a.k.a. Proto-Danksharding, and how does it relate to scaling Ethereum"
+        "content": "<0>The Ethereum community is scaling to global accessibility through <2>Layer-2s (L2s)</2>. L2s increase the total block space available to users while still maintaining the security offered by the Ethereum Layer 1 (L1).</0><1>L2s publish a lot of data on Ethereum, and the network currently charges high fees for doing so. To fix this, Ethereum will create a new data layer, often referred to as <1>sharding</1>. This provides what is called \"data availability\" guarantees to L2 users. The L1 only holds the data for a limited time, which means we can scale the chain without sacrificing decentralization for smaller L1 node operators.</1><2>The current leading design for this is called Danksharding. The rollout for this will happen in several steps, with the first one being <2>EIP-4844</2>, also known as ProtoDanksharding. </2>",
+        "title": "What is EIP-4844 (aka Proto-Danksharding) and how does it relate to scaling Ethereum?"
       },
       "q10": {
-        "content": "<p>The ceremony has a \"1-of-N\" trust assumption, which means that only a single participant in the entire ceremony needs to have not revealed their secret input for everything to be secure.</p><p>This means that every participant would have to strip apart the software that they are using to contribute, get that software to give them the secret, and then collude with every single other participant to reconstruct the final secret.</p><p>A more realistic failure mode is a common bug which leaks the randomness. To combat this, this site has been audited and there are alternative implementations of the contribution software built on entirely different software stacks.</p><p>This is why there will be thousands of participants using different pieces of software on different operating systems to help prevent single points of failure both in the people and hardware/software.</p>",
-        "title": "What needs to go wrong for the safety of the ceremony to break?"
+        "content": "<p>The ceremony has a \"1-of-N\" trust assumption, which means that only a single participant in the entire ceremony needs to destroy their secret input for everything to be secure.</p><p>This means that every participant would have to strip apart the software that they are using to contribute, get that software to give them the secret, and then collude with every single other participant to reconstruct the final secret.</p><p>A more realistic failure mode is a common bug which leaks the randomness. To combat this, this site has been audited and there are alternative implementations of the contribution software built on entirely different software stacks.</p><p>This is why there will be thousands of participants using different pieces of software on different operating systems to help prevent single points of failure both in the people and hardware/software.</p>",
+        "title": "What needs to go wrong for the safety of the Ceremony to break?"
       },
       "q11": {
         "content": "<p>Should the secret somehow be extracted from the Powers of Tau, an attacker would be able to make arbitrary claims about the data in EIP-4844. This effectively would break all services & applications dependent on EIP-4844 blob data.</p>",
-        "title": "What attacks are possible in this situation?"
+        "title": "What attacks are possible if the Ceremony is compromised?"
       },
       "q12": {
-        "content": "<p>Depending on how many others are trying to contribute at the same time, you could end up waiting a while for your turn to come up to contribute. Once it is your turn, it should only take less than 3 minutes to complete the contribution with a standard laptop and internet connection.</p>",
+        "content": "<p>Depending on how many others are trying to contribute at the same time, you could end up waiting a while for your turn to come up to contribute. If that's the case, consider coming back when there are fewer contributors waiting in the lobby. Once it is your turn, it should take less than 3 minutes to complete the contribution with a standard laptop and internet connection.</p>",
         "title": "How long does it take to contribute?"
       },
       "q13": {
@@ -95,16 +95,20 @@
         "content": "<p>While the processing power of some mobile devices is sufficient to participate in this ceremony, many mobile browsers don't handle WASM well, lock the screen and otherwise downclock the CPU before the computation could complete, and generally there a lot of variance between devices which is hard to account for.</p>",
         "title": "Why can't I contribute on a mobile device?"
       },
+      "q17": {
+        "content": "<p>The first contribution period will last for roughly two months, running Friday the 13th until March 13th 2023. Following that, there will be a special contribution period for bespoke implementations and unique entropy generation which may require additional support. \n\n After both of these are concluded, the Sequencer will revert to accept general contributions until EIP-4844 is ready to be scheduled for a network upgrade. Once this point has been reached, the Sequencer will stop accepting new contributions and produce its final output. There will be at least one public verification that this is the correct output - individuals are also encouraged to verify this on their own as well.</p>",
+        "title": "How long will the Ceremony run for?"
+      },
       "q2": {
-        "content": "<0>Ceremonies use secret inputs to produce an output in a way that makes it impossible to reverse-engineer and discover the initial secrets. </0><p>Here's a very brief summary of how they work: </p><2><0>Participant 1 chooses a random number (eg 5.) and then runs a computation on it.</0><1>The output from that computation is passed to Participant 2, where they repeat Step 1 with their own secret input (e.g. 3) and mix it with the output from the 1st Participant (eg. 5x3=15).</1><2>This repeats until there is a sufficient number of participants, at which point the last output in the sequence becomes the final output.</2></2><p>Ceremonies have also been called \"Trusted Setups,\" most famously used by Zcash to bootstrap their privacy features. However, it can also be used to add scalability mechanisms, as Ethereum is doing.</p><4><0>Carl Beekhuizen's Devcon Talk</0> on this Ceremony explains both simply and in-depth how and why this ceremony works. Or, you can explore the <4>ceremony specs</4> to really dig into the nitty-gritty, and potentially write your own implementation.</4>",
+        "content": "<0>Ceremonies use secret inputs to produce an output in a way that makes it impossible to reverse-engineer and discover the initial secrets. </0><p>Here's a brief summary of how they work: </p><2><0>Participant 1 chooses a random number (eg 5.) and then runs a computation on it.</0><1>The output from that computation is passed to Participant 2, where they repeat Step 1 with their own secret input (e.g. 3) and mix it with the output from the 1st Participant (eg. 5x3=15).</1><2>This repeats until there is a sufficient number of participants, at which point the last output in the sequence becomes the final output.</2></2><p>Ceremonies have also been called \"Trusted Setups,\" most famously used by Zcash to bootstrap their privacy features. However, they can also be used to add scalability mechanisms, as Ethereum is doing.</p><4><0>Carl Beekhuizen's Devcon Talk</0> on this Ceremony explains how and why this ceremony works. Or, you can explore the <4>ceremony specs</4> to really dig into the nitty-gritty and potentially write your own implementation.</4>",
         "title": "What is a Summoning Ceremony?"
       },
       "q3": {
-        "content": "<p>(Proto)-Danksharding requires a commitment scheme for the underlying data that is fast to prove and verify (including inside SNARKS for SNARK-based L2s) while having a small commitment size. The polynomial commitment scheme that best meets the criteria for data availability sampling is KZG commitments.</p><p>The KZG scheme commits to a polynomial by evaluating it at a secret value (specifically, a elliptic curve point). The point of this ceremony is to construct this secret value in a way that no single person knows what this secret is and to do so in a way where many people are convinced that no-one knows it even in many years time.</p>",
-        "title": "Why does (Proto)-Danksharding need a Ceremony?"
+        "content": "<p>(Proto)-Danksharding requires a commitment scheme for the underlying data that is fast to prove and verify (including inside SNARKS for SNARK-based L2s) while having a small commitment size. The polynomial commitment scheme that best meets the criteria for data availability sampling is KZG commitments.</p><p>The KZG scheme commits to a polynomial by evaluating it at a secret value (specifically, a elliptic curve point). The purpose of this ceremony is to construct this secret value in a way that no single person knows what this secret is and to do so such that people are convinced of this many years from now.</p>",
+        "title": "Why does Proto-Danksharding need a Ceremony?"
       },
       "q4": {
-        "content": "<p>Right here on this site, you can sign in with your Ethereum address or Github account to participate, it should take less that 5 minutes of your time.</p><1>If you'd like an alternative to this interface, there are several other CLIs and webpages available (links + IPFS). After this public contribution period, we will accept special contributions from bespoke <2>implementations</2> or unique randomness generation. Funding is available for both of these, more information will be shared in the coming weeks.</1>",
+        "content": "<p>Right here on this site, you can sign in with your Ethereum address or Github account to participate. The computation should take less than 3 minutes of your time. However, if lobby wait times are long, try coming back later and you will have a shorter wait.</p><1>If you'd like an alternative to this interface, there are several other CLIs and webpages available at the top of the page. After this public contribution period, we will accept special contributions from bespoke <2>implementations</2> or unique randomness generation. Funding is available for both of these: [apply now to be considered](https://blog.ethereum.org/2022/12/15/kzg-ceremony-grants-round)</1>",
         "title": "How do I contribute to the Ceremony?"
       },
       "q5": {
@@ -142,7 +146,7 @@
       "sequencer": "Sequencer",
       "totalContributions": "total contributions",
       "participantsInLobby": "participants in lobby",
-      "waitTime": "min estimated wait time"
+      "waitTime": "max. estimated wait time"
     },
     "landing": {
       "button": "Begin",
@@ -150,7 +154,7 @@
       "description": "<0>Whispers from the shadows tell of a powerful spirit Dankshard, who will open the next chapter of Ethereum scalability. To summon its powers, this Ceremony needs your contribution.</0><1>Magic math awaits - are you ready to add your color to the story?</1>",
       "learn-more": "↓ or learn more below ↓",
       "learn-more-mobile": "↓ learn more below ↓",
-      "period": "General contribution period",
+      "period": "Open contribution",
       "title": "SUMMONING GUIDES"
     },
     "language": {
@@ -177,7 +181,7 @@
       "button": "View all contributions"
     },
     "lobby": {
-      "description": "<0>Your contribution is ready to be accepted by the Sequencer. Please leave this guide open in the background and we will add your contribution to the others soon.</0>",
+      "description": "<0>Your entropy is ready to be accepted by the Sequencer. Contributions are chosen randomly from the Lobby. \n\n Please leave this guide open with your computer awake and your contribution will be combined with the others soon.</0>",
       "lobby_size": "participants in the lobby",
       "title": "Waiting to be <br/> submitted"
     },
@@ -189,8 +193,8 @@
     "otherResources": {
       "ipfs": "IPFS Interface",
       "hosted": "Hosted Interface",
-      "otherClients": "Other Clients",
-      "writeYourOwn": "Write Your Own!",
+      "otherClients": "CLI Clients",
+      "writeYourOwn": "Grants",
       "recommended": "(Recommended)"
     },
     "record": {
@@ -214,7 +218,7 @@
         "potPubkeyTooltip": "Your Powers of Tau Pubkey represents your unique fingerprint securing Ethereum. It was generated by your secret.",
         "zero": {
           "title": "What is this contribution?",
-          "description": "The genesis contribution helps out as an starting point for the coming ones. It does not contain BLS signatures or ECDSA signatures."
+          "description": "The genesis contribution helps out as a starting point for the entire Ceremony. It does not contain BLS signatures or ECDSA signatures."
         }
       },
       "signatureModal": {
