@@ -108,7 +108,7 @@ const TranscriptModal = ({ record, onDeselect, onChange }: Props) => {
           </SubTitle>
           <Desc>
             <Trans i18nKey="record.transcriptModal.zero.description">
-            The genesis contribution helps out as an starting point for the coming ones. It does not contain a participant ID, BLS signatures or ECDSA signatures.
+              The genesis contribution helps out as a starting point for the entire Ceremony. It does not contain BLS signatures or ECDSA signatures.
             </Trans>
           </Desc>
         </>

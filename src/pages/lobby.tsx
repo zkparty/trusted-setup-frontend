@@ -115,9 +115,14 @@ const LobbyPage = () => {
                 </Description>
                 <Trans i18nKey="lobby.description">
                   <Description>
-                    Your contribution is ready to be accepted by the
-                    Sequencer. Please leave this guide open in the background
-                    and we will add your contribution to the others soon.
+                    Your entropy is ready to be accepted by the Sequencer.
+                    Contributions are chosen randomly from the Lobby.
+                  </Description>
+                  <Description>
+                    Trying to contribute from multiple tabs may result in errors,
+                    please only use one tab. Leave this guide open with your
+                    computer awake and your contribution will be combined
+                    with the others soon.
                   </Description>
                 </Trans>
               </TextSection>

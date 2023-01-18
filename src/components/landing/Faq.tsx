@@ -13,8 +13,8 @@ const faqQuestions = [
   {
     title: (
       <Trans i18nKey="faq.q1.title">
-        What is EIP-4844, a.k.a. Proto-Danksharding, and how does it relate to
-        scaling Ethereum
+        What is EIP-4844 (aka Proto-Danksharding) and
+        how does it relate to scaling Ethereum?
       </Trans>
     ),
     content: (
@@ -28,13 +28,11 @@ const faqQuestions = [
           maintaining the security offered by the Ethereum Layer 1 (L1).
         </p>
         <p>
-          L2s need to publish a lot of data on Ethereum, and the network
-          currently charges high fees for doing so. To fix this, Ethereum will
-          create a new data layer, often referred to as <em>sharding</em>. This
-          provides what is called &quot;data availability&quot; guarantees to L2
-          users. The L1 only holds the data for a limited time, which means we
-          can scale the chain without sacrificing decentralization for smaller
-          L1 node operators.
+          L2s publish a lot of data on Ethereum, and the network currently charges high fees for doing so.
+          To fix this, Ethereum will create a new data layer, often referred to as <em>sharding</em>. This
+          provides what is called "data availability" guarantees to L2 users. The L1 only holds the data
+          for a limited time, which means we can scale the chain without sacrificing decentralization
+          for smaller L1 node operators.
         </p>
         <p>
           The current leading design for this is called Danksharding. The
@@ -78,19 +76,18 @@ const faqQuestions = [
         <p>
           Ceremonies have also been called &quot;Trusted Setups,&quot; most
           famously used by Zcash to bootstrap their privacy features. However,
-          it can also be used to add scalability mechanisms, as Ethereum is
+          they can also be used to add scalability mechanisms, as Ethereum is
           doing.
         </p>
         <p>
           <ExternalLink href="https://archive.devcon.org/archive/watch/6/the-kzg-ceremony-or-how-i-learnt-to-stop-worrying-and-love-trusted-setups/">
             Carl Beekhuizen&#39;s Devcon Talk
           </ExternalLink>{' '}
-          on this Ceremony explains both simply and in-depth how and why this
-          ceremony works. Or, you can explore the{' '}
+          on this Ceremony explains how and why this ceremony works. Or, you can explore the{' '}
           <ExternalLink href="https://github.com/ethereum/kzg-ceremony-specs/">
             ceremony specs
           </ExternalLink>{' '}
-          to really dig into the nitty-gritty, and potentially write your own
+          to really dig into the nitty-gritty and potentially write your own
           implementation.
         </p>
       </Trans>
@@ -99,7 +96,7 @@ const faqQuestions = [
   {
     title: (
       <Trans i18nKey="faq.q3.title">
-        Why does (Proto)-Danksharding need a Ceremony?
+        Why does Proto-Danksharding need a Ceremony?
       </Trans>
     ),
     content: (
@@ -113,10 +110,10 @@ const faqQuestions = [
         </p>
         <p>
           The KZG scheme commits to a polynomial by evaluating it at a secret
-          value (specifically, a elliptic curve point). The point of this
+          value (specifically, a elliptic curve point). The purpose of this
           ceremony is to construct this secret value in a way that no single
-          person knows what this secret is and to do so in a way where many
-          people are convinced that no-one knows it even in many years time.
+          person knows what this secret is and to do so such that people are
+          convinced of this many years from now.
         </p>
       </Trans>
     )
@@ -129,18 +126,22 @@ const faqQuestions = [
       <Trans i18nKey="faq.q4.content">
         <p>
           Right here on this site, you can sign in with your Ethereum address or
-          Github account to participate, it should take less that 5 minutes of
-          your time.
+          Github account to participate. The computation should take less than 3
+          minutes of your time. However, if lobby wait times are long, try coming
+          back later and you will have a shorter wait.
         </p>
         <p>
           If you&#39;d like an alternative to this interface, there are several
-          other CLIs and webpages available (links + IPFS). After this public
+          other CLIs and webpages available at the top of the page.. After this public
           contribution period, we will accept special contributions from bespoke{' '}
           <ExternalLink href="https://github.com/ethereum/kzg-ceremony#client-implementations">
             implementations
           </ExternalLink>{' '}
           or unique randomness generation. Funding is available for both of
-          these, more information will be shared in the coming weeks.
+          these:
+          <ExternalLink href="https://blog.ethereum.org/2022/12/15/kzg-ceremony-grants-round">
+          apply now to be considered
+          </ExternalLink>
         </p>
       </Trans>
     )
@@ -285,15 +286,15 @@ const faqQuestions = [
   {
     title: (
       <Trans i18nKey="faq.q10.title">
-        What needs to go wrong for the safety of the ceremony to break?
+        What needs to go wrong for the safety of the Ceremony to break?
       </Trans>
     ),
     content: (
       <Trans i18nKey="faq.q10.content">
         <p>
           The ceremony has a &quot;1-of-N&quot; trust assumption, which means
-          that only a single participant in the entire ceremony needs to have
-          not revealed their secret input for everything to be secure.
+          that only a single participant in the entire ceremony needs to destroy
+          their secret input for everything to be secure.
         </p>
         <p>
           This means that every participant would have to strip apart the
@@ -318,7 +319,7 @@ const faqQuestions = [
   {
     title: (
       <Trans i18nKey="faq.q11.title">
-        What attacks are possible in this situation?
+        What attacks are possible if the Ceremony is compromised?
       </Trans>
     ),
     content: (
@@ -343,9 +344,10 @@ const faqQuestions = [
         <p>
           Depending on how many others are trying to contribute at the same
           time, you could end up waiting a while for your turn to come up to
-          contribute. Once it is your turn, it should only take less than 3
-          minutes to complete the contribution with a standard laptop and
-          internet connection.
+          contribute. If that's the case, consider coming back when there
+          are fewer contributors waiting in the lobby. Once it is your turn,
+          it should take less than 3 minutes to complete the contribution
+          with a standard laptop and internet connection.
         </p>
       </Trans>
     )
@@ -449,6 +451,32 @@ const faqQuestions = [
           WASM well, lock the screen and otherwise downclock the CPU before the
           computation could complete, and generally there a lot of variance
           between devices which is hard to account for.
+        </p>
+      </Trans>
+    )
+  },
+  {
+    title: (
+      <Trans i18nKey="faq.q17.title">
+        How long will the Ceremony run for?
+      </Trans>
+    ),
+    content: (
+      <Trans i18nKey="faq.q17.content">
+        <p>
+          The first contribution period will last for roughly two months, running
+          Friday the 13th until March 13th 2023. Following that, there will be a
+          special contribution period for bespoke implementations and unique entropy
+          generation which may require additional support.
+        </p>
+        <p>
+          After both of these
+          are concluded, the Sequencer will revert to accept general contributions
+          until EIP-4844 is ready to be scheduled for a network upgrade. Once this
+          point has been reached, the Sequencer will stop accepting new
+          contributions and produce its final output. There will be at least one
+          public verification that this is the correct output - individuals are
+          also encouraged to verify this on their own as well.
         </p>
       </Trans>
     )

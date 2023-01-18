@@ -55,7 +55,7 @@ const Header = () => {
           </span>
           <span>
             <Bold>{ ((data?.lobby_size! * COMPUTE_DEADLINE) / 60).toFixed(0) } {' '}</Bold>
-            <Trans i18nKey="header.waitTime">min estimated wait time</Trans>
+            <Trans i18nKey="header.waitTime">max. estimated wait time</Trans>
           </span>
         </SequencerStatus>
       </LeftSection>

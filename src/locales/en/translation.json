@@ -96,7 +96,7 @@
         "title": "Why can't I contribute on a mobile device?"
       },
       "q17": {
-        "content": "<p>The first contribution period will last for roughly two months, running Friday the 13th until March 13th 2023. Following that, there will be a special contribution period for bespoke implementations and unique entropy generation which may require additional support. \n\n After both of these are concluded, the Sequencer will revert to accept general contributions until EIP-4844 is ready to be scheduled for a network upgrade. Once this point has been reached, the Sequencer will stop accepting new contributions and produce its final output. There will be at least one public verification that this is the correct output - individuals are also encouraged to verify this on their own as well.</p>",
+        "content": "<p>The first contribution period will last for roughly two months, running Friday the 13th until March 13th 2023. Following that, there will be a special contribution period for bespoke implementations and unique entropy generation which may require additional support.</p><p>After both of these are concluded, the Sequencer will revert to accept general contributions until EIP-4844 is ready to be scheduled for a network upgrade. Once this point has been reached, the Sequencer will stop accepting new contributions and produce its final output. There will be at least one public verification that this is the correct output - individuals are also encouraged to verify this on their own as well.</p>",
         "title": "How long will the Ceremony run for?"
       },
       "q2": {
@@ -181,8 +181,10 @@
       "button": "View all contributions"
     },
     "lobby": {
-      "description": "<0>Your entropy is ready to be accepted by the Sequencer. Contributions are chosen randomly from the Lobby. \n\n Trying to contribute from multiple tabs may result in errors, please only use one tab. Leave this guide open with your computer awake and your contribution will be combined with the others soon.</0>",
+      "description": "<0>Your entropy is ready to be accepted by the Sequencer. Contributions are chosen randomly from the Lobby.</0><1>Trying to contribute from multiple tabs may result in errors, please only use one tab. Leave this guide open with your computer awake and your contribution will be combined with the others soon.</1>",
+      "average": "average contribution (s)",
       "lobby_size": "participants in the lobby",
+      "chances": "chances of contributing in the next hour",
       "title": "Waiting to be <br/> submitted"
     },
     "lobbyFull": {

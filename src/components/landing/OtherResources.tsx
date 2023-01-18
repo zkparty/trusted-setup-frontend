@@ -42,7 +42,7 @@ const OtherResources = () => {
         <InternalCol>
             <Link>
                 <Trans i18nKey="otherResources.otherClients">
-                    Other Clients
+                    CLI Clients
                 </Trans>
                 { " " }
             </Link>
@@ -53,7 +53,7 @@ const OtherResources = () => {
         <InternalCol>
             <Link>
                 <Trans i18nKey="otherResources.writeYourOwn">
-                    Write your Own!
+                    Grants
                 </Trans>
                 { " " }
             </Link>
