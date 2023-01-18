@@ -181,7 +181,7 @@
       "button": "View all contributions"
     },
     "lobby": {
-      "description": "<0>Your entropy is ready to be accepted by the Sequencer. Contributions are chosen randomly from the Lobby. \n\n Please leave this guide open with your computer awake and your contribution will be combined with the others soon.</0>",
+      "description": "<0>Your entropy is ready to be accepted by the Sequencer. Contributions are chosen randomly from the Lobby. \n\n Trying to contribute from multiple tabs may result in errors, please only use one tab. Leave this guide open with your computer awake and your contribution will be combined with the others soon.</0>",
       "lobby_size": "participants in the lobby",
       "title": "Waiting to be <br/> submitted"
     },
