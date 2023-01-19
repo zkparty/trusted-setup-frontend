@@ -365,17 +365,21 @@ const faqQuestions = [
       <Trans i18nKey="faq.q13.content">
         <p>
           In order to reduce Sybil attacks against the Ceremony, the Sequencer
-          needs to verify that you are a (somewhat) unique human otherwise one
-          person could submit many different contributions preventing others
-          from getting a turn to contribute.
+          needs to verify that you are a (somewhat) unique human. Without this
+          check, one person could submit many different contributions. This
+          could prevent other honest community members from participating,
+          or if of malicious intent, reduce the credibility of the Ceremony
+          output.
         </p>
         <ul>
           <li>
             Sign in with Ethereum - This is the preferred choice as it something
             that all Ethereum community members should already have and it
-            allows signatures for later verification of the contribution. Each
-            account is required to have sent at least 3 transactions to prevent
-            spinning up new accounts just for this ceremony.
+            allows signatures for later verification of the contribution, and
+            allows participation recognition through a POAP token. Each address
+            is required to have sent at least 3 transactions before Jan. 13, 2023
+            (block number 16,394,155) to prevent spinning up new accounts just
+            for this Ceremony.
           </li>
           <li>
             Sign in with GitHub - This option is offered as an alternative for
