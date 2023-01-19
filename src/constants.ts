@@ -47,7 +47,7 @@ const LOBBY_CHECKIN_FREQUENCY =
 const MIN_MOUSE_ENTROPY_SAMPLES =
   parseInt(process.env.REACT_APP_MIN_MOUSE_ENTROPY_SAMPLES as string) || 64
 const AVERAGE_CONTRIBUTION_TIME =
-  parseInt(process.env.REACT_APP_AVERAGE_CONTRIBUTION_TIME as string) || 45
+  parseInt(process.env.REACT_APP_AVERAGE_CONTRIBUTION_TIME as string) || 52
 
 const START_DATE =
   parseInt(process.env.REACT_APP_START_DATE as string) || 1673615580

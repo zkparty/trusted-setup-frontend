@@ -86,11 +86,11 @@ const LobbyPage = () => {
   useEffect(() => {
     setLobbySize(data?.lobby_size || 0)
     const slotsInOneHour = (60*60) / AVERAGE_CONTRIBUTION_TIME
-    let chancesNumber = ((slotsInOneHour / lobbySize)).toFixed(1)
-    if (lobbySize === 0){
-      chancesNumber = '100'
+    let chancesNumber = ((slotsInOneHour / lobbySize) * 100)
+    if (chancesNumber > 100 || lobbySize === 0){
+      chancesNumber = 99.9
     }
-    setChances( chancesNumber )
+    setChances( chancesNumber.toFixed(1) )
   }, [data, lobbySize])
 
   return (
@@ -107,12 +107,6 @@ const LobbyPage = () => {
               </PageTitle>
               <TextSection>
                 {showError && <ErrorMessage>{showError}</ErrorMessage>}
-                <Desc>
-                  <Bold>{45} </Bold>
-                  <Trans i18nKey="lobby.average">
-                    average contribution (s)
-                  </Trans>
-                </Desc>
                 <Desc>
                   <Bold>{lobbySize} </Bold>
                   <Trans i18nKey="lobby.lobby_size">
