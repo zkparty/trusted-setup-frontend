@@ -8,8 +8,14 @@ import RecordTable from '../RecordTable'
 import { PrimaryButton } from '../Button'
 import { Trans, useTranslation } from 'react-i18next'
 import LatestContributionsBorder from '../../assets/latest-contributions-border.svg'
+/*
+// DISABLING THIS FOR NOW
+// Our INFURA NODE reached max limit and it is preventing different wallet providers to signin
+// I will activate this again when we find a solution (we need a higher limit in Infura)
+=====================================
 import { providers, utils } from 'ethers'
 import { INFURA_ID } from '../../constants'
+*/
 
 const LatestRecords = () => {
     useTranslation()
