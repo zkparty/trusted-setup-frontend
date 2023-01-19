@@ -9,7 +9,7 @@ import {
   TextSection,
   InnerWrap
 } from '../components/Layout'
-import { LOBBY_CHECKIN_FREQUENCY } from '../constants'
+import { LOBBY_CHECKIN_FREQUENCY, AVERAGE_CONTRIBUTION_TIME } from '../constants'
 import useTryContribute from '../hooks/useTryContribute'
 import ROUTES from '../routes'
 import { useContributionStore, Store } from '../store/contribute'
@@ -23,10 +23,12 @@ import { ErrorRes } from '../types'
 
 const LobbyPage = () => {
   const { t } = useTranslation()
+  const { data } = useSequencerStatus()
   const { error, setError } = useAuthStore()
   const [showError, setShowError] = useState(error)
+  const [ lobbySize, setLobbySize] = useState(data?.lobby_size || 0)
+  const [ chances, setChances] = useState('0.0')
 
-  const { data } = useSequencerStatus()
   const tryContribute = useTryContribute()
   const updateContribution = useContributionStore(
     (state: Store) => state.updateContribution
@@ -81,6 +83,16 @@ const LobbyPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    setLobbySize(data?.lobby_size || 0)
+    const slotsInOneHour = (60*60) / AVERAGE_CONTRIBUTION_TIME
+    let chancesNumber = ((slotsInOneHour / lobbySize)).toFixed(1)
+    if (lobbySize === 0){
+      chancesNumber = '100'
+    }
+    setChances( chancesNumber )
+  }, [data, lobbySize])
+
   return (
     <>
       <HeaderJustGoingBack />
@@ -102,13 +114,13 @@ const LobbyPage = () => {
                   </Trans>
                 </Desc>
                 <Desc>
-                  <Bold>{data?.lobby_size} </Bold>
+                  <Bold>{lobbySize} </Bold>
                   <Trans i18nKey="lobby.lobby_size">
                     participants in the lobby
                   </Trans>
                 </Desc>
                 <Description>
-                  <Bold>{"1.6%"} </Bold>
+                  <Bold>{chances + "%"} </Bold>
                   <Trans i18nKey="lobby.chances">
                     chances of contributing in the next hour
                   </Trans>
