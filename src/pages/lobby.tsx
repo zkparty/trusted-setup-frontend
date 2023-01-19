@@ -115,8 +115,8 @@ const LobbyPage = () => {
                 </Desc>
                 <Description>
                   <Bold>{chances + "%"} </Bold>
-                  <Trans i18nKey="lobby.chances">
-                    chances of contributing in the next hour
+                  <Trans i18nKey="lobby.chance">
+                    chance of contributing in the next hour
                   </Trans>
                 </Description>
                 <Trans i18nKey="lobby.description">

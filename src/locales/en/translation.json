@@ -184,7 +184,7 @@
       "description": "<0>Your entropy is ready to be accepted by the Sequencer. Contributions are chosen randomly from the Lobby.</0><1>Trying to contribute from multiple tabs may result in errors, please only use one tab. Leave this guide open with your computer awake and your contribution will be combined with the others soon.</1>",
       "average": "average contribution (s)",
       "lobby_size": "participants in the lobby",
-      "chances": "chances of contributing in the next hour",
+      "chance": "chance of contributing in the next hour",
       "title": "Waiting to be <br/> submitted"
     },
     "lobbyFull": {
