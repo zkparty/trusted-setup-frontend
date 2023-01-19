@@ -35,18 +35,17 @@ const Explanation = ({ refFromLanding }: any) => {
           Proto-danksharding requires a new cryptographic scheme: KZG
           Commitments. This ceremony, sometimes called a "Trusted Setup",
           will generate a structured reference string (SRS) which is needed
-          for the commitments to work. An SRS is secure as long as one
-          participant in the ceremony successfully conceals their secret.
+          for the commitments to work. An SRS is secure as long as at least
+          one participant in the ceremony successfully conceals their secret.
           </Description>
           <Description>
-          It's a multi-party ceremony: each contributor creates a secret
-          and runs a computation to mix it with previous contributions.
-          Then, the output is made public and passed to the next contributor.
-          To guard against attempts to corrupt the ceremony, participants
-          need an Ethereum address or GitHub account with an established
-          history to participate. The final output of the Ceremony will
-          be included in a future upgrade to help scale
-          the Ethereum network.
+          This is a multi-party ceremony: each contributor creates a secret
+          and runs a computation to mix in with previous contributions. Then,
+          the output is made public and passed to the next contributor.
+          To guard against attempts to corrupt the ceremony, participants need an
+          Ethereum address or GitHub account with an established history to
+          participate. The final output of the Ceremony will be included in a
+          future upgrade to help scale the Ethereum network.
           </Description>
         </Trans>
       </SecondTextSection>

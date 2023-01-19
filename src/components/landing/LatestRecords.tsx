@@ -60,6 +60,11 @@ const LatestRecords = () => {
             records.push(record)
           }
 
+          /*
+          // DISABLING THIS FOR NOW
+          // Our INFURA NODE reached max limit and it is preventing different wallet providers to signin
+          // I will activate this again when we find a solution (we need a higher limit in Infura)
+          =====================================
           // used to lookup addresses on ens
           const provider = new providers.InfuraProvider('homestead', INFURA_ID)
           const recordsWithNames = await Promise.all(records.map(async (record) => {
@@ -71,9 +76,10 @@ const LatestRecords = () => {
               return record
             }
           }));
+          */
 
           if (!active) { return }
-          setFormattedData(recordsWithNames)
+          setFormattedData(records)
           setIsLoading(false)
         }
         formatDataFromRecord();

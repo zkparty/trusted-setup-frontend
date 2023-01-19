@@ -136,9 +136,9 @@ const EntropyInputPage = () => {
                   The Ceremony requires three random inputs from each Summoner.
                 </Description>
                 <SubDesc>
-                  <Bold>Secret:</Bold> A piece of you in text form, with random
-                  characters added. A hope for the future, or the name of
-                  someone dear.
+                  <Bold>Secret:</Bold> Enter a piece of you: a hope for the future,
+                  or the name of someone dear. Be sure to add random characters
+                  - it's important to not remember the exact text.
                 </SubDesc>
                 <SubDesc>
                   <Bold>Sigil:</Bold> Trace some elements of the guide with your

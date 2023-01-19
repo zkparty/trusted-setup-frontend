@@ -60,7 +60,7 @@ const LandingPage = () => {
           ''
           :
           <ItalicSubTitle>
-            <Trans i18nKey="landing.period">General contribution period</Trans>
+            <Trans i18nKey="landing.period">Open contribution</Trans>
             {' - '+days+' : '+hours+' : '+minutes+' : '+seconds}
           </ItalicSubTitle>
         }
@@ -80,7 +80,7 @@ const LandingPage = () => {
           { isMobile() ?
             <Trans i18nKey="landing.button-mobile">Proceed on desktop</Trans>
             :
-            <Trans i18nKey="otherResources.button">Begin</Trans>
+            <Trans i18nKey="landing.button">Begin</Trans>
           }
         </PrimaryButton>
         <OtherResources/>

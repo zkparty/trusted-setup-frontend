@@ -9,7 +9,7 @@ import {
   TextSection,
   InnerWrap
 } from '../components/Layout'
-import { LOBBY_CHECKIN_FREQUENCY } from '../constants'
+import { LOBBY_CHECKIN_FREQUENCY, AVERAGE_CONTRIBUTION_TIME } from '../constants'
 import useTryContribute from '../hooks/useTryContribute'
 import ROUTES from '../routes'
 import { useContributionStore, Store } from '../store/contribute'
@@ -18,14 +18,17 @@ import { useAuthStore } from '../store/auth'
 import HeaderJustGoingBack from '../components/headers/HeaderJustGoingBack'
 import useSequencerStatus from '../hooks/useSequencerStatus'
 import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import { ErrorRes } from '../types'
 
 const LobbyPage = () => {
   const { t } = useTranslation()
+  const { data } = useSequencerStatus()
   const { error, setError } = useAuthStore()
   const [showError, setShowError] = useState(error)
+  const [ lobbySize, setLobbySize] = useState(data?.lobby_size || 0)
+  const [ chances, setChances] = useState('0.0')
 
-  const { data } = useSequencerStatus()
   const tryContribute = useTryContribute()
   const updateContribution = useContributionStore(
     (state: Store) => state.updateContribution
@@ -80,6 +83,16 @@ const LobbyPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    setLobbySize(data?.lobby_size || 0)
+    const slotsInOneHour = (60*60) / AVERAGE_CONTRIBUTION_TIME
+    let chancesNumber = ((slotsInOneHour / lobbySize)).toFixed(1)
+    if (lobbySize === 0){
+      chancesNumber = '100'
+    }
+    setChances( chancesNumber )
+  }, [data, lobbySize])
+
   return (
     <>
       <HeaderJustGoingBack />
@@ -94,17 +107,34 @@ const LobbyPage = () => {
               </PageTitle>
               <TextSection>
                 {showError && <ErrorMessage>{showError}</ErrorMessage>}
+                <Desc>
+                  <Bold>{45} </Bold>
+                  <Trans i18nKey="lobby.average">
+                    average contribution (s)
+                  </Trans>
+                </Desc>
+                <Desc>
+                  <Bold>{lobbySize} </Bold>
+                  <Trans i18nKey="lobby.lobby_size">
+                    participants in the lobby
+                  </Trans>
+                </Desc>
                 <Description>
-                  <Bold>{data?.lobby_size} </Bold>
-                  <Trans i18nKey="looby.lobby_size">
-                    participants in the lobby.
+                  <Bold>{chances + "%"} </Bold>
+                  <Trans i18nKey="lobby.chances">
+                    chances of contributing in the next hour
                   </Trans>
                 </Description>
                 <Trans i18nKey="lobby.description">
                   <Description>
-                    Your contribution is ready to be accepted by the
-                    Sequencer. Please leave this guide open in the background
-                    and we will add your contribution to the others soon.
+                    Your entropy is ready to be accepted by the Sequencer.
+                    Contributions are chosen randomly from the Lobby.
+                  </Description>
+                  <Description>
+                    Trying to contribute from multiple tabs may result in errors,
+                    please only use one tab. Leave this guide open with your
+                    computer awake and your contribution will be combined
+                    with the others soon.
                   </Description>
                 </Trans>
               </TextSection>
@@ -115,5 +145,9 @@ const LobbyPage = () => {
     </>
   )
 }
+
+const Desc = styled(Description)`
+  margin-bottom: 5px;
+`
 
 export default LobbyPage
