@@ -60,7 +60,8 @@ const faqQuestions = [
         <ol>
           <li>
             Participant 1 chooses a random number (eg 5.) and then runs a
-            computation on it.
+            computation on it. This value should be discarded and not recorded to
+            maintain the security assumption of the contribution.
           </li>
           <li>
             The output from that computation is passed to Participant 2, where
@@ -182,7 +183,9 @@ const faqQuestions = [
       <Trans i18nKey="faq.q6.content">
         <p>This interface will walk you through the following steps:</p>
         <ol>
-          <li>You provide random inputs from three different sources.</li>
+          <li>You provide random inputs from three different sources.
+          - be sure to not record in any form, whether digital or analog.
+          </li>
           <li>Log in with Ethereum or Github to prevent spam.</li>
           <li>
             Ask the Sequencer if you may participate. When it&#39;s your turn,
@@ -294,13 +297,13 @@ const faqQuestions = [
         <p>
           The ceremony has a &quot;1-of-N&quot; trust assumption, which means
           that only a single participant in the entire ceremony needs to destroy
-          their secret input for everything to be secure.
+          or otherwise forget their secret input for everything to be secure.
         </p>
         <p>
-          This means that every participant would have to strip apart the
-          software that they are using to contribute, get that software to give
-          them the secret, and then collude with every single other participant
-          to reconstruct the final secret.
+        To break the Ceremony output, every participant would have to strip apart
+        the software that they are using to contribute, get that software to give
+        them the secret, and then collude with every single other participant to
+        reconstruct the final secret.
         </p>
         <p>
           A more realistic failure mode is a common bug which leaks the
