@@ -80,7 +80,7 @@
         "title": "How long does it take to contribute?"
       },
       "q13": {
-        "content": "<p>In order to reduce Sybil attacks against the Ceremony, the Sequencer needs to verify that you are a (somewhat) unique human otherwise one person could submit many different contributions preventing others from getting a turn to contribute.</p><1><0>Sign in with Ethereum - This is the preferred choice as it something that all Ethereum community members should already have and it allows signatures for later verification of the contribution. Each account is required to have sent at least 3 transactions to prevent spinning up new accounts just for this ceremony.</0><1>Sign in with GitHub - This option is offered as an alternative for those who are more distant to the community but who'd still like to participate.</1></1>",
+        "content": "<p>In order to reduce Sybil attacks against the Ceremony, the Sequencer needs to verify that you are a (somewhat) unique human. Without this check, one person could submit many different contributions. This could prevent other honest community members from participating, or if of malicious intent, reduce the credibility of the Ceremony output.</p><1><0>Sign in with Ethereum - This is the preferred choice as it something that all Ethereum community members should already have, it allows signatures for later verification of the contribution, and allows participation recognition through a POAP token. Each address is required to have sent at least 3 transactions before Jan. 13, 2023 (block number 16,394,155) to prevent spinning up new accounts just for this Ceremony.</0><1>Sign in with GitHub - This option is offered as an alternative for those who are more distant to the community but who would still like to participate.</1></1>",
         "title": "Why do I need to sign in with Ethereum or GitHub?"
       },
       "q14": {
@@ -228,24 +228,24 @@
       }
     },
     "signin": {
-      "description": "<0>The Ceremony requires souls of pure intent. Summoners show their integrity by unlocking with an address that has at least three sent transactions. Each address can only be used once.</0><1>Choosing Ethereum does not send any funds or permit any contracts. This method also permits a POAP to be delivered after the Ceremony.</1>",
+      "description": "<0>The Ceremony requires souls of pure intent. Summoners show their integrity by unlocking with an address that has sent at least three transactions before Jan. 13, 2023 (block number 16,394,155). Each address can only be used to contribute once.</0><1>Choosing Ethereum does not send any funds or permit any contracts. This method will let you claim a POAP after the Ceremony has concluded.</1>",
       "title": "OPEN <br/> THE WAY",
       "unlockWithEthereum": "Unlock with Ethereum <2></2>",
       "unlockWithGithub": "or unlock with Github"
     },
     "error": {
-      "notSameWallet": "Use the same wallet you used to bind your contribution",
+      "notSameWallet": "Use the same address you used to bind your contribution",
       "incorrectChainId": "Select the Ethereum Mainnet network in your signing wallet",
       "pastSubgroupChecksFailed": "Subgroup check failed in the contribution you received. Please report it immediately",
       "newSubgroupChecksFailed": "Subgroup check failed in your computed contribution. Please check your setup and try again",
       "tryContributeError": {
-        "rateLimited": "The call to sequencer came too early. Submit an issue in Github",
+        "rateLimited": "The call to the sequencer came too early. Submit an issue in Github",
         "unknownSessionId": "Unknown user. Please sign in again with a different account",
         "anotherContributionInProgress": "There is another contribution being computed at the moment. Please wait for your turn to contribute",
         "unknownError": "There has been an unknown error: {{error}} . code: {{code}}"
       },
       "authErrorPayload": {
-        "userAlreadyContributed": "This wallet has already contributed to the ceremony",
+        "userAlreadyContributed": "This address has already contributed to the Ceremony",
         "invalidAuthCode": "The web application is using an invalid authorization code. Please report it on Github",
         "fetchUserDataError": "The sequencer could not get user data from the authorization service. Please report it on Github",
         "couldNotExtractUserData": "The sequencer could not extract user data from the authorization service. Please report it on Github",
