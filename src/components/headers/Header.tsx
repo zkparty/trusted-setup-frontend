@@ -79,7 +79,7 @@ const Container = styled.header<{ isMobile: boolean }>`
   align-items: center;
   justify-content: space-between;
   box-shadow: 1px 2px 6px 1px #b4b2b2;
-  padding-inline: ${({isMobile}) => isMobile ? '5vw' : '22vw;'};
+  padding-inline: ${({isMobile}) => isMobile ? '5vw' : '26vw'};
   width: 100%;
   z-index: 3;
   position: absolute;
