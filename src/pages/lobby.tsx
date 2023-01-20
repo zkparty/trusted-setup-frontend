@@ -90,7 +90,7 @@ const LobbyPage = () => {
     if (chancesNumber > 100 || lobbySize === 0){
       chancesNumber = 99.9
     }
-    setChances( chancesNumber.toFixed(1) )
+    setChances( chancesNumber.toLocaleString('en-US',{maximumFractionDigits: 1}) )
   }, [data, lobbySize])
 
   return (
