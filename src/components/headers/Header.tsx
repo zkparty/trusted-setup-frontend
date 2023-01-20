@@ -26,73 +26,64 @@ const Header = () => {
   const isonline = data?.status === "Online"
   const indicatorColor = isonline ? "#61cc61" : "red"
   return (
-    <Container>
-      <LeftSection>
+    <Container isMobile={isMobile()}>
         <Logo onClick={() => navigate(ROUTES.ROOT)} />
-        <Border />
-        <Indicator aria-label="sequencer status" isonline={isonline.toString()} color={indicatorColor} />
-        <SequencerStatus>
-          <span>
-            <Trans i18nKey="header.sequencer">Sequencer</Trans>
-          </span>
-          <Status color={indicatorColor}>
-            {isonline ? (
-              <Trans i18nKey="header.online">Online</Trans>
-            ) : (
-              <Trans i18nKey="header.offline">Offline</Trans>
-            )}
-          </Status>
-        </SequencerStatus>
-        <Border  />
+        <div style={{ display: 'flex'}}>
+          <Indicator aria-label="sequencer status" isonline={isonline.toString()} color={indicatorColor} />
+          <SequencerStatus>
+            <span>
+              <Trans i18nKey="header.sequencer">Sequencer</Trans>
+            </span>
+            <Status color={indicatorColor}>
+              {isonline ? (
+                <Trans i18nKey="header.online">Online</Trans>
+              ) : (
+                <Trans i18nKey="header.offline">Offline</Trans>
+              )}
+            </Status>
+          </SequencerStatus>
+        </div>
         <SequencerStatus style={{ fontSize: FONT_SIZE.XXS }}>
           <span style={{ paddingBottom: '2px' }}>
-            <Bold>{data?.num_contributions} {' '}</Bold>
+            <Bold>{ data?.num_contributions.toLocaleString('en-US',{maximumFractionDigits: 0}) } {' '}</Bold>
             <Trans i18nKey="header.totalContributions">total contributions</Trans>
           </span>
           <span style={{ paddingBottom: '2px' }}>
-            <Bold>{data?.lobby_size} {' '}</Bold>
+            <Bold>{ data?.lobby_size.toLocaleString('en-US',{maximumFractionDigits: 0}) } {' '}</Bold>
             <Trans i18nKey="header.participantsInLobby">participants in lobby</Trans>
           </span>
           <span>
-            <Bold>{ ((data?.lobby_size! * COMPUTE_DEADLINE) / 60).toFixed(0) } {' '}</Bold>
-            <Trans i18nKey="header.waitTime">max. estimated wait time</Trans>
+            <Bold>{ ((data?.lobby_size! * COMPUTE_DEADLINE) / (60*60) ).toLocaleString('en-US',{maximumFractionDigits: 0}) } {' '}</Bold>
+            <Trans i18nKey="header.waitTime"><Bold>hours</Bold> max. estimated wait time</Trans>
           </span>
         </SequencerStatus>
-      </LeftSection>
-      { ENVIRONMENT === 'testnet' ?
-        <CenterSection isMobile={isMobile()}>
-          <Trans i18nKey="header.ceremony">TEST CEREMONY</Trans>
-        </CenterSection>
-        :
-        <></>
-      }
-      <RightSection>
+        { ENVIRONMENT === 'testnet' ?
+          <CenterSection isMobile={isMobile()}>
+            <Trans i18nKey="header.ceremony">TEST CEREMONY</Trans>
+          </CenterSection>
+          :
+          <></>
+        }
         <Address>
           {nickname}
         </Address>
         <LanguageSelector />
-      </RightSection>
     </Container>
   )
 }
 
-const Container = styled.header`
+const Container = styled.header<{ isMobile: boolean }>`
   background-color: ${({ theme }) => theme.surface2};
-  height: 73px;
+  height: 75px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 5vw;
-  width: 100vw;
+  box-shadow: 1px 2px 6px 1px #b4b2b2;
+  padding-inline: ${({isMobile}) => isMobile ? '5vw' : '22vw;'};
+  width: 100%;
   z-index: 3;
   position: absolute;
   top: 0;
-`
-
-const LeftSection = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 `
 
 const CenterSection = styled.div<{ isMobile: boolean }>`
@@ -103,13 +94,6 @@ const CenterSection = styled.div<{ isMobile: boolean }>`
   letter-spacing: ${({isMobile}) => isMobile ? '0.5px' : '2px'};
   ${textSerif}
   font-weight: 800;
-`
-
-const Border = styled.span`
-  height: 40px;
-  display: inline-block;
-  border-right: solid 1px #9ea3a7;
-  margin: 0 16px;
 `
 
 const SequencerStatus = styled.div`
@@ -126,12 +110,6 @@ const Status = styled.span<{ color: string }>`
   font-weight: 700;
   font-size: ${FONT_SIZE.M};
   color: ${({ color }) => color};
-`
-
-const RightSection = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
 `
 
 const Indicator = styled(Star)<{ isonline: string; color: string }>`
