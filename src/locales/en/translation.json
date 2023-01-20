@@ -146,7 +146,7 @@
       "sequencer": "Sequencer",
       "totalContributions": "total contributions",
       "participantsInLobby": "participants in lobby",
-      "waitTime": "max. estimated wait time"
+      "waitTime": "<0>hours</0> max. estimated wait time"
     },
     "landing": {
       "button": "Begin",

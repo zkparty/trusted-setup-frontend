@@ -46,16 +46,16 @@ const Header = () => {
         <Border  />
         <SequencerStatus style={{ fontSize: FONT_SIZE.XXS }}>
           <span style={{ paddingBottom: '2px' }}>
-            <Bold>{data?.num_contributions} {' '}</Bold>
+            <Bold>{ data?.num_contributions.toLocaleString('en-US',{maximumFractionDigits: 0}) } {' '}</Bold>
             <Trans i18nKey="header.totalContributions">total contributions</Trans>
           </span>
           <span style={{ paddingBottom: '2px' }}>
-            <Bold>{data?.lobby_size} {' '}</Bold>
+            <Bold>{ data?.lobby_size.toLocaleString('en-US',{maximumFractionDigits: 0}) } {' '}</Bold>
             <Trans i18nKey="header.participantsInLobby">participants in lobby</Trans>
           </span>
           <span>
-            <Bold>{ ((data?.lobby_size! * COMPUTE_DEADLINE) / 60).toFixed(0) } {' '}</Bold>
-            <Trans i18nKey="header.waitTime">max. estimated wait time</Trans>
+            <Bold>{ ((data?.lobby_size! * COMPUTE_DEADLINE) / (60*60) ).toLocaleString('en-US',{maximumFractionDigits: 0}) } {' '}</Bold>
+            <Trans i18nKey="header.waitTime"><Bold>hours</Bold> max. estimated wait time</Trans>
           </span>
         </SequencerStatus>
       </LeftSection>
