@@ -240,7 +240,7 @@
       "newSubgroupChecksFailed": "Subgroup check failed in your computed contribution. Please check your setup and try again",
       "tryContributeError": {
         "rateLimited": "The call to the sequencer came too early. Submit an issue in Github",
-        "unknownSessionId": "Unknown user. Please sign in again with a different account",
+        "unknownSessionId": "Unknown user. The lobby had a problem. Please sign in and try again",
         "anotherContributionInProgress": "There is another contribution being computed at the moment. Please wait for your turn to contribute",
         "unknownError": "There has been an unknown error: {{error}} . code: {{code}}"
       },
