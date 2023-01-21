@@ -6,6 +6,7 @@ import { Record, Transcript } from '../../types'
 import { PageTitle } from '../Text'
 import RecordTable from '../RecordTable'
 import { PrimaryButton } from '../Button'
+import { useNavigate } from 'react-router-dom'
 import { Trans, useTranslation } from 'react-i18next'
 import LatestContributionsBorder from '../../assets/latest-contributions-border.svg'
 /*
@@ -19,6 +20,7 @@ import { INFURA_ID } from '../../constants'
 
 const LatestRecords = () => {
     useTranslation()
+    const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(true)
     const [formattedData, setFormattedData] = useState<Record[]>([])
     // load data from API
@@ -27,7 +29,7 @@ const LatestRecords = () => {
 
 
     const onClickViewContributions = () => {
-      window.open(window.location.origin + '/#' + ROUTES.RECORD)
+      navigate(ROUTES.RECORD)
     }
 
     useEffect(() => {
