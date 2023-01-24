@@ -93,6 +93,7 @@ const DoubleSignPage = () => {
 
 
   const signPotPubkeysWithECDSA = async () => {
+    localStorage.clear()
     const client = new Client({
       modal: {
         theme: 'dark',
