@@ -42,21 +42,19 @@ The computation code is written in Rust and compiled to WASM. The compiled WASM 
   * In your browser, navigate to `http://localhost:8080/ipfs/<hash>`
 * Stop the container once you're finished: `docker stop ipfs-host`
 
-This will result in a series of log messages reporting the CID of each object in the folder. The CID of the `export` folder itself is the important one for our purposes.
+The `ipfs add` step will result in a series of log messages reporting the CID of each object in the folder. The CID of the `export` folder itself is the important one for our purposes.
 
 ```
 ...
-added QmV7zRBYTYf8wmQQzXfnfRFTyYBUByJGaLB37VuHjsj6Y6 export/wasm/pkg
-added QmZTdJheNur4R2esdej5w1gktGS5aLHYHtLsChMjACmzuk export/wasm
-added QmbTGA1mPf3nb5RRWehvrHn7cz3jwVQdj91r3c6eHmdx4k export
+added Qmf827vDWEcbjtMyRyDhwwcGMNiMKSAfgcJC8a9gb4SauD export/wasm/pkg
+added QmaHvQcpBXA4TFcd6QdoH3NaEf93myhbMtvdPd79rAgdpn export/wasm
+added QmWg5jPNsYc2wEJSBt454CAc5jL15TnnLZ6DxQcfwq4Q6r export
 13.80 MiB / 13.80 MiB [=======================================================================================] 100.00%
 ```
 
-The latest build has this CID: `Qmf8NfR8bKLNWzkTN7CDvaEGMXnHR4px3ypqCHRpvsubJU`
+The latest build has this CID: `QmWg5jPNsYc2wEJSBt454CAc5jL15TnnLZ6DxQcfwq4Q6r`
 
-or, in base32: `bafybeihzogihryvljuwim2vh2n3rqderrkbiaguzu3fq4m4zhjtcm6xb3u`
-
-The site can be added to pinning services by uploading the `build` folder.
+or, in base32: `bafybeid327jmlcaibfme5jtdlud5gmtmh467nnfmowcm7rcn7ann5t5cy4`
 
 You can access it using the ENS [latest.kzgceremony.eth](https://latest.kzgceremony.eth)
 
