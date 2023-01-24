@@ -46,15 +46,15 @@ The `ipfs add` step will result in a series of log messages reporting the CID of
 
 ```
 ...
-added Qmf827vDWEcbjtMyRyDhwwcGMNiMKSAfgcJC8a9gb4SauD export/wasm/pkg
-added QmaHvQcpBXA4TFcd6QdoH3NaEf93myhbMtvdPd79rAgdpn export/wasm
-added QmWg5jPNsYc2wEJSBt454CAc5jL15TnnLZ6DxQcfwq4Q6r export
+added Qmf827vDWEcbjtMyRyDhwwcGMNiMKSAfgcJC8a9gb4SauD build/wasm/pkg
+added QmaHvQcpBXA4TFcd6QdoH3NaEf93myhbMtvdPd79rAgdpn build/wasm
+added Qmc5JSSfNSpGkTkgn7yoPdrLZ7hJ7bPwBqwBF9MMVfQgNX build
 13.80 MiB / 13.80 MiB [=======================================================================================] 100.00%
 ```
 
-The latest build has this CID: `QmWg5jPNsYc2wEJSBt454CAc5jL15TnnLZ6DxQcfwq4Q6r`
+The latest build has this CID: `Qmc5JSSfNSpGkTkgn7yoPdrLZ7hJ7bPwBqwBF9MMVfQgNX`
 
-or, in base32: `bafybeid327jmlcaibfme5jtdlud5gmtmh467nnfmowcm7rcn7ann5t5cy4`
+or, in base32: `bafybeigmct6eg7gw5llrukobzsnwyj5blaeyekvh5z2xajihbadby4vh2q`
 
 You can access it using the ENS [latest.kzgceremony.eth](https://latest.kzgceremony.eth)
 
