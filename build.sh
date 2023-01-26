@@ -1,3 +1,3 @@
 #!/bin/bash
-npm ci --legacy-peer-deps
+npm i --legacy-peer-deps
 npm run build
