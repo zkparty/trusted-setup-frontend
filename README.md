@@ -10,14 +10,19 @@ To start this app execute the following steps:
 
 1. Run the sequencer app from [https://github.com/ethereum/kzg-ceremony-sequencer](). It is assumed that the assigned port is 3000 and that our react app would use port 3001. You can set `PORT` env variable with a specific port for React.
 
-1. Setup environment variables:
+2. Setup environment variables:
 
 - Sequencer API URL
 
-    Ubuntu: `export REACT_APP_API_ROOT=http://localhost:3000`
-    Windows (Powershell): ` $env:REACT_APP_API_ROOT="http://localhost:3000" `
+    - Ubuntu: `export REACT_APP_API_ROOT=http://localhost:3000`
+    - Windows (Powershell): ` $env:REACT_APP_API_ROOT="http://localhost:3000" `
 
-2. Install dependencies: `yarn install`
+- Environment
+
+    - Ubuntu: `export REACT_APP_ENVIRONMENT="testnet"`
+    - Windows (Powershell): `$env:REACT_APP_ENVIRONMENT="testnet"`
+
+3. Install dependencies: `yarn install`
 
 4. Start application: `yarn start`
 
