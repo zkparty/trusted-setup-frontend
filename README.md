@@ -37,6 +37,9 @@ The computation code is written in Rust and compiled to WASM. The compiled WASM 
 
 #### Build and add using Docker
 
+* Set required environment variables
+  - `export REACT_APP_API_ROOT=https://seq.ceremony.ethereum.org`
+  - `export REACT_APP_ENVIRONMENT=production`
 * Build the WASM wrapper Docker image, or `docker pull zkparty/wasm-pack-wrapper`
 * Pull a Docker image for node.js: `docker pull node:19-bullseye`
 * Build the entire site, and run an IPFS node: `./docker-build.sh`
