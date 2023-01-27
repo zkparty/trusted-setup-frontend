@@ -51,9 +51,8 @@ const LobbyPage = () => {
           const resError = res as ErrorRes
           switch (resError.code) {
             case 'TryContributeError::RateLimited':
-              setError( t('error.tryContributeError.rateLimited') )
+              setShowError( t('error.tryContributeError.rateLimited') )
               console.log(resError.error)
-              navigate(ROUTES.SIGNIN)
               break
             case 'TryContributeError::UnknownSessionId':
               setError( t('error.tryContributeError.unknownSessionId') )
