@@ -41,7 +41,6 @@ const RecordPage = () => {
     let string = '';
     string = string + '#' + record.position;
     string = string + ' ' + record.participantId;
-    string = string + ' ' + record.participantEcdsaSignature;
     string = string + ' '
     string = string.toLowerCase()
     return string.includes( queryLowercase )
