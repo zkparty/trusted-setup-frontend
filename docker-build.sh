@@ -2,8 +2,7 @@
 
 # Build WASM
 docker run -it --rm \
-    -v "${PWD}/public/wasm/:/root/source/wasm/" \
-    -w /root/source/ \
+    -v "${PWD}/public/wasm/:/root/wasm/" \
     --entrypoint ./build.sh \
     zkparty/wasm-pack-wrapper
 
@@ -11,8 +10,10 @@ docker run -it --rm \
 docker run -it --rm \
     -v "${PWD}:/work" \
     -w /work \
+    -e REACT_APP_API_ROOT="${REACT_APP_ROOT}" \
+    -e REACT_APP_ENVIRONMENT="${REACT_APP_ENVIRONMENT}" \
     --entrypoint ./build.sh \
-    node:19-bullseye 
+    node:19-bullseye
 
 # Start IPFS node
 docker run -d --rm \

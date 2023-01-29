@@ -10,14 +10,19 @@ To start this app execute the following steps:
 
 1. Run the sequencer app from [https://github.com/ethereum/kzg-ceremony-sequencer](). It is assumed that the assigned port is 3000 and that our react app would use port 3001. You can set `PORT` env variable with a specific port for React.
 
-1. Setup environment variables:
+2. Setup environment variables:
 
 - Sequencer API URL
 
-    Ubuntu: `export REACT_APP_API_ROOT=http://localhost:3000`
-    Windows (Powershell): ` $env:REACT_APP_API_ROOT="http://localhost:3000" `
+    - Ubuntu: `export REACT_APP_API_ROOT=http://localhost:3000`
+    - Windows (Powershell): ` $env:REACT_APP_API_ROOT="http://localhost:3000" `
 
-2. Install dependencies: `yarn install`
+- Environment
+
+    - Ubuntu: `export REACT_APP_ENVIRONMENT="testnet"`
+    - Windows (Powershell): `$env:REACT_APP_ENVIRONMENT="testnet"`
+
+3. Install dependencies: `yarn install`
 
 4. Start application: `yarn start`
 
@@ -32,6 +37,9 @@ The computation code is written in Rust and compiled to WASM. The compiled WASM 
 
 #### Build and add using Docker
 
+* Set required environment variables
+  - `export REACT_APP_API_ROOT=https://seq.ceremony.ethereum.org`
+  - `export REACT_APP_ENVIRONMENT=production`
 * Build the WASM wrapper Docker image, or `docker pull zkparty/wasm-pack-wrapper`
 * Pull a Docker image for node.js: `docker pull node:19-bullseye`
 * Build the entire site, and run an IPFS node: `./docker-build.sh`
@@ -42,19 +50,21 @@ The computation code is written in Rust and compiled to WASM. The compiled WASM 
   * In your browser, navigate to `http://localhost:8080/ipfs/<hash>`
 * Stop the container once you're finished: `docker stop ipfs-host`
 
-The `ipfs add` step will result in a series of log messages reporting the CID of each object in the folder. The CID of the `export` folder itself is the important one for our purposes.
+This will result in a series of log messages reporting the CID of each object in the folder. The CID of the `export` folder itself is the important one for our purposes.
 
 ```
 ...
-added Qmf827vDWEcbjtMyRyDhwwcGMNiMKSAfgcJC8a9gb4SauD export/wasm/pkg
-added QmaHvQcpBXA4TFcd6QdoH3NaEf93myhbMtvdPd79rAgdpn export/wasm
-added QmWg5jPNsYc2wEJSBt454CAc5jL15TnnLZ6DxQcfwq4Q6r export
+added QmV7zRBYTYf8wmQQzXfnfRFTyYBUByJGaLB37VuHjsj6Y6 export/wasm/pkg
+added QmZTdJheNur4R2esdej5w1gktGS5aLHYHtLsChMjACmzuk export/wasm
+added QmbTGA1mPf3nb5RRWehvrHn7cz3jwVQdj91r3c6eHmdx4k export
 13.80 MiB / 13.80 MiB [=======================================================================================] 100.00%
 ```
 
-The latest build has this CID: `QmWg5jPNsYc2wEJSBt454CAc5jL15TnnLZ6DxQcfwq4Q6r`
+The latest build has this CID: `Qmf8NfR8bKLNWzkTN7CDvaEGMXnHR4px3ypqCHRpvsubJU`
 
-or, in base32: `bafybeid327jmlcaibfme5jtdlud5gmtmh467nnfmowcm7rcn7ann5t5cy4`
+or, in base32: `bafybeihzogihryvljuwim2vh2n3rqderrkbiaguzu3fq4m4zhjtcm6xb3u`
+
+The site can be added to pinning services by uploading the `build` folder.
 
 You can access it using the ENS [latest.kzgceremony.eth](https://latest.kzgceremony.eth)
 

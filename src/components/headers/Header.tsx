@@ -8,7 +8,7 @@ import LanguageSelector from '../LanguageSelector'
 // Import image assets
 import { ReactComponent as Star } from '../../assets/star.svg'
 // Import constants
-import { FONT_SIZE, BREAKPOINT, ENVIRONMENT, COMPUTE_DEADLINE } from '../../constants'
+import { FONT_SIZE, BREAKPOINT, ENVIRONMENT } from '../../constants'
 // Import hooks
 import useSequencerStatus from '../../hooks/useSequencerStatus'
 import { useNavigate } from 'react-router-dom'
@@ -43,7 +43,7 @@ const Header = () => {
             </Status>
           </SequencerStatus>
         </div>
-        <SequencerStatus style={{ fontSize: FONT_SIZE.XXS }}>
+        <SequencerStatus>
           <span style={{ paddingBottom: '2px' }}>
             <Bold>{ data?.num_contributions.toLocaleString('en-US',{maximumFractionDigits: 0}) } {' '}</Bold>
             <Trans i18nKey="header.totalContributions">total contributions</Trans>
@@ -51,10 +51,6 @@ const Header = () => {
           <span style={{ paddingBottom: '2px' }}>
             <Bold>{ data?.lobby_size.toLocaleString('en-US',{maximumFractionDigits: 0}) } {' '}</Bold>
             <Trans i18nKey="header.participantsInLobby">participants in lobby</Trans>
-          </span>
-          <span>
-            <Bold>{ ((data?.lobby_size! * COMPUTE_DEADLINE) / (60*60) ).toLocaleString('en-US',{maximumFractionDigits: 0}) } {' '}</Bold>
-            <Trans i18nKey="header.waitTime"><Bold>hours</Bold> max. estimated wait time</Trans>
           </span>
         </SequencerStatus>
         { ENVIRONMENT === 'testnet' ?
