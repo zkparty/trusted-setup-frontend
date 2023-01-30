@@ -1,6 +1,5 @@
 # KZG Ceremony Frontend
 
-**Work in Progress**
 
 This React App is a graphic interface to interact with the [Ethereum KZG Ceremony](https://github.com/ethereum/kzg-ceremony). Participants can checkout the website at [ceremony.ethereum.org](https://ceremony.ethereum.org).
 
