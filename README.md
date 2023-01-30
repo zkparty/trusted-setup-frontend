@@ -87,6 +87,6 @@ The IPFS CID for the audited code is `QmevfvaP3nR5iMncWKa55B2f5mUgTAw9oDjFovD3XN
 
 1. Access it [here](https://ceremony-ipfs.efprivacyscaling.org/ipfs/QmevfvaP3nR5iMncWKa55B2f5mUgTAw9oDjFovD3XNrJTV)
 1. Or use the ENS [audit.kzgceremony.eth](https://audit.kzgceremony.eth)
-1. Or at other IPFS gateways.
+1. Or at other IPFS gateways
 
 
