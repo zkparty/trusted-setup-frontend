@@ -2,7 +2,7 @@
 
 # Build WASM
 docker run -it --rm \
-    -v "${PWD}/public/wasm/:/root/wasm/" \
+    -v "${PWD}/public/wasm/:/root/source/wasm/" \
     --entrypoint ./build.sh \
     zkparty/wasm-pack-wrapper
 
