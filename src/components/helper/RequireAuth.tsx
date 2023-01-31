@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom'
-import shallow from 'zustand/shallow'
+import { shallow } from 'zustand/shallow'
 import { useAuthStore } from '../../store/auth'
 import ROUTES from '../../routes'
 

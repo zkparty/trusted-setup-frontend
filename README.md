@@ -1,6 +1,5 @@
 # KZG Ceremony Frontend
 
-**Work in Progress**
 
 This React App is a graphic interface to interact with the [Ethereum KZG Ceremony](https://github.com/ethereum/kzg-ceremony). Participants can checkout the website at [ceremony.ethereum.org](https://ceremony.ethereum.org).
 
@@ -10,14 +9,19 @@ To start this app execute the following steps:
 
 1. Run the sequencer app from [https://github.com/ethereum/kzg-ceremony-sequencer](). It is assumed that the assigned port is 3000 and that our react app would use port 3001. You can set `PORT` env variable with a specific port for React.
 
-1. Setup environment variables:
+2. Setup environment variables:
 
 - Sequencer API URL
 
-    Ubuntu: `export REACT_APP_API_ROOT=http://localhost:3000`
-    Windows (Powershell): ` $env:REACT_APP_API_ROOT="http://localhost:3000" `
+    - Ubuntu: `export REACT_APP_API_ROOT=http://localhost:3000`
+    - Windows (Powershell): ` $env:REACT_APP_API_ROOT="http://localhost:3000" `
 
-2. Install dependencies: `yarn install`
+- Environment
+
+    - Ubuntu: `export REACT_APP_ENVIRONMENT="testnet"`
+    - Windows (Powershell): `$env:REACT_APP_ENVIRONMENT="testnet"`
+
+3. Install dependencies: `yarn install`
 
 4. Start application: `yarn start`
 
@@ -32,6 +36,9 @@ The computation code is written in Rust and compiled to WASM. The compiled WASM 
 
 #### Build and add using Docker
 
+* Set required environment variables
+  - `export REACT_APP_API_ROOT=https://seq.ceremony.ethereum.org`
+  - `export REACT_APP_ENVIRONMENT=production`
 * Build the WASM wrapper Docker image, or `docker pull zkparty/wasm-pack-wrapper`
 * Pull a Docker image for node.js: `docker pull node:19-bullseye`
 * Build the entire site, and run an IPFS node: `./docker-build.sh`
@@ -80,6 +87,6 @@ The IPFS CID for the audited code is `QmevfvaP3nR5iMncWKa55B2f5mUgTAw9oDjFovD3XN
 
 1. Access it [here](https://ceremony-ipfs.efprivacyscaling.org/ipfs/QmevfvaP3nR5iMncWKa55B2f5mUgTAw9oDjFovD3XNrJTV)
 1. Or use the ENS [audit.kzgceremony.eth](https://audit.kzgceremony.eth)
-1. Or at other IPFS gateways.
+1. Or at other IPFS gateways
 
 
