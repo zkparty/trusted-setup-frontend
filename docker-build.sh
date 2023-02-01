@@ -10,7 +10,7 @@ docker run -it --rm \
 docker run -it --rm \
     -v "${PWD}:/work" \
     -w /work \
-    -e REACT_APP_API_ROOT="${REACT_APP_ROOT}" \
+    -e REACT_APP_API_ROOT="${REACT_APP_API_ROOT}" \
     -e REACT_APP_ENVIRONMENT="${REACT_APP_ENVIRONMENT}" \
     --entrypoint ./build.sh \
     node:19-bullseye
