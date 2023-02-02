@@ -59,13 +59,15 @@ added QmbTGA1mPf3nb5RRWehvrHn7cz3jwVQdj91r3c6eHmdx4k export
 13.80 MiB / 13.80 MiB [=======================================================================================] 100.00%
 ```
 
-The latest build has this CID: `Qmf8NfR8bKLNWzkTN7CDvaEGMXnHR4px3ypqCHRpvsubJU`
+The latest build has this CID: `QmfEC3xvQUi3jS26MP16kZATLgkP1a54fmFhhpnPPyCG8N`
 
-or, in base32: `bafybeihzogihryvljuwim2vh2n3rqderrkbiaguzu3fq4m4zhjtcm6xb3u`
+or, in base32: `bafybeih254gra4gmvvf65qj52r6jphortyir6em4wgsna6x2osmuggpox4`
 
 The site can be added to pinning services by uploading the `build` folder.
 
 You can access it using the ENS [latest.kzgceremony.eth](https://latest.kzgceremony.eth)
+
+Note: The IPFS deployment was built using WASM `wrapper-small-pot` tag `ipfs_v3` and `kzg-ceremony-sequencer` commit `2538f2f08d4db880d7f4608e964df0b695bc7d2f`.
 
 
 ## Building from the Audited commit
