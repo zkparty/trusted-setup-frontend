@@ -46,14 +46,21 @@ class APIClient {
   async tryContribute(
     session_id: string
   ): Promise<ErrorRes | TryContributeRes> {
-    const res = await fetch(`${API_ROOT}/lobby/try_contribute`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${session_id}`
+    try {
+      const res = await fetch(`${API_ROOT}/lobby/try_contribute`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session_id}`
+        }
+      })
+      return await res.json()
+    } catch (error: any) {
+      return {
+        code: error.name,
+        error: error.message
       }
-    })
-    return await res.json()
+    }
   }
 
   async contribute(

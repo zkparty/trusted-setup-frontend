@@ -58,14 +58,18 @@ const LobbyPage = () => {
               setError( t('error.tryContributeError.unknownSessionId') )
               console.log(resError.error)
               navigate(ROUTES.SIGNIN)
-              break
+              return
             case 'TryContributeError::AnotherContributionInProgress':
               console.log(resError.error)
               break
             case 'TryContributeError::LobbyIsFull':
               console.log(resError.error)
               navigate(ROUTES.LOBBY_FULL)
-              break
+              return
+            case 'TypeError':
+              setShowError( t('error.tryContributeError.typeError'))
+              console.log(resError.error)
+              break;
             default:
               // StorageError and TaskError keep you in the lobby until sequencer gets fixed
               setShowError( t('error.tryContributeError.unknownError', resError) )
@@ -74,6 +78,7 @@ const LobbyPage = () => {
           }
           //  try again after LOBBY_CHECKIN_FREUQUENCY
           await sleep(LOBBY_CHECKIN_FREQUENCY)
+          setShowError(null)
         }
       }
     }

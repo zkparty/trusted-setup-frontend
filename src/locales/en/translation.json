@@ -242,6 +242,7 @@
         "rateLimited": "The call to the sequencer came too early. This is only a warning, keep this tab open waiting for your turn and if needed submit an issue in Github",
         "unknownSessionId": "Unknown user. The lobby had a problem. Please sign in and try again",
         "anotherContributionInProgress": "There is another contribution being computed at the moment. Please wait for your turn to contribute",
+        "typeError": "Temporary network issues. Attempting to reconnect",
         "unknownError": "There has been an unknown error: {{error}} . code: {{code}}"
       },
       "authErrorPayload": {
