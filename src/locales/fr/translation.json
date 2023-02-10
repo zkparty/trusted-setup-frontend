@@ -107,6 +107,7 @@
         "content": "<p>Ici même sur ce site, vous pouvez vous connecter avec votre adresse Ethereum ou votre compte Github pour participer, Cela devrait prendre moins de 5 minutes de votre temps.</p><1>Si vous souhaitez une alternative à cette interface, il y a plusieurs autres CLI et pages Web disponibles (liens + IPFS). Au terme de cette période de contribution publique, nous accepterons des contributions spéciales provenant de <2>implémentations</2> ou générées aléatoirement. Des financements sont disponibles pour ces deux contributions. De plus amples informations seront partagées dans les semaines à venir.</1>",
         "title": "Comment puis-je contribuer à la Cérémonie ?"
       },
+      "q5": {
         "content": "<0>KZG vient de Kate, Zaverucha, et Goldberg. Ce sont les noms de famille des auteurs du document <2>« Engagements constants à l'égard des polynômes et de leurs applications »</2>, qui décrit le mécanisme cryptographique sous-jacent que l'EIP-4844 prévoit d'utiliser.</0><2>Pour en savoir plus sur la cryptographie des engagements KZG, <1>Le blog de Dankrad Feist</1> est un bon point de départ.</2>",
         "title": "Que signifie KZG ?"
       },
