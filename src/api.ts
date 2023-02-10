@@ -70,28 +70,43 @@ class APIClient {
     identity: string,
     signature: string | null
   ): Promise<ErrorRes | ContributeRes> {
-    let contribution  = await wasm.contribute(preContribution, entropy, identity)
-    useEntropyStore.persist.clearStorage()
-    let contributionObj = null
-    if (signature) {
-      contributionObj = JSON.parse(contribution!)
-      contributionObj.ecdsaSignature = signature
-      contributionObj = JSON.stringify(contributionObj)
-      contribution = contributionObj
+    let contribution = null
+    try {
+      contribution  = await wasm.contribute(preContribution, entropy, identity)
+      useEntropyStore.persist.clearStorage()
+      let contributionObj = null
+      if (signature) {
+        contributionObj = JSON.parse(contribution!)
+        contributionObj.ecdsaSignature = signature
+        contributionObj = JSON.stringify(contributionObj)
+        contribution = contributionObj
+      }
+    } catch (error: any) {
+      return {
+        code: error.name,
+        error: error.message
+      }
     }
-
-    const res = await fetch(`${API_ROOT}/contribute`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${session_id}`
-      },
-      body: contribution
-    })
-    return {
-      ...(await res.json()),
-      contribution
-    } as ContributeRes
+    try {
+      const res = await fetch(`${API_ROOT}/contribute`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session_id}`
+        },
+        body: contribution
+      })
+      console.log('after fetch')
+      return {
+        ...(await res.json()),
+        contribution
+      } as ContributeRes
+    } catch (error: any) {
+      return {
+        code: error.name,
+        error: error.message
+      }
+    }
   }
 }
 
