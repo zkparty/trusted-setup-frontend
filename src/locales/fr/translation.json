@@ -36,7 +36,7 @@
       "button": "Voir ma contribution",
       "description": {
         "completed": "<0>Vous avez apporté avec succès votre contribution. N'oubliez pas de revenir pour la fin de la cérémonie d'invocation et de passer le mot.</0>",
-        "contributing": "<0>Les Pouvoirs de la Tau sont désormais entre vos mains. Votre secret, Sigil, et votre Échantillon sont en train de fusionner avec ceux qui vous ont précédé.</0><1>Les rituels ne sauraient être brusqués - le temps donné ici crée des artefacts intemporels.</1>",
+        "contributing": "<0>Les Puissances de Tau sont désormais entre vos mains. Votre secret, Sigil, et votre Échantillon sont en train de fusionner avec ceux qui vous ont précédé.</0><1>Les rituels ne sauraient être brusqués - le temps donné ici crée des artefacts intemporels.</1>",
         "error": "Une erreur est survenue {{error}}. Essayez à nouveau"
       },
       "title": {
@@ -72,7 +72,7 @@
         "title": "Qu'est-ce qui peut compromettre la sécurité de la cérémonie ?"
       },
       "q11": {
-        "content": "<p>Si le secret devait échapper d'une manière ou d'une autre aux Pouvoirs de Tau, un attaquant pourrait faire des déclarations arbitraires sur les données de l'EIP-4844. Cela aurait pour effet d'interrompre tous les services et applications qui dépendent des données blob de l'EIP-4844.</p>",
+        "content": "<p>Si le secret devait échapper d'une manière ou d'une autre aux Puissances de Tau, un attaquant pourrait faire des déclarations arbitraires sur les données de l'EIP-4844. Cela aurait pour effet d'interrompre tous les services et applications qui dépendent des données blob de l'EIP-4844.</p>",
         "title": "Quelles sont les attaques possibles dans cette situation ?"
       },
       "q12": {
@@ -88,7 +88,7 @@
         "title": "Comment puis-je savoir si ma contribution a été incluse ?"
       },
       "q15": {
-        "content": "<0>Une fois la cérémonie terminée, il est important que la communauté vérifie que la cérémonie s'est déroulée correctement. Cela se fait en deux temps :</p><1><p>Vérifiez que vous-même ou un nombre suffisant de personnes de confiance ont effectivement participé, en vous assurant que leurs identités apparaissent dans la transcription.</0><1>Vérifiez que la transcription a été correctement réalisée en incluant tous les témoins (preuves de contribution appropriée) et que les Pouvoirs de Tau sont bien des pouvoirs.</1></1>",
+        "content": "<0>Une fois la cérémonie terminée, il est important que la communauté vérifie que la cérémonie s'est déroulée correctement. Cela se fait en deux temps :</p><1><p>Vérifiez que vous-même ou un nombre suffisant de personnes de confiance ont effectivement participé, en vous assurant que leurs identités apparaissent dans la transcription.</0><1>Vérifiez que la transcription a été correctement réalisée en incluant tous les témoins (preuves de contribution appropriée) et que les Puissances de Tau sont bien des puissances.</1></1>",
         "title": "Comment puis-je vérifier le résultat final issu de la cérémonie ?"
       },
       "q16": {
@@ -107,17 +107,16 @@
         "content": "<p>Ici même sur ce site, vous pouvez vous connecter avec votre adresse Ethereum ou votre compte Github pour participer, Cela devrait prendre moins de 5 minutes de votre temps.</p><1>Si vous souhaitez une alternative à cette interface, il y a plusieurs autres CLI et pages Web disponibles (liens + IPFS). Au terme de cette période de contribution publique, nous accepterons des contributions spéciales provenant de <2>implémentations</2> ou générées aléatoirement. Des financements sont disponibles pour ces deux contributions. De plus amples informations seront partagées dans les semaines à venir.</1>",
         "title": "Comment puis-je contribuer à la Cérémonie ?"
       },
-      "q5": {
         "content": "<0>KZG vient de Kate, Zaverucha, et Goldberg. Ce sont les noms de famille des auteurs du document <2>« Engagements constants à l'égard des polynômes et de leurs applications »</2>, qui décrit le mécanisme cryptographique sous-jacent que l'EIP-4844 prévoit d'utiliser.</0><2>Pour en savoir plus sur la cryptographie des engagements KZG, <1>Le blog de Dankrad Feist</1> est un bon point de départ.</2>",
         "title": "Que signifie KZG ?"
       },
       "q6": {
-        "content": "<4>Cette interface vous guidera tout au long des étapes suivantes :</p><1><p>Fournissez des entrées aléatoires de trois sources différentes. </p><1>Connectez-vous avec Ethereum ou Github pour éviter les spams.</1><0>Demandez au Séquenceur si vous pouvez participer. Quand vient votre tour, le Séquenceur vous enverra les données « Pouvoirs de Tau ».</0><2>Votre ordinateur va mélanger vos données aléatoires dans les Pouvoirs de Tau, et une fois terminé, les renverra au Séquenceur. </2><3>Le Séquenceur vérifiera que votre ordinateur a tout fait correctement et confiera les Pouvoirs de Tau au au participant suivant.</4></1><p>Une fois la cérémonie terminée, vous devez revenir vérifier que votre contribution a bien été incluse dans la transcription finale.</2>",
+        "content": "<4>Cette interface vous guidera tout au long des étapes suivantes :</p><1><p>Fournissez des entrées aléatoires de trois sources différentes. </p><1>Connectez-vous avec Ethereum ou Github pour éviter les spams.</1><0>Demandez au Séquenceur si vous pouvez participer. Quand vient votre tour, le Séquenceur vous enverra les données « Puissances de Tau ».</0><2>Votre ordinateur va mélanger vos données aléatoires dans les Puissances de Tau, et une fois terminé, les renverra au Séquenceur. </2><3>Le Séquenceur vérifiera que votre ordinateur a tout fait correctement et confiera les Puissances de Tau au au participant suivant.</4></1><p>Une fois la cérémonie terminée, vous devez revenir vérifier que votre contribution a bien été incluse dans la transcription finale.</2>",
         "title": "Que se passe-t-il lors de cette Cérémonie ?"
       },
       "q7": {
-        "content": "<p>L'expression Pouvoirs de Tau » est tirée de la littérature cryptographique sur les configurations sécurisées et les SRS.</p><p> « Tau » vient de la lettre grecque τ qui est l'abréviation du « secret» auquel il est fait référence dans cette documentation.</p><1>« Pouvoirs » fait référence au fait que nous avons besoin non seulement du secret, mais aussi des pouvoirs qui en découlent (ex. [1, τ, τ<1>2</1>, τ<3>3</3>,... τ<5>2<2>12-1</2></5>])</1><p>Il convient de noter que les pouvoirs de Tau ne sont pas des nombres bruts, mais qu'ils sont encodés sous la forme de points d'une courbe elliptique qui les « crypte » et donc les cache.</p>",
-        "title": "Que sont les Pouvoirs de Tau ?"
+        "content": "<p>L'expression « Puissances de Tau » est tirée de la littérature cryptographique sur les configurations sécurisées et les SRS.</p><p> « Tau » vient de la lettre grecque τ qui est l'abréviation du « secret» auquel il est fait référence dans cette documentation.</p><1>« Puissances » fait référence au fait que nous avons besoin non seulement du secret, mais aussi des puissances qui en découlent (ex. [1, τ, τ<1>2</1>, τ<3>3</3>,... τ<5>2<2>12-1</2></5>])</1><p>Il convient de noter que les puissances de Tau ne sont pas des nombres bruts, mais qu'ils sont encodés sous la forme de points d'une courbe elliptique qui les « crypte » et donc les cache.</p>",
+        "title": "Que sont les Puissances de Tau ?"
       },
       "q8": {
         "content": "<p>Le Séquenceur est un serveur hébergé par la Fondation Ethereum qui coordonne les contributions. Il garde la trace des personnes qui essaient de contribuer, leur fournit les données nécessaires au téléchargement et vérifie chaque contribution avant d'envoyer les données au participant suivant.</p><1>Vous n'avez pas à vous assurer que le Séquenceur ne produit pas un résultat final biaisé ou non valide. La <2>transcription</2> fournit un enregistrement vérifiable de toutes les contributions aléatoires que vous pouvez vérifier par vous-même.</1>",
@@ -146,7 +145,7 @@
     "landing": {
       "button": "Commencer",
       "button-mobile": "Continuer sur le bureau",
-      "description": "<0>Dans l'ombre, il se murmure qu'un esprit puissant, Dankshard, ouvrira le prochain chapitre de l'évolutivité d'Ethereum. Pour invoquer ses pouvoirs, une Cérémonie, à laquelle vous êtes invité à contribuer, sera organisée.</0><1>La magie des mathématiques vous attend - êtes-vous prêt à ajouter votre couleur à l'histoire ? Choisissez l'un des chemins ci-dessous pour commencer le rituel :</1>",
+      "description": "<0>Dans l'ombre, il se murmure qu'un esprit puissant, Dankshard, ouvrira le prochain chapitre de l'évolutivité d'Ethereum. Pour invoquer ses puissances, une Cérémonie, à laquelle vous êtes invité à contribuer, sera organisée.</0><1>La magie des mathématiques vous attend - êtes-vous prêt à ajouter votre couleur à l'histoire ? Choisissez l'un des chemins ci-dessous pour commencer le rituel :</1>",
       "learn-more": "↓ ou en savoir plus ci-dessous ↓",
       "learn-more-mobile": "↓ en savoir plus ci-dessous ↓",
       "title": "GUIDES D'INVOCATION"
