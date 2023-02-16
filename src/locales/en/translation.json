@@ -234,6 +234,7 @@
       "unlockWithGithub": "or unlock with Github"
     },
     "error": {
+      "safariNotAllowed": "The Safari browser is not compatible",
       "notSameWallet": "Use the same address you used to bind your contribution",
       "incorrectChainId": "Select the Ethereum Mainnet network in your signing wallet",
       "pastSubgroupChecksFailed": "Subgroup check failed in the contribution you received. Please report it immediately",
