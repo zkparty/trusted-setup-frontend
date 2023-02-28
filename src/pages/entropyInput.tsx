@@ -28,6 +28,8 @@ import { Trans, useTranslation } from 'react-i18next'
 import { MIN_MOUSE_ENTROPY_SAMPLES, FONT_SIZE } from '../constants'
 import 'text-security'
 import LoadingSpinner from '../components/LoadingSpinner'
+import { isSafari } from '../utils'
+import ErrorMessage from '../components/Error'
 
 type Player = {
   play: () => void
@@ -38,6 +40,7 @@ type Player = {
 const EntropyInputPage = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const [showError, setShowError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [keyEntropy, setKeyEntropy] = useState('')
   const [mouseEntropy, setMouseEntropy] = useState('')
@@ -108,6 +111,12 @@ const EntropyInputPage = () => {
   }
 
   useEffect(() => {
+    if ( isSafari() ){
+      setShowError(t('error.safariNotAllowed'))
+    }
+  }, [t])
+
+  useEffect(() => {
     // MIN_MOUSE_ENTROPY_SAMPLES Chosen to target 128 bits of entropy, assuming 2 bits added per sample.
     const percentage = Math.min(
       Math.floor((mouseEntropySamples / MIN_MOUSE_ENTROPY_SAMPLES) * 100),
@@ -131,6 +140,7 @@ const EntropyInputPage = () => {
               </Trans>
             </PageTitle>
             <TextSection>
+              {showError && <ErrorMessage>{showError}</ErrorMessage>}
               <Trans i18nKey="entropyInput.description">
                 <Description>
                   The Ceremony requires three random inputs from each Summoner.

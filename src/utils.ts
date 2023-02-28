@@ -15,6 +15,11 @@ export function isMobile(): boolean {
   return Boolean(isAndroid || isIos || isOpera || isWindows)
 }
 
+export function isSafari(): boolean {
+  const isSafari = (window as any).safari !== undefined;
+  return Boolean(isSafari)
+}
+
 export function isBgRoute(route: string): boolean {
   return [
     ROUTES.CONTRIBUTING,
