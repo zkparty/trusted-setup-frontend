@@ -1,5 +1,3 @@
-import ROUTES from '../routes'
-import { isMobile } from '../utils'
 import styled from 'styled-components'
 import Footer from '../components/Footer'
 import { useRef, useEffect } from 'react'
@@ -10,13 +8,12 @@ import useCountdown from '../hooks/useCountdown'
 import Header from '../components/headers/Header'
 import { TextSection } from '../components/Layout'
 import { Trans, useTranslation } from 'react-i18next'
-import { CIRCLE_SIZE, END_DATE, ENVIRONMENT } from '../constants'
+import ExternalLink from '../components/ExternalLink'
+import { CIRCLE_SIZE, END_DATE, ENVIRONMENT, FONT_SIZE } from '../constants'
 import { Description, ItalicSubTitle, PageTitle } from '../components/Text'
 import Explanation from '../components/landing/Explanation'
 import { BgColoredContainer } from '../components/Background'
 import LatestRecords from '../components/landing/LatestRecords'
-import OtherResources from '../components/landing/OtherResources'
-import { PrimaryButton } from '../components/Button'
 import LatestContributionsBorder from '../assets/latest-contributions-border.svg'
 
 const LandingPage = () => {
@@ -41,10 +38,6 @@ const LandingPage = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const onClickBegin = () => {
-    window.open(window.location.origin + '/#' + ROUTES.ENTROPY_INPUT)
-}
-
   return (
     <BgColoredContainer>
       <Header />
@@ -59,31 +52,30 @@ const LandingPage = () => {
         { ENVIRONMENT === 'testnet' ?
           ''
           :
-          <ItalicSubTitle>
-            <Trans i18nKey="landing.period">Open contribution</Trans>
-            {' - '+days+' : '+hours+' : '+minutes+' : '+seconds}
-          </ItalicSubTitle>
+          <>
+            <ItalicSubTitle style={{ marginBottom: '0px' }}>
+              <Trans i18nKey="landing.period">Special contributions</Trans>
+              {' - '+days+' : '+hours+' : '+minutes+' : '+seconds}
+            </ItalicSubTitle>
+            <ItalicSubTitle style={{ fontSize: FONT_SIZE.S, marginBottom: '20px' }}>
+              <Trans i18nKey="landing.special">the Ceremony is only accepting special contributions at this time</Trans>
+            </ItalicSubTitle>
+          </>
         }
         <TextSection style={{ width: '55ch' }}>
           <Trans i18nKey="landing.description">
             <Description>
-              Whispers from the shadows tell of a powerful spirit Dankshard, who
-              will open the next chapter of Ethereum scalability. To summon its
-              powers, this Ceremony needs your contribution.
+              The KZG Ceremony is currently in the Special Contribution Period. For the next few weeks,
+              more complex contributions will be allocated slots. Some have large groups collectively
+              generating entropy or particular setup restrictions which may need more time for computation.
+              These contributions are were proposed by the community and funded through the
+              <ExternalLink href='https://blog.ethereum.org/2022/12/15/kzg-ceremony-grants-round'>KZG Grants Round</ExternalLink>.
             </Description>
             <Description>
-              Magic math awaits - are you ready to add your color to the story?
+              Learn more about about the Ceremony below
             </Description>
           </Trans>
         </TextSection>
-        <PrimaryButton onClick={onClickBegin} disabled={isMobile()}>
-          { isMobile() ?
-            <Trans i18nKey="landing.button-mobile">Proceed on desktop</Trans>
-            :
-            <Trans i18nKey="landing.button">Begin</Trans>
-          }
-        </PrimaryButton>
-        <OtherResources/>
         </WhiteBackground>
       </TopSection>
       <Explanation refFromLanding={ref} />
