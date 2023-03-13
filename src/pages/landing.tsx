@@ -8,12 +8,12 @@ import useCountdown from '../hooks/useCountdown'
 import Header from '../components/headers/Header'
 import { TextSection } from '../components/Layout'
 import { Trans, useTranslation } from 'react-i18next'
+import ExternalLink from '../components/ExternalLink'
 import { CIRCLE_SIZE, END_DATE, ENVIRONMENT, FONT_SIZE } from '../constants'
 import { Description, ItalicSubTitle, PageTitle } from '../components/Text'
 import Explanation from '../components/landing/Explanation'
 import { BgColoredContainer } from '../components/Background'
 import LatestRecords from '../components/landing/LatestRecords'
-import OtherResources from '../components/landing/OtherResources'
 import LatestContributionsBorder from '../assets/latest-contributions-border.svg'
 
 const LandingPage = () => {
@@ -65,16 +65,17 @@ const LandingPage = () => {
         <TextSection style={{ width: '55ch' }}>
           <Trans i18nKey="landing.description">
             <Description>
-              Whispers from the shadows tell of a powerful spirit Dankshard, who
-              will open the next chapter of Ethereum scalability. To summon its
-              powers, this Ceremony needs your contribution.
+              The KZG Ceremony is currently in the Special Contribution Period. For the next few weeks,
+              more complex contributions will be allocated slots. Some have large groups collectively
+              generating entropy or particular setup restrictions which may need more time for computation.
+              These contributions are were proposed by the community and funded through the
+              <ExternalLink href='https://blog.ethereum.org/2022/12/15/kzg-ceremony-grants-round'>KZG Grants Round</ExternalLink>.
             </Description>
             <Description>
-              Magic math awaits - are you ready to add your color to the story?
+              Learn more about about the Ceremony below
             </Description>
           </Trans>
         </TextSection>
-        <OtherResources/>
         </WhiteBackground>
       </TopSection>
       <Explanation refFromLanding={ref} />
