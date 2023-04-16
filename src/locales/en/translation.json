@@ -155,7 +155,6 @@
       "learn-more": "↓ or learn more below ↓",
       "learn-more-mobile": "↓ learn more below ↓",
       "period": "Open contribution",
-      "special": "the Ceremony is only accepting special contributions at this time",
       "title": "SUMMONING GUIDES"
     },
     "language": {
@@ -197,7 +196,7 @@
       "ipfs": "IPFS Interface",
       "hosted": "Hosted Interface",
       "otherClients": "CLI Clients",
-      "writeYourOwn": "Learn more",
+      "writeYourOwn": "Grants",
       "recommended": "(Recommended)"
     },
     "record": {
