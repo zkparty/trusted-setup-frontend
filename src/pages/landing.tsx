@@ -9,13 +9,12 @@ import Header from '../components/headers/Header'
 import { TextSection } from '../components/Layout'
 import { Trans, useTranslation } from 'react-i18next'
 import ExternalLink from '../components/ExternalLink'
-import { CIRCLE_SIZE, END_DATE, ENVIRONMENT } from '../constants'
+import { CIRCLE_SIZE, END_DATE, ENVIRONMENT, FONT_SIZE } from '../constants'
 import { Description, ItalicSubTitle, PageTitle } from '../components/Text'
 import Explanation from '../components/landing/Explanation'
 import { BgColoredContainer } from '../components/Background'
 import LatestRecords from '../components/landing/LatestRecords'
 import LatestContributionsBorder from '../assets/latest-contributions-border.svg'
-import { textSerif } from '../style/utils'
 
 const LandingPage = () => {
   useTranslation()
@@ -47,15 +46,19 @@ const LandingPage = () => {
         <BgColor />
         <PageTitle style={{ marginTop: '30px' }}>
           <Trans i18nKey="landing.title">
-            SPECIAL CONTRIBUTION PERIOD
+            SUMMONING GUIDES
           </Trans>
         </PageTitle>
         { ENVIRONMENT === 'testnet' ?
           ''
           :
           <>
-            <ItalicSubTitle>
-              {days+' : '+hours+' : '+minutes+' : '+seconds}
+            <ItalicSubTitle style={{ marginBottom: '0px' }}>
+              <Trans i18nKey="landing.period">Special contributions</Trans>
+              {' - '+days+' : '+hours+' : '+minutes+' : '+seconds}
+            </ItalicSubTitle>
+            <ItalicSubTitle style={{ fontSize: FONT_SIZE.S, marginBottom: '20px' }}>
+              <Trans i18nKey="landing.special">the Ceremony is only accepting special contributions at this time</Trans>
             </ItalicSubTitle>
           </>
         }
@@ -66,15 +69,13 @@ const LandingPage = () => {
               more complex contributions will be allocated slots. Some have large groups collectively
               generating entropy or particular setup restrictions which may need more time for computation.
               These contributions are were proposed by the community and funded through the
-              <ExternalLink href='https://blog.ethereum.org/2022/12/15/kzg-ceremony-grants-round'>
-                <span style={{ textDecoration: 'underline' }}>KZG Grants Round</span>
-              </ExternalLink>.
+              <ExternalLink href='https://blog.ethereum.org/2022/12/15/kzg-ceremony-grants-round'>KZG Grants Round</ExternalLink>.
+            </Description>
+            <Description>
+              Learn more about about the Ceremony below
             </Description>
           </Trans>
         </TextSection>
-        <Footnote>
-          <Trans i18nKey="landing.learn-more-special">↓ Learn more about about the Ceremony below ↓</Trans>
-        </Footnote>
         </WhiteBackground>
       </TopSection>
       <Explanation refFromLanding={ref} />
@@ -124,11 +125,6 @@ const WhiteBackground = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
-
-const Footnote = styled.p`
-  font-style: italic;
-  ${textSerif}
 `
 
 export default LandingPage

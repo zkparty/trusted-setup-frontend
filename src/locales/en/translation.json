@@ -151,13 +151,12 @@
     "landing": {
       "button": "Begin",
       "button-mobile": "Proceed on desktop",
-      "description": "<0>The KZG Ceremony is currently in the Special Contribution Period. For the next few weeks, more complex contributions will be allocated slots. Some have large groups collectively generating entropy or particular setup restrictions which may need more time for computation. These contributions are were proposed by the community and funded through the <1><0>KZG Grants Round</0></1>.</0>",
+      "description": "<0>The KZG Ceremony is currently in the Special Contribution Period. For the next few weeks, more complex contributions will be allocated slots. Some have large groups collectively generating entropy or particular setup restrictions which may need more time for computation. These contributions are were proposed by the community and funded through the <1>KZG Grants Round</1>.</0><1>Learn more about about the Ceremony below</1>",
       "learn-more": "↓ or learn more below ↓",
       "learn-more-mobile": "↓ learn more below ↓",
-      "learn-more-special": "↓ Learn more about about the Ceremony below ↓",
       "period": "Open contribution",
       "special": "the Ceremony is only accepting special contributions at this time",
-      "title": "SPECIAL CONTRIBUTION PERIOD"
+      "title": "SUMMONING GUIDES"
     },
     "language": {
       "ar": "Arabic",
