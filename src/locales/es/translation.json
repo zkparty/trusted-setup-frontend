@@ -80,7 +80,11 @@
         "title": "¿Cuánto tiempo se tarda en contribuir?"
       },
       "q13": {
-        "content": "<p>Para reducir los ataques Sybil contra la ceremonía, el secuenciador debe verificar su condición de humano único, de lo contrario una persona podría presentar muchas contribuciones diferentes que impiden que otros tengan su turno para contribuir.</p><1><0>Iniciar sesión en Ethereum: Esta es la opción preferida, ya que es algo que todos los miembros de la comunidad Ethereum deberían tener y que permite firmas para la verificación posterior de la transcripción. Se requiere de cada cuenta que haya enviado al menos 3 transacciones para evitar abrir nuevas cuentas solo para esta ceremonia. </0><1>Iniciar sesión con GitHub: Esta opción se ofrece como una alternativa para aquellos que están más lejos de la comunidad pero a quienes les gustaría participar. </1></1>",
+        "content": {
+          "p1": "Para reducir los ataques Sybil contra la ceremonia, el secuenciador debe verificar su condición de humano único, de lo contrario una persona podría presentar muchas contribuciones diferentes que impiden que otros tengan su turno para contribuir.",
+          "p2": "Iniciar sesión en Ethereum: Esta es la opción preferida, ya que es algo que todos los miembros de la comunidad Ethereum deberían tener y que permite firmas para la verificación posterior de la transcripción. Se requiere de cada cuenta que haya enviado al menos {{ethMinNonce}} transacciones para evitar abrir nuevas cuentas solo para esta ceremonia. ",
+          "p3": "Iniciar sesión con GitHub: Esta opción se ofrece como una alternativa para aquellos que están más lejos de la comunidad pero a quienes les gustaría participar. "
+        },
         "title": "¿Por qué necesito iniciar sesión con Ethereum o GitHub?"
       },
       "q14": {
@@ -218,7 +222,10 @@
       }
     },
     "signin": {
-      "description": "<0>La Ceremonia requiere almas de intención pura. Los invocadores muestran su integridad desbloqueando con una dirección que tiene al menos tres transacciones enviadas.</0><1>Elegir Ehtereum no envía ningún fondo ni permite ningún contrato. Este método también nos permite entregar un POAP después de la Ceremonia.</1>",
+      "description": {
+        "p1": "La Ceremonia requiere almas de intención pura. Los invocadores muestran su integridad desbloqueando con una dirección que tiene al {{ethMinNonce}} tres transacciones enviadas.",
+        "p2": "Elegir Ethereum no envía ningún fondo ni permite ningún contrato. Este método también nos permite entregar un POAP después de la Ceremonia."
+      },
       "title": "ABRIR <br/> EL CAMINO",
       "unlockWithEthereum": "Desbloquear con Ethereum <2></2>",
       "unlockWithGithub": "o desbloquear con Github"

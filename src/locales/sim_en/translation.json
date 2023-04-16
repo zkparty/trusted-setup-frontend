@@ -71,7 +71,11 @@
         "title": "How long does it take to contribute?"
       },
       "q13": {
-        "content": "<p>In order to reduce Sybil attacks against the Ceremony, the Sequencer needs to verify that you are a (somewhat) unique human otherwise one person could submit many different contributions preventing others from getting a turn to contribute.</p><1><0>Sign in with Ethereum - This is the preferred choice as it something that all Ethereum community members should already have and it allows signatures for later verification of the contribution. Each account is required to have sent at least 3 transactions to prevent spinning up new accounts just for this ceremony.</0><1>Sign in with GitHub - This option is offered as an alternative for those who are more distant to the community but who'd still like to participate.</1></1>",
+        "content": {
+          "p1": "In order to reduce Sybil attacks against the Ceremony, the Sequencer needs to verify that you are a (somewhat) unique human otherwise one person could submit many different contributions preventing others from getting a turn to contribute.",
+          "p2": "Sign in with Ethereum - This is the preferred choice as it something that all Ethereum community members should already have and it allows signatures for later verification of the contribution. Each account is required to have sent at least {{ethMinNonce}} transactions to prevent spinning up new accounts just for this ceremony.",
+          "p3": "Sign in with GitHub - This option is offered as an alternative for those who are more distant to the community but who'd still like to participate."
+        },
         "title": "Why do I need to sign in with Ethereum or GitHub?"
       },
       "q14": {
@@ -193,7 +197,10 @@
       }
     },
     "signin": {
-      "description": "<0>In order to ensure you are a unique human, you need to sign in with an Ethereum account that has at least three sent transactions.</0><1>It does not send any funds or permit any contracts. This method also allows us to deliver a POAP after the Ceremony.</1>",
+      "description": {
+        "p1": "In order to ensure you are a unique human, you need to sign in with an Ethereum account that has at least {{ethMinNonce}} sent transactions.",
+        "p2": "It does not send any funds or permit any contracts. This method also allows us to deliver a POAP after the Ceremony."
+      },
       "title": "OPEN <br/> THE WAY",
       "unlockWithEthereum": "Sign-in with Ethereum <2></2>",
       "unlockWithGithub": "or sign-in with GitHub"

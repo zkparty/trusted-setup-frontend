@@ -80,7 +80,11 @@
         "title": "How long does it take to contribute?"
       },
       "q13": {
-        "content": "<p>In order to reduce Sybil attacks against the Ceremony, the Sequencer needs to verify that you are a (somewhat) unique human. Without this check, one person could submit many different contributions. This could prevent other honest community members from participating, or if of malicious intent, reduce the credibility of the Ceremony output.</p><1><0>Sign in with Ethereum - This is the preferred choice as it something that all Ethereum community members should already have, it allows signatures for later verification of the contribution, and allows participation recognition through a POAP token. Each address is required to have sent at least 3 transactions before Jan. 13, 2023 (block number 16,394,155) to prevent spinning up new accounts just for this Ceremony.</0><1>Sign in with GitHub - This option is offered as an alternative for those who are more distant to the community but who would still like to participate.</1></1>",
+        "content": {
+          "p1": "In order to reduce Sybil attacks against the Ceremony, the Sequencer needs to verify that you are a (somewhat) unique human. Without this check, one person could submit many different contributions. This could prevent other honest community members from participating, or if of malicious intent, reduce the credibility of the Ceremony output.",
+          "p2": "Sign in with Ethereum - This is the preferred choice as it something that all Ethereum community members should already have, it allows signatures for later verification of the contribution, and allows participation recognition through a POAP token. Each address is required to have sent at least {{ethMinNonce}} transactions before Jan. 13, 2023 (block number 16,394,155) to prevent spinning up new accounts just for this Ceremony.",
+          "p3": "Sign in with GitHub - This option is offered as an alternative for those who are more distant to the community but who would still like to participate."
+        },
         "title": "Why do I need to sign in with Ethereum or GitHub?"
       },
       "q14": {
@@ -228,7 +232,10 @@
       }
     },
     "signin": {
-      "description": "<0>The Ceremony requires souls of pure intent. Summoners show their integrity by unlocking with an address that has sent at least three transactions before Jan. 13, 2023 (block number 16,394,155). Each address can only be used to contribute once.</0><1>Choosing Ethereum does not send any funds or permit any contracts. This method will let you claim a POAP after the Ceremony has concluded.</1>",
+      "description": {
+        "p1": "The Ceremony requires souls of pure intent. Summoners show their integrity by unlocking with an address that has sent at least {{ethMinNonce}} transactions before Jan. 13, 2023 (block number 16,394,155). Each address can only be used to contribute once.",
+        "p2": "Choosing Ethereum does not send any funds or permit any contracts. This method will let you claim a POAP after the Ceremony has concluded."
+      },
       "title": "OPEN <br/> THE WAY",
       "unlockWithEthereum": "Unlock with Ethereum <2></2>",
       "unlockWithGithub": "or unlock with Github"
