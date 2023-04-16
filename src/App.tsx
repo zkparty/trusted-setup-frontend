@@ -57,39 +57,15 @@ function App() {
         <GlobalStyle />
         <Routes>
           <Route path={ROUTES.ROOT} element={<HomePage/>}>
-            <Route
-              path={ROUTES.ROOT}
-              element={
-                isRedirect ?
-                  <SigninRedirectPage search={location.search} />
-                :
-                  <LandingPage />
-              }
-            />
-            <Route
-              path={ROUTES.ENTROPY_INPUT}
-              element={
-                <RequireAuth>
-                  <EntropyInputPage/>
-                </RequireAuth>
-              }
-            />
-            <Route
-              path={ROUTES.SIGNIN}
-              element={
-              <RequireAuth>
-                <SigninPage />
-              </RequireAuth>
-              }
-            />
-            <Route
-              path={ROUTES.DOUBLE_SIGN}
-              element={
-                <RequireAuth>
-                  <DoubleSignPage />
-                </RequireAuth>
-              }
-            />
+              <Route path={ROUTES.ROOT} element={
+                  isRedirect ?
+                    <SigninRedirectPage search={location.search} />
+                  :
+                    <LandingPage />
+               }/>
+            <Route path={ROUTES.ENTROPY_INPUT} element={<EntropyInputPage/>} />
+            <Route path={ROUTES.SIGNIN} element={<SigninPage />} />
+            <Route path={ROUTES.DOUBLE_SIGN} element={<DoubleSignPage />} />
             <Route path={ROUTES.LOBBY_FULL} element={<LobbyFullPage />} />
             <Route
               path={ROUTES.LOBBY}
