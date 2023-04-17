@@ -54,7 +54,7 @@ const ETH_MIN_NONCE =
 const START_DATE =
   parseInt(process.env.REACT_APP_START_DATE as string) || 1678713180
 const END_DATE =
-  parseInt(process.env.REACT_APP_END_DATE as string) || 1678733180
+  parseInt(process.env.REACT_APP_END_DATE as string) || 1681668780
 
 const INFURA_ID = process.env.REACT_APP_INFURA_ID || 'cd82571d19ab490e828dd0f86ec3cbf0'
 const PORTIS_ID = process.env.REACT_APP_PORTIS_ID || 'd6418a0a-18ae-4dfd-a206-3398012907ec'
