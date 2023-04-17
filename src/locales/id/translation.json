@@ -80,7 +80,11 @@
         "title": "Berapa lama waktu yang dibutuhkan untuk berkontribusi?"
       },
       "q13": {
-        "content": "<p>Untuk mengurangi serangan Sybil terhadap Upacara, Sequencer perlu memverifikasi bahwa Anda adalah manusia yang unik (agak unik), jika tidak, satu orang dapat mengirimkan beberapa kontribusi berbeda yang menghalangi orang lain mendapat giliran untuk berkontribusi.</p><1><0>Masuk dengan Ethereum - Ini adalah pilihan yang lebih disukai karena merupakan sesuatu yang harus dimiliki oleh semua anggota komunitas Ethereum dan memungkinkan tanda tangan untuk verifikasi kontribusi di kemudian hari. Setiap akun diwajibkan mengirim minimal 3 transaksi untuk mencegah penambahan akun baru hanya untuk upacara ini.</0><1>Masuk dengan GitHub - Opsi ini ditawarkan sebagai alternatif bagi mereka yang lebih jauh dari komunitas tetapi masih ingin berpartisipasi.</1></1>",
+        "content": {
+          "p1": "Untuk mengurangi serangan Sybil terhadap Upacara, Sequencer perlu memverifikasi bahwa Anda adalah manusia yang unik (agak unik), jika tidak, satu orang dapat mengirimkan beberapa kontribusi berbeda yang menghalangi orang lain mendapat giliran untuk berkontribusi.",
+          "p2": "Masuk dengan Ethereum - Ini adalah pilihan yang lebih disukai karena merupakan sesuatu yang harus dimiliki oleh semua anggota komunitas Ethereum dan memungkinkan tanda tangan untuk verifikasi kontribusi di kemudian hari. Setiap akun diwajibkan mengirim minimal {{ethMinNonce}} transaksi untuk mencegah penambahan akun baru hanya untuk upacara ini.",
+          "p3": "Masuk dengan GitHub - Opsi ini ditawarkan sebagai alternatif bagi mereka yang lebih jauh dari komunitas tetapi masih ingin berpartisipasi."
+        },
         "title": "Mengapa saya harus masuk dengan Ethereum atau GitHub?"
       },
       "q14": {
@@ -218,7 +222,10 @@
       }
     },
     "signin": {
-      "description": "<0>Upacara memerlukan jiwa dengan niat murni. Pemanggil menunjukkan integritas mereka dengan membuka alamat yang memiliki minimal tiga transaksi terkirim. Setiap alamat hanya dapat digunakan sekali.</0><1>Memilih Ethereum tidak mengirim dana apa pun atau mengizinkan kotak apa pun. Metode ini juga mengizinkan POAP dikirimkan setelah Upacara.</1>",
+      "description": {
+        "p1": "Upacara memerlukan jiwa dengan niat murni. Pemanggil menunjukkan integritas mereka dengan membuka alamat yang memiliki minimal {{ethMinNonce}} transaksi terkirim. Setiap alamat hanya dapat digunakan sekali.",
+        "p2": "Memilih Ethereum tidak mengirim dana apa pun atau mengizinkan kotak apa pun. Metode ini juga mengizinkan POAP dikirimkan setelah Upacara."
+      },
       "title": "BUKA <br/> JALANNYA",
       "unlockWithEthereum": "Buka dengan Ethereum <2></2>",
       "unlockWithGithub": "atau buka dengan Github"

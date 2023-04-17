@@ -80,7 +80,11 @@
         "title": "Quanto tempo leva para contribuir?"
       },
       "q13": {
-        "content": "<p>A fim de reduzir os ataques Sybil contra a Cerimônia, o Sequenciador precisa verificar se você é um ser humano único (de alguma forma), caso contrário, uma pessoa pode enviar muitas contribuições diferentes, impedindo que outros tenham a oportunidade de contribuir.</p><1><0>Entrar com o Ethereum – essa é a escolha preferida, já que é algo que todos os membros da comunidade Ethereum já devem ter e permite assinaturas para verificação posterior da transcrição. Cada conta deverá enviar pelo menos 3 transações para evitar a criação de novas contas apenas para essa cerimônia.</0><1>Entrar com o GitHub – esta opção é oferecida como uma alternativa para aqueles que estão mais distantes da comunidade, mas que ainda gostariam de participar.</1></1>",
+        "content": {
+          "p1": "A fim de reduzir os ataques Sybil contra a Cerimônia, o Sequenciador precisa verificar se você é um ser humano único (de alguma forma), caso contrário, uma pessoa pode enviar muitas contribuições diferentes, impedindo que outros tenham a oportunidade de contribuir.",
+          "p2": "Entrar com o Ethereum – essa é a escolha preferida, já que é algo que todos os membros da comunidade Ethereum já devem ter e permite assinaturas para verificação posterior da transcrição. Cada conta deverá enviar pelo menos {{ethMinNonce}} transações para evitar a criação de novas contas apenas para essa cerimônia.",
+          "p3": "Entrar com o GitHub – esta opção é oferecida como uma alternativa para aqueles que estão mais distantes da comunidade, mas que ainda gostariam de participar."
+        },
         "title": "Por que preciso entrar com o Ethereum ou o GitHub?"
       },
       "q14": {
@@ -218,7 +222,10 @@
       }
     },
     "signin": {
-      "description": "<0>A Cerimônia requer almas de intenções puras. Invocadores mostram sua integridade desbloqueando com um endereço que tenha pelo menos três transações enviadas. Cada endereço somente pode ser usado uma vez.</0><1>Escolher o Ethereum não envia fundos ou permite quaisquer contratos. Esse método também permite entregar um POAP após a Cerimônia.</1>",
+      "description": {
+        "p1": "A Cerimônia requer almas de intenções puras. Invocadores mostram sua integridade desbloqueando com um endereço que tenha pelo menos {{ethMinNonce}} transações enviadas. Cada endereço somente pode ser usado uma vez.",
+        "p2": "Escolher o Ethereum não envia fundos ou permite quaisquer contratos. Esse método também permite entregar um POAP após a Cerimônia."
+      },
       "title": "ABRIR <br/> O CAMINHO",
       "unlockWithEthereum": "Desbloquear com o Ethereum <2></2>",
       "unlockWithGithub": "ou desbloquear com o Github"

@@ -19,9 +19,10 @@ import { Trans, useTranslation } from 'react-i18next'
 import HeaderJustGoingBack from '../components/headers/HeaderJustGoingBack'
 import api from '../api'
 import LoadingSpinner from '../components/LoadingSpinner'
+import { ETH_MIN_NONCE } from '../constants'
 
 const SigninPage = () => {
-  useTranslation()
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const { error } = useAuthStore()
   const [showError, setShowError] = useState(error)
@@ -63,17 +64,12 @@ const SigninPage = () => {
             </PageTitle>
             <TextSection>
               {showError && <ErrorMessage>{showError}</ErrorMessage>}
-              <Trans i18nKey="signin.description">
-                <Description>
-                  The Ceremony requires souls of pure intent. Summoners show
-                  their integrity by unlocking with an address that has sent at least
-                  three transactions before Jan. 13, 2023 (block number 16,394,155). Each address can only be used to contribute once.
-                </Description>
-                <Description>
-                  Choosing Ethereum does not send any funds or permit any contracts.
-                  This method will let you claim a POAP after the Ceremony has concluded.
-                </Description>
-              </Trans>
+              <Description>
+                {t('signin.description.p1', {ethMinNonce: ETH_MIN_NONCE})}
+              </Description>
+              <Description>
+                {t('signin.description.p2')}
+              </Description>
             </TextSection>
 
           <ButtonSection>

@@ -80,7 +80,11 @@
         "title": "How long does it take to contribute?"
       },
       "q13": {
-        "content": "<p>In order to reduce Sybil attacks against the Ceremony, the Sequencer needs to verify that you are a (somewhat) unique human. Without this check, one person could submit many different contributions. This could prevent other honest community members from participating, or if of malicious intent, reduce the credibility of the Ceremony output.</p><1><0>Sign in with Ethereum - This is the preferred choice as it something that all Ethereum community members should already have, it allows signatures for later verification of the contribution, and allows participation recognition through a POAP token. Each address is required to have sent at least 3 transactions before Jan. 13, 2023 (block number 16,394,155) to prevent spinning up new accounts just for this Ceremony.</0><1>Sign in with GitHub - This option is offered as an alternative for those who are more distant to the community but who would still like to participate.</1></1>",
+        "content": {
+          "p1": "In order to reduce Sybil attacks against the Ceremony, the Sequencer needs to verify that you are a (somewhat) unique human. Without this check, one person could submit many different contributions. This could prevent other honest community members from participating, or if of malicious intent, reduce the credibility of the Ceremony output.",
+          "p2": "Sign in with Ethereum - This is the preferred choice as it something that all Ethereum community members should already have, it allows signatures for later verification of the contribution, and allows participation recognition through a POAP token. Each address is required to have sent at least {{ethMinNonce}} transactions before Jan. 13, 2023 (block number 16,394,155) to prevent spinning up new accounts just for this Ceremony.",
+          "p3": "Sign in with GitHub - This option is offered as an alternative for those who are more distant to the community but who would still like to participate."
+        },
         "title": "Why do I need to sign in with Ethereum or GitHub?"
       },
       "q14": {
@@ -151,13 +155,11 @@
     "landing": {
       "button": "Begin",
       "button-mobile": "Proceed on desktop",
-      "description": "<0>The KZG Ceremony is currently in the Special Contribution Period. For the next few weeks, more complex contributions will be allocated slots. Some have large groups collectively generating entropy or particular setup restrictions which may need more time for computation. These contributions are were proposed by the community and funded through the <1><0>KZG Grants Round</0></1>.</0>",
+      "description": "<0>Whispers from the shadows tell of a powerful spirit Dankshard, who will open the next chapter of Ethereum scalability. To summon its powers, this Ceremony needs your contribution.</0><1>Magic math awaits - are you ready to add your color to the story?</1>",
       "learn-more": "↓ or learn more below ↓",
       "learn-more-mobile": "↓ learn more below ↓",
-      "learn-more-special": "↓ Learn more about about the Ceremony below ↓",
       "period": "Open contribution",
-      "special": "the Ceremony is only accepting special contributions at this time",
-      "title": "SPECIAL CONTRIBUTION PERIOD"
+      "title": "SUMMONING GUIDES"
     },
     "language": {
       "ar": "Arabic",
@@ -198,7 +200,7 @@
       "ipfs": "IPFS Interface",
       "hosted": "Hosted Interface",
       "otherClients": "CLI Clients",
-      "writeYourOwn": "Learn more",
+      "writeYourOwn": "Grants",
       "recommended": "(Recommended)"
     },
     "record": {
@@ -230,7 +232,10 @@
       }
     },
     "signin": {
-      "description": "<0>The Ceremony requires souls of pure intent. Summoners show their integrity by unlocking with an address that has sent at least three transactions before Jan. 13, 2023 (block number 16,394,155). Each address can only be used to contribute once.</0><1>Choosing Ethereum does not send any funds or permit any contracts. This method will let you claim a POAP after the Ceremony has concluded.</1>",
+      "description": {
+        "p1": "The Ceremony requires souls of pure intent. Summoners show their integrity by unlocking with an address that has sent at least {{ethMinNonce}} transactions before Jan. 13, 2023 (block number 16,394,155). Each address can only be used to contribute once.",
+        "p2": "Choosing Ethereum does not send any funds or permit any contracts. This method will let you claim a POAP after the Ceremony has concluded."
+      },
       "title": "OPEN <br/> THE WAY",
       "unlockWithEthereum": "Unlock with Ethereum <2></2>",
       "unlockWithGithub": "or unlock with Github"

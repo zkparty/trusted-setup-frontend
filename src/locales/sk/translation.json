@@ -80,7 +80,11 @@
           "title": "Koľko času zaberie prispievanie?"
         },
         "q13": {
-          "content": "<p>Aby sa obmedzili tzv. Sybil útoky na ceremóniu, Sekvencer musí overiť, že ste (do určitej miery) jedinečný človek, inak by jedna osoba mohla odoslať mnoho rôznych príspevkov, čím by zabránila ostatným dostať sa na rad.</p><1><0>Podpísať pomocou Etherea - Toto je uprednostňovaná možnosť, pretože by ju už mali mať všetci členovia komunity Etherea a umožňuje podpisy na neskoršie overenie príspevku. Od každej adresy sa vyžaduje, aby odoslala aspoň 3 transakcie, aby sa zabránilo otáčaniu nových účtov len kvôli tejto ceremónii.</0><1>Prihlásenie pomocou GitHub - Táto možnosť sa ponúka ako alternatíva pre tých, ktorí sú komunite vzdialenejší, ale napriek tomu by sa radi zapojili.</1></1>",
+          "content": {
+            "p1": "Aby sa zabránilo útokom na ceremóniu, Sekvencer musí overiť, že ste (do určitej miery) jedinečný človek, inak by jedna osoba mohla odoslať mnoho rôznych príspevkov, čím by zabránila ostatným dostať sa na rad.",
+            "p2": "Podpísať pomocou Etherea - Toto je uprednostňovaná možnosť, pretože by ju už mali mať všetci členovia komunity Etherea a umožňuje podpisy na neskoršie overenie príspevku. Od každej adresy sa vyžaduje, aby odoslala aspoň {{ethMinNonce}} transakcie, aby sa zabránilo otáčaniu nových účtov len kvôli tejto ceremónii.",
+            "p3": "Prihlásenie pomocou GitHub - Táto možnosť sa ponúka ako alternatíva pre tých, ktorí sú komunite vzdialenejší, ale napriek tomu by sa radi zapojili."
+          },
           "title": "Prečo sa musím príhlasiť Ethereum účtom alebo Githubom?"
         },
         "q14": {
@@ -218,7 +222,10 @@
         }
       },
       "signin": {
-        "description": "<0>Ceremónia vyžaduje dušu s čistým úmyslom. Kto sa chce zapojiť, musí preukázať svoju bezúhonnosť odomknutím s adresou, ktorá má aspoň tri odoslané transakcie.</0><1>Neodosiela žiadne prostriedky ani nepovoľuje žiadne zmluvy. Táto metóda tiež umožňuje doručiť POAP po Ceremónii.</1>",
+        "description": {
+          "p1": "Ceremónia vyžaduje dušu s čistým úmyslom. Kto sa chce zapojiť, musí preukázať svoju bezúhonnosť odomknutím s adresou, ktorá má aspoň {{ethMinNonce}} odoslané transakcie.",
+          "p2": "Neodosiela žiadne prostriedky ani nepovoľuje žiadne zmluvy. Táto metóda tiež umožňuje doručiť POAP po Ceremónii."
+        },
         "title": "OTVORIŤ <br/> CESTU",
         "unlockWithEthereum": "Odomknúť pomocou Etherea <2></2>",
         "unlockWithGithub": "alebo pomocou Githubu"
@@ -257,4 +264,3 @@
       }
     }
   }
-  

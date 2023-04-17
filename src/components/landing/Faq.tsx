@@ -3,10 +3,11 @@ import { PageTitle } from '../Text'
 import styled from 'styled-components'
 import ExternalLink from '../ExternalLink'
 import { Trans, useTranslation } from 'react-i18next'
+import { ETH_MIN_NONCE } from '../../constants'
 
 // FAQ section component
 const FaqPage = () => {
-  useTranslation()
+  const { t } = useTranslation()
 
   // FAQ question array
 const faqQuestions = [
@@ -362,32 +363,19 @@ const faqQuestions = [
       </Trans>
     ),
     content: (
-      <Trans i18nKey="faq.q13.content">
+      <>
         <p>
-          In order to reduce Sybil attacks against the Ceremony, the Sequencer
-          needs to verify that you are a (somewhat) unique human. Without this
-          check, one person could submit many different contributions. This
-          could prevent other honest community members from participating,
-          or if of malicious intent, reduce the credibility of the Ceremony
-          output.
+          {t('faq.q13.content.p1')}
         </p>
         <ul>
           <li>
-            Sign in with Ethereum - This is the preferred choice as it something
-            that all Ethereum community members should already have and it
-            allows signatures for later verification of the contribution, and
-            allows participation recognition through a POAP token. Each address
-            is required to have sent at least 3 transactions before Jan. 13, 2023
-            (block number 16,394,155) to prevent spinning up new accounts just
-            for this Ceremony.
+            {t('faq.q13.content.p2', {ethMinNonce: ETH_MIN_NONCE})}
           </li>
           <li>
-            Sign in with GitHub - This option is offered as an alternative for
-            those who are more distant to the community but who&#39;d still like
-            to participate.
+            {t('faq.q13.content.p3')}
           </li>
         </ul>
-      </Trans>
+      </>
     )
   },
   {

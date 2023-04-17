@@ -80,7 +80,11 @@
         "title": "Quanto tempo serve per contribuire?"
       },
       "q13": {
-        "content": "<p>Per ridurre gli attacchi di Sybil alla cerimonia, il sequenziatore deve verificare che tu sia l'unico umano, altrimenti una persona potrebbe presentare molti contributi diversi impedendo agli altri di essere di turno per contribuire.</p><1><0>Accedi con Ethereum - Questa è la scelta preferita in quanto è qualcosa che tutti i membri della comunità di Ethereum dovrebbero già avere e permette firme per la verifica successiva del contributo. Ogni account deve aver inviato almeno 3 transazioni per evitare la creazione di nuovi account solo per questa cerimonia.</0><1>Accedi con GitHub - Questa opzione è offerta come alternativa per coloro che sono più lontani dalla comunità ma che vorrebbero comunque partecipare.</1></1>",
+        "content": {
+          "p1": "Per ridurre gli attacchi di Sybil alla cerimonia, il sequenziatore deve verificare che tu sia l'unico umano, altrimenti una persona potrebbe presentare molti contributi diversi impedendo agli altri di essere di turno per contribuire.",
+          "p2": "Accedi con Ethereum - Questa è la scelta preferita in quanto è qualcosa che tutti i membri della comunità di Ethereum dovrebbero già avere e permette firme per la verifica successiva del contributo. Ogni account deve aver inviato almeno {{ethMinNonce}} transazioni per evitare la creazione di nuovi account solo per questa cerimonia.",
+          "p3": "Accedi con GitHub - Questa opzione è offerta come alternativa per coloro che sono più lontani dalla comunità ma che vorrebbero comunque partecipare."
+        },
         "title": "Perché ho bisogno di accedere con Ethereum o GitHub?"
       },
       "q14": {
@@ -218,7 +222,10 @@
       }
     },
     "signin": {
-      "description": "<0>La cerimonia richiede anime dalle intenzioni pure. I convocatori mostrano la loro integrità sbloccando con un indirizzo che ha almeno tre transazioni inviate. Ogni indirizzo può essere utilizzato solo una volta.</0><1>Non si inviano fondi né si autorizza alcun contratto scegliendo Ethereum. Questo metodo ci permette anche di consegnare un POAP dopo la cerimonia.</1>",
+      "description": {
+        "p1": "La cerimonia richiede anime dalle intenzioni pure. I convocatori mostrano la loro integrità sbloccando con un indirizzo che ha almeno {{ethMinNonce}} transazioni inviate. Ogni indirizzo può essere utilizzato solo una volta.",
+        "p2": "Non si inviano fondi né si autorizza alcun contratto scegliendo Ethereum. Questo metodo ci permette anche di consegnare un POAP dopo la cerimonia."
+      },
       "title": "APRI <br/> LA VIA",
       "unlockWithEthereum": "Sblocca con Ethereum <2></2>",
       "unlockWithGithub": "o sblocca con Github"

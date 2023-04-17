@@ -48,6 +48,8 @@ const MIN_MOUSE_ENTROPY_SAMPLES =
   parseInt(process.env.REACT_APP_MIN_MOUSE_ENTROPY_SAMPLES as string) || 64
 const AVERAGE_CONTRIBUTION_TIME =
   parseInt(process.env.REACT_APP_AVERAGE_CONTRIBUTION_TIME as string) || 52
+const ETH_MIN_NONCE =
+  parseInt(process.env.REACT_APP_ETH_MIN_NONCE as string) || 3
 
 const START_DATE =
   parseInt(process.env.REACT_APP_START_DATE as string) || 1678713180
@@ -72,6 +74,7 @@ export {
   LOBBY_CHECKIN_FREQUENCY,
   MIN_MOUSE_ENTROPY_SAMPLES,
   AVERAGE_CONTRIBUTION_TIME,
+  ETH_MIN_NONCE,
   START_DATE,
   END_DATE,
   PORTIS_ID,

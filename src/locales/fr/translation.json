@@ -80,7 +80,11 @@
         "title": "Combien de temps faut-il pour apporter sa contribution ?"
       },
       "q13": {
-        "content": "<0>Afin de réduire les attaques Sybil contre la cérémonie, le Séquenceur doit vérifier que vous êtes un être humain (quelque peu) unique, sinon une seule et même personne pourrait soumettre de nombreuses contributions différentes, empêchant ainsi les autres de contribuer à leur tour.</p><1><p>Connectez-vous avec Ethereum - C'est le moyen le plus simple dans la mesure où tous les membres de la communauté Ethereum devraient déjà disposer d'un accès, lequel donne lieu à des signatures pour vérification ultérieure de la contribution. Chaque compte doit avoir envoyé au moins 3 transactions pour éviter que de nouveaux comptes doivent être créés juste pour cette cérémonie.</0><1>Se connecter avec GitHub - Cette option est une alternative pour ceux qui sont moins proches de la communauté mais qui souhaitent tout de même participer.</1></1>",
+        "content": {
+          "p1": "Afin de réduire les attaques Sybil contre la cérémonie, le Séquenceur doit vérifier que vous êtes un être humain (quelque peu) unique, sinon une seule et même personne pourrait soumettre de nombreuses contributions différentes, empêchant ainsi les autres de contribuer à leur tour.",
+          "p2": "Connectez-vous avec Ethereum - C'est le moyen le plus simple dans la mesure où tous les membres de la communauté Ethereum devraient déjà disposer d'un accès, lequel donne lieu à des signatures pour vérification ultérieure de la contribution. Chaque compte doit avoir envoyé au moins {{ethMinNonce}} transactions pour éviter que de nouveaux comptes doivent être créés juste pour cette cérémonie.",
+          "p3": "Se connecter avec GitHub - Cette option est une alternative pour ceux qui sont moins proches de la communauté mais qui souhaitent tout de même participer."
+        },
         "title": "Pourquoi dois-je me connecter avec Ethereum ou GitHub ?"
       },
       "q14": {
@@ -218,7 +222,10 @@
       }
     },
     "signin": {
-      "description": "<0>La Cérémonie a besoin d'âmes aux intentions pures. Les invocateurs prouvent leur intégrité en déverrouillant un passage grâce à l'envoi d'au moins trois transactions depuis une adresse. Chaque adresse ne peut être utilisée qu'une fois.</0><1>Choisir Ethereum ne permet pas de virer des fonds ni de conclure quelque contrat que ce soit. Cette méthode permet également de livrer un POAP après la cérémonie.</1>",
+      "description": {
+        "p1": "La Ceremonie a besoin d'âmes aux intentions pures. Les invocateurs prouvent leur intégrité en déverrouillant un passage grâce à l'envoi d'au moins {{ethMinNonce}} transactions depuis une adresse. Chaque adresse ne peut être utilisée qu'une fois.",
+        "p2": "Choisir Ethereum ne permet pas de virer des fonds ni de conclure quelque contrat que ce soit. Cette méthode permet également de livrer un POAP après la cérémonie."
+      },
       "title": "OUVRIR <br/> LA VOIE",
       "unlockWithEthereum": "Déverrouiller avec Ethereum <2></2>",
       "unlockWithGithub": "ou déverrouiller avec Github"

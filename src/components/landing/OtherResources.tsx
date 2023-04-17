@@ -3,10 +3,20 @@ import { isMobile } from '../../utils'
 import { FONT_SIZE } from '../../constants'
 import Shield from '../../assets/shield.svg'
 import { Trans, useTranslation } from 'react-i18next'
+import OpenHugFlower from '../../assets/open-hug-flower.svg'
+import ClosedHugFlower from '../../assets/closed-hug-flower.svg'
 
 const OtherResources = () => {
     useTranslation()
     const mobile = isMobile()
+
+    const onClickIPFSInterface = () => {
+        window.open("https://latest.kzgceremony.eth")
+    }
+
+    const onClickOtherClients = () => {
+        window.open("https://github.com/ethereum/kzg-ceremony#client-implementations")
+    }
 
     const onClickWriteYourOwn = () => {
         window.open("https://blog.ethereum.org/2022/12/15/kzg-ceremony-grants-round")
@@ -15,20 +25,40 @@ const OtherResources = () => {
 
     return (
     <Row isMobile={mobile}>
-        <Col disabled={true}>
+        <Col disabled={mobile} onClick={onClickIPFSInterface}>
+        <InternalCol>
+            <Link>
+                { mobile ?
+                    <Trans i18nKey="landing.button-mobile">Proceed on desktop</Trans>
+                    :
+                    <Trans i18nKey="otherResources.ipfs">IPFS</Trans>
+                }
+                { " " }
+            </Link>
+            <img src={ClosedHugFlower} alt="closed hug flower icon"/>
+        </InternalCol>
+        </Col>
+        <Col onClick={onClickOtherClients}>
+        <InternalCol>
+            <Link>
+                <Trans i18nKey="otherResources.otherClients">
+                    CLI Clients
+                </Trans>
+                { " " }
+            </Link>
+            <img src={OpenHugFlower} alt="open hug flower icon"/>
+        </InternalCol>
         </Col>
         <Col onClick={onClickWriteYourOwn}>
         <InternalCol>
             <Link>
                 <Trans i18nKey="otherResources.writeYourOwn">
-                    Learn more
+                    Grants
                 </Trans>
                 { " " }
             </Link>
             <img src={Shield} alt="shield icon"/>
         </InternalCol>
-        </Col>
-        <Col disabled={true}>
         </Col>
     </Row>
     )
@@ -49,7 +79,6 @@ const InternalCol = styled.div`
     margin: 7px;
     padding-block: 5px;
     height: auto;
-    border: solid 1px transparent;
 
 
     :hover:not([disabled]) {
@@ -69,6 +98,7 @@ const Col = styled.button`
 
     :hover:not([disabled]) {
         z-index: 1;
+        padding: 4px; /* -1px added from the border in InternalCol */
         box-shadow: 1px 2px 6px 6px #b4b2b2;
         background: ${({ theme }) => theme.surface}
     }
