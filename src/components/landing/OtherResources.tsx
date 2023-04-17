@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { isMobile } from '../../utils'
 import { FONT_SIZE } from '../../constants'
-import Shield from '../../assets/shield.svg'
 import { Trans, useTranslation } from 'react-i18next'
 import OpenHugFlower from '../../assets/open-hug-flower.svg'
 import ClosedHugFlower from '../../assets/closed-hug-flower.svg'
