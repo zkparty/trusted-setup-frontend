@@ -18,10 +18,6 @@ const OtherResources = () => {
         window.open("https://github.com/ethereum/kzg-ceremony#client-implementations")
     }
 
-    const onClickWriteYourOwn = () => {
-        window.open("https://blog.ethereum.org/2022/12/15/kzg-ceremony-grants-round")
-    }
-
 
     return (
     <Row isMobile={mobile}>
@@ -47,17 +43,6 @@ const OtherResources = () => {
                 { " " }
             </Link>
             <img src={OpenHugFlower} alt="open hug flower icon"/>
-        </InternalCol>
-        </Col>
-        <Col onClick={onClickWriteYourOwn}>
-        <InternalCol>
-            <Link>
-                <Trans i18nKey="otherResources.writeYourOwn">
-                    Grants
-                </Trans>
-                { " " }
-            </Link>
-            <img src={Shield} alt="shield icon"/>
         </InternalCol>
         </Col>
     </Row>
