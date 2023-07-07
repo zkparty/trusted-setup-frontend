@@ -36,12 +36,12 @@ const DoubleSignPage = () => {
   const { t } = useTranslation()
   const { potPubkeys } = useEntropyStore()
   const { updateECDSASigner, updateECDSASignature } = useEntropyStore()
-  const { open } = useWeb3Modal()
+  const { open, close } = useWeb3Modal()
   const { chain } = useNetwork()
   const { disconnect } = useDisconnect()
   const { switchNetwork } = useSwitchNetwork()
   const { domain, types, message, primaryType } = buildEIP712Message(potPubkeys)
-  const { data, signTypedData } = useSignTypedData({
+  const { data, signTypedData, reset } = useSignTypedData({
     domain,
     message,
     primaryType,
@@ -50,6 +50,7 @@ const DoubleSignPage = () => {
   const { address, isConnected } = useAccount()
 
   useEffect(() => {
+    disconnect()
     // eslint-disable-next-line no-restricted-globals
     if (self.crossOriginIsolated) {
       console.log('refreshing...')
@@ -79,6 +80,10 @@ const DoubleSignPage = () => {
         switchNetwork(1)
       }
       signTypedData()
+    } else {
+      disconnect()
+      close()
+      reset()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address, isConnected])
