@@ -11,13 +11,14 @@ import {
   ContributingPage,
   CompletePage,
   RecordPage,
-  SigninRedirectPage,
+  SigninRedirectPage
 } from './pages'
 import RequireAuth from './components/helper/RequireAuth'
 import usePreloadAllImages from './hooks/usePreloadAllImages'
 import ROUTES from './routes'
 import GlobalStyle from './style/global'
 import { useTranslation } from 'react-i18next'
+import WalletConnectConfig from './components/WalletConnectConfig'
 
 function App() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -26,15 +27,19 @@ function App() {
   const params = new URLSearchParams(location.search)
   const sessionId = params.get('session_id')
   const message = params.get('message')
-  const code = params.get("code")
-  const isRedirect = (sessionId !== null || message !== null || code !== null)
+  const code = params.get('code')
+  const isRedirect = sessionId !== null || message !== null || code !== null
 
   // Handle RTL text direction for Arabic language and update the lang attribute
-  const { i18n: { language } } = useTranslation()
+  const {
+    i18n: { language }
+  } = useTranslation()
   useEffect(() => {
     const dir = language === 'ar' ? 'rtl' : 'ltr'
-    document.getElementsByTagName('html')[0].setAttribute("dir", dir);
-    document.getElementsByTagName('html')[0].setAttribute("lang", language.slice(-2));
+    document.getElementsByTagName('html')[0].setAttribute('dir', dir)
+    document
+      .getElementsByTagName('html')[0]
+      .setAttribute('lang', language.slice(-2))
   }, [language])
 
   /* Considerations for the IPFS build:
@@ -53,48 +58,57 @@ function App() {
 
   return (
     <>
-      <HashRouter>
-        <GlobalStyle />
-        <Routes>
-          <Route path={ROUTES.ROOT} element={<HomePage/>}>
-              <Route path={ROUTES.ROOT} element={
-                  isRedirect ?
+      <WalletConnectConfig>
+        <HashRouter>
+          <GlobalStyle />
+          <Routes>
+            <Route path={ROUTES.ROOT} element={<HomePage />}>
+              <Route
+                path={ROUTES.ROOT}
+                element={
+                  isRedirect ? (
                     <SigninRedirectPage search={location.search} />
-                  :
+                  ) : (
                     <LandingPage />
-               }/>
-            <Route path={ROUTES.ENTROPY_INPUT} element={<EntropyInputPage/>} />
-            <Route path={ROUTES.SIGNIN} element={<SigninPage />} />
-            <Route path={ROUTES.DOUBLE_SIGN} element={<DoubleSignPage />} />
-            <Route path={ROUTES.LOBBY_FULL} element={<LobbyFullPage />} />
-            <Route
-              path={ROUTES.LOBBY}
-              element={
-                <RequireAuth>
-                  <LobbyPage />
-                </RequireAuth>
-              }
-            />
-            <Route
-              path={ROUTES.CONTRIBUTING}
-              element={
-                <RequireAuth>
-                  <ContributingPage />
-                </RequireAuth>
-              }
-            />
-            <Route
-              path={ROUTES.COMPLETE}
-              element={
-                <RequireAuth>
-                  <CompletePage />
-                </RequireAuth>
-              }
-            />
-          </Route>
-          <Route path={ROUTES.RECORD} element={<RecordPage />} />
-        </Routes>
-      </HashRouter>
+                  )
+                }
+              />
+              <Route
+                path={ROUTES.ENTROPY_INPUT}
+                element={<EntropyInputPage />}
+              />
+              <Route path={ROUTES.SIGNIN} element={<SigninPage />} />
+              <Route path={ROUTES.DOUBLE_SIGN} element={<DoubleSignPage />} />
+              <Route path={ROUTES.LOBBY_FULL} element={<LobbyFullPage />} />
+              <Route
+                path={ROUTES.LOBBY}
+                element={
+                  <RequireAuth>
+                    <LobbyPage />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path={ROUTES.CONTRIBUTING}
+                element={
+                  <RequireAuth>
+                    <ContributingPage />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path={ROUTES.COMPLETE}
+                element={
+                  <RequireAuth>
+                    <CompletePage />
+                  </RequireAuth>
+                }
+              />
+            </Route>
+            <Route path={ROUTES.RECORD} element={<RecordPage />} />
+          </Routes>
+        </HashRouter>
+      </WalletConnectConfig>
     </>
   )
 }

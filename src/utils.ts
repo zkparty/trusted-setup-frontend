@@ -16,7 +16,7 @@ export function isMobile(): boolean {
 }
 
 export function isSafari(): boolean {
-  const isSafari = (window as any).safari !== undefined;
+  const isSafari = (window as any).safari !== undefined
   return Boolean(isSafari)
 }
 
@@ -111,9 +111,9 @@ export async function processIdentity(
       break
     case 'Github':
       if (nickname.substring(0, 1) === '@') nickname = nickname.substring(1)
-      const githubRes = await fetch(`https://api.github.com/users/${nickname}`).then(
-        (_res) => _res.json()
-      )
+      const githubRes = await fetch(
+        `https://api.github.com/users/${nickname}`
+      ).then((_res) => _res.json())
       identity = 'git|' + githubRes.id + '|@' + nickname
       break
     default:
@@ -121,4 +121,45 @@ export async function processIdentity(
       break
   }
   return identity
+}
+
+export function buildEIP712Message(potPubkeys: string[] | null): {
+  domain: any
+  message: any
+  primaryType: string
+  types: any
+} {
+  // built the message to be signed
+  const numG1Powers = [4096, 8192, 16384, 32768]
+  const potPubkeysObj = []
+  for (let i = 0; i < 4; i++) {
+    const element = {
+      numG1Powers: numG1Powers[i],
+      numG2Powers: 65,
+      potPubkey: potPubkeys![i]
+    }
+    potPubkeysObj.push(element)
+  }
+  const types = {
+    potPubkeys: [{ name: 'potPubkeys', type: 'contributionPubkey[]' }],
+    contributionPubkey: [
+      { name: 'numG1Powers', type: 'uint256' },
+      { name: 'numG2Powers', type: 'uint256' },
+      { name: 'potPubkey', type: 'bytes' }
+    ]
+  }
+  const domain = {
+    name: 'Ethereum KZG Ceremony',
+    version: '1.0',
+    chainId: 1
+  }
+  const message = {
+    potPubkeys: potPubkeysObj
+  }
+  return {
+    primaryType: 'potPubkeys',
+    domain,
+    message,
+    types
+  }
 }
