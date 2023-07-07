@@ -59,9 +59,9 @@ added QmbTGA1mPf3nb5RRWehvrHn7cz3jwVQdj91r3c6eHmdx4k export
 13.80 MiB / 13.80 MiB [=======================================================================================] 100.00%
 ```
 
-The latest build has this CID: `QmfEC3xvQUi3jS26MP16kZATLgkP1a54fmFhhpnPPyCG8N`
+The latest build has this CID: `QmPmSNavao8AGXKGERwh7Ce5zHSZbw7PzU6xcqkVpsaCTQ`
 
-or, in base32: `bafybeih254gra4gmvvf65qj52r6jphortyir6em4wgsna6x2osmuggpox4`
+or, in base32: `bafybeiavgvbbmoibrzjuv4eowkh64llghvtcczuybhmt4x6qggkfxeh7v4`
 
 The site can be added to pinning services by uploading the `build` folder.
 
