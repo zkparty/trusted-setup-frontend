@@ -13,22 +13,21 @@ const SigninRedirect = (props: any) => {
   const { signin, setError } = useAuthStore()
 
   useEffect(() => {
-
     const isSameWallet = async (nickname: string): Promise<boolean> => {
-      if ( ECDSASigner === nickname.toLowerCase() ){
-        return true;
+      if (ECDSASigner && ECDSASigner.toLowerCase() === nickname.toLowerCase()) {
+        return true
       } else {
-        return false;
+        return false
       }
     }
 
-    (async () => {
-      const params = toParams(props.search.replace(/^\?/, '') )
+    ;(async () => {
+      const params = toParams(props.search.replace(/^\?/, ''))
       window.history.replaceState(null, '', window.location.pathname)
       // check if login was succesful
       if (validateSigninParams(params)) {
         const notSameWallet = !(await isSameWallet(params.nickname))
-        if ( params.provider === 'Ethereum' && notSameWallet ){
+        if (params.provider === 'Ethereum' && notSameWallet) {
           setError(t('error.notSameWallet'))
           navigate(ROUTES.SIGNIN)
           return
@@ -58,12 +57,12 @@ const SigninRedirect = (props: any) => {
             setError(t('error.authErrorPayload.userCreatedAfterDeadline'))
             break
           default:
-            setError(t('error.authErrorPayload.customError', {error: code}))
+            setError(t('error.authErrorPayload.customError', { error: code }))
             break
         }
         navigate(ROUTES.SIGNIN)
       }
-    })();
+    })()
   }, [ECDSASigner, navigate, setError, signin, t, props.search])
 
   return <div>Signin processing</div>

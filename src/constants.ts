@@ -1,6 +1,6 @@
-const CIRCLE_SIZE = 490;
+const CIRCLE_SIZE = 490
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 20
 
 const FONT_SIZE = {
   XXS: '9px',
@@ -56,9 +56,16 @@ const START_DATE =
 const END_DATE =
   parseInt(process.env.REACT_APP_END_DATE as string) || 1681668780
 
-const INFURA_ID = process.env.REACT_APP_INFURA_ID || 'cd82571d19ab490e828dd0f86ec3cbf0'
-const PORTIS_ID = process.env.REACT_APP_PORTIS_ID || 'd6418a0a-18ae-4dfd-a206-3398012907ec'
-const FORTMATIC_KEY = process.env.REACT_APP_FORTMATIC_KEY || 'pk_live_AAE763E3E8AC097E'
+const INFURA_ID =
+  process.env.REACT_APP_INFURA_ID || 'cd82571d19ab490e828dd0f86ec3cbf0'
+const PORTIS_ID =
+  process.env.REACT_APP_PORTIS_ID || 'd6418a0a-18ae-4dfd-a206-3398012907ec'
+const FORTMATIC_KEY =
+  process.env.REACT_APP_FORTMATIC_KEY || 'pk_live_AAE763E3E8AC097E'
+
+const WALLET_CONNECT_PROJECT_ID =
+  process.env.REACT_APP_WALLET_CONNECT_PROJECT_ID ||
+  'c8abd7e451b16bf3f3cdf58aaea89f60'
 
 export {
   FONT_SIZE,
@@ -80,4 +87,5 @@ export {
   PORTIS_ID,
   FORTMATIC_KEY,
   INFURA_ID,
+  WALLET_CONNECT_PROJECT_ID
 }
