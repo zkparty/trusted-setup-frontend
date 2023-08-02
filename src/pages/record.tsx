@@ -28,6 +28,7 @@ import { BgColoredContainer } from '../components/Background'
 import LoadingSpinner from '../components/LoadingSpinner'
 import { PrimaryButton } from '../components/Button'
 import wasm from '../wasm'
+import VerifiedModal from '../components/modals/VerifiedModal'
 
 // RecordPage component
 const RecordPage = () => {
@@ -35,6 +36,9 @@ const RecordPage = () => {
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const [isVerifying, setIsVerifying] = useState(false)
+  const [isVerified, setIsVerified] = useState(false)
+  const [verifiedStatus, setVerifiedStatus] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [pageData, setPageData] = useState<Record[]>([])
   const [formattedData, setFormattedData] = useState<Record[]>([])
@@ -149,8 +153,11 @@ const RecordPage = () => {
   }
 
   const handleClickVerify = async () => {
-    const isOk = await wasm.verify(JSON.stringify(data))
-    console.log(isOk)
+    setIsVerifying(true)
+    const result = await wasm.verify(JSON.stringify(data))
+    setVerifiedStatus(result)
+    setIsVerifying(false)
+    setIsVerified(true)
   }
 
   const reOrderFormattedData = () => {
@@ -198,12 +205,12 @@ const RecordPage = () => {
               <Trans i18nKey="record.download">Download full transcript</Trans>
             </Link>
 
-            {isLoading ? (
+            {isVerifying ? (
               <LoadingSpinner style={{ height: '48px' }}></LoadingSpinner>
             ) : (
               <PrimaryButton
                 style={{ width: '180px', height: '40px' }}
-                disabled={isLoading}
+                disabled={isVerifying}
                 onClick={handleClickVerify}
               >
                 <Trans i18nKey="record.verify">Verify Transcript</Trans>
@@ -223,6 +230,11 @@ const RecordPage = () => {
         <Pagination page={page} setPage={setPage} totalPages={totalPages} />
       </Container>
       <Footer />
+      <VerifiedModal
+        open={isVerified}
+        verificationResult={verifiedStatus}
+        onDeselect={() => setIsVerified(false)}
+      />
     </BgColoredContainer>
   )
 }
