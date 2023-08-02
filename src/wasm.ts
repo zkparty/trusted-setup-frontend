@@ -63,14 +63,14 @@ class Wasm {
       worker.postMessage(data)
     })
   }
-  async verify(contribution: string) {
+  async verify(transcript: string) {
     return new Promise<boolean>((resolve) => {
       const worker = new Worker('./wasm/wasm-worker.js', {
         type: 'module'
       })
       const data = {
         action: 'verify',
-        contribution: contribution
+        transcript: transcript
       }
       worker.onmessage = async (event) => {
         resolve(event.data)

@@ -66,10 +66,10 @@ function getPotPubkeys(data) {
 }
 
 function verify(data) {
-  const { contribution, newContribution } = data
+  const { transcript } = data
   console.log('start verifying')
   const startTime = performance.now()
-  const result = verify_wasm(contribution, newContribution)
+  const result = verify_wasm(transcript)
   const endTime = performance.now()
   console.log(`Verification took ${endTime - startTime} milliseconds`)
   postMessage(result)

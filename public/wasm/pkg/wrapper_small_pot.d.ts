@@ -23,6 +23,11 @@ export function subgroup_check_wasm(input: string): boolean;
 */
 export function get_pot_pubkeys_wasm(string_secret: string): any;
 /**
+* @param {string} transcript
+* @returns {boolean}
+*/
+export function verify_wasm(transcript: string): boolean;
+/**
 * @param {number} num_threads
 * @returns {Promise<any>}
 */
@@ -59,6 +64,7 @@ export interface InitOutput {
   readonly contribute_wasm: (a: number, b: number, c: number, d: number, e: number, f: number) => number;
   readonly subgroup_check_wasm: (a: number, b: number) => number;
   readonly get_pot_pubkeys_wasm: (a: number, b: number) => number;
+  readonly verify_wasm: (a: number, b: number) => number;
   readonly __wbg_wbg_rayon_poolbuilder_free: (a: number) => void;
   readonly wbg_rayon_poolbuilder_mainJS: (a: number) => number;
   readonly wbg_rayon_poolbuilder_numThreads: (a: number) => number;
@@ -70,6 +76,7 @@ export interface InitOutput {
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
   readonly __wbindgen_free: (a: number, b: number) => void;
+  readonly __wbindgen_exn_store: (a: number) => void;
   readonly __wbindgen_thread_destroy: () => void;
   readonly __wbindgen_start: () => void;
 }
