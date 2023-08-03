@@ -141,7 +141,7 @@ export function buildEIP712Message(potPubkeys: string[] | null): {
     potPubkeysObj.push(element)
   }
   const types = {
-    potPubkeys: [{ name: 'potPubkeys', type: 'contributionPubkey[]' }],
+    PoTPubkeys: [{ name: 'PotPubkeys', type: 'contributionPubkey[]' }],
     contributionPubkey: [
       { name: 'numG1Powers', type: 'uint256' },
       { name: 'numG2Powers', type: 'uint256' },
@@ -154,10 +154,10 @@ export function buildEIP712Message(potPubkeys: string[] | null): {
     chainId: 1
   }
   const message = {
-    potPubkeys: potPubkeysObj
+    PotPubkeys: potPubkeysObj
   }
   return {
-    primaryType: 'potPubkeys',
+    primaryType: 'PoTPubkeys',
     domain,
     message,
     types
