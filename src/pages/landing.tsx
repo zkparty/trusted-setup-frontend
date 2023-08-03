@@ -6,11 +6,10 @@ import { useRef, useEffect } from 'react'
 import { useAuthStore } from '../store/auth'
 import { useNavigate } from 'react-router-dom'
 import FaqPage from '../components/landing/Faq'
-import useCountdown from '../hooks/useCountdown'
 import Header from '../components/headers/Header'
 import { TextSection } from '../components/Layout'
 import { Trans, useTranslation } from 'react-i18next'
-import { CIRCLE_SIZE, END_DATE, ENVIRONMENT } from '../constants'
+import { CIRCLE_SIZE, ENVIRONMENT } from '../constants'
 import { Description, ItalicSubTitle, PageTitle } from '../components/Text'
 import Explanation from '../components/landing/Explanation'
 import { BgColoredContainer } from '../components/Background'
@@ -24,10 +23,9 @@ const LandingPage = () => {
   const ref = useRef<null | HTMLElement>(null)
   const navigate = useNavigate()
   const { signout } = useAuthStore()
-  const [days, hours, minutes, seconds] = useCountdown(END_DATE)
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       signout()
       await navigator.serviceWorker.ready
       // eslint-disable-next-line no-restricted-globals
@@ -35,55 +33,55 @@ const LandingPage = () => {
         console.log('refreshing...')
         navigate(0)
       } else {
-        console.log(`${window.crossOriginIsolated ? "" : "not"} x-origin isolated`)
+        console.log(
+          `${window.crossOriginIsolated ? '' : 'not'} x-origin isolated`
+        )
       }
-    })();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const onClickBegin = () => {
-    window.open(window.location.origin + '/#' + ROUTES.ENTROPY_INPUT)
-}
+  const onClickVerify = () => {
+    navigate(ROUTES.RECORD)
+  }
 
   return (
     <BgColoredContainer>
       <Header />
       <TopSection>
         <WhiteBackground>
-        <BgColor />
-        <PageTitle style={{ marginTop: '30px' }}>
-          <Trans i18nKey="landing.title">
-            SUMMONING GUIDES
-          </Trans>
-        </PageTitle>
-        { ENVIRONMENT === 'testnet' ?
-          ''
-          :
-          <ItalicSubTitle>
-            <Trans i18nKey="landing.period">Open contribution</Trans>
-            {' - '+days+' : '+hours+' : '+minutes+' : '+seconds}
-          </ItalicSubTitle>
-        }
-        <TextSection style={{ width: '55ch' }}>
-          <Trans i18nKey="landing.description">
-            <Description>
-              Whispers from the shadows tell of a powerful spirit Dankshard, who
-              will open the next chapter of Ethereum scalability. To summon its
-              powers, this Ceremony needs your contribution.
-            </Description>
-            <Description>
-              Magic math awaits - are you ready to add your color to the story?
-            </Description>
-          </Trans>
-        </TextSection>
-        <PrimaryButton onClick={onClickBegin} disabled={isMobile()}>
-          { isMobile() ?
-            <Trans i18nKey="landing.button-mobile">Proceed on desktop</Trans>
-            :
-            <Trans i18nKey="landing.button">Begin</Trans>
-          }
-        </PrimaryButton>
-        <OtherResources/>
+          <BgColor />
+          <PageTitle style={{ marginTop: '30px' }}>
+            <Trans i18nKey="landing.title">SUMMONING GUIDES</Trans>
+          </PageTitle>
+          {ENVIRONMENT === 'testnet' ? (
+            ''
+          ) : (
+            <ItalicSubTitle>
+              <Trans i18nKey="landing.over">The ceremony is over</Trans>
+            </ItalicSubTitle>
+          )}
+          <TextSection style={{ width: '55ch' }}>
+            <Trans i18nKey="landing.description">
+              <Description>
+                Whispers from the shadows tell of a powerful spirit Dankshard,
+                who will open the next chapter of Ethereum scalability. To
+                summon its powers, this Ceremony needs your contribution.
+              </Description>
+              <Description>
+                Magic math awaits - are you ready to add your color to the
+                story?
+              </Description>
+            </Trans>
+          </TextSection>
+          <PrimaryButton onClick={onClickVerify} disabled={isMobile()}>
+            {isMobile() ? (
+              <Trans i18nKey="landing.button-mobile">Proceed on desktop</Trans>
+            ) : (
+              <Trans i18nKey="landing.button-verify">Verify transcript</Trans>
+            )}
+          </PrimaryButton>
+          <OtherResources />
         </WhiteBackground>
       </TopSection>
       <Explanation refFromLanding={ref} />

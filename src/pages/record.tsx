@@ -19,16 +19,14 @@ import {
   PAGE_SIZE
 } from '../constants'
 import { Transcript, Record, SequencerStatus } from '../types'
-// Asset imports
-import SearchIcon from '../assets/search.svg'
 // Hook imports
 import useRecord from '../hooks/useRecord'
 import useSequencerStatus from '../hooks/useSequencerStatus'
 import { BgColoredContainer } from '../components/Background'
 import LoadingSpinner from '../components/LoadingSpinner'
 import { PrimaryButton } from '../components/Button'
-import wasm from '../wasm'
 import VerifiedModal from '../components/modals/VerifiedModal'
+import SearchInput from '../components/SearchInput'
 
 // RecordPage component
 const RecordPage = () => {
@@ -37,8 +35,6 @@ const RecordPage = () => {
   const [totalPages, setTotalPages] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [isVerifying, setIsVerifying] = useState(false)
-  const [isVerified, setIsVerified] = useState(false)
-  const [verifiedStatus, setVerifiedStatus] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [pageData, setPageData] = useState<Record[]>([])
   const [formattedData, setFormattedData] = useState<Record[]>([])
@@ -154,10 +150,6 @@ const RecordPage = () => {
 
   const handleClickVerify = async () => {
     setIsVerifying(true)
-    const result = await wasm.verify(JSON.stringify(data))
-    setVerifiedStatus(result)
-    setIsVerifying(false)
-    setIsVerified(true)
   }
 
   const reOrderFormattedData = () => {
@@ -231,9 +223,9 @@ const RecordPage = () => {
       </Container>
       <Footer />
       <VerifiedModal
-        open={isVerified}
-        verificationResult={verifiedStatus}
-        onDeselect={() => setIsVerified(false)}
+        open={isVerifying}
+        data={data}
+        onDeselect={() => setIsVerifying(false)}
       />
     </BgColoredContainer>
   )
@@ -248,22 +240,6 @@ const Container = styled.div`
   max-width: 100%;
   margin: 8rem auto;
   padding-inline: 5vw;
-`
-
-const SearchInput = styled.input`
-  font-size: ${FONT_SIZE.M};
-  font-weight: 400;
-  padding: 8px 40px 8px 16px;
-  border: solid 1px ${({ theme }) => theme.text};
-  border-radius: 8px;
-  background-color: ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.text};
-  background: url(${SearchIcon}) no-repeat scroll right 12px bottom 50%;
-  width: 70%;
-
-  @media (max-width: ${BREAKPOINT.M}) {
-    width: 100%;
-  }
 `
 
 const StatsContainer = styled.div`
