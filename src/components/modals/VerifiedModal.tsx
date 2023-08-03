@@ -12,6 +12,7 @@ import { bytesToHex } from '@noble/hashes/utils'
 import { PrimaryButton } from '../Button'
 import styled from 'styled-components'
 import { FONT_SIZE } from '../../constants'
+import { utils } from 'ethers'
 
 type Props = {
   open: boolean
@@ -46,23 +47,31 @@ const VerifiedModal = ({ open, data, onDeselect }: Props) => {
         setVerifiedPoT(true)
       }, 9000)
       const transcriptAsString = JSON.stringify(data)
-      const result = await wasm.verify(transcriptAsString)
-      setVerifiedContributions(result)
+      //const result = await wasm.verify(transcriptAsString)
+      //setVerifiedContributions(result)
       const transcriptHash = '0x' + bytesToHex(sha256(transcriptAsString))
       if (transcriptHash) {
         // TODO: get the latest transcript hash from env variable and compare it
         return
       }
       setVerifiedHash(true)
-      setVerificationResult(result)
+      //setVerificationResult(result)
     }
     verifyTranscript()
   }, [open, data])
 
   const onClickVerifyECDSA = async () => {
     setVerifyingECDSA(true)
-    console.log(ethAddress)
-    // TODO: check eth address
+    const index = data?.participantIds.indexOf(
+      `eth|${ethAddress.toLowerCase().trim()}`
+    )
+    if (!index) return
+    const ecdsa = data?.participantEcdsaSignatures[index]
+    if (!ecdsa) return
+    const digest = 'TODO: rebuild the EIP-712 message'
+    const recoveredAddress = utils.recoverAddress(digest, ecdsa)
+    if (recoveredAddress !== ethAddress) return
+
     setVerifyingECDSA(false)
     setVerifiedECDSA(true)
   }
