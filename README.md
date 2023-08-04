@@ -1,6 +1,5 @@
 # KZG Ceremony Frontend
 
-
 This React App is a graphic interface to interact with the [Ethereum KZG Ceremony](https://github.com/ethereum/kzg-ceremony). Participants can checkout the website at [ceremony.ethereum.org](https://ceremony.ethereum.org).
 
 ## Start
@@ -13,18 +12,17 @@ To start this app execute the following steps:
 
 - Sequencer API URL
 
-    - Ubuntu: `export REACT_APP_API_ROOT=http://localhost:3000`
-    - Windows (Powershell): ` $env:REACT_APP_API_ROOT="http://localhost:3000" `
+  - Ubuntu: `export REACT_APP_API_ROOT=http://localhost:3000`
+  - Windows (Powershell): `$env:REACT_APP_API_ROOT="http://localhost:3000"`
 
 - Environment
 
-    - Ubuntu: `export REACT_APP_ENVIRONMENT="testnet"`
-    - Windows (Powershell): `$env:REACT_APP_ENVIRONMENT="testnet"`
+  - Ubuntu: `export REACT_APP_ENVIRONMENT="testnet"`
+  - Windows (Powershell): `$env:REACT_APP_ENVIRONMENT="testnet"`
 
 3. Install dependencies: `yarn install`
 
 4. Start application: `yarn start`
-
 
 Note: If the Rust code is updated, copy the `/wasm` directory from the [wrapper library](https://github.com/zkparty/wrapper-small-pot) in the `public/` directory. Most of the times the `wasm-worker.js` text will not change.
 
@@ -36,18 +34,18 @@ The computation code is written in Rust and compiled to WASM. The compiled WASM 
 
 #### Build and add using Docker
 
-* Set required environment variables
+- Set required environment variables
   - `export REACT_APP_API_ROOT=https://seq.ceremony.ethereum.org`
   - `export REACT_APP_ENVIRONMENT=production`
-* Build the WASM wrapper Docker image, or `docker pull zkparty/wasm-pack-wrapper`
-* Pull a Docker image for node.js: `docker pull node:19-bullseye`
-* Build the entire site, and run an IPFS node: `./docker-build.sh`
-* Wait for the IPFS node to complete its startup. Watch the container's logs: `docker logs ipfs-host`
-* Add the site to IPFS: `docker exec ipfs-host ipfs add -r /export`
-* Run the ceremony from the IPFS site:
-  * Note the hash generated for `/export` in the previous step
-  * In your browser, navigate to `http://localhost:8080/ipfs/<hash>`
-* Stop the container once you're finished: `docker stop ipfs-host`
+- Build the WASM wrapper Docker image, or `docker pull zkparty/wasm-pack-wrapper`
+- Pull a Docker image for node.js: `docker pull node:19-bullseye`
+- Build the entire site, and run an IPFS node: `./docker-build.sh`
+- Wait for the IPFS node to complete its startup. Watch the container's logs: `docker logs ipfs-host`
+- Add the site to IPFS: `docker exec ipfs-host ipfs add -r /export`
+- Run the ceremony from the IPFS site:
+  - Note the hash generated for `/export` in the previous step
+  - In your browser, navigate to `http://localhost:8080/ipfs/<hash>`
+- Stop the container once you're finished: `docker stop ipfs-host`
 
 This will result in a series of log messages reporting the CID of each object in the folder. The CID of the `export` folder itself is the important one for our purposes.
 
@@ -59,9 +57,9 @@ added QmbTGA1mPf3nb5RRWehvrHn7cz3jwVQdj91r3c6eHmdx4k export
 13.80 MiB / 13.80 MiB [=======================================================================================] 100.00%
 ```
 
-The latest build has this CID: `QmfEC3xvQUi3jS26MP16kZATLgkP1a54fmFhhpnPPyCG8N`
+The latest build has this CID: `QmfAFhdZURywEBqxWeLCy59r9mb3UeckcmuxwJbxqVj2Ys`
 
-or, in base32: `bafybeih254gra4gmvvf65qj52r6jphortyir6em4wgsna6x2osmuggpox4`
+or, in base32: `bafybeihz5tnk2k56rhf7t2lysx4hpegn7o2hmrhwl27mekq3vluozxfanq`
 
 The site can be added to pinning services by uploading the `build` folder.
 
@@ -69,26 +67,25 @@ You can access it using the ENS [latest.kzgceremony.eth](https://latest.kzgcerem
 
 Note: The IPFS deployment was built using WASM `wrapper-small-pot` tag `ipfs_v3` and `kzg-ceremony-sequencer` commit `2538f2f08d4db880d7f4608e964df0b695bc7d2f`.
 
-
 ## Building from the Audited commit
 
 An audit of the code was conducted by Sigma Prime. The audit report notes the commit hash at which the audit was restested following implementation of the audit recommendations.
 
 To build the site at that commit:
 
-* Checkout the `wrapper-small-pot` repo at tag `sigp-audit`. Build the WASM code as per above.
-* Checkout this repo at tag `frontend-audit`.
-* Set environment variables for running live. The `.env` file should contain these entries:
+- Checkout the `wrapper-small-pot` repo at tag `sigp-audit`. Build the WASM code as per above.
+- Checkout this repo at tag `frontend-audit`.
+- Set environment variables for running live. The `.env` file should contain these entries:
+
 ```
 REACT_APP_API_ROOT=https://seq.ceremony.ethereum.org
 REACT_APP_ENVIRONMENT=prod
 ```
-* Build the site (see above).
+
+- Build the site (see above).
 
 The IPFS CID for the audited code is `QmevfvaP3nR5iMncWKa55B2f5mUgTAw9oDjFovD3XNrJTV`
 
 1. Access it [here](https://ceremony-ipfs.efprivacyscaling.org/ipfs/QmevfvaP3nR5iMncWKa55B2f5mUgTAw9oDjFovD3XNrJTV)
 1. Or use the ENS [audit.kzgceremony.eth](https://audit.kzgceremony.eth)
 1. Or at other IPFS gateways
-
-
