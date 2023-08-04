@@ -9,7 +9,7 @@ import { ItalicSubTitle, PageTitle } from '../Text'
 import { Trans, useTranslation } from 'react-i18next'
 import { sha256 } from '@noble/hashes/sha256'
 import { bytesToHex } from '@noble/hashes/utils'
-import { PrimaryButton } from '../Button'
+import { PrimaryButton, SecondaryButton } from '../Button'
 import styled from 'styled-components'
 import { FONT_SIZE, TRANSCRIPT_HASH } from '../../constants'
 import { Hex, recoverTypedDataAddress } from 'viem'
@@ -163,18 +163,18 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
         placeholder={t('verify.searchBar')}
         onChange={handleInputChange}
       />
-      <PrimaryButton
+      <SecondaryButton
         disabled={verifyingECDSA}
-        style={{ height: '35px' }}
         onClick={onClickVerifyECDSA}
       >
         <Trans i18nKey="verify.button-ecdsa">Verify ECDSA</Trans>
-      </PrimaryButton>
+      </SecondaryButton>
       <Ol>
         <li>
           ECDSA verification status: {verifiedECDSA ? <GreenSpan>Passed</GreenSpan> : <GraySpan>Not found</GraySpan>}
         </li>
       </Ol>
+      { verifiedNoZeros && verifiedPoT && /*verifiedHash &&*/ verifiedContributions && <PrimaryButton style={{ height: '35px' }}>Claim POAP</PrimaryButton>}
     </Modal>
   )
 }
