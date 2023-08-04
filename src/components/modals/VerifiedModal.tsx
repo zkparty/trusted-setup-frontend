@@ -1,6 +1,6 @@
 import Modal from 'react-modal'
 import theme from '../../style/theme'
-import { isMobile } from '../../utils'
+import { buildEIP712Message, isMobile } from '../../utils'
 import { useEffect, useState } from 'react'
 import { Transcript } from '../../types'
 import wasm from '../../wasm'
@@ -13,6 +13,8 @@ import { PrimaryButton } from '../Button'
 import styled from 'styled-components'
 import { FONT_SIZE } from '../../constants'
 import { utils } from 'ethers'
+//import { recoverTypedDataAddress } from 'viem/dist/types/utils/signature/recoverTypedDataAddress'
+import { Hex, recoverTypedDataAddress } from 'viem'
 
 type Props = {
   open: boolean
@@ -62,14 +64,36 @@ const VerifiedModal = ({ open, data, onDeselect }: Props) => {
 
   const onClickVerifyECDSA = async () => {
     setVerifyingECDSA(true)
+    // get participant index
     const index = data?.participantIds.indexOf(
       `eth|${ethAddress.toLowerCase().trim()}`
     )
+    console.log(index)
     if (!index) return
+
+    // get participant ecdsa signature
     const ecdsa = data?.participantEcdsaSignatures[index]
+    console.log(ecdsa)
     if (!ecdsa) return
-    const digest = 'TODO: rebuild the EIP-712 message'
-    const recoveredAddress = utils.recoverAddress(digest, ecdsa)
+
+    // get participant potPubkeys
+    const potPubkeys: string[] = [];
+    data?.transcripts.forEach((transcript) => {
+      potPubkeys.push(transcript.witness.potPubkeys[index])
+    })
+    console.log(potPubkeys)
+    if (potPubkeys.length !== 4) return
+
+    // rebuild EIP-712 message
+    const { domain, types, message, primaryType } = buildEIP712Message(potPubkeys)
+    const recoveredAddress = await recoverTypedDataAddress({
+      domain,
+      types,
+      message,
+      primaryType,
+      signature: ecdsa as Hex,
+    })
+    console.log(recoveredAddress)
     if (recoveredAddress !== ethAddress) return
 
     setVerifyingECDSA(false)
