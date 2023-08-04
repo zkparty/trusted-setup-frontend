@@ -11,18 +11,17 @@ import { sha256 } from '@noble/hashes/sha256'
 import { bytesToHex } from '@noble/hashes/utils'
 import { PrimaryButton } from '../Button'
 import styled from 'styled-components'
-import { FONT_SIZE } from '../../constants'
-import { utils } from 'ethers'
-//import { recoverTypedDataAddress } from 'viem/dist/types/utils/signature/recoverTypedDataAddress'
+import { FONT_SIZE, TRANSCRIPT_HASH } from '../../constants'
 import { Hex, recoverTypedDataAddress } from 'viem'
 
 type Props = {
   open: boolean
   data: Transcript | null | undefined
+  dataAsString: string | null | undefined
   onDeselect: () => void
 }
 
-const VerifiedModal = ({ open, data, onDeselect }: Props) => {
+const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
   const { t } = useTranslation()
 
   const [verifiedSanity, setVerifiedSanity] = useState(false)
@@ -30,7 +29,6 @@ const VerifiedModal = ({ open, data, onDeselect }: Props) => {
   const [verifiedPoT, setVerifiedPoT] = useState(false)
   const [verifiedContributions, setVerifiedContributions] = useState(false)
   const [verifiedHash, setVerifiedHash] = useState(false)
-  const [verificationResult, setVerificationResult] = useState(false)
 
   const [ethAddress, setEthAddress] = useState('')
   const [verifyingECDSA, setVerifyingECDSA] = useState(false)
@@ -38,7 +36,11 @@ const VerifiedModal = ({ open, data, onDeselect }: Props) => {
 
   useEffect(() => {
     const verifyTranscript = async () => {
-      if (!open || !data) return
+      if ( !(open && data && dataAsString) ) return
+      setTimeout(async () => {
+        const result = await wasm.verify(dataAsString)
+        setVerifiedContributions(result)
+      }, 1000)
       setTimeout(() => {
         setVerifiedSanity(true)
       }, 3000)
@@ -48,19 +50,16 @@ const VerifiedModal = ({ open, data, onDeselect }: Props) => {
       setTimeout(() => {
         setVerifiedPoT(true)
       }, 9000)
-      const transcriptAsString = JSON.stringify(data)
-      //const result = await wasm.verify(transcriptAsString)
-      //setVerifiedContributions(result)
-      const transcriptHash = '0x' + bytesToHex(sha256(transcriptAsString))
-      if (transcriptHash) {
-        // TODO: get the latest transcript hash from env variable and compare it
-        return
-      }
-      setVerifiedHash(true)
-      //setVerificationResult(result)
+      setTimeout(() => {
+        const transcriptHash = '0x' + bytesToHex(sha256(dataAsString))
+        console.log(transcriptHash)
+        if (transcriptHash === TRANSCRIPT_HASH){
+          setVerifiedHash(true)
+        }
+      }, 12000)
     }
     verifyTranscript()
-  }, [open, data])
+  }, [open, data, dataAsString])
 
   const onClickVerifyECDSA = async () => {
     setVerifyingECDSA(true)
@@ -119,7 +118,7 @@ const VerifiedModal = ({ open, data, onDeselect }: Props) => {
         },
         content: {
           border: 'none',
-          width: isMobile() ? '90%' : '400px',
+          width: isMobile() ? '90%' : '450px',
           gap: '10px',
           height: '550px',
           marginBlock: 'auto',
@@ -140,29 +139,26 @@ const VerifiedModal = ({ open, data, onDeselect }: Props) => {
       </PageTitle>
       <ItalicSubTitle style={{ fontSize: FONT_SIZE.S, margin: '0px' }}>
         <Trans i18nKey="verify.time-warning">
-          The verification might taken around a minute
+          The verification might take a minute to complete
         </Trans>
       </ItalicSubTitle>
-      <ol style={{ padding: '0px', display: 'grid', gap: '7px' }}>
-        <li>Sanity checking: {verifiedSanity ? <Span>Passed</Span> : ''}</li>
+      <Ol>
+        <li>Sanity checking: {verifiedSanity ? <GreenSpan>Passed</GreenSpan> : ''}</li>
         <li>
           Verifying no secret is zero:{' '}
-          {verifiedNoZeros ? <Span>Passed</Span> : ''}
+          {verifiedNoZeros ? <GreenSpan>Passed</GreenSpan> : ''}
         </li>
         <li>
-          Verifying Powers of Tau: {verifiedPoT ? <Span>Passed</Span> : ''}
+          Verifying Powers of Tau: {verifiedPoT ? <GreenSpan>Passed</GreenSpan> : ''}
+        </li>
+        <li>
+          Verifying transcript hash: {verifiedHash ? <GreenSpan>Passed</GreenSpan> : <RedSpan>Mismatch</RedSpan>}
         </li>
         <li>
           Verifying all contributions:{' '}
-          {verifiedContributions ? <Span>Passed</Span> : ''}
+          {verifiedContributions ? <GreenSpan>Passed</GreenSpan> : ''}
         </li>
-        <li>
-          Verifying transcript hash: {verifiedHash ? <Span>Passed</Span> : ''}
-        </li>
-        <li>
-          Verification status: {verificationResult ? <Span>Passed</Span> : ''}
-        </li>
-      </ol>
+      </Ol>
       <SearchInput
         placeholder={t('verify.searchBar')}
         onChange={handleInputChange}
@@ -174,17 +170,31 @@ const VerifiedModal = ({ open, data, onDeselect }: Props) => {
       >
         <Trans i18nKey="verify.button-ecdsa">Verify ECDSA</Trans>
       </PrimaryButton>
-      <ol style={{ padding: '0px', display: 'grid', gap: '7px' }}>
+      <Ol>
         <li>
-          ECDSA verification status: {verifiedECDSA ? <Span>Passed</Span> : ''}
+          ECDSA verification status: {verifiedECDSA ? <GreenSpan>Passed</GreenSpan> : <GraySpan>Not found</GraySpan>}
         </li>
-      </ol>
+      </Ol>
     </Modal>
   )
 }
 
-const Span = styled.span`
+const Ol = styled.ol`
+  padding: 0px;
+  display: grid;
+  gap: 7px;
+  cursor: default;
+`
+
+const GreenSpan = styled.span`
   color: #61cc61;
+`
+const RedSpan = styled.span`
+  color: ${({ theme }) => theme.error};
+`
+
+const GraySpan = styled.span`
+  color: ${({ theme }) => theme.disabled};
 `
 
 export default VerifiedModal

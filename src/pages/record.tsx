@@ -20,7 +20,7 @@ import {
 } from '../constants'
 import { Transcript, Record, SequencerStatus } from '../types'
 // Hook imports
-import useRecord from '../hooks/useRecord'
+import useRecord, { useRecordAsString } from '../hooks/useRecord'
 import useSequencerStatus from '../hooks/useSequencerStatus'
 import { BgColoredContainer } from '../components/Background'
 import LoadingSpinner from '../components/LoadingSpinner'
@@ -41,6 +41,7 @@ const RecordPage = () => {
 
   // load data from API
   const { data } = useRecord()
+  const { data: recordAsString} = useRecordAsString()
   const sequencerStatus = useSequencerStatus()
 
   // Helper function
@@ -225,6 +226,7 @@ const RecordPage = () => {
       <VerifiedModal
         open={isVerifying}
         data={data}
+        dataAsString={recordAsString}
         onDeselect={() => setIsVerifying(false)}
       />
     </BgColoredContainer>
