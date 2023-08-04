@@ -23,6 +23,7 @@
     "@web3modal/ethereum": "^2.6.2",
     "@web3modal/react": "^2.6.2",
     "blockies-identicon": "^0.1.0",
+    "ethereumjs-abi": "^0.6.8",
     "fortmatic": "^2.4.0",
     "husky": "^8.0.1",
     "i18next": "^21.10.0",
