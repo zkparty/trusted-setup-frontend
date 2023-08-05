@@ -9,7 +9,7 @@ import FaqPage from '../components/landing/Faq'
 import Header from '../components/headers/Header'
 import { TextSection } from '../components/Layout'
 import { Trans, useTranslation } from 'react-i18next'
-import { CIRCLE_SIZE, ENVIRONMENT } from '../constants'
+import { CIRCLE_SIZE, ENVIRONMENT, FONT_SIZE, TRANSCRIPT_HASH } from '../constants'
 import { Description, ItalicSubTitle, PageTitle } from '../components/Text'
 import Explanation from '../components/landing/Explanation'
 import { BgColoredContainer } from '../components/Background'
@@ -57,9 +57,14 @@ const LandingPage = () => {
           {ENVIRONMENT === 'testnet' ? (
             ''
           ) : (
-            <ItalicSubTitle>
-              <Trans i18nKey="landing.over">The ceremony is over</Trans>
-            </ItalicSubTitle>
+            <>
+              <ItalicSubTitle style={{ marginBottom: '0px' }}>
+                <Trans i18nKey="landing.over">The ceremony is over</Trans>
+              </ItalicSubTitle>
+              <ItalicSubTitle style={{ fontSize: FONT_SIZE.SM, width: '55ch', wordBreak: 'break-all' }}>
+                {TRANSCRIPT_HASH}
+              </ItalicSubTitle>
+            </>
           )}
           <TextSection style={{ width: '55ch' }}>
             <Trans i18nKey="landing.description">
