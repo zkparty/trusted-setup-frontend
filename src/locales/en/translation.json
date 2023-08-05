@@ -215,7 +215,8 @@
       "stats": {
         "lobby": "Lobby size:",
         "contributions": "Contributions:",
-        "address": "Sequencer address:"
+        "address": "Sequencer address:",
+        "transactionHash": "Transaction hash:"
       },
       "transcriptModal": {
         "title": "CONTRIBUTION DETAILS",

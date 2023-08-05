@@ -16,7 +16,8 @@ import {
   BREAKPOINT,
   FONT_SIZE,
   INFURA_ID,
-  PAGE_SIZE
+  PAGE_SIZE,
+  TRANSCRIPT_HASH
 } from '../constants'
 import { Transcript, Record, SequencerStatus } from '../types'
 // Hook imports
@@ -193,6 +194,15 @@ const RecordPage = () => {
               {stats?.sequencer_address}
             </StatsText>
           </Stat>
+          <Stat>
+            <StatsTitle>
+              <Trans i18nKey="record.stats.transcriptHash">Transcript hash:</Trans>
+            </StatsTitle>
+          </Stat>
+          <StatsText style={{ marginRight: '0px' }}>
+              {' '}
+              {TRANSCRIPT_HASH}
+            </StatsText>
           <ButtonContainer>
             <Link href={`${API_ROOT}/info/current_state`}>
               <Trans i18nKey="record.download">Download full transcript</Trans>
