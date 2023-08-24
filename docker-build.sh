@@ -13,6 +13,7 @@ docker run -it --rm \
     -e REACT_APP_API_ROOT="${REACT_APP_API_ROOT}" \
     -e REACT_APP_ENVIRONMENT="${REACT_APP_ENVIRONMENT}" \
     -e REACT_APP_END_DATE="${REACT_APP_END_DATE}" \
+    -e REACT_APP_TRANSCRIPT_HASH="${REACT_APP_TRANSCRIPT_HASH}" \
     --entrypoint ./build.sh \
     node:19-bullseye
 
