@@ -9,7 +9,12 @@ import FaqPage from '../components/landing/Faq'
 import Header from '../components/headers/Header'
 import { TextSection } from '../components/Layout'
 import { Trans, useTranslation } from 'react-i18next'
-import { CIRCLE_SIZE, ENVIRONMENT, FONT_SIZE, TRANSCRIPT_HASH } from '../constants'
+import {
+  CIRCLE_SIZE,
+  ENVIRONMENT,
+  FONT_SIZE,
+  TRANSCRIPT_HASH
+} from '../constants'
 import { Description, ItalicSubTitle, PageTitle } from '../components/Text'
 import Explanation from '../components/landing/Explanation'
 import { BgColoredContainer } from '../components/Background'
@@ -61,21 +66,27 @@ const LandingPage = () => {
               <ItalicSubTitle style={{ marginBottom: '0px' }}>
                 <Trans i18nKey="landing.over">The ceremony is over</Trans>
               </ItalicSubTitle>
-              <ItalicSubTitle style={{ fontSize: FONT_SIZE.SM, width: '55ch', wordBreak: 'break-all' }}>
+              <ItalicSubTitle
+                style={{
+                  fontSize: FONT_SIZE.SM,
+                  width: '55ch',
+                  wordBreak: 'break-all'
+                }}
+              >
                 {TRANSCRIPT_HASH}
               </ItalicSubTitle>
             </>
           )}
           <TextSection style={{ width: '55ch' }}>
-            <Trans i18nKey="landing.description">
+            <Trans i18nKey="landing.description-over">
               <Description>
                 Whispers from the shadows tell of a powerful spirit Dankshard,
-                who will open the next chapter of Ethereum scalability. To
-                summon its powers, this Ceremony needs your contribution.
+                who will open the next chapter of Ethereum scalability.
+                Contributors have come together to summon its power.
               </Description>
               <Description>
-                Magic math awaits - are you ready to add your color to the
-                story?
+                Magic math completed - check out your participation in the
+                ceremony:
               </Description>
             </Trans>
           </TextSection>
