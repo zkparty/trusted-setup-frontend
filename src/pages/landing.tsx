@@ -69,7 +69,7 @@ const LandingPage = () => {
               <ItalicSubTitle
                 style={{
                   fontSize: FONT_SIZE.SM,
-                  width: '55ch',
+                  width: isMobile() ? '240px' : '55ch',
                   wordBreak: 'break-all'
                 }}
               >
