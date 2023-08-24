@@ -51,10 +51,9 @@ This will result in a series of log messages reporting the CID of each object in
 
 ```
 ...
-added QmV7zRBYTYf8wmQQzXfnfRFTyYBUByJGaLB37VuHjsj6Y6 export/wasm/pkg
-added QmZTdJheNur4R2esdej5w1gktGS5aLHYHtLsChMjACmzuk export/wasm
-added QmbTGA1mPf3nb5RRWehvrHn7cz3jwVQdj91r3c6eHmdx4k export
-13.80 MiB / 13.80 MiB [=======================================================================================] 100.00%
+added QmboSwrj3WT8CGuDD5RV4f3SyR4zJu78dHfYXgkmGxEPrc export/wasm
+added QmNg68JsiSWCddYc9wYaYihrHor1ukW2Y5kvmtsKPKiAWb export
+29.96 MiB / 29.96 MiB  100.00%[=======================================================================================] 100.00%
 ```
 
 The latest build has this CID: `QmfAFhdZURywEBqxWeLCy59r9mb3UeckcmuxwJbxqVj2Ys`
