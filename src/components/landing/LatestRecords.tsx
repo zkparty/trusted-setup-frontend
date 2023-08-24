@@ -39,7 +39,7 @@ const LatestRecords = () => {
           const { transcripts, participantIds, participantEcdsaSignatures } = data! as Transcript;
           const records: Record[] = []
           const ni = participantIds.length
-          for (let i = ni-1; i >= ni-4; i--) {
+          for (let i = ni-1; i >= ni-4 && i >=0; i--) {
             const participantId = participantIds[i].replace('eth|','')
             const participantEcdsaSignature = participantEcdsaSignatures[i]
             const record: Record = {

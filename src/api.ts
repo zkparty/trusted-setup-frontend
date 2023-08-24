@@ -43,6 +43,17 @@ class APIClient {
     return result
   }
 
+  async getCurrentStateAsString(): Promise<string | null> {
+    let result: string | null
+    try {
+      result = await fetch(`${API_ROOT}/info/current_state`)
+      .then((_res) => _res.text())
+    } catch (error) {
+      result = null
+    }
+    return result
+  }
+
   async tryContribute(
     session_id: string
   ): Promise<ErrorRes | TryContributeRes> {

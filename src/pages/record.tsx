@@ -11,57 +11,87 @@ import Pagination from '../components/Pagination'
 import RecordTable from '../components/RecordTable'
 import ExternalLink from '../components/ExternalLink'
 // Constant imports
-import { API_ROOT, BREAKPOINT, FONT_SIZE, INFURA_ID, PAGE_SIZE } from '../constants'
+import {
+  API_ROOT,
+  BREAKPOINT,
+  FONT_SIZE,
+  INFURA_ID,
+  PAGE_SIZE,
+  TRANSCRIPT_HASH
+} from '../constants'
 import { Transcript, Record, SequencerStatus } from '../types'
-// Asset imports
-import SearchIcon from '../assets/search.svg'
 // Hook imports
-import useRecord from '../hooks/useRecord'
+import useRecord, { useRecordAsString } from '../hooks/useRecord'
 import useSequencerStatus from '../hooks/useSequencerStatus'
 import { BgColoredContainer } from '../components/Background'
-
+import LoadingSpinner from '../components/LoadingSpinner'
+import { PrimaryButton } from '../components/Button'
+import VerifiedModal from '../components/modals/VerifiedModal'
+import SearchInput from '../components/SearchInput'
+import { useNavigate } from 'react-router-dom'
 
 // RecordPage component
 const RecordPage = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const [isVerifying, setIsVerifying] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [pageData, setPageData] = useState<Record[]>([])
   const [formattedData, setFormattedData] = useState<Record[]>([])
 
   // load data from API
   const { data } = useRecord()
+  const { data: recordAsString } = useRecordAsString()
   const sequencerStatus = useSequencerStatus()
 
   // Helper function
-  const isSearchQueryInRecords = async (record: Record, query: string): Promise<boolean> => {
+  const isSearchQueryInRecords = async (
+    record: Record,
+    query: string
+  ): Promise<boolean> => {
     const queryLowercase = query.toLowerCase()
-    let string = '';
-    string = string + '#' + record.position;
-    string = string + ' ' + record.participantId;
+    let string = ''
+    string = string + '#' + record.position
+    string = string + ' ' + record.participantId
     string = string + ' '
     string = string.toLowerCase()
-    return string.includes( queryLowercase )
+    return string.includes(queryLowercase)
   }
 
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: 'smooth'
     })
-  }, [])
+    ;(async () => {
+      await navigator.serviceWorker.ready
+      // eslint-disable-next-line no-restricted-globals
+      if (!self.crossOriginIsolated) {
+        console.log('refreshing...')
+        navigate(0)
+      } else {
+        console.log(
+          `${window.crossOriginIsolated ? '' : 'not'} x-origin isolated`
+        )
+      }
+    })()
+  }, [navigate])
 
   useEffect(() => {
     let active = true
     const formatDataFromRecord = async () => {
-      if (!data) { return }
-      const { transcripts, participantIds, participantEcdsaSignatures } = data! as Transcript;
-      const records: Record[] = [];
+      if (!data) {
+        return
+      }
+      const { transcripts, participantIds, participantEcdsaSignatures } =
+        data! as Transcript
+      const records: Record[] = []
 
       let queryLowercase = searchQuery.toLowerCase()
-      if (queryLowercase.includes( '.eth' )){
+      if (queryLowercase.includes('.eth')) {
         setIsLoading(true)
         const provider = new providers.InfuraProvider('homestead', INFURA_ID)
         const ensAddress = await provider.resolveName(queryLowercase)
@@ -69,8 +99,8 @@ const RecordPage = () => {
         setIsLoading(false)
       }
 
-      for (let i = 0, ni=participantIds.length; i < ni; i++) {
-        const participantId = participantIds[i].replace('eth|','')
+      for (let i = 0, ni = participantIds.length; i < ni; i++) {
+        const participantId = participantIds[i].replace('eth|', '')
         const participantEcdsaSignature = participantEcdsaSignatures[i]
         const record: Record = {
           position: i,
@@ -79,40 +109,47 @@ const RecordPage = () => {
           transcripts: [
             {
               potPubkeys: transcripts[0].witness.potPubkeys[i],
-              blsSignature: transcripts[0].witness.blsSignatures[i],
+              blsSignature: transcripts[0].witness.blsSignatures[i]
             },
             {
               potPubkeys: transcripts[1].witness.potPubkeys[i],
-              blsSignature: transcripts[1].witness.blsSignatures[i],
+              blsSignature: transcripts[1].witness.blsSignatures[i]
             },
             {
               potPubkeys: transcripts[2].witness.potPubkeys[i],
-              blsSignature: transcripts[2].witness.blsSignatures[i],
+              blsSignature: transcripts[2].witness.blsSignatures[i]
             },
             {
               potPubkeys: transcripts[3].witness.potPubkeys[i],
-              blsSignature: transcripts[3].witness.blsSignatures[i],
+              blsSignature: transcripts[3].witness.blsSignatures[i]
             }
-          ],
+          ]
         }
-        if ( await isSearchQueryInRecords(record, queryLowercase) ){
+        if (await isSearchQueryInRecords(record, queryLowercase)) {
           records.push(record)
         }
       }
-      if (!active) { return }
-      setFormattedData( records )
-      setTotalPages( records ? Math.ceil(records.length / PAGE_SIZE) : 0 )
+      if (!active) {
+        return
+      }
+      setFormattedData(records)
+      setTotalPages(records ? Math.ceil(records.length / PAGE_SIZE) : 0)
       setIsLoading(false)
     }
-    formatDataFromRecord();
-    return () => { active = false }
+    formatDataFromRecord()
+    return () => {
+      active = false
+    }
   }, [data, searchQuery])
 
   useEffect(() => {
     // Slice by page
     const sliceStart = (page - 1) * PAGE_SIZE
-    const sliceEnd = sliceStart + PAGE_SIZE > formattedData.length ? formattedData.length : sliceStart + PAGE_SIZE
-    setPageData( formattedData.slice(sliceStart, sliceEnd) )
+    const sliceEnd =
+      sliceStart + PAGE_SIZE > formattedData.length
+        ? formattedData.length
+        : sliceStart + PAGE_SIZE
+    setPageData(formattedData.slice(sliceStart, sliceEnd))
   }, [formattedData, page])
 
   // Memoized data
@@ -127,15 +164,19 @@ const RecordPage = () => {
     setPage(1)
   }
 
+  const handleClickVerify = async () => {
+    setIsVerifying(true)
+  }
+
   const reOrderFormattedData = () => {
-    setIsLoading(true);
-    const records: Record[] = [];
-    for (let i = formattedData.length-1, ni = 0; i >= ni; i--) {
-      const record = formattedData[i];
+    setIsLoading(true)
+    const records: Record[] = []
+    for (let i = formattedData.length - 1, ni = 0; i >= ni; i--) {
+      const record = formattedData[i]
       records.push(record)
     }
-    setFormattedData( records )
-    setIsLoading(false);
+    setFormattedData(records)
+    setIsLoading(false)
   }
 
   return (
@@ -162,15 +203,44 @@ const RecordPage = () => {
             <StatsTitle>
               <Trans i18nKey="record.stats.address">Sequencer address:</Trans>
             </StatsTitle>
-            <StatsText style={{ marginRight: '0px' }}> {stats?.sequencer_address}</StatsText>
+            <StatsText style={{ marginRight: '0px' }}>
+              {' '}
+              {stats?.sequencer_address}
+            </StatsText>
           </Stat>
-          <Link href={`${API_ROOT}/info/current_state`}>
-            <Trans i18nKey="record.download">
-              Download full transcript
-            </Trans>
-          </Link>
+          <Stat>
+            <StatsTitle>
+              <Trans i18nKey="record.stats.transcriptHash">
+                Transcript hash:
+              </Trans>
+            </StatsTitle>
+          </Stat>
+          <StatsText style={{ marginRight: '0px' }}>
+            {' '}
+            {TRANSCRIPT_HASH}
+          </StatsText>
+          <ButtonContainer>
+            <Link href={`${API_ROOT}/info/current_state`}>
+              <Trans i18nKey="record.download">Download full transcript</Trans>
+            </Link>
+
+            {isVerifying ? (
+              <LoadingSpinner style={{ height: '48px' }}></LoadingSpinner>
+            ) : (
+              <PrimaryButton
+                style={{ width: '180px', height: '40px' }}
+                disabled={isVerifying}
+                onClick={handleClickVerify}
+              >
+                <Trans i18nKey="record.verify">Verify Transcript</Trans>
+              </PrimaryButton>
+            )}
+          </ButtonContainer>
         </StatsContainer>
-        <SearchInput placeholder={t('record.searchBar')} onChange={handleInput} />
+        <SearchInput
+          placeholder={t('record.searchBar')}
+          onChange={handleInput}
+        />
         <RecordTable
           data={pageData}
           isLoading={isLoading}
@@ -179,6 +249,12 @@ const RecordPage = () => {
         <Pagination page={page} setPage={setPage} totalPages={totalPages} />
       </Container>
       <Footer />
+      <VerifiedModal
+        open={isVerifying}
+        data={data}
+        dataAsString={recordAsString}
+        onDeselect={() => setIsVerifying(false)}
+      />
     </BgColoredContainer>
   )
 }
@@ -192,22 +268,6 @@ const Container = styled.div`
   max-width: 100%;
   margin: 8rem auto;
   padding-inline: 5vw;
-`
-
-const SearchInput = styled.input`
-  font-size: ${FONT_SIZE.M};
-  font-weight: 400;
-  padding: 8px 40px 8px 16px;
-  border: solid 1px ${({ theme }) => theme.text};
-  border-radius: 8px;
-  background-color: ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.text};
-  background: url(${SearchIcon}) no-repeat scroll right 12px bottom 50%;
-  width: 70%;
-
-  @media (max-width: ${BREAKPOINT.M}) {
-    width: 100%;
-  }
 `
 
 const StatsContainer = styled.div`
@@ -253,8 +313,15 @@ const StatsText = styled.p`
 const Link = styled(ExternalLink)`
   width: 100%;
   text-align: start;
-  margin-top: 20px;
   font-size: ${FONT_SIZE.M};
+`
+
+const ButtonContainer = styled.div`
+  margin-block: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 `
 
 export default RecordPage

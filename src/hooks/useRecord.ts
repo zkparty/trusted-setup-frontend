@@ -6,3 +6,9 @@ export default function useRecord() {
     return api.getCurrentState()
   })
 }
+
+export function useRecordAsString() {
+  return useQuery(['recordAsString'], async () => {
+    return api.getCurrentStateAsString()
+  })
+}
