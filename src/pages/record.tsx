@@ -28,10 +28,12 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import { PrimaryButton } from '../components/Button'
 import VerifiedModal from '../components/modals/VerifiedModal'
 import SearchInput from '../components/SearchInput'
+import { useNavigate } from 'react-router-dom'
 
 // RecordPage component
 const RecordPage = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
@@ -42,7 +44,7 @@ const RecordPage = () => {
 
   // load data from API
   const { data } = useRecord()
-  const { data: recordAsString} = useRecordAsString()
+  const { data: recordAsString } = useRecordAsString()
   const sequencerStatus = useSequencerStatus()
 
   // Helper function
@@ -64,7 +66,19 @@ const RecordPage = () => {
       top: 0,
       behavior: 'smooth'
     })
-  }, [])
+    ;(async () => {
+      await navigator.serviceWorker.ready
+      // eslint-disable-next-line no-restricted-globals
+      if (!self.crossOriginIsolated) {
+        console.log('refreshing...')
+        navigate(0)
+      } else {
+        console.log(
+          `${window.crossOriginIsolated ? '' : 'not'} x-origin isolated`
+        )
+      }
+    })()
+  }, [navigate])
 
   useEffect(() => {
     let active = true
@@ -196,13 +210,15 @@ const RecordPage = () => {
           </Stat>
           <Stat>
             <StatsTitle>
-              <Trans i18nKey="record.stats.transcriptHash">Transcript hash:</Trans>
+              <Trans i18nKey="record.stats.transcriptHash">
+                Transcript hash:
+              </Trans>
             </StatsTitle>
           </Stat>
           <StatsText style={{ marginRight: '0px' }}>
-              {' '}
-              {TRANSCRIPT_HASH}
-            </StatsText>
+            {' '}
+            {TRANSCRIPT_HASH}
+          </StatsText>
           <ButtonContainer>
             <Link href={`${API_ROOT}/info/current_state`}>
               <Trans i18nKey="record.download">Download full transcript</Trans>
