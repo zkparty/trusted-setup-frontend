@@ -80,11 +80,10 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
   }
 
   const onClickVerifyECDSA = async () => {
+    const ethAddressInLowerCase = ethAddress.trim().toLowerCase()
     setVerifyingECDSA(true)
     // get participant index
-    const index = data?.participantIds.indexOf(
-      `eth|${ethAddress.toLowerCase().trim()}`
-    )
+    const index = data?.participantIds.indexOf(`eth|${ethAddressInLowerCase}`)
     if (!index || index < 0) {
       setVerifyingECDSA(false)
       setVerifyECDSAError(null)
@@ -120,7 +119,8 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
       primaryType,
       signature: ecdsa as Hex
     })
-    if (recoveredAddress !== ethAddress) {
+    const recoveredAddressInLowerCase = recoveredAddress.trim().toLowerCase()
+    if (recoveredAddressInLowerCase !== ethAddressInLowerCase) {
       setVerifyingECDSA(false)
       setVerifyECDSAError('Mismatch')
       return
@@ -133,6 +133,8 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
     setEthAddress(value)
+    setVerifiedECDSA(false)
+    setVerifyECDSAError(null)
   }
 
   return (
