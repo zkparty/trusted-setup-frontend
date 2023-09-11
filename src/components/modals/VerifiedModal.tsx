@@ -77,6 +77,7 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
     const index = data?.participantIds.indexOf(`eth|${ethAddressInLowerCase}`)
     if (!index || index < 0) {
       setVerifyClicked(false)
+      setVerifyECDSAError('Address not found in transcript')
       return
     }
 
@@ -84,6 +85,7 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
     const ecdsa = data?.participantEcdsaSignatures[index]
     if (!ecdsa) {
       setVerifyClicked(false)
+      setVerifyECDSAError('ECDSA signature not found')
       return
     }
 
@@ -146,7 +148,7 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
   const testListItem = (title: String, isDone: boolean, isError: boolean, errText: string | null = 'Error' ) => {
     return (
     <div>
-      {verifyClicked ? title : (<GraySpan>{title}</GraySpan>)}:{' '}
+      {verifyClicked || isDone ? title : (<GraySpan>{title}</GraySpan>)}:{' '}
       {isDone ? 
         isError ? (
           <RedSpan>{errText}</RedSpan>
