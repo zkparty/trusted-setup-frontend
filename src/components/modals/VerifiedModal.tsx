@@ -4,7 +4,7 @@ import { buildEIP712Message, isMobile } from '../../utils'
 import { useEffect, useState } from 'react'
 import { Transcript } from '../../types'
 import wasm from '../../wasm'
-import SearchInput from '../SearchInput'
+import TextInput from '../TextInput'
 import { ItalicSubTitle, PageTitle } from '../Text'
 import { Trans, useTranslation } from 'react-i18next'
 import { sha256 } from '@noble/hashes/sha256'
@@ -53,6 +53,9 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
   }
 
   const verifyTranscript = async () => {
+    const hasAddress = (ethAddress.trim().length > 0)
+    if (!hasAddress) setVerifyECDSAError('No address')
+
     const result = await wasm.verify(dataAsString || ' ')
     setVerifiedContributions(result)
     setVerifyContributionsError(!result)
@@ -70,6 +73,11 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
       setVerifyHashError(true)
     }
 
+    if (!hasAddress) {
+      setVerifiedECDSA(true)
+      setVerifyClicked(false)
+      return
+    }
     // ECDSA sig verification
     setVerifyECDSAError(null)
     // get participant index
@@ -85,7 +93,7 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
     const ecdsa = data?.participantEcdsaSignatures[index]
     if (!ecdsa) {
       setVerifyClicked(false)
-      setVerifyECDSAError('ECDSA signature not found')
+      setVerifyECDSAError('Signature not present')
       return
     }
 
@@ -96,7 +104,7 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
     })
     if (potPubkeys.length !== 4) {
       setVerifyClicked(false)
-      setVerifyECDSAError('Not enough potPubkeys')
+      setVerifyECDSAError('Not enough PoTPubkeys')
       return
     }
 
@@ -112,14 +120,11 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
     })
     const recoveredAddressInLowerCase = recoveredAddress.trim().toLowerCase()
     if (recoveredAddressInLowerCase !== ethAddressInLowerCase) {
-      setVerifyClicked(false)
       setVerifyECDSAError('Mismatch')
-      return
     }
 
-    setVerifyClicked(false)
     setVerifiedECDSA(true)
-    return false
+    setVerifyClicked(false)
   }
 
   const validateEthAddress = (address: string): boolean => {
@@ -145,18 +150,25 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
     setVerifyECDSAError(null)
   }
 
-  const testListItem = (title: String, isDone: boolean, isError: boolean, errText: string | null = 'Error' ) => {
+  const testListItem = (title: String, isDone: boolean, isError: boolean, resultText?: string | null, testApplies: boolean = true ) => {
+    const titleAndSeparator = `${title}: `
+    if (isDone) {
+      if (isError) resultText = resultText || 'Error'
+    } else if (testApplies) 
+      resultText = 'Waiting'
+
+    const highlightTitle = (verifyClicked || isDone) && testApplies
+
     return (
     <div>
-      {verifyClicked || isDone ? title : (<GraySpan>{title}</GraySpan>)}:{' '}
-      {isDone ? 
+      {highlightTitle ? titleAndSeparator : (<GraySpan>{titleAndSeparator}</GraySpan>)}
+      {isDone && testApplies ? 
         isError ? (
-          <RedSpan>{errText}</RedSpan>
-
+          <RedSpan>{resultText}</RedSpan>
         ) : (
           <GreenSpan>Passed</GreenSpan>
       ) : (
-        <GraySpan>Waiting</GraySpan>
+        <GraySpan>{verifyClicked || isDone ? resultText : ''}</GraySpan>
       )}
     </div>
     )
@@ -201,7 +213,7 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
           The verification might take a minute to complete
         </Trans>
       </ItalicSubTitle>
-      <SearchInput
+      <TextInput
         placeholder={t('verify.searchBar')}
         onChange={handleInputChange}
       />
@@ -229,7 +241,7 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
           {testListItem('Verifying all contributions', verifiedContributions, verifyContributionsError)}
         </li>
         <li>
-          {testListItem('ECDSA verification status', verifiedECDSA, !!verifyECDSAError, verifyECDSAError)}
+          {testListItem('ECDSA verification status', verifiedECDSA, !!verifyECDSAError, verifyECDSAError, ethAddress.length > 0)}
         </li>
       </Ol>
       {/*verifiedNoZeros && verifiedPoT && verifiedHash && verifiedContributions &&
