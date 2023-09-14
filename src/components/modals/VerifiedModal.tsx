@@ -4,8 +4,8 @@ import { buildEIP712Message, isMobile } from '../../utils'
 import { useEffect, useState } from 'react'
 import { Transcript } from '../../types'
 import wasm from '../../wasm'
-import SearchInput from '../SearchInput'
-import { ItalicSubTitle, PageTitle } from '../Text'
+import TextInput from '../TextInput'
+import { ItalicSubTitle, PageTitle, MessageText } from '../Text'
 import { Trans, useTranslation } from 'react-i18next'
 import { sha256 } from '@noble/hashes/sha256'
 import { bytesToHex } from '@noble/hashes/utils'
@@ -25,6 +25,7 @@ type Props = {
 const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
   const { t } = useTranslation()
 
+  const [verifyClicked, setVerifyClicked] = useState(false)
   const [verifiedSanity, setVerifiedSanity] = useState(false)
   const [verifySanityError, setVerifySanityError] = useState(false)
   const [verifiedNoZeros, setVerifiedNoZeros] = useState(false)
@@ -38,64 +39,78 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
   const [verifyHashError, setVerifyHashError] = useState(false)
 
   const [ethAddress, setEthAddress] = useState('')
-  const [verifyingECDSA, setVerifyingECDSA] = useState(false)
   const [verifiedECDSA, setVerifiedECDSA] = useState(false)
   const [verifyECDSAError, setVerifyECDSAError] = useState<string | null>(null)
+  const [dataReady, setDataReady] = useState(false)
+  const [validInput, setValidInput] = useState(true)
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
-    const verifyTranscript = async () => {
-      if (!(open && data && dataAsString)) return
-      setTimeout(async () => {
-        const result = await wasm.verify(dataAsString)
-        setVerifiedContributions(result)
-        setVerifyContributionsError(!result)
-      }, 1000)
-      setTimeout(() => {
-        setVerifiedSanity(true)
-        setVerifySanityError(false)
-      }, 3000)
-      setTimeout(() => {
-        setVerifiedNoZeros(true)
-        setVerifyNoZerosError(false)
-      }, 6000)
-      setTimeout(() => {
-        setVerifiedPoT(true)
-        setVerifyPoTError(false)
-      }, 9000)
-      setTimeout(() => {
-        const transcriptHash = '0x' + bytesToHex(sha256(dataAsString))
-        console.log(transcriptHash)
-        if (transcriptHash === TRANSCRIPT_HASH) {
-          setVerifiedHash(true)
-        } else {
-          setVerifyHashError(true)
-        }
-      }, 12000)
-    }
-    verifyTranscript()
+    if (open && data && dataAsString) setDataReady(true)
   }, [open, data, dataAsString])
 
   const onClickClaimPOAP = async () => {
     console.log('claiming POAP')
   }
 
-  const onClickVerifyECDSA = async () => {
-    setVerifyingECDSA(true)
+  const verifyTranscript = async () => {
+    // reset flags
+    setVerifiedSanity(false)
+    setVerifySanityError(false)
+    setVerifiedNoZeros(false)
+    setVerifyNoZerosError(false)
+    setVerifiedContributions(false)
+    setVerifyContributionsError(false)
+    setVerifiedPoT(false)
+    setVerifyPoTError(false)
+    setVerifiedHash(false)
+    setVerifyHashError(false)
+    setVerifiedECDSA(false)
+    setVerifyECDSAError(null)
+
+    const hasAddress = (ethAddress.trim().length > 0)
+    if (!hasAddress) setVerifyECDSAError('No address')
+
+    const result = await wasm.verify(dataAsString || ' ')
+    setVerifiedContributions(result)
+    setVerifyContributionsError(!result)
+    setVerifiedSanity(true)
+    setVerifySanityError(!result)
+    setVerifiedNoZeros(true)
+    setVerifyNoZerosError(!result)
+    setVerifiedPoT(true)
+    setVerifyPoTError(!result)
+    const transcriptHash = '0x' + bytesToHex(sha256(dataAsString || ''))
+    //console.log(transcriptHash)
+    if (transcriptHash === TRANSCRIPT_HASH) {
+      setVerifiedHash(true)
+    } else {
+      setVerifyHashError(true)
+    }
+
+    if (!hasAddress) {
+      setVerifiedECDSA(true)
+      setVerifyClicked(false)
+      return
+    }
+    // ECDSA sig verification
+    setVerifyECDSAError(null)
     // get participant index
-    const index = data?.participantIds.indexOf(
-      `eth|${ethAddress.toLowerCase().trim()}`
-    )
+    const ethAddressInLowerCase = ethAddress.trim().toLowerCase()
+    const index = data?.participantIds.indexOf(`eth|${ethAddressInLowerCase}`)
     if (!index || index < 0) {
-      setVerifyingECDSA(false)
-      setVerifyECDSAError(null)
+      setVerifyClicked(false)
+      setVerifyECDSAError('Not done')
+      setErrorMessage('Address not found in transcript')
       return
     }
 
     // get participant ecdsa signature
     const ecdsa = data?.participantEcdsaSignatures[index]
     if (!ecdsa) {
-      setVerifyingECDSA(false)
-      setVerifyECDSAError(null)
+      setVerifyClicked(false)
+      setVerifyECDSAError('Signature not present')
+      setErrorMessage('No ECDSA signature present for this address')
       return
     }
 
@@ -105,8 +120,8 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
       potPubkeys.push(transcript.witness.potPubkeys[index])
     })
     if (potPubkeys.length !== 4) {
-      setVerifyingECDSA(false)
-      setVerifyECDSAError('Not enough potPubkeys')
+      setVerifyClicked(false)
+      setVerifyECDSAError('Not enough PoTPubkeys')
       return
     }
 
@@ -120,19 +135,66 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
       primaryType,
       signature: ecdsa as Hex
     })
-    if (recoveredAddress !== ethAddress) {
-      setVerifyingECDSA(false)
+    const recoveredAddressInLowerCase = recoveredAddress.trim().toLowerCase()
+    if (recoveredAddressInLowerCase !== ethAddressInLowerCase) {
       setVerifyECDSAError('Mismatch')
-      return
     }
 
-    setVerifyingECDSA(false)
     setVerifiedECDSA(true)
+    setVerifyClicked(false)
+  }
+
+  const validateEthAddress = (address: string): boolean => {
+    // Empty input is valid
+    if (address.trim().length === 0) return true
+
+    // Validate for complete ETH address
+    const ethAddressInLowerCase = address.trim().toLowerCase()
+    return /^0x([0-9]|[a-f]){40}$/.test(ethAddressInLowerCase)
+  }
+
+  const onClickVerify = async () => {
+    setVerifyClicked(true)
+    setErrorMessage('')
+    verifyTranscript()
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorMessage('')
     const { value } = e.target
-    setEthAddress(value)
+    const valid = validateEthAddress(value)
+    if (valid) {
+      setEthAddress(value)
+    } else {
+      setErrorMessage(t('verify.incorrect-format'))
+    }
+    setValidInput(valid)
+    setVerifiedECDSA(false)
+    setVerifyECDSAError(null)
+  }
+
+  const testListItem = (title: String, isDone: boolean, isError: boolean, resultText?: string | null, testApplies: boolean = true ) => {
+    const titleAndSeparator = `${title}: `
+    if (isDone) {
+      if (isError) resultText = resultText || 'Error'
+    } else if (testApplies) 
+      resultText = resultText || 'Waiting'
+
+    const highlightTitle = (verifyClicked || isDone) && testApplies
+
+    return (
+    <div>
+      {highlightTitle ? titleAndSeparator : (<GraySpan>{titleAndSeparator}</GraySpan>)}
+      {isDone && testApplies ? 
+        isError ? (
+          <RedSpan>{resultText}</RedSpan>
+        ) : (
+          <GreenSpan>Passed</GreenSpan>
+      ) : (
+        <GraySpan>{resultText}</GraySpan>
+      )}
+    </div>
+    )
   }
 
   return (
@@ -167,86 +229,45 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
       }}
     >
       <PageTitle style={{ marginBottom: '0px' }}>
-        <Trans i18nKey="verify.title">Verify your transcript</Trans>
+        <Trans i18nKey="verify.title">Verify transcript</Trans>
       </PageTitle>
       <ItalicSubTitle style={{ fontSize: FONT_SIZE.S, margin: '0px' }}>
         <Trans i18nKey="verify.time-warning">
           The verification might take a minute to complete
         </Trans>
       </ItalicSubTitle>
-      <Ol>
-        <li>
-          Sanity checking:{' '}
-          {verifiedSanity ? (
-            <GreenSpan>Passed</GreenSpan>
-          ) : verifySanityError ? (
-            <RedSpan>Error</RedSpan>
-          ) : (
-            <GraySpan>Waiting</GraySpan>
-          )}
-        </li>
-        <li>
-          Verifying no secret is zero:{' '}
-          {verifiedNoZeros ? (
-            <GreenSpan>Passed</GreenSpan>
-          ) : verifyNoZerosError ? (
-            <RedSpan>Error</RedSpan>
-          ) : (
-            <GraySpan>Waiting</GraySpan>
-          )}
-        </li>
-        <li>
-          Verifying Powers of Tau:{' '}
-          {verifiedPoT ? (
-            <GreenSpan>Passed</GreenSpan>
-          ) : verifyPoTError ? (
-            <RedSpan>Error</RedSpan>
-          ) : (
-            <GraySpan>Waiting</GraySpan>
-          )}
-        </li>
-        <li>
-          Verifying transcript hash:{' '}
-          {verifiedHash ? (
-            <GreenSpan>Passed</GreenSpan>
-          ) : verifyHashError ? (
-            <RedSpan>Mismatch</RedSpan>
-          ) : (
-            <GraySpan>Waiting</GraySpan>
-          )}
-        </li>
-        <li>
-          Verifying all contributions:
-          {verifiedContributions ? (
-            <GreenSpan>Passed</GreenSpan>
-          ) : verifyContributionsError ? (
-            <RedSpan>Error</RedSpan>
-          ) : (
-            <GraySpan>Waiting</GraySpan>
-          )}
-        </li>
-      </Ol>
-      <SearchInput
+      <TextInput
         placeholder={t('verify.searchBar')}
         onChange={handleInputChange}
       />
-      {verifyingECDSA ? (
+      <MessageText>
+        {errorMessage}
+      </MessageText>
+      {verifyClicked ? (
         <LoadingSpinner />
       ) : (
-        <SecondaryButton disabled={verifyingECDSA} onClick={onClickVerifyECDSA}>
-          <Trans i18nKey="verify.button-ecdsa">Verify ECDSA</Trans>
+        <SecondaryButton disabled={!dataReady || !validInput || verifyClicked} onClick={onClickVerify}>
+          <Trans i18nKey="verify.button-ecdsa">Verify</Trans>
         </SecondaryButton>
       )}
       <Ol>
         <li>
-          ECDSA verification status:{' '}
-          {verifiedECDSA ? (
-            <GreenSpan>Passed</GreenSpan>
-          ) : verifyECDSAError ? (
-            <RedSpan>{verifyECDSAError}</RedSpan>
-          ) : (
-            <GraySpan>Not found</GraySpan>
-          )}
+          {testListItem('Sanity checking', verifiedSanity, verifySanityError)}
+        </li>
+        <li>
+          {testListItem('Verifying no secret is zero', verifiedNoZeros, verifyNoZerosError)}
+        </li>
+        <li>
+          {testListItem('Verifying Powers of Tau', verifiedPoT, verifyPoTError)}
+        </li>
+        <li>
+          {testListItem('Verifying transcript hash', verifiedHash, verifyHashError, verifyHashError ? 'Mismatch': null)}
+        </li>
+        <li>
+          {testListItem('Verifying all contributions', verifiedContributions, verifyContributionsError)}
+        </li>
+        <li>
+          {testListItem('ECDSA verification status', verifiedECDSA, !!verifyECDSAError, verifyECDSAError, ethAddress.length > 0)}
         </li>
       </Ol>
       {/*verifiedNoZeros && verifiedPoT && verifiedHash && verifiedContributions &&

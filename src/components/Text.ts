@@ -32,6 +32,14 @@ const ItalicSubTitle = styled.h3`
   margin-top: 4px;
 `
 
+const MessageText = styled.p`
+  font-size ${FONT_SIZE.SM};
+  font-weight: 100;
+  color: red;
+  text-align: center;
+  margin-top: 4px;
+`
+
 const Description = styled.p`
   font-weight: 400;
   font-size: ${FONT_SIZE.SM};
@@ -57,4 +65,4 @@ const Bold = styled.span`
 font-weight: 700;
 `
 
-export { PageTitle, SectionTitle, ItalicSubTitle, Description, LinkText, Bold }
+export { PageTitle, SectionTitle, ItalicSubTitle, MessageText, Description, LinkText, Bold }
