@@ -247,7 +247,8 @@
     "verify": {
       "title": "Verify ceremony transcript",
       "searchBar": "Enter your address (optional)",
-      "button-ecdsa": "Verify"
+      "button-ecdsa": "Verify",
+      "incorrect-format": "Invalid Ethereum address"
     },
     "error": {
       "safariNotAllowed": "The Safari browser is not compatible",

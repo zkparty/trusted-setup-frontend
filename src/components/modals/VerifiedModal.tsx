@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { Transcript } from '../../types'
 import wasm from '../../wasm'
 import TextInput from '../TextInput'
-import { ItalicSubTitle, PageTitle } from '../Text'
+import { ItalicSubTitle, PageTitle, MessageText } from '../Text'
 import { Trans, useTranslation } from 'react-i18next'
 import { sha256 } from '@noble/hashes/sha256'
 import { bytesToHex } from '@noble/hashes/utils'
@@ -43,6 +43,7 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
   const [verifyECDSAError, setVerifyECDSAError] = useState<string | null>(null)
   const [dataReady, setDataReady] = useState(false)
   const [validInput, setValidInput] = useState(true)
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
     if (open && data && dataAsString) setDataReady(true)
@@ -53,6 +54,20 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
   }
 
   const verifyTranscript = async () => {
+    // reset flags
+    setVerifiedSanity(false)
+    setVerifySanityError(false)
+    setVerifiedNoZeros(false)
+    setVerifyNoZerosError(false)
+    setVerifiedContributions(false)
+    setVerifyContributionsError(false)
+    setVerifiedPoT(false)
+    setVerifyPoTError(false)
+    setVerifiedHash(false)
+    setVerifyHashError(false)
+    setVerifiedECDSA(false)
+    setVerifyECDSAError(null)
+
     const hasAddress = (ethAddress.trim().length > 0)
     if (!hasAddress) setVerifyECDSAError('No address')
 
@@ -85,7 +100,8 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
     const index = data?.participantIds.indexOf(`eth|${ethAddressInLowerCase}`)
     if (!index || index < 0) {
       setVerifyClicked(false)
-      setVerifyECDSAError('Address not found in transcript')
+      setVerifyECDSAError('Not done')
+      setErrorMessage('Address not found in transcript')
       return
     }
 
@@ -94,6 +110,7 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
     if (!ecdsa) {
       setVerifyClicked(false)
       setVerifyECDSAError('Signature not present')
+      setErrorMessage('No ECDSA signature present for this address')
       return
     }
 
@@ -137,14 +154,20 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
   }
 
   const onClickVerify = async () => {
-    verifyTranscript()
     setVerifyClicked(true)
+    setErrorMessage('')
+    verifyTranscript()
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorMessage('')
     const { value } = e.target
     const valid = validateEthAddress(value)
-    if (valid) setEthAddress(value)
+    if (valid) {
+      setEthAddress(value)
+    } else {
+      setErrorMessage(t('verify.incorrect-format'))
+    }
     setValidInput(valid)
     setVerifiedECDSA(false)
     setVerifyECDSAError(null)
@@ -155,7 +178,7 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
     if (isDone) {
       if (isError) resultText = resultText || 'Error'
     } else if (testApplies) 
-      resultText = 'Waiting'
+      resultText = resultText || 'Waiting'
 
     const highlightTitle = (verifyClicked || isDone) && testApplies
 
@@ -168,7 +191,7 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
         ) : (
           <GreenSpan>Passed</GreenSpan>
       ) : (
-        <GraySpan>{verifyClicked || isDone ? resultText : ''}</GraySpan>
+        <GraySpan>{resultText}</GraySpan>
       )}
     </div>
     )
@@ -217,6 +240,9 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
         placeholder={t('verify.searchBar')}
         onChange={handleInputChange}
       />
+      <MessageText>
+        {errorMessage}
+      </MessageText>
       {verifyClicked ? (
         <LoadingSpinner />
       ) : (
@@ -235,7 +261,7 @@ const VerifiedModal = ({ open, data, dataAsString, onDeselect }: Props) => {
           {testListItem('Verifying Powers of Tau', verifiedPoT, verifyPoTError)}
         </li>
         <li>
-          {testListItem('Verifying transcript hash', verifiedHash, verifyHashError, 'Mismatch')}
+          {testListItem('Verifying transcript hash', verifiedHash, verifyHashError, verifyHashError ? 'Mismatch': null)}
         </li>
         <li>
           {testListItem('Verifying all contributions', verifiedContributions, verifyContributionsError)}
