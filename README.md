@@ -6,7 +6,7 @@ This React App is a graphic interface to interact with the [Ethereum KZG Ceremon
 
 To start this app execute the following steps:
 
-1. Run the sequencer app from [https://github.com/ethereum/kzg-ceremony-sequencer](). It is assumed that the assigned port is 3000 and that our react app would use port 3001. You can set `PORT` env variable with a specific port for React.
+1. Run the sequencer app from [https://github.com/ethereum/kzg-ceremony-sequencer](https://github.com/ethereum/kzg-ceremony-sequencer). It is assumed that the assigned port is 3000 and that our react app would use port 3001. You can set `PORT` env variable with a specific port for React.
 
 2. Setup environment variables:
 
@@ -56,15 +56,15 @@ added QmNg68JsiSWCddYc9wYaYihrHor1ukW2Y5kvmtsKPKiAWb export
 29.96 MiB / 29.96 MiB  100.00%[=======================================================================================] 100.00%
 ```
 
-The latest build has this CID: `QmfAFhdZURywEBqxWeLCy59r9mb3UeckcmuxwJbxqVj2Ys`
+The latest build has this CID: `QmU2taq97zkjjihyjDWtFLMJ394dLSkHvxNpPezTqddAUQ`
 
-or, in base32: `bafybeihz5tnk2k56rhf7t2lysx4hpegn7o2hmrhwl27mekq3vluozxfanq`
+or, in base32: `bafybeicutfnodccakbftrnrfcosmabqysegc3llk4j2fmq5ocs3gfhq4le`
 
 The site can be added to pinning services by uploading the `build` folder.
 
 You can access it using the ENS [latest.kzgceremony.eth](https://latest.kzgceremony.eth)
 
-Note: The IPFS deployment was built using WASM `wrapper-small-pot` tag `ipfs_v3` and `kzg-ceremony-sequencer` commit `2538f2f08d4db880d7f4608e964df0b695bc7d2f`.
+Note: The IPFS deployment was built using WASM `wrapper-small-pot` tag `verify` and `kzg-ceremony-sequencer` commit `cf4dcbc857973bb1efdb72d87bae975b4cc2b179`.
 
 ## Building from the Audited commit
 
