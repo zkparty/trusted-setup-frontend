@@ -40,7 +40,7 @@ const RecordPage = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [pageData, setPageData] = useState<Record[]>([])
   const [formattedData, setFormattedData] = useState<Record[]>([])
-  const [clickecOnVerify, setClickedOnVerify] = useState(false)
+  const [clickedOnVerify, setClickedOnVerify] = useState(false)
 
   // load data from API
   const { data } = useRecord()
@@ -226,12 +226,12 @@ const RecordPage = () => {
               <Trans i18nKey="record.download">Download full transcript</Trans>
             </Link>
 
-            {clickecOnVerify ? (
+            {clickedOnVerify ? (
               <LoadingSpinner style={{ height: '48px' }}></LoadingSpinner>
             ) : (
               <PrimaryButton
                 style={{ width: '180px', height: '40px' }}
-                disabled={clickecOnVerify}
+                disabled={clickedOnVerify}
                 onClick={handleClickVerify}
               >
                 <Trans i18nKey="record.verify">Verify Ceremony</Trans>
@@ -242,7 +242,7 @@ const RecordPage = () => {
         <VerificationSection
           dataAsString={dataAsString}
           data={data}
-          clickedOnVerify={clickecOnVerify}
+          clickedOnVerify={clickedOnVerify}
           setClickedOnVerify={setClickedOnVerify}
         />
         <PageTitle>

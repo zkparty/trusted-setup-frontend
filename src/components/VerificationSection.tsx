@@ -48,7 +48,6 @@ const VerificationSection = ({
 
   useEffect(() => {
     const verifyTranscript = async () => {
-      setIsTwitterButtonDisabled(true)
       if (!(clickedOnVerify && data && dataAsString)) {
         setClickedOnVerify(false)
         return
@@ -87,6 +86,7 @@ const VerificationSection = ({
   }, [clickedOnVerify])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEthAddress('')
     setIsPOAPDisabled(true)
     setVerifyECDSAError(null)
     setVerifiedECDSA(false)
@@ -153,12 +153,24 @@ const VerificationSection = ({
     setVerifiedECDSA(true)
   }
 
-  const onClickTweet = async () => {}
+  const onClickTweet = async () => {
+    let tweet
+    if (ethAddress === '') {
+      tweet = t('verify.tweetAll')
+    } else {
+      tweet = t('verify.tweetWithAddress', {
+        ethAddress: ethAddress
+      })
+    }
+    const encoded = encodeURIComponent(tweet)
+    const link = `https://twitter.com/intent/tweet?text=${encoded}`
+    window.open(link, '_blank')
+  }
 
   const onClickClaimPOAP = async () => {
     setIsPOAPDisabled(true)
     // TODO: add eth address to poap button
-    window.open(`https://inno-maps.com/claim?address=${ethAddress}`)
+    window.open(`https://inno-maps.com/claim?address=${ethAddress}`, '_blank')
     setIsPOAPDisabled(false)
   }
 
@@ -204,23 +216,23 @@ const VerificationSection = ({
           )}
         </Li>
         <Li>
-          <span>Verifying all contributions</span>
-          <Points />
-          {verifiedContributions ? (
-            <GreenSpan>passed</GreenSpan>
-          ) : verifyContributionsError ? (
-            <RedSpan>error</RedSpan>
-          ) : (
-            <GraySpan>waiting</GraySpan>
-          )}
-        </Li>
-        <Li>
           <span>Verifying transcript hash</span>
           <Points />
           {verifiedHash ? (
             <GreenSpan>passed</GreenSpan>
           ) : verifyHashError ? (
             <RedSpan>mismatch</RedSpan>
+          ) : (
+            <GraySpan>waiting</GraySpan>
+          )}
+        </Li>
+        <Li>
+          <span>Verifying all contributions</span>
+          <Points />
+          {verifiedContributions ? (
+            <GreenSpan>passed</GreenSpan>
+          ) : verifyContributionsError ? (
+            <RedSpan>error</RedSpan>
           ) : (
             <GraySpan>waiting</GraySpan>
           )}
@@ -272,7 +284,7 @@ const VerificationSection = ({
 const Container = styled.div`
   display: flex;
   font-size: ${FONT_SIZE.M};
-  margin-block: 40px;
+  margin-block: 30px;
   align-items: center;
   flex-direction: column;
   word-break: break-word;
