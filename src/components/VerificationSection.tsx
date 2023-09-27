@@ -259,7 +259,7 @@ const VerificationSection = ({
           Tweet
         </VerificationButton>
       </ButtonContainer>
-      <div style={{ width: '100%', marginBottom: '10px' }}>
+      {/* <div style={{ width: '100%', marginBottom: '10px' }}>
         If you used an Ethereum address to contribute, enter it below to claim
         your POAP:
       </div>
@@ -269,7 +269,7 @@ const VerificationSection = ({
         placeholder={t('verify.searchBar')}
       />
       <RedSpan>{verifyECDSAError}</RedSpan>
-      <ButtonContainer>
+         <ButtonContainer>
         <VerificationButton
           disabled={isPOAPDisabled}
           onClick={onClickClaimPOAP}
@@ -277,6 +277,7 @@ const VerificationSection = ({
           Claim POAP
         </VerificationButton>
       </ButtonContainer>
+  */}
     </Container>
   )
 }
