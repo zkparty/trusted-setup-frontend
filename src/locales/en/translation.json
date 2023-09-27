@@ -248,7 +248,9 @@
       "title": "Verify ceremony transcript",
       "searchBar": "Enter your address (optional)",
       "button-ecdsa": "Verify",
-      "incorrect-format": "Invalid Ethereum address"
+      "incorrect-format": "Invalid Ethereum address",
+      "tweetAll": "I just verified the output of the KZG Ceremony! Verify it for yourself here: https://ceremony.ethereum.org",
+      "tweetWithAddress": "I just verified that the contribution from {{ethAddress}} was included in the KZG Ceremony! Verify your own contribution here: https://ceremony.ethereum.org"
     },
     "error": {
       "safariNotAllowed": "The Safari browser is not compatible",

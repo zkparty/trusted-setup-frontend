@@ -26,9 +26,9 @@ import useSequencerStatus from '../hooks/useSequencerStatus'
 import { BgColoredContainer } from '../components/Background'
 import LoadingSpinner from '../components/LoadingSpinner'
 import { PrimaryButton } from '../components/Button'
-import VerifiedModal from '../components/modals/VerifiedModal'
 import SearchInput from '../components/SearchInput'
 import { useNavigate } from 'react-router-dom'
+import VerificationSection from '../components/VerificationSection'
 
 // RecordPage component
 const RecordPage = () => {
@@ -37,14 +37,14 @@ const RecordPage = () => {
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
-  const [isVerifying, setIsVerifying] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [pageData, setPageData] = useState<Record[]>([])
   const [formattedData, setFormattedData] = useState<Record[]>([])
+  const [clickedOnVerify, setClickedOnVerify] = useState(false)
 
   // load data from API
   const { data } = useRecord()
-  const { data: recordAsString } = useRecordAsString()
+  const { data: dataAsString } = useRecordAsString()
   const sequencerStatus = useSequencerStatus()
 
   // Helper function
@@ -165,7 +165,7 @@ const RecordPage = () => {
   }
 
   const handleClickVerify = async () => {
-    setIsVerifying(true)
+    setClickedOnVerify(true)
   }
 
   const reOrderFormattedData = () => {
@@ -184,7 +184,9 @@ const RecordPage = () => {
       <Header />
       <Container>
         <PageTitle>
-          <Trans i18nKey="record.title">Contributions Transcript</Trans>
+          <Trans i18nKey="record.transcriptInformation">
+            Transcript Information
+          </Trans>
         </PageTitle>
         <StatsContainer>
           <Stat>
@@ -224,19 +226,30 @@ const RecordPage = () => {
               <Trans i18nKey="record.download">Download full transcript</Trans>
             </Link>
 
-            {isVerifying ? (
+            {clickedOnVerify ? (
               <LoadingSpinner style={{ height: '48px' }}></LoadingSpinner>
             ) : (
               <PrimaryButton
                 style={{ width: '180px', height: '40px' }}
-                disabled={isVerifying}
+                disabled={clickedOnVerify}
                 onClick={handleClickVerify}
               >
-                <Trans i18nKey="record.verify">Verify Transcript</Trans>
+                <Trans i18nKey="record.verify">Verify Ceremony</Trans>
               </PrimaryButton>
             )}
           </ButtonContainer>
         </StatsContainer>
+        <VerificationSection
+          dataAsString={dataAsString}
+          data={data}
+          clickedOnVerify={clickedOnVerify}
+          setClickedOnVerify={setClickedOnVerify}
+        />
+        <PageTitle>
+          <Trans i18nKey="record.contributionsTranscript">
+            Contributions Transcript
+          </Trans>
+        </PageTitle>
         <SearchInput
           placeholder={t('record.searchBar')}
           onChange={handleInput}
@@ -249,12 +262,6 @@ const RecordPage = () => {
         <Pagination page={page} setPage={setPage} totalPages={totalPages} />
       </Container>
       <Footer />
-      <VerifiedModal
-        open={isVerifying}
-        data={data}
-        dataAsString={recordAsString}
-        onDeselect={() => setIsVerifying(false)}
-      />
     </BgColoredContainer>
   )
 }
