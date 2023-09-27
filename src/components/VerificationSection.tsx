@@ -1,29 +1,20 @@
 import styled from 'styled-components'
-import { PageTitle } from './Text'
 import { useEffect, useState } from 'react'
 import { PrimaryButton } from './Button'
-import SearchInput from './SearchInput'
 import { useTranslation } from 'react-i18next'
 import { BREAKPOINT, FONT_SIZE, TRANSCRIPT_HASH } from '../constants'
 import { Transcript } from '../types'
-import { Hex, bytesToHex, recoverTypedDataAddress } from 'viem'
-import { buildEIP712Message } from '../utils'
+import { bytesToHex } from 'viem'
 import wasm from '../wasm'
 import { sha256 } from '@noble/hashes/sha256'
 
 type Props = {
+  ethAddress: string
   dataAsString: string | null | undefined
   data: Transcript | null | undefined
-  clickedOnVerify: boolean
-  setClickedOnVerify: (clickedOnVerify: boolean) => void
 }
 
-const VerificationSection = ({
-  dataAsString,
-  data,
-  clickedOnVerify,
-  setClickedOnVerify
-}: Props) => {
+const VerificationSection = ({ ethAddress, dataAsString, data }: Props) => {
   const { t } = useTranslation()
 
   const [verifiedSanity, setVerifiedSanity] = useState(false)
@@ -38,25 +29,17 @@ const VerificationSection = ({
   const [verifyContributionsError, setVerifyContributionsError] =
     useState(false)
 
-  const [showECDSAVerification, setShowECDSAVerification] = useState(false)
-  const [verifiedECDSA, setVerifiedECDSA] = useState(false)
-  const [verifyECDSAError, setVerifyECDSAError] = useState<string | null>(null)
-  const [ethAddress, setEthAddress] = useState('')
-
   const [isTwitterButtonDisabled, setIsTwitterButtonDisabled] = useState(true)
-  const [isPOAPDisabled, setIsPOAPDisabled] = useState(true)
 
   useEffect(() => {
     const verifyTranscript = async () => {
-      if (!(clickedOnVerify && data && dataAsString)) {
-        setClickedOnVerify(false)
+      if (!(data && dataAsString)) {
         return
       }
       setTimeout(async () => {
         const result = await wasm.verify(dataAsString)
         setVerifiedContributions(result)
         setVerifyContributionsError(!result)
-        setClickedOnVerify(false)
         setIsTwitterButtonDisabled(false)
       }, 1000)
       setTimeout(() => {
@@ -83,75 +66,7 @@ const VerificationSection = ({
     }
     verifyTranscript()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clickedOnVerify])
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEthAddress('')
-    setIsPOAPDisabled(true)
-    setVerifyECDSAError(null)
-    setVerifiedECDSA(false)
-    setShowECDSAVerification(false)
-
-    // check if data is loaded
-    if (!data) {
-      setVerifyECDSAError('Transcript is not loaded yet')
-      setShowECDSAVerification(false)
-      return
-    }
-
-    const { value } = e.target
-    if (value.length === 42 && value.substring(0, 2) === '0x') {
-      setShowECDSAVerification(true)
-      const ethAddressInLowerCase = value.trim().toLowerCase()
-      // get participant index
-      const index = data.participantIds.indexOf(`eth|${ethAddressInLowerCase}`)
-      if (index < 0) {
-        setVerifyECDSAError('No participant found')
-        setShowECDSAVerification(false)
-        return
-      }
-      verifyECDSA(index, ethAddressInLowerCase)
-      setEthAddress(value)
-      setIsPOAPDisabled(false)
-    }
-  }
-
-  const verifyECDSA = async (index: number, ethAddressInLowerCase: string) => {
-    // get participant ecdsa signature
-    const ecdsa = data?.participantEcdsaSignatures[index]
-    if (!ecdsa) {
-      setVerifyECDSAError('No ECDSA signature found')
-      setVerifiedECDSA(true)
-      return
-    }
-    // get participant potPubkeys
-    const potPubkeys: string[] = []
-    data.transcripts.forEach((transcript) => {
-      potPubkeys.push(transcript.witness.potPubkeys[index])
-    })
-    if (potPubkeys.length !== 4) {
-      setVerifyECDSAError('Not enough potPubkeys')
-      setVerifiedECDSA(true)
-      return
-    }
-    // rebuild EIP-712 message
-    const { domain, types, message, primaryType } =
-      buildEIP712Message(potPubkeys)
-    const recoveredAddress = await recoverTypedDataAddress({
-      domain,
-      types,
-      message,
-      primaryType,
-      signature: ecdsa as Hex
-    })
-    const recoveredAddressInLowerCase = recoveredAddress.trim().toLowerCase()
-    if (recoveredAddressInLowerCase !== ethAddressInLowerCase) {
-      setVerifyECDSAError('Mismatch')
-      setVerifiedECDSA(true)
-      return
-    }
-    setVerifiedECDSA(true)
-  }
+  }, [data, dataAsString])
 
   const onClickTweet = async () => {
     let tweet
@@ -167,16 +82,8 @@ const VerificationSection = ({
     window.open(link, '_blank')
   }
 
-  const onClickClaimPOAP = async () => {
-    setIsPOAPDisabled(true)
-    // TODO: add eth address to poap button
-    window.open(`https://inno-maps.com/claim?address=${ethAddress}`, '_blank')
-    setIsPOAPDisabled(false)
-  }
-
   return (
     <Container>
-      <PageTitle>VERIFY THE CEREMONY</PageTitle>
       <div>
         This process automatically runs the Ceremony output through a number of
         checks - learn more. It may take a minute to load and process.
@@ -237,19 +144,6 @@ const VerificationSection = ({
             <GraySpan>waiting</GraySpan>
           )}
         </Li>
-        {showECDSAVerification && (
-          <Li>
-            <span>Verifying ECDSA (optional)</span>
-            <Points />
-            {verifiedECDSA ? (
-              <GreenSpan>passed</GreenSpan>
-            ) : verifyECDSAError ? (
-              <RedSpan>error</RedSpan>
-            ) : (
-              <GraySpan>waiting</GraySpan>
-            )}
-          </Li>
-        )}
       </Ol>
       <ButtonContainer>
         <VerificationButton
@@ -259,25 +153,10 @@ const VerificationSection = ({
           Tweet
         </VerificationButton>
       </ButtonContainer>
-      {/* <div style={{ width: '100%', marginBottom: '10px' }}>
+      <div style={{ width: '100%', marginBottom: '10px' }}>
         If you used an Ethereum address to contribute, enter it below to claim
         your POAP:
       </div>
-      <SearchInput
-        style={{ width: '100%', marginBlock: '5px' }}
-        onChange={handleInputChange}
-        placeholder={t('verify.searchBar')}
-      />
-      <RedSpan>{verifyECDSAError}</RedSpan>
-         <ButtonContainer>
-        <VerificationButton
-          disabled={isPOAPDisabled}
-          onClick={onClickClaimPOAP}
-        >
-          Claim POAP
-        </VerificationButton>
-      </ButtonContainer>
-  */}
     </Container>
   )
 }
@@ -285,7 +164,7 @@ const VerificationSection = ({
 const Container = styled.div`
   display: flex;
   font-size: ${FONT_SIZE.M};
-  margin-block: 30px;
+  margin-block: 20px;
   align-items: center;
   flex-direction: column;
   word-break: break-word;

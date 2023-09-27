@@ -24,11 +24,18 @@ import { Transcript, Record, SequencerStatus } from '../types'
 import useRecord, { useRecordAsString } from '../hooks/useRecord'
 import useSequencerStatus from '../hooks/useSequencerStatus'
 import { BgColoredContainer } from '../components/Background'
-import LoadingSpinner from '../components/LoadingSpinner'
-import { PrimaryButton } from '../components/Button'
 import SearchInput from '../components/SearchInput'
 import { useNavigate } from 'react-router-dom'
 import VerificationSection from '../components/VerificationSection'
+import { Hex, recoverTypedDataAddress } from 'viem'
+import { buildEIP712Message } from '../utils'
+import { PrimaryButton } from '../components/Button'
+
+type VerifyECDSA = {
+  showSection: boolean
+  verified: boolean
+  error: string | null
+}
 
 // RecordPage component
 const RecordPage = () => {
@@ -40,8 +47,13 @@ const RecordPage = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [pageData, setPageData] = useState<Record[]>([])
   const [formattedData, setFormattedData] = useState<Record[]>([])
-  const [clickedOnVerify, setClickedOnVerify] = useState(false)
 
+  const [isPOAPActive, setIsPOAPActive] = useState(false)
+  const [verifyECDSA, setVerifyECDSA] = useState<VerifyECDSA>({
+    showSection: false,
+    verified: false,
+    error: null
+  })
   // load data from API
   const { data } = useRecord()
   const { data: dataAsString } = useRecordAsString()
@@ -159,13 +171,98 @@ const RecordPage = () => {
   }, [sequencerStatus])
 
   // Handler functions
-  const handleInput = (e: any) => {
-    setSearchQuery(e.target.value)
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target
+    setSearchQuery(value)
     setPage(1)
+
+    // claim POAP
+    setIsPOAPActive(false)
+    setVerifyECDSA({
+      showSection: false,
+      verified: false,
+      error: null
+    })
+    if (!data) {
+      setVerifyECDSA((verifyECDSA) => ({
+        ...verifyECDSA,
+        ...{ error: 'Transcript is not loaded yet' }
+      }))
+      return
+    }
+    if (value.length === 42 && value.substring(0, 2) === '0x') {
+      setVerifyECDSA((verifyECDSA) => ({
+        ...verifyECDSA,
+        ...{ showSection: true }
+      }))
+      const ethAddressInLowerCase = value.trim().toLowerCase()
+      // get participant index
+      const index = data.participantIds.indexOf(`eth|${ethAddressInLowerCase}`)
+      if (index < 0) {
+        setVerifyECDSA((verifyECDSA) => ({
+          ...verifyECDSA,
+          ...{ error: 'No participant found', showSection: false }
+        }))
+        return
+      }
+      verifySignature(index, ethAddressInLowerCase)
+      setIsPOAPActive(true)
+    }
   }
 
-  const handleClickVerify = async () => {
-    setClickedOnVerify(true)
+  const verifySignature = async (
+    index: number,
+    ethAddressInLowerCase: string
+  ) => {
+    // get participant ecdsa signature
+    const ecdsa = data?.participantEcdsaSignatures[index]
+    if (!ecdsa) {
+      setVerifyECDSA((verifyECDSA) => ({
+        ...verifyECDSA,
+        ...{ error: 'No ECDSA signature found', verified: true }
+      }))
+      return
+    }
+    // get participant potPubkeys
+    const potPubkeys: string[] = []
+    data.transcripts.forEach((transcript) => {
+      potPubkeys.push(transcript.witness.potPubkeys[index])
+    })
+    if (potPubkeys.length !== 4) {
+      setVerifyECDSA((verifyECDSA) => ({
+        ...verifyECDSA,
+        ...{ error: 'Not enough potPubkeys', verified: true }
+      }))
+      return
+    }
+    // rebuild EIP-712 message
+    const { domain, types, message, primaryType } =
+      buildEIP712Message(potPubkeys)
+    const recoveredAddress = await recoverTypedDataAddress({
+      domain,
+      types,
+      message,
+      primaryType,
+      signature: ecdsa as Hex
+    })
+    const recoveredAddressInLowerCase = recoveredAddress.trim().toLowerCase()
+    if (recoveredAddressInLowerCase !== ethAddressInLowerCase) {
+      setVerifyECDSA((verifyECDSA) => ({
+        ...verifyECDSA,
+        ...{ error: 'Mismatch', verified: true }
+      }))
+      return
+    }
+    setVerifyECDSA((verifyECDSA) => ({
+      ...verifyECDSA,
+      ...{ verified: true }
+    }))
+  }
+
+  const onClickClaimPOAP = async () => {
+    // TODO: add eth address to poap button
+    window.open(`https://inno-maps.com/claim?address=${searchQuery}`, '_blank')
+    setIsPOAPActive(false)
   }
 
   const reOrderFormattedData = () => {
@@ -185,16 +282,10 @@ const RecordPage = () => {
       <Container>
         <PageTitle>
           <Trans i18nKey="record.transcriptInformation">
-            Transcript Information
+            Verify the Ceremony
           </Trans>
         </PageTitle>
         <StatsContainer>
-          <Stat>
-            <StatsTitle>
-              <Trans i18nKey="record.stats.lobby">Lobby size:</Trans>
-            </StatsTitle>
-            <StatsText> {stats?.lobby_size}</StatsText>
-          </Stat>
           <Stat>
             <StatsTitle>
               <Trans i18nKey="record.stats.contributions">Contributions:</Trans>
@@ -221,39 +312,30 @@ const RecordPage = () => {
             {' '}
             {TRANSCRIPT_HASH}
           </StatsText>
-          <ButtonContainer>
+          <LinkContainer>
             <Link href={`${API_ROOT}/info/current_state`}>
               <Trans i18nKey="record.download">Download full transcript</Trans>
             </Link>
-
-            {clickedOnVerify ? (
-              <LoadingSpinner style={{ height: '48px' }}></LoadingSpinner>
-            ) : (
-              <PrimaryButton
-                style={{ width: '180px', height: '40px' }}
-                disabled={clickedOnVerify}
-                onClick={handleClickVerify}
-              >
-                <Trans i18nKey="record.verify">Verify Ceremony</Trans>
-              </PrimaryButton>
-            )}
-          </ButtonContainer>
+          </LinkContainer>
         </StatsContainer>
         <VerificationSection
+          ethAddress={searchQuery}
           dataAsString={dataAsString}
           data={data}
-          clickedOnVerify={clickedOnVerify}
-          setClickedOnVerify={setClickedOnVerify}
         />
-        <PageTitle>
-          <Trans i18nKey="record.contributionsTranscript">
-            Contributions Transcript
-          </Trans>
-        </PageTitle>
         <SearchInput
           placeholder={t('record.searchBar')}
           onChange={handleInput}
         />
+        <RedSpan>{verifyECDSA.error}</RedSpan>
+        <ButtonContainer>
+          <VerificationButton
+            disabled={!isPOAPActive}
+            onClick={onClickClaimPOAP}
+          >
+            Claim POAP
+          </VerificationButton>
+        </ButtonContainer>
         <RecordTable
           data={pageData}
           isLoading={isLoading}
@@ -280,7 +362,7 @@ const Container = styled.div`
 const StatsContainer = styled.div`
   display: flex;
   font-size: ${FONT_SIZE.S};
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   justify-content: space-between;
 
   flex-direction: column;
@@ -325,10 +407,23 @@ const Link = styled(ExternalLink)`
 
 const ButtonContainer = styled.div`
   margin-block: 15px;
+`
+
+const LinkContainer = styled(ButtonContainer)`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+`
+
+const VerificationButton = styled(PrimaryButton)`
+  width: auto;
+  height: auto;
+  padding-block: 8px;
+`
+
+const RedSpan = styled.span`
+  color: ${({ theme }) => theme.error};
 `
 
 export default RecordPage
