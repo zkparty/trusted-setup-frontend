@@ -213,11 +213,6 @@ const RecordPage = () => {
       }
       verifySignature(index, ethAddressInLowerCase)
       setIsPOAPActive(true)
-    } else {
-      setVerifyECDSA((verifyECDSA) => ({
-        ...verifyECDSA,
-        ...{ error: 'Check format', showSection: false }
-      }))
     }
   }
 
