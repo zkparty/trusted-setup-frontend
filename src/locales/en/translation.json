@@ -212,6 +212,7 @@
       "searchBar": "Search address, ENS, github handle, #1, ...",
       "button": "View",
       "download": "Download full transcript",
+      "verifyButton": "Verify",
       "title": "Contributions Transcript",
       "stats": {
         "lobby": "Lobby size:",

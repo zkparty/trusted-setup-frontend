@@ -30,6 +30,7 @@ import VerificationSection from '../components/VerificationSection'
 import { Hex, recoverTypedDataAddress } from 'viem'
 import { buildEIP712Message } from '../utils'
 import { PrimaryButton } from '../components/Button'
+import LoadingSpinner from '../components/LoadingSpinner'
 
 type VerifyECDSA = {
   showSection: boolean
@@ -48,6 +49,7 @@ const RecordPage = () => {
   const [pageData, setPageData] = useState<Record[]>([])
   const [formattedData, setFormattedData] = useState<Record[]>([])
 
+  const [clickedOnVerify, setClickedOnVerify] = useState(false)
   const [isPOAPActive, setIsPOAPActive] = useState(false)
   const [verifyECDSA, setVerifyECDSA] = useState<VerifyECDSA>({
     showSection: false,
@@ -169,6 +171,10 @@ const RecordPage = () => {
     const status = sequencerStatus.data!
     return status
   }, [sequencerStatus])
+
+  const handleClickVerify = async () => {
+    setClickedOnVerify(true)
+  }
 
   // Handler functions
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -316,9 +322,22 @@ const RecordPage = () => {
             <Link href={`${API_ROOT}/info/current_state`}>
               <Trans i18nKey="record.download">Download full transcript</Trans>
             </Link>
+            {clickedOnVerify ? (
+              <LoadingSpinner style={{ height: 'auto' }}></LoadingSpinner>
+            ) : (
+              <PrimaryButton
+                style={{ width: 'auto', height: 'auto' }}
+                disabled={clickedOnVerify}
+                onClick={handleClickVerify}
+              >
+                <Trans i18nKey="record.verifyButton">Verify</Trans>
+              </PrimaryButton>
+            )}
           </LinkContainer>
         </StatsContainer>
         <VerificationSection
+          clickedOnVerify={clickedOnVerify}
+          setClickedOnVerify={setClickedOnVerify}
           ethAddress={searchQuery}
           dataAsString={dataAsString}
           data={data}
@@ -362,7 +381,6 @@ const Container = styled.div`
 const StatsContainer = styled.div`
   display: flex;
   font-size: ${FONT_SIZE.S};
-  margin-bottom: 15px;
   justify-content: space-between;
 
   flex-direction: column;
