@@ -112,6 +112,9 @@ const Container = styled.div`
 `
 
 const TableHead = styled.div`
+  border-top: solid 1px ${({ theme }) => theme.text};
+  padding-top: 35px;
+  padding-bottom: 45px;
   padding-inline: 5px;
   display: flex;
   height: 60px;

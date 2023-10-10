@@ -7,14 +7,23 @@ import { Transcript } from '../types'
 import { bytesToHex } from 'viem'
 import wasm from '../wasm'
 import { sha256 } from '@noble/hashes/sha256'
+import ExternalLink from './ExternalLink'
 
 type Props = {
+  clickedOnVerify: boolean
+  setClickedOnVerify: (value: boolean) => void
   ethAddress: string
   dataAsString: string | null | undefined
   data: Transcript | null | undefined
 }
 
-const VerificationSection = ({ ethAddress, dataAsString, data }: Props) => {
+const VerificationSection = ({
+  clickedOnVerify,
+  setClickedOnVerify,
+  ethAddress,
+  dataAsString,
+  data
+}: Props) => {
   const { t } = useTranslation()
 
   const [verifiedSanity, setVerifiedSanity] = useState(false)
@@ -33,7 +42,8 @@ const VerificationSection = ({ ethAddress, dataAsString, data }: Props) => {
 
   useEffect(() => {
     const verifyTranscript = async () => {
-      if (!(data && dataAsString)) {
+      if (!(clickedOnVerify && data && dataAsString)) {
+        setClickedOnVerify(false)
         return
       }
       setTimeout(async () => {
@@ -41,6 +51,7 @@ const VerificationSection = ({ ethAddress, dataAsString, data }: Props) => {
         setVerifiedContributions(result)
         setVerifyContributionsError(!result)
         setIsTwitterButtonDisabled(false)
+        setClickedOnVerify(false)
       }, 1000)
       setTimeout(() => {
         setVerifiedSanity(true)
@@ -56,7 +67,6 @@ const VerificationSection = ({ ethAddress, dataAsString, data }: Props) => {
       }, 9000)
       setTimeout(() => {
         const transcriptHash = bytesToHex(sha256(dataAsString))
-        console.log(transcriptHash)
         if (transcriptHash === TRANSCRIPT_HASH) {
           setVerifiedHash(true)
         } else {
@@ -66,7 +76,7 @@ const VerificationSection = ({ ethAddress, dataAsString, data }: Props) => {
     }
     verifyTranscript()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, dataAsString])
+  }, [clickedOnVerify])
 
   const onClickTweet = async () => {
     let tweet
@@ -85,8 +95,13 @@ const VerificationSection = ({ ethAddress, dataAsString, data }: Props) => {
   return (
     <Container>
       <div>
-        This process automatically runs the Ceremony output through a number of
-        checks - learn more. It may take a minute to load and process.
+        This verification process runs a few checks on the final transcript. It
+        may take a few minutes to download locally and process. Learn more about
+        the checks{' '}
+        <ExternalLink href="https://hackmd.io/w7kvxwIhTlShzutKRKmRfA">
+          here
+        </ExternalLink>
+        .
       </div>
       <Ol>
         <Li>
@@ -153,9 +168,9 @@ const VerificationSection = ({ ethAddress, dataAsString, data }: Props) => {
           Tweet
         </VerificationButton>
       </ButtonContainer>
-      <div style={{ width: '100%', marginBottom: '10px' }}>
-        If you used an Ethereum address to contribute, enter it below to claim
-        your POAP:
+      <div style={{ width: '100%', marginBlock: '15px' }}>
+        Search to confirm the transcript contains your contribution, then share
+        with the rest of the community! Addresses are eligible to claim a POAP.
       </div>
     </Container>
   )
@@ -206,7 +221,7 @@ const GraySpan = styled.span`
 `
 
 const ButtonContainer = styled.div`
-  margin-block: 10px;
+  margin-block: 20px;
 `
 
 const VerificationButton = styled(PrimaryButton)`
