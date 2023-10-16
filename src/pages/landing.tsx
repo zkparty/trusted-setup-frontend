@@ -24,7 +24,6 @@ import {
 import Explanation from '../components/landing/Explanation'
 import { BgColoredContainer } from '../components/Background'
 import LatestRecords from '../components/landing/LatestRecords'
-import OtherResources from '../components/landing/OtherResources'
 import { PrimaryButton } from '../components/Button'
 import LatestContributionsBorder from '../assets/latest-contributions-border.svg'
 
