@@ -442,12 +442,12 @@ const ButtonContainer = styled.div`
   margin-block: 15px;
   display: flex;
   align-items: center;
-  flex-direction: column;
+
   gap: 8px;
 `
 
 const VerificationButton = styled(PrimaryButton)`
-  width: auto;
+  width: 140px;
   height: auto;
   padding-block: 8px;
 `
