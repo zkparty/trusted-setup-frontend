@@ -108,7 +108,6 @@ const LandingPage = () => {
               <Trans i18nKey="landing.button-verify">Verify transcript</Trans>
             )}
           </PrimaryButton>
-          <OtherResources />
         </WhiteBackground>
       </TopSection>
       <Explanation refFromLanding={ref} />
