@@ -94,9 +94,9 @@ const SequencerStatus = styled.div`
   display: flex;
   flex-direction: column;
   word-break: break-word;
-  /*@media (max-width: ${BREAKPOINT.S}) {
+  @media (max-width: ${BREAKPOINT.S}) {
     display: none;
-  }*/
+  }
 `
 
 const Address = styled.div`
