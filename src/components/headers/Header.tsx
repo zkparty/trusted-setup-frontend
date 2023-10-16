@@ -41,7 +41,7 @@ const Header = () => {
           })}{' '}
         </span>
         <span style={{ paddingBottom: '2px' }}>
-          <Bold>{'hash: '}</Bold>
+          <Bold>{'transcript sha256 hash: '}</Bold>
           {TRANSCRIPT_HASH}
         </span>
       </SequencerStatus>

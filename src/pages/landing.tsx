@@ -15,7 +15,12 @@ import {
   FONT_SIZE,
   TRANSCRIPT_HASH
 } from '../constants'
-import { Description, ItalicSubTitle, PageTitle } from '../components/Text'
+import {
+  Bold,
+  Description,
+  ItalicSubTitle,
+  PageTitle
+} from '../components/Text'
 import Explanation from '../components/landing/Explanation'
 import { BgColoredContainer } from '../components/Background'
 import LatestRecords from '../components/landing/LatestRecords'
@@ -63,14 +68,20 @@ const LandingPage = () => {
             ''
           ) : (
             <>
-              <ItalicSubTitle style={{ marginBottom: '0px' }}>
+              <ItalicSubTitle style={{ marginBottom: '20px' }}>
                 <Trans i18nKey="landing.over">The ceremony is over</Trans>
+              </ItalicSubTitle>
+              <ItalicSubTitle
+                style={{ fontSize: FONT_SIZE.SM, marginBottom: '0px' }}
+              >
+                <Bold>{'Transcript sha256 hash: '}</Bold>
               </ItalicSubTitle>
               <ItalicSubTitle
                 style={{
                   fontSize: FONT_SIZE.SM,
                   width: isMobile() ? '240px' : '55ch',
-                  wordBreak: 'break-all'
+                  wordBreak: 'break-all',
+                  marginBottom: '25px'
                 }}
               >
                 {TRANSCRIPT_HASH}
