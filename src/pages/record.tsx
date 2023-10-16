@@ -322,15 +322,6 @@ const RecordPage = () => {
           </Stat>
           <Stat>
             <StatsTitle>
-              <Trans i18nKey="record.stats.address">Sequencer address:</Trans>
-            </StatsTitle>
-            <StatsText style={{ marginRight: '0px' }}>
-              {' '}
-              {stats?.sequencer_address}
-            </StatsText>
-          </Stat>
-          <Stat>
-            <StatsTitle>
               <Trans i18nKey="record.stats.transcriptHash">
                 Transcript hash:
               </Trans>
