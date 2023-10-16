@@ -439,11 +439,11 @@ const Link = styled(ExternalLink)`
 `
 
 const ButtonContainer = styled.div`
-  margin-block: 15px;
+  margin-block: 35px;
   display: flex;
   align-items: center;
 
-  gap: 8px;
+  gap: 12px;
 `
 
 const VerificationButton = styled(PrimaryButton)`

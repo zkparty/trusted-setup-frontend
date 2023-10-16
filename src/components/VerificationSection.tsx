@@ -78,12 +78,15 @@ const VerificationSection = ({
         This verification process runs a few checks on the final transcript. It
         may take a few minutes to download locally and process. Learn more about
         the checks{' '}
-        <ExternalLink href="https://hackmd.io/w7kvxwIhTlShzutKRKmRfA">
+        <ExternalLink
+          href="https://hackmd.io/w7kvxwIhTlShzutKRKmRfA"
+          style={{ textDecoration: 'underline' }}
+        >
           here
         </ExternalLink>
         .
       </div>
-      <LinkContainer>
+      <ButtonContainer>
         {clickedOnVerify ? (
           <LoadingSpinner style={{ height: 'auto' }} />
         ) : (
@@ -95,7 +98,7 @@ const VerificationSection = ({
             <Trans i18nKey="record.verifyButton">Verify</Trans>
           </PrimaryButton>
         )}
-      </LinkContainer>
+      </ButtonContainer>
       <Ol>
         <Li>
           <span>Sanity checking</span>
@@ -206,15 +209,11 @@ const GraySpan = styled.span`
 `
 
 const ButtonContainer = styled.div`
-  margin-block: 20px;
-`
-
-const LinkContainer = styled(ButtonContainer)`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-block: 8px;
+  margin-block: 25px;
 `
 
 export default VerificationSection
