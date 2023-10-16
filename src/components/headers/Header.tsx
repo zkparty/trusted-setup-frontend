@@ -42,7 +42,13 @@ const Header = () => {
         </span>
         <span style={{ paddingBottom: '2px' }}>
           <Bold>{'transcript sha256 hash: '}</Bold>
-          {TRANSCRIPT_HASH}
+          {isMobile()
+            ? TRANSCRIPT_HASH.replace(/(.{8})..+/, '$1…') +
+              TRANSCRIPT_HASH.substring(
+                TRANSCRIPT_HASH.length - 8,
+                TRANSCRIPT_HASH.length
+              )
+            : TRANSCRIPT_HASH}
         </span>
       </SequencerStatus>
       {ENVIRONMENT === 'testnet' ? (
@@ -87,9 +93,10 @@ const SequencerStatus = styled.div`
   font-size: ${FONT_SIZE.XS};
   display: flex;
   flex-direction: column;
-  @media (max-width: ${BREAKPOINT.S}) {
+  word-break: break-word;
+  /*@media (max-width: ${BREAKPOINT.S}) {
     display: none;
-  }
+  }*/
 `
 
 const Address = styled.div`
