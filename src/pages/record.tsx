@@ -30,7 +30,6 @@ import VerificationSection from '../components/VerificationSection'
 import { Hex, recoverTypedDataAddress } from 'viem'
 import { buildEIP712Message } from '../utils'
 import { PrimaryButton } from '../components/Button'
-import LoadingSpinner from '../components/LoadingSpinner'
 
 type VerifyECDSA = {
   showSection: boolean
@@ -49,7 +48,7 @@ const RecordPage = () => {
   const [pageData, setPageData] = useState<Record[]>([])
   const [formattedData, setFormattedData] = useState<Record[]>([])
 
-  const [clickedOnVerify, setClickedOnVerify] = useState(false)
+  const [isTwitterButtonActive, setIsTwitterButtonActive] = useState(false)
   const [isPOAPActive, setIsPOAPActive] = useState(false)
   const [verifyECDSA, setVerifyECDSA] = useState<VerifyECDSA>({
     showSection: false,
@@ -172,10 +171,6 @@ const RecordPage = () => {
     return status
   }, [sequencerStatus])
 
-  const handleClickVerify = async () => {
-    setClickedOnVerify(true)
-  }
-
   // Handler functions
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
@@ -265,6 +260,33 @@ const RecordPage = () => {
     }))
   }
 
+  const onClickTweet = async () => {
+    let tweet
+    if (searchQuery === '') {
+      tweet = t('verify.tweetAll')
+    } else {
+      let identity = ''
+      if (searchQuery.includes('git')) {
+        identity = searchQuery
+      } else {
+        const prefix = searchQuery
+          .replace('eth|', '')
+          .replace(/(.{5})..+/, '$1…')
+        const postfix = searchQuery.substring(
+          searchQuery.length - 4,
+          searchQuery.length
+        )
+        identity = prefix + postfix
+      }
+      tweet = t('verify.tweetWithAddress', {
+        ethAddress: identity
+      })
+    }
+    const encoded = encodeURIComponent(tweet)
+    const link = `https://twitter.com/intent/tweet?text=${encoded}`
+    window.open(link, '_blank')
+  }
+
   const onClickClaimPOAP = async () => {
     // TODO: add eth address to poap button
     window.open(`https://inno-maps.com/claim?address=${searchQuery}`, '_blank')
@@ -318,29 +340,16 @@ const RecordPage = () => {
             {' '}
             {TRANSCRIPT_HASH}
           </StatsText>
-          <LinkContainer>
+          <Stat style={{ marginBlock: '7px' }}>
             <Link href={`${API_ROOT}/info/current_state`}>
               <Trans i18nKey="record.download">Download full transcript</Trans>
             </Link>
-            {clickedOnVerify ? (
-              <LoadingSpinner style={{ height: 'auto' }}></LoadingSpinner>
-            ) : (
-              <PrimaryButton
-                style={{ width: 'auto', height: 'auto' }}
-                disabled={clickedOnVerify}
-                onClick={handleClickVerify}
-              >
-                <Trans i18nKey="record.verifyButton">Verify</Trans>
-              </PrimaryButton>
-            )}
-          </LinkContainer>
+          </Stat>
         </StatsContainer>
         <VerificationSection
-          clickedOnVerify={clickedOnVerify}
-          setClickedOnVerify={setClickedOnVerify}
-          ethAddress={searchQuery}
           dataAsString={dataAsString}
           data={data}
+          setIsTwitterButtonActive={setIsTwitterButtonActive}
         />
         <SearchInput
           placeholder={t('record.searchBar')}
@@ -348,6 +357,12 @@ const RecordPage = () => {
         />
         <RedSpan>{verifyECDSA.error}</RedSpan>
         <ButtonContainer>
+          <VerificationButton
+            disabled={!isTwitterButtonActive}
+            onClick={onClickTweet}
+          >
+            Tweet
+          </VerificationButton>
           <VerificationButton
             disabled={!isPOAPActive}
             onClick={onClickClaimPOAP}
@@ -420,18 +435,15 @@ const StatsText = styled.p`
 const Link = styled(ExternalLink)`
   width: 100%;
   text-align: start;
-  font-size: ${FONT_SIZE.M};
+  font-size: ${FONT_SIZE.S};
 `
 
 const ButtonContainer = styled.div`
   margin-block: 15px;
-`
-
-const LinkContainer = styled(ButtonContainer)`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  flex-direction: column;
+  gap: 8px;
 `
 
 const VerificationButton = styled(PrimaryButton)`

@@ -1,30 +1,29 @@
 import styled from 'styled-components'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { PrimaryButton } from './Button'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { BREAKPOINT, FONT_SIZE, TRANSCRIPT_HASH } from '../constants'
 import { Transcript } from '../types'
 import { bytesToHex } from 'viem'
 import wasm from '../wasm'
 import { sha256 } from '@noble/hashes/sha256'
 import ExternalLink from './ExternalLink'
+import LoadingSpinner from './LoadingSpinner'
 
 type Props = {
-  clickedOnVerify: boolean
-  setClickedOnVerify: (value: boolean) => void
-  ethAddress: string
   dataAsString: string | null | undefined
   data: Transcript | null | undefined
+  setIsTwitterButtonActive: (value: boolean) => void
 }
 
 const VerificationSection = ({
-  clickedOnVerify,
-  setClickedOnVerify,
-  ethAddress,
   dataAsString,
-  data
+  data,
+  setIsTwitterButtonActive
 }: Props) => {
   const { t } = useTranslation()
+
+  const [clickedOnVerify, setClickedOnVerify] = useState(false)
 
   const [verifiedSanity, setVerifiedSanity] = useState(false)
   const [verifySanityError, setVerifySanityError] = useState(false)
@@ -38,58 +37,39 @@ const VerificationSection = ({
   const [verifyContributionsError, setVerifyContributionsError] =
     useState(false)
 
-  const [isTwitterButtonDisabled, setIsTwitterButtonDisabled] = useState(true)
-
-  useEffect(() => {
-    const verifyTranscript = async () => {
-      if (!(clickedOnVerify && data && dataAsString)) {
-        setClickedOnVerify(false)
-        return
+  const handleClickVerify = async () => {
+    setClickedOnVerify(true)
+    if (!(data && dataAsString)) {
+      setClickedOnVerify(false)
+      return
+    }
+    setTimeout(async () => {
+      const result = await wasm.verify(dataAsString)
+      setVerifiedContributions(result)
+      setVerifyContributionsError(!result)
+      setIsTwitterButtonActive(true)
+      setClickedOnVerify(false)
+    }, 1000)
+    setTimeout(() => {
+      setVerifiedSanity(true)
+      setVerifySanityError(false)
+    }, 3000)
+    setTimeout(() => {
+      setVerifiedNoZeros(true)
+      setVerifyNoZerosError(false)
+    }, 6000)
+    setTimeout(() => {
+      setVerifiedPoT(true)
+      setVerifyPoTError(false)
+    }, 9000)
+    setTimeout(() => {
+      const transcriptHash = bytesToHex(sha256(dataAsString))
+      if (transcriptHash === TRANSCRIPT_HASH) {
+        setVerifiedHash(true)
+      } else {
+        setVerifyHashError(true)
       }
-      setTimeout(async () => {
-        const result = await wasm.verify(dataAsString)
-        setVerifiedContributions(result)
-        setVerifyContributionsError(!result)
-        setIsTwitterButtonDisabled(false)
-        setClickedOnVerify(false)
-      }, 1000)
-      setTimeout(() => {
-        setVerifiedSanity(true)
-        setVerifySanityError(false)
-      }, 3000)
-      setTimeout(() => {
-        setVerifiedNoZeros(true)
-        setVerifyNoZerosError(false)
-      }, 6000)
-      setTimeout(() => {
-        setVerifiedPoT(true)
-        setVerifyPoTError(false)
-      }, 9000)
-      setTimeout(() => {
-        const transcriptHash = bytesToHex(sha256(dataAsString))
-        if (transcriptHash === TRANSCRIPT_HASH) {
-          setVerifiedHash(true)
-        } else {
-          setVerifyHashError(true)
-        }
-      }, 12000)
-    }
-    verifyTranscript()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clickedOnVerify])
-
-  const onClickTweet = async () => {
-    let tweet
-    if (ethAddress === '') {
-      tweet = t('verify.tweetAll')
-    } else {
-      tweet = t('verify.tweetWithAddress', {
-        ethAddress: ethAddress
-      })
-    }
-    const encoded = encodeURIComponent(tweet)
-    const link = `https://twitter.com/intent/tweet?text=${encoded}`
-    window.open(link, '_blank')
+    }, 12000)
   }
 
   return (
@@ -103,6 +83,19 @@ const VerificationSection = ({
         </ExternalLink>
         .
       </div>
+      <LinkContainer>
+        {clickedOnVerify ? (
+          <LoadingSpinner style={{ height: 'auto' }} />
+        ) : (
+          <PrimaryButton
+            style={{ width: 'auto', height: 'auto' }}
+            disabled={clickedOnVerify || !data || !dataAsString}
+            onClick={handleClickVerify}
+          >
+            <Trans i18nKey="record.verifyButton">Verify</Trans>
+          </PrimaryButton>
+        )}
+      </LinkContainer>
       <Ol>
         <Li>
           <span>Sanity checking</span>
@@ -160,15 +153,7 @@ const VerificationSection = ({
           )}
         </Li>
       </Ol>
-      <ButtonContainer>
-        <VerificationButton
-          disabled={isTwitterButtonDisabled}
-          onClick={onClickTweet}
-        >
-          Tweet
-        </VerificationButton>
-      </ButtonContainer>
-      <div style={{ width: '100%', marginBlock: '15px' }}>
+      <div style={{ width: '100%', marginBlock: '30px' }}>
         Search to confirm the transcript contains your contribution, then share
         with the rest of the community! Addresses are eligible to claim a POAP.
       </div>
@@ -224,10 +209,12 @@ const ButtonContainer = styled.div`
   margin-block: 20px;
 `
 
-const VerificationButton = styled(PrimaryButton)`
-  width: auto;
-  height: auto;
-  padding-block: 8px;
+const LinkContainer = styled(ButtonContainer)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-block: 8px;
 `
 
 export default VerificationSection
