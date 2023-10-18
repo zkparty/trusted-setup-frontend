@@ -218,7 +218,7 @@
         "lobby": "Lobby size:",
         "contributions": "Contributions:",
         "address": "Sequencer address:",
-        "transactionHash": "Transaction hash:"
+        "transcriptHash": "Transaction hash:"
       },
       "transcriptModal": {
         "title": "CONTRIBUTION DETAILS",
@@ -246,12 +246,25 @@
       "unlockWithGithub": "or unlock with Github"
     },
     "verify": {
-      "title": "Verify ceremony transcript",
-      "searchBar": "Enter your address (optional)",
-      "button-ecdsa": "Verify",
-      "incorrect-format": "Invalid Ethereum address",
+      "title": "Verify the ceremony",
+      "explanation": "This verification process runs a few checks on the final transcript. It may take a few minutes to download locally and process. Learn more about the checks <2>here</2>.",
+      "claim-text": "Search to confirm the transcript contains your contribution, then share with the rest of the community! Addresses are eligible to claim a POAP.",
+      "button": "Verify",
       "tweetAll": "I just verified the output of the KZG Ceremony! Verify it for yourself here: https://ceremony.ethereum.org",
-      "tweetWithAddress": "I just verified that the contribution from {{ethAddress}} was included in the KZG Ceremony! Verify your own contribution here: https://ceremony.ethereum.org"
+      "tweetWithAddress": "I just verified that the contribution from {{ethAddress}} was included in the KZG Ceremony! Verify your own contribution here: https://ceremony.ethereum.org",
+      "parts": {
+        "sanity": "Sanity checking",
+        "no-zero": "Verifying no secret is zero",
+        "powers-of-tau": "Verifying Powers of Tau",
+        "transcript-hash": "Verifying transcript hash",
+        "all-contributions": "Verifying all contributions"
+      },
+      "messages": {
+        "passed": "passed",
+        "error": "error",
+        "mismatch": "mismatch",
+        "waiting": "waiting"
+      }
     },
     "error": {
       "safariNotAllowed": "The Safari browser is not compatible",

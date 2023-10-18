@@ -21,7 +21,7 @@ const VerificationSection = ({
   data,
   setIsTwitterButtonActive
 }: Props) => {
-  const { t } = useTranslation()
+  useTranslation()
 
   const [clickedOnVerify, setClickedOnVerify] = useState(false)
 
@@ -75,17 +75,20 @@ const VerificationSection = ({
   return (
     <Container>
       <div>
-        This verification process runs a few checks on the final transcript. It
-        may take a few minutes to download locally and process. Learn more about
-        the checks{' '}
-        <ExternalLink
-          href="https://hackmd.io/w7kvxwIhTlShzutKRKmRfA"
-          style={{ textDecoration: 'underline' }}
-        >
-          here
-        </ExternalLink>
-        .
+        <Trans i18nKey="verify.explanation">
+          This verification process runs a few checks on the final transcript.
+          It may take a few minutes to download locally and process. Learn more
+          about the checks{' '}
+          <ExternalLink
+            href="https://hackmd.io/w7kvxwIhTlShzutKRKmRfA"
+            style={{ textDecoration: 'underline' }}
+          >
+            here
+          </ExternalLink>
+          .
+        </Trans>
       </div>
+
       <ButtonContainer>
         {clickedOnVerify ? (
           <LoadingSpinner style={{ height: 'auto' }} />
@@ -95,70 +98,121 @@ const VerificationSection = ({
             disabled={clickedOnVerify || !data || !dataAsString}
             onClick={handleClickVerify}
           >
-            <Trans i18nKey="record.verifyButton">Verify</Trans>
+            <Trans i18nKey="verify.button">Verify</Trans>
           </PrimaryButton>
         )}
       </ButtonContainer>
       <Ol>
         <Li>
-          <span>Sanity checking</span>
+          <span>
+            <Trans i18nKey="verify.parts.sanity">Sanity checking</Trans>
+          </span>
           <Points />
           {verifiedSanity ? (
-            <GreenSpan>passed</GreenSpan>
+            <GreenSpan>
+              <Trans i18nKey="verify.messages.passed">passed</Trans>
+            </GreenSpan>
           ) : verifySanityError ? (
-            <RedSpan>error</RedSpan>
+            <RedSpan>
+              <Trans i18nKey="verify.messages.error">error</Trans>
+            </RedSpan>
           ) : (
-            <GraySpan>waiting</GraySpan>
+            <GraySpan>
+              <Trans i18nKey="verify.messages.waiting">waiting</Trans>
+            </GraySpan>
           )}
         </Li>
         <Li>
-          <span>Verifying no secret is zero</span>
+          <span>
+            <Trans i18nKey="verify.parts.no-zero">
+              Verifying no secret is zero
+            </Trans>
+          </span>
           <Points />
           {verifiedNoZeros ? (
-            <GreenSpan>passed</GreenSpan>
+            <GreenSpan>
+              <Trans i18nKey="verify.messages.passed">passed</Trans>
+            </GreenSpan>
           ) : verifyNoZerosError ? (
-            <RedSpan>error</RedSpan>
+            <RedSpan>
+              <Trans i18nKey="verify.messages.error">error</Trans>
+            </RedSpan>
           ) : (
-            <GraySpan>waiting</GraySpan>
+            <GraySpan>
+              <Trans i18nKey="verify.messages.waiting">waiting</Trans>
+            </GraySpan>
           )}
         </Li>
         <Li>
-          <span>Verifying Powers of Tau</span>
+          <span>
+            <Trans i18nKey="verify.parts.powers-of-tau">
+              Verifying Powers of Tau
+            </Trans>
+          </span>
           <Points />
           {verifiedPoT ? (
-            <GreenSpan>passed</GreenSpan>
+            <GreenSpan>
+              <Trans i18nKey="verify.messages.passed">passed</Trans>
+            </GreenSpan>
           ) : verifyPoTError ? (
-            <RedSpan>error</RedSpan>
+            <RedSpan>
+              <Trans i18nKey="verify.messages.error">error</Trans>
+            </RedSpan>
           ) : (
-            <GraySpan>waiting</GraySpan>
+            <GraySpan>
+              <Trans i18nKey="verify.messages.waiting">waiting</Trans>
+            </GraySpan>
           )}
         </Li>
         <Li>
-          <span>Verifying transcript hash</span>
+          <span>
+            <Trans i18nKey="verify.parts.transcript-hash">
+              Verifying transcript hash
+            </Trans>
+          </span>
           <Points />
           {verifiedHash ? (
-            <GreenSpan>passed</GreenSpan>
+            <GreenSpan>
+              <Trans i18nKey="verify.messages.passed">passed</Trans>
+            </GreenSpan>
           ) : verifyHashError ? (
-            <RedSpan>mismatch</RedSpan>
+            <RedSpan>
+              <Trans i18nKey="verify.messages.mismatch">mismatch</Trans>
+            </RedSpan>
           ) : (
-            <GraySpan>waiting</GraySpan>
+            <GraySpan>
+              <Trans i18nKey="verify.messages.waiting">waiting</Trans>
+            </GraySpan>
           )}
         </Li>
         <Li>
-          <span>Verifying all contributions</span>
+          <span>
+            <Trans i18nKey="verify.parts.all-contributions">
+              Verifying all contributions
+            </Trans>
+          </span>
           <Points />
           {verifiedContributions ? (
-            <GreenSpan>passed</GreenSpan>
+            <GreenSpan>
+              <Trans i18nKey="verify.messages.passed">passed</Trans>
+            </GreenSpan>
           ) : verifyContributionsError ? (
-            <RedSpan>error</RedSpan>
+            <RedSpan>
+              <Trans i18nKey="verify.messages.error">error</Trans>
+            </RedSpan>
           ) : (
-            <GraySpan>waiting</GraySpan>
+            <GraySpan>
+              <Trans i18nKey="verify.messages.waiting">waiting</Trans>
+            </GraySpan>
           )}
         </Li>
       </Ol>
       <div style={{ width: '100%', marginBlock: '30px' }}>
-        Search to confirm the transcript contains your contribution, then share
-        with the rest of the community! Addresses are eligible to claim a POAP.
+        <Trans i18nKey="verify.claim-text">
+          Search to confirm the transcript contains your contribution, then
+          share with the rest of the community! Addresses are eligible to claim
+          a POAP.
+        </Trans>
       </div>
     </Container>
   )
