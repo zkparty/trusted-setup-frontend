@@ -288,8 +288,7 @@ const RecordPage = () => {
   }
 
   const onClickClaimPOAP = async () => {
-    // TODO: add eth address to poap button
-    window.open(`https://inno-maps.com/claim?address=${searchQuery}`, '_blank')
+    window.open('https://checkout.poap.xyz/151249', '_blank')
     setIsPOAPActive(false)
   }
 
@@ -309,9 +308,7 @@ const RecordPage = () => {
       <Header />
       <Container>
         <PageTitle>
-          <Trans i18nKey="record.transcriptInformation">
-            Verify the Ceremony
-          </Trans>
+          <Trans i18nKey="verify.title">Verify the Ceremony</Trans>
         </PageTitle>
         <StatsContainer>
           <Stat>
