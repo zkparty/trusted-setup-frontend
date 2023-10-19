@@ -80,10 +80,35 @@ const LandingPage = () => {
                   fontSize: FONT_SIZE.SM,
                   width: isMobile() ? '240px' : '55ch',
                   wordBreak: 'break-all',
-                  marginBottom: '25px'
+                  marginBottom: '15px'
                 }}
               >
                 {TRANSCRIPT_HASH}
+              </ItalicSubTitle>
+              <ItalicSubTitle
+                style={{ fontSize: FONT_SIZE.SM, marginBottom: '0px' }}
+              >
+                <Bold>
+                  {' '}
+                  <Trans i18nKey="header.totalContributions">
+                    Total contributions
+                  </Trans>
+                </Bold>
+              </ItalicSubTitle>
+              <ItalicSubTitle
+                style={{
+                  fontSize: FONT_SIZE.SM,
+                  width: isMobile() ? '240px' : '55ch',
+                  wordBreak: 'break-all',
+                  marginBottom: '25px'
+                }}
+              >
+                {
+                  /*we avoid seq data to load it fast! */
+                  Number(141416).toLocaleString('en-US', {
+                    maximumFractionDigits: 0
+                  })
+                }{' '}
               </ItalicSubTitle>
             </>
           )}

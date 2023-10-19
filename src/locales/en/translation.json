@@ -148,7 +148,7 @@
       "online": "Online",
       "title": "Test Ceremony",
       "sequencer": "Sequencer",
-      "totalContributions": "total contributions",
+      "totalContributions": "Total contributions:",
       "participantsInLobby": "participants in lobby",
       "waitTime": "<0>hours</0> max. estimated wait time"
     },

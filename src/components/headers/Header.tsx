@@ -6,51 +6,21 @@ import styled from 'styled-components'
 import Logo from '../Logo'
 import LanguageSelector from '../LanguageSelector'
 // Import constants
-import {
-  FONT_SIZE,
-  BREAKPOINT,
-  ENVIRONMENT,
-  TRANSCRIPT_HASH
-} from '../../constants'
+import { FONT_SIZE, BREAKPOINT, ENVIRONMENT } from '../../constants'
 // Import hooks
-import useSequencerStatus from '../../hooks/useSequencerStatus'
 import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../../store/auth'
 import { isMobile } from '../../utils'
 import ROUTES from '../../routes'
-import { Bold } from '../Text'
 
 const Header = () => {
   useTranslation()
   const navigate = useNavigate()
   const { nickname } = useAuthStore()
-  const { data } = useSequencerStatus()
   return (
     <Container isMobile={isMobile()}>
       <Logo onClick={() => navigate(ROUTES.ROOT)} />
-      <SequencerStatus>
-        <span style={{ paddingBottom: '2px' }}>
-          <Bold>
-            <Trans i18nKey="header.totalContributions">
-              total contributions
-            </Trans>
-            {': '}
-          </Bold>
-          {data?.num_contributions.toLocaleString('en-US', {
-            maximumFractionDigits: 0
-          })}{' '}
-        </span>
-        <span style={{ paddingBottom: '2px' }}>
-          <Bold>{'transcript sha256 hash: '}</Bold>
-          {isMobile()
-            ? TRANSCRIPT_HASH.replace(/(.{8})..+/, '$1…') +
-              TRANSCRIPT_HASH.substring(
-                TRANSCRIPT_HASH.length - 8,
-                TRANSCRIPT_HASH.length
-              )
-            : TRANSCRIPT_HASH}
-        </span>
-      </SequencerStatus>
+
       {ENVIRONMENT === 'testnet' ? (
         <CenterSection isMobile={isMobile()}>
           <Trans i18nKey="header.ceremony">TEST CEREMONY</Trans>
@@ -86,17 +56,6 @@ const CenterSection = styled.div<{ isMobile: boolean }>`
   letter-spacing: ${({ isMobile }) => (isMobile ? '0.5px' : '2px')};
   ${textSerif}
   font-weight: 800;
-`
-
-const SequencerStatus = styled.div`
-  margin-inline-start: 12px;
-  font-size: ${FONT_SIZE.XS};
-  display: flex;
-  flex-direction: column;
-  word-break: break-word;
-  @media (max-width: ${BREAKPOINT.S}) {
-    display: none;
-  }
 `
 
 const Address = styled.div`
