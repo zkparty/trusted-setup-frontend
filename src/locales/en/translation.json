@@ -148,7 +148,7 @@
       "online": "Online",
       "title": "Test Ceremony",
       "sequencer": "Sequencer",
-      "totalContributions": "total contributions",
+      "totalContributions": "Total contributions:",
       "participantsInLobby": "participants in lobby",
       "waitTime": "<0>hours</0> max. estimated wait time"
     },
@@ -212,12 +212,13 @@
       "searchBar": "Search address, ENS, github handle, #1, ...",
       "button": "View",
       "download": "Download full transcript",
+      "verifyButton": "Verify",
       "title": "Contributions Transcript",
       "stats": {
         "lobby": "Lobby size:",
         "contributions": "Contributions:",
         "address": "Sequencer address:",
-        "transactionHash": "Transaction hash:"
+        "transcriptHash": "Transaction hash:"
       },
       "transcriptModal": {
         "title": "CONTRIBUTION DETAILS",
@@ -245,11 +246,25 @@
       "unlockWithGithub": "or unlock with Github"
     },
     "verify": {
-      "title": "Verify your transcript",
-      "searchBar": "Search for your address",
-      "button-ecdsa": "Verify ECDSA",
-      "tweetAll": "I just verified the output of the KZG Ceremony! Verify it for yourself here: https://ceremony.ethereum.org",
-      "tweetWithAddress": "I just verified that the contribution from {{ethAddress}} was included in the KZG Ceremony! Verify your own contribution here: https://ceremony.ethereum.org"
+      "title": "Verify the ceremony",
+      "explanation": "This verification process runs a few checks on the final transcript. It may take a few minutes to download locally and process. Learn more about the checks <2>here</2>.",
+      "claim-text": "Search to confirm the transcript contains your contribution, then share with the rest of the community! Addresses are eligible to claim a POAP.",
+      "button": "Verify",
+      "tweetAll": "I just verified the output of the 🕯 KZG Ceremony 🕯 output! \n\nTranscript sha256 hash: 0x8ed1c73857e77ae98ea23e36cdcf828ccbf32b423fddc7480de658f9d116c848 \n\nVerify it for yourself here: https://ceremony.ethereum.org",
+      "tweetWithAddress": "I just verified that the contribution from {{ethAddress}} was included in the 🕯 KZG Ceremony 🕯 output! \n\nTranscript sha256 hash: 0x8ed1c73857e77ae98ea23e36cdcf828ccbf32b423fddc7480de658f9d116c848 \n\nVerify your own contribution and claim your POAP: https://ceremony.ethereum.org",
+      "parts": {
+        "sanity": "Sanity checking",
+        "no-zero": "Verifying no secret is zero",
+        "powers-of-tau": "Verifying Powers of Tau",
+        "transcript-hash": "Verifying transcript hash",
+        "all-contributions": "Verifying all contributions"
+      },
+      "messages": {
+        "passed": "passed",
+        "error": "error",
+        "mismatch": "mismatch",
+        "waiting": "waiting"
+      }
     },
     "error": {
       "safariNotAllowed": "The Safari browser is not compatible",

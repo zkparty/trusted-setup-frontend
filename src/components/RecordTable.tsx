@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Record } from '../types'
-import styled, { css }  from 'styled-components'
+import styled, { css } from 'styled-components'
 import { FONT_SIZE } from '../constants'
 import BlockiesIdenticon from './Blockies'
 import LoadingSpinner from './LoadingSpinner'
@@ -21,7 +21,7 @@ const RecordTable = ({
   reOrderFormattedData
 }: Props) => {
   useTranslation()
-  const [increaseOrder, setIncreaseOrder] = useState(true);
+  const [increaseOrder, setIncreaseOrder] = useState(true)
   const [selectedTranscriptItem, setSelectedTranscriptItem] =
     useState<null | Record>(null)
 
@@ -42,18 +42,31 @@ const RecordTable = ({
   return (
     <Container>
       <TableHead>
-          <Col># { showChevron ?
-          <Chevron onClick={handleOnClickChevron} increaseOrder={increaseOrder}>{'>'}</Chevron>
-          :
-          ''
-          }</Col>
+        <Col>
+          #{' '}
+          {showChevron ? (
+            <Chevron
+              onClick={handleOnClickChevron}
+              increaseOrder={increaseOrder}
+            >
+              {'>'}
+            </Chevron>
+          ) : (
+            ''
+          )}
+        </Col>
         <Trans i18nKey="record.headers">
-          <Col flex={4} width="0">Participant ID</Col>
+          <Col flex={4} width="0">
+            Participant ID
+          </Col>
           <Col atEnd>Signatures</Col>
         </Trans>
       </TableHead>
       {data.map((record) => (
-        <Row key={record.position} onClick={() => setSelectedTranscriptItem(record)}>
+        <Row
+          key={record.position}
+          onClick={() => setSelectedTranscriptItem(record)}
+        >
           <Col>{record.position}</Col>
           <Col flex={4} width="0">
             <Address>{record.participantName ?? record.participantId}</Address>
@@ -77,10 +90,10 @@ const RecordTable = ({
         onDeselect={() => setSelectedTranscriptItem(null)}
         onChange={(i: number) => {
           let item = data[i]
-          if (!item){
-            for (let j=0, nj=data.length; j < nj; j++) {
+          if (!item) {
+            for (let j = 0, nj = data.length; j < nj; j++) {
               const element = data[j]
-              if (element.position === i){
+              if (element.position === i) {
                 item = element
               }
             }
@@ -93,34 +106,36 @@ const RecordTable = ({
 }
 
 const Container = styled.div`
-  margin-top: 40px;
+  margin-top: 20px;
   width: 100ch;
   max-width: 100%;
 `
 
 const TableHead = styled.div`
+  border-top: solid 1px ${({ theme }) => theme.text};
+  padding-top: 35px;
+  padding-bottom: 45px;
   padding-inline: 5px;
   display: flex;
   height: 60px;
 `
 
-const Chevron = styled.span<{increaseOrder: boolean}>`
+const Chevron = styled.span<{ increaseOrder: boolean }>`
   cursor: pointer;
   user-select: none;
   margin-left: 12px;
-  ${({ increaseOrder }) => increaseOrder ?
-    css`
-      transform: rotate(90deg);
-      height: 18px;
-      width: 12px;
-    `
-    :
-    css`
-      transform: rotate(270deg);
-      height: 20px;
-      width: 10px;
-    `
-  }
+  ${({ increaseOrder }) =>
+    increaseOrder
+      ? css`
+          transform: rotate(90deg);
+          height: 18px;
+          width: 12px;
+        `
+      : css`
+          transform: rotate(270deg);
+          height: 20px;
+          width: 10px;
+        `}
 `
 
 const Row = styled.div`

@@ -15,11 +15,15 @@ import {
   FONT_SIZE,
   TRANSCRIPT_HASH
 } from '../constants'
-import { Description, ItalicSubTitle, PageTitle } from '../components/Text'
+import {
+  Bold,
+  Description,
+  ItalicSubTitle,
+  PageTitle
+} from '../components/Text'
 import Explanation from '../components/landing/Explanation'
 import { BgColoredContainer } from '../components/Background'
 import LatestRecords from '../components/landing/LatestRecords'
-import OtherResources from '../components/landing/OtherResources'
 import { PrimaryButton } from '../components/Button'
 import LatestContributionsBorder from '../assets/latest-contributions-border.svg'
 
@@ -63,17 +67,48 @@ const LandingPage = () => {
             ''
           ) : (
             <>
-              <ItalicSubTitle style={{ marginBottom: '0px' }}>
+              <ItalicSubTitle style={{ marginBottom: '20px' }}>
                 <Trans i18nKey="landing.over">The ceremony is over</Trans>
+              </ItalicSubTitle>
+              <ItalicSubTitle
+                style={{ fontSize: FONT_SIZE.SM, marginBottom: '0px' }}
+              >
+                <Bold>{'Transcript sha256 hash: '}</Bold>
               </ItalicSubTitle>
               <ItalicSubTitle
                 style={{
                   fontSize: FONT_SIZE.SM,
                   width: isMobile() ? '240px' : '55ch',
-                  wordBreak: 'break-all'
+                  wordBreak: 'break-all',
+                  marginBottom: '15px'
                 }}
               >
                 {TRANSCRIPT_HASH}
+              </ItalicSubTitle>
+              <ItalicSubTitle
+                style={{ fontSize: FONT_SIZE.SM, marginBottom: '0px' }}
+              >
+                <Bold>
+                  {' '}
+                  <Trans i18nKey="header.totalContributions">
+                    Total contributions
+                  </Trans>
+                </Bold>
+              </ItalicSubTitle>
+              <ItalicSubTitle
+                style={{
+                  fontSize: FONT_SIZE.SM,
+                  width: isMobile() ? '240px' : '55ch',
+                  wordBreak: 'break-all',
+                  marginBottom: '25px'
+                }}
+              >
+                {
+                  /*we avoid seq data to load it fast! */
+                  Number(141416).toLocaleString('en-US', {
+                    maximumFractionDigits: 0
+                  })
+                }{' '}
               </ItalicSubTitle>
             </>
           )}
@@ -97,7 +132,6 @@ const LandingPage = () => {
               <Trans i18nKey="landing.button-verify">Verify transcript</Trans>
             )}
           </PrimaryButton>
-          <OtherResources />
         </WhiteBackground>
       </TopSection>
       <Explanation refFromLanding={ref} />
