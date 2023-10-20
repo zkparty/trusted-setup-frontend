@@ -172,8 +172,8 @@ const RecordPage = () => {
   }, [sequencerStatus])
 
   // Handler functions
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target
+  const handleInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    let { value } = e.target
     setSearchQuery(value)
     setPage(1)
 
@@ -190,6 +190,11 @@ const RecordPage = () => {
         ...{ error: 'Transcript is not loaded yet' }
       }))
       return
+    }
+    if (value.includes('.eth')) {
+      const provider = new providers.InfuraProvider('homestead', INFURA_ID)
+      const ensAddress = await provider.resolveName(value)
+      value = ensAddress ? ensAddress?.toLowerCase() : 'NOTFOUND'
     }
     if (value.length === 42 && value.substring(0, 2) === '0x') {
       setVerifyECDSA((verifyECDSA) => ({
