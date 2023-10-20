@@ -9,6 +9,7 @@ import wasm from '../wasm'
 import { sha256 } from '@noble/hashes/sha256'
 import ExternalLink from './ExternalLink'
 import LoadingSpinner from './LoadingSpinner'
+import { isMobile } from '../utils'
 
 type Props = {
   dataAsString: string | null | undefined
@@ -95,10 +96,14 @@ const VerificationSection = ({
         ) : (
           <PrimaryButton
             style={{ width: 'auto', height: 'auto' }}
-            disabled={clickedOnVerify || !data || !dataAsString}
+            disabled={clickedOnVerify || !data || !dataAsString || isMobile()}
             onClick={handleClickVerify}
           >
-            <Trans i18nKey="verify.button">Verify</Trans>
+            {isMobile() ? (
+              <Trans i18nKey="verify.onDesktop">Verify on desktop</Trans>
+            ) : (
+              <Trans i18nKey="verify.button">Verify</Trans>
+            )}
           </PrimaryButton>
         )}
       </ButtonContainer>
