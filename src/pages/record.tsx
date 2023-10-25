@@ -271,7 +271,7 @@ const RecordPage = () => {
       tweet = t('verify.tweetAll')
     } else {
       let identity = ''
-      if (searchQuery.includes('git')) {
+      if (searchQuery.includes('git') || searchQuery.slice(-4) === '.eth') {
         identity = searchQuery
       } else {
         const prefix = searchQuery
