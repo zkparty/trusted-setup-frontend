@@ -23,7 +23,6 @@ import {
 } from '../components/Text'
 import Explanation from '../components/landing/Explanation'
 import { BgColoredContainer } from '../components/Background'
-import LatestRecords from '../components/landing/LatestRecords'
 import { PrimaryButton } from '../components/Button'
 import LatestContributionsBorder from '../assets/latest-contributions-border.svg'
 
@@ -135,7 +134,6 @@ const LandingPage = () => {
         </WhiteBackground>
       </TopSection>
       <Explanation refFromLanding={ref} />
-      <LatestRecords />
       <FaqPage />
       <Footer />
     </BgColoredContainer>
