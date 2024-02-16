@@ -51,14 +51,14 @@ This will result in a series of log messages reporting the CID of each object in
 
 ```
 ...
-added QmboSwrj3WT8CGuDD5RV4f3SyR4zJu78dHfYXgkmGxEPrc export/wasm
-added QmNg68JsiSWCddYc9wYaYihrHor1ukW2Y5kvmtsKPKiAWb export
-29.96 MiB / 29.96 MiB  100.00%[=======================================================================================] 100.00%
+added QmYEJyDBrmvhFerMRRKdpoLGxxVveRrr64qc1wDNNqMj8Z export/wasm
+added QmaqKhGJBvJ7N43iRmrbjvW8xniWyMWvV5kp38o6FmujKm export
+ 30.14 MiB / 30.14 MiB  100.00%
 ```
 
-The latest build has this CID: `QmU2taq97zkjjihyjDWtFLMJ394dLSkHvxNpPezTqddAUQ`
+The latest build has this CID: `QmYEJyDBrmvhFerMRRKdpoLGxxVveRrr64qc1wDNNqMj8Z`
 
-or, in base32: `bafybeicutfnodccakbftrnrfcosmabqysegc3llk4j2fmq5ocs3gfhq4le`
+or, in base32: `bafybeifzusldqkb2f5qujmzj5oz7qmb2dxdp6dbbpcqd7dv74wzcyaf3ba`
 
 The site can be added to pinning services by uploading the `build` folder.
 
