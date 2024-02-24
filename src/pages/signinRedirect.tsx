@@ -24,7 +24,7 @@ const SigninRedirect = (props: any) => {
     ;(async () => {
       const params = toParams(props.search.replace(/^\?/, ''))
       window.history.replaceState(null, '', window.location.pathname)
-      // check if login was succesful
+      // check if login was successful
       if (validateSigninParams(params)) {
         const notSameWallet = !(await isSameWallet(params.nickname))
         if (params.provider === 'Ethereum' && notSameWallet) {
